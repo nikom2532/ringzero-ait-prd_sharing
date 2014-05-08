@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'iming';
-$db['default']['password'] = 'iming';
-$db['default']['database'] = 'test';
+$db['default']['username'] = 'imingcom_arming';
+$db['default']['password'] = 'cominter';
+$db['default']['database'] = 'imingcom_DB';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
