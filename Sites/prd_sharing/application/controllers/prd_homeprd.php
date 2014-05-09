@@ -1,5 +1,5 @@
 <?php
-class HomePRD extends CI_Controller {
+class PRD_HomePRD extends CI_Controller {
 
 	public function __construct()
 	{

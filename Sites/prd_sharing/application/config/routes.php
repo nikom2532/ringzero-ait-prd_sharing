@@ -48,12 +48,12 @@ $route['404_override'] = '';
 
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
-$route['(:any)'] = 'homeprd';
 $route['news/create'] = 'news/create';
 
-$route['home'] = 'homeprd';
+$route['(:any)'] = 'prd_homeprd';
+$route['home'] = 'prd_homeprd';
 
-$route['default_controller'] = 'homeprd';
+$route['default_controller'] = 'prd_homeprd';
 
 
 /* End of file routes.php */
