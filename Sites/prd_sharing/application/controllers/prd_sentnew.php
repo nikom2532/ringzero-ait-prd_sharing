@@ -9,7 +9,7 @@ class PRD_sentNew extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'News archive';
+		$data['title'] = 'Sent News';
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/sentnew/sentnew', $data);

@@ -41,9 +41,33 @@
                 </div>
                 <div class="menu">
                     <ul> 
-                        <li class="menu-item onClick"><a href="homePRD" style="padding-top: 20px; ">Home</a></li>
-                        <li class="menu-item click"><a href="sentNew">Send News</a></li>
-                        <li class="menu-item click"><a href="rss">Rss Feed</a></li>
+                        <li class="menu-item <?php if($title == "Home PRD"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Home PRD")){
+                        		?><a href="homePRD" style="padding-top: 20px; "><?php
+                        	}
+                        			?>Home<?php 
+                        	if(!($title == "Home PRD")){
+                        			?></a><?php
+                        	}
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Sent News")){
+                        		?><a href="sentNew"><?php
+                        	}
+                    				?>Send News<?php
+                    		if(!($title == "Sent News")){
+                        		?></a><?php
+							}
+                        ?></li>
+                        <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "RSS Feed")){
+                        		?><a href="rss"><?php
+							}
+                        			?>Rss Feed<?php
+                        	if(!($title == "RSS Feed")){
+                        		?></a><?php
+							}
+                        ?></li>
                         <li class="menu-item click"><a href="manageNew">Manage News</a></li>
                         <li class="menu-item click"><a href="manageUser">Manage User</a></li>
                         <li class="menu-item click"><a href="manageInfoCategory">Manage Info</a></li>

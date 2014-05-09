@@ -9,7 +9,7 @@ class PRD_rss extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'News archive';
+		$data['title'] = 'RSS Feed';
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/rss/rss', $data);
