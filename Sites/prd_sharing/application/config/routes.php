@@ -53,8 +53,9 @@ $route['news/create'] = 'news/create';
 // $route['(:any)'] = 'prd_homeprd';
 // $route['default_controller'] = 'prd_homeprd';
 
-$route['home'] = 'prd_homeprd';
-$route['sentnews'] = 'prd_sentnew';
+$route['homePRD'] = 'prd_homeprd';
+$route['sentNew'] = 'prd_sentnew';
+$route['rss'] = 'prd_rss';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

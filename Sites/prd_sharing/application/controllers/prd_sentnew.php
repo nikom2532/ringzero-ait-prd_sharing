@@ -11,8 +11,8 @@ class PRD_sentNew extends CI_Controller {
 	{
 		$data['title'] = 'News archive';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('sentnew/sentnew', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('prdsharing/templates/header', $data);
+		$this->load->view('prdsharing/sentnew/sentnew', $data);
+		$this->load->view('prdsharing/templates/footer');
 	}
 }

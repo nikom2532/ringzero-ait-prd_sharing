@@ -13,6 +13,8 @@
 
     <link href="css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="css/style.css" rel="stylesheet" charset="utf-8">
+    <script src="js/ckeditor.js"></script>
+    <link rel="stylesheet" href="css/sample.css">
 </head>
 <body>
     <div class="container">
@@ -39,13 +41,13 @@
                 </div>
                 <div class="menu">
                     <ul> 
-                        <li class="menu-item onClick"><a href="homePRD.html" style="padding-top: 20px; ">Home</a></li>
-                        <li class="menu-item click"><a href="sentNew.html">Send News</a></li>
-                        <li class="menu-item click"><a href="rss.html">Rss Feed</a></li>
-                        <li class="menu-item click"><a href="manageNew.html">Manage News</a></li>
-                        <li class="menu-item click"><a href="manageUser.html">Manage User</a></li>
-                        <li class="menu-item click"><a href="manageInfoCategory.html">Manage Info</a></li>
-                        <li class="menu-item click"><a href="reportPRD.html">Report</a></li>
+                        <li class="menu-item onClick"><a href="homePRD" style="padding-top: 20px; ">Home</a></li>
+                        <li class="menu-item click"><a href="sentNew">Send News</a></li>
+                        <li class="menu-item click"><a href="rss">Rss Feed</a></li>
+                        <li class="menu-item click"><a href="manageNew">Manage News</a></li>
+                        <li class="menu-item click"><a href="manageUser">Manage User</a></li>
+                        <li class="menu-item click"><a href="manageInfoCategory">Manage Info</a></li>
+                        <li class="menu-item click"><a href="reportPRD">Report</a></li>
                     </ul>
                 </div>
             </div>

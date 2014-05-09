@@ -1,5 +1,5 @@
 <?php
-class PRD_HomePRD extends CI_Controller {
+class PRD_rss extends CI_Controller {
 
 	public function __construct()
 	{
@@ -12,7 +12,7 @@ class PRD_HomePRD extends CI_Controller {
 		$data['title'] = 'News archive';
 
 		$this->load->view('prdsharing/templates/header', $data);
-		$this->load->view('prdsharing/home/homeprd', $data);
+		$this->load->view('prdsharing/rss/rss', $data);
 		$this->load->view('prdsharing/templates/footer');
 	}
 }
