@@ -50,11 +50,11 @@ $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['news/create'] = 'news/create';
 
-$route['(:any)'] = 'prd_homeprd';
+// $route['(:any)'] = 'prd_homeprd';
+// $route['default_controller'] = 'prd_homeprd';
+
 $route['home'] = 'prd_homeprd';
-
-$route['default_controller'] = 'prd_homeprd';
-
+$route['sentnews'] = 'prd_sentnew';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
