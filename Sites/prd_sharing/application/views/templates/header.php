@@ -22,7 +22,7 @@
                 <div id="header">
                     <div class="logo">
                         <img src="images/NNT_logo.png" alt="Logo" style="width:110px;">
-                        <h1>                        
+                        <h1>
                             <label class="th">ระบบช่องทางเผยแพร่ ข้อมูลข่าวสาร</br>
                             <span class="bold">หน่วยงานภาครัฐ กรมประชาสัมพันธ์</span></label>
                         </h1>
@@ -49,5 +49,3 @@
                     </ul>
                 </div>
             </div>
-                        
-            <div class="content">
