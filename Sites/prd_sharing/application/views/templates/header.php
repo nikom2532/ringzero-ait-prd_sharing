@@ -41,7 +41,7 @@
                     <ul> 
                         <li class="menu-item onClick"><a href="homePRD.html" style="padding-top: 20px; ">Home</a></li>
                         <li class="menu-item click"><a href="sentNew.html">Send News</a></li>
-                        <li class="menu-item click">Rss Feed</li>
+                        <li class="menu-item click"><a href="rss.html">Rss Feed</a></li>
                         <li class="menu-item click"><a href="manageNew.html">Manage News</a></li>
                         <li class="menu-item click"><a href="manageUser.html">Manage User</a></li>
                         <li class="menu-item click"><a href="manageInfoCategory.html">Manage Info</a></li>
