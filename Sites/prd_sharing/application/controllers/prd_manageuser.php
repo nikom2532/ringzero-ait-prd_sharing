@@ -9,7 +9,7 @@ class PRD_ManageUser extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Manage News';
+		$data['title'] = 'Manage Users';
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/manageuser/manageuser', $data);

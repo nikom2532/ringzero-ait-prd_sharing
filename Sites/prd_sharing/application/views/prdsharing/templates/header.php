@@ -77,7 +77,15 @@
                         		?></a><?php
 							}
                         ?></li>
-                        <li class="menu-item click"><a href="manageUser">Manage User</a></li>
+                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Manage Users")){
+	                        	?><a href="manageUser"><?php
+							}
+	                        		?>Manage User<?php
+	                        if(!($title == "Manage Users")){
+	                        	?></a><?php
+							}
+                        ?></li>
                         <li class="menu-item click"><a href="manageInfoCategory">Manage Info</a></li>
                         <li class="menu-item click"><a href="reportPRD">Report</a></li>
                     </ul>
