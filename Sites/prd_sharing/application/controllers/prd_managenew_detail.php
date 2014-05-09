@@ -1,5 +1,5 @@
 <?php
-class PRD_ManageNew extends CI_Controller {
+class PRD_ManageNew_detail extends CI_Controller {
 
 	public function __construct()
 	{
