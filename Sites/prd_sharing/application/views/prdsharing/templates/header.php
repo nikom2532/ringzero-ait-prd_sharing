@@ -14,7 +14,11 @@
     <link href="css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="css/style.css" rel="stylesheet" charset="utf-8">
     <script src="js/ckeditor.js"></script>
-    <link rel="stylesheet" href="css/sample.css">
+<?php
+    if($title == "Sent News"){
+ 	   ?><link rel="stylesheet" href="css/sample.css"><?php
+	}
+?>
 </head>
 <body>
     <div class="container">
@@ -86,8 +90,25 @@
 	                        	?></a><?php
 							}
                         ?></li>
-                        <li class="menu-item click"><a href="manageInfoCategory">Manage Info</a></li>
-                        <li class="menu-item click"><a href="reportPRD">Report</a></li>
+                        
+                        <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Manage Info")){
+                        		?><a href="manageInfoCategory"><?php
+							}
+                        			?>Manage Info<?php
+                    		if(!($title == "Manage Info")){
+                        		?></a><?php
+							}
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Report")){
+                        		?><a href="reportPRD"><?php
+							}
+                        		?>Report<?php
+                    		if(!($title == "Report")){
+                    			?></a><?php
+							}
+                    	?></li>
                     </ul>
                 </div>
             </div>
