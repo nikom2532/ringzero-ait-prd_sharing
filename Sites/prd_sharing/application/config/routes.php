@@ -56,6 +56,7 @@ $route['news/create'] = 'news/create';
 $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';
 $route['rss'] = 'prd_rss';
+$route['manageNew'] = 'prd_managenew';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

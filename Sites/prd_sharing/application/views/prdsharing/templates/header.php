@@ -43,7 +43,7 @@
                     <ul> 
                         <li class="menu-item <?php if($title == "Home PRD"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
                         	if(!($title == "Home PRD")){
-                        		?><a href="homePRD" style="padding-top: 20px; "><?php
+                        		?><a href="homePRD"><?php
                         	}
                         			?>Home<?php 
                         	if(!($title == "Home PRD")){
@@ -68,7 +68,15 @@
                         		?></a><?php
 							}
                         ?></li>
-                        <li class="menu-item click"><a href="manageNew">Manage News</a></li>
+                        <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+							if(!($title == "Manage News")){
+                        		?><a href="manageNew"><?php
+							}
+                        			?>Manage News<?php
+                        	if(!($title == "Manage News")){
+                        		?></a><?php
+							}
+                        ?></li>
                         <li class="menu-item click"><a href="manageUser">Manage User</a></li>
                         <li class="menu-item click"><a href="manageInfoCategory">Manage Info</a></li>
                         <li class="menu-item click"><a href="reportPRD">Report</a></li>
