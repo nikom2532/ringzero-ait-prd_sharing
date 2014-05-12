@@ -67,7 +67,11 @@ $route['homeGOVE'] = 'prd_homegove';
 $route['infoDepartment'] = 'prd_infodepartment';
 $route['infoMinistry'] = 'prd_infoministry';
 $route['manageInfoDepartment'] = 'prd_manageinfodepartment';
-
+$route['manageInfoMinistry'] = 'prd_manageinfoministry';
+$route['manageNewApproveGROV'] = 'prd_managenewapprovegrov';
+$route['manageNewEditGROV'] = 'prd_manageneweditgrov';
+$route['manageNewEditPRD'] = 'prd_manageneweditprd';
+$route['manageNewGROV'] = 'prd_managenewgrov';
 
 
 /* End of file routes.php */
