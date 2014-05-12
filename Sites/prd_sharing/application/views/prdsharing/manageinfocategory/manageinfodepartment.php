@@ -23,11 +23,11 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width: 100%;">
-				<a href="manageInfoCategory.html">
+				<a href="manageInfoCategory">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
-				<a href="manageInfoMinistry.html">
+				<a href="manageInfoMinistry">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Ministry
 				</p></a>
@@ -66,7 +66,7 @@
 				<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
 				</p>
 				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoDepartment.html">รหัสกรม</a>
+					<a href="infoDepartment">รหัสกรม</a>
 				</p>
 				<p class="col-3" style="width: 30%;float: left; ">
 					ชื่อกระทรวง
@@ -85,7 +85,7 @@
 				<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
 				</p>
 				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoDepartment.html">รหัสกรม</a>
+					<a href="infoDepartment">รหัสกรม</a>
 				</p>
 				<p class="col-3" style="width: 30%;float: left; ">
 					ชื่อกระทรวง

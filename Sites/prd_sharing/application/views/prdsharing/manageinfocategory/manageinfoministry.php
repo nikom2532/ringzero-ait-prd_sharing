@@ -23,14 +23,14 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width:100%">
-				<a href="manageInfoCategory.html">
+				<a href="manageInfoCategory">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
 				<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;text-align:center;float: left;margin-left: 10px;width: 15%;">
 					Ministry
 				</p>
-				<a href="manageInfoDepartment.html">
+				<a href="manageInfoDepartment">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Department
 				</p></a>
@@ -63,7 +63,7 @@
 				<p class="col-2" style="width: 10%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
 				</p>
 				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoMinistry.html" >รหัสกระทรวง</a>
+					<a href="infoMinistry" >รหัสกระทรวง</a>
 				</p>
 				<p class="col-3" style="width: 30%;float: left; ">
 					ชื่อกระทรวง

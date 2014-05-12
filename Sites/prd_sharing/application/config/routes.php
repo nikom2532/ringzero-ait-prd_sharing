@@ -50,8 +50,8 @@ $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['news/create'] = 'news/create';
 
-// $route['(:any)'] = 'prd_homeprd';
-// $route['default_controller'] = 'prd_homeprd';
+// $route['(:any)'] = 'prd_authen';
+$route['default_controller'] = 'prd_authen';
 
 $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';

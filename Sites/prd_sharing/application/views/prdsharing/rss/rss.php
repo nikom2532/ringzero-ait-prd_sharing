@@ -86,7 +86,7 @@
 					03/02/2557</br>00:00:00
 				</p>
 				<p class="col-3" style="width: 60%;float: left; ">
-					<a href="detail.html">Icon ไฟล์แนบ</a>
+					<a href="detail">Icon ไฟล์แนบ</a>
 				</p>
 				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
 					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
@@ -103,7 +103,7 @@
 					หัวข้อข่าว
 				</p>
 				<p class="col-3" style="width: 60%;float: left; ">
-					<a href="detail.html">Icon ไฟล์แนบ</a>
+					<a href="detail">Icon ไฟล์แนบ</a>
 				</p>
 				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
 					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">

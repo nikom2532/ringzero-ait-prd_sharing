@@ -49,7 +49,7 @@
                             <img src="images/icon/view.png" style="margin: -10px 10px 0;">
                              views: 1000
                           </p>
-                          <p class="col-4" style="width: 20%;float: left; "><a href="detail.html">open new link</a></p>
+                          <p class="col-4" style="width: 20%;float: left; "><a href="detail">open new link</a></p>
                           <p class="col-5" style="width: 20%;float: left;  text-align: center;">
                             <img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
                             <img src="images/icon/pic.png" style="margin: -10px 10px 0;">

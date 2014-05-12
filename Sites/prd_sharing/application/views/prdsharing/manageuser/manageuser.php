@@ -37,7 +37,7 @@
 <div class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<div class="row" style="margin-top: 20px;">
-		<a href="userInfo.html">
+		<a href="userInfo">
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 10%;text-align:center;float: left;">
 			MANAGER USER
 		</p></a>

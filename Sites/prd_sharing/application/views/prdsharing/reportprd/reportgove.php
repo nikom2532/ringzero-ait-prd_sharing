@@ -45,7 +45,7 @@
 
 <div class="table-list">
 	<div class="row">
-		<a href="reportPRD.html">
+		<a href="reportPRD">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;float: left;border: 1px solid #dcdcdc; ">
 			PRD NEWS DATA CENTER
 		</p></a>

@@ -41,7 +41,7 @@
         <div class="wrapper">
             <div class="content">
                 <div class="welcome">
-                    <p><b style=" color: #0808A7;font-weight: bold;">Welcome to: </b><span style="color: #0404F5;">admin</span> | <a href="index.html">logout</a></p>
+                    <p><b style=" color: #0808A7;font-weight: bold;">Welcome to: </b><span style="color: #0404F5;">admin</span> | <a href="index">logout</a></p>
                 </div>
                 <div class="menu">
                     <ul> 
