@@ -57,12 +57,14 @@ $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';
 $route['rss'] = 'prd_rss';
 $route['manageNew'] = 'prd_managenew';
-$route['detail'] = 'prd_managenew_detail';
 
 $route['manageUser'] = 'prd_manageuser';
 $route['manageInfoCategory'] = 'prd_manageinfocategory';
 $route['reportPRD'] = 'prd_reportprd';
+
+$route['detail'] = 'prd_managenew_detail';
 $route['homeGOVE'] = 'prd_homegove';
+$route['infoDepartment'] = 'prd_infodepartment';
 
 
 /* End of file routes.php */
