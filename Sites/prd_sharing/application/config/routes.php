@@ -72,6 +72,9 @@ $route['manageNewApproveGROV'] = 'prd_managenewapprovegrov';
 $route['manageNewEditGROV'] = 'prd_manageneweditgrov';
 $route['manageNewEditPRD'] = 'prd_manageneweditprd';
 $route['manageNewGROV'] = 'prd_managenewgrov';
+$route['manageNewPRD'] = 'prd_managenewprd';
+$route['reportGOVE'] = 'prd_reportgove';
+$route['userInfo'] = 'prd_userinfo';
 
 
 /* End of file routes.php */
