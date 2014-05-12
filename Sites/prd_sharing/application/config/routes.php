@@ -65,6 +65,9 @@ $route['reportPRD'] = 'prd_reportprd';
 $route['detail'] = 'prd_managenew_detail';
 $route['homeGOVE'] = 'prd_homegove';
 $route['infoDepartment'] = 'prd_infodepartment';
+$route['infoMinistry'] = 'prd_infoministry';
+$route['manageInfoDepartment'] = 'prd_manageinfodepartment';
+
 
 
 /* End of file routes.php */
