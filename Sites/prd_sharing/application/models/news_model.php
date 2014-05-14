@@ -3,10 +3,11 @@ class News_model extends CI_Model {
 
 	public function __construct()
 	{
-		$this->load->database();
+		$a =	$this->load->database();
+		var_dump($a);
 	}
 	
-	public function get_news($slug = FALSE)
+	public function get_data($slug = FALSE)
 	{
 		if ($slug === FALSE)
 		{
@@ -18,7 +19,7 @@ class News_model extends CI_Model {
 		return $query->row_array();
 	}
 	
-	public function set_news()
+	public function set_data()
 	{
 		$this->load->helper('url');
 

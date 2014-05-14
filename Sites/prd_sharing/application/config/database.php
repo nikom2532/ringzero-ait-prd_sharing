@@ -48,11 +48,27 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+//########### MYSQL
+
+// $db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'iming';
+// $db['default']['password'] = 'iming';
+// $db['default']['database'] = 'ringzero_ait_prd_sharing';
+// $db['default']['dbdriver'] = 'mysql';
+
+//########### SQL Server
+
+// $db['default']['hostname'] = 'NIKOM2532-PC:1433';
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'iming';
-$db['default']['password'] = 'iming';
-$db['default']['database'] = 'test';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['username'] = 'nikom2532';
+$db['default']['password'] = 'cominter';
+$db['default']['database'] = 'ringzero_ait_prd_sharing';
+
+$db['default']['dbdriver'] = 'sqlsrv';
+// $db['default']['dbdriver'] = 'mssql';
+
+//##################
+
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
