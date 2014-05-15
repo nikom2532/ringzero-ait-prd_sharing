@@ -11,13 +11,4 @@ class Test_model extends CI_Model {
 	{
 		return $this->db->get('test')->row();
 	}
-	
-	public function get_test2($slug = FALSE)
-	{
-		if ($slug === FALSE)
-		{
-			$query = $this->db->get('test');
-			return $query->result_array();
-		}
-	}
 }

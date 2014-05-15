@@ -12,6 +12,7 @@ class PRD_HomeGOVE extends CI_Controller {
 		$data['title'] = 'Home PRD';
 
 		$this->load->view('prdsharing/templates/header', $data);
+		$this->load->view('prdsharing/home/header', $data);
 		$this->load->view('prdsharing/home/homegove', $data);
 		$this->load->view('prdsharing/templates/footer');
 	}

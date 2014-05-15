@@ -12,9 +12,10 @@ class PRD_HomePRD extends CI_Controller {
 		$data['title'] = 'Home PRD';
 		$data['test'] = $this->test_model->get_test();
 		
-		var_dump($data['test']);
+		// var_dump($data['test']);
 
 		$this->load->view('prdsharing/templates/header', $data);
+		$this->load->view('prdsharing/home/header', $data);
 		$this->load->view('prdsharing/home/homeprd', $data);
 		$this->load->view('prdsharing/templates/footer');
 	}
