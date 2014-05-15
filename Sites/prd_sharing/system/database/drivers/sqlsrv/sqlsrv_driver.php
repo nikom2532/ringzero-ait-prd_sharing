@@ -86,7 +86,7 @@ class CI_DB_sqlsrv_driver extends CI_DB {
 	 */
 	function db_pconnect()
 	{
-		$this->db_connect(TRUE);
+		return $this->db_connect(TRUE);
 	}
 
 	// --------------------------------------------------------------------
@@ -570,11 +570,40 @@ class CI_DB_sqlsrv_driver extends CI_DB {
 	 * @param	integer	the offset value
 	 * @return	string
 	 */
-	function _limit($sql, $limit, $offset)
+/*	function _limit($sql, $limit, $offset)
 	{
 		$i = $limit + $offset;
 	
 		return preg_replace('/(^\SELECT (DISTINCT)?)/i','\\1 TOP '.$i.' ', $sql);		
+	}*/
+	
+	function _limit($sql, $limit, $offset)
+	{
+		if($offset == 0)
+		{
+			return preg_replace('/(^\SELECT (DISTINCT)?)/i','\\1 TOP ' . $limit . ' ', $sql);
+		}
+		else
+		{
+			$OrderBy = "ORDER BY ";
+			if(count($this->ar_orderby) > 0)
+			{
+				$OrderBy .= implode(', ', $this->ar_orderby);
+
+				if($this->ar_order !== FALSE)
+				{
+					$OrderBy .= ($this->ar_order == 'desc') ? ' DESC' : ' ASC';
+				}
+			}
+			else
+			{
+				$OrderBy .= "(SELECT 1)";
+			}
+
+			$sql = preg_replace('/(\\'. $OrderBy .'\n?)/i','', $sql);
+			$sql = preg_replace('/(^\SELECT (DISTINCT)?)/i','\\1 ROW_NUMBER() OVER ('.$OrderBy.') AS rownum, ', $sql);
+			return "SELECT * \nFROM (\n" . $sql . ") AS A \nWHERE A.rownum BETWEEN (" . ($offset + 1) . ") AND (" . ($offset + $limit) . ")";
+		}
 	}
 
 	// --------------------------------------------------------------------

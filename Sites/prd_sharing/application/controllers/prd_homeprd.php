@@ -4,7 +4,7 @@ class PRD_HomePRD extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Test_model');
+		$this->load->model('test_model');
 	}
 
 	public function index()
@@ -34,9 +34,11 @@ class PRD_HomePRD extends CI_Controller {
 		
 		$data['title'] = 'Home PRD';
 		
-		// $data['test'] = $this->test_model->get_test();
+		$data['test'] = $this->test_model->get_test();
 		
-		// echo $data['test'];
+		var_dump($data['test']);
+		
+		// var_dump($data['test']);
 // 		
 		// var_dump($data['test']);
 
