@@ -63,7 +63,6 @@ $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'nikom2532';
 $db['default']['password'] = 'cominter';
 $db['default']['database'] = 'ringzero_ait_prd_sharing';
-
 $db['default']['dbdriver'] = 'sqlsrv';
 // $db['default']['dbdriver'] = 'mssql';
 

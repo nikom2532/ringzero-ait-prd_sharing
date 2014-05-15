@@ -4,25 +4,29 @@ class PRD_HomePRD extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('test_model');
-		// var_dump($a);
+		$this->load->model('test_model');
 	}
 
 	public function index()
 	{
 		
 		
-$serverName = "localhost"; //serverName\instanceName
-$connectionInfo = array( "Database"=>"ringzero_ait_prd_sharing", "UID"=>"nikom2532", "PWD"=>"cominter");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
-if( $conn ) {
-echo "Connection established.<br />";
-}else{
-echo "Connection could not be established.<br />";
-echo "<pre>";
-print_r(sqlsrv_errors());
-echo "</pre>";
-}
+// $serverName = "localhost";
+// $connectionInfo = array( "Database"=>"ringzero_ait_prd_sharing", "UID"=>"nikom2532", "PWD"=>"cominter");
+// $conn = sqlsrv_connect( $serverName, $connectionInfo);
+// if( $conn ) {
+// echo "Connection established.<br />";
+// 
+// $query = "SElect * from 'test'";
+// $a = sqlsrv_query($query);
+// echo $a;
+// 
+// }else{
+// echo "Connection could not be established.<br />";
+// echo "<pre>";
+// print_r(sqlsrv_errors());
+// echo "</pre>";
+// }
 		
 		
 		
