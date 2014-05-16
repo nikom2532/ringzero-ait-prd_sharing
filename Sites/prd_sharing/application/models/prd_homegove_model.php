@@ -1,5 +1,5 @@
 <?php
-class Home_model extends CI_Model {
+class PRD_HomeGOVE_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -9,6 +9,6 @@ class Home_model extends CI_Model {
 	
 	public function get_gove()
 	{
-		return $this->db->get('test')->row();
+		return $this->db->get('SendInformation')->row();
 	}
 }

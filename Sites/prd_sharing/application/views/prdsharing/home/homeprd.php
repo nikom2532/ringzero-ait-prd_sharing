@@ -1,4 +1,9 @@
 	<div class="row">
+		<?php 
+			//For Test
+			// echo $news->News_Title;
+			// var_dump($news);
+		?>
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS
 		</p>
@@ -11,17 +16,20 @@
 		<div class="header-table" style="text-align: right;">
 			<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">
 		</div>
+<?php
+		//Start to count News's rows
+?>
 		<div class="odd">
 			<p class="col-1" style="width: 10%;float: left; ">
-				999
+				<?php echo $news->News_ID; ?>
 			</p>
 			<p class="col-2" style="width: 90%;float: left; ">
-				fgsdgsdgfsdgfgfdsgdgsdggsggsgfsdgs
+				<?php echo $news->News_Title; ?>
 			</p>
 		</div>
 		<div class="event">
 			<p class="col-1" style="width: 20%;float: left; ">
-				999
+				
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
@@ -41,6 +49,9 @@
 				<img src="images/icon/null.png" style="margin: -10px 10px 0;">
 			</p>
 		</div>
+<?php
+		//End Count News's Row 
+?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)

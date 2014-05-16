@@ -4,15 +4,16 @@ class PRD_HomePRD extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('test_model');
+		$this->load->model('prd_homeprd_model');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Home PRD';
-		$data['test'] = $this->test_model->get_test();
+		$data['news'] = $this->prd_homeprd_model->get_gove();
 		
-		// var_dump($data['test']);
+		//For Test
+		// var_dump($data['news']);
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/home/header', $data);

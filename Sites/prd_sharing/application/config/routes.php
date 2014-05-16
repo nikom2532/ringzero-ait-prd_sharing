@@ -50,8 +50,6 @@ $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['news/create'] = 'news/create';
 
-// $route['(:any)'] = 'prd_authen';
-$route['default_controller'] = 'prd_authen';
 
 $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';
@@ -75,6 +73,10 @@ $route['manageNewGROV'] = 'prd_managenewgrov';
 $route['manageNewPRD'] = 'prd_managenewprd';
 $route['reportGOVE'] = 'prd_reportgove';
 $route['userInfo'] = 'prd_userinfo';
+
+
+$route['default_controller'] = 'prd_authen';
+// $route['(:any)'] = 'prd_authen';
 
 
 /* End of file routes.php */
