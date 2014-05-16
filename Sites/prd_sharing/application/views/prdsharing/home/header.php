@@ -19,7 +19,10 @@
 	</div>
 
 	<div class="col-lg-12" style="text-align: center;">
-		<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
+		<form name="search_form" action="HomePRD" method="post">
+			<input type="hidden" name="news_title" value="" />
+			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
+		</form>
 	</div>
 
 </div>

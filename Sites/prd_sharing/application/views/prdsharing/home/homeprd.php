@@ -1,9 +1,4 @@
 	<div class="row">
-		<?php 
-			//For Test
-			// echo $news->News_Title;
-			// var_dump($news);
-		?>
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS
 		</p>
@@ -39,8 +34,7 @@
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
 				views: <?php 
 					echo $news->News_View;
-				?>
-			</p>
+			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
 				<a href="detail">open new link</a>
 			</p>
