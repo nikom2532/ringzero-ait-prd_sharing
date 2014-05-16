@@ -3,18 +3,18 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-			<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;">
+			<input class="txt-field" type="text" value="" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
 			<label >วันที่</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
 		</div>
 		<div class="col-lg-6">
 			<label >ถึง</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
 		</div>
 	</div>
 
