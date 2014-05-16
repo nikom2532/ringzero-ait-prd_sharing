@@ -4,24 +4,28 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-				<input class="txt-field" type="text" value="" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
+				<input class="txt-field" type="text" value="" name="news_title"  placeholder="" style=" margin-left: 15px;width: 60%;">
+				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:10%;padding: 4px;margin-left:5px;">
 			</div>
 		</div>
 	
 		<div class="row">
-			<div class="col-lg-6">
-				<label >วันที่</label>
-				<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
+			<div class="col-lg-6-search">
+				<div class="label">
+					<label >วันที่</label>
+				</div>
+				<div class="input">
+					<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
+				</div>
 			</div>
-			<div class="col-lg-6">
-				<label >ถึง</label>
-				<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
+			<div class="col-lg-6-search">
+				<div class="label">
+					<label >ถึง</label>
+				</div>
+				<div class="input">
+					<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
+				</div>
 			</div>
-		</div>
-	
-		<div class="col-lg-12" style="text-align: center;">
-			<?php // <input type="hidden" name="search_status" value="" /> ?>
-			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 		</div>
 	</form>
 
