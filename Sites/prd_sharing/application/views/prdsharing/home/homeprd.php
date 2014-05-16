@@ -7,19 +7,28 @@
 			Government Agencies
 		</p></a>
 	</div>
+	<?php
+		// var_dump($this->input->post);
+		// var_dump($rows);
+		// var_dump($news);
+		// echo $title;
+	?>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
 			<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">
 		</div>
 <?php
 		//Start to count News's rows
+		foreach($news as $news_item):
+			// var_dump($news_item);
+			
 ?>
 		<div class="odd">
 			<p class="col-1" style="width: 10%;float: left; ">
-				<?php echo $news->News_ID; ?>
+				<?php echo $news_item->News_ID; ?>
 			</p>
 			<p class="col-2" style="width: 90%;float: left; ">
-				<?php echo $news->News_Title; ?>
+				<?php echo $news_item->News_Title; ?>
 			</p>
 		</div>
 		<div class="event">
@@ -33,7 +42,7 @@
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
 				views: <?php 
-					echo $news->News_View;
+					echo $news_item->News_View;
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
 				<a href="detail">open new link</a>
@@ -41,7 +50,7 @@
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				
 				<img src="images/icon/<?php 
-					if($news->News_StatusVDO){
+					if($news_item->News_StatusVDO){
 						?>vdo<?php
 					}else{
 						?>null<?php
@@ -49,7 +58,7 @@
 				?>.png" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
-					if($news->News_StatusVoice){
+					if($news_item->News_StatusVoice){
 						?>pic<?php
 					}else{
 						?>null<?php
@@ -58,7 +67,7 @@
 				
 				
 				<img src="images/icon/<?php 
-					if($news->News_StatusOtherFile){
+					if($news_item->News_StatusOtherFile){
 						?>sh<?php
 					}else{
 						?>null<?php
@@ -66,7 +75,7 @@
 				?>.png" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
-					if($news->News_StatusPublic){
+					if($news_item->News_StatusPublic){
 						?>like<?php
 					}else{
 						?>null<?php
@@ -75,6 +84,7 @@
 			</p>
 		</div>
 <?php
+		endforeach
 		//End Count News's Row 
 ?>
 		<div class="footer-table">
