@@ -28,7 +28,7 @@ class PRD_HomePRD extends CI_Controller {
 		
 		
 		//For Test
-		var_dump($data['news']);
+		// var_dump($data['news']);
 		// var_dump($this->input->post());
 		// echo $this->input->post("news_title");
 		// var_dump($this->input->post("news_title"));
