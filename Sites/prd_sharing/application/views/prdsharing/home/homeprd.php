@@ -9,7 +9,6 @@
 	</div>
 	<?php
 		// var_dump($this->input->post);
-		// var_dump($rows);
 		// var_dump($news);
 		// echo $title;
 	?>
@@ -84,7 +83,7 @@
 			</p>
 		</div>
 <?php
-		endforeach
+		endforeach;
 		//End Count News's Row 
 ?>
 		<div class="footer-table">

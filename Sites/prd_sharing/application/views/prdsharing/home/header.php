@@ -20,7 +20,7 @@
 		</div>
 	
 		<div class="col-lg-12" style="text-align: center;">
-			<!-- <input type="hidden" name="search_status" value="" /> -->
+			<?php // <input type="hidden" name="search_status" value="" /> ?>
 			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 		</div>
 	</form>

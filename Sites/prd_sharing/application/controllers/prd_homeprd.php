@@ -11,17 +11,15 @@ class PRD_HomePRD extends CI_Controller {
 	{
 		$data['title'] = 'Home PRD';
 		
-		// if($this->input->post("news_title") != ""){
+		if($this->input->post("news_title") != ""){
 			// if(isset($this->input->post('start_date'))){
 // 				
 			// }
-			// $data['news'] = $this->prd_homeprd_model->get_gove_search_title($this->input->post("news_title"));
-		// }
-		// else{
-			// $data['news'] = $this->prd_homeprd_model->get_gove();
-		// }
-		
-		$data['news'] = $this->prd_homeprd_model->get_prd();
+			$data['news'] = $this->prd_homeprd_model->get_prd_search_title($this->input->post("news_title"));
+		}
+		else{
+			$data['news'] = $this->prd_homeprd_model->get_prd();
+		}
 		
 		
 		//For Test
@@ -29,6 +27,7 @@ class PRD_HomePRD extends CI_Controller {
 		// var_dump($this->input->post());
 		// echo $this->input->post("news_title");
 		// var_dump($data['rows']);
+		// var_dump($this->input->post("news_title"));
 		
 		
 		$this->load->view('prdsharing/templates/header', $data);
