@@ -49,7 +49,7 @@
 				
 				<img src="images/icon/<?php 
 					if($news->News_StatusVoice){
-						?>pic<?php
+						?>voice_512x512<?php
 					}else{
 						?>null<?php
 					}
@@ -58,11 +58,11 @@
 				
 				<img src="images/icon/<?php 
 					if($news->News_StatusOtherFile){
-						?>sh<?php
+						?>Document<?php
 					}else{
 						?>null<?php
 					}
-				?>.png" style="margin: -10px 10px 0;">
+				?>.jpg" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
 					if($news->News_StatusPublic){
