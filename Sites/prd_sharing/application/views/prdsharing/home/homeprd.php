@@ -54,24 +54,24 @@
 					}else{
 						?>null<?php
 					}
-				?>.png" style="margin: -10px 10px 0;">
+				?>.png" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
 					if($news_item->News_StatusVoice){
-						?>pic<?php
+						?>voice_512x512<?php
 					}else{
 						?>null<?php
 					}
-				?>.png" style="margin: -10px 10px 0;">
+				?>.png" width="17" style="margin: -10px 10px 0;">
 				
 				
 				<img src="images/icon/<?php 
 					if($news_item->News_StatusOtherFile){
-						?>sh<?php
+						?>Document<?php
 					}else{
 						?>null<?php
 					}
-				?>.png" style="margin: -10px 10px 0;">
+				?>.jpg" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
 					if($news_item->News_StatusPublic){
@@ -79,7 +79,7 @@
 					}else{
 						?>null<?php
 					}
-				?>.png" style="margin: -10px 10px 0;">
+				?>.png" width="17" style="margin: -10px 10px 0;">
 			</p>
 		</div>
 <?php
