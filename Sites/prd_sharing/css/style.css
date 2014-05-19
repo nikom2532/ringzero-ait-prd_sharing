@@ -111,16 +111,23 @@ a {color: #666;}
 .col-lg-12{ width: 100%;margin-top: 15px;}
 .col-lg-6-search{
 	width: 100%;
-	margin-left: 92px;
+	/*margin-left: 92px;*/
 }
 .col-lg-6-search div{
 	float: left;
 }
 .col-lg-6-search .label{
-	width: 10%;
+	text-align: right;
+}
+.width14{
+	width: 14%;
 }
 .col-lg-6-search .input{
-	width: 40%;
+	width: 30%;
+	margin-left: 15px;
+}
+.col-lg-6-search .input input{
+	width:70%;
 }
 
 .col-lg-6{ width: 45%;float: left;margin-right: 5%;}

@@ -11,7 +11,7 @@
 	
 		<div class="row">
 			<div class="col-lg-6-search">
-				<div class="label">
+				<div class="label width14">
 					<label >วันที่</label>
 				</div>
 				<div class="input">
