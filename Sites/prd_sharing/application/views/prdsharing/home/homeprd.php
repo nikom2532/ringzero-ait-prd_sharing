@@ -36,7 +36,7 @@
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
-				ผู้สื่นข่าว:
+				ผู้สื่อข่าว:
 			</p>
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
