@@ -32,11 +32,37 @@
 		</div>
 		<div class="event">
 			<p class="col-1" style="width: 20%;float: left; ">
-				
+<?php
+				if($news_item->News_View <= 0){
+					$star_count = 0;
+				}
+				elseif($news_item->News_View <= 20){
+					$star_count = 1;
+				}
+				elseif($news_item->News_View <= 40){
+					$star_count = 2;
+				}
+				elseif($news_item->News_View <= 60){
+					$star_count = 3;
+				}
+				elseif($news_item->News_View <= 80){
+					$star_count = 4;
+				}
+				else{
+					$star_count = 5;
+				}
+				$star_count_less = 5 - $star_count;
+				for ($i=0; $i < $star_count; $i++) { 
+					?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
+				}
+				for ($i=0; $i < $star_count_less; $i++) { 
+					?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
+				}
+?>
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
-				ผู้สื่อข่าว:
+				ผู้สื่อข่าว: 
 			</p>
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
@@ -67,11 +93,11 @@
 				
 				<img src="images/icon/<?php 
 					if($news_item->News_StatusOtherFile){
-						?>Document<?php
+						?>Document.jpg<?php
 					}else{
-						?>null<?php
+						?>null.png<?php
 					}
-				?>.jpg" width="17" style="margin: -10px 10px 0;">
+				?>" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
 					if($news_item->News_StatusPublic){
