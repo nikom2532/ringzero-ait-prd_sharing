@@ -8,6 +8,32 @@ class PRD_ManageNew_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	//#########  Database Old  ##########
+	
+	public function get_NT01_News()
+	{
+		// return $this->db_ntt_old->
+			// LIMIT('50,0')->
+			// SELECT('NT01_NewsID, 
+					// NT01_NewsTitle, 
+					// NT01_Status,
+					// NT01_NewsDate,
+					// NT01_CreDate,
+					// NT01_UpdDate,
+					// NT01_NewsReferance,
+					// NT01_CreUserID
+					// ')->
+			// get('NT01_News')->result();
+		return $this->db_ntt_old->
+			LIMIT('50,0')->
+			get('NT01_News')->result();
+			
+	}
+	// NT01_NewsID
+	
+	
+	
+	//#########  Database New  ##########
 	public function get_prd()
 	{
 		return $this->db->get('News')->result();
@@ -52,11 +78,7 @@ class PRD_ManageNew_model extends CI_Model {
         }
         return false;
 	}
-	
-	public function get_testdb2()
-	{
-		return $this->db_ntt_old->get('SC03_User')->result();
-	}
+	//##########################
 	
 	// $this->db->limit($limit, $start);
 }

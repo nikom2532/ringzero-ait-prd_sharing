@@ -39,63 +39,43 @@
 			
 <?php
 		//Start to count News's rows
+		$i=0;
 		foreach($news as $news_item):
-?>
-			<div class="odd">
-				<p class="col-1" style="width: 10%;float: left; ">
-					1
-				</p>
-				<p class="col-2" style="width: 10%;float: left; ">
-					<a href="detail" ><?php echo $news_item->News_ID; ?> </a>
-				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -10px 10px 0;">
-				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-1" style="width: 40%;float: left; ">
-					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-				</p>
-				<p class="col-1" style="width: 5%;float: left; ">
-					xxxx
-				</p>
-				<p class="col-4" style="width: 25%;float: left;  text-align: center;">
-					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-				</p>
-			</div>
-
-			<div class="event">
-				<p class="col-1" style="width: 10%;float: left; ">
-					1
-				</p>
-				<p class="col-2" style="width: 10%;float: left; ">
-					<a href="detail" >xxxxxxx </a>
-				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -10px 10px 0;">
-				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-1" style="width: 40%;float: left; ">
-					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-				</p>
-				<p class="col-1" style="width: 5%;float: left; ">
-					xxxx
-				</p>
-				<p class="col-4" style="width: 25%;float: left;  text-align: center;">
-					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-				</p>
-
-			</div>
+			if($i % 2 == 0){
+				?><div class="odd"><?php
+			}
+			elseif($i % 2 == 1){
+				?><div class="event"><?php
+			}
+					?><p class="col-1" style="width: 4%;float: left; ">
+						<?php echo $i+1; ?>
+					</p>
+					<p class="col-2" style="width: 16%;float: left; ">
+						<a href="detail" ><?php echo $news_item->NT01_NewsID; ?> </a>
+					</p>
+					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -10px 10px 0;">
+					</p>
+					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					</p>
+					<p class="col-1" style="width: 40%;float: left; ">
+						<?php echo $news_item->NT01_NewsTitle; ?>
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						xxxx
+					</p>
+					<p class="col-4" style="width: 25%;float: left;  text-align: center;">
+						<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
+						<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
+						<img src="images/icon/null.png" style="margin: -10px 10px 0;">
+						<img src="images/icon/null.png" style="margin: -10px 10px 0;">
+					</p>
+				</div>
 <?php
+			$i++;
 		endforeach;
 		//End Count News's Row 
 ?>
-			<p><?php echo $links; ?></p>
+			<p><?php // echo $links; ?></p>
 			<div class="footer-table">
 				<p style="width: 70%;float: left;margin-top: 20px;">
 					ทั้งหมด: 73 รายการ (4หน้า)
