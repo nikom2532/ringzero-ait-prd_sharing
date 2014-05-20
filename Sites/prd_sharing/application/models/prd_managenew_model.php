@@ -1,5 +1,5 @@
 <?php
-class PRD_ManageNew_model extends CI_Model {
+class PRD_HomePRD_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -8,41 +8,41 @@ class PRD_ManageNew_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
-	public function get_gove()
+	public function get_prd()
 	{
-		return $this->db->get('SendInformation')->row();
+		return $this->db->get('News')->result();
 	}
-	public function get_gove_search_title($news_title)
+	public function get_prd_search_title($news_title)
 	{
 		return $this->db->
 			like('News_Title', $news_title)->
-			get('SendInformation')->result();
+			get('News')->result();
 	}
-	public function get_gove_search_title_start($news_title, $start)
+	public function get_prd_search_title_start($news_title, $start)
 	{
 		return $this->db->
 			like('News_Title', $news_title)->
 			where("News_Date >=", $start)->
-			get('SendInformation')->result();
+			get('News')->result();
 	}
-	public function get_gove_search_title_start_end($news_title, $start, $end)
+	public function get_prd_search_title_start_end($news_title, $start, $end)
 	{
 		return $this->db->
 			like('News_Title', $news_title)->
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
-			get('SendInformation')->result();
+			get('News')->result();
 	}
 	
-	public function get_gove_record_count()
+	public function get_prd_record_count()
 	{
-		return $this->db->count_all('SendInformation');
+		return $this->db->count_all('News');
 	}
 	
-	public function get_gove_limit($limit, $start)
+	public function get_prd_limit($limit, $start)
 	{
 		$this->db->limit($limit, $start);
-		$query = $this->db->get('SendInformation');
+		$query = $this->db->get('News');
 			
 		if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
@@ -57,4 +57,6 @@ class PRD_ManageNew_model extends CI_Model {
 	{
 		return $this->db_ntt_old->get('SC03_User')->result();
 	}
+	
+	// $this->db->limit($limit, $start);
 }
