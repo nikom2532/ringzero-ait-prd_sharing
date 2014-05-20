@@ -81,22 +81,22 @@ $db['default']['stricton'] = FALSE;
 
 //######### 2nd Database Connection #########
 
-$db['nnt_data_center']['hostname'] = 'localhost';
-$db['nnt_data_center']['username'] = 'nikom2532';
-$db['nnt_data_center']['password'] = 'cominter';
-$db['nnt_data_center']['database'] = 'NNT_DataCenter_2';
-$db['nnt_data_center']['dbdriver'] = 'sqlsrv';
+$db['nnt_data_center_old']['hostname'] = 'localhost';
+$db['nnt_data_center_old']['username'] = 'nikom2532';
+$db['nnt_data_center_old']['password'] = 'cominter';
+$db['nnt_data_center_old']['database'] = 'NNT_DataCenter_2';
+$db['nnt_data_center_old']['dbdriver'] = 'sqlsrv';
 
-$db['nnt_data_center']['dbprefix'] = '';
-$db['nnt_data_center']['pconnect'] = TRUE;
-$db['nnt_data_center']['db_debug'] = TRUE;
-$db['nnt_data_center']['cache_on'] = FALSE;
-$db['nnt_data_center']['cachedir'] = '';
-$db['nnt_data_center']['char_set'] = 'utf8';
-$db['nnt_data_center']['dbcollat'] = 'utf8_general_ci';
-$db['nnt_data_center']['swap_pre'] = '';
-$db['nnt_data_center']['autoinit'] = TRUE;
-$db['nnt_data_center']['stricton'] = FALSE;
+$db['nnt_data_center_old']['dbprefix'] = '';
+$db['nnt_data_center_old']['pconnect'] = TRUE;
+$db['nnt_data_center_old']['db_debug'] = TRUE;
+$db['nnt_data_center_old']['cache_on'] = FALSE;
+$db['nnt_data_center_old']['cachedir'] = '';
+$db['nnt_data_center_old']['char_set'] = 'utf8';
+$db['nnt_data_center_old']['dbcollat'] = 'utf8_general_ci';
+$db['nnt_data_center_old']['swap_pre'] = '';
+$db['nnt_data_center_old']['autoinit'] = TRUE;
+$db['nnt_data_center_old']['stricton'] = FALSE;
 
 //##################
 

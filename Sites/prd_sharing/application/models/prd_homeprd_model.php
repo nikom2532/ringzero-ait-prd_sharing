@@ -6,7 +6,7 @@ class PRD_HomePRD_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 		
-		$this->db2 = $this->load->database('nnt_data_center', TRUE);
+		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
 	public function get_prd()
@@ -56,7 +56,7 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	public function get_testdb2()
 	{
-		return $this->db2->get('SC03_User')->result();
+		return $this->db_ntt_old->get('SC03_User')->result();
 	}
 	
 	// $this->db->limit($limit, $start);
