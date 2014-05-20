@@ -46,7 +46,7 @@
 					1
 				</p>
 				<p class="col-2" style="width: 10%;float: left; ">
-					<a href="detail" >xxxxxxx </a>
+					<a href="detail" ><?php echo $news_item->News_ID; ?> </a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -10px 10px 0;">
 				</p>

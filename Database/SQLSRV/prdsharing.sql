@@ -221,6 +221,7 @@ CREATE TABLE [dbo].[News](
 	[News_MoreCate] [nvarchar](30) NULL,
 	[CateNews_ID] [int] NULL,
 	[MemUpdate_ID] [int] NULL,
+	[News_Delete] [int] 0,
  CONSTRAINT [PK_News] PRIMARY KEY CLUSTERED 
 (
 	[News_ID] ASC
