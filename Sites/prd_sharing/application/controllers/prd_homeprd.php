@@ -13,9 +13,6 @@ class PRD_HomePRD extends CI_Controller {
 	{
 		$data['title'] = 'Home PRD';
 		
-		$data["get_testdb2"] = $this->prd_homeprd_model->get_testdb2();
-		var_dump($data["get_testdb2"]);
-		
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_homeprd_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
@@ -40,7 +37,7 @@ class PRD_HomePRD extends CI_Controller {
 	        $config["total_rows"] = $this->prd_homeprd_model->get_prd_record_count();
 	        $config["per_page"] = 20;
 	        $config["uri_segment"] = 3;
-	 
+			
 	        $this->pagination->initialize($config);
 			
 			$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -49,6 +46,8 @@ class PRD_HomePRD extends CI_Controller {
             	get_prd_limit($config["per_page"], $page);
 	        $data["links"] = $this->pagination->create_links();
 	 		
+			// var_dump($page);
+			
 			// $data['news'] = $this->prd_homeprd_model->get_prd();
 		}
 		
@@ -60,10 +59,15 @@ class PRD_HomePRD extends CI_Controller {
 		// var_dump($this->input->post("news_title"));
 		// echo ($data["news"]->News_Date);
 		
+		//For test Database NNT_DataCenter
+		// $data["get_testdb2"] = $this->prd_homeprd_model->get_testdb2();
+		// var_dump($data["get_testdb2"]);
+		
 		
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/home/header', $data);
 		$this->load->view('prdsharing/home/homeprd', $data);
 		$this->load->view('prdsharing/templates/footer', $data);
+		
 	}
 }
