@@ -3,18 +3,18 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-			<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;">
+			<input class="txt-field" type="text" value="" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
 			<label >วันที่</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
 		</div>
 		<div class="col-lg-6">
 			<label >ถึง</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
 		</div>
 	</div>
 
@@ -71,8 +71,8 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 10%;float: left; "></p>
-			<p class="col-2" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 4%;float: left; "></p>
+			<p class="col-2" style="width: 16%;float: left; ">
 				เลขที่ข่าว
 			</p>
 			<p class="col-1" style="width: 5%;float: left; ">
@@ -81,10 +81,10 @@
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
 			</p>
-			<p class="col-1" style="width: 40%;float: left; ">
+			<p class="col-1" style="width: 35%;float: left; ">
 				หัวข้อข่าว
 			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
+			<p class="col-1" style="width: 10%;float: left; ">
 				วันที่ข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
@@ -97,60 +97,58 @@
 				ผู้สื่อข่าว
 			</p>
 		</div>
-		<div class="odd">
-			<p class="col-1" style="width: 10%;float: left; ">
-				1
-			</p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				<a href="manageNewEditPRD" >xxxxxxx </a>
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 40%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 10%;float: left; ">
-				1
-			</p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				<a href="manageNewEditPRD" >xxxxxxx </a>
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 40%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-		</div>
+<?php
+		//Start to count News's rows
+		$i=0;
+		foreach($news as $news_item):
+			if($i % 2 == 0){
+				?><div class="odd"><?php
+			}
+			elseif($i % 2 == 1){
+				?><div class="event"><?php
+			}
+?>
+					<p class="col-1" style="width: 4%;float: left; ">
+						<?php echo $i+1; ?>
+					</p>
+					<p class="col-2" style="width: 16%;float: left; ">
+						<a href="manageNewEditPRD" ><?php echo $news_item->NT01_NewsID; ?></a>
+					</p>
+					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+					</p>
+					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					</p>
+					<p class="col-1" style="width: 35%;float: left; ">
+						<?php echo $news_item->NT01_NewsTitle; ?>
+					</p>
+					<p class="col-1" style="width: 10%;float: left; "><?php
+						if($news_item->NT01_UpdDate == ""){
+							echo $news_item->NT01_CreDate; 
+						}
+						else{
+							echo $news_item->NT01_UpdDate;
+						}
+					?></p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						<?php $news_item->NT01_NewsSource; ?>
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						<?php $news_item->NT01_NewsReferance; ?>
+					</p>
+					<p class="col-1" style="width: 10%;float: left; "><?php 
+						if($news_item->NT01_UpdUserID == ""){
+							echo $news_item->NT01_CreUserID;
+						}
+						else{
+							echo $news_item->NT01_UpdUserID;
+						}
+					?></p>
+				</div>
+<?php
+			$i++;
+		endforeach;
+		//End Count News's Row 
+?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)
