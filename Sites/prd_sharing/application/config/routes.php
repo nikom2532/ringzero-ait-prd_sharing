@@ -75,6 +75,11 @@ $route['reportGOVE'] = 'prd_reportgove';
 $route['userInfo'] = 'prd_userinfo';
 
 
+$route['testdb'] = 'testsite_db2';
+
+
+
+
 $route['default_controller'] = 'prd_authen';
 // $route['(:any)'] = 'prd_authen';
 

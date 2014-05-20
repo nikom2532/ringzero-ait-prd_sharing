@@ -32,4 +32,25 @@ class PRD_HomePRD_model extends CI_Model {
 			where("News_Date <=", $end)->
 			get('News')->result();
 	}
+	
+	public function get_prd_record_count()
+	{
+		return $this->db->count_all('News');
+	}
+	
+	public function get_prd_limit($limit, $start)
+	{
+		$this->db->limit($limit, $start);
+		$query = $this->db->get('News');
+			
+		if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+	}
+	
+	// $this->db->limit($limit, $start);
 }

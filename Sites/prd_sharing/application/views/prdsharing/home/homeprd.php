@@ -112,7 +112,10 @@
 		endforeach;
 		//End Count News's Row 
 ?>
-		<div class="footer-table">
+
+		<p><?php echo $links; ?></p>
+
+		<!-- <div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)
 			</p>
@@ -125,9 +128,11 @@
 						<option value="3">3</option>
 						<option value="4">4</option>
 					</select> / 100</span>
-				<img src="images/table/next.png" style="margin: -5px 10px 0;">
+				<a href="homePRD?paging=">
+					<img src="images/table/next.png" style="margin: -5px 10px 0;">
+				</a>
 				<img src="images/table/end.png" style="margin: -5px 10px 0;">
 			</p>
-		</div>
+		</div> -->
 	</div>
 </div>
