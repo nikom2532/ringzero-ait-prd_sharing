@@ -74,7 +74,7 @@
                         ?></li>
                         <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
 							if(!($title == "Manage News")){
-                        		?><a href="manageNew"><?php
+                        		?><a href="manageNewPRD"><?php
 							}
                         			?>Manage News<?php
                         	if(!($title == "Manage News")){

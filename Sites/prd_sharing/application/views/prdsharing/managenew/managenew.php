@@ -60,9 +60,14 @@
 					<p class="col-1" style="width: 40%;float: left; ">
 						<?php echo $news_item->NT01_NewsTitle; ?>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; ">
-						xxxx
-					</p>
+					<p class="col-1" style="width: 5%;float: left; "><?php
+						// if($news_item->NT01_UpdDate == ""){
+							// echo $news_item->NT01_CreDate; 
+						// }
+						// else{
+							// echo $news_item->NT01_UpdDate;
+						// }
+					?></p>
 					<p class="col-4" style="width: 25%;float: left;  text-align: center;">
 						<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
 						<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
