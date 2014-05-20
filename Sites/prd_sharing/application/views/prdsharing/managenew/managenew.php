@@ -36,6 +36,11 @@
 				</p>
 
 			</div>
+			
+<?php
+		//Start to count News's rows
+		foreach($news as $news_item):
+?>
 			<div class="odd">
 				<p class="col-1" style="width: 10%;float: left; ">
 					1
@@ -86,6 +91,11 @@
 				</p>
 
 			</div>
+<?php
+		endforeach;
+		//End Count News's Row 
+?>
+			<p><?php echo $links; ?></p>
 			<div class="footer-table">
 				<p style="width: 70%;float: left;margin-top: 20px;">
 					ทั้งหมด: 73 รายการ (4หน้า)

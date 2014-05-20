@@ -1,5 +1,5 @@
 <?php
-class PRD_HomePRD_model extends CI_Model {
+class PRD_ManageNew_model extends CI_Model {
 
 	public function __construct()
 	{
