@@ -5,7 +5,6 @@ class PRD_HomePRD_model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
-		
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	

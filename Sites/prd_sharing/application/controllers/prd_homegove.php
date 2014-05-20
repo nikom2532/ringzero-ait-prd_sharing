@@ -9,7 +9,7 @@ class PRD_HomeGOVE extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Home PRD';
+		$data['title'] = 'Home GOVE';
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_homeprd_model->get_gove_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );

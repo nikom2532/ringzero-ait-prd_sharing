@@ -102,6 +102,7 @@
 <?php
 		//End Count News's Row 
 ?>
+		<p><?php echo $links; ?></p>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)
