@@ -66,6 +66,26 @@
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
 			<!--<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">-->
+			<p class="col-1" style="width: 10%;float: left; "></p>
+				<p class="col-2" style="width: 10%;float: left; ">
+					เลขที่ข่าว
+				</p>
+				<p class="col-1" style="width: 5%;float: left; ">
+					สภานะ
+				</p>
+				<p class="col-1" style="width: 5%;float: left; ">
+					ลบ
+				</p>
+				<p class="col-1" style="width: 40%;float: left; ">
+					หัวข้อข่าว
+				</p>
+				<p class="col-1" style="width: 5%;float: left; ">
+					วันที่ข่าว
+				</p>
+				<p class="col-3" style="width: 25%;float: left; ">
+					Icon ไฟล์แนบ
+				</p>
+			</div>
 		</div>
 		<div class="odd">
 			<p class="col-1" style="width: 10%;float: left; ">
