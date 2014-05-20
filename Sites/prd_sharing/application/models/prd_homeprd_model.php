@@ -5,6 +5,13 @@ class PRD_HomePRD_model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+		
+		$this->db2 = $this->load->database('ntt_data_center', TRUE);
+	}
+	
+	public function get_testdb2()
+	{
+		$this->db2->get('SC03_User')->result();
 	}
 	
 	public function get_prd()

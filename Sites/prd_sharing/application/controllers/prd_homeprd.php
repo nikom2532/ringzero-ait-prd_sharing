@@ -13,6 +13,9 @@ class PRD_HomePRD extends CI_Controller {
 	{
 		$data['title'] = 'Home PRD';
 		
+		$data["get_testdb2"] = $this->prd_homeprd_model->get_testdb2();
+		var_dump($data["get_testdb2"]);
+		
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_homeprd_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
@@ -45,8 +48,7 @@ class PRD_HomePRD extends CI_Controller {
 			$data["news"] = $this->prd_homeprd_model->
             	get_prd_limit($config["per_page"], $page);
 	        $data["links"] = $this->pagination->create_links();
-	 
-			
+	 		
 			// $data['news'] = $this->prd_homeprd_model->get_prd();
 		}
 		

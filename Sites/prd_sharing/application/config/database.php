@@ -79,6 +79,28 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+//######### 2nd Database Connection #########
+
+$db['ntt_data_center']['hostname'] = 'localhost';
+$db['ntt_data_center']['username'] = 'nikom2532';
+$db['ntt_data_center']['password'] = 'cominter';
+$db['ntt_data_center']['database'] = 'NNT_DataCenter_2';
+$db['ntt_data_center']['dbdriver'] = 'sqlsrv';
+
+$db['ntt_data_center']['dbprefix'] = '';
+$db['ntt_data_center']['pconnect'] = TRUE;
+$db['ntt_data_center']['db_debug'] = TRUE;
+$db['ntt_data_center']['cache_on'] = FALSE;
+$db['ntt_data_center']['cachedir'] = '';
+$db['ntt_data_center']['char_set'] = 'utf8';
+$db['ntt_data_center']['dbcollat'] = 'utf8_general_ci';
+$db['ntt_data_center']['swap_pre'] = '';
+$db['ntt_data_center']['autoinit'] = TRUE;
+$db['ntt_data_center']['stricton'] = FALSE;
+
+//##################
+
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
