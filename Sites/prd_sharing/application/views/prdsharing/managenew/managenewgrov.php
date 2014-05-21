@@ -112,10 +112,10 @@
 				</p>
 				<p class="col-1" style="width: 10%;float: left; "><?php
 					if($news_item->SendIn_UpdateDate != ""){
-						echo date("d/M/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
+						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
 					}
 					else{
-						echo date("d/M/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 					}
 				?></p>
 				<p class="col-3" style="width: 10%;float: left; ">

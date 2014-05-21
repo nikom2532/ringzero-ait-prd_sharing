@@ -26,11 +26,11 @@
 			<p class="col-1" style="width: 20%;float: left; "><?php
 				if($news_item->News_Update == ""){
 					// echo $news_item->News_Update;
-					echo date("d/M/Y h:m:s", strtotime($news_item->News_Update));
+					echo date("d/m/Y h:m:s", strtotime($news_item->News_Update));
 				}
 				else{
 					// echo $news_item->News_Date;
-					echo date("d/M/Y h:m:s", strtotime($news_item->News_Date));
+					echo date("d/m/Y h:m:s", strtotime($news_item->News_Date));
 				}
 			?></p>
 			<p class="col-2" style="width: 80%;float: left; ">
