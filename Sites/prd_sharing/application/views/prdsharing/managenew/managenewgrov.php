@@ -65,8 +65,8 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 10%;float: left; "></p>
-			<p class="col-2" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 6%;float: left; "></p>
+			<p class="col-2" style="width: 14%;float: left; ">
 				เลขที่ข่าว
 			</p>
 			<p class="col-1" style="width: 5%;float: left; ">
@@ -75,17 +75,16 @@
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
 			</p>
-			<p class="col-1" style="width: 40%;float: left; ">
+			<p class="col-1" style="width: 35%;float: left; ">
 				ประเด็นประชาสัมพันธ์
 			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
+			<p class="col-1" style="width: 10%;float: left; ">
 				วันที่
 			</p>
 			<p class="col-3" style="width: 25%;float: left; ">
 				Icon ไฟล์แนบ
 			</p>
 		</div>
-	</div>
 <?php
 	//Start to count News's rows
 	$i=0;
@@ -97,10 +96,10 @@
 			?><div class="event"><?php
 		}
 ?>
-				<p class="col-1" style="width: 10%;float: left; ">
+				<p class="col-1" style="width: 6%;float: left; ">
 					<?php echo $i++; ?>
 				</p>
-				<p class="col-2" style="width: 10%;float: left; ">
+				<p class="col-2" style="width: 14%;float: left; ">
 					<a href="manageNewEditGROV" ><?php echo $news_item->SendIn_ID; ?> </a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
@@ -118,8 +117,11 @@
 						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 					}
 				?></p>
-				<p class="col-3" style="width: 10%;float: left; ">
-					xxxxxxxxxx
+				<p class="col-3" style="width: 25%;float: left; ">
+					<img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;">
+                    <img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;">
+                    <img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;">
+                    <img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;">
 				</p>
 			</div>
 <?php
@@ -127,7 +129,7 @@
 	endforeach;
 	//End Count News's Row 
 ?>
-	<div class="footer-table">
+	<!-- <div class="footer-table">
 		<p style="width: 70%;float: left;margin-top: 20px;">
 			ทั้งหมด: 73 รายการ (4หน้า)
 		</p>
@@ -143,6 +145,6 @@
 			<img src="images/table/next.png" style="margin: -5px 10px 0;">
 			<img src="images/table/end.png" style="margin: -5px 10px 0;">
 		</p>
-	</div>
+	</div> -->
 </div>
 </div>
