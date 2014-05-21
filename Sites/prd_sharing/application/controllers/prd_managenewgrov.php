@@ -1,5 +1,5 @@
 <?php
-class PRD_manageNewGROV extends CI_Controller {
+class PRD_ManageNewGROV extends CI_Controller {
 
 	public function __construct()
 	{
@@ -27,6 +27,9 @@ class PRD_manageNewGROV extends CI_Controller {
 		else{
 			$data['news'] = $this->prd_managenewgrov_model->get_grov();
 		}
+		
+		$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
+		$data['department'] = $this->prd_managenewgrov_model->get_department();
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/managenewgrov', $data);

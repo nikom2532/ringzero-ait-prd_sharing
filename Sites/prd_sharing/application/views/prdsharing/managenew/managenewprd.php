@@ -1,3 +1,8 @@
+<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+	});
+</script>
 <div id="search-form">
 
 	<div class="row">
@@ -10,22 +15,40 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<label >วันที่</label>
-			<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control datepicker" name="start_date" id="InputKeyword" placeholder="" >
 		</div>
 		<div class="col-lg-6">
 			<label >ถึง</label>
-			<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control datepicker" name="end_date" id="InputKeyword" placeholder="" >
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
 			<label >หมวดหมู่ข่าว</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+			
+			
+			<select name="NewsTypeID" class="form-control" style="width: 65%;"><?php
+				foreach ($NT02_NewsType as $newType_item) {
+					?><option value="<?php echo $newType_item->NT02_TypeID; ?>"><?php echo $newType_item->NT02_TypeName; ?></option><?php
+				}
+			?></select>
+			
+			
 		</div>
 		<div class="col-lg-6">
 			<label >หมวดหมู่ข่าวย่อย</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+			
+			
+			<select name="NewsSubTypeID" class="form-control" style="width: 65%;"><?php
+				foreach ($NT03_NewsSubType as $newType_item) {
+					?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>"><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+				}
+			?></select>
+			
+			
 		</div>
 	</div>
 

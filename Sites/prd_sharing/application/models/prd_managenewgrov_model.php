@@ -8,6 +8,17 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	}
 	
 	//#########  Database New  ##########
+	public function get_ministry()
+	{
+		return $this->db->where('Minis_Status', '1')->
+			get('Ministry')->result();
+	}
+	public function get_department()
+	{
+		return $this->db->where('Dep_Status', '1')->
+			get('Department')->result();
+	}
+	
 	public function get_grov()
 	{
 		return $this->db->get('SendInformation')->result();

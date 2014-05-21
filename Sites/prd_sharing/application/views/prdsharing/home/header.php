@@ -1,3 +1,8 @@
+<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+	});
+</script>
 <div id="search-form">
 
 	<form name="search_form" action="homePRD" method="post">
@@ -8,14 +13,14 @@
 				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:10%;padding: 4px;margin-left:5px;">
 			</div>
 		</div>
-	
+		
 		<div class="row">
 			<div class="col-lg-6-search">
 				<div class="label width14">
 					<label >วันที่</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control" name="start_date" id="InputKeyword" placeholder="" >
+					<input type="text" class="form-control datepicker" name="start_date"  placeholder="" >
 				</div>
 			</div>
 			<div class="col-lg-6-search">
@@ -23,7 +28,7 @@
 					<label >ถึง</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control" name="end_date" id="InputKeyword" placeholder="" >
+					<input type="text" class="form-control datepicker" name="end_date"  placeholder="" >
 				</div>
 			</div>
 		</div>

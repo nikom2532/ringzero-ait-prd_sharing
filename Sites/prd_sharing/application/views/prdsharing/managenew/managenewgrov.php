@@ -1,3 +1,8 @@
+<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+	});
+</script>
 <div id="search-form">
 	<div class="row">
 		<div class="col-lg-12">
@@ -9,22 +14,39 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<label >วันที่</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control datepicker" id="InputKeyword" placeholder="" >
 		</div>
 		<div class="col-lg-6">
 			<label >ถึง</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<input type="text" class="form-control datepicker" id="InputKeyword" placeholder="" >
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
-			<label >หมวดหมู่ข่าว</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<!-- Ministry  -->
+			<label >กระทรวง</label>
+			
+			
+			<select name="Ministry_ID" class="form-control" style="width: 65%;"><?php
+				foreach ($ministry as $ministry_item) {
+					?><option value="<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_Name; ?></option><?php
+				}
+			?></select>
+			
+			
 		</div>
 		<div class="col-lg-6">
-			<label >หมวดหมู่ข่าวย่อย</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<!-- department -->
+			<label >กรม</label>
+			
+			<select name="Dep_ID" class="form-control" style="width: 65%;"><?php
+				foreach ($department as $department_item) {
+					?><option value="<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_Name; ?></option><?php
+				}
+			?></select>
+			
+			
 		</div>
 	</div>
 
