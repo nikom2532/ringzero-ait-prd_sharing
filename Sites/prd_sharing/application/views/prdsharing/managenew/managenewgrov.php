@@ -65,7 +65,6 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<!--<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">-->
 			<p class="col-1" style="width: 10%;float: left; "></p>
 			<p class="col-2" style="width: 10%;float: left; ">
 				เลขที่ข่าว
@@ -87,60 +86,47 @@
 			</p>
 		</div>
 	</div>
-	<div class="odd">
-		<p class="col-1" style="width: 10%;float: left; ">
-			1
-		</p>
-		<p class="col-2" style="width: 10%;float: left; ">
-			<a href="manageNewEditGROV" >xxxxxxx </a>
-		</p>
-		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
-		</p>
-		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-		</p>
-		<p class="col-1" style="width: 40%;float: left; ">
-			xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		</p>
-		<p class="col-1" style="width: 5%;float: left; ">
-			xxxx
-		</p>
-		<p class="col-1" style="width: 10%;float: left; ">
-			xxxxxxxxxx
-		</p>
-		<p class="col-1" style="width: 5%;float: left; ">
-			xxxx
-		</p>
-		<p class="col-1" style="width: 10%;float: left; ">
-			xxxxxxxxxx
-		</p>
-	</div>
-	<div class="event">
-		<p class="col-1" style="width: 10%;float: left; ">
-			1
-		</p>
-		<p class="col-2" style="width: 10%;float: left; ">
-			<a href="manageNewEditGROV" >xxxxxxx </a>
-		</p>
-		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
-		</p>
-		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-		</p>
-		<p class="col-1" style="width: 40%;float: left; ">
-			xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		</p>
-		<p class="col-1" style="width: 5%;float: left; ">
-			xxxx
-		</p>
-		<p class="col-1" style="width: 10%;float: left; ">
-			xxxxxxxxxx
-		</p>
-		<p class="col-1" style="width: 5%;float: left; ">
-			xxxx
-		</p>
-		<p class="col-1" style="width: 10%;float: left; ">
-			xxxxxxxxxx
-		</p>
-	</div>
+<?php
+	//Start to count News's rows
+	$i=0;
+	foreach($news as $news_item):
+		if($i % 2 == 0){
+			?><div class="odd"><?php
+		}
+		elseif($i % 2 == 1){
+			?><div class="event"><?php
+		}
+?>
+				<p class="col-1" style="width: 10%;float: left; ">
+					<?php echo $i++; ?>
+				</p>
+				<p class="col-2" style="width: 10%;float: left; ">
+					<a href="manageNewEditGROV" ><?php echo $news_item->SendIn_ID; ?> </a>
+				</p>
+				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+				</p>
+				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+				</p>
+				<p class="col-1" style="width: 35%;float: left; ">
+					<?php //echo $news_item->SendIn_Issues; ?>
+				</p>
+				<p class="col-1" style="width: 10%;float: left; "><?php
+					if($news_item->SendIn_UpdateDate != ""){
+						echo date("d/M/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
+					}
+					else{
+						echo date("d/M/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+					}
+				?></p>
+				<p class="col-3" style="width: 10%;float: left; ">
+					xxxxxxxxxx
+				</p>
+			</div>
+<?php
+		$i++;
+	endforeach;
+	//End Count News's Row 
+?>
 	<div class="footer-table">
 		<p style="width: 70%;float: left;margin-top: 20px;">
 			ทั้งหมด: 73 รายการ (4หน้า)

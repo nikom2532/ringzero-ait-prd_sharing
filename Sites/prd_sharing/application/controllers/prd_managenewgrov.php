@@ -4,12 +4,29 @@ class PRD_manageNewGROV extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('news_model');
+		$this->load->helper("url");
+		$this->load->model('prd_managenewgrov_model');
+		$this->load->library("pagination");
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Manage News';
+		
+		if($this->input->post("news_title") != ""){
+			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
+				$data['news'] = $this->prd_managenewgrov_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
+			}
+			elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
+				$data['news'] = $this->prd_managenewgrov_model->get_prd_search_title_start(($this->input->post("news_title")), ($this->input->post("start_date")) );
+			}
+			else{
+				$data['news'] = $this->prd_managenewgrov_model->get_prd_search_title($this->input->post("news_title"));
+			}
+		}
+		else{
+			$data['news'] = $this->prd_managenewgrov_model->get_grov();
+		}
 
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/managenewgrov', $data);

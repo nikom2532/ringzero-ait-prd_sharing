@@ -29,9 +29,6 @@ class PRD_ManageNew_model extends CI_Model {
 			get('NT01_News')->result();
 			
 	}
-	// NT01_NewsID
-	
-	
 	
 	//#########  Database New  ##########
 	public function get_prd()

@@ -123,10 +123,10 @@
 					</p>
 					<p class="col-1" style="width: 10%;float: left; "><?php
 						if($news_item->NT01_UpdDate == ""){
-							echo $news_item->NT01_CreDate; 
+							echo date("d/M/Y h:m:s", strtotime($news_item->NT01_CreDate));
 						}
 						else{
-							echo $news_item->NT01_UpdDate;
+							echo date("d/M/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 						}
 					?></p>
 					<p class="col-1" style="width: 10%;float: left; ">
