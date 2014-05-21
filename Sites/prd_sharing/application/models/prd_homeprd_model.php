@@ -13,8 +13,9 @@ class PRD_HomePRD_model extends CI_Model {
 		// return $this->db->get('News')->result();
 		return $this->db_ntt_old->
 			Limit(10, 0)->
-			select('*, SC03_User.SC03_TName')->
+			select('*, SC03_User.SC03_TName, NT10_VDO.NT10_FileStatus')->
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
 			where('NT08_PubTypeID', '11')->
 			get('NT01_News')->result();
 	}

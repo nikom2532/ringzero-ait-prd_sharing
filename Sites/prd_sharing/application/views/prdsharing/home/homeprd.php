@@ -67,44 +67,7 @@
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
-				ผู้สื่อข่าว: <?php
-					
-					echo $news_item->SC03_FName;
-					
-					// $CI =get_instance();
-					// $db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
-// 					
-					// $reportID = $news_item->NT01_ReporterID;
-// 					
-					// $sql = "
-						// SELECT SC03_FName,SC03_LName 
-						// FROM 'SC03_User'
-						// WHERE 'SC03_UserId' = '{$reportID}'
-					// ";
-					// $query = $db_ntt_old->query($sql);
-// 					
-// 					
-					// return $this->db_ntt_old->
-						// Limit(10, 0)->
-						// select('SC03_FName,SC03_LName')->
-						// where('SC03_UserId', $reportID)->
-						// get('SC03_User')->result();
-// 					
-// 					
-					// if ($query->num_rows() > 0)
-					// {
-					   // foreach ($query->result() as $row)
-					   // {
-					      // echo $row->SC03_TName;
-					      // echo $row->SC03_FName;
-					   // }
-					// }
-					
-
-					// foreach($reporter as $reporter_item){
-						// echo $reporter_item->SC03_FName;
-					// }
-			?></p>
+				ผู้สื่อข่าว: <?php echo $news_item->SC03_FName; ?></p>
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
 				views: <?php 
@@ -120,12 +83,12 @@
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				
-				<img src="images/icon/<?php 
-					// if($news_item->News_StatusVDO){
-						// ?>vdo<?php
-					// }else{
-						// ?>null<?php
-					// }
+				<img src="images/icon/<?php
+					if($news_item->NT10_FileStatus == "Y"){
+						?>vdo<?php
+					}else{
+						?>null<?php
+					}
 				?>.png" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
