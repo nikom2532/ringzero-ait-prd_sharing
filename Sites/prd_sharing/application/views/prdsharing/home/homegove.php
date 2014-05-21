@@ -44,7 +44,7 @@
 					$star_count = 5;
 				}
 				$star_count_less = 5 - $star_count;
-				for ($i=0; $i < $star_count; $i++) { 
+				for ($i=0; $i < $star_count; $i++) {
 					?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
 				}
 				for ($i=0; $i < $star_count_less; $i++) { 

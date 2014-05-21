@@ -69,7 +69,7 @@
 				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
 				ผู้สื่อข่าว: <?php
 					
-					echo $news_item->NT01_ReporterID;
+					echo $news_item->SC03_FName;
 					
 					// $CI =get_instance();
 					// $db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
