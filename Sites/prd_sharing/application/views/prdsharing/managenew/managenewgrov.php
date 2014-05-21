@@ -67,96 +67,96 @@
 		<div class="header-table" style="text-align: right;">
 			<!--<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">-->
 			<p class="col-1" style="width: 10%;float: left; "></p>
-				<p class="col-2" style="width: 10%;float: left; ">
-					เลขที่ข่าว
-				</p>
-				<p class="col-1" style="width: 5%;float: left; ">
-					สภานะ
-				</p>
-				<p class="col-1" style="width: 5%;float: left; ">
-					ลบ
-				</p>
-				<p class="col-1" style="width: 40%;float: left; ">
-					หัวข้อข่าว
-				</p>
-				<p class="col-1" style="width: 5%;float: left; ">
-					วันที่ข่าว
-				</p>
-				<p class="col-3" style="width: 25%;float: left; ">
-					Icon ไฟล์แนบ
-				</p>
-			</div>
-		</div>
-		<div class="odd">
-			<p class="col-1" style="width: 10%;float: left; ">
-				1
-			</p>
 			<p class="col-2" style="width: 10%;float: left; ">
-				<a href="manageNewEditGROV" >xxxxxxx </a>
+				เลขที่ข่าว
 			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+			<p class="col-1" style="width: 5%;float: left; ">
+				สภานะ
 			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+			<p class="col-1" style="width: 5%;float: left; ">
+				ลบ
 			</p>
 			<p class="col-1" style="width: 40%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+				ประเด็นประชาสัมพันธ์
 			</p>
 			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
+				วันที่
 			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 10%;float: left; ">
-				1
-			</p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				<a href="manageNewEditGROV" >xxxxxxx </a>
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-			</p>
-			<p class="col-1" style="width: 40%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				xxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxxx
-			</p>
-		</div>
-		<div class="footer-table">
-			<p style="width: 70%;float: left;margin-top: 20px;">
-				ทั้งหมด: 73 รายการ (4หน้า)
-			</p>
-			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="images/table/pev.png" style="margin: -5px 10px 0;">
-				<span style="margin-top: 10px;">
-					<select style="">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select> / 100</span>
-				<img src="images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="images/table/end.png" style="margin: -5px 10px 0;">
+			<p class="col-3" style="width: 25%;float: left; ">
+				Icon ไฟล์แนบ
 			</p>
 		</div>
 	</div>
+	<div class="odd">
+		<p class="col-1" style="width: 10%;float: left; ">
+			1
+		</p>
+		<p class="col-2" style="width: 10%;float: left; ">
+			<a href="manageNewEditGROV" >xxxxxxx </a>
+		</p>
+		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+		</p>
+		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+		</p>
+		<p class="col-1" style="width: 40%;float: left; ">
+			xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		</p>
+		<p class="col-1" style="width: 5%;float: left; ">
+			xxxx
+		</p>
+		<p class="col-1" style="width: 10%;float: left; ">
+			xxxxxxxxxx
+		</p>
+		<p class="col-1" style="width: 5%;float: left; ">
+			xxxx
+		</p>
+		<p class="col-1" style="width: 10%;float: left; ">
+			xxxxxxxxxx
+		</p>
+	</div>
+	<div class="event">
+		<p class="col-1" style="width: 10%;float: left; ">
+			1
+		</p>
+		<p class="col-2" style="width: 10%;float: left; ">
+			<a href="manageNewEditGROV" >xxxxxxx </a>
+		</p>
+		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+		</p>
+		<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+		</p>
+		<p class="col-1" style="width: 40%;float: left; ">
+			xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		</p>
+		<p class="col-1" style="width: 5%;float: left; ">
+			xxxx
+		</p>
+		<p class="col-1" style="width: 10%;float: left; ">
+			xxxxxxxxxx
+		</p>
+		<p class="col-1" style="width: 5%;float: left; ">
+			xxxx
+		</p>
+		<p class="col-1" style="width: 10%;float: left; ">
+			xxxxxxxxxx
+		</p>
+	</div>
+	<div class="footer-table">
+		<p style="width: 70%;float: left;margin-top: 20px;">
+			ทั้งหมด: 73 รายการ (4หน้า)
+		</p>
+		<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+			<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+			<span style="margin-top: 10px;">
+				<select style="">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select> / 100</span>
+			<img src="images/table/next.png" style="margin: -5px 10px 0;">
+			<img src="images/table/end.png" style="margin: -5px 10px 0;">
+		</p>
+	</div>
+</div>
 </div>
