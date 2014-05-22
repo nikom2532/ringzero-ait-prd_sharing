@@ -208,7 +208,7 @@ CREATE TABLE [dbo].[News](
 	[News_Date] [datetime] NULL,
 	[News_Update] [datetime] NULL,
 	[News_Active] [int] NULL,
-	[News_OldID] [int] NULL,
+	[News_OldID] [nvarchar](30) NULL,
 	[News_UpdateID] [int] NULL,
 	[News_View] [int] NULL,
 	[News_StatusPhoto] [int] NULL,
@@ -221,7 +221,7 @@ CREATE TABLE [dbo].[News](
 	[News_MoreCate] [nvarchar](30) NULL,
 	[CateNews_ID] [int] NULL,
 	[MemUpdate_ID] [int] NULL,
-	[News_Delete] [int] 0,
+	[News_Delete] [int],
  CONSTRAINT [PK_News] PRIMARY KEY CLUSTERED 
 (
 	[News_ID] ASC

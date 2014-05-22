@@ -12,18 +12,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	public function get_NT01_News()
 	{
-		// return $this->db_ntt_old->
-			// LIMIT('50,0')->
-			// SELECT('NT01_NewsID, 
-					// NT01_NewsTitle, 
-					// NT01_Status,
-					// NT01_NewsDate,
-					// NT01_CreDate,
-					// NT01_UpdDate,
-					// NT01_NewsReferance,
-					// NT01_CreUserID
-					// ')->
-			// get('NT01_News')->result();
 		return $this->db_ntt_old->
 			LIMIT('50,0')->
 			get('NT01_News')->result();

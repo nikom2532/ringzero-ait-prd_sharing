@@ -107,5 +107,12 @@ class PRD_HomePRD extends CI_Controller {
 		$this->load->view('prdsharing/home/homeprd', $data);
 		$this->load->view('prdsharing/templates/footer', $data);
 		
+		// After Load the Page --> Will insert the UserID from Old Database to New Database
+		
+		
+		// Test Insert News Table 
+		// var_dump($data['news']);
+		$this->prd_homeprd_model->set_News();
+		
 	}
 }
