@@ -49,8 +49,8 @@
                 </div>
                 <div class="menu">
                     <ul> 
-                        <li class="menu-item <?php if($title == "Home PRD"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
-                        	if(!($title == "Home PRD")){
+                        <li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        	if(!($title == "Home")){
                         		?><a href="homePRD"><?php
                         	}
                         			?>Home<?php 

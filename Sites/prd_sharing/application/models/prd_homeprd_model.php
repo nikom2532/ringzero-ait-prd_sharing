@@ -88,20 +88,6 @@ class PRD_HomePRD_model extends CI_Model {
 			get('NT01_News')->result();
 	}
 	
-	
-	
-	public function get_NT01_News_Reporter($reportID)
-	{
-		// return $this->db->get('News')->result();
-		return $this->db_ntt_old->
-			Limit(10, 0)->
-			select('SC03_FName,SC03_LName')->
-			where('SC03_UserId', $reportID)->
-			get('SC03_User')->result();
-	}
-	
-	
-	
 	//################## New Database #######################
 	
 	public function get_prd()
