@@ -20,7 +20,6 @@
 		//Start to count News's rows
 		foreach($news as $news_item):
 			// var_dump($news_item);
-			
 ?>
 		<div class="odd">
 			<p class="col-1" style="width: 20%;float: left; "><?php

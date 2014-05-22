@@ -8,17 +8,87 @@ class PRD_HomePRD_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	//##################### Old Database #########################
+	
 	public function get_NT01_News()
 	{
 		// return $this->db->get('News')->result();
 		return $this->db_ntt_old->
 			Limit(10, 0)->
-			select('*, SC03_User.SC03_TName, NT10_VDO.NT10_FileStatus')->
+			select('
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus'
+			)->
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
 			where('NT08_PubTypeID', '11')->
 			get('NT01_News')->result();
 	}
+	
+	
+	public function get_NT01_News_search_title($news_title)
+	{
+		return $this->db_ntt_old->
+			Limit(10, 0)->
+			select('
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus'
+			)->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			where('NT08_PubTypeID', '11')->
+			like('NT01_News.NT01_NewsTitle', $news_title)->
+			get('NT01_News')->result();
+	}
+	public function get_NT01_News_search_title_start($news_title, $start)
+	{
+		return $this->db_ntt_old->
+			Limit(10, 0)->
+			like('News_Title', $news_title)->
+			where("News_Date >=", $start)->
+			select('
+				NT01_News.NT01_UpdDate, 
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus'
+			)->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			where('NT08_PubTypeID', '11')->
+			get('NT01_News')->result();
+	}
+	public function get_NT01_News_search_title_start_end($news_title, $start, $end)
+	{
+		return $this->db_ntt_old->
+			Limit(10, 0)->
+			like('News_Title', $news_title)->
+			where("News_Date >=", $start)->
+			where("News_Date <=", $end)->
+			select('
+				NT01_News.NT01_UpdDate, 
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus'
+			)->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			where('NT08_PubTypeID', '11')->
+			get('NT01_News')->result();
+	}
+	
+	
 	
 	public function get_NT01_News_Reporter($reportID)
 	{
@@ -32,6 +102,7 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	
 	
+	//################## New Database #######################
 	
 	public function get_prd()
 	{

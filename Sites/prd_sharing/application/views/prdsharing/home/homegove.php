@@ -12,32 +12,41 @@
 			<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">
 		</div>
 <?php
+		// var_dump($news); 
+		
 		//Start to count News's rows
+		foreach($news as $news_item){
 ?>
 		<div class="odd">
-			<p class="col-1" style="width: 10%;float: left; ">
-				<?php echo $news->News_ID; ?>
-			</p>
-			<p class="col-2" style="width: 90%;float: left; ">
-				<?php echo $news->News_Title; ?>
+			<p class="col-1" style="width: 20%;float: left; "><?php
+				if($news_item->SendIn_UpdateDate != ""){
+					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+				}
+				else{
+					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
+				}
+				
+			?></p>
+			<p class="col-2" style="width: 80%;float: left; ">
+				<?php echo $news_item->SendIn_Issue; ?>
 			</p>
 		</div>
 		<div class="event">
 			<p class="col-1" style="width: 20%;float: left; ">
 <?php
-				if($news_item->News_View <= 0){
+				if($news_item->SendIn_view <= 0){
 					$star_count = 0;
 				}
-				elseif($news_item->News_View <= 20){
+				elseif($news_item->SendIn_view <= 20){
 					$star_count = 1;
 				}
-				elseif($news_item->News_View <= 40){
+				elseif($news_item->SendIn_view <= 40){
 					$star_count = 2;
 				}
-				elseif($news_item->News_View <= 60){
+				elseif($news_item->SendIn_view <= 60){
 					$star_count = 3;
 				}
-				elseif($news_item->News_View <= 80){
+				elseif($news_item->SendIn_view <= 80){
 					$star_count = 4;
 				}
 				else{
@@ -59,14 +68,14 @@
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
 				views:  <?php 
-					echo $news->News_View;
+					echo $news_item->SendIn_view;
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
 				<a href="detail">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				<img src="images/icon/<?php 
-					if($news->News_StatusVDO){
+					if($news_item->File_Status == '1'){
 						?>vdo<?php
 					}else{
 						?>null<?php
@@ -74,7 +83,7 @@
 				?>.png" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
-					if($news->News_StatusVoice){
+					if($news_item->File_Status == '2'){
 						?>voice_512x512<?php
 					}else{
 						?>null<?php
@@ -83,15 +92,15 @@
 				
 				
 				<img src="images/icon/<?php 
-					if($news->News_StatusOtherFile){
-						?>Document<?php
+					if($news_item->File_Status == '3'){
+						?>Document.jpg<?php
 					}else{
-						?>null<?php
+						?>null.png<?php
 					}
-				?>.jpg" style="margin: -10px 10px 0;">
+				?>" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
-					if($news->News_StatusPublic){
+					if($news_item->File_Status == '4'){
 						?>like<?php
 					}else{
 						?>null<?php
@@ -101,8 +110,9 @@
 		</div>
 <?php
 		//End Count News's Row 
+		} // endforeach;
 ?>
-		<p><?php echo $links; ?></p>
+		<p><?php // echo $links; ?></p>
 		<!-- <div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)

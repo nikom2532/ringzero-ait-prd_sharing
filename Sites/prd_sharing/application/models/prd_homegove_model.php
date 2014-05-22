@@ -10,7 +10,37 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove()
 	{
-		return $this->db->get('SendInformation')->row();
+		$querty = $this->db->
+			select('
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status , 
+			')->
+			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			get('SendInformation')->result();
+		var_dump($querty);
+		return $querty;
+			
+			
+		// return $this->db->query('
+// 		
+			// SELECT
+				// [SendInformation].[SendIn_UpdateDate],
+				// [SendInformation].[SendIn_CreateDate],
+				// [SendInformation].[SendIn_Issue],
+				// [SendInformation].[SendIn_view]
+			// FROM [SendInformation]
+// 		
+		// ');
+		
+		// $query = $this->db->query('
+			// SELECT *
+			// FROM SendInformation
+		// ');
+		// var_dump($query);
+		// return $query;
 	}
 	public function get_gove_search_title($news_title)
 	{
