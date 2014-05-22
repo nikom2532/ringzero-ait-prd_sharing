@@ -20,45 +20,50 @@ class PRD_HomeGOVE_model extends CI_Model {
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			get('SendInformation')->result();
-		var_dump($querty);
+		// var_dump($querty);
 		return $querty;
-			
-			
-		// return $this->db->query('
-// 		
-			// SELECT
-				// [SendInformation].[SendIn_UpdateDate],
-				// [SendInformation].[SendIn_CreateDate],
-				// [SendInformation].[SendIn_Issue],
-				// [SendInformation].[SendIn_view]
-			// FROM [SendInformation]
-// 		
-		// ');
-		
-		// $query = $this->db->query('
-			// SELECT *
-			// FROM SendInformation
-		// ');
-		// var_dump($query);
-		// return $query;
 	}
 	public function get_gove_search_title($news_title)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			select('
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status , 
+			')->
+			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			like('SendIn_Issue', $news_title)->
 			get('SendInformation')->result();
 	}
 	public function get_gove_search_title_start($news_title, $start)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			select('
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status , 
+			')->
+			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			get('SendInformation')->result();
 	}
 	public function get_gove_search_title_start_end($news_title, $start, $end)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			select('
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status , 
+			')->
+			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
 			get('SendInformation')->result();

@@ -10,6 +10,7 @@ class PRD_HomeGOVE extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Home GOVE';
+		
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_homegove_model->get_gove_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
@@ -28,6 +29,9 @@ class PRD_HomeGOVE extends CI_Controller {
 		// var_dump($data['news']);
 
 		$this->load->view('prdsharing/templates/header', $data);
+		
+		$data['home_search'] = "homeGOVE";
+		
 		$this->load->view('prdsharing/home/header', $data);
 		$this->load->view('prdsharing/home/homegove', $data);
 		$this->load->view('prdsharing/templates/footer');

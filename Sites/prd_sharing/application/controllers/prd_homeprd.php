@@ -100,6 +100,9 @@ class PRD_HomePRD extends CI_Controller {
 		
 		
 		$this->load->view('prdsharing/templates/header', $data);
+		
+		$data['home_search'] = "homePRD";
+		
 		$this->load->view('prdsharing/home/header', $data);
 		$this->load->view('prdsharing/home/homeprd', $data);
 		$this->load->view('prdsharing/templates/footer', $data);
