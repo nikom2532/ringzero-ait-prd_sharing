@@ -110,8 +110,8 @@ class PRD_HomePRD extends CI_Controller {
 		// After Load the Page --> Will insert the UserID from Old Database to New Database
 		
 		
-		// Test Insert News Table 
 		// var_dump($data['news']);
+		//Insert News Table from Old Database to New Database
 		$this->prd_homeprd_model->set_News($data['news']);
 		
 	}

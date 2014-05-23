@@ -184,47 +184,6 @@ class PRD_HomePRD_model extends CI_Model {
 			
 	    }
 		
-		
-		
-		// $this->db->
-			// insert('News', $data);
-						
-						
-		// echo($query2->num_rows());	
-		
-		// News_ID
-		/*
-		$this->load->helper('url');
-		// $data = array(
-			// 'title' => $this->input->post('title'),
-			// 'slug' => $slug,
-			// 'text' => $this->input->post('text')
-		// );
-		
-	    $new_author = $query->result_array();
-		
-	    foreach ($new_author as $row => $author) {
-	    	
-			$data = array(
-			   'News_OldID' => $author['NT01_NewsID'],
-			   'News_Date' => date('Y-m-d h:m:s')
-			);
-			
-			$query2 = $this->db->
-						where('News_OldID', $data['News_OldID'])->
-						get('News');
-			
-			// echo($query2->num_rows());	
-						
-			if($query2->num_rows() > 0){
-				
-			}
-			else{
-				$this->db->insert("News", $data);
-			}
-			
-	    }
-*/
 	}
 	
 	//################## New Database #######################
