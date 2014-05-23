@@ -13,6 +13,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	public function get_NT01_News()
 	{
 		return $this->db_ntt_old->
+			LIMIT('20,0')->
 			select('
 				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate,
@@ -24,7 +25,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				NT01_News.NT01_CreUserID,
 				SC03_User.SC03_FName'
 			)->
-			LIMIT('20,0')->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
 			get('NT01_News')->result();
 	}
 	public function get_NT02_NewsType()

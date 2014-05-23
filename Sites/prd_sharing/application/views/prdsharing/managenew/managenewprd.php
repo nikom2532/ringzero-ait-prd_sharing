@@ -159,12 +159,13 @@
 						<?php $news_item->NT01_NewsReferance; ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; "><?php 
-						if($news_item->NT01_UpdUserID == ""){
-							echo $news_item->NT01_CreUserID;
-						}
-						else{
-							echo $news_item->NT01_UpdUserID;
-						}
+						echo $news_item->SC03_FName;
+						// if($news_item->NT01_UpdUserID == ""){
+							// echo $news_item->NT01_CreUserID;
+						// }
+						// else{
+							// echo $news_item->NT01_UpdUserID;
+						// }
 					?></p>
 				</div>
 <?php
