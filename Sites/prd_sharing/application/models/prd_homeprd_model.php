@@ -50,8 +50,8 @@ class PRD_HomePRD_model extends CI_Model {
 				NT01_News.NT01_NewsTitle,
 				NT01_News.NT01_ViewCount,
 				SC03_User.SC03_FName, 
-				NT10_VDO.NT10_FileStatus'
-			)->
+				NT10_VDO.NT10_FileStatus
+			')->
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
 			where('NT08_PubTypeID', '11')->
