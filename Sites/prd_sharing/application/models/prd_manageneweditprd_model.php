@@ -19,13 +19,20 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				NT01_News.NT01_UpdDate,
 				NT01_News.NT01_CreDate,
 				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsDesc,
 				NT01_News.NT01_NewsSource,
 				NT01_News.NT01_NewsReferance,
 				NT01_News.NT01_UpdUserID,
 				NT01_News.NT01_CreUserID,
-				SC03_User.SC03_FName'
-			)->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+				
+				NT01_News.NT01_ReporterID,
+				
+				SC03_User.SC03_FName
+			')->
+			join('SC03_User', '
+				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+				AND 
+				SC03_User.SC03_UserId = NT01_News.NT01_CreUserID', 'left')->
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 	}
