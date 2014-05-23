@@ -33,44 +33,6 @@ class PRD_HomePRD_model extends CI_Model {
 		
 		// var_dump($query);
 		
-		// if($query->num_rows() > 0) {
-		    // $new_author = $query->result();
-// 			
-		    // foreach ($new_author as $author) {
-					// $data = array(
-					   // 'News_OldID' => $author['NT01_NewsID'],
-					   // 'News_Date' => date('Y-m-d h:m:s')
-					// );
-// 					
-					// $query2 = $this->db->
-								// where('News_OldID', $data['News_OldID'])->
-								// get('News');
-// 					
-					// // echo($query2->num_rows());
-// 					
-					// if($query2->num_rows() > 0){
-						// // $query3 = $this->db->
-							// // update("News", $data)->
-							// // where('', '');
-						// // echo  $query3 = $this->db;
-// 						
-// 						
-						// // $query3 = "
-							// // UPDATE News
-							// // SET
-								// // News_OldID = $data['News_OldID']
-							// // WHERE some_column=some_value;
-						// // ";
-						// // $this->db->query($query3);
-					// }
-					// else{
-						// $query3 = $this->db->insert("News", $data);
-					// }
-// 					
-		    // }
-		// }
-		
-		
 		// var_dump($query->result());
 		
 		return $query->result();
@@ -82,6 +44,7 @@ class PRD_HomePRD_model extends CI_Model {
 		return $this->db_ntt_old->
 			Limit(20, 0)->
 			select('
+				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate,
 				NT01_News.NT01_CreDate,
 				NT01_News.NT01_NewsTitle,
@@ -102,6 +65,7 @@ class PRD_HomePRD_model extends CI_Model {
 			like('News_Title', $news_title)->
 			where("News_Date >=", $start)->
 			select('
+				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate, 
 				NT01_News.NT01_CreDate,
 				NT01_News.NT01_NewsTitle,
@@ -122,6 +86,7 @@ class PRD_HomePRD_model extends CI_Model {
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
 			select('
+				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate, 
 				NT01_News.NT01_CreDate,
 				NT01_News.NT01_NewsTitle,

@@ -20,15 +20,21 @@ class PRD_HomePRD extends CI_Controller {
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				// $data['news'] = $this->prd_homeprd_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
-				$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
+				$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("end_date")) );
+				$data['post_news_title'] = post("news_title");
+				$data['post_start_date'] = post("start_date");
+				$data['post_end_date'] = post("end_date");
 			}
 			elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
 				// $data['news'] = $this->prd_homeprd_model->get_prd_search_title_start(($this->input->post("news_title")), ($this->input->post("start_date")) );
 				$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start(($this->input->post("news_title")), ($this->input->post("start_date")) );
+				$data['post_news_title'] = post("news_title");
+				$data['post_start_date'] = post("start_date");
 			}
 			else{
 				// $data['news'] = $this->prd_homeprd_model->get_prd_search_title($this->input->post("news_title"));
 				$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title($this->input->post("news_title"));
+				$data['post_news_title'] = post("news_title");
 			}
 		}
 		else{
