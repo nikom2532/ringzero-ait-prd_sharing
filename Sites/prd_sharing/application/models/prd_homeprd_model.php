@@ -14,7 +14,7 @@ class PRD_HomePRD_model extends CI_Model {
 	{
 		// return $this->db->get('News')->result();
 		$query = $this->db_ntt_old->
-			Limit(5, 0)->
+			Limit(20, 0)->
 			select('
 				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate,
@@ -80,7 +80,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function get_NT01_News_search_title($news_title)
 	{
 		return $this->db_ntt_old->
-			Limit(10, 0)->
+			Limit(20, 0)->
 			select('
 				NT01_News.NT01_UpdDate,
 				NT01_News.NT01_CreDate,
@@ -98,7 +98,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function get_NT01_News_search_title_start($news_title, $start)
 	{
 		return $this->db_ntt_old->
-			Limit(10, 0)->
+			Limit(20, 0)->
 			like('News_Title', $news_title)->
 			where("News_Date >=", $start)->
 			select('
@@ -117,7 +117,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function get_NT01_News_search_title_start_end($news_title, $start, $end)
 	{
 		return $this->db_ntt_old->
-			Limit(10, 0)->
+			Limit(20, 0)->
 			like('News_Title', $news_title)->
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
@@ -165,8 +165,8 @@ class PRD_HomePRD_model extends CI_Model {
 						get('News');
 						
 			// var_dump($query2);
-				
-			echo($query2->num_rows());	
+			
+			// echo($query2->num_rows());
 						
 			if($query2->num_rows() > 0){
 				
