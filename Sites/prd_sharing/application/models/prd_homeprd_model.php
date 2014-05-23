@@ -10,13 +10,6 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	//##################### Old Database #########################
 	
-	public function get_NT01_News_rows($News_OldID)
-	{
-		$this->db_ntt_old->
-			where('News_OldID', $News_OldID)->
-			get('News')->rows();
-	}
-	
 	public function get_NT01_News()
 	{
 		// return $this->db->get('News')->result();
