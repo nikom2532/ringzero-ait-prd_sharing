@@ -13,19 +13,30 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	public function get_NT01_News()
 	{
 		return $this->db_ntt_old->
-			LIMIT('50,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				SC03_User.SC03_FName'
+			)->
+			LIMIT('20,0')->
 			get('NT01_News')->result();
 	}
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->
-			LIMIT('50,0')->	
+			LIMIT('20,0')->	
 			get('NT02_NewsType')->result();
 	}
 	public function get_NT03_NewsSubType()
 	{
 		return $this->db_ntt_old->
-			LIMIT('50,0')->	
+			LIMIT('20,0')->	
 			get('NT03_NewsSubType')->result();
 	}
 	
