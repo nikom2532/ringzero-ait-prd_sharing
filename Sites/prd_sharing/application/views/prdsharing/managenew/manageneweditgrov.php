@@ -1,3 +1,7 @@
+<?php
+//Start to count News GROV's rows
+foreach($news as $news_item):
+?>
 <fieldset class="frame-input">
 	<legend >
 		News Information
@@ -7,7 +11,14 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่วงวันที่</label>
-				<label >23/04/2014</label>
+				<label ><?php 
+					if($news_item->SendIn_UpdateDate != ""){
+						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
+					}
+					else{
+						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+					} 
+				?></label>
 			</div>
 		</div>
 		<div class="row">
@@ -49,19 +60,19 @@
 		<div class="row">
 			<div class="col-lg-11">
 				<label >แผนงานโครงการ/กิจกรรม</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" id="InputKeyword" placeholder="" value="<?php echo $news_item->SendIn_Plan; ?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-11">
 				<label >ประเด็นประชาสัมพันธ์</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" id="InputKeyword" placeholder="" value="<?php echo $news_item->SendIn_Issue; ?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-11">
 				<label >เนื้อหา</label>
-				<textarea class="ckeditor" name="editor1"></textarea>
+				<textarea class="ckeditor" name="editor1"><?php echo $news_item->SendIn_Detail; ?></textarea>
 			</div>
 		</div>
 		<div class="row">
@@ -98,3 +109,7 @@
 		<input class="bt" type="submit" name="share" value="ยกเลิก">
 	</div>
 </div>
+<?php
+endforeach;
+//End Count News GROV's Row 
+?>

@@ -22,7 +22,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 			join('Member', 'SendInformation.Mem_ID = Member.Mem_ID', 'left')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			get('SendInformation')->result();
-		var_dump($query);
+		// var_dump($query);
 		return $query;
 	}
 	public function get_gove_search_title($news_title)
