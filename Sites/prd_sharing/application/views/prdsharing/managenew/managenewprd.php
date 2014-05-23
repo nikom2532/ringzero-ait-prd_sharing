@@ -23,15 +23,15 @@
 					if(isset($post_start_date)){
 						echo $post_start_date;
 					}
-				?>>
+				?>">
 			</div>
 			<div class="col-lg-6">
 				<label >ถึง</label>
-				<input type="text" class="form-control datepicker" name="end_date" id="InputKeyword" placeholder="" <?php 
+				<input type="text" class="form-control datepicker" name="end_date" id="InputKeyword" placeholder="" value="<?php 
 					if(isset($post_end_date)){
 						echo $post_end_date;
 					}
-				?>>
+				?>">
 			</div>
 		</div>
 	
