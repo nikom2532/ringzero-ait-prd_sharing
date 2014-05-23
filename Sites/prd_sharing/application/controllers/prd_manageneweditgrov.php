@@ -4,13 +4,16 @@ class PRD_manageNewEditGROV extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('news_model');
+		$this->load->model('prd_manageneweditgrov_model');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Manage News';
-
+		
+		$data['news'] = $this->prd_manageneweditgrov_model->get_grov();
+		
+		
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/manageneweditgrov', $data);
 		$this->load->view('prdsharing/templates/footer');

@@ -79,9 +79,22 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label >สถานะ</label>
 				<label >รอการอนุมัติ</label>
+				
+				<select name="sendin_status" class="form-control" style="width: 65%;">
+					<option value="0"<?php 
+						if($news_item->SendIn_Status == '0' || $news_item->SendIn_Status == ''){
+							?> checked='checked' <?php
+						}
+					?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
+					<option value="1"<?php 
+						if($news_item->SendIn_Status == '1'){
+							?> checked='checked' <?php
+						}
+					?>>อนุมัติ</option>
+				</select>
 			</div>
 		</div>
-
+		
 		<!--<div class="col-lg-12" style="text-align: center;    float: left;">
 		<input class="bt" type="submit" name="share" value="บันทึก">
 		<input class="bt" type="submit" name="share" value="ยกเลิก">
