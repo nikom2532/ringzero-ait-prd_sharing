@@ -12,6 +12,13 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	
 	public function get_NT01_News($NT01_NewsID = '')
 	{
+		
+		// ถ้าต้องการ Query 2 รอบ ก็ Query 2 ตัว
+		// Select From Where 1
+		// Select From Where 2
+		// แล้ว ส่งค่า Returnไป  ทั้งก้อน (ยัด ลง  Array)
+		
+		
 		return $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -31,7 +38,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			')->
 			join('SC03_User', '
 				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
-				AND 
+			
 				SC03_User.SC03_UserId = NT01_News.NT01_CreUserID', 'left')->
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
