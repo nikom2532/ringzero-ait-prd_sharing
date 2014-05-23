@@ -129,7 +129,7 @@
 				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
 				</p>
 				<p class="col-1" style="width: 35%;float: left; ">
-					<?php //echo $news_item->SendIn_Issues; ?>
+					<?php echo $news_item->SendIn_Issue; ?>
 				</p>
 				<p class="col-1" style="width: 10%;float: left; "><?php
 					if($news_item->SendIn_UpdateDate != ""){
@@ -140,10 +140,38 @@
 					}
 				?></p>
 				<p class="col-3" style="width: 25%;float: left; ">
-					<img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;">
-                    <img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;">
-                    <img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;">
-                    <img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;">
+					<img src="images/icon/<?php 
+						if($news_item->File_Status == '1'){
+							?>vdo<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" style="margin: -10px 10px 0;">
+					
+					<img src="images/icon/<?php 
+						if($news_item->File_Status == '2'){
+							?>voice_512x512<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" style="margin: -10px 10px 0;">
+					
+					
+					<img src="images/icon/<?php 
+						if($news_item->File_Status == '3'){
+							?>Document.jpg<?php
+						}else{
+							?>null.png<?php
+						}
+					?>" style="margin: -10px 10px 0;">
+					
+					<img src="images/icon/<?php
+						if($news_item->File_Status == '4'){
+							?>like<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" style="margin: -10px 10px 0;">
 				</p>
 			</div>
 <?php
