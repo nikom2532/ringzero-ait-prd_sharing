@@ -10,18 +10,20 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove()
 	{
-		$querty = $this->db->
+		$query = $this->db->
 			select('
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
+				SendInformation.Mem_ID,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status , 
+				FileAttach.File_Status 
 			')->
+			join('Member', 'SendInformation.Mem_ID = Member.Mem_ID', 'left')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			get('SendInformation')->result();
-		// var_dump($querty);
-		return $querty;
+		var_dump($query);
+		return $query;
 	}
 	public function get_gove_search_title($news_title)
 	{
@@ -31,7 +33,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status , 
+				FileAttach.File_Status
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			like('SendIn_Issue', $news_title)->
@@ -45,7 +47,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status , 
+				FileAttach.File_Status
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			like('SendIn_Issue', $news_title)->
@@ -60,7 +62,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status , 
+				FileAttach.File_Status
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			like('SendIn_Issue', $news_title)->
