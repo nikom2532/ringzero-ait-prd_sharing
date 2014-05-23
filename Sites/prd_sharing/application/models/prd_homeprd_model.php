@@ -38,47 +38,45 @@ class PRD_HomePRD_model extends CI_Model {
 			
 		// var_dump($query->num_rows());
 		
-		// var_dump($query->result());
-		/*
-		if($query->num_rows() > 0) {
-		    $new_author = $query->result_array();
-			
-		    foreach ($new_author as $row => $author) {
-		    	
-		    	
-					$data = array(
-					   'News_OldID' => $author['NT01_NewsID'],
-					   'News_Date' => date('Y-m-d h:m:s')
-					);
-					
-					$query2 = $this->db->
-								where('News_OldID', $data['News_OldID'])->
-								get('News');
-					
-					// echo($query2->num_rows());	
-								
-					if($query2->num_rows() > 0){
-						// $query3 = $this->db->
-							// update("News", $data)->
-							// where('', '');
-						// echo  $query3 = $this->db;
-						
-						
-						// $query3 = "
-							// UPDATE News
-							// SET
-								// News_OldID = $data['News_OldID']
-							// WHERE some_column=some_value;
-						// ";
-						// $this->db->query($query3);
-					}
-					else{
-						$query3 = $this->db->insert("News", $data);
-					}
-					
-		    }
-		}
-		*/
+		// var_dump($query);
+		
+		// if($query->num_rows() > 0) {
+		    // $new_author = $query->result();
+// 			
+		    // foreach ($new_author as $author) {
+					// $data = array(
+					   // 'News_OldID' => $author['NT01_NewsID'],
+					   // 'News_Date' => date('Y-m-d h:m:s')
+					// );
+// 					
+					// $query2 = $this->db->
+								// where('News_OldID', $data['News_OldID'])->
+								// get('News');
+// 					
+					// // echo($query2->num_rows());
+// 					
+					// if($query2->num_rows() > 0){
+						// // $query3 = $this->db->
+							// // update("News", $data)->
+							// // where('', '');
+						// // echo  $query3 = $this->db;
+// 						
+// 						
+						// // $query3 = "
+							// // UPDATE News
+							// // SET
+								// // News_OldID = $data['News_OldID']
+							// // WHERE some_column=some_value;
+						// // ";
+						// // $this->db->query($query3);
+					// }
+					// else{
+						// $query3 = $this->db->insert("News", $data);
+					// }
+// 					
+		    // }
+		// }
+		
 		
 		// var_dump($query->result());
 		
@@ -148,17 +146,48 @@ class PRD_HomePRD_model extends CI_Model {
 	//##################### Old Database --- Set #########################
 	
 	
-	public function set_News($query='')
+	public function set_News($news='')
 	{
+		//Test insert 1 record
+		// $data = array(
+			   // 'News_OldID' => "99",
+			   // 'News_Date' => date('Y-m-d h:m:s')
+		// );
+		//########
 		
+		// var_dump($news);
 		
-		$data = array(
-			   'News_OldID' => "99",
+		foreach ($news as $news_item) {
+	    	
+			$data = array(
+			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => date('Y-m-d h:m:s')
-		);
+			);
+			
+			// var_dump($data);
+			// echo $data["News_OldID"];
+			
+			$query2 = $this->db->
+						where('News_OldID', $data['News_OldID'])->
+						get('News');
+						
+			// var_dump($query2);
+				
+			echo($query2->num_rows());	
+						
+			if($query2->num_rows() > 0){
+				
+			}
+			else{
+				$this->db->insert("News", $data);
+			}
+			
+	    }
 		
-		$this->db->
-			insert('News', $data);
+		
+		
+		// $this->db->
+			// insert('News', $data);
 						
 						
 		// echo($query2->num_rows());	

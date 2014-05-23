@@ -112,7 +112,7 @@ class PRD_HomePRD extends CI_Controller {
 		
 		// Test Insert News Table 
 		// var_dump($data['news']);
-		$this->prd_homeprd_model->set_News();
+		$this->prd_homeprd_model->set_News($data['news']);
 		
 	}
 }
