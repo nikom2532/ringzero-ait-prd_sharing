@@ -11,7 +11,7 @@
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
 				<input class="txt-field" type="text" value="<?php 
 					if($home_search == "homePRD"){
-						if($post_news_title != ""){
+						if(isset($post_news_title)){
 							echo $post_news_title;
 						}
 					}
@@ -21,7 +21,7 @@
 				?>" name="news_title"  placeholder="" style=" margin-left: 15px;width: 60%;">
 				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:10%;padding: 4px;margin-left:5px;">
 			</div>
-		</div>
+		</div>	
 		
 		<div class="row">
 			<div class="col-lg-6-search">
@@ -31,13 +31,13 @@
 				<div class="input">
 					<input type="text" class="form-control datepicker" name="start_date"  placeholder="" value="<?php 
 						if($home_search == "homePRD"){
-							if($post_start_date != ""){
+							if(isset($post_start_date)){
 								echo $post_start_date;
 							}
 						}
 						elseif($home_search == "homeGOVE"){
 							
-						}				
+						}
 					?>">
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 				<div class="input">
 					<input type="text" class="form-control datepicker" name="end_date"  placeholder="" value="<?php 
 						if($home_search == "homePRD"){
-							if($post_end_date != ""){
+							if(isset($post_end_date)){
 								echo $post_end_date;
 							}
 						}
