@@ -122,7 +122,7 @@
 					<?php echo $i++; ?>
 				</p>
 				<p class="col-2" style="width: 14%;float: left; ">
-					<a href="manageNewEditGROV" ><?php echo $news_item->SendIn_ID; ?> </a>
+					<a href="manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
 				</p>

@@ -19,7 +19,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			get('Department')->result();
 	}
 	
-	public function get_grov()
+	public function get_grov($SendIn_ID)
 	{
 		// return $this->db->get('SendInformation')->result();
 		return $this->db->
@@ -36,6 +36,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 				FileAttach.File_Status
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			where('SendInformation.SendIn_ID', $SendIn_ID)->
 			get('SendInformation')->result();
 	}
 	//##########################

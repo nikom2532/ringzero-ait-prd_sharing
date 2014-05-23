@@ -10,10 +10,9 @@ class PRD_manageNewEditGROV extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Manage News';
+		$data['news'] = $this->prd_manageneweditgrov_model->get_grov($this->input->get('sendin_id'));
 		
-		$data['news'] = $this->prd_manageneweditgrov_model->get_grov();
-		
-		
+		// var_dump($data['news']);
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/manageneweditgrov', $data);
 		$this->load->view('prdsharing/templates/footer');
