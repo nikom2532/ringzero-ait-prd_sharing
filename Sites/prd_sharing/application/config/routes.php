@@ -60,7 +60,8 @@ $route['manageUser'] = 'prd_manageuser';
 $route['manageInfoCategory'] = 'prd_manageinfocategory';
 $route['reportPRD'] = 'prd_reportprd';
 
-$route['detail'] = 'prd_managenew_detail';
+$route['detail_prd'] = 'prd_managenew_detail_prd';
+$route['detail_grov'] = 'prd_managenew_detail_grov';
 $route['homeGOVE'] = 'prd_homegove';
 $route['infoDepartment'] = 'prd_infodepartment';
 $route['infoMinistry'] = 'prd_infoministry';

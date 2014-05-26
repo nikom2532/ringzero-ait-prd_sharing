@@ -1,5 +1,5 @@
 <?php
-class PRD_ManageNew_detail extends CI_Controller {
+class PRD_ManageNew_detail_GROV extends CI_Controller {
 
 	public function __construct()
 	{
@@ -12,7 +12,7 @@ class PRD_ManageNew_detail extends CI_Controller {
 		$data['title'] = 'Manage News';
 
 		$this->load->view('prdsharing/templates/header', $data);
-		$this->load->view('prdsharing/managenew/detail', $data);
+		$this->load->view('prdsharing/managenew/detail_grov', $data);
 		$this->load->view('prdsharing/templates/footer');
 	}
 }

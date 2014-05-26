@@ -78,7 +78,7 @@
 					}
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
-				<a href="detail">open new link</a>
+				<a href="detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				

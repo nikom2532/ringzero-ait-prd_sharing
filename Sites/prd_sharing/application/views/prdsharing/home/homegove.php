@@ -71,7 +71,7 @@
 					echo $news_item->SendIn_view;
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
-				<a href="detail">open new link</a>
+				<a href="detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				<img src="images/icon/<?php 
