@@ -91,7 +91,7 @@
 				?>.png" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
-					if($news_item->NT11_FileStatus){
+					if($news_item->NT12_FileStatus){
 						?>voice_512x512<?php
 					}else{
 						?>null<?php
@@ -100,7 +100,7 @@
 				
 				
 				<img src="images/icon/<?php 
-					if($news_item->NT12_FileStatus){
+					if($news_item->NT13_FileStatus){
 						?>Document.jpg<?php
 					}else{
 						?>null.png<?php
@@ -108,7 +108,7 @@
 				?>" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
-					if($news_item->NT13_FileStatus){
+					if($news_item->NT11_FileStatus){
 						?>like<?php
 					}else{
 						?>null<?php

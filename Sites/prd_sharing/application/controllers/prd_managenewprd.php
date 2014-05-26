@@ -13,6 +13,19 @@ class PRD_ManageNewPRD extends CI_Controller {
 	{
 		$data['title'] = 'Manage News';
 		
+		if($this->input->post("manageNewEditPRD_record") == "yes"){
+			// echo "record";
+			$return = $this->prd_managenewprd_model->set_prd_news(
+				$this->input->post("NT01_NewsID"),
+				$this->input->post("NT01_NewsTitle"),
+				$this->input->post("NT01_NewsDesc"),
+				$this->input->post("NT01_NewsSource"),
+				$this->input->post("NT01_NewsReferance"),
+				$this->input->post("NT01_NewsTag")
+			);
+			// var_dump($return);
+		}
+		
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_managenewprd_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("start_date")) );
@@ -35,5 +48,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/managenewprd', $data);
 		$this->load->view('prdsharing/templates/footer');
+		
+		$this->prd_managenewprd_model->set_FirstAddNews($data['news']);
 	}
 }

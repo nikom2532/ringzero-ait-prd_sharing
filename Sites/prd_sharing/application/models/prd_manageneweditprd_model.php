@@ -22,6 +22,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			LIMIT('20,0')->
 			select('
 				NT01_News.NT01_NewsID,
+				NT01_News.NT01_NewsTag,
 				NT01_News.NT01_UpdDate,
 				NT01_News.NT01_CreDate,
 				NT01_News.NT01_NewsTitle,

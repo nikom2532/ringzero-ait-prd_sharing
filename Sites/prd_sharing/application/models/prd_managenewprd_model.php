@@ -88,5 +88,65 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	}
 	//##########################
 	
+	
+	public function set_FirstAddNews($news='')
+	{
+		// var_dump($news);
+		
+		foreach ($news as $news_item) {
+	    	
+			$data = array(
+			   'News_OldID' => $news_item->NT01_NewsID,
+			   'News_Date' => date('Y-m-d h:m:s')
+			);
+			
+			// var_dump($data);
+			// echo $data["News_OldID"];
+			
+			$query2 = $this->db->
+						where('News_OldID', $data['News_OldID'])->
+						get('News');
+						
+			// var_dump($query2);
+			
+			// echo($query2->num_rows());
+						
+			if($query2->num_rows() > 0){
+				
+			}
+			else{
+				$this->db->insert("News", $data);
+			}
+	    }
+	}
+	
+	
+	//For record a new news
+	public function set_prd_news(
+		$NT01_NewsID='',
+		$NT01_NewsTitle='',
+		$NT01_NewsDesc='',
+		$NT01_NewsSource='',
+		$NT01_NewsReferance='',
+		$NT01_NewsTag=''
+	)
+	{
+			$data = array(
+			   'News_Title' => $NT01_NewsTitle,
+			   'News_Desc' => $NT01_NewsDesc,
+			   'News_Source' => $NT01_NewsSource,
+			   'News_Reference' => $NT01_NewsReferance,
+			   'News_Tag' => $NT01_NewsTag
+			);
+			
+			// var_dump($data);
+			
+			return $this->db->where("News_OldID", $NT01_NewsID)->
+				update("News", $data);
+	}
+	
+	
+	//##########################
+	
 	// $this->db->limit($limit, $start);
 }

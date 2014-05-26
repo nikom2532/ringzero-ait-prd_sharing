@@ -9,6 +9,9 @@
 	// var_dump($news[$key]);
 	// echo "1";
 ?>
+<form name="form" action="manageNewPRD" method="post">
+	<input type="hidden" name="NT01_NewsID" value="<?php echo $news[0]->NT01_NewsID; ?>" />
+	<input type="hidden" name="manageNewEditPRD_record" value="yes" />
 	<div id="manage-user" class="table-list">
 		<div class="row">
 			<div id="gove-title" class="row">
@@ -18,7 +21,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่วงวันที่</label>
-				<input type="text" class="form-control datepicker" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="InputKeyword" placeholder="" value="<?php 
 					if($news[0]->NT01_UpdDate == ""){
 						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
 					}
@@ -53,32 +56,32 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หัวข้อข่าว</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" value="<?php echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; ?>">
+				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" value="<?php echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; ?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-11">
 				<label >เนื้อหาข่าว</label>
-				<textarea class="ckeditor" name="editor1"><?php echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Desc; ?></textarea>
+				<textarea class="ckeditor" name="NT01_NewsDesc"><?php echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Desc; ?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >แหล่งที่มา</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsSource //echo $news[0]->News_Source; ?>>
+				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsSource //echo $news[0]->News_Source; ?>>
+			</div>
+			<div class="col-lg-6">
+				<label >อ้างอิงจาก</label>
+				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsReferance // echo $news[0]->News_Referance; ?>>
 			</div>
 		</div>
 	
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-6">
 				<label >Attach file</label>
 				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
 			</div>
-			<div class="col-lg-6">
-				<label >อ้างอิงจาก</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsReferance // echo $news[0]->News_Referance; ?>>
-			</div>
-		</div>
+		</div> -->
 	
 		<div class="row">
 			<div class="col-lg-6">
@@ -104,7 +107,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >Tag</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" name="NT01_NewsTag" id="InputKeyword" value="<?php echo $news[0]->NT01_NewsTag; ?>" placeholder="" >
 			</div>
 		</div>
 	
@@ -126,17 +129,28 @@
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
 				<?php
-					if($news[3] == "Y")
-					echo $news[3]->NT10_FileStatus; 
+					if($news[3] == "Y"){
+						?><img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
+						echo $news[3]->NT10_FileStatus."<br />"; 
+					}
 				?>
 				<?php 
-					echo $news[4]->NT11_FileStatus; 
+					if($news[3] == "Y"){
+						?><img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
+						echo $news[4]->NT12_FileStatus."<br />";
+					}
 				?>
 				<?php 
-					echo $news[5]->NT12_FileStatus; 
+					if($news[3] == "Y"){
+						?><img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
+						echo $news[5]->NT13_FileStatus."<br />";
+					}
 				?>
 				<?php 
-					echo $news[6]->NT13_FileStatus; 
+					if($news[3] == "Y"){
+						?><img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
+						echo $news[6]->NT11_FileStatus."<br />";
+					}
 				?>
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 				<!-- <input class="bt" type="submit" name="share" value="BROWSE"> -->
@@ -147,8 +161,8 @@
 			<input class="bt" type="submit" name="share" value="บันทึก">
 			<input class="bt" type="submit" name="share" value="ยกเลิก">
 		</div>
-	
 	</div><!-- #sentnews -->
+</form>
 <?php
 // }
 ?>

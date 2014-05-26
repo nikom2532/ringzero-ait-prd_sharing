@@ -200,11 +200,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[News](
 	[News_ID] [int] IDENTITY(1,1) NOT NULL,
-	[News_Title] [nvarchar](30) NULL,
-	[News_Desc] [nvarchar](255) NULL,
-	[News_Tag] [nvarchar](20) NULL,
-	[News_Source] [nvarchar](20) NULL,
-	[News_Reference] [nvarchar](30) NULL,
+	[News_Title] [nvarchar](500) NULL,
+	[News_Desc] [nvarchar](1000) NULL,
+	[News_Tag] [nvarchar](200) NULL,
+	[News_Source] [nvarchar](500) NULL,
+	[News_Reference] [nvarchar](500) NULL,
 	[News_Date] [datetime] NULL,
 	[News_Update] [datetime] NULL,
 	[News_Active] [int] NULL,
