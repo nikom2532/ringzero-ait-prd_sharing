@@ -66,7 +66,6 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 		
 		
 		$query_file1 = $this->db_ntt_old->
-			// LIMIT('20,0')->
 			select('
 				NT10_VDO.NT10_VDOName,
 				NT10_VDO.NT10_VDOPath,
@@ -78,9 +77,9 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			get('NT01_News')->result();
 			
 		$query_file2 = $this->db_ntt_old->
-			LIMIT('20,0')->
 			select('
 				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_PicPath,
 				NT11_Picture.NT11_Extension,
 				NT11_Picture.NT11_FileStatus
 			')->
@@ -88,29 +87,6 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 			
-		// $query_file3 = $this->db_ntt_old->
-			// LIMIT('20,0')->
-			// select('
-				// NT12_Voice.NT12_VoiceName,
-				// NT12_Voice.NT12_Extension,
-// 				
-				// NT12_Voice.NT12_FileStatus
-			// ')->
-			// join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			// get('NT01_News')->result();
-// 			
-		// $query_file4 = $this->db_ntt_old->
-			// LIMIT('20,0')->
-			// select('
-				// NT13_OtherFile.NT13_FileName,
-				// NT13_OtherFile.NT13_Extension,
-				// NT13_OtherFile.NT13_FileStatus
-			// ')->
-			// join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			// get('NT01_News')->result();
-		
 		$query_CreUser = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -122,7 +98,6 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		
-		
 		$query_CamCoder = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -133,7 +108,6 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				'left')->	
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-			
 			
 		$query_ApvUserName = $this->db_ntt_old->
 			LIMIT('20,0')->
@@ -147,16 +121,15 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 			
-			
 		$array_merge = array_merge(
 			$query_normal, $query_CreUser, $query_CamCoder, 
-			$query_file1, $query_file2, $query_file3, $query_file4,
+			$query_file1, $query_file2,
 			$query_ApvUserName
 		);
 		
 		return $array_merge;
+		
 	}
-	
 	
 	public function get_NT02_NewsType()
 	{

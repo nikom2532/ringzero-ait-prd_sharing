@@ -1,18 +1,32 @@
 <div class="content">
 	<div id="detail-form">
-
 		<div class="row">
-			<div class="col-lg-6"><?php
-				
-					?><div class="vdo">
-						<img src="images/vdo/vdo.png" alt="vdo" style="width:100%;">
-					</div><?php
-				
-				?><div class="image-list">
-					<img src="images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">
+			<div class="col-lg-6">
+				<div class="vdo">
+					<!-- <img src="images/vdo/vdo.png" alt="vdo" style="width:100%;">
+					<img src="<?php
+						echo $news[3]->NT10_VDOPath;
+					?>" alt="vdo" style="width:100%;"> -->
+					
+					<video width="461" height="358" controls autoplay>
+						<source src="<?php echo $news[3]->NT10_VDOPath; ?>" type="video/mp4">
+						<object data="<?php echo $news[3]->NT10_VDOPath; ?>" width="320" height="240">
+							<embed src="movie.swf" width="320" height="240">
+						</object> 
+					</video>
+					
+				</div>
+				<div class="image-list">
+<?php
+					$i=1;
+					foreach ($news[4] as $image) {
+						?><img src="<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;margin-top:10px;"><?php
+					}
+?>
+					<!-- <img src="images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">
 					<img src="images/pic/p2.png" alt="vdo" style="width:30%;margin:10px 4% 0;">
 					<img src="images/pic/p4.png" alt="vdo" style="width:30%;margin-top:10px;">
-					<img src="images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;">
+					<img src="images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 				</div>
 			</div>
 			<div class="col-lg-6" >
@@ -65,6 +79,5 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
