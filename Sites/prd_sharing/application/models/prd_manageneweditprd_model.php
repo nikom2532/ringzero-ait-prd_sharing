@@ -18,8 +18,6 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 		// Select From Where 2
 		// แล้ว ส่งค่า Returnไป  ทั้งก้อน (ยัด ลง  Array)
 		
-		
-		
 		$query_normal = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -54,12 +52,24 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			get('NT01_News')->result();
 		
 		
+		$query_CamCoder = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				SC03_User.SC03_FName AS CamCoderName
+			')->
+			join('SC03_User', 
+				'SC03_User.SC03_UserId = NT01_News.NT01_CamCoderID', 
+				'left')->	
+			where('NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		
 		// $array_query = array(
 			// 'query_normal' => $query_normal,
 			// 'query_CreUser' => $query_CreUser
 		// );
 		
-		$array_merge = array_merge($query_normal, $query_CreUser);
+		$array_merge = array_merge($query_normal, $query_CreUser, $query_CamCoder);
 		
 		// $array_merge = array_merge_recursive($query_normal, $query_CreUser);
 		
@@ -74,7 +84,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 		
 		// var_dump($query_normal);
 		// echo "============================================= ";
-		// var_dump($array_merge);
+		var_dump($array_merge);
 		// echo "============================================= ";
 		// echo($array_merge[0]["NT01_NewsID"]);
 		
