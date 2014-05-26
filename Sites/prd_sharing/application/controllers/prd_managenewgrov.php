@@ -13,6 +13,16 @@ class PRD_ManageNewGROV extends CI_Controller {
 	{
 		$data['title'] = 'Manage News';
 		
+		if($this->input->post("manageNewEditPRD_record") == "yes"){
+			// echo "record";
+			$return_manageNewEditPRD_record = $this->prd_managenewgrov_model->set_prd_news(
+				$this->input->post("SendIn_ID"),
+				$this->input->post("SendIn_Plan"),
+				$this->input->post("SendIn_Issue")
+			);
+			// var_dump($return_manageNewEditPRD_record);
+		}
+		
 		if($this->input->post("news_title") != ""){
 			if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 				$data['news'] = $this->prd_managenewgrov_model->get_prd_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("end_date")) );

@@ -1,7 +1,10 @@
+<form name="formManageNewGROV" action="manageNewGROV" method="post">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):
 ?>
+	<input type="hidden" name="manageNewEditPRD_record" value="yes" />
+	<input type="hidden" name="SendIn_ID" value="<?php echo $news_item->SendIn_ID; ?>" />
 <fieldset class="frame-input">
 	<legend >
 		News Information
@@ -60,13 +63,13 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-11">
 				<label >แผนงานโครงการ/กิจกรรม</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" value="<?php echo $news_item->SendIn_Plan; ?>">
+				<input type="text" class="form-control" name="SendIn_Plan" id="SendIn_Plan" placeholder="" value="<?php echo $news_item->SendIn_Plan; ?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-11">
 				<label >ประเด็นประชาสัมพันธ์</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" value="<?php echo $news_item->SendIn_Issue; ?>">
+				<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" value="<?php echo $news_item->SendIn_Issue; ?>">
 			</div>
 		</div>
 		<div class="row">
@@ -126,3 +129,4 @@ foreach($news as $news_item):
 endforeach;
 //End Count News GROV's Row 
 ?>
+</form>

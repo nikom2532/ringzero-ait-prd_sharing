@@ -76,5 +76,24 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	}
 	//##########################
 	
+	//For record a new news
+	public function set_prd_news(
+		$SendIn_ID='',
+		$SendIn_Plan='',
+		$SendIn_Issue='' 	
+	)
+	{
+			$data = array(
+			   'SendIn_Plan' => $SendIn_Plan,
+			   'SendIn_Issue' => $SendIn_Issue,
+			);
+			
+			// var_dump($data);
+			
+			return $this->db->where("SendIn_ID", $SendIn_ID)->
+				update("SendInformation", $data);
+	}
+	
+	
 	// $this->db->limit($limit, $start);
 }
