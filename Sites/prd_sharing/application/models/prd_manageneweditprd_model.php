@@ -35,11 +35,62 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				SC03_User.SC03_FName AS ReporterName
 			')->
 			join('SC03_User', 
-				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 
-				'left')->
-			where('NT01_NewsID', $NT01_NewsID)->
+				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		
+		$query_file1 = $this->db_ntt_old->
+			// LIMIT('20,0')->
+			select('
+				NT10_VDO.NT10_VDOName,
+				NT10_VDO.NT10_Extension,
+				
+				NT10_VDO.NT10_FileStatus,
+			')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 			
+			
+		$query_file2 = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_Extension,
+				
+				NT11_Picture.NT11_FileStatus
+			')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+			
+		$query_file3 = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT12_Voice.NT12_VoiceName,
+				NT12_Voice.NT12_Extension,
+				
+				NT12_Voice.NT12_FileStatus
+			')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+			
+		$query_file4 = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT13_OtherFile.NT13_FileName,
+				NT13_OtherFile.NT13_Extension,
+				
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
 		$query_CreUser = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -63,13 +114,14 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		
+		$array_merge = array_merge(
+			$query_normal, $query_CreUser, $query_CamCoder, 
+			$query_file1, $query_file2, $query_file3, $query_file4
+		);
 		
-		// $array_query = array(
-			// 'query_normal' => $query_normal,
-			// 'query_CreUser' => $query_CreUser
+		// $array_merge = array_merge(
+			// $query_normal, $query_CreUser, $query_CamCoder
 		// );
-		
-		$array_merge = array_merge($query_normal, $query_CreUser, $query_CamCoder);
 		
 		// $array_merge = array_merge_recursive($query_normal, $query_CreUser);
 		
@@ -84,7 +136,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 		
 		// var_dump($query_normal);
 		// echo "============================================= ";
-		var_dump($array_merge);
+		// var_dump($array_merge);
 		// echo "============================================= ";
 		// echo($array_merge[0]["NT01_NewsID"]);
 		

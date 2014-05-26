@@ -125,8 +125,21 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
-				<input class="bt" type="submit" name="share" value="BROWSE">
+				<?php
+					if($news[3] == "Y")
+					echo $news[3]->NT10_FileStatus; 
+				?>
+				<?php 
+					echo $news[4]->NT11_FileStatus; 
+				?>
+				<?php 
+					echo $news[5]->NT12_FileStatus; 
+				?>
+				<?php 
+					echo $news[6]->NT13_FileStatus; 
+				?>
+				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+				<!-- <input class="bt" type="submit" name="share" value="BROWSE"> -->
 			</div>
 		</div>
 	

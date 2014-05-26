@@ -22,10 +22,17 @@ class PRD_HomePRD_model extends CI_Model {
 				NT01_News.NT01_NewsTitle,
 				NT01_News.NT01_ViewCount,
 				SC03_User.SC03_FName, 
-				NT10_VDO.NT10_FileStatus
+				
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
 			')->
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT08_PubTypeID', '11')->
 			get('NT01_News');
 			
