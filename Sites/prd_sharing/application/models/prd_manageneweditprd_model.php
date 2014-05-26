@@ -33,7 +33,9 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				NT01_News.NT01_CreUserID,
 				NT01_News.NT01_ReporterID,
 				
-				SC03_User.SC03_FName AS ReporterName
+				SC03_User.SC03_FName AS ReporterName,
+				
+				NT01_News.NT01_ApvUserID
 			')->
 			join('SC03_User', 
 				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
@@ -114,10 +116,25 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				'left')->	
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-		
+			
+			
+		$query_ApvUserName = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_ApvUserID,
+				SC03_User.SC03_FName AS ApvUserName
+			')->
+			join('SC03_User', 
+				'SC03_User.SC03_UserId = NT01_News.NT01_ApvUserID', 
+				'left')->	
+			where('NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+			
 		$array_merge = array_merge(
 			$query_normal, $query_CreUser, $query_CamCoder, 
-			$query_file1, $query_file2, $query_file3, $query_file4
+			$query_file1, $query_file2, $query_file3, $query_file4,
+			$query_ApvUserName
 		);
 		
 		// $array_merge = array_merge(

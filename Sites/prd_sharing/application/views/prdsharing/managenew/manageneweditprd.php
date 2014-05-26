@@ -114,14 +114,15 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >Version</label>
-				<label ><?php
+				<?php
 					if($news[0]->NT01_UpdDate == ""){
 						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
 					}
 					else{
 						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
-					}	
-				?></label>
+					}
+					echo " (".$news[1]->CreUserName." ".$news[7]->ApvUserName.") ";
+				?>
 			</div>
 		</div>
 	
