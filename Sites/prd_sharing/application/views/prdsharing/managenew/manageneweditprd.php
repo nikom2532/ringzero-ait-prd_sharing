@@ -130,27 +130,33 @@
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
 				<?php
-					if($news[3] == "Y"){
+					if($news[3]->NT10_FileStatus == "Y"){
 						?><img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
-						echo $news[3]->NT10_FileStatus."<br />"; 
+						// echo $news[3]->NT10_FileStatus."<br />";
+						foreach ($news[3] as $vdo) {
+							echo $vdo->NT10_FileStatus."<br />";
+						}
 					}
-				?>
-				<?php 
-					if($news[3] == "Y"){
+					if($news[4]->NT11_FileStatus == "Y"){
 						?><img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
-						echo $news[4]->NT12_FileStatus."<br />";
+						// echo $news[4]->NT12_FileStatus."<br />";
+						foreach($news[4] as $vdo) {
+							echo $vdo->NT12_FileStatus."<br />";
+						}
 					}
-				?>
-				<?php 
-					if($news[3] == "Y"){
+					if($news[5]->NT12_FileStatus == "Y"){
 						?><img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
-						echo $news[5]->NT13_FileStatus."<br />";
+						// echo $news[5]->NT13_FileStatus."<br />";
+						foreach ($news[5] as $vdo) {
+							echo $vdo->NT13_FileStatus."<br />";
+						}
 					}
-				?>
-				<?php 
-					if($news[3] == "Y"){
+					if($news[6]->NT13_FileStatus == "Y"){
 						?><img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
-						echo $news[6]->NT11_FileStatus."<br />";
+						// echo $news[6]->NT11_FileStatus."<br />";
+						foreach ($news[6] as $vdo) {
+							echo $vdo->NT13_FileStatus."<br />";
+						}
 					}
 				?>
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
