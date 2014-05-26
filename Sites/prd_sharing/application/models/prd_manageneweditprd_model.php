@@ -19,6 +19,72 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 		// แล้ว ส่งค่า Returnไป  ทั้งก้อน (ยัด ลง  Array)
 		
 		
+		
+		$query_normal = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsDesc,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				NT01_News.NT01_ReporterID,
+				
+				SC03_User.SC03_FName AS ReporterName
+			')->
+			join('SC03_User', 
+				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 
+				'left')->
+			where('NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+		$query_CreUser = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				SC03_User.SC03_FName AS CreUserName
+			')->
+			join('SC03_User', 
+				'SC03_User.SC03_UserId = NT01_News.NT01_CreUserID', 
+				'left')->	
+			where('NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		
+		// $array_query = array(
+			// 'query_normal' => $query_normal,
+			// 'query_CreUser' => $query_CreUser
+		// );
+		
+		$array_merge = array_merge($query_normal, $query_CreUser);
+		
+		// $array_merge = array_merge_recursive($query_normal, $query_CreUser);
+		
+		// $array_merge = $query_normal + $query_CreUser;
+		// $array_merge = array_combine($query_normal, $query_CreUser);
+		
+		// $array_merge = $query_normal;
+		// array_push($array_merge, $query_CreUser);
+		// $array_merge[0]["CreUserName"] = $array_merge[1]["CreUserName"];
+		
+		// $array_merge = array_replace($query_normal, $query_CreUser);
+		
+		// var_dump($query_normal);
+		// echo "============================================= ";
+		// var_dump($array_merge);
+		// echo "============================================= ";
+		// echo($array_merge[0]["NT01_NewsID"]);
+		
+		
+		// return $query_normal;
+		return $array_merge;
+		
+		
+		
+		/*
 		return $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -42,6 +108,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				SC03_User.SC03_UserId = NT01_News.NT01_CreUserID', 'left')->
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
+		*/
 	}
 	public function get_NT02_NewsType()
 	{

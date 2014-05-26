@@ -13,6 +13,8 @@ class PRD_manageNewEditPRD extends CI_Controller {
 		
 		$data['news'] = $this->prd_manageneweditprd_model->get_NT01_News($this->input->get('news_id'));
 
+		// var_dump($data['news']);
+
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/managenew/manageneweditprd', $data);
 		$this->load->view('prdsharing/templates/footer');
