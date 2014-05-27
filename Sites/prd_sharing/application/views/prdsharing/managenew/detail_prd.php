@@ -19,7 +19,7 @@
 				<div class="image-list">
 <?php
 					// $i=1;
-					var_dump($news_images);
+					var_dump($get_NT01_News_CreUser);
 					foreach ($news[4] as $image) {
 						// var_dump($image);
 						/*

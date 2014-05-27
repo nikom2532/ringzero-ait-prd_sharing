@@ -18,8 +18,8 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 		
 		$data['get_NT01_News_CamCoder'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CamCoder($this->input->get('news_id'));
 		$data['get_NT01_News_ApvUserName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ApvUserName($this->input->get('news_id'));
-		$data['get_NT01_News_query_file1'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file1($this->input->get('news_id'));
-		$data['get_NT01_News_query_file2'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file2($this->input->get('news_id'));
+		$data['get_NT01_News_videos'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file1($this->input->get('news_id'));
+		$data['get_NT01_News_pictures'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file2($this->input->get('news_id'));
 		
 		
 		$this->load->view('prdsharing/templates/header', $data);

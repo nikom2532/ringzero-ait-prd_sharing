@@ -132,19 +132,19 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 	}
 
 	public function get_NT01_News_query_file1($NT01_NewsID = ''){
-		$query_file2 = $this->db_ntt_old->
+		
+		$query_file1 = $this->db_ntt_old->
 			select('
-				NT11_Picture.NT11_PicName,
-				NT11_Picture.NT11_PicPath,
-				NT11_Picture.NT11_Extension,
-				NT11_Picture.NT11_FileStatus
+				NT10_VDO.NT10_VDOName,
+				NT10_VDO.NT10_VDOPath,
+				NT10_VDO.NT10_Extension,
+				NT10_VDO.NT10_FileStatus,
 			')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			where('NT01_News.NT01_NewsID', 'INEWS130704204703081')->
-			
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-		return $query_file2;
+		
+		return $query_file1;
 		
 	}
 
