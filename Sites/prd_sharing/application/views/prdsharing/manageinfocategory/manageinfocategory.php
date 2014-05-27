@@ -1,3 +1,6 @@
+<?php
+	// var_dump($category_new);
+?>
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
@@ -46,22 +49,42 @@
 					ประเภทข่าว
 				</p>
 			</div>
-			<div class="odd">
-				<span class="col-1" style="width: 20%;float: left; text-align: center;">
-					<input type="checkbox" name="vehicle" value="Car">
-				</span>
-				<p class="col-2" style="width: 80%;float: left;text-align: center; ">
-					การเทือง
-				</p>
-			</div>
-			<div class="event">
-				<span class="col-1" style="width: 20%;float: left; text-align: center;">
-					<input type="checkbox" name="vehicle" value="Car">
-				</span>
-				<p class="col-2" style="width: 80%;float: left;text-align: center; ">
-					การเทือง
-				</p>
-			</div>
+			
+<?php
+			$i=1;
+			foreach ($category_old as $catalog_old_item) {
+				if($i%2 == 1){
+					?><div class="odd"><?php
+				}
+				else{
+					?><div class="event"><?php
+				}
+						
+							// echo $catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID;
+?>
+							<span class="col-1" style="width: 20%;float: left; text-align: center;">
+								<input type="checkbox" name="vehicle" value="Car" <?php
+									// if($catalog_item->)
+								?> />
+							</span>
+							<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
+							
+								$typeName = $catalog_old_item->NT02_TypeName;
+								
+								foreach ($category_new as $category_new_item){
+									if($catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID){
+										 $print = $catalog_new_item->CateName;
+									}
+								}
+								
+								echo $typeName;
+							
+							?></p>
+					</div>
+<?php
+				$i++;
+			}
+?>
 			<div class="footer-table">
 				<p style="width: 70%;float: left;margin-top: 20px;">
 					ทั้งหมด: 73 รายการ (4หน้า)
