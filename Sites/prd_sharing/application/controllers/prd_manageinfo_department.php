@@ -1,5 +1,5 @@
 <?php
-class PRD_manageInfoMinistry extends CI_Controller {
+class PRD_manageInfo_Department extends CI_Controller {
 
 	public function __construct()
 	{
@@ -12,7 +12,7 @@ class PRD_manageInfoMinistry extends CI_Controller {
 		$data['title'] = 'Manage Info';
 
 		$this->load->view('prdsharing/templates/header', $data);
-		$this->load->view('prdsharing/manageinfocategory/manageinfoministry', $data);
+		$this->load->view('prdsharing/manageinfocategory/manageinfodepartment', $data);
 		$this->load->view('prdsharing/templates/footer');
 	}
 }

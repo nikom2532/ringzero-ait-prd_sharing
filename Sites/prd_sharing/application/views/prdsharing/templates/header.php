@@ -97,7 +97,7 @@
                         
                         <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
                         	if(!($title == "Manage Info")){
-                        		?><a href="manageInfoCategory"><?php
+                        		?><a href="manageInfo_Category"><?php
 							}
                         			?>Manage Info<?php
                     		if(!($title == "Manage Info")){

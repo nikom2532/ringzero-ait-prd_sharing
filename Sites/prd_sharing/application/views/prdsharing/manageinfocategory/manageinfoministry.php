@@ -23,14 +23,14 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width:100%">
-				<a href="manageInfoCategory">
+				<a href="manageInfo_Category">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
 				<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;text-align:center;float: left;margin-left: 10px;width: 15%;">
 					Ministry
 				</p>
-				<a href="manageInfoDepartment">
+				<a href="manageInfo_Department">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Department
 				</p></a>

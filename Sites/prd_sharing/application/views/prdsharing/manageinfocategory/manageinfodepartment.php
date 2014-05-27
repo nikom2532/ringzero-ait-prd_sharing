@@ -23,11 +23,11 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width: 100%;">
-				<a href="manageInfoCategory">
+				<a href="manageInfo_Category">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
-				<a href="manageInfoMinistry">
+				<a href="manageInfo_Ministry">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Ministry
 				</p></a>
