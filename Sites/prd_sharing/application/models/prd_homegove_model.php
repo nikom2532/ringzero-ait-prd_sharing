@@ -12,6 +12,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$query = $this->db->
 			select('
+				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
@@ -29,6 +30,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		return $this->db->
 			select('
+				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
@@ -43,6 +45,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		return $this->db->
 			select('
+				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
@@ -58,6 +61,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		return $this->db->
 			select('
+				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,

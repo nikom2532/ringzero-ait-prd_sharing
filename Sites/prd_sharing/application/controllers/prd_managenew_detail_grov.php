@@ -4,7 +4,7 @@ class PRD_ManageNew_detail_GROV extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('news_model');
+		$this->load->model('prd_managenew_detail_grov_model');
 	}
 
 	public function index()
