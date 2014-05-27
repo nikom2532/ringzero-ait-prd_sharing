@@ -21,8 +21,13 @@ class PRD_ManageNew_Detail_GROV_model extends CI_Model {
 				SendInformation.SendIn_Detail,
 				SendInformation.SendIn_Status,
 				SendInformation.SendIn_view,
-				SendInformation.Policy_ID
+				SendInformation.Policy_ID,
+				
+				SendInformation.Mem_ID,
+				Member.Mem_Name,
+				Member.Mem_LasName
 			')->
+			join('Member', 'SendInformation.Mem_ID = Member.Mem_ID', 'left')->
 			where('SendInformation.SendIn_ID', $SendIn_ID)->
 			get('SendInformation')->result();
 	}
