@@ -56,38 +56,45 @@
 					สถานะใช้งาน
 				</p>
 			</div>
-			<div class="odd" style="text-align: center;">
-				<p class="col-1" style="width: 10%;float: left; ">
-					ลำดับที่
-				</p>
-				<p class="col-2" style="width: 10%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoMinistry" >รหัสกระทรวง</a>
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					สถานะใช้งาน
-				</p>
-			</div>
-			<div class="event">
-				<p class="col-1" style="width: 10%;float: left; ">
-					ลำดับที่
-				</p>
-				<p class="col-2" style="width: 10%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-2" style="width: 20%;float: left; ">
-					รหัสกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					สถานะใช้งาน
-				</p>
-			</div>
+<?php
+			$i=1;
+			foreach ($ministry as $ministry_item) {
+				if($i%2 == 1){
+					?><div class="odd" style="text-align: center;"><?php
+				}
+				else{
+					?><div class="event"><?php
+				}
+?>
+						<p class="col-1" style="width: 10%;float: left; ">
+							<!-- ลำดับที่ -->
+							<?php echo $i; ?>
+						</p>
+						<p class="col-2" style="width: 10%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+						</p>
+						<p class="col-2" style="width: 20%;float: left; ">
+							<!-- <a href="infoMinistry" >รหัสกระทรวง</a> -->
+							<a href="infoMinistry" ><?php echo $ministry_item->Minis_ID; ?></a>
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							<!-- ชื่อกระทรวง -->
+							<?php echo $ministry_item->Minis_Name; ?>
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							<!-- สถานะใช้งาน -->
+<?php 
+							if($ministry_item->Minis_Status == 1){
+								echo "ใช้งานได้"; 
+							}
+							elseif($ministry_item->Minis_Status == 0 || $ministry_item->Minis_Status == null || $ministry_item->Minis_Status == ""){
+								echo "ใช้งานไม่ได้"; 
+							}
+?>
+						</p>
+					</div>
+<?php
+			}
+?>
 		</div>
 	</div>
 </div>
