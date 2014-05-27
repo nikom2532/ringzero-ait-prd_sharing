@@ -57,7 +57,7 @@ $route['rss'] = 'prd_rss';
 $route['manageNew'] = 'prd_managenew';
 
 $route['manageUser'] = 'prd_manageuser';
-$route['manageInfoCategory'] = 'prd_manageinfo_category';
+$route['manageInfo_Category'] = 'prd_manageinfo_category';
 $route['reportPRD'] = 'prd_reportprd';
 
 $route['detail_prd'] = 'prd_managenew_detail_prd';
@@ -65,8 +65,8 @@ $route['detail_grov'] = 'prd_managenew_detail_grov';
 $route['homeGOVE'] = 'prd_homegove';
 $route['infoDepartment'] = 'prd_infodepartment';
 $route['infoMinistry'] = 'prd_infoministry';
-$route['manageInfoDepartment'] = 'prd_manageinfo_department';
-$route['manageInfoMinistry'] = 'prd_manageinfo_ministry';
+$route['manageInfo_Department'] = 'prd_manageinfo_department';
+$route['manageInfo_Ministry'] = 'prd_manageinfo_ministry';
 $route['manageNewApproveGROV'] = 'prd_managenewapprovegrov';
 $route['manageNewEditGROV'] = 'prd_manageneweditgrov';
 $route['manageNewEditPRD'] = 'prd_manageneweditprd';
