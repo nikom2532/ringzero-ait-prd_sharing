@@ -59,27 +59,25 @@
 				else{
 					?><div class="event"><?php
 				}
+				
+						$typeName = $catalog_old_item->NT02_TypeName;
+						$tick = $catalog_old_item->NT02_Status;
+						foreach ($category_new as $category_new_item){
+							if($catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID){
+								$print = $catalog_new_item->CateName;
+								$tick = $catalog_new_item->Cate_Status;
+							}
+						}
 						
-							// echo $catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID;
+						// echo $catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID;
 ?>
-							<span class="col-1" style="width: 20%;float: left; text-align: center;">
-								<input type="checkbox" name="vehicle" value="Car" <?php
-									// if($catalog_item->)
-								?> />
-							</span>
-							<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
-							
-								$typeName = $catalog_old_item->NT02_TypeName;
-								
-								foreach ($category_new as $category_new_item){
-									if($catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID){
-										 $print = $catalog_new_item->CateName;
-									}
-								}
-								
-								echo $typeName;
-							
-							?></p>
+						<span class="col-1" style="width: 20%;float: left; text-align: center;">
+							<input type="checkbox" name="vehicle" value="Car" <?php
+								if($tick == "Y"){ ?>checked='checked'<?php } ?> />
+						</span>
+						<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
+							echo $typeName;
+						?></p>
 					</div>
 <?php
 				$i++;
