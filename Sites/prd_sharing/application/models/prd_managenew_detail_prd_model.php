@@ -59,7 +59,8 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				
 				SC03_User.SC03_FName AS ReporterName,
 				
-				NT01_News.NT01_ApvUserID
+				NT01_News.NT01_ApvUserID,
+				NT01_News.NT01_ViewCount
 			')->
 			join('SC03_User', 
 				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
@@ -83,6 +84,21 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 		return $query_news;
 	}
 
+	public function get_NT01_News_ReWriteName($NT01_NewsID = ''){
+		
+		$query_ReWriteName = $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				SC03_User.SC03_FName AS ReWriteName
+			')->
+			join('SC03_User', 
+				'SC03_User.SC03_UserId = NT01_News.NT01_ReWriteID', 
+				'left')->	
+			where('NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		return $query_ReWriteName;
+	}
 
 	public function get_NT01_News_CreUser($NT01_NewsID = ''){
 		
