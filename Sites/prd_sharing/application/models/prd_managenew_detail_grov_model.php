@@ -8,6 +8,43 @@ class PRD_ManageNew_Detail_GROV_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	public function get_grov($SendIn_ID = '')
+	{
+		// return $this->db->get('SendInformation')->result();
+		return $this->db->
+			select('
+				SendInformation.SendIn_ID,
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Plan,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_Detail,
+				SendInformation.SendIn_Status,
+				SendInformation.SendIn_view,
+				SendInformation.Policy_ID
+			')->
+			where('SendInformation.SendIn_ID', $SendIn_ID)->
+			get('SendInformation')->result();
+	}
+	
+	
+	public function get_grov_fileattach($SendIn_ID = ''){
+		
+		return $this->db->
+			select('
+				FileAttach.File_Name,
+				FileAttach.File_Path,
+				FileAttach.File_Extension,	
+				FileAttach.File_Status,
+				FileAttach.File_Type
+			')->
+			join('SendInformation', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			where('FileAttach.SendIn_ID', $SendIn_ID)->
+			get('FileAttach')->result();
+		
+	}
+	
+	
 	//#########  Database Old  ##########
 
 	public function get_NT01_News($NT01_NewsID = '')
