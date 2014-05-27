@@ -18,9 +18,13 @@
 				</div>
 				<div class="image-list">
 <?php
-					$i=1;
+					// $i=1;
+					var_dump($news_images);
 					foreach ($news[4] as $image) {
+						// var_dump($image);
+						/*
 						?><img src="<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;margin-top:10px;"><?php
+						*/
 					}
 ?>
 					<!-- <img src="images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">

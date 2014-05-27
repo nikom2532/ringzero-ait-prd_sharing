@@ -31,6 +31,8 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 	}
 	*/
 	
+	//###################################################
+	
 	
 	public function get_NT01_News($NT01_NewsID = '')
 	{
@@ -40,7 +42,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 		// Select From Where 2
 		// แล้ว ส่งค่า Returnไป  ทั้งก้อน (ยัด ลง  Array)
 		
-		$query_normal = $this->db_ntt_old->
+		$query_news = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
 				NT01_News.NT01_NewsID,
@@ -64,29 +66,26 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		
+		// $array_merge = array_merge(
+			// $query_normal, $query_CreUser, $query_CamCoder, 
+			// $query_file1, $query_file2,
+			// $query_ApvUserName
+		// );
 		
-		$query_file1 = $this->db_ntt_old->
-			select('
-				NT10_VDO.NT10_VDOName,
-				NT10_VDO.NT10_VDOPath,
-				NT10_VDO.NT10_Extension,
-				NT10_VDO.NT10_FileStatus,
-			')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
-			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			get('NT01_News')->result();
-			
-		$query_file2 = $this->db_ntt_old->
-			select('
-				NT11_Picture.NT11_PicName,
-				NT11_Picture.NT11_PicPath,
-				NT11_Picture.NT11_Extension,
-				NT11_Picture.NT11_FileStatus
-			')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			get('NT01_News')->result();
-			
+		// $array_merge = array(
+			// $query_news, $query_CreUser, $query_CamCoder, 
+			// $query_file1, $query_file2,
+			// $query_ApvUserName
+		// );
+		
+		// var_dump($array_merge);
+		
+		return $query_news;
+	}
+
+
+	public function get_NT01_News_CreUser($NT01_NewsID = ''){
+		
 		$query_CreUser = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -97,7 +96,10 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				'left')->	
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-		
+	}
+
+	public function get_NT01_News_CamCoder($NT01_NewsID = ''){
+	
 		$query_CamCoder = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -108,7 +110,12 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				'left')->	
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-			
+		
+		return $query_CamCoder;
+	}
+
+	public function get_NT01_News_ApvUserName($NT01_NewsID = ''){
+		
 		$query_ApvUserName = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
@@ -121,15 +128,45 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			where('NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 			
-		$array_merge = array_merge(
-			$query_normal, $query_CreUser, $query_CamCoder, 
-			$query_file1, $query_file2,
-			$query_ApvUserName
-		);
-		
-		return $array_merge;
+		return $query_ApvUserName;
+	}
+
+	public function get_NT01_News_query_file1($NT01_NewsID = ''){
+		$query_file2 = $this->db_ntt_old->
+			select('
+				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_PicPath,
+				NT11_Picture.NT11_Extension,
+				NT11_Picture.NT11_FileStatus
+			')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT01_News.NT01_NewsID', 'INEWS130704204703081')->
+			
+			get('NT01_News')->result();
+		return $query_file2;
 		
 	}
+
+	public function get_NT01_News_query_file2($NT01_NewsID = ''){
+		
+		$query_file2 = $this->db_ntt_old->
+			select('
+				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_PicPath,
+				NT11_Picture.NT11_Extension,
+				NT11_Picture.NT11_FileStatus
+			')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT01_News.NT01_NewsID', 'INEWS130704204703081')->
+			
+			get('NT01_News')->result();
+		
+		return $query_file2;
+	}
+	
+	//###################################################
 	
 	public function get_NT02_NewsType()
 	{
