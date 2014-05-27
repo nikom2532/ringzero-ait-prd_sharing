@@ -45,8 +45,6 @@
 			</div>
 			<div class="col-lg-6" ><?php
 				
-				var_dump($news);
-				
 				foreach ($news as $news_item) {
 				
 					?><div id="detail">
@@ -69,7 +67,7 @@
 					<div class="news-form">
 						<h1 style="margin-bottom: 5px;">ข้อมูลข่าวและที่มา</h1>
 						<p>
-							ผู้สื่อข่าว : สมมติ  นามสกุล<?php echo $news_item->NT01_ReporterID; ?>
+							ผู้สื่อข่าว : <?php echo $news_item->NT01_ReporterID; ?>
 						</p>
 						<p>
 							Rewriter : <?php 
