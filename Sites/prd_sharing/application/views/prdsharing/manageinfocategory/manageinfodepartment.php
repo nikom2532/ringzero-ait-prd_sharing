@@ -93,7 +93,7 @@
 						<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
 						</p>
 						<p class="col-2" style="width: 20%;float: left; ">
-							<a href="infoDepartment"><?php echo $department_item->Dep_ID; ?></a>
+							<a href="infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>
 						</p>
 						<p class="col-3" style="width: 30%;float: left; ">
 							<?php echo $department_item->Minis_Name; ?>

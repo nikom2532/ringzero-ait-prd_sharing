@@ -174,10 +174,10 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				NT11_Picture.NT11_FileStatus
 			')->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			// where('NT01_News.NT01_NewsID', $NT01_NewsID)->
-			where('NT01_News.NT01_NewsID', 'INEWS130704204703081')->
-			
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
+			
+			// var_dump($query_file2);
 		
 		return $query_file2;
 	}

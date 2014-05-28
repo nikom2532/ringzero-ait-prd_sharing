@@ -26,7 +26,7 @@
 					// var_dump($get_NT01_News_pictures);
 					foreach ($get_NT01_News_pictures as $image) {
 						// var_dump($image);
-						?><img src="<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
+						?><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
 							if($i % 3 == 2){
 								?>margin:10px 4% 0;<?php
 							}
@@ -79,9 +79,9 @@
 						<p>
 							แหล่งที่มา : <?php 
 							$news_item->NT01_NewsSource;
-							if($news_item->NT01_NewsReferance != ""){
-								echo " : ".$news_item->NT01_NewsReferance;;
-							}
+							// if($news_item->NT01_NewsReferance != ""){
+								// echo " : ".$news_item->NT01_NewsReferance;;
+							// }
 							?>
 						</p>
 					</div>
