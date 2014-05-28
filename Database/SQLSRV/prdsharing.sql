@@ -237,6 +237,7 @@ CREATE TABLE [dbo].[Ministry](
 	[Minis_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Minis_Name] [nvarchar](20) NULL,
 	[Minis_Status] [int] NULL,
+	[Minis_Desc] [nvarchar](500),
  CONSTRAINT [PK_Ministry] PRIMARY KEY CLUSTERED 
 (
 	[Minis_ID] ASC
@@ -324,6 +325,7 @@ GO
 CREATE TABLE [dbo].[Department](
 	[Dep_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Dep_Name] [nvarchar](20) NULL,
+	[Dep_Desc] [nvarchar](500),
 	[Dep_Status] [int] NULL,
 	[Ministry_ID] [int] NULL,
  CONSTRAINT [PK_Department] PRIMARY KEY CLUSTERED 

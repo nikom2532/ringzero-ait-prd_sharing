@@ -1,8 +1,17 @@
 <div class="content">
-	<div id="share-form">
+	<div class="col-lg-6">
+<?php
+		if(isset($ministry_is_save)){
+			if($ministry_is_save == "yes"){
+				?>Ministry is saved.<?php
+			}
+		} 
+?>
+	</div>
+	<div id="share-form"> 	
 		<div id="search-form">
-			<form name="form" action="manageInfo_Ministry" method="post">
-				<input type="hidden" name="manageinfo_ministry_is_search" value="yes" />
+			<form name="manageinfo_ministry_form" id="manageinfo_ministry_form" action="manageInfo_Ministry" method="post">
+				<input type="hidden" name="manageinfo_ministry_is_search" value="" />
 				<div class="row">
 					<div class="col-lg-6">
 						<label >คำค้นหา</label>
@@ -115,3 +124,7 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	
+</script>

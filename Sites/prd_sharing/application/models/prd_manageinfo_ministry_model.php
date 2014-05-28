@@ -9,18 +9,41 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	
 	//##################### New Database #########################
 	
+	public function set_Minstry(
+		$Minis_ID = '', 
+		$Minis_Name = '', 
+		$Minis_Desc = '', 
+		$Minis_Status = ''
+	){
+		$data = array(
+			'Minis_Name' => $Minis_Name,
+			'Minis_Desc' => $Minis_Desc,
+			'Minis_Status' => $Minis_Status
+		);
+		
+		// var_dump($data);
+		
+		$query = $this->db->
+			where('Ministry.Minis_ID', $Minis_ID)->
+			Update('Ministry', $data);
+		
+		// var_dump($query);
+		
+		// return $query;
+	}
+	
 	public function get_Ministry()
 	{
-		$return = $this->db->
-			SELECT('
-				Minis_ID,
-				Minis_Name,
-				Minis_Status
-			')->
-			LIMIT('20,0')->	
-			get('Ministry')->result();
-		
-		return $return;
+			$return = $this->db->
+				SELECT('
+					Ministry.Minis_ID,
+					Ministry.Minis_Name,
+					Ministry.Minis_Status
+				')->
+				LIMIT('20,0')->	
+				get('Ministry')->result();
+			
+			return $return;
 	}
 	
 	public function get_Ministry_search($MinisName = '', $MinisStatus = '')
