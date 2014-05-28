@@ -83,7 +83,7 @@
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				
 				<img src="images/icon/<?php
-					if($news_item->NT10_FileStatus == "Y"){
+					if($news_item->NT10_FileStatus == "Y"){ //Video
 						?>vdo<?php
 					}else{
 						?>null<?php
@@ -91,7 +91,7 @@
 				?>.png" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php 
-					if($news_item->NT12_FileStatus){
+					if($news_item->NT12_FileStatus){ //Voice
 						?>voice_512x512<?php
 					}else{
 						?>null<?php
@@ -100,7 +100,7 @@
 				
 				
 				<img src="images/icon/<?php 
-					if($news_item->NT13_FileStatus){
+					if($news_item->NT13_FileStatus){ //Document
 						?>Document.jpg<?php
 					}else{
 						?>null.png<?php
@@ -108,8 +108,8 @@
 				?>" width="17" style="margin: -10px 10px 0;">
 				
 				<img src="images/icon/<?php
-					if($news_item->NT11_FileStatus){
-						?>like<?php
+					if($news_item->NT11_FileStatus){ //Picture
+						?>pic<?php
 					}else{
 						?>null<?php
 					}	

@@ -1,23 +1,40 @@
 <div class="content">
 	<div id="share-form">
-		<div id="search-form">
-
-			<div class="row">
-				<div class="col-lg-6">
-					<label >คำค้นหา</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+		<form name="form" action="manageInfo_Department" method="post">
+			<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
+			<div id="search-form">
+				<div class="row">
+					<div class="col-lg-6">
+						<label >คำค้นหา</label>
+						<input type="text" class="form-control" name="dep_name" id="dep_name" value="<?php if(isset($post_dep_name)){ echo $post_dep_name; } ?>" placeholder="" />
+					</div>
+					<div class="col-lg-6">
+						<label >สถานะ</label>
+						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+						<select name="minis_status" style="">
+							<option value="1" <?php
+								if(isset($post_minis_status)){
+									if($post_minis_status == "1"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานได้</option>
+							<option value="0" <?php
+								if(isset($post_minis_status)){
+									if($post_minis_status == "0"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานไม่ได้</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<label >สถานะ</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+				<div class="col-lg-12" style="text-align: center;">
+					<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 				</div>
 			</div>
-
-			<div class="col-lg-12" style="text-align: center;">
-				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
-			</div>
-
-		</div>
+		</form>
 	</div>
 
 	<div id="table-list">
@@ -59,44 +76,46 @@
 					สถานะใช้งาน
 				</p>
 			</div>
-			<div class="odd" style="text-align: center;">
-				<p class="col-1" style="width: 5%;float: left; ">
-					1
-				</p>
-				<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoDepartment">รหัสกรม</a>
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกรม
-				</p>
-				<p class="col-3" style="width: 10%;float: left; ">
-					สถานะใช้งาน
-				</p>
-			</div>
-			<div class="event">
-				<p class="col-1" style="width: 5%;float: left; ">
-					2
-				</p>
-				<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
-				<p class="col-2" style="width: 20%;float: left; ">
-					<a href="infoDepartment">รหัสกรม</a>
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกรม
-				</p>
-				<p class="col-3" style="width: 10%;float: left; ">
-					สถานะใช้งาน
-				</p>
-			</div>
+<?php
+			$i = 1;
+			foreach ($department as $department_item) {
+				
+				if($i%2 == 1){
+					?><div class="odd" style="text-align: center;"><?php
+				}
+				else{
+					?><div class="event"><?php
+				}
+?>
+						<p class="col-1" style="width: 5%;float: left; ">
+							<?php echo $i; ?>
+						</p>
+						<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+						</p>
+						<p class="col-2" style="width: 20%;float: left; ">
+							<a href="infoDepartment"><?php echo $department_item->Dep_ID; ?></a>
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							<?php echo $department_item->Minis_Name; ?>
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							<?php echo $department_item->Dep_Name; ?>
+						</p>
+						<p class="col-3" style="width: 10%;float: left; ">
+<?php 
+							if($department_item->Dep_Status == 1){
+								echo "ใช้งานได้"; 
+							}
+							elseif($department_item->Dep_Status == 0 || $ministry_item->Minis_Status == null || $ministry_item->Minis_Status == ""){
+								echo "ใช้งานไม่ได้"; 
+							}
+?>
+						</p>
+					</div>
+<?php
+				$i++;
+			}
+?>
 		</div>
 	</div>
 

@@ -1,7 +1,7 @@
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
-
+			
 			<div class="row">
 				<div class="col-lg-6">
 					<label >คำค้นหา</label>
@@ -12,11 +12,11 @@
 					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
 				</div>
 			</div>
-
+			
 			<div class="col-lg-12" style="text-align: center;">
 				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 			</div>
-
+			
 		</div>
 	</div>
 
