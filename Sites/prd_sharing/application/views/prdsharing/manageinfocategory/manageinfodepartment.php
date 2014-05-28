@@ -11,17 +11,17 @@
 					<div class="col-lg-6">
 						<label >สถานะ</label>
 						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
-						<select name="minis_status" style="">
+						<select name="dep_status" style="">
 							<option value="1" <?php
-								if(isset($post_minis_status)){
-									if($post_minis_status == "1"){
+								if(isset($post_dep_status)){
+									if($post_dep_status == "1"){
 										?>selected="selected"<?php
 									}
 								}
 							?>>ใช้งานได้</option>
 							<option value="0" <?php
-								if(isset($post_minis_status)){
-									if($post_minis_status == "0"){
+								if(isset($post_dep_status)){
+									if($post_dep_status == "0"){
 										?>selected="selected"<?php
 									}
 								}

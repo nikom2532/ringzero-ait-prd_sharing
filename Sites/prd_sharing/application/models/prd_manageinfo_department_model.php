@@ -30,7 +30,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	}
 	
 	
-	public function get_Department_departmentName($departmentName = '', $minis_status = '')
+	public function get_Department_search($departmentName = '', $dep_status = '')
 	{
 		$return = $this->db->
 			SELECT('
@@ -48,9 +48,9 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 			$return = $return->
 				where('Department.Dep_Name', $departmentName);
 		}
-		if($minis_status != ''){
+		if($dep_status != ''){
 			$return = $return->
-				where('Department.Dep_Status', $minis_status);
+				where('Department.Dep_Status', $dep_status);
 		}
 			
 		$return = $return->get('Department')->result();

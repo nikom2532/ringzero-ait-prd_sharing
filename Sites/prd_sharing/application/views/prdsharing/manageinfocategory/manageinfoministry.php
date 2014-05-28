@@ -1,22 +1,39 @@
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
-			
-			<div class="row">
-				<div class="col-lg-6">
-					<label >คำค้นหา</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<form name="form" action="manageInfo_Ministry" method="post">
+				<input type="hidden" name="manageinfo_ministry_is_search" value="yes" />
+				<div class="row">
+					<div class="col-lg-6">
+						<label >คำค้นหา</label>
+						<input type="text" class="form-control" name="minis_name" id="InputKeyword" value="<?php if(isset($post_minis_name)){ echo $post_minis_name; } ?>" placeholder="" >
+					</div>
+					<div class="col-lg-6">
+						<label >สถานะ</label>
+						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+						<select name="minis_status" style="">
+							<option value="1" <?php
+								if(isset($post_minis_status)){
+									if($post_minis_status == "1"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานได้</option>
+							<option value="0" <?php
+								if(isset($post_minis_status)){
+									if($post_minis_status == "0"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานไม่ได้</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<label >สถานะ</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				
+				<div class="col-lg-12" style="text-align: center;">
+					<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 				</div>
-			</div>
-			
-			<div class="col-lg-12" style="text-align: center;">
-				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
-			</div>
-			
+			</form>
 		</div>
 	</div>
 
@@ -34,7 +51,7 @@
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Department
 				</p></a>
-				<input class="bt" type="submit" value="เพิ่ม" name="share" style="padding: 4px;float: right; width: 10%;">
+					<input class="bt" type="submit" value="เพิ่ม" name="share" style="padding: 4px;float: right; width: 10%;" onclick="location.href='infoMinistry'; ">
 			</div>
 		</div>
 
@@ -74,7 +91,7 @@
 						</p>
 						<p class="col-2" style="width: 20%;float: left; ">
 							<!-- <a href="infoMinistry" >รหัสกระทรวง</a> -->
-							<a href="infoMinistry" ><?php echo $ministry_item->Minis_ID; ?></a>
+							<a href="infoMinistry?minis_id=<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_ID; ?></a>
 						</p>
 						<p class="col-3" style="width: 30%;float: left; ">
 							<!-- ชื่อกระทรวง -->

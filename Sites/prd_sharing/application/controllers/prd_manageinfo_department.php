@@ -12,13 +12,13 @@ class PRD_manageInfo_Department extends CI_Controller {
 		$data['title'] = 'Manage Info';
 		
 		if($this->input->post('manageInfo_Category_is_search') == "yes"){
-			$data['department'] = $this->prd_manageinfo_department_model->get_Department_departmentName($this->input->post('dep_name'), $this->input->post('minis_status'));
+			$data['department'] = $this->prd_manageinfo_department_model->get_Department_search($this->input->post('dep_name'), $this->input->post('dep_status'));
 			
 			if($this->input->post('dep_name') != ""){
 				$data['post_dep_name'] = $this->input->post('dep_name');
 			}
-			if($this->input->post('minis_status') != ""){
-				$data['post_minis_status'] = $this->input->post('minis_status');
+			if($this->input->post('dep_status') != ""){
+				$data['post_dep_status'] = $this->input->post('dep_status');
 			}
 			
 		}
