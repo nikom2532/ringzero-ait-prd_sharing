@@ -9,6 +9,28 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	
 	//##################### New Database #########################
 	
+	
+	public function set_Minstry_new(
+		$Minis_Name = '', 
+		$Minis_Desc = '', 
+		$Minis_Status = ''
+	){
+		$data = array(
+			'Minis_Name' => $Minis_Name,
+			'Minis_Desc' => $Minis_Desc,
+			'Minis_Status' => $Minis_Status
+		);
+		
+		var_dump($data);
+		
+		$query = $this->db->
+			insert('Ministry', $data);
+		
+		// var_dump($query);
+		
+		// return $query;
+	}
+	
 	public function set_Minstry(
 		$Minis_ID = '', 
 		$Minis_Name = '', 

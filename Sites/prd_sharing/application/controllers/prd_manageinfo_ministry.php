@@ -12,6 +12,21 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		$data['title'] = 'Manage Info';
 		
 		
+		
+		//For Query Add
+		if($this->input->post('info_ministry_is_add') == "yes"){
+			// echo "save";
+			// echo $this->input->post('minis_status');
+			$this->prd_manageinfo_ministry_model->set_Minstry_new(
+				$this->input->post('minis_name'),
+				$this->input->post('minis_desc'),
+				$this->input->post('minis_status')
+			);
+		}
+		
+		
+		
+		
 		//For Query Save
 		if($this->input->post('info_ministry_is_submit') == "yes"){
 			// echo "save";
