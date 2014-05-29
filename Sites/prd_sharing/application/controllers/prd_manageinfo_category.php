@@ -15,8 +15,8 @@ class PRD_ManageInfo_Category extends CI_Controller {
 		if($this->input->post('manageInfo_Category_is_search') == "yes"){
 			
 			$data['category_old'] = $this->prd_manageinfo_category_model->get_NT02_NewsType(
-				$this->input->post('NT02_TypeName'),
-				$this->input->post('NT02_Status')
+				$this->input->post('NT02_TypeName')//,
+				// $this->input->post('NT02_Status')
 			);
 			
 			$data['category_new'] = $this->prd_manageinfo_category_model->get_Category();
