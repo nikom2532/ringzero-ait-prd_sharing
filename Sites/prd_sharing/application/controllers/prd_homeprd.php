@@ -31,6 +31,9 @@ class PRD_HomePRD extends CI_Controller {
 				$data['post_start_date'] = $this->input->post("start_date");
 			}
 			else{
+				
+				// echo "search title";
+				
 				// $data['news'] = $this->prd_homeprd_model->get_prd_search_title($this->input->post("news_title"));
 				$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title($this->input->post("news_title"));
 				$data['post_news_title'] = $this->input->post("news_title");
