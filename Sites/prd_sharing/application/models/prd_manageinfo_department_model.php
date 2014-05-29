@@ -9,6 +9,31 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	
 	//##################### New Database #########################
 	
+	
+	public function set_Department_New(
+		$Dep_Name = '', 
+		$Dep_Desc = '', 
+		$Dep_Status = '',
+		$Ministry_ID = ''
+	){
+		$data = array(
+			'Dep_Name' => $Dep_Name,
+			'Dep_Desc' => $Dep_Desc,
+			'Dep_Status' => $Dep_Status,
+			'Ministry_ID' => $Ministry_ID
+		);
+		
+		// var_dump($data);
+		
+		$query = $this->db->
+			insert('Department', $data);
+		
+		// var_dump($query);
+		
+		// return $query;
+	}
+	
+	
 	public function set_Department(
 		$Dep_ID = '', 
 		$Dep_Name = '', 

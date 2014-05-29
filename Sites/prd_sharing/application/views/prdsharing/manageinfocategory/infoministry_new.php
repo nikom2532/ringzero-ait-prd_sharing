@@ -25,7 +25,7 @@
 								<label >สถานะการใช้งาน:</label>
 								<select class="select-opt" name="minis_status">
 									<option value="1" >ใช้งานได้</option>
-									<option value="0" >ใช้งานไม่ได้</option>
+									<option value="0" selected='selected' >ใช้งานไม่ได้</option>
 								</select>
 							</div>
 						</div>

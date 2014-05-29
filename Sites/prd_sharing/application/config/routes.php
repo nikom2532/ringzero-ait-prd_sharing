@@ -46,9 +46,9 @@ $route['404_override'] = '';
 //$route['(:any)'] = 'pages/view/$1';
 
 
-$route['news/(:any)'] = 'news/view/$1';
-$route['news'] = 'news';
-$route['news/create'] = 'news/create';
+// $route['news/(:any)'] = 'news/view/$1';
+// $route['news'] = 'news';
+// $route['news/create'] = 'news/create';
 
 
 $route['homePRD'] = 'prd_homeprd';
@@ -64,7 +64,7 @@ $route['detail_prd'] = 'prd_managenew_detail_prd';
 $route['detail_grov'] = 'prd_managenew_detail_grov';
 $route['homeGOVE'] = 'prd_homegove';
 $route['infoDepartment'] = 'prd_infodepartment';
-$route['infoDepartment_new'] = 'prd_infodepartment_new';
+$route['infoDepartmentNew'] = 'prd_infodepartment_new';
 $route['infoMinistry'] = 'prd_infoministry';
 $route['infoMinistryNew'] = 'prd_infoministry_new';
 $route['manageInfo_Department'] = 'prd_manageinfo_department';
@@ -78,7 +78,7 @@ $route['reportGOVE'] = 'prd_reportgove';
 $route['userInfo'] = 'prd_userinfo';
 
 
-$route['testdb'] = 'testsite_db2';
+// $route['testdb'] = 'testsite_db2';
 
 
 
