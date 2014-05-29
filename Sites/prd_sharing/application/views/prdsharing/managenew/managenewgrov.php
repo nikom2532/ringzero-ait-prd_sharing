@@ -4,73 +4,75 @@
 	});
 </script>
 <div id="search-form">
-	<div class="row">
-		<div class="col-lg-12">
-			<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-			<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;">
+	<form name="search_form" action="manageNewGROV" method="post">
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
+				<input class="txt-field" type="text" value="" name="sendin_issue" placeholder="" style=" margin-left: 15px;width: 77%;">
+			</div>	
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >วันที่</label>
-			<input type="text" class="form-control datepicker" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >วันที่</label>
+				<input type="text" class="form-control datepicker" name="start_date" id="start_date" placeholder="" >
+			</div>
+			<div class="col-lg-6">
+				<label >ถึง</label>
+				<input type="text" class="form-control datepicker"name="end_date" id="end_date" placeholder="" >
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >ถึง</label>
-			<input type="text" class="form-control datepicker" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<!-- Ministry  -->
+				<label >กระทรวง</label>
+				
+				
+				<select name="Ministry_ID" class="form-control" style="width: 65%;"><?php
+					foreach ($ministry as $ministry_item) {
+						?><option value="<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_Name; ?></option><?php
+					}
+				?></select>
+				
+				
+			</div>
+			<div class="col-lg-6">
+				<!-- department -->
+				<label >กรม</label>
+				
+				<select name="Dep_ID" class="form-control" style="width: 65%;"><?php
+					foreach ($department as $department_item) {
+						?><option value="<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_Name; ?></option><?php
+					}
+				?></select>
+				
+				
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<!-- Ministry  -->
-			<label >กระทรวง</label>
-			
-			
-			<select name="Ministry_ID" class="form-control" style="width: 65%;"><?php
-				foreach ($ministry as $ministry_item) {
-					?><option value="<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_Name; ?></option><?php
-				}
-			?></select>
-			
-			
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<!--<label >ผู้สื่อข่าว</label>
+				<input type="text" class="form-control" id="InputKeyword" placeholder="" >-->
+			</div>
+			<div style="float: right;margin-right: 5%;width: 45%;">
+				<label style=" margin-left: 11%;">ไฟล์ประกอบข่าว</label>
+				<input type="checkbox" name="vdo" value="0">
+				วิดีโอ
+				<input type="checkbox" name="sound" value="1">
+				เสียง
+				<input type="checkbox" name="image" value="2">
+				ภาพ
+				<input type="checkbox" name="other" value="3">
+				อื่นๆ
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<!-- department -->
-			<label >กรม</label>
-			
-			<select name="Dep_ID" class="form-control" style="width: 65%;"><?php
-				foreach ($department as $department_item) {
-					?><option value="<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_Name; ?></option><?php
-				}
-			?></select>
-			
-			
+	
+		<div class="col-lg-12" style="text-align: center;">
+			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<!--<label >ผู้สื่อข่าว</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >-->
-		</div>
-		<div style="float: right;margin-right: 5%;width: 45%;">
-			<label style=" margin-left: 11%;">ไฟล์ประกอบข่าว</label>
-			<input type="checkbox" name="vdo" value="0">
-			วิดีโอ
-			<input type="checkbox" name="sound" value="1">
-			เสียง
-			<input type="checkbox" name="image" value="2">
-			ภาพ
-			<input type="checkbox" name="other" value="3">
-			อื่นๆ
-		</div>
-	</div>
-
-	<div class="col-lg-12" style="text-align: center;">
-		<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
-	</div>
 
 </div>
 

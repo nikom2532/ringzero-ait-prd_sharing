@@ -12,9 +12,9 @@
 						if(isset($videos->NT10_VDOPath)){
 ?>
 							<video width="461" height="358" controls autoplay>
-								<source src="<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
-								<object data="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
-									<embed src="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
+								<source src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
+								<object data="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
+									<embed src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
 								</object>
 							</video>
 <?php

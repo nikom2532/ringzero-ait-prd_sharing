@@ -8,7 +8,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	}
 	
 	//#########  Database New  ##########
-	public function get_ministry()
+	public function get_ministry() 
 	{
 		return $this->db->where('Minis_Status', '1')->
 			get('Ministry')->result();
@@ -37,20 +37,29 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	public function get_grov_search_title($news_title)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			select('
+				SendInformation.SendIn_ID,
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status, 
+			')->
+			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			like('SendIn_Issue', $news_title)->
 			get('SendInformation')->result();
 	}
 	public function get_grov_search_title_start($news_title, $start)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			get('SendInformation')->result();
 	}
 	public function get_grov_search_title_start_end($news_title, $start, $end)
 	{
 		return $this->db->
-			like('News_Title', $news_title)->
+			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
 			get('SendInformation')->result();
