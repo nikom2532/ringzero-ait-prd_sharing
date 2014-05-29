@@ -22,6 +22,7 @@ class PRD_Info_Ministry_model extends CI_Model {
 			where('Ministry.Minis_ID', $Minis_ID)->
 			get('Ministry')->result();
 		
+		// var_dump($return);
 		return $return;
 	}
 }

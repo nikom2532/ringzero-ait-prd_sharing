@@ -5,9 +5,10 @@
 <?php
 			// var_dump($ministry);
 			foreach ($ministry as $ministry_item) {
+				// var_dump($ministry_item->Minis_ID);
 				
 ?>
-				<input type="hidden" name="minis_id" value="<?php $ministry_item->Minis_ID; ?>" />
+				<input type="hidden" name="minis_id" value="<?php echo $ministry_item->Minis_ID; ?>" />
 				<div class="row" id="gove-title">
 					รายละเอียดข้อมูล
 				</div>

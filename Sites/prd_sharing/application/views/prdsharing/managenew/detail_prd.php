@@ -9,14 +9,16 @@
 					?>" alt="vdo" style="width:100%;"> -->
 <?php
 					foreach ($get_NT01_News_videos as $videos) {
+						if(isset($videos->NT10_VDOPath)){
 ?>
-						<video width="461" height="358" controls autoplay>
-							<source src="<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
-							<object data="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
-								<embed src="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
-							</object> 
-						</video>
+							<video width="461" height="358" controls autoplay>
+								<source src="<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
+								<object data="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
+									<embed src="<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
+								</object>
+							</video>
 <?php
+						}
 					}
 ?>
 				</div>
@@ -25,7 +27,11 @@
 					$i=1;
 					// var_dump($get_NT01_News_pictures);
 					foreach ($get_NT01_News_pictures as $image) {
+						
 						// var_dump($image);
+						
+						if(isset($image->NT11_PicPath)){
+							
 						?><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
 							if($i % 3 == 2){
 								?>margin:10px 4% 0;<?php
@@ -35,6 +41,8 @@
 							}
 						?>"><?php
 						$i++;
+						
+						}
 					}
 ?>
 					<!-- <img src="images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">
@@ -58,7 +66,14 @@
 							else{
 								echo date("d/m/Y", strtotime($news_item->NT01_UpdDate));
 							}
-							?>  |  (<?php echo $news_item->NT01_ViewCount; ?> ผู้เข้าชม )
+							?>  |  (<?php
+								if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
+									echo "0";
+								}
+								else{
+									echo $news_item->NT01_ViewCount; 
+								}
+							?> ผู้เข้าชม)
 						</p>
 						<p><?php
 							echo $news_item->NT01_NewsDesc;

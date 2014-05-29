@@ -15,6 +15,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		//For Query Save
 		if($this->input->post('info_ministry_is_submit') == "yes"){
 			// echo "save";
+			// echo $this->input->post('minis_status');
 			$this->prd_manageinfo_ministry_model->set_Minstry(
 				$this->input->post('minis_id'),
 				$this->input->post('minis_name'),
