@@ -12,10 +12,6 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		$data['title'] = 'Manage Info';
 		
 		
-		//For Query Delete
-		// if()
-		
-		
 		
 		//For Query Add
 		if($this->input->post('info_ministry_is_add') == "yes"){

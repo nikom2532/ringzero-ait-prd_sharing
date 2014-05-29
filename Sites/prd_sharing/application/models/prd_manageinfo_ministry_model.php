@@ -10,6 +10,13 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	//##################### New Database #########################
 	
 	
+	public function del_Ministry($value='')
+	{
+		
+	}
+	
+	
+	
 	public function set_Minstry_new(
 		$Minis_Name = '', 
 		$Minis_Desc = '', 
