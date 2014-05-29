@@ -14,7 +14,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	{
 		$query = $this->db->
 			where('Dep_ID', $Dep_ID)->
-			delete('Department', $data);
+			delete('Department');
 			
 		return $query;
 	}

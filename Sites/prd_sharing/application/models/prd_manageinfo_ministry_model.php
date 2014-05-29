@@ -10,9 +10,39 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	//##################### New Database #########################
 	
 	
-	public function del_Ministry($value='')
+	public function get_Department()
 	{
-		
+		// echo $Minis_ID;
+		$query = $this->db->
+			select('
+				Department.Dep_ID,
+				Department.Ministry_ID
+			')->
+			get('Department')->result();
+			
+		return $query;
+	}
+	
+	
+	public function Ministry_children_key($Minis_ID='')
+	{
+		// echo $Minis_ID;
+		$query = $this->db->
+			// select('Department.Dep_ID')->
+			where('Department.Ministry_ID', $Minis_ID)->
+			get('Department')->result();
+			
+		return $query;
+	}
+	
+	
+	public function del_Ministry($Minis_ID='')
+	{
+		$query = $this->db->
+			where('Minis_ID', $Minis_ID)->
+			delete('Ministry');
+			
+		return $query;
 	}
 	
 	
@@ -73,6 +103,13 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 				get('Ministry')->result();
 			
 			return $return;
+	}
+	
+	
+	//get Ministry that can delete or not
+	public function get_Ministry_canDeleted($value='')
+	{
+		
 	}
 	
 	public function get_Ministry_search($MinisName = '', $MinisStatus = '')

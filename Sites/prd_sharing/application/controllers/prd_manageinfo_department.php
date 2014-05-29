@@ -40,8 +40,8 @@ class PRD_manageInfo_Department extends CI_Controller {
 		
 		
 		else if($this->input->get('del_department') == "1"){
-			echo "deleted";
-			
+			// echo "deleted";
+			// echo $this->input->get('dep_id');
 			$this->prd_manageinfo_department_model->del_Department(
 				$this->input->get('dep_id')
 			);

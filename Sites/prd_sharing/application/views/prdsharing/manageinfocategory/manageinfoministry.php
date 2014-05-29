@@ -96,12 +96,36 @@
 							<!-- ลำดับที่ -->
 							<?php echo $i; ?>
 						</p>
-						<p class="col-2" style="width: 10%;float: left; ">
-							<!-- href="manageInfo_Ministry_del?del=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>" -->
-							<a id="ministry_delete_btn" href="#" onclick="MinistryDelete(); ">
-								<img src="images/icon/delete.png" style="margin: -5px 10px 0;" >
-							</a>
-						</p>
+						
+<?php
+						//Count how many departments in that ministry
+						$countDepartment = 0;
+						foreach ($department as $department_item) {
+							
+							if($department_item->Ministry_ID == $ministry_item->Minis_ID){
+								$countDepartment++;
+							}
+							
+						}
+						
+						if($countDepartment > 0){
+?>
+							<p class="col-2" style="width: 10%;float: left; cursor:not-allowed; ">
+								<img src="images/icon/delete_lock.png" style="margin: -5px 10px 0;" alt="มีข้อมูลกระทรวงอยู่ ไม่สามารถลบได้">
+							</p>
+<?php
+						}
+						else{
+?>
+							<p class="col-2 ministry_delete" data-minis_id="<?php echo $ministry_item->Minis_ID; ?>" style="width: 10%;float: left; cursor:pointer; ">
+								<!-- href="manageInfo_Ministry_del?del=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>" -->
+								
+								<!-- <a id="ministry_delete_btn" href="#" onclick="MinistryDelete(); "> -->
+									<img src="images/icon/delete.png" style="margin: -5px 10px 0;" >
+							</p>
+<?php
+						}
+?>
 						<p class="col-2" style="width: 20%;float: left; ">
 							<!-- <a href="infoMinistry" >รหัสกระทรวง</a> -->
 							<a href="infoMinistry?minis_id=<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_ID; ?></a>
@@ -134,16 +158,37 @@
 	// $("#ministry_delete_btn").click(function() {
 	// }
 	
-	function MinistryDelete() {
-	    var x;
-	    if (confirm("คุณแน่ใจว่าจะลบหรือไม่") == true) {
-	        // x = "ตกลง";
-	        location.href="manageInfo_Ministry?del_ministry=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>";
+	
+	// minis_id
+	
+	
+	$(".ministry_delete").click( function() {
+		
+		var minis_id = $(this).attr("data-minis_id");
+		// alert(id);
+		
+		
+		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+minis_id) == true) {
+	        location.href="manageInfo_Ministry?del_ministry=1&minis_id="+minis_id;
+	    }
+	    else {
+	    	
+	    }
+		
+		
+	});
+	
+	
+	/*
+	function MinistryDelete(minis_id) {
+	    if (confirm("คุณแน่ใจว่าจะลบหรือไม่"+minis_id) == true) {
+	        location.href="manageInfo_Ministry?del_ministry=1&minis_id=*/<?php //echo $ministry_item->Minis_ID; ?>/*";
 	    }
 	    else {
 	    	
 	    }
 	}
+	*/
 	
 	
 	// $("#ministry_delete_btn").click(function () {

@@ -5,16 +5,12 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('prd_manageinfo_ministry_model');
+		// $this->load->model('prd_manageinfo_department_model');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Manage Info';
-		
-		
-		//For Query Delete
-		// if()
-		
 		
 		
 		//For Query Add
@@ -32,7 +28,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		
 		
 		//For Query Save
-		if($this->input->post('info_ministry_is_submit') == "yes"){
+		else if($this->input->post('info_ministry_is_submit') == "yes"){
 			// echo "save";
 			// echo $this->input->post('minis_status');
 			$this->prd_manageinfo_ministry_model->set_Minstry(
@@ -41,6 +37,24 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 				$this->input->post('minis_desc'),
 				$this->input->post('minis_status')
 			);
+		}
+		
+		// For Query Delete Ministry
+		else if($this->input->get('del_ministry') == "1"){
+			$Ministry_children_query = $this->prd_manageinfo_ministry_model->Ministry_children_key(
+				$this->input->get('minis_id')
+			);
+			
+			if(count($Ministry_children_query) == 0){
+				echo "deleted";
+				$department_delete_query = $this->prd_manageinfo_ministry_model->del_Ministry(
+					$this->input->get('minis_id')
+				);
+				
+			}
+			
+			
+			// var_dump($department_delete_query);
 		}
 		
 		
@@ -54,6 +68,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		}
 		else{
 			$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry();
+			$data['department'] = $this->prd_manageinfo_ministry_model->get_Department();
 		}
 		
 		if($this->input->post('info_ministry_is_submit') == "yes"){
@@ -69,5 +84,6 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/manageinfocategory/manageinfoministry', $data);
 		$this->load->view('prdsharing/templates/footer');
+		
 	}
 }
