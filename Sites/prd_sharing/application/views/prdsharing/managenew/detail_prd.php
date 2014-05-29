@@ -7,7 +7,11 @@
 					<img src="<?php
 						echo $news[3]->NT10_VDOPath;
 					?>" alt="vdo" style="width:100%;"> -->
+					
+					
+					<div class="news-form" style="color: red;">ไม่มี File Video</div>
 <?php
+					//ไม่มี File Video
 					foreach ($get_NT01_News_videos as $videos) {
 						if(isset($videos->NT10_VDOPath)){
 ?>
@@ -21,6 +25,7 @@
 						}
 					}
 ?>
+					
 				</div>
 				<div class="image-list">
 <?php
