@@ -123,6 +123,7 @@
 						</p>
 					</div>
 <?php
+				$i++;
 			}
 ?>
 		</div>
@@ -137,7 +138,7 @@
 	    var x;
 	    if (confirm("คุณแน่ใจว่าจะลบหรือไม่") == true) {
 	        // x = "ตกลง";
-	        location.href="manageInfo_Ministry_del?del=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>";
+	        location.href="manageInfo_Ministry?del_ministry=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>";
 	    }
 	    else {
 	    	

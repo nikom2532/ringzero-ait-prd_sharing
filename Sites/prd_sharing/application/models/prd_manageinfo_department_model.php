@@ -10,6 +10,16 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	//##################### New Database #########################
 	
 	
+	public function del_Department($Dep_ID='')
+	{
+		$query = $this->db->
+			where('Dep_ID', $Dep_ID)->
+			delete('Department', $data);
+			
+		return $query;
+	}
+	
+	
 	public function set_Department_New(
 		$Dep_Name = '', 
 		$Dep_Desc = '', 
@@ -30,7 +40,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		
 		// var_dump($query);
 		
-		// return $query;
+		return $query;
 	}
 	
 	

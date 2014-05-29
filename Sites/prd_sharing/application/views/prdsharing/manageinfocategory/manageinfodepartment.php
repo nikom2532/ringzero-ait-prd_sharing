@@ -90,7 +90,12 @@
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
-						<p class="col-2" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+						<p class="col-2 DepartmentDelete" data-dep_id="<?php echo $department_item->Dep_ID; ?>" style="width: 5%;float: left; cursor:pointer; ">
+							<?php //echo ($department_item->Dep_ID); ?>
+							<!-- <a href="#" onclick="DepartmentDelete('<?php echo $department_item->Dep_ID ?>'); "> -->
+							<!-- <a href="#" class="DepartmentDelete" data-options='{"dep_id":"<?php echo $department_item->Dep_ID; ?>"}' >	 -->
+								<img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+							<!-- </a> -->
 						</p>
 						<p class="col-2" style="width: 20%;float: left; ">
 							<a href="infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>
@@ -118,5 +123,42 @@
 ?>
 		</div>
 	</div>
-
 </div>
+
+<script>
+	
+	$(".DepartmentDelete").click( function() {
+		
+		var dep_id = $(".DepartmentDelete").data("dep_id");
+		
+		// alert(
+			// dep_id
+		// );
+		
+		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ ") == true) {
+			location.href="manageInfo_Ministry?del_department=1&dep_id="+dep_id;
+		}
+		else{
+			
+		}
+	});
+	
+	
+	/*	
+	function DepartmentDelete(dep_id) {
+		debugger;
+	    var x;
+	    if (confirm("คุณแน่ใจว่าจะลบหรือไม่ ") == true) {
+	        // x = "ตกลง";
+	        
+	        // location.href="manageInfo_Ministry?del_department=1&dep_id="+dep_id;
+	        
+	    	// alert(dep_id);
+	    }
+	    else {
+	    	
+	    }
+	}
+	*/
+	
+</script>

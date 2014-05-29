@@ -26,7 +26,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 		
 		
 		//For Query Save
-		if($this->input->post('info_department_is_submit') == "yes"){
+		else if($this->input->post('info_department_is_submit') == "yes"){
 			// echo "save";
 			// echo $this->input->post('minis_status');
 			$this->prd_manageinfo_department_model->set_Department(
@@ -37,6 +37,19 @@ class PRD_manageInfo_Department extends CI_Controller {
 				$this->input->post('ministry_id')
 			);
 		}
+		
+		
+		else if($this->input->get('del_department') == "1"){
+			echo "deleted";
+			
+			$this->prd_manageinfo_department_model->del_Department(
+				$this->input->get('dep_id')
+			);
+			
+		}
+		
+		// echo "Asdf";
+		// var_dump($manageInfo_Category_is_search);
 		
 		
 		//For Query Show
