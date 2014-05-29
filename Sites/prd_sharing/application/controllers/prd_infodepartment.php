@@ -11,6 +11,7 @@ class PRD_InfoDepartment extends CI_Controller {
 	{
 		$data['title'] = 'Manage Info';
 		
+		$data['ministry'] = $this->PRD_Info_Department_model->get_Ministry();
 		$data['department'] = $this->PRD_Info_Department_model->get_Department($this->input->get('dep_id'));
 		
 		// var_dump($data['department']);

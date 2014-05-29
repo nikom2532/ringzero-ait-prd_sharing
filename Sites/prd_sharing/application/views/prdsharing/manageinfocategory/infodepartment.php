@@ -18,30 +18,33 @@
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกระทรวง:</label>
-								<select class="select-opt">
-									<option value="1" <?php 
-										// if($department_item)
-									?>>1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
+								<select class="ministry_id">
+<?php
+									foreach ($ministry as $ministry_item) {
+										?><option value="<?php echo $ministry_item->Minis_ID ?>" <?php
+											
+											if($ministry_item->Minis_ID == $department_item->Ministry_ID){
+												?>selected='selected'<?php
+											}
+											
+										?>><?php echo $ministry_item->Minis_Name; ?></option><?php
+									}
+?>
 								</select>
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกรม:</label>
-								<input type="text" class="form-control  txt-field" id="InputKeyword" placeholder="" >
+								<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="<?php echo $department_item->Dep_Name; ?>" placeholder="" >
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด:</label>
-								<textarea rows="4" cols="50" class="txt-area"></textarea>
+								<textarea rows="4" cols="50" class="txt-area"><?php echo $department_item->Dep_Desc; ?></textarea>
 							</div>
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>
 								<select class="select-opt">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
+									<option value="1" <?php if($department_item->Dep_Status == "1"){ ?>selected='selected'<?php } ?>>1</option>
+									<option value="0" <?php if($department_item->Dep_Status == "0"){ ?>selected='selected'<?php } ?>>2</option>
 								</select>
 							</div>
 						</div>

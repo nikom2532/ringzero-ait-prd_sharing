@@ -17,6 +17,8 @@ class PRD_Info_Department_model extends CI_Model {
 				Department.Dep_Name,
 				Department.Dep_Status,
 				Department.Ministry_ID,
+				Department.Dep_Desc,
+				Ministry.Minis_ID,
 				Ministry.Minis_Name
 			')->
 			LIMIT('20,0')->	
@@ -27,8 +29,17 @@ class PRD_Info_Department_model extends CI_Model {
 		return $return;
 	}
 	
-	// public function get_Department_Ministry($value='')
-	// {
-// 		
-	// }
+	public function get_Ministry()
+	{
+			$return = $this->db->
+				SELECT('
+					Ministry.Minis_ID,
+					Ministry.Minis_Name,
+					Ministry.Minis_Status
+				')->
+				LIMIT('20,0')->	
+				get('Ministry')->result();
+			
+			return $return;
+	}
 }
