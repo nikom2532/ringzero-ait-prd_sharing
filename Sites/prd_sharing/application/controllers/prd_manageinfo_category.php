@@ -11,8 +11,22 @@ class PRD_ManageInfo_Category extends CI_Controller {
 	{
 		$data['title'] = 'Manage Info';
 		
-		$data['category_old'] = $this->prd_manageinfo_category_model->get_NT02_NewsType();
-		$data['category_new'] = $this->prd_manageinfo_category_model->get_Category();
+		
+		if($this->input->post('manageInfo_Category_is_search') == "yes"){
+			
+			$data['category_old'] = $this->prd_manageinfo_category_model->get_NT02_NewsType(
+				$this->input->post('NT02_TypeName'),
+				$this->input->post('NT02_Status')
+			);
+			
+			$data['category_new'] = $this->prd_manageinfo_category_model->get_Category();
+		}
+		
+		else{
+			$data['category_old'] = $this->prd_manageinfo_category_model->get_NT02_NewsType();
+			$data['category_new'] = $this->prd_manageinfo_category_model->get_Category();
+		}
+		
 		
 
 		$this->load->view('prdsharing/templates/header', $data);

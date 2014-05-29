@@ -4,22 +4,41 @@
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
-
-			<div class="row">
-				<div class="col-lg-6">
-					<label >คำค้นหา</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<form name="form" action="manageInfo_Category" method="post">
+				<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
+				<div class="row">
+					<div class="col-lg-6">
+						<label >คำค้นหา</label>
+						<input type="text" class="form-control" name="NT02_TypeName" id="NT02_TypeName" placeholder="" >
+					</div>
+					<div class="col-lg-6">
+						<label >สถานะ</label>
+						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+						
+						<select name="NT02_Status" style="">
+							<option value="1" <?php
+								if(isset($post_dep_status)){
+									if($post_dep_status == "1"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานได้</option>
+							<option value="0" <?php
+								if(isset($post_dep_status)){
+									if($post_dep_status == "0"){
+										?>selected="selected"<?php
+									}
+								}
+							?>>ใช้งานไม่ได้</option>
+						</select>
+						
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<label >สถานะ</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+				<div class="col-lg-12" style="text-align: center;">
+					<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 				</div>
-			</div>
-
-			<div class="col-lg-12" style="text-align: center;">
-				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
-			</div>
-
+			</form> 
 		</div>
 	</div>
 
