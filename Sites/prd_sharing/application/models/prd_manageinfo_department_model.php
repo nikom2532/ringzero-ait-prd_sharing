@@ -106,11 +106,11 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 			
 		if($departmentName != ''){
 			$return = $return->
-				where('Department.Dep_Name', $departmentName);
+				like('Department.Dep_Name', $departmentName);
 		}
 		if($dep_status != ''){
 			$return = $return->
-				where('Department.Dep_Status', $dep_status);
+				like('Department.Dep_Status', $dep_status);
 		}
 			
 		$return = $return->get('Department')->result();

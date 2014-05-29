@@ -60,11 +60,16 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 		
 		//For Query Show
 		if($this->input->post('manageinfo_ministry_is_search') == "yes"){
-			$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry_search($this->input->post('minis_name'));
+			$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry_search(
+				$this->input->post('minis_name'),
+				$this->input->post('minis_status')
+			);
 			
 			if($this->input->post('minis_name') != ""){
 				$data['post_minis_name'] = $this->input->post('minis_name');
 			}
+			
+			$data['department'] = $this->prd_manageinfo_ministry_model->get_Department();
 		}
 		else{
 			$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry();

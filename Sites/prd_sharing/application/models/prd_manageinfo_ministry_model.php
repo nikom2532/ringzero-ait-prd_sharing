@@ -124,12 +124,12 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 		
 		if($MinisName != ''){
 			$return = $return->
-				where('Ministry.Minis_Name', $MinisName);
+				like('Ministry.Minis_Name', $MinisName);
 		}
 		
 		if($MinisStatus != ''){
 			$return = $return->
-				where('Ministry.Minis_Status', $MinisStatus);
+				like('Ministry.Minis_Status', $MinisStatus);
 		}
 		
 		$return = $return->
