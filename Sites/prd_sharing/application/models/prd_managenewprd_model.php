@@ -28,6 +28,31 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
 			get('NT01_News')->result();
 	}
+	
+	
+	public function get_NT01_News_Search_Title($News_Title = '')
+	{
+		return $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				SC03_User.SC03_FName'
+			)->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			like('NT01_News.NT01_NewsTitle', $News_Title)->
+			get('NT01_News')->result();
+	}
+	
+	
+	
+	
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->

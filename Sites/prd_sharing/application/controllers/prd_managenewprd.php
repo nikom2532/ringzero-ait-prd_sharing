@@ -34,7 +34,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['news'] = $this->prd_managenewprd_model->get_prd_search_title_start(($this->input->post("news_title")), ($this->input->post("start_date")) );
 			}
 			else{
-				$data['news'] = $this->prd_managenewprd_model->get_prd_search_title($this->input->post("news_title"));
+				$data['news'] = $this->prd_managenewprd_model->get_NT01_News_Search_Title($this->input->post("news_title"));
 			}
 		}
 		else{
