@@ -11,6 +11,22 @@ class PRD_manageInfo_Department extends CI_Controller {
 	{
 		$data['title'] = 'Manage Info';
 		
+		
+		//For Query Save
+		if($this->input->post('info_department_is_submit') == "yes"){
+			// echo "save";
+			// echo $this->input->post('minis_status');
+			$this->prd_manageinfo_department_model->set_Department(
+				$this->input->post('dep_id'),
+				$this->input->post('dep_name'),
+				$this->input->post('dep_desc'),
+				$this->input->post('dep_status'),
+				$this->input->post('ministry_id')
+			);
+		}
+		
+		
+		//For Query Show
 		if($this->input->post('manageInfo_Category_is_search') == "yes"){
 			$data['department'] = $this->prd_manageinfo_department_model->get_Department_search($this->input->post('dep_name'), $this->input->post('dep_status'));
 			

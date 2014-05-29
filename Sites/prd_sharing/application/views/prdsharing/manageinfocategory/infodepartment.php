@@ -1,10 +1,12 @@
 <div class="content">
 	<div id="share-form">
-		<form name="info_depatment_form" action="" method="post">
+		<form name="info_depatment_form" action="manageInfo_Department" method="post">
 <?php
 			foreach ($department as $department_item) {
 				
 ?>
+				<input type="hidden" name="info_department_is_submit" value="yes" />
+				<input type="hidden" name="dep_id" value="<?php echo $department_item->Dep_ID; ?>" />
 				<div class="row" id="gove-title" style="margin-top:5%;">
 					รายละเอียดข้อมูล
 				</div>
@@ -18,7 +20,7 @@
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกระทรวง:</label>
-								<select class="ministry_id">
+								<select class="select-opt" name="ministry_id">
 <?php
 									foreach ($ministry as $ministry_item) {
 										?><option value="<?php echo $ministry_item->Minis_ID ?>" <?php
@@ -38,11 +40,11 @@
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด:</label>
-								<textarea rows="4" cols="50" class="txt-area"><?php echo $department_item->Dep_Desc; ?></textarea>
+								<textarea rows="4" cols="50" class="txt-area" name="dep_desc"><?php echo $department_item->Dep_Desc; ?></textarea>
 							</div>
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>
-								<select class="select-opt">
+								<select class="select-opt" name="dep_status">
 									<option value="1" <?php if($department_item->Dep_Status == "1"){ ?>selected='selected'<?php } ?>>1</option>
 									<option value="0" <?php if($department_item->Dep_Status == "0"){ ?>selected='selected'<?php } ?>>2</option>
 								</select>
