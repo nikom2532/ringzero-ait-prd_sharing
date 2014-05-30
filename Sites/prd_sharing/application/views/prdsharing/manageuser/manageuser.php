@@ -64,52 +64,46 @@
 				สถานะการใช้งาน
 			</p>
 		</div>
-		<div class="odd">
-			<p class="col-1" style="width: 5%;float: left; ">
-				1
-			</p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				Username
-			</p>
-			<p class="col-3" style="width: 20%;float: left; ">
-				ชื่อ-นามสกุล
-			</p>
-			<p class="col-4" style="width: 10%;float: left; ">
-				วันที่สมัคร
-			</p>
-			<p class="col-5" style="width: 30%;float: left; ">
-				หน่วยงาน
-			</p>
-			<p class="col-6" style="width: 15%;float: left; ">
-				จังหวัด
-			</p>
-			<p class="col-7" style="width: 10%;float: left; ">
-				สถานะการใช้งาน
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 5%;float: left; ">
-				2
-			</p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				Username
-			</p>
-			<p class="col-3" style="width: 20%;float: left; ">
-				ชื่อ-นามสกุล
-			</p>
-			<p class="col-4" style="width: 10%;float: left; ">
-				วันที่สมัคร
-			</p>
-			<p class="col-5" style="width: 30%;float: left; ">
-				หน่วยงาน
-			</p>
-			<p class="col-6" style="width: 15%;float: left; ">
-				จังหวัด
-			</p>
-			<p class="col-7" style="width: 10%;float: left; ">
-				สถานะการใช้งาน
-			</p>
-		</div>
+<?php
+		$i=1;
+		
+		// var_dump($SC03_User);
+		
+		foreach ($SC03_User as $SC03_User_item) {
+			
+			if($i % 2 == 1){
+				?><div class="odd"><?php
+			}
+			else{
+				?><div class="event"><?php
+			}
+?>
+					<p class="col-1" style="width: 5%;float: left; ">
+						<?php echo $i; ?>
+					</p>
+					<p class="col-2" style="width: 10%;float: left; ">
+						<?php echo $SC03_User_item->SC03_UserName; ?>
+					</p>
+					<p class="col-3" style="width: 20%;float: left; ">
+						<?php echo $SC03_User_item->SC03_FName.$SC03_User_item->SC03_LName; ?>
+					</p>
+					<p class="col-4" style="width: 10%;float: left; ">
+						วันที่สมัคร
+					</p>
+					<p class="col-5" style="width: 30%;float: left; ">
+						<?php echo $SC03_User_item->SC07_DepartmentId; ?>
+					</p>
+					<p class="col-6" style="width: 15%;float: left; ">
+						<?php echo $SC03_User_item->CM06_ProvinceId; ?>
+					</p>
+					<p class="col-7" style="width: 10%;float: left; ">
+						<?php echo $SC03_User_item->SC03_Status; ?>
+					</p>
+				</div>
+<?php
+		}
+		
+?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)

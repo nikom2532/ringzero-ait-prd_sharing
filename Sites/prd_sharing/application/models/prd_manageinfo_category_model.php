@@ -26,8 +26,8 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 	}
 	
 	public function get_NT02_NewsType_search(
-		$NT02_TypeName = '',
-		$NT02_Status = ''
+		$NT02_TypeName = ''//,
+		// $NT02_Status = ''
 	)
 	{
 		return $this->db_ntt_old->
@@ -40,7 +40,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 			')->
 			LIMIT('20,0')->	
 			where('NT02_Status', 'Y')->
-			where('$NT02_TypeName', $NT02_TypeName)->
+			like('NT02_TypeName', $NT02_TypeName)->
 			get('NT02_NewsType')->result();
 	}
 	
