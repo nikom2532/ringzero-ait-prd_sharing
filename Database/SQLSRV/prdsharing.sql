@@ -156,7 +156,12 @@ CREATE TABLE [dbo].[SendInformation](
 	[Ministry_ID] [int] NULL,
 	[Tar_ID] [int] NULL,
 	[Mem_ID] [int] NULL,
-	[SendIn_Delete] [int] 0,
+	[SendIn_Delete] [int] NULL,
+	[SendIn_PoliceID] [int] NULL,
+	[PRD_Active] [int] NULL,
+	[PRD_Status] [int] NULL,
+	[GOVE_Active] [int] NULL,
+	[GOVE_Status] [int] NULL,
  CONSTRAINT [PK_SendInformation] PRIMARY KEY CLUSTERED 
 (
 	[SendIn_ID] ASC
