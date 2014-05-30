@@ -13,6 +13,7 @@ class PRD_Manage_User_model extends CI_Model {
 	public function get_SC03_User()
 	{
 		$query_getUser = $this->db_ntt_old->
+			where('SC03_Status', "T")->
 			get('SC03_User', 20, 0)->result();
 		
 		return $query_getUser;

@@ -89,7 +89,7 @@
 							<?php echo $SC03_User_item->SC03_FName.$SC03_User_item->SC03_LName; ?>
 						</p>
 						<p class="col-4" style="width: 10%;float: left; ">
-							วันที่สมัคร
+							-
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
 							<?php echo $SC03_User_item->SC07_DepartmentId; ?>
