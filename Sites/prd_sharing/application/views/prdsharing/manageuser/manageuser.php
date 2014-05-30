@@ -7,24 +7,23 @@
 				<input class="txt-field" type="text" value="" name="search_key"  placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>
 		</div>
-	
+		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะ</label>
-				<select style="">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+				<select style="" name="sc03_status">
+					<option value="T">ใช้งาน</option>
+					<option value="F">ไม่ใช้งาน</option>
 				</select>
 			</div>
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
-				<select style="">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+				<select name="cm06_province_id" style="">
+<?php
+					foreach ($CM06_Province as $CM06_Province_item) {
+						?><option value="<?php echo $CM06_Province_item->CM06_ProvinceID; ?>"><?php echo $CM06_Province_item->CM06_ProvinceName; ?></option><?php
+					}
+?>
 				</select>
 			</div>
 		</div>
@@ -79,27 +78,29 @@
 				?><div class="event"><?php
 			}
 ?>
-					<p class="col-1" style="width: 5%;float: left; ">
-						<?php echo $i; ?>
-					</p>
-					<p class="col-2" style="width: 10%;float: left; ">
-						<?php echo $SC03_User_item->SC03_UserName; ?>
-					</p>
-					<p class="col-3" style="width: 20%;float: left; ">
-						<?php echo $SC03_User_item->SC03_FName.$SC03_User_item->SC03_LName; ?>
-					</p>
-					<p class="col-4" style="width: 10%;float: left; ">
-						วันที่สมัคร
-					</p>
-					<p class="col-5" style="width: 30%;float: left; ">
-						<?php echo $SC03_User_item->SC07_DepartmentId; ?>
-					</p>
-					<p class="col-6" style="width: 15%;float: left; ">
-						<?php echo $SC03_User_item->CM06_ProvinceId; ?>
-					</p>
-					<p class="col-7" style="width: 10%;float: left; ">
-						<?php echo $SC03_User_item->SC03_Status; ?>
-					</p>
+					<a href="userInfo">
+						<p class="col-1" style="width: 5%;float: left; ">
+							<?php echo $i; ?>
+						</p>
+						<p class="col-2" style="width: 10%;float: left; ">
+							<?php echo $SC03_User_item->SC03_UserName; ?>
+						</p>
+						<p class="col-3" style="width: 20%;float: left; ">
+							<?php echo $SC03_User_item->SC03_FName.$SC03_User_item->SC03_LName; ?>
+						</p>
+						<p class="col-4" style="width: 10%;float: left; ">
+							วันที่สมัคร
+						</p>
+						<p class="col-5" style="width: 30%;float: left; ">
+							<?php echo $SC03_User_item->SC07_DepartmentId; ?>
+						</p>
+						<p class="col-6" style="width: 15%;float: left; ">
+							<?php echo $SC03_User_item->CM06_ProvinceId; ?>
+						</p>
+						<p class="col-7" style="width: 10%;float: left; ">
+							<?php echo $SC03_User_item->SC03_Status; ?>
+						</p>
+					</a>
 				</div>
 <?php
 		}

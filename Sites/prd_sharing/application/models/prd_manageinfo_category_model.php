@@ -12,7 +12,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 	
 	public function get_NT02_NewsType()
 	{
-		return $this->db_ntt_old->
+		$query = $this->db_ntt_old->
 			SELECT('
 				NT02_NewsType.NT02_TypeID,
 				NT02_NewsType.NT02_TypeName,
@@ -20,9 +20,25 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 				NT02_NewsType.NT02_TypeNameEn,
 				NT02_NewsType.NT02_Sequence
 			')->
-			LIMIT('20,0')->	
+			// LIMIT('20,0')->	
 			where('NT02_Status', 'Y')->
 			get('NT02_NewsType')->result();
+			
+			
+		// $query2 = $this->db_ntt_old->
+			// SELECT('
+				// NT02_NewsType.NT02_TypeID,
+				// NT02_NewsType.NT02_TypeName,
+				// NT02_NewsType.NT02_Status,
+				// NT02_NewsType.NT02_TypeNameEn,
+				// NT02_NewsType.NT02_Sequence
+			// ')->
+			// where('NT02_Status', 'Y')->
+			// get('NT02_NewsType');
+// 			
+		// var_dump($query2);
+			
+		return $query;
 	}
 	
 	public function get_NT02_NewsType_search(

@@ -11,11 +11,14 @@ class PRD_ManageUser extends CI_Controller {
 	{
 		$data['title'] = 'Manage Users';
 		
+		$data['CM06_Province'] = $this->prd_manage_user_model->get_CM06_Province();
 		
 		if($this->input->post('manage_user_is_search') == "yes"){
 			
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User_search(
-				$this->input->post('search_key')
+				$this->input->post('search_key'),
+				$this->input->post('sc03_status'),
+				$this->input->post('cm06_province_id')
 			);
 			// $search_key
 		}
@@ -24,10 +27,6 @@ class PRD_ManageUser extends CI_Controller {
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
 			
 		}
-		
-		
-		
-		
 		
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/manageuser/manageuser', $data);
