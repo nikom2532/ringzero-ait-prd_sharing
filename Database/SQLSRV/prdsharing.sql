@@ -128,7 +128,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TargetGroup](
 	[Tar_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Tar_Name] [nvarchar](20) NULL,
+	[Tar_Name] [nvarchar](200) NULL,
 	[Tar_status] [int] NULL,
  CONSTRAINT [PK_TargetGroup] PRIMARY KEY CLUSTERED 
 (
