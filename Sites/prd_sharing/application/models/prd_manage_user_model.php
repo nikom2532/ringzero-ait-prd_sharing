@@ -14,11 +14,9 @@ class PRD_Manage_User_model extends CI_Model {
 	{
 		$query_getUser = $this->db->
 			select('
-				Member.SC03_UserName,
-				Member.SC03_FName,
-				Member.SC03_LName,
-				Member.SC07_DepartmentId,
-				Member.CM06_ProvinceId,
+				Member.Mem_Username,
+				Member.Mem_Name,
+				Member.Mem_Name,
 				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
