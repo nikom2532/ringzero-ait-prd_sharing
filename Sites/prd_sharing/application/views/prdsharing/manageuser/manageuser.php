@@ -1,37 +1,38 @@
 <div id="search-form">
-
-	<div class="row">
-		<div class="col-lg-12">
-			<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-			<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;">
+	<form action="manageUser" method="post">
+		<input type="hidden" name="manage_user_is_search" value="yes" />
+		<div class="row">
+			<div class="col-lg-12">
+				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
+				<input class="txt-field" type="text" value="" name="search_key"  placeholder="" style=" margin-left: 15px;width: 77%;">
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >สถานะ</label>
-			<select style="">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-			</select>
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >สถานะ</label>
+				<select style="">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</div>
+			<div class="col-lg-6">
+				<label >จังหวัด</label>
+				<select style="">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >จังหวัด</label>
-			<select style="">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-			</select>
+	
+		<div class="col-lg-12" style="text-align: center;">
+			<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
 		</div>
-	</div>
-
-	<div class="col-lg-12" style="text-align: center;">
-		<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
-	</div>
-
+	</form>
 </div>
 
 <div class="table-list">
