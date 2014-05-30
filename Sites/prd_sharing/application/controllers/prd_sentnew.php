@@ -14,7 +14,7 @@ class PRD_sentNew extends CI_Controller {
 		$data['Ministry'] = $this->PRD_SentNew_model->get_Ministry();
 		$data['Department'] = $this->PRD_SentNew_model->get_Department();
 		$data['NT05_Policy'] = $this->PRD_SentNew_model->get_NT05_Policy();
-		
+		$data['TargetGroup'] = $this->PRD_SentNew_model->get_TargetGroup();
 		
 		
 		$this->load->view('prdsharing/templates/header', $data);

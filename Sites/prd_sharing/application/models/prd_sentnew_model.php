@@ -8,8 +8,6 @@ class PRD_SentNew_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
-	//##################### Old Database #########################
-	
 	public function get_Ministry()
 	{
 		$query = $this->db->
@@ -34,4 +32,11 @@ class PRD_SentNew_model extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_TargetGroup()
+	{
+		$query = $this->db->
+			get('TargetGroup');
+			
+		return $query->result();
+	}
 }

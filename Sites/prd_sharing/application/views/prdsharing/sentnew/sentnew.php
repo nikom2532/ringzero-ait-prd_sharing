@@ -55,7 +55,11 @@
 			<div class="col-lg-6">
 				<label >กลุ่มเป้าหมาย</label>
 				<select name="">
-					<option value="">เลือกกลุ่มเป้าหมาย</option>
+<?php
+					foreach ($TargetGroup as $TargetGroup_item) {
+						?><option value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
+					}
+?>
 				</select>
 			</div>
 		</div>
