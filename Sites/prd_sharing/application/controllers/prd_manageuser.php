@@ -24,6 +24,8 @@ class PRD_ManageUser extends CI_Controller {
 		}
 		else{
 			
+			$data['Member'] = $this->prd_manage_user_model->get_Member();
+			
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
 			
 		}

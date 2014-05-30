@@ -29,12 +29,7 @@
                                 <option value="">เลือกนโยบาย</option>
                               </select>
                         </div>
-                        <div class="col-lg-6">
-                              <label >เผยแพร่</label>
-                              <select name="">
-                                <option value="">เลือกเผยแพร่</option>
-                              </select>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
@@ -44,6 +39,24 @@
                               </select>
                         </div>
                     </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                              <label >เผยแพร่</label>
+                              <select name="">
+                                <option value="">เลือกเผยแพร่</option>
+                              </select>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
                     <div class="row">
                         <div class="col-lg-11">
                               <label >แผนงานโครงการ/กิจกรรม</label>

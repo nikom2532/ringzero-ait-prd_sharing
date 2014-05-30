@@ -8,6 +8,28 @@ class PRD_Manage_User_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	//##################### New Database #########################
+	
+	public function get_Member()
+	{
+		$query_getUser = $this->db->
+			select('
+				Member.SC03_UserName,
+				Member.SC03_FName,
+				Member.SC03_LName,
+				Member.SC07_DepartmentId,
+				Member.CM06_ProvinceId,
+				GroupMember.Group_Status
+			')->
+			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
+			get('Member');
+			
+		return $query_getUser->result();
+	}
+	
+	
+	
+	
 	//##################### Old Database #########################
 	
 	public function get_SC03_User()

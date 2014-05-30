@@ -98,7 +98,13 @@
 							<?php echo $SC03_User_item->CM06_ProvinceId; ?>
 						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
-							<?php echo $SC03_User_item->SC03_Status; ?>
+<?php 
+							// foreach ($Member as $Member_item) {
+								// if($Member_item->)
+							// }
+							
+							echo $SC03_User_item->SC03_Status; 
+?>
 						</p>
 					</a>
 				</div>

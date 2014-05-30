@@ -121,7 +121,7 @@
 		}
 ?>
 				<p class="col-1" style="width: 6%;float: left; ">
-					<?php echo $i++; ?>
+					<?php //echo $i++; ?>
 				</p>
 				<p class="col-2" style="width: 14%;float: left; ">
 					<a href="manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
