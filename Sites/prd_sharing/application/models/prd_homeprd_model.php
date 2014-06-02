@@ -47,6 +47,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function get_New_News()
 	{
 		$query_news = $this->db->
+			// join('Category', 'News.Cate_ID = Category.Cate_ID')->
 			get('News')->result();
 		return $query_news;
 	}
@@ -160,11 +161,12 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	
 	public function set_News(
-		$news='',
+		$news='' /*,
 		$NT10_VDO='',
 		$NT11_Picture='',
 		$NT12_Voice='',
 		$NT13_OtherFile=''
+		*/
 	)
 	{
 		//Test insert 1 record
@@ -192,52 +194,15 @@ class PRD_HomePRD_model extends CI_Model {
 				$newsDate = $news_item->NT01_CreDate;
 			}
 			
-			
-			foreach ($NT10_VDO as $NT10_VDO_item) {
-				if($NT10_VDO_item->NT01_NewsID == $news_item->NT01_NewsID){
-					$newStatusVDO = "1";
-				}
-				else{
-					$newStatusVDO = "0";
-				}
-			}
-	    	foreach ($NT11_Picture as $NT11_Picture_item) {
-				if($NT11_Picture_item->NT01_NewsID == $news_item->NT01_NewsID){
-					$newStatusPhoto = "1";
-				}
-				else{
-					$newStatusPhoto = "0";
-				}
-			}
-			foreach ($NT12_Voice as $NT12_Voice_item) {
-				if($NT12_Voice_item->NT01_NewsID == $news_item->NT01_NewsID){
-					$newStatusVoice = "1";
-				}
-				else{
-					$newStatusVoice = "0";
-				}
-			}
-			foreach ($NT13_OtherFile as $NT13_OtherFile_item) {
-				if($NT13_OtherFile_item->NT01_NewsID == $news_item->NT01_NewsID){
-					$newStatusOtherFile = "1";
-				}
-				else{
-					$newStatusOtherFile = "0";
-				}
-			}
-			
-			
-			
-			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => $newsDate,
-			   'News_StatusPhoto' => $newStatusPhoto,
-			   'News_StatusVDO' => $newStatusVDO,
-			   'News_StatusVoice' => $newStatusVoice,
-			   'News_StatusOtherFile' => $newStatusOtherFile,
-			   'News_Active' => "1",
-			   'News_StatusPublic' => "1"
+			   'News_StatusPhoto' => $news_item->NT11_FileStatus,
+			   'News_StatusVDO' => $news_item->NT10_FileStatus,
+			   'News_StatusVoice' => $news_item->NT12_FileStatus,
+			   'News_StatusOtherFile' => $news_item->NT13_FileStatus,
+			   'News_Active' => "1" //,
+			   // 'News_StatusPublic' => "1"
 			);
 			
 			$query2 = $this->db->
@@ -249,7 +214,6 @@ class PRD_HomePRD_model extends CI_Model {
 			}
 			
 	    }
-		
 	}
 	
 	//################## New Database #######################
