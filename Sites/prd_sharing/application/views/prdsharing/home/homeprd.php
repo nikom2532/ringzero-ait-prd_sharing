@@ -34,7 +34,7 @@
 				}
 				else{
 					foreach ($New_News as $New_News_item) {
-						if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+						if($New_News_item->News_OldID == $news_item->NT01_NewsID){
 							
 							if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
 								if($New_News_item->News_Date > $news_item->NT01_UpdDate){
@@ -59,7 +59,21 @@
 				}
 			?></p>
 			<p class="col-2" style="width: 80%;float: left; ">
-				<?php echo $news_item->NT01_NewsTitle; ?>
+<?php
+				$i=0;
+				foreach ($New_News as $New_News_item) {
+					if(
+						$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
+						$New_News_item->News_UpdateID > 0
+					){
+							echo $New_News_item->News_Title;
+							$i++;
+					}
+				}
+				if($i == 0){
+					echo $news_item->NT01_NewsTitle; 
+				}
+?>
 			</p>
 		</div>
 		<div class="event">
@@ -84,10 +98,10 @@
 					$star_count = 5;
 				}
 				$star_count_less = 5 - $star_count;
-				for ($i=0; $i < $star_count; $i++) { 
+				for ($i=0; $i < $star_count; $i++) {
 					?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
 				}
-				for ($i=0; $i < $star_count_less; $i++) { 
+				for ($i=0; $i < $star_count_less; $i++) {
 					?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
 				}
 ?>

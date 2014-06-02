@@ -194,13 +194,39 @@ class PRD_HomePRD_model extends CI_Model {
 				$newsDate = $news_item->NT01_CreDate;
 			}
 			
+			if($news_item->NT11_FileStatus == "Y"){
+				$NT11_FileStatus = "1";
+			}
+			else{
+				$NT11_FileStatus = "0";
+			}
+			if($news_item->NT10_FileStatus == "Y"){
+				$NT10_FileStatus = "1";
+			}
+			else{
+				$NT10_FileStatus = "0";
+			}
+			if($news_item->NT12_FileStatus == "Y"){
+				$NT12_FileStatus = "1";
+			}
+			else{
+				$NT12_FileStatus = "0";
+			}
+			if($news_item->NT13_FileStatus == "Y"){
+				$NT13_FileStatus = "1";
+			}
+			else{
+				$NT13_FileStatus = "0";
+			}
+			
+			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => $newsDate,
-			   'News_StatusPhoto' => $news_item->NT11_FileStatus,
-			   'News_StatusVDO' => $news_item->NT10_FileStatus,
-			   'News_StatusVoice' => $news_item->NT12_FileStatus,
-			   'News_StatusOtherFile' => $news_item->NT13_FileStatus,
+			   'News_StatusPhoto' => $NT11_FileStatus,
+			   'News_StatusVDO' => $NT10_FileStatus,
+			   'News_StatusVoice' => $NT12_FileStatus,
+			   'News_StatusOtherFile' => $NT13_FileStatus,
 			   'News_Active' => "1" //,
 			   // 'News_StatusPublic' => "1"
 			);
