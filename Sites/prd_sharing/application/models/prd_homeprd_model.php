@@ -44,6 +44,35 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_New_News()
+	{
+		$query_news = $this->db->
+			get('News')->result();
+		return $query_news;
+	}
+	
+	public function get_NT10_VDO()
+	{
+		return $this->db_ntt_old->
+			get('NT10_VDO')->result();
+	}
+	public function get_NT11_Picture()
+	{
+		return $this->db_ntt_old->
+			get('NT11_Picture')->result();
+	}
+	public function get_NT12_Voice()
+	{
+		return $this->db_ntt_old->
+			get('NT12_Voice')->result();
+	}
+	public function get_NT13_OtherFile()
+	{
+		return $this->db_ntt_old->
+			get('NT13_OtherFile')->result();
+	}
+	
+	//##################### search ###################
 	
 	public function get_NT01_News_search_title($news_title)
 	{
@@ -130,39 +159,92 @@ class PRD_HomePRD_model extends CI_Model {
 	//##################### Old Database --- Set #########################
 	
 	
-	public function set_News($news='')
+	public function set_News(
+		$news='',
+		$NT10_VDO='',
+		$NT11_Picture='',
+		$NT12_Voice='',
+		$NT13_OtherFile=''
+	)
 	{
 		//Test insert 1 record
 		// $data = array(
 			   // 'News_OldID' => "99",
 			   // 'News_Date' => date('Y-m-d h:m:s')
 		// );
+		
 		//########
 		
-		// var_dump($news);
-		
 		foreach ($news as $news_item) {
-	    	
+			
+			$newsCreDate = strtotime($news_item->NT01_CreDate);
+			$newsUpdDate = strtotime($news_item->NT01_UpdDate);
+			
+			if(isset($newsUpdDate)){
+				if($newsUpdDate > $newsCreDate){
+					$newsDate = $news_item->NT01_UpdDate;
+				}
+				else{
+					$newsDate = $news_item->NT01_CreDate;
+				}
+			}
+			else{
+				$newsDate = $news_item->NT01_CreDate;
+			}
+			
+			
+			foreach ($NT10_VDO as $NT10_VDO_item) {
+				if($NT10_VDO_item->NT01_NewsID == $news_item->NT01_NewsID){
+					$newStatusVDO = "1";
+				}
+				else{
+					$newStatusVDO = "0";
+				}
+			}
+	    	foreach ($NT11_Picture as $NT11_Picture_item) {
+				if($NT11_Picture_item->NT01_NewsID == $news_item->NT01_NewsID){
+					$newStatusPhoto = "1";
+				}
+				else{
+					$newStatusPhoto = "0";
+				}
+			}
+			foreach ($NT12_Voice as $NT12_Voice_item) {
+				if($NT12_Voice_item->NT01_NewsID == $news_item->NT01_NewsID){
+					$newStatusVoice = "1";
+				}
+				else{
+					$newStatusVoice = "0";
+				}
+			}
+			foreach ($NT13_OtherFile as $NT13_OtherFile_item) {
+				if($NT13_OtherFile_item->NT01_NewsID == $news_item->NT01_NewsID){
+					$newStatusOtherFile = "1";
+				}
+				else{
+					$newStatusOtherFile = "0";
+				}
+			}
+			
+			
+			
+			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
-			   'News_Date' => date('Y-m-d h:m:s')
+			   'News_Date' => $newsDate,
+			   'News_StatusPhoto' => $newStatusPhoto,
+			   'News_StatusVDO' => $newStatusVDO,
+			   'News_StatusVoice' => $newStatusVoice,
+			   'News_StatusOtherFile' => $newStatusOtherFile,
+			   'News_Active' => "1",
+			   'News_StatusPublic' => "1"
 			);
-			
-			// var_dump($data);
-			// echo $data["News_OldID"];
 			
 			$query2 = $this->db->
 						where('News_OldID', $data['News_OldID'])->
 						get('News');
 						
-			// var_dump($query2);
-			
-			// echo($query2->num_rows());
-						
-			if($query2->num_rows() > 0){
-				
-			}
-			else{
+			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
 			}
 			
@@ -171,13 +253,6 @@ class PRD_HomePRD_model extends CI_Model {
 	}
 	
 	//################## New Database #######################
-	
-	public function get_prd()
-	{
-		// return $this->db->get('News')->result();
-		return $this->db->
-			get('News')->result();
-	}
 	
 	public function get_prd_search_title($news_title)
 	{

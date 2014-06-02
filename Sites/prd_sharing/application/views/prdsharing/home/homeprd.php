@@ -7,11 +7,6 @@
 			Government Agencies
 		</p></a>
 	</div>
-	<?php
-		// var_dump($this->input->post);
-		// var_dump($news);
-		// echo $title;
-	?>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
 			<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">
@@ -19,11 +14,15 @@
 <?php
 		//Start to count News's rows
 		foreach($news as $news_item):
-			// var_dump($news_item);
 ?>
 		<div class="odd">
 			<p class="col-1" style="width: 20%;float: left; "><?php
 				if($news_item->NT01_UpdDate == ""){
+					// foreach ($New_News as $New_News_item) {
+						// if($New_News_item-> > $news_item->NT01_UpdDate)
+					// }
+					
+					
 					echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 				}
 				else{

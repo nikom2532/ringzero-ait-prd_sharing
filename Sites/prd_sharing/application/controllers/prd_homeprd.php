@@ -43,6 +43,8 @@ class PRD_HomePRD extends CI_Controller {
 			
 			$data['news'] = $this->prd_homeprd_model->get_NT01_News();
 			
+			$data['New_News'] = $this->prd_homeprd_model->get_New_News();
+			
 			
 			
 			// foreach ($data['news'] as $key) {
@@ -119,7 +121,13 @@ class PRD_HomePRD extends CI_Controller {
 		
 		// var_dump($data['news']);
 		//Insert News Table from Old Database to New Database
-		$this->prd_homeprd_model->set_News($data['news']);
+		$this->prd_homeprd_model->set_News(
+			$data['news'],
+			$this->prd_homeprd_model->get_NT10_VDO(),
+			$this->prd_homeprd_model->get_NT11_Picture(),
+			$this->prd_homeprd_model->get_NT12_Voice(),
+			$this->prd_homeprd_model->get_NT13_OtherFile()
+		);
 		
 	}
 }
