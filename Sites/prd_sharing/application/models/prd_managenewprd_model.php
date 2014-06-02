@@ -158,8 +158,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	{
 			$data = array(
 			   'News_Title' => $NT01_NewsTitle,
-			   'News_Desc' => $NT01_NewsDesc,
-			   'News_Source' => $NT01_NewsSource,
+			   'News_Detail' => $NT01_NewsDesc,
+			   'News_Resource' => $NT01_NewsSource,
 			   'News_Reference' => $NT01_NewsReferance,
 			   'News_Tag' => $NT01_NewsTag
 			);

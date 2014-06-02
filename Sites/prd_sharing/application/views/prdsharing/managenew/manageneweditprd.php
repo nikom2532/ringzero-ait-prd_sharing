@@ -62,13 +62,13 @@
 		<div class="row">
 			<div class="col-lg-11">
 				<label >เนื้อหาข่าว</label>
-				<textarea class="ckeditor" name="NT01_NewsDesc"><?php echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Desc; ?></textarea>
+				<textarea class="ckeditor" name="NT01_NewsDesc"><?php echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Detail; ?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >แหล่งที่มา</label>
-				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsSource //echo $news[0]->News_Source; ?>>
+				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsSource //echo $news[0]->News_Resource; ?>>
 			</div>
 			<div class="col-lg-6">
 				<label >อ้างอิงจาก</label>
