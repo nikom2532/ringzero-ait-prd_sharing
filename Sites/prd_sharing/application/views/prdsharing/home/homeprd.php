@@ -13,22 +13,49 @@
 		</div>
 <?php
 		//Start to count News's rows
-		// var_dump($news);
+		// var_dump($New_News);
 		
 		foreach($news as $news_item):
 ?>
 		<div class="odd">
 			<p class="col-1" style="width: 20%;float: left; "><?php
 				if($news_item->NT01_UpdDate == ""){
-					// foreach ($New_News as $New_News_item) {
-						// if($New_News_item-> > $news_item->NT01_UpdDate)
-					// }
-					
-					
-					echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+					foreach ($New_News as $New_News_item) {
+						if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+							if($New_News_item->News_UpdateDate == ""){
+								echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+							}
+							else{
+								echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+							}
+						}
+					}
+					// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 				}
 				else{
-					echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
+					foreach ($New_News as $New_News_item) {
+						if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+							
+							if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
+								if($New_News_item->News_Date > $news_item->NT01_UpdDate){
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+								}
+								else{
+									echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+								}
+							}
+							else{
+								if($New_News_item->News_UpdateDate > $news_item->NT01_UpdDate){
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+								}
+								else{
+									echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+								}
+							}
+							
+						}
+					}
+					// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 				}
 			?></p>
 			<p class="col-2" style="width: 80%;float: left; ">

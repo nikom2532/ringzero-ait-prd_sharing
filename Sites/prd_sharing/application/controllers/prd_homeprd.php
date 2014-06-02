@@ -43,9 +43,6 @@ class PRD_HomePRD extends CI_Controller {
 			
 			$data['news'] = $this->prd_homeprd_model->get_NT01_News();
 			
-			$data['New_News'] = $this->prd_homeprd_model->get_New_News();
-			
-			
 			
 			// foreach ($data['news'] as $key) {
 				// echo $key->NT01_ReporterID."<br />";
@@ -108,19 +105,9 @@ class PRD_HomePRD extends CI_Controller {
 		// var_dump($data["get_testdb2"]);
 		
 		
-		$this->load->view('prdsharing/templates/header', $data);
-		
-		$data['home_search'] = "homePRD";
-		
-		$this->load->view('prdsharing/home/header', $data);
-		$this->load->view('prdsharing/home/homeprd', $data);
-		$this->load->view('prdsharing/templates/footer', $data);
-		
-		
 		
 		// After Load the Page --> Will insert the UserID from Old Database to New Database
 		//Insert News Table from Old Database to New Database
-		
 		$this->prd_homeprd_model->set_News(
 			$data['news']
 			// $this->prd_homeprd_model->get_NT10_VDO(),
@@ -130,8 +117,18 @@ class PRD_HomePRD extends CI_Controller {
 			// $this->prd_homeprd_model->get_NT13_OtherFile()
 		);
 		
-		// $vdo = $this->prd_homeprd_model->get_NT10_VDO();
-		// var_dump($vdo);
+		$data['New_News'] = $this->prd_homeprd_model->get_New_News();
+		
+		
+		$this->load->view('prdsharing/templates/header', $data);
+		
+		$data['home_search'] = "homePRD";
+		
+		$this->load->view('prdsharing/home/header', $data);
+		$this->load->view('prdsharing/home/homeprd', $data);
+		$this->load->view('prdsharing/templates/footer', $data);
+		
+		
 		
 	}
 }

@@ -47,7 +47,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function get_New_News()
 	{
 		$query_news = $this->db->
-			join('Category', 'News.Cate_ID = Category.Cate_ID')->
+			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
 			get('News')->result();
 		return $query_news;
 	}
