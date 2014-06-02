@@ -103,6 +103,33 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				update("SendInformation", $data);
 	}
 	
+	public function set_sentnew(
+		$create_date,
+		$Minis_ID,
+		$Dep_ID,
+		$NT05_PolicyID,
+		$Tar_ID,
+		$grov_active,
+		$prd_active,
+		$SendIn_Plan,
+		$SendIn_Issue,
+		$SendIn_Detail
+	)
+	{
+			$data = array(
+				'SendIn_CreateDate' => $create_date, 	
+				'Ministry_ID' => $Minis_ID,
+				'Dep_ID' => $Dep_ID,
+				'Policy_ID' => $NT05_PolicyID,
+				'SendIn_Plan' => $SendIn_Plan,
+				'SendIn_Issue' => $SendIn_Issue,
+				'SendIn_Detail' => $SendIn_Detail
+			);
+			
+			return $this->db->
+				insert("SendInformation", $data);
+	}
+	
 	
 	// $this->db->limit($limit, $start);
 }
