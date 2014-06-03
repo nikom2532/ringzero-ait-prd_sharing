@@ -34,31 +34,31 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ประเภทข่าว</label>
-				
-				
-				<!-- <select name="">
-					<option value="">เลือกประเภทข่าว</option>
-				</select> -->
-				
-				<select name="NewsTypeID" class="form-control" style="width: 65%;"><?php
+				<select name="NewsTypeID" class="form-control" style="width: 65%;">
+					<option value="">เลือกประเภทข่าว</option><?php
 					foreach ($NT02_NewsType as $newType_item) {
-						?><option value="<?php echo $newType_item->NT02_TypeID; ?>"><?php echo $newType_item->NT02_TypeName; ?></option><?php
+						?><option 
+							value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+							if($newType_item->NT02_TypeID == $news[0]->NT02_TypeID){
+								?>selected='checked'<?php
+							}
+						?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
 					}
 				?></select>
-				
 			</div>
 			<div class="col-lg-6">
 				<label >ประเภทข่าวย่อย</label>
-				<!-- <select name="">
-					<option value="">เลือกประเภทข่าวย่อย</option>
-				</select> -->
-				
-				<select name="NewsSubTypeID" class="form-control" style="width: 65%;"><?php
+				<select name="NewsSubTypeID" class="form-control" style="width: 65%;">
+					<option value="">เลือกประเภทข่าวย่อย</option><?php
 					foreach ($NT03_NewsSubType as $newType_item) {
-						?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>"><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+						?><option 
+							value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
+							if($newType_item->NT03_SubTypeID == $news[0]->NT03_SubTypeID){
+								?>selected='checked'<?php
+							}
+						?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
 					}
 				?></select>
-				
 			</div>
 		</div>
 		<div class="row">
