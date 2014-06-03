@@ -27,8 +27,8 @@ class PRD_HomePRD_model extends CI_Model {
 				NT12_Voice.NT12_FileStatus,
 				NT13_OtherFile.NT13_FileStatus
 			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
@@ -50,27 +50,6 @@ class PRD_HomePRD_model extends CI_Model {
 			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
 			get('News')->result();
 		return $query_news;
-	}
-	
-	public function get_NT10_VDO()
-	{
-		return $this->db_ntt_old->
-			get('NT10_VDO')->result();
-	}
-	public function get_NT11_Picture()
-	{
-		return $this->db_ntt_old->
-			get('NT11_Picture')->result();
-	}
-	public function get_NT12_Voice()
-	{
-		return $this->db_ntt_old->
-			get('NT12_Voice')->result();
-	}
-	public function get_NT13_OtherFile()
-	{
-		return $this->db_ntt_old->
-			get('NT13_OtherFile')->result();
 	}
 	
 	//##################### search ###################
