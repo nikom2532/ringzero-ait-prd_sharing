@@ -44,7 +44,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NewsSubTypeID = ''
 	)
 	{
-		return $this->db_ntt_old->
+		$query = $this->db_ntt_old->
 			LIMIT('20,0')->
 			select('
 				NT01_News.NT01_NewsID,
@@ -67,19 +67,27 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT08_PubTypeID', '11')->
-			like('NT01_News.NT01_NewsTitle', $News_Title)->
-			where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
-			where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->
-			get('NT01_News')->result();
+			like('NT01_News.NT01_NewsTitle', $News_Title);
+			
+			// if(isset($NewsTypeID) || $NewsTypeID == ''){
+				// $query = $query->where('NT01_News.NT02_TypeID = '.$NewsTypeID);
+			// }
+			// if(isset($NewsSubTypeID) || $NewsSubTypeID = ''){
+				// $query = $query->where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID);
+			// }	
+			
+			$query = $query->get('NT01_News')->result();
+			
+			return $query;
 	}
 
 
 
 	//for search where have no update
 	public function get_NT01_News_Search_IsHaveUpdateDate(
-		$News_Title = '',
-		$NewsTypeID = '',
-		$NewsSubTypeID = ''
+		$News_Title = '' //,
+		// $NewsTypeID = '',
+		// $NewsSubTypeID = ''
 	)
 	{
 		return $this->db_ntt_old->
@@ -112,13 +120,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			// where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
 			// where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->
 			
-			
-			
 			get('NT01_News')->result();
 	}
-	
-
-
 	
 	public function get_NT01_News_Search_Title_start($News_Title = '', $start_date = '')
 	{

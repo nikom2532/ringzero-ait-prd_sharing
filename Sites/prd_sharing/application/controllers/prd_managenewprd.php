@@ -48,16 +48,17 @@ class PRD_ManageNewPRD extends CI_Controller {
 				
 				
 				//Fillter Title
-				$old_news_Fillter_title = $this->prd_managenewprd_model->get_NT01_News_Search_Title_start($this->input->post("news_title"));
+				$old_news_Fillter_title = $this->prd_managenewprd_model->get_NT01_News_Search_IsHaveUpdateDate($data['post_news_title']);
 				
+				var_dump($old_news_Fillter_title);
 				
-				foreach ($variable as $key => $value) {
+				foreach ($old_news_Fillter_title as $item) {
 					
 				}
 				
-				
+				$data['news'] = $old_news_Fillter_title;
 			}
-			else{
+			else{	//## Search only Title ##
 				$data['news'] = $this->prd_managenewprd_model->get_NT01_News_Search_Title(
 					$this->input->post("news_title"),
 					$this->input->post("NewsTypeID"),
@@ -66,7 +67,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_news_title'] = $this->input->post('news_title');
 			}
 		}
-		else{
+		else{	//## No Search ##
 			$data['news'] = $this->prd_managenewprd_model->get_NT01_News();
 		}
 		
