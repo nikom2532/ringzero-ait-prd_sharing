@@ -46,6 +46,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 			$data['news'] = $this->prd_managenewprd_model->get_NT01_News();
 		}
 		
+		$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
+		
 		$data['NT02_NewsType'] = $this->prd_managenewprd_model->get_NT02_NewsType();
 		$data['NT03_NewsSubType'] = $this->prd_managenewprd_model->get_NT03_NewsSubType();
 		

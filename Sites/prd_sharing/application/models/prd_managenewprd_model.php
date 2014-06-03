@@ -38,7 +38,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			get('NT01_News')->result();
 	}
 	
-	
 	public function get_NT01_News_Search_Title($News_Title = '')
 	{
 		return $this->db_ntt_old->
@@ -68,9 +67,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			get('NT01_News')->result();
 	}
 	
-	
-	
-	
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->
@@ -85,10 +81,20 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	}
 	
 	//#########  Database New  ##########
-	public function get_prd()
+	
+	public function get_New_News()
 	{
-		return $this->db->get('News')->result();
+		$query_news = $this->db->
+			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
+			get('News')->result();
+		return $query_news;
 	}
+	
+	
+	// public function get_prd()
+	// {
+		// return $this->db->get('News')->result();
+	// }
 	public function get_prd_search_title($news_title)
 	{
 		return $this->db->
