@@ -193,13 +193,13 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->
-			LIMIT('20,0')->	
+			// LIMIT('20,0')->	
 			get('NT02_NewsType')->result();
 	}
 	public function get_NT03_NewsSubType()
 	{
 		return $this->db_ntt_old->
-			LIMIT('20,0')->	
+			// LIMIT('20,0')->	
 			get('NT03_NewsSubType')->result();
 	}
 	

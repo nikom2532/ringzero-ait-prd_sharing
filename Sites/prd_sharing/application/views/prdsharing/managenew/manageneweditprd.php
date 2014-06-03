@@ -4,7 +4,7 @@
 	});
 </script>
 <?php
-// var_dump($news[1]);
+// var_dump($news[4]);
 // foreach ($news as $key => $news_item) {
 	// var_dump($news[$key]);
 	// echo "1";
@@ -34,15 +34,31 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ประเภทข่าว</label>
-				<select name="">
+				
+				
+				<!-- <select name="">
 					<option value="">เลือกประเภทข่าว</option>
-				</select>
+				</select> -->
+				
+				<select name="NewsTypeID" class="form-control" style="width: 65%;"><?php
+					foreach ($NT02_NewsType as $newType_item) {
+						?><option value="<?php echo $newType_item->NT02_TypeID; ?>"><?php echo $newType_item->NT02_TypeName; ?></option><?php
+					}
+				?></select>
+				
 			</div>
 			<div class="col-lg-6">
 				<label >ประเภทข่าวย่อย</label>
-				<select name="">
+				<!-- <select name="">
 					<option value="">เลือกประเภทข่าวย่อย</option>
-				</select>
+				</select> -->
+				
+				<select name="NewsSubTypeID" class="form-control" style="width: 65%;"><?php
+					foreach ($NT03_NewsSubType as $newType_item) {
+						?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>"><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+					}
+				?></select>
+				
 			</div>
 		</div>
 		<div class="row">
@@ -130,32 +146,43 @@
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
 				<?php
+					// var_dump($news[4]->NT11_FileStatus);
+					// var_dump($news[3]);
 					if($news[3]->NT10_FileStatus == "Y"){
 						?><img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[3]->NT10_FileStatus."<br />";
 						foreach ($news[3] as $vdo) {
-							echo $vdo->NT10_FileStatus."<br />";
+							// var_dump($vdo);
+							if(isset($vdo->NT10_FileStatus)){
+								echo $vdo->NT10_VDOName."<br />";
+							}
 						}
 					}
 					if($news[4]->NT11_FileStatus == "Y"){
 						?><img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[4]->NT12_FileStatus."<br />";
 						foreach($news[4] as $vdo) {
-							echo $vdo->NT12_FileStatus."<br />";
+							if(isset($vdo->NT12_FileStatus)){
+								echo $vdo->NT12_VoiceName."<br />";
+							}
 						}
 					}
 					if($news[5]->NT12_FileStatus == "Y"){
 						?><img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[5]->NT13_FileStatus."<br />";
 						foreach ($news[5] as $vdo) {
-							echo $vdo->NT13_FileStatus."<br />";
+							if(isset($vdo->NT13_FileStatus)){
+								echo $vdo->NT13_FileName."<br />";
+							}
 						}
 					}
 					if($news[6]->NT13_FileStatus == "Y"){
 						?><img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
 						// echo $news[6]->NT11_FileStatus."<br />";
 						foreach ($news[6] as $vdo) {
-							echo $vdo->NT13_FileStatus."<br />";
+							if(isset($vdo->NT11_FileStatus)){
+								echo $vdo->NT11_PicName."<br />";
+							}
 						}
 					}
 				?>
