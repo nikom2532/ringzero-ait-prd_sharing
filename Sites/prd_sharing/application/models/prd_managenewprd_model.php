@@ -115,7 +115,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			where('NT08_PubTypeID', '11')->
 			like('NT01_News.NT01_NewsTitle', $News_Title)->
 			
-			where('NT01_News.NT01_UpdUserID', null, false)->
+			// where('NT01_News.NT01_UpdUserID IS NOT NULL', null)->
 			
 			// where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
 			// where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->

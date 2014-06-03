@@ -46,15 +46,48 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_news_title'] = $this->input->post('news_title');
 				$data['post_start_date'] = $this->input->post('start_date');
 				
-				
 				//Fillter Title
 				$old_news_Fillter_title = $this->prd_managenewprd_model->get_NT01_News_Search_IsHaveUpdateDate($data['post_news_title']);
 				
-				var_dump($old_news_Fillter_title);
-				
-				foreach ($old_news_Fillter_title as $item) {
+				foreach ($old_news_Fillter_title as $old) {
+					
+					foreach ($data['New_News'] as $new) {
+					
+						if($old->NT01_UpdDate == null){
+							
+							// $old->NT01_CreDate = $old->NT01_UpdDate;
+							if($new->News_Date != null){
+								$old->NT01_UpdDate = $new->News_Date;
+							}
+							if($new->News_UpdateDate != null){
+								$old->NT01_UpdDate = $new->News_Date;
+							}
+						}
+						else{
+							
+							if($new->News_Date != null){
+								$old->NT01_UpdDate = $new->News_Date;
+							}
+							if($new->News_UpdateDate != null){
+								$old->NT01_UpdDate = $new->News_Date;
+							}
+							
+						}
+					
+					}
 					
 				}
+				
+				foreach ($old_news_Fillter_title as $old) {
+					echo $old->NT01_UpdDate." = ".$this->input->post('start_date')."<br/>";
+					if($old->NT01_UpdDate < $this->input->post('start_date')){
+						// echo "123456";
+						unset($old);
+					}
+				}
+				
+				// var_dump($old_news_Fillter_title);
+				
 				
 				$data['news'] = $old_news_Fillter_title;
 			}
