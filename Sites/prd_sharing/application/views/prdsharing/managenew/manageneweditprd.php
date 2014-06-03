@@ -113,23 +113,96 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หัวข้อข่าว</label>
-				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" value="<?php echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; ?>">
+				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" value="<?php 
+					//echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; 
+					
+					$i_item=0;
+					foreach ($New_News as $New_News_item) {
+						if(
+							$New_News_item->News_OldID ==  $news[0]->NT01_NewsID &&
+							$New_News_item->News_UpdateID > 0
+						){
+								echo $New_News_item->News_Title;
+								$i_item++;
+						}
+					}
+					if($i_item == 0){
+						echo $news[0]->NT01_NewsTitle; 
+					}
+					
+				?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-11">
 				<label >เนื้อหาข่าว</label>
-				<textarea class="ckeditor" name="NT01_NewsDesc"><?php echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Detail; ?></textarea>
+				<textarea class="ckeditor" name="NT01_NewsDesc"><?php 
+					//echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Detail; 
+					
+					
+					$i_item=0;
+					foreach ($New_News as $New_News_item) {
+						if(
+							$New_News_item->News_OldID ==  $news[0]->NT01_NewsID &&
+							$New_News_item->News_UpdateID > 0
+						){
+								echo $New_News_item->News_Detail;
+								$i_item++;
+						}
+					}
+					if($i_item == 0){
+						echo $news[0]->NT01_NewsDesc; 
+					}
+					
+				?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >แหล่งที่มา</label>
-				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsSource //echo $news[0]->News_Resource; ?>>
+				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" <?php 
+					//echo $news[0]->NT01_NewsSource //echo $news[0]->News_Resource; 
+					
+					// var_dump($New_News);
+					
+					$i_item=0;
+					foreach ($New_News as $New_News_item) {
+						if(
+							$New_News_item->News_OldID ==  $news[0]->NT01_NewsID &&
+							$New_News_item->News_UpdateID > 0
+						){
+								echo $New_News_item->News_Resource;
+								$i_item++;
+						}
+					}
+					if($i_item == 0){
+						echo $news[0]->NT01_NewsSource; 
+					}
+					
+					
+				?>>
 			</div>
 			<div class="col-lg-6">
 				<label >อ้างอิงจาก</label>
-				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" <?php echo $news[0]->NT01_NewsReferance // echo $news[0]->News_Referance; ?>>
+				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" <?php 
+					//echo $news[0]->NT01_NewsReferance; // echo $news[0]->News_Referance; 
+					
+					
+					foreach ($New_News as $New_News_item) {
+						if(
+							$New_News_item->News_OldID ==  $news[0]->NT01_NewsID &&
+							$New_News_item->News_UpdateID > 0
+						){
+								echo $New_News_item->News_Referance;
+								$i_item++;
+						}
+					}
+					if($i_item == 0){
+						echo $news[0]->NT01_NewsReferance; 
+					}
+					
+					
+				?>>
 			</div>
 		</div>
 	
@@ -172,12 +245,52 @@
 			<div class="col-lg-6">
 				<label >Version</label>
 				<?php
+					// if($news[0]->NT01_UpdDate == ""){
+						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
+					// }
+					// else{
+						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+					// }
+					
 					if($news[0]->NT01_UpdDate == ""){
-						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
+						foreach ($New_News as $New_News_item) {
+							if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+								if($New_News_item->News_UpdateDate == ""){
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+								}
+								else{
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+								}
+							}
+						}
+						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 					}
 					else{
-						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+						foreach ($New_News as $New_News_item) {
+							if($New_News_item->News_OldID == $news[0]->NT01_NewsID){
+								
+								if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
+									if($New_News_item->News_Date > $news[0]->NT01_UpdDate){
+										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+									}
+									else{
+										echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+									}
+								}
+								else{
+									if($New_News_item->News_UpdateDate > $news[0]->NT01_UpdDate){
+										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+									}
+									else{
+										echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+									}
+								}
+								
+							}
+						}
+						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 					}
+					
 					echo " (".$news[1]->CreUserName." ".$news[7]->ApvUserName.") ";
 				?>
 			</div>
