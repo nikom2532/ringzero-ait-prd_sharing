@@ -10,6 +10,15 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	
 	//#########  Database Old  ##########
 	
+	public function get_New_News($NT01_NewsID = '')
+	{
+		$query_news = $this->db->
+			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
+			where('News_OldID', $NT01_NewsID)->
+			get('News')->result();
+		return $query_news;
+	}
+	
 	public function get_NT01_News($NT01_NewsID = '')
 	{
 		

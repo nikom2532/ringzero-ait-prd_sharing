@@ -21,7 +21,9 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$this->input->post("NT01_NewsDesc"),
 				$this->input->post("NT01_NewsSource"),
 				$this->input->post("NT01_NewsReferance"),
-				$this->input->post("NT01_NewsTag")
+				$this->input->post("NT01_NewsTag"),
+				$this->input->post("NewsTypeID"),
+				$this->input->post("NewsSubTypeID")
 			);
 			// var_dump($return);
 		}

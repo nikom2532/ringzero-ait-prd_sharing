@@ -22,12 +22,53 @@
 			<div class="col-lg-6">
 				<label >ช่วงวันที่</label>
 				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="InputKeyword" placeholder="" value="<?php 
+					// if($news[0]->NT01_UpdDate == ""){
+						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
+					// }
+					// else{
+						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+					// }
+					
+					
 					if($news[0]->NT01_UpdDate == ""){
-						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
+						foreach ($New_News as $New_News_item) {
+							if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+								if($New_News_item->News_UpdateDate == ""){
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+								}
+								else{
+									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+								}
+							}
+						}
+						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 					}
 					else{
-						echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+						foreach ($New_News as $New_News_item) {
+							if($New_News_item->News_OldID == $news[0]->NT01_NewsID){
+								
+								if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
+									if($New_News_item->News_Date > $news[0]->NT01_UpdDate){
+										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+									}
+									else{
+										echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+									}
+								}
+								else{
+									if($New_News_item->News_UpdateDate > $news[0]->NT01_UpdDate){
+										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+									}
+									else{
+										echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
+									}
+								}
+								
+							}
+						}
+						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 					}
+					
 				?>">
 			</div>
 		</div>
@@ -61,14 +102,14 @@
 				?></select>
 			</div>
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-6">
 				<label >ประเภทข่าวเพิ่มเติม</label>
 				<select name="">
 					<option value="">เลือกนโยบาย</option>
 				</select>
 			</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หัวข้อข่าว</label>

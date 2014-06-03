@@ -219,7 +219,9 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NT01_NewsDesc='',
 		$NT01_NewsSource='',
 		$NT01_NewsReferance='',
-		$NT01_NewsTag=''
+		$NT01_NewsTag='',
+		$NewsTypeID='',
+		$NewsSubTypeID=''
 	)
 	{
 			$data = array(
@@ -227,7 +229,9 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			   'News_Detail' => $NT01_NewsDesc,
 			   'News_Resource' => $NT01_NewsSource,
 			   'News_Reference' => $NT01_NewsReferance,
-			   'News_Tag' => $NT01_NewsTag
+			   'News_Tag' => $NT01_NewsTag,
+			   'News_Cate' => $NewsTypeID,
+			   'News_SubCate' => $NewsSubTypeID
 			);
 			
 			// var_dump($data);
