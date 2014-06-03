@@ -206,7 +206,7 @@ GO
 CREATE TABLE [dbo].[News](
 	[News_ID] [int] IDENTITY(1,1) NOT NULL,
 	[News_Title] [nvarchar](500) NULL,
-	[News_Detail] [nvarchar](1000) NULL,
+	[News_Detail] [text] NULL,
 	[News_Date] [datetime] NULL,
 	[News_UpdateDate] [datetime] NULL,
 	[News_StatusPublic] [int] NULL,
