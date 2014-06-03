@@ -30,7 +30,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				NT13_OtherFile.NT13_FileStatus
 			')->
 			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
@@ -38,7 +38,191 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			get('NT01_News')->result();
 	}
 	
-	public function get_NT01_News_Search_Title($News_Title = '')
+	public function get_NT01_News_Search_Title(
+		$News_Title = '',
+		$NewsTypeID = '',
+		$NewsSubTypeID = ''
+	)
+	{
+		return $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				SC03_User.SC03_FName,
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT08_PubTypeID', '11')->
+			like('NT01_News.NT01_NewsTitle', $News_Title)->
+			where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
+			where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->
+			get('NT01_News')->result();
+	}
+
+
+
+	//for search where have no update
+	public function get_NT01_News_Search_IsHaveUpdateDate(
+		$News_Title = '',
+		$NewsTypeID = '',
+		$NewsSubTypeID = ''
+	)
+	{
+		return $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				SC03_User.SC03_FName,
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT08_PubTypeID', '11')->
+			like('NT01_News.NT01_NewsTitle', $News_Title)->
+			
+			where('NT01_News.NT01_UpdUserID', null, false)->
+			
+			// where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
+			// where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->
+			
+			
+			
+			get('NT01_News')->result();
+	}
+	
+
+
+	
+	public function get_NT01_News_Search_Title_start($News_Title = '', $start_date = '')
+	{
+		return $this->db_ntt_old->
+			LIMIT('20,0')->
+			select('
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate,
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_NewsSource,
+				NT01_News.NT01_NewsReferance,
+				NT01_News.NT01_UpdUserID,
+				NT01_News.NT01_CreUserID,
+				SC03_User.SC03_FName,
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT08_PubTypeID', '11')->
+			like('NT01_News.NT01_NewsTitle', $News_Title)->
+			get('NT01_News')->result();
+	}
+	
+	/*
+	public function get_NT01_News_filter_dateStart(
+		$old_news_Fillter_title='', 
+		$start_date = ''
+	)
+	{
+			$query_new_New = $this->db->
+				select('
+					News.News_Date,
+					News.News_UpdateDate,
+					News.News_OldID
+				')->
+				get("News")->result();
+				
+			// var_dump($old_news_Fillter_title);
+				
+			// foreach ($old_news_Fillter_title as $old_news_item) {
+				// if($old_news_item->)
+			// }
+			
+			return $old_news_Fillter_title;
+	}
+	*/
+	
+	
+	/*
+	public function get_NT01_News_search_title_start(
+		$News_Title = '',
+		$start_date = ''
+	)
+	{
+			// $query_start_date =
+				
+			$query_date_new = $this->db->
+				select('
+					News.News_Date,
+					News.News_UpdateDate
+				')->
+				get('News')->result();
+			
+			$query_date_old = $this->db_ntt_old->
+				
+				get('NT01_News')->result();
+			
+			
+			$query = $this->db_ntt_old->
+				LIMIT('20,0')->
+				select('
+					NT01_News.NT01_NewsID,
+					NT01_News.NT01_UpdDate,
+					NT01_News.NT01_CreDate,
+					NT01_News.NT01_NewsTitle,
+					NT01_News.NT01_NewsSource,
+					NT01_News.NT01_NewsReferance,
+					NT01_News.NT01_UpdUserID,
+					NT01_News.NT01_CreUserID,
+					SC03_User.SC03_FName,
+					NT10_VDO.NT10_FileStatus,
+					NT11_Picture.NT11_FileStatus,
+					NT12_Voice.NT12_FileStatus,
+					NT13_OtherFile.NT13_FileStatus
+				')->
+				join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
+				join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
+				join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+				join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+				join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+				where('NT08_PubTypeID', '11')->
+				like('NT01_News.NT01_NewsTitle', $News_Title)->
+				get('NT01_News')->result();
+			return $query;
+	}
+	
+	public function get_NT01_News_search_title_start_end($News_Title = '')
 	{
 		return $this->db_ntt_old->
 			LIMIT('20,0')->
@@ -66,6 +250,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			like('NT01_News.NT01_NewsTitle', $News_Title)->
 			get('NT01_News')->result();
 	}
+	*/
 	
 	public function get_NT02_NewsType()
 	{
@@ -221,17 +406,26 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NT01_NewsReferance='',
 		$NT01_NewsTag='',
 		$NewsTypeID='',
-		$NewsSubTypeID=''
+		$NewsSubTypeID='',
+		$News_UpdateID=''
 	)
 	{
+			if(isset($News_UpdateID)){
+				$News_UpdateID_next = 1;
+			}
+			elseif($News_UpdateID>0){
+				$News_UpdateID += 1;
+			}
+			
 			$data = array(
 			   'News_Title' => $NT01_NewsTitle,
 			   'News_Detail' => $NT01_NewsDesc,
 			   'News_Resource' => $NT01_NewsSource,
 			   'News_Reference' => $NT01_NewsReferance,
 			   'News_Tag' => $NT01_NewsTag,
-			   'News_Cate' => $NewsTypeID,
-			   'News_SubCate' => $NewsSubTypeID
+			   'News_OldCateID' => $NewsTypeID,
+			   'News_OldSubCateID' => $NewsSubTypeID,
+			   'News_UpdateID' => $News_UpdateID_next
 			);
 			
 			// var_dump($data);

@@ -1,3 +1,5 @@
+<meta charset="utf-8" />
+
 <script>
 	$(function() {
 		$( ".datepicker" ).datepicker();
