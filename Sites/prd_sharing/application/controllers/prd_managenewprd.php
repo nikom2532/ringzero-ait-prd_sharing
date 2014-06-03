@@ -79,10 +79,16 @@ class PRD_ManageNewPRD extends CI_Controller {
 				}
 				
 				foreach ($old_news_Fillter_title as $old) {
-					echo $old->NT01_UpdDate." = ".$this->input->post('start_date')."<br/>";
-					if($old->NT01_UpdDate < $this->input->post('start_date')){
-						// echo "123456";
-						unset($old);
+					// echo $old->NT01_UpdDate." = ".$this->input->post('start_date')."<br/>";
+					
+					$NT01_UpdDate = strtotime($old->NT01_UpdDate);
+					$start_date = strtotime($this->input->post('start_date'));
+					
+					// echo $NT01_UpdDate." = ".$start_date."<br/>";
+					
+					if($NT01_UpdDate < $start_date){
+						echo "0";
+						$old = "";
 					}
 				}
 				
