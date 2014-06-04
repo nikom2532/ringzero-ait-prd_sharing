@@ -118,12 +118,22 @@
 			<label >อำเภอ</label>
 			<select name="">
 				<option value="">เลือกอำเภอ</option>
+<?php
+					foreach ($CM07_Ampur as $Ampur) {
+						?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
+					}
+?>
 			</select>
 		</div>
 		<div class="col-lg-6">
 			<label >ตำบล</label>
 			<select name="">
 				<option value="">เลือกตำบล</option>
+<?php
+					foreach ($CM08_Tumbon as $Tumbon) {
+						?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+					}
+?>
 			</select>
 		</div>
 	</div>

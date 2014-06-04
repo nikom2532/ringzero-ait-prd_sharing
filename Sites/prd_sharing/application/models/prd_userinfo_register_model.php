@@ -35,5 +35,29 @@ class PRD_UserInfo_Register_model extends CI_Model {
 		
 		return $query_getProvince;
 	}
-	// $this->db->limit($limit, $start);
+	
+	public function get_CM07_Ampur()
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM07_Ampur.CM07_AmpurName,
+				CM07_Ampur.CM07_AmpurID,
+			')->
+			get('CM07_Ampur')->result();
+		
+		return $query_getProvince;
+	}
+	
+	public function get_CM08_Tumbon()
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM08_Tumbon.CM08_TumbonName,
+				CM08_Tumbon.CM08_TumbonID,
+			')->
+			get('CM08_Tumbon')->result();
+		
+		return $query_getProvince;
+	}
+	
 }

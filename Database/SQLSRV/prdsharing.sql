@@ -263,7 +263,7 @@ CREATE TABLE [dbo].[Member](
 	[Mem_Sex] [nvarchar](10) NULL,
 	[Mem_Title] [nvarchar](20) NULL,
 	[Mem_CardID] [int] NULL,
-	[Mem_MiniStry] [nvarchar](20) NULL,
+	[Mem_Ministry] [nvarchar](20) NULL,
 	[Mem_Department] [nvarchar](20) NULL,
 	[Mem_Position] [nvarchar](20) NULL,
 	[Mem_Moblie] [int] NULL,
