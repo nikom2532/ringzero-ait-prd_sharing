@@ -32,9 +32,7 @@
 						}
 					?> />
 					<label for="sex_female" class="txt-radio">ผู้หญิง</label>
-<?php
-					
-?>
+
 				</div>
 			</div>
 			<div class="row">
@@ -88,6 +86,9 @@
 					<input type="text" class="form-control" name="lname" id="lname" placeholder="" value="<?php echo $Member_item->Mem_LasName;?>" />
 				</div>
 			</div>
+<?php
+			/*
+?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ชื่อ (อังกฤษ)</label>
@@ -233,7 +234,9 @@
 					</select>
 				</div>
 			</div>
-		
+<?php
+ */
+ ?>
 			<div class="col-lg-12" style="text-align: center;    float: left;">
 				<input class="bt" type="submit" name="share" value="บันทึก">
 				<input class="bt" type="submit" name="share" value="ยกเลิก">

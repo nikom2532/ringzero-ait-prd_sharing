@@ -92,7 +92,7 @@ class PRD_Manage_User_model extends CI_Model {
 		$Mem_ID = '',
 		$sex = '',
 		$mem_title = '',
-		$tname_other_text = '',
+		// $tname_other_text = '',
 		$fname = '',
 		$lname = '',
 		$engfname = '',
@@ -139,6 +139,9 @@ class PRD_Manage_User_model extends CI_Model {
 			'Group_ID' => $group_member,
 			'Mem_Status' => $mem_status
 		);
+		
+		var_dump($data);
+		
 		$query_setMember = $this->db->
 			where('Member.Mem_ID', $Mem_ID)->
 			update('Member', $data);
