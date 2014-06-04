@@ -136,7 +136,8 @@ a {color: #666;}
     text-align: right;
     width: 30%;
 }
-.col-lg-6 input[type="text"]{
+.col-lg-6 input[type="text"],
+.col-lg-6 input[type="password"]{
     width: 60%;
     float: right;
 }

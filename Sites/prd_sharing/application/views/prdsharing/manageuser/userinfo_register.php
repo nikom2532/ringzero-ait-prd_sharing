@@ -62,15 +62,15 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label >Password</label>
+				<label id="mem_password1" >Password</label>
 				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" />
 			</div>
 			<div class="col-lg-6">
-				<label >Confirm Password</label>
+				<label id="mem_password2" >Confirm Password</label>
 				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
 			</div>
 		</div>
-	
+			
 		<div class="row">
 			<div class="col-lg-6">
 				<label >รหัสบัตรประชาชน</label>
