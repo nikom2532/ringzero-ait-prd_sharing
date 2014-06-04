@@ -12,9 +12,9 @@
 				<label class="label">เพศ</label>
 			</div>
 			<div class="col-right">
-				<input type="radio" name="sex" id="sex_male" value="0" checked="checked">
+				<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" checked="checked">
 				<label for="sex_male" class="txt-radio">ผู้ชาย</label>
-				<input type="radio" name="sex" id="sex_female" value="1">
+				<input type="radio" name="sex" id="sex_female" value="ผู้หญิง">
 				<label for="sex_female" class="txt-radio">ผู้หญิง</label>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 				<label for="tname_girl" class="txt-radio">นางสาว</label>
 				<input type="radio" name="mem_title" value="อื่นๆ" id="tname_other" />
 				<label for="tname_other" class="txt-radio">อื่นๆ</label>
-				<input type="text" class="form-control" name="province" id="tname_other_text" placeholder="" />
+				<input type="text" class="form-control" name="tname_other_text" id="tname_other_text" placeholder="" />
 			</div>
 		</div>
 		<div class="row">
@@ -74,7 +74,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >รหัสบัตรประชาชน</label>
-				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" >
 			</div>
 		</div>
 		<div class="row">

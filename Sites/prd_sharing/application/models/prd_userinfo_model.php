@@ -10,17 +10,27 @@ class PRD_UserInfo_model extends CI_Model {
 	
 	//##################### New Database #########################
 	
-	public function get_Member()
+	public function get_Member($userID)
 	{
 		$query_getUser = $this->db->
 			select('
 				Member.Mem_Username,
 				Member.Mem_Name,
 				Member.Mem_Name,
-				GroupMember.Group_Status,
+				Member.Mem_Sex,
+				Member.Mem_Title,
+				Member.Mem_Name,
+				Member.Mem_LasName,
+				Member.Mem_EngName,
+				Member.Mem_EngLasName,
+				Member.Mem_Username,
+				Member.Mem_CardID,
+				
+				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
 			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
+			where('Member.Mem_ID', $userID)->
 			get('Member');
 			
 		return $query_getUser->result();
@@ -87,16 +97,69 @@ class PRD_UserInfo_model extends CI_Model {
 		return $query_getUser;
 	}
 	
+	public function get_Ministry()
+	{
+		$query = $this->db->
+			get('Ministry');
+			
+		return $query->result();
+	}
+	
+	public function get_Department()
+	{
+		$query = $this->db->
+			get('Department');
+			
+		return $query->result();
+	}
 	
 	public function get_CM06_Province()
 	{
 		$query_getProvince = $this->db_ntt_old->
 			select('
+				CM06_Province.CM06_ProvinceID,
 				CM06_Province.CM06_ProvinceName
 			')->
 			get('CM06_Province')->result();
 		
 		return $query_getProvince;
 	}
-	// $this->db->limit($limit, $start);
+	
+	public function get_CM07_Ampur()
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM07_Ampur.CM07_AmpurName,
+				CM07_Ampur.CM07_AmpurID,
+			')->
+			get('CM07_Ampur')->result();
+		
+		return $query_getProvince;
+	}
+	
+	public function get_CM08_Tumbon()
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM08_Tumbon.CM08_TumbonName,
+				CM08_Tumbon.CM08_TumbonID,
+			')->
+			get('CM08_Tumbon')->result();
+		
+		return $query_getProvince;
+	}
+	
+	public function get_GroupMember()
+	{
+		$query = $this->db->
+			select('
+				GroupMember.Group_ID,
+				GroupMember.Group_Name,
+				GroupMember.Group_Desc
+			')->
+			get('GroupMember')->result();
+		
+		return $query;
+	}
+	
 }
