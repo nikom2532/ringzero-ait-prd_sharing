@@ -86,9 +86,6 @@
 					<input type="text" class="form-control" name="lname" id="lname" placeholder="" value="<?php echo $Member_item->Mem_LasName;?>" />
 				</div>
 			</div>
-<?php
-			/*
-?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ชื่อ (อังกฤษ)</label>
@@ -115,7 +112,9 @@
 					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" >
 				</div>
 			</div>
-		
+<?php
+			/*
+?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
