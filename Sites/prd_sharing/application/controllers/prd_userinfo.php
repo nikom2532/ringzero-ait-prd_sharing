@@ -10,6 +10,7 @@ class PRD_UserInfo extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Manage Users';
+		$data['Mem_ID'] = $this->input->get('userid');
 		
 		$data['SC03_User'] = $this->PRD_UserInfo_model->
 			get_SC03_User($this->input->get('userid'));

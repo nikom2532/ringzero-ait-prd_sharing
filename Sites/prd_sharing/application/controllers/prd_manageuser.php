@@ -61,6 +61,46 @@ class PRD_ManageUser extends CI_Controller {
 			$data['Member'] = $this->prd_manage_user_model->get_Member();
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
 		}
+		elseif($this->input->post('update_member') == "yes"){
+			//For Update member
+			
+			if($this->input->post('mem_title') != "อื่นๆ"){
+				$mem_title = $this->input->post('mem_title');
+			}
+			else{
+				$mem_title = $this->input->post('tname_other_text');
+			}
+			
+			$this->prd_manage_user_model->update_Member(
+				$this->input->post('member_id'),
+				$this->input->post('sex'),
+				$mem_title,
+				$this->input->post('fname'),
+				$this->input->post('lname'),
+				$this->input->post('engfname'),
+				$this->input->post('englname'),
+				$this->input->post('mem_username'),
+				$this->input->post('mem_password1'),
+				$this->input->post('mem_card_id'),
+				$this->input->post('mem_ministry'),
+				$this->input->post('mem_department'),
+				$this->input->post('mem_province'),
+				$this->input->post('mem_ampur'),
+				$this->input->post('mem_tumbon'),
+				$this->input->post('mem_address'),
+				$this->input->post('mem_email'),
+				$this->input->post('mem_postcode'),
+				$this->input->post('mem_nickname'),
+				$this->input->post('mem_tel'),
+				$this->input->post('mem_moble'),
+				$this->input->post('group_member'),
+				$this->input->post('mem_status')
+			);
+			
+			
+			
+			
+		}
 		else{
 			$data['Member'] = $this->prd_manage_user_model->get_Member();
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
