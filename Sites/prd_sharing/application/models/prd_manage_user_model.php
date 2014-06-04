@@ -17,9 +17,10 @@ class PRD_Manage_User_model extends CI_Model {
 				Member.Mem_Username,
 				Member.Mem_Name,
 				Member.Mem_Name,
-				GroupMember.Group_Status
+				GroupMember.Group_Status,
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
+			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
 			get('Member');
 			
 		return $query_getUser->result();
@@ -33,7 +34,20 @@ class PRD_Manage_User_model extends CI_Model {
 	public function get_SC03_User()
 	{
 		$query_getUser = $this->db_ntt_old->
-			where('SC03_Status', "T")->
+			select('
+				SC03_User.SC03_UserId,
+				SC03_User.SC03_UserName,
+				SC03_User.SC03_FName,
+				SC03_User.SC03_LName,
+				SC03_User.SC07_DepartmentId,
+				SC03_User.CM06_ProvinceID,
+				SC03_User.SC03_Status,
+				CM06_Province.CM06_ProvinceName,
+				SC07_Department.SC07_DepartmentName
+			')->
+			where('SC03_User.SC03_Status', "T")->
+			join('CM06_Province', 'CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId', 'left')->
+			join('SC07_Department', 'SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId')->
 			get('SC03_User', 20, 0)->result();
 		
 		return $query_getUser;
@@ -76,6 +90,9 @@ class PRD_Manage_User_model extends CI_Model {
 	public function get_CM06_Province()
 	{
 		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM06_Province.CM06_ProvinceName
+			')->
 			get('CM06_Province')->result();
 		
 		return $query_getProvince;

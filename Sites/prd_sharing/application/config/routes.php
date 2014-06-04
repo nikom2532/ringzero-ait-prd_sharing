@@ -76,6 +76,8 @@ $route['manageNewGROV'] = 'prd_managenewgrov';
 $route['manageNewPRD'] = 'prd_managenewprd';
 $route['reportGOVE'] = 'prd_reportgove';
 $route['userInfo'] = 'prd_userinfo';
+$route['register'] = 'prd_userinfo_register';
+
 
 
 // $route['testdb'] = 'testsite_db2';

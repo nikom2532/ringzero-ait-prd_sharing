@@ -78,7 +78,7 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="userInfo">
+					<a href="userInfo?userid=<?php echo $SC03_User_item->SC03_UserId; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
@@ -92,18 +92,29 @@
 							-
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
-							<?php echo $SC03_User_item->SC07_DepartmentId; ?>
+							<?php echo $SC03_User_item->SC07_DepartmentName; ?>
 						</p>
 						<p class="col-6" style="width: 15%;float: left; ">
-							<?php echo $SC03_User_item->CM06_ProvinceId; ?>
+<?php
+							// foreach ($CM06_Province as $CM06_Province_item) {
+								// if($CM06_Province_item->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceID){
+									// echo $CM06_Province_item->CM06_ProvinceName;
+								// }
+							// }
+							echo $SC03_User_item->CM06_ProvinceName; 
+?>
 						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
 <?php 
 							// foreach ($Member as $Member_item) {
 								// if($Member_item->)
 							// }
-							
-							echo $SC03_User_item->SC03_Status; 
+							if($SC03_User_item->SC03_Status == "T"){
+								echo "เปิดการใช้งาน";
+							}
+							elseif($SC03_User_item->SC03_Status == "F"){
+								echo "ปิดการใช้งาน";
+							}
 ?>
 						</p>
 					</a>
