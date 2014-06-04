@@ -191,23 +191,23 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<label class="label">Email</label>
-						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" >
+						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">รหัสไปรษณีย์</label>
-						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" >
+						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">ชื่อผู้ติดต่อ</label>
-						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" >
+						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์ที่ทำงาน</label>
-						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" >
+						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์มือถือ</label>
-						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" >
+						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" />
 					</div>
 				</div>
 			</div>
@@ -215,7 +215,7 @@
 				<div class="col-lg-6">
 					<label >ระดับผู้ใช้งาน</label>
 					<select name="group_member">
-						<option value="">เลือกสถานะการใช้งาน</option>
+						<option value="-1">เลือกระดับผู้ใช้งาน</option>
 <?php
 						foreach ($GroupMember as $GroupMember_item) {
 							?><option value="<?php echo $GroupMember_item->Group_ID;?>"><?php echo $GroupMember_item->Group_Desc;?></option><?php

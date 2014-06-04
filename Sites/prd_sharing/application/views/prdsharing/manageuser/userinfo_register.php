@@ -104,8 +104,8 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
-				<select name="">
-					<option value="mem_province">เลือกจังหวัด</option>
+				<select name="mem_province">
+					<option value="">เลือกจังหวัด</option>
 <?php
 						foreach ($CM06_Province as $Province) {
 							?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
@@ -147,23 +147,23 @@
 			<div class="col-lg-6">
 				<div class="row">
 					<label class="label">Email</label>
-					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" >
+					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">รหัสไปรษณีย์</label>
-					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" >
+					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">ชื่อผู้ติดต่อ</label>
-					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" >
+					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">เบอร์ที่ทำงาน</label>
-					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" >
+					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">เบอร์มือถือ</label>
-					<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" >
+					<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" />
 				</div>
 			</div>
 		</div>
@@ -191,8 +191,8 @@
 		</div>
 	
 		<div class="col-lg-12" style="text-align: center;    float: left;">
-			<input class="bt" type="submit" name="share" value="บันทึก">
-			<input class="bt" type="submit" name="share" value="ยกเลิก">
+			<input class="bt" type="submit" name="share" value="บันทึก" />
+			<input class="bt" type="button" name="share" value="ยกเลิก" />
 		</div>
 	</form>
 </div><!-- #manage-user -->
