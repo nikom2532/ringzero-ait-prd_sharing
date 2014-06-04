@@ -141,16 +141,16 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<label >ที่อยู่</label>
-			<textarea rows="4" cols="50" class="txt-area"></textarea>
+			<textarea rows="4" cols="50" class="txt-area" name="Mem_Address"></textarea>
 		</div>
 		<div class="col-lg-6">
 			<div class="row">
 				<label class="label">Email</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" name="Mem_Email" id="Mem_Email" placeholder="" >
 			</div>
 			<div class="row">
 				<label class="label">รหัสไปรษณีย์</label>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" name="Mem_Postcode" id="Mem_Postcode" placeholder="" >
 			</div>
 			<div class="row">
 				<label class="label">ชื่อผู้ติดต่อ</label>

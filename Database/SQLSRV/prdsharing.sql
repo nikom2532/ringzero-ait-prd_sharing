@@ -275,6 +275,7 @@ CREATE TABLE [dbo].[Member](
 	[Mem_Postcode] [int] NULL,
 	[Mem_NickName] [nvarchar](20) NULL,
 	[Mem_Tel] [int] NULL,
+	[Mem_Mobile] [int] NULL,
 	[Ampur_ID] [int] NULL,
 	[Group_ID] [int] NULL,
 	[Tumbon_ID] [int] NULL,
