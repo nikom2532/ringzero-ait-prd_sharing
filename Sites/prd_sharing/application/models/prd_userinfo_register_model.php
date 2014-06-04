@@ -60,4 +60,16 @@ class PRD_UserInfo_Register_model extends CI_Model {
 		return $query_getProvince;
 	}
 	
+	public function get_GroupMember()
+	{
+		$query = $this->db->
+			select('
+				GroupMember.Group_ID,
+				GroupMember.Group_Name,
+				GroupMember.Group_Desc
+			')->
+			get('GroupMember')->result();
+		
+		return $query;
+	}
 }

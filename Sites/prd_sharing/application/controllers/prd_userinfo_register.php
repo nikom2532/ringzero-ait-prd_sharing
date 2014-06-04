@@ -15,6 +15,7 @@ class PRD_UserInfo_Register extends CI_Controller {
 		$data['CM06_Province'] = $this->prd_userinfo_register_model->get_CM06_Province();
 		$data['CM07_Ampur'] = $this->prd_userinfo_register_model->get_CM07_Ampur();
 		$data['CM08_Tumbon'] = $this->prd_userinfo_register_model->get_CM08_Tumbon();
+		$data['GroupMember'] = $this->prd_userinfo_register_model->get_GroupMember();
 		
 
 		$this->load->view('prdsharing/templates/header_authen', $data);
