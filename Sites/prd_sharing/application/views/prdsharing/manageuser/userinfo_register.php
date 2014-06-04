@@ -1,6 +1,7 @@
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<form action="manageUser" method="post">
+		<input type="hidden" name="register_new_member" value="yes" />
 		<div class="row">
 			<div class="row" id="gove-title">
 				User Information
@@ -22,15 +23,15 @@
 				<label class="label">คำนำหน้า</label>
 			</div>
 			<div class="col-right">
-				<input type="radio" name="prefix" value="0" id="tname_male" checked="checked" />
+				<input type="radio" name="mem_title" value="นาย" id="tname_male" checked="checked" />
 				<label for="tname_male" class="txt-radio">นาย</label>
-				<input type="radio" name="prefix" value="1" id="tname_female" />
+				<input type="radio" name="mem_title" value="นาง" id="tname_female" />
 				<label for="tname_female" class="txt-radio">นาง</label>
-				<input type="radio" name="prefix" value="2" id="tname_girl" />
+				<input type="radio" name="mem_title" value="นางสาว" id="tname_girl" />
 				<label for="tname_girl" class="txt-radio">นางสาว</label>
-				<input type="radio" name="prefix" value="3" id="tname_other" />
+				<input type="radio" name="mem_title" value="อื่นๆ" id="tname_other" />
 				<label for="tname_other" class="txt-radio">อื่นๆ</label>
-				<input type="text" class="form-control" name="tname_other_text" id="tname_other_text" placeholder="" />
+				<input type="text" class="form-control" name="province" id="tname_other_text" placeholder="" />
 			</div>
 		</div>
 		<div class="row">
@@ -62,24 +63,24 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >Password</label>
-				<input type="text" class="form-control" name="mem_password1" id="mem_password1" placeholder="" />
+				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" />
 			</div>
 			<div class="col-lg-6">
 				<label >Confirm Password</label>
-				<input type="text" class="form-control" name="mem_password1" id="mem_password1" placeholder="" />
+				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
 			</div>
 		</div>
 	
 		<div class="row">
 			<div class="col-lg-6">
 				<label >รหัสบัตรประชาชน</label>
-				<input type="text" class="form-control" name="Mem_CardID" id="Mem_CardID" id="InputKeyword" placeholder="" >
+				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" id="InputKeyword" placeholder="" >
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
-				<select name="">
+				<select name="mem_ministry">
 					<option value="">เลือกประเภทตำแหน่ง</option>
 <?php
 						foreach ($Ministry as $Ministry_item) {
@@ -90,7 +91,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >กรม</label>
-				<select name="">
+				<select name="mem_department">
 					<option value="">เลือกตำแหน่ง</option>
 <?php
 						foreach ($Department as $Department_item) {
@@ -104,7 +105,7 @@
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
 				<select name="">
-					<option value="">เลือกจังหวัด</option>
+					<option value="mem_province">เลือกจังหวัด</option>
 <?php
 						foreach ($CM06_Province as $Province) {
 							?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
@@ -116,7 +117,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >อำเภอ</label>
-				<select name="">
+				<select name="mem_ampur">
 					<option value="">เลือกอำเภอ</option>
 <?php
 						foreach ($CM07_Ampur as $Ampur) {
@@ -127,7 +128,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ตำบล</label>
-				<select name="">
+				<select name="mem_tumbon">
 					<option value="">เลือกตำบล</option>
 <?php
 						foreach ($CM08_Tumbon as $Tumbon) {
@@ -141,35 +142,35 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ที่อยู่</label>
-				<textarea rows="4" cols="50" class="txt-area" name="Mem_Address"></textarea>
+				<textarea rows="4" cols="50" class="txt-area" name="mem_address"></textarea>
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
 					<label class="label">Email</label>
-					<input type="text" class="form-control" name="Mem_Email" id="Mem_Email" placeholder="" >
+					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" >
 				</div>
 				<div class="row">
 					<label class="label">รหัสไปรษณีย์</label>
-					<input type="text" class="form-control" name="Mem_Postcode" id="Mem_Postcode" placeholder="" >
+					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" >
 				</div>
 				<div class="row">
 					<label class="label">ชื่อผู้ติดต่อ</label>
-					<input type="text" class="form-control" name="Mem_NickName" id="Mem_NickName" placeholder="" >
+					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" >
 				</div>
 				<div class="row">
 					<label class="label">เบอร์ที่ทำงาน</label>
-					<input type="text" class="form-control" name="Mem_Tel" id="Mem_Tel" placeholder="" >
+					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" >
 				</div>
 				<div class="row">
 					<label class="label">เบอร์มือถือ</label>
-					<input type="text" class="form-control" name="Mem_Moble" id="Mem_Moble" placeholder="" >
+					<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" >
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ระดับผู้ใช้งาน</label>
-				<select name="">
+				<select name="group_member">
 					<option value="-1">ระดับผู้ใช้งาน</option>
 <?php
 						foreach ($GroupMember as $GroupMember_item) {
@@ -182,7 +183,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะการใช้งาน</label>
-				<select name="Mem_Status">
+				<select name="mem_status">
 					<option value="1">เปิดการใช้งาน</option>
 					<option value="0">ปิดการใช้งาน</option>
 				</select>

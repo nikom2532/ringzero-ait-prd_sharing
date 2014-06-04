@@ -69,7 +69,7 @@
 		
 		// var_dump($SC03_User);
 		
-		foreach ($SC03_User as $SC03_User_item) {
+		foreach ($Member as $Member_item) {
 			
 			if($i % 2 == 1){
 				?><div class="odd"><?php
@@ -78,30 +78,48 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="userInfo?userid=<?php echo $SC03_User_item->SC03_UserId; ?>">
+					<a href="userInfo?userid=<?php echo $Member_item->Mem_ID; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
 						<p class="col-2" style="width: 10%;float: left; ">
-							<?php echo $SC03_User_item->SC03_UserName; ?>
+							<?php echo $Member_item->Mem_Username; ?>
 						</p>
 						<p class="col-3" style="width: 20%;float: left; ">
-							<?php echo $SC03_User_item->SC03_FName.$SC03_User_item->SC03_LName; ?>
+							<?php echo $Member_item->Mem_Name." ".$Member_item->Mem_LasName; ?>
 						</p>
 						<p class="col-4" style="width: 10%;float: left; ">
 							-
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
-							<?php echo $SC03_User_item->SC07_DepartmentName; ?>
+<?php
+							$count=0;
+							foreach ($Department as $Department_item) {
+								if($Department_item->Dep_ID == $Member_item->Mem_Department){
+									echo $Department_item->Dep_Name;
+									$count++;
+								}
+							}
+							if($count==0){
+								echo "-";
+							}
+							// echo $Member_item->Mem_Department; 
+?>
 						</p>
 						<p class="col-6" style="width: 15%;float: left; ">
 <?php
-							// foreach ($CM06_Province as $CM06_Province_item) {
-								// if($CM06_Province_item->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceID){
-									// echo $CM06_Province_item->CM06_ProvinceName;
-								// }
-							// }
-							echo $SC03_User_item->CM06_ProvinceName; 
+							// var_dump($Member_item);
+							$count=0;
+							foreach ($CM06_Province as $CM06_Province_item) {
+								if($CM06_Province_item->CM06_ProvinceID == $Member_item->Prov_ID){
+									echo $CM06_Province_item->CM06_ProvinceName;
+									$count++;
+								}
+							}
+							if($count==0){
+								echo "-";
+							}
+							// echo $Member_item->Prov_ID; 
 ?>
 						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
@@ -109,10 +127,10 @@
 							// foreach ($Member as $Member_item) {
 								// if($Member_item->)
 							// }
-							if($SC03_User_item->SC03_Status == "T"){
+							if($Member_item->Mem_Status == "T"){
 								echo "เปิดการใช้งาน";
 							}
-							elseif($SC03_User_item->SC03_Status == "F"){
+							elseif($Member_item->Mem_Status == "F"){
 								echo "ปิดการใช้งาน";
 							}
 ?>
