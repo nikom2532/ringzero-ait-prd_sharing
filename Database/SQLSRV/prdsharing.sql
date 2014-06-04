@@ -255,7 +255,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Member](
-	[Mem_ID] [int] NOT NULL,
+	[Mem_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Mem_Name] [nvarchar](20) NULL,
 	[Mem_LasName] [nvarchar](20) NULL,
 	[Mem_EngName] [nvarchar](20) NULL,
@@ -280,6 +280,7 @@ CREATE TABLE [dbo].[Member](
 	[Group_ID] [int] NULL,
 	[Tumbon_ID] [int] NULL,
 	[Prov_ID] [int] NULL,
+	[Mem_OldID] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Mem_ID] ASC
@@ -330,7 +331,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Department](
 	[Dep_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Dep_Name] [nvarchar](20) NULL,
+	[Dep_Name] [nvarchar](200) NULL,
 	[Dep_Desc] [nvarchar](500),
 	[Dep_Status] [int] NULL,
 	[Ministry_ID] [int] NULL,
