@@ -34,6 +34,7 @@
 					<label >กรม</label>
 					<select name="Dep_ID">
 	<?php
+						// var_dump($Department);
 						foreach ($Department as $Department_item) {
 							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
 						}
@@ -45,12 +46,12 @@
 				<div class="col-lg-6">
 					<label >นโยบายรัฐบาล</label>
 					<select name="NT05_PolicyID">
-	<?php
+						<option value="">เลือกนโยบาย</option>
+<?php
 						foreach ($NT05_Policy as $NT05_Policy_item) {
 							?><option value="<?php echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;?></option><?php
 						}
-	?>
-						<option value="">เลือกนโยบาย</option>
+?>
 					</select>
 				</div>
 	
@@ -59,36 +60,46 @@
 				<div class="col-lg-6">
 					<label >กลุ่มเป้าหมาย</label>
 					<select name="Tar_ID" id="Tar_ID">
-	<?php
+						<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
+<?php
 						$i=1;
 						foreach ($TargetGroup as $TargetGroup_item) {
 							?><option id="target<?php echo $i; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
 							$i++;
 						}
-	?>
-						<option value="" selected="selected">เลือกกลุ่มเป้าหมาย</option>
+?>
 					</select>
 				</div>
 			</div>
 	
-	<script>
-		// $("select#Tar_ID").text("asdf");
-		
-		
-		$("select#Tar_ID").change(function() {
-			$( "select#Tar_ID option#target1:selected" ).each(function() {
-				$(".grov_active_col").css("display", "active");
-				$(".prd_active_col").css("display", "active");
-			});
+			<style>
+				.grov_active_col.row,
+				.prd_active_col.row{
+					display:none;
+				}
+			</style>
+			<script>
+				// $("select#Tar_ID").text("asdf");
+				
+				$("select#Tar_ID").change(function() {
+					$( "select#Tar_ID option#target1:selected" ).each(function() {
+						$(".grov_active_col").css("display", "BLOCK");
+						$(".prd_active_col").css("display", "BLOCK");
+					});
+					
+					$( "select#Tar_ID option#target2:selected" ).each(function() {
+						$(".grov_active_col").css("display", "none");
+						$(".prd_active_col").css("display", "BLOCK");
+					});
+					
+					$( "select#Tar_ID option#target0:selected" ).each(function() {
+						$(".grov_active_col").css("display", "none");
+						$(".prd_active_col").css("display", "none");
+					});
+				});
+			</script>
 			
-			$( "select#Tar_ID option#target2:selected" ).each(function() {
-				$(".grov_active_col").css("display", "none");
-				$(".prd_active_col").css("display", "active");
-			});
-		});
-	</script>
-	
-	
+			
 			<div class="row grov_active_col" >
 				<div class="col-lg-6">
 					<label id="grov_active" >หน่วยงานภาครัฐ</label>
