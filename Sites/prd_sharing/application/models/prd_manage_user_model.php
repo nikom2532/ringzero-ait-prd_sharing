@@ -10,27 +10,6 @@ class PRD_Manage_User_model extends CI_Model {
 	
 	//##################### New Database #########################
 	
-	public function get_Member()
-	{
-		$query_getUser = $this->db->
-			select('
-				Member.Mem_ID,
-				Member.Mem_Username,
-				Member.Mem_Name,
-				Member.Mem_LasName,
-				Member.Mem_Department,
-				Member.Prov_ID,
-				Member.Mem_Status,
-				GroupMember.Group_Status,
-			')->
-			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
-			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
-			get('Member');
-			
-		return $query_getUser->result();
-	}
-	
-	
 	public function set_Member(
 		$sex = '',
 		$mem_title = '',
@@ -140,8 +119,6 @@ class PRD_Manage_User_model extends CI_Model {
 			'Mem_Status' => $mem_status
 		);
 		
-		var_dump($data);
-		
 		$query_setMember = $this->db->
 			where('Member.Mem_ID', $Mem_ID)->
 			update('Member', $data);
@@ -149,6 +126,94 @@ class PRD_Manage_User_model extends CI_Model {
 		return $query_setMember;
 	}
 	
+	
+	public function get_Member()
+	{
+		$query_getUser = $this->db->
+			select('
+				Member.Mem_ID,
+				Member.Mem_Username,
+				Member.Mem_Name,
+				Member.Mem_LasName,
+				Member.Mem_Department,
+				Member.Prov_ID,
+				Member.Mem_Status,
+				GroupMember.Group_Status,
+			')->
+			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
+			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
+			get('Member');
+			
+		return $query_getUser->result();
+	}
+	
+	public function get_Member_search(
+		$search_key = '',
+		$mem_status = '',
+		$CM06_ProvinceID = ''
+	)
+	{
+		// echo $mem_status;
+		/*
+		$query_getMember = $this->db->
+			select('
+				Member.Mem_ID,
+				Member.Mem_Username,
+				Member.Mem_Name,
+				Member.Mem_LasName,
+				Member.Mem_Department,
+				Member.Prov_ID,
+				Member.Mem_Status,
+				GroupMember.Group_Status-,
+			')->
+			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
+			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
+			// like('Member.Mem_Username', $search_key)->
+			// or_like('Member.SC03_FName', $search_key)->
+			// or_like('Member.SC03_LName', $search_key)->
+			
+			where("
+				(Member.Mem_Username LIKE '%".$search_key."%') 
+				OR
+				(Member.Mem_Name LIKE '%".$search_key."%')
+				OR
+				(Member.Mem_LasName LIKE '%".$search_key."%')
+			")->
+			where('Member.Mem_Status', $mem_status)->
+			get('Member');
+			
+		return $query_getUser->result();
+		*/
+		
+		$str_getMember2 = "
+			SELECT 
+				Member.Mem_ID, 
+				Member.Mem_Username, 
+				Member.Mem_Name, 
+				Member.Mem_LasName, 
+				Member.Mem_Department, 
+				Member.Prov_ID, 
+				Member.Mem_Status, 
+				GroupMember.Group_Status 
+			FROM Member 
+			LEFT JOIN GroupMember 
+				ON GroupMember.Group_ID = Member.Group_ID 
+			WHERE 
+			(
+				(Member.Mem_Username LIKE '%".$search_key."%') 
+				OR 
+				(Member.Mem_Name LIKE '%".$search_key."%') 
+				OR 
+				(Member.Mem_LasName LIKE '%".$search_key."%')
+			)
+			AND Member.Mem_Status = '".$mem_status."'
+			AND Member.Prov_ID = '".$CM06_ProvinceID."'
+		";
+		
+		$query_getMember2 = $this->db->query($str_getMember2);
+		
+		return $query_getMember2->result();
+	}
 	
 	//##################### Old Database #########################
 	

@@ -112,9 +112,6 @@
 					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" >
 				</div>
 			</div>
-<?php
-			/*
-?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
@@ -161,7 +158,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >อำเภอ</label>
-					<select name="เลือกอำเภอ">
+					<select name="mem_ampur">
 						<option value="">เลือกอำเภอ</option>
 <?php
 						foreach ($CM07_Ampur as $Ampur) {
@@ -182,7 +179,9 @@
 					</select>
 				</div>
 			</div>
-		
+<?php
+			//*
+?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ที่อยู่</label>
@@ -234,8 +233,8 @@
 				</div>
 			</div>
 <?php
- */
- ?>
+			//*/
+?>
 			<div class="col-lg-12" style="text-align: center;    float: left;">
 				<input class="bt" type="submit" name="share" value="บันทึก">
 				<input class="bt" type="submit" name="share" value="ยกเลิก">

@@ -4,21 +4,37 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-				<input class="txt-field" type="text" value="" name="search_key"  placeholder="" style=" margin-left: 15px;width: 77%;">
+				<input class="txt-field" type="text" value="" name="search_key" value="<?php
+					if(isset($post_search_key)){
+						echo $post_search_key;
+					}
+				?>" placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะ</label>
-				<select style="" name="sc03_status">
-					<option value="T">ใช้งาน</option>
-					<option value="F">ไม่ใช้งาน</option>
+				<select style="" name="mem_status">
+					<option value="1" <?php
+						if(isset($post_search_key)){
+							if($post_search_key == "1"){
+								?>selected='selected'<?php
+							}
+						}
+					?>>ใช้งาน</option>
+					<option value="0" <?php
+						if(isset($post_search_key)){
+							if($post_search_key == "0"){
+								?>selected='selected'<?php
+							}
+						}
+					?>>ไม่ใช้งาน</option>
 				</select>
 			</div>
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
-				<select name="cm06_province_id" style="">
+				<select name="province_id" style="">
 <?php
 					foreach ($CM06_Province as $CM06_Province_item) {
 						?><option value="<?php echo $CM06_Province_item->CM06_ProvinceID; ?>"><?php echo $CM06_Province_item->CM06_ProvinceName; ?></option><?php
@@ -127,10 +143,10 @@
 							// foreach ($Member as $Member_item) {
 								// if($Member_item->)
 							// }
-							if($Member_item->Mem_Status == "T"){
+							if($Member_item->Mem_Status == "1"){
 								echo "เปิดการใช้งาน";
 							}
-							elseif($Member_item->Mem_Status == "F"){
+							elseif($Member_item->Mem_Status == "0"){
 								echo "ปิดการใช้งาน";
 							}
 ?>

@@ -9,7 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../favicon.ico"> 
+    <link rel="shortcut icon" href="../favicon.ico">
+    
+	<script src="js/jqueryui/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" href="css/jqueryui/jquery-ui-1.10.4.custom.min.css">
+	<script src="js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script> 
 
     <link href="css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="css/style.css" rel="stylesheet" charset="utf-8">

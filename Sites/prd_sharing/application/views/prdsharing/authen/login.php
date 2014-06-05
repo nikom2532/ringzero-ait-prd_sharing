@@ -17,7 +17,7 @@
                         </ul> 
                     <div style="border-top: 1px dotted #000; margin-top: 20px; padding-top: 20px;text-align: center;">
                         <input class="bt" type="submit" value="Login" name="submit" style="width:10%;padding: 4px;">
-                        <input class="bt" type="submit" value="Register" name="submit" style="width:10%;padding: 4px;">
+                        <input class="bt" type="button" value="Register" name="register" id="register" style="width:10%;padding: 4px;">
                     </div>
                     </div>
                 </div>
@@ -27,8 +27,12 @@
                     <input class="bt" type="submit" value="Register" name="submit" style="width:10%;padding: 4px;">
                 </div>-->
             </form>
-
         </div>
+        <script>
+        	$("#register").click(function(){
+        		document.location.href = "register";
+        	});
+        </script>
     </div>
 </body>
 </html>

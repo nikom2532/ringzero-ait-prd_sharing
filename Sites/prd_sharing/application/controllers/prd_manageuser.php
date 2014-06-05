@@ -14,16 +14,16 @@ class PRD_ManageUser extends CI_Controller {
 		$data['CM06_Province'] = $this->prd_manage_user_model->get_CM06_Province();
 		$data['Department'] = $this->prd_manage_user_model->get_Department();
 		
-		if($this->input->post('manage_user_is_search') == "yes"){
-			
-			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User_search(
-				$this->input->post('search_key'),
-				$this->input->post('sc03_status'),
-				$this->input->post('cm06_province_id')
-			);
-			// $search_key
-		}
-		elseif($this->input->post('register_new_member') == "yes"){
+		// if($this->input->post('manage_user_is_search') == "yes"){
+// 			
+			// $data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User_search(
+				// $this->input->post('search_key'),
+				// $this->input->post('sc03_status'),
+				// $this->input->post('cm06_province_id')
+			// );
+			// // $search_key
+		// }
+		/*else*/if($this->input->post('register_new_member') == "yes"){
 			//For register a new Member
 			
 			if($this->input->post('mem_title') != "อื่นๆ"){
@@ -58,8 +58,6 @@ class PRD_ManageUser extends CI_Controller {
 				$this->input->post('mem_status')
 			);
 			
-			$data['Member'] = $this->prd_manage_user_model->get_Member();
-			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
 		}
 		elseif($this->input->post('update_member') == "yes"){
 			//For Update member
@@ -97,14 +95,24 @@ class PRD_ManageUser extends CI_Controller {
 				$this->input->post('mem_status')
 			);
 			
-			
-			
-			
+		}
+		
+		if($this->input->post('manage_user_is_search') == "yes"){
+			$data['Member'] = $this->prd_manage_user_model->
+				get_Member_search(
+					$this->input->post('search_key'),
+					$this->input->post('mem_status'),
+					$this->input->post('province_id')
+				);
+			$data['post_search_key'] = $this->input->post('search_key');
+			$data['post_mem_status'] = $this->input->post('mem_status');
+			$data['post_province_id'] = $this->input->post('province_id');
 		}
 		else{
 			$data['Member'] = $this->prd_manage_user_model->get_Member();
 			$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
 		}
+		
 		
 		$this->load->view('prdsharing/templates/header', $data);
 		$this->load->view('prdsharing/manageuser/manageuser', $data);
