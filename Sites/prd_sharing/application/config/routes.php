@@ -41,14 +41,10 @@
 //$route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
-
-//$route['default_controller'] = 'pages/view';
-//$route['(:any)'] = 'pages/view/$1';
-
-
-// $route['news/(:any)'] = 'news/view/$1';
-// $route['news'] = 'news';
-// $route['news/create'] = 'news/create';
+$route['default_controller'] = 'prd_authen';
+$route['(:any)'] = 'prd_authen';
+$route['index'] = 'prd_authen';
+$route['authen_proc'] = 'prd_authen/authen';
 
 
 $route['homePRD'] = 'prd_homeprd';
@@ -85,8 +81,6 @@ $route['register'] = 'prd_userinfo_register';
 
 
 
-$route['default_controller'] = 'prd_authen';
-// $route['(:any)'] = 'prd_authen';
 
 
 /* End of file routes.php */

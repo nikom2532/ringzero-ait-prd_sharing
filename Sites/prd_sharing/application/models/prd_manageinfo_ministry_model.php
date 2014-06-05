@@ -58,7 +58,7 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 			'Minis_Status' => $Minis_Status
 		);
 		
-		var_dump($data);
+		// var_dump($data);
 		
 		$query = $this->db->
 			insert('Ministry', $data);
