@@ -53,7 +53,8 @@
                 </div>
                 <div class="menu">
                     <ul> 
-                        <li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="homePRD">Home</a><?php
+                        	/*
                         	if(!($title == "Home")){
                         		?><a href="homePRD"><?php
                         	}
@@ -61,8 +62,11 @@
                         	if(!($title == "Home PRD")){
                         			?></a><?php
                         	}
+							*/
+							
                         ?></li>
-                        <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="sentNew">Send News</a><?php
+							/*
                         	if(!($title == "Sent News")){
                         		?><a href="sentNew"><?php
                         	}
@@ -70,8 +74,10 @@
                     		if(!($title == "Sent News")){
                         		?></a><?php
 							}
+							*/
                         ?></li>
-                        <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="rss">Rss Feed</a><?php
+                        	/*
                         	if(!($title == "RSS Feed")){
                         		?><a href="rss"><?php
 							}
@@ -79,8 +85,9 @@
                         	if(!($title == "RSS Feed")){
                         		?></a><?php
 							}
+							*/
                         ?></li>
-                        <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageNewPRD">Manage News</a><?php
 							if(!($title == "Manage News")){
                         		?><a href="manageNewPRD"><?php
 							}
@@ -89,7 +96,7 @@
                         		?></a><?php
 							}
                         ?></li>
-                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageUser">Manage User</a><?php
                         	if(!($title == "Manage Users")){
 	                        	?><a href="manageUser"><?php
 							}
@@ -99,7 +106,7 @@
 							}
                         ?></li>
                         
-                        <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageInfo_Category">Manage Info</a><?php
                         	if(!($title == "Manage Info")){
                         		?><a href="manageInfo_Category"><?php
 							}
@@ -108,7 +115,7 @@
                         		?></a><?php
 							}
                         ?></li>
-                        <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><?php
+                        <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="reportPRD">Report</a><?php
                         	if(!($title == "Report")){
                         		?><a href="reportPRD"><?php
 							}
