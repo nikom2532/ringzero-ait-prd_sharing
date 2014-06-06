@@ -1,6 +1,10 @@
 <script>
 	$(function() {
-		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+		$( ".datepicker" ).datepicker({
+			changeMonth: true,
+            changeYear: true,
+			dateFormat: 'yy-mm-dd' 
+		}).val();
 	});
 </script>
 <div id="search-form">

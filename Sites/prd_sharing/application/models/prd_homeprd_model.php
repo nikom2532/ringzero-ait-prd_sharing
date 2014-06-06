@@ -114,10 +114,9 @@ class PRD_HomePRD_model extends CI_Model {
 	}
 	public function get_NT01_News_search_title_start($news_title, $start)
 	{
+		/*
 		return $this->db_ntt_old->
 			Limit(20, 0)->
-			like('News_Title', $news_title)->
-			where("News_Date >=", $start)->
 			select('
 				NT01_News.NT01_NewsID,
 				NT01_News.NT01_UpdDate, 
@@ -136,10 +135,50 @@ class PRD_HomePRD_model extends CI_Model {
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT08_PubTypeID', '11')->
+			like('News_Title', $news_title)->
+			where("News_Date >=", $start)->
 			get('NT01_News')->result();
+		*/
+		
+		$StrQuery = "
+			SELECT 
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate, 
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
+			FROM NT01_News 
+			LEFT JOIN SC03_User
+				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+			LEFT JOIN NT10_VDO
+				ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
+			LEFT JOIN NT11_Picture
+				ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
+			LEFT JOIN NT12_Voice
+				ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
+			LEFT JOIN NT13_OtherFile
+				ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
+			WHERE 
+				NT08_PubTypeID = '11'
+			AND
+				NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+			AND
+				NT01_NewsDate > Convert(datetime, '".$start."')
+		";
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		return $query;
 	}
 	public function get_NT01_News_search_title_start_end($news_title, $start, $end)
 	{
+		/*
 		return $this->db_ntt_old->
 			Limit(20, 0)->
 			like('News_Title', $news_title)->
@@ -164,6 +203,52 @@ class PRD_HomePRD_model extends CI_Model {
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT08_PubTypeID', '11')->
 			get('NT01_News')->result();
+		*/
+		
+		$StrQuery = "
+			SELECT 
+				NT01_News.NT01_NewsID,
+				NT01_News.NT01_UpdDate, 
+				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsTitle,
+				NT01_News.NT01_ViewCount,
+				SC03_User.SC03_FName, 
+				NT10_VDO.NT10_FileStatus,
+				NT11_Picture.NT11_FileStatus,
+				NT12_Voice.NT12_FileStatus,
+				NT13_OtherFile.NT13_FileStatus
+			FROM NT01_News 
+			LEFT JOIN SC03_User
+				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+			LEFT JOIN NT10_VDO
+				ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
+			LEFT JOIN NT11_Picture
+				ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
+			LEFT JOIN NT12_Voice
+				ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
+			LEFT JOIN NT13_OtherFile
+				ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
+			WHERE 
+				NT08_PubTypeID = '11'
+			AND
+				NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+			AND
+				NT01_NewsDate 
+					BETWEEN 
+						Convert(datetime, '".$start."') 
+						AND
+						Convert(datetime, '".$end."')
+		";
+		
+		// like('News_Title', $news_title)->
+		// where("News_Date >=", $start)->
+		// where("News_Date <=", $end)->
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		return $query;
+		
 	}
 	
 	
