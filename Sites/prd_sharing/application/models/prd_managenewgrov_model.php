@@ -51,18 +51,86 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	}
 	public function get_grov_search_title_start($news_title, $start)
 	{
-		return $this->db->
+		/*
+		$query = $this->db->
 			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			get('SendInformation')->result();
+		*/
+			
+			// SendIn_CreateDate
+			// SendIn_UpdateDate
+			
+		$StrQuery = "
+			SELECT 
+				SendInformation.SendIn_ID,
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status
+			FROM SendInformation 
+			LEFT JOIN FileAttach
+				ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+			WHERE 
+				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+			And
+				Convert(datetime, '".$start."') <
+								CASE WHEN SendIn_UpdateDate IS NULL  
+									THEN 
+										 SendIn_CreateDate
+									ELSE
+										SendIn_UpdateDate
+								END
+		";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		
+		return $query;
 	}
 	public function get_grov_search_title_start_end($news_title, $start, $end)
 	{
-		return $this->db->
+		/*
+		$query = $this->db->
 			like('SendIn_Issue', $news_title)->
 			where("News_Date >=", $start)->
 			where("News_Date <=", $end)->
 			get('SendInformation')->result();
+			
+		return $query;
+		*/
+		
+		$StrQuery = "
+			SELECT 
+				SendInformation.SendIn_ID,
+				SendInformation.SendIn_UpdateDate,
+				SendInformation.SendIn_CreateDate,
+				SendInformation.SendIn_Issue,
+				SendInformation.SendIn_view,
+				FileAttach.File_Status
+			FROM SendInformation 
+			LEFT JOIN FileAttach
+				ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+			WHERE 
+				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+			And
+				CASE WHEN SendIn_UpdateDate IS NOT NULL  
+					THEN 
+						SendIn_UpdateDate 
+					ELSE
+						SendIn_CreateDate
+				END
+							BETWEEN 
+								Convert(datetime, '".$start."') 
+								AND
+								Convert(datetime, '".$end."')
+		;";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		
+		return $query;
 	}
 	
 	public function get_grov_record_count()
