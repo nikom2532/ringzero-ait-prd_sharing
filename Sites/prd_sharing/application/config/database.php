@@ -100,7 +100,8 @@ $db['nnt_data_center_old']['stricton'] = FALSE;
 
 //##################
 
-$db['nnt_data_center_pooh']['hostname'] = '111.223.32.9:1433';
+// $db['nnt_data_center_pooh']['hostname'] = '111.223.32.9:1433';
+$db['nnt_data_center_pooh']['hostname'] = '111.223.32.9';
 $db['nnt_data_center_pooh']['username'] = 'dbuser_km';
 $db['nnt_data_center_pooh']['password'] = '123456';
 $db['nnt_data_center_pooh']['database'] = 'NNT_DataCenter';

@@ -49,7 +49,7 @@ $route['authen_proc'] = 'prd_authen/authen';
 
 $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';
-$route['sentNew_Upload'] = 'prd_sentNew/do_upload';
+$route['sentNew_Upload'] = 'prd_sentNew/sentnew_process';
 
 $route['rss'] = 'prd_rss';
 $route['manageNew'] = 'prd_managenew';

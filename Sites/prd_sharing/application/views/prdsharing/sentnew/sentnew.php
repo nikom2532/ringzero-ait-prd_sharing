@@ -4,7 +4,7 @@
 	}); 
 </script>
 
-<form name="form_sendnew" action="manageNewGROV" method="post" enctype="multipart/form-data">
+<form name="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">
@@ -106,6 +106,11 @@
 					<label id="grov_active" >หน่วยงานภาครัฐ</label>
 					<select name="grov_active" id="grov_active">
 						<option value="">เลือกเผยแพร่</option>
+<?php
+						foreach ($SC07_Department as $Department_item) {
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+						}
+?>
 					</select>
 				</div>
 			</div>
@@ -115,6 +120,11 @@
 					<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
 					<select name="prd_active" id="prd_active">
 						<option value="">เลือกเผยแพร่</option>
+<?php
+						foreach ($Ministry as $Ministry_item) {
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						}
+?>
 					</select>
 				</div>
 			</div>
@@ -231,9 +241,9 @@
 		*/
 	</script>
 	<div class="row">
-		<div class="col-lg-12" style="text-align: center;    float: left;">
+		<div class="col-lg-12" style="text-align: center; float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก">
-			<input class="bt" type="submit" name="share" value="ยกเลิก">
+			<input class="bt" type="button" name="share" value="ยกเลิก" onclick="document.location.href = 'manageNewGROV'">
 		</div>
 	</div>
 

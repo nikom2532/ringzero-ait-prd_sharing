@@ -5,17 +5,20 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
 	//#########  Database New  ##########
 	public function get_ministry()
 	{
-		return $this->db->where('Minis_Status', '1')->
+		return $this->db->
+			where('Minis_Status', '1')->
 			get('Ministry')->result();
 	}
 	public function get_department()
 	{
-		return $this->db->where('Dep_Status', '1')->
+		return $this->db->
+			where('Dep_Status', '1')->
 			get('Department')->result();
 	}
 	
@@ -39,7 +42,22 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			where('SendInformation.SendIn_ID', $SendIn_ID)->
 			get('SendInformation')->result();
 	}
-	//##########################
 	
-	// $this->db->limit($limit, $start);
+	public function get_TargetGroup()
+	{
+		$query = $this->db->
+			get('TargetGroup');
+			
+		return $query->result();
+	}
+	
+	public function get_SC07_Department()
+	{
+		$query = $this->db_ntt_old->
+			get('SC07_Department');
+			
+		return $query->result();
+	}
+	
+	
 }

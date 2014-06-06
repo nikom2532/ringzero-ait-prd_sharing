@@ -55,8 +55,72 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กลุ่มเป้าหมาย</label>
-				<select name="">
-					<option value="">เลือกกลุ่มเป้าหมาย</option>
+				<select name="Tar_ID" id="Tar_ID">
+					<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
+<?php
+					$i=1;
+					foreach ($TargetGroup as $TargetGroup_item) {
+						?><option id="target<?php echo $i; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
+						$i++;
+					}
+?>
+				</select>
+			</div>
+		</div>
+		
+		<?php // For toggle กลุ่มเป้าหมาย  ?>
+		<style>
+			.grov_active_col.row,
+			.prd_active_col.row{
+				display:none;
+			}
+		</style>
+		<script>
+			// $("select#Tar_ID").text("asdf");
+			
+			$("select#Tar_ID").change(function() {
+				$( "select#Tar_ID option#target1:selected" ).each(function() {
+					$(".grov_active_col").css("display", "BLOCK");
+					$(".prd_active_col").css("display", "BLOCK");
+				});
+				
+				$( "select#Tar_ID option#target2:selected" ).each(function() {
+					$(".grov_active_col").css("display", "none");
+					$(".prd_active_col").css("display", "BLOCK");
+				});
+				
+				$( "select#Tar_ID option#target0:selected" ).each(function() {
+					$(".grov_active_col").css("display", "none");
+					$(".prd_active_col").css("display", "none");
+				});
+			});
+		</script>
+		
+		
+		<div class="row grov_active_col" >
+			<div class="col-lg-6">
+				<label id="grov_active" >หน่วยงานภาครัฐ</label>
+				<select name="grov_active" id="grov_active">
+					<option value="">เลือกเผยแพร่</option>
+<?php
+					foreach ($SC07_Department as $Department_item) {
+						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+					}
+?>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row prd_active_col" >
+			<div class="col-lg-6">
+				<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
+				<select name="prd_active" id="prd_active">
+					<option value="">เลือกเผยแพร่</option>
+<?php
+					foreach ($Ministry as $Ministry_item) {
+						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+					}
+?>
 				</select>
 			</div>
 		</div>

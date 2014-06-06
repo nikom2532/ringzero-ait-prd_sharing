@@ -11,6 +11,7 @@ class PRD_SentNew_model extends CI_Model {
 	public function get_Ministry()
 	{
 		$query = $this->db->
+			where('Minis_Status', '1')->
 			get('Ministry');
 			
 		return $query->result();
@@ -19,6 +20,7 @@ class PRD_SentNew_model extends CI_Model {
 	public function get_Department()
 	{
 		$query = $this->db->
+			where('Dep_Status', '1')->
 			get('Department');
 			
 		return $query->result();
@@ -40,8 +42,38 @@ class PRD_SentNew_model extends CI_Model {
 		return $query->result();
 	}
 	
-	public function get_($value='')
+	public function get_SC07_Department()
 	{
-		
+		$query = $this->db_ntt_old->
+			get('SC07_Department');
+			
+		return $query->result();
+	}
+	
+	public function set_sentnew(
+		$create_date,
+		$Minis_ID,
+		$Dep_ID,
+		$NT05_PolicyID,
+		$Tar_ID,
+		$grov_active,
+		$prd_active,
+		$SendIn_Plan,
+		$SendIn_Issue,
+		$SendIn_Detail
+	)
+	{
+			$data = array(
+				'SendIn_CreateDate' => $create_date, 	
+				'Ministry_ID' => $Minis_ID,
+				'Dep_ID' => $Dep_ID,
+				'Policy_ID' => $NT05_PolicyID,
+				'SendIn_Plan' => $SendIn_Plan,
+				'SendIn_Issue' => $SendIn_Issue,
+				'SendIn_Detail' => $SendIn_Detail
+			);
+			
+			return $this->db->
+				insert("SendInformation", $data);
 	}
 }
