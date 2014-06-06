@@ -88,6 +88,7 @@
 							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageNewPRD">Manage News</a><?php
+                        	/*
 							if(!($title == "Manage News")){
                         		?><a href="manageNewPRD"><?php
 							}
@@ -95,8 +96,10 @@
                         	if(!($title == "Manage News")){
                         		?></a><?php
 							}
+							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageUser">Manage User</a><?php
+                        	/*
                         	if(!($title == "Manage Users")){
 	                        	?><a href="manageUser"><?php
 							}
@@ -104,9 +107,11 @@
 	                        if(!($title == "Manage Users")){
 	                        	?></a><?php
 							}
+							*/
                         ?></li>
                         
                         <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageInfo_Category">Manage Info</a><?php
+                        	/*
                         	if(!($title == "Manage Info")){
                         		?><a href="manageInfo_Category"><?php
 							}
@@ -114,8 +119,10 @@
                     		if(!($title == "Manage Info")){
                         		?></a><?php
 							}
+							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="reportPRD">Report</a><?php
+                        	/*
                         	if(!($title == "Report")){
                         		?><a href="reportPRD"><?php
 							}
@@ -123,6 +130,7 @@
                     		if(!($title == "Report")){
                     			?></a><?php
 							}
+							*/
                     	?></li>
                     </ul>
                 </div>
