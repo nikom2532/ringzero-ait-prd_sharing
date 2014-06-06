@@ -16,7 +16,8 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	public function get_NT01_News()
 	{
-		//Test		
+		//Test
+		/*
 		$serverName = "111.223.32.9";
 		$connectionInfo = array( "Database"=>"NNT_DataCenter", "UID"=>"dbuser_km", "PWD"=>"123456");
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
@@ -37,7 +38,7 @@ class PRD_HomePRD_model extends CI_Model {
 			print_r(sqlsrv_errors());
 			echo "</pre>";
 		}
-		
+		*/
 		//####################################
 		
 		
