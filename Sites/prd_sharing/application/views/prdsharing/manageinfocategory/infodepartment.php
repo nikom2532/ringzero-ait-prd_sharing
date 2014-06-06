@@ -45,8 +45,8 @@
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>
 								<select class="select-opt" name="dep_status">
-									<option value="1" <?php if($department_item->Dep_Status == "1"){ ?>selected='selected'<?php } ?>>1</option>
-									<option value="0" <?php if($department_item->Dep_Status == "0"){ ?>selected='selected'<?php } ?>>2</option>
+									<option value="1" <?php if($department_item->Dep_Status == "1"){ ?>selected='selected'<?php } ?>>ใช้งานได้</option>
+									<option value="0" <?php if($department_item->Dep_Status == "0"){ ?>selected='selected'<?php } ?>>ใช้งานไม่ได้</option>
 								</select>
 							</div>
 						</div>
