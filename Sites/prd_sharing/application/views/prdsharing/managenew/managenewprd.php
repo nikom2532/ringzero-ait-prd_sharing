@@ -1,8 +1,32 @@
 <meta charset="utf-8" />
 
 <script>
+	/*
 	$(function() {
 		$( ".datepicker" ).datepicker();
+	});
+	*/
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
 	});
 </script>
 <div id="search-form">
@@ -21,7 +45,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >วันที่</label>
-				<input type="text" class="form-control datepicker" name="start_date" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control datepicker fromdate" name="start_date" id="fromdate" placeholder="" value="<?php 
 					if(isset($post_start_date)){
 						echo $post_start_date;
 					}
@@ -29,7 +53,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ถึง</label>
-				<input type="text" class="form-control datepicker" name="end_date" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control datepicker todate" name="end_date" id="todate" placeholder="" value="<?php 
 					if(isset($post_end_date)){
 						echo $post_end_date;
 					}

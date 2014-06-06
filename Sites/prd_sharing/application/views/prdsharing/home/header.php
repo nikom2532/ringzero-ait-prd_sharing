@@ -1,4 +1,5 @@
 <script>
+	/*
 	$(function() {
 		$( ".datepicker" ).datepicker({
 			changeMonth: true,
@@ -6,6 +7,32 @@
 			dateFormat: 'yy-mm-dd' 
 		}).val();
 	});
+	*/
+	
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
+	
+	
 </script>
 <div id="search-form">
 
@@ -28,7 +55,7 @@
 					<label >วันที่</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control datepicker" name="start_date"  placeholder="" value="<?php 
+					<input type="text" class="form-control datepicker fromdate" name="start_date" placeholder="" readonly="true" value="<?php 
 						if(isset($post_start_date)){
 							echo $post_start_date;
 						}
@@ -40,7 +67,7 @@
 					<label >ถึง</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control datepicker" name="end_date"  placeholder="" value="<?php 
+					<input type="text" class="form-control datepicker todate" name="end_date" placeholder="" readonly="true" value="<?php 
 						if(isset($post_end_date)){
 							echo $post_end_date;
 						}
