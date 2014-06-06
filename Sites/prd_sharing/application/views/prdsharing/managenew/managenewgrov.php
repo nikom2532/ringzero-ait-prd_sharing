@@ -9,18 +9,30 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-				<input class="txt-field" type="text" value="" name="sendin_issue" placeholder="" style=" margin-left: 15px;width: 77%;">
+				<input class="txt-field" type="text" value="<?php 
+					if(isset($post_sendin_issue)){
+						echo $post_sendin_issue;
+					}
+				?>" name="sendin_issue" placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>	
 		</div>
 	
 		<div class="row">
 			<div class="col-lg-6">
 				<label >วันที่</label>
-				<input type="text" class="form-control datepicker" name="start_date" id="start_date" placeholder="" >
+				<input type="text" class="form-control datepicker" name="start_date" id="start_date" value="<?php 
+					if(isset($post_start_date)){
+						echo $post_start_date;
+					}
+				?>" placeholder="" >
 			</div>
 			<div class="col-lg-6">
 				<label >ถึง</label>
-				<input type="text" class="form-control datepicker"name="end_date" id="end_date" placeholder="" >
+				<input type="text" class="form-control datepicker"name="end_date" id="end_date" value="<?php 
+					if(isset($post_end_date)){
+						echo $post_end_date;
+					}
+				?>" placeholder="" >
 			</div>
 		</div>
 	

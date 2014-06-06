@@ -20,9 +20,11 @@
 		<div class="odd">
 			<p class="col-1" style="width: 20%;float: left; "><?php
 				if($news_item->SendIn_UpdateDate != ""){
+					// echo $news_item->SendIn_CreateDate;
 					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 				}
 				else{
+					// echo $news_item->SendIn_CreateDate;
 					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
 				}
 				

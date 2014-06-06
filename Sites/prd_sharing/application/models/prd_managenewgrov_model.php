@@ -43,7 +43,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status, 
+				FileAttach.File_Status
 			')->
 			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			like('SendIn_Issue', $news_title)->

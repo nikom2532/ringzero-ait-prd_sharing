@@ -44,20 +44,19 @@ class PRD_sentNew extends CI_Controller {
 			
 			
 			$config['upload_path'] = './uploads/';
-			// $config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png|doc';
 			// $config['max_size']	= '100';
 			// $config['max_width']  = '1024';
 			// $config['max_height']  = '768';
-	
+// 	
 			$this->load->library('upload', $config);
 	
-			if ( ! $this->upload->sentnew_process())
+			if ( ! $this->upload->do_upload('fileattach[]'))
 			{
 				$error = array('error' => $this->upload->display_errors());
 				
 				var_dump($error);
-				echo "ASdf";
-	
+				
 				// $this->load->view('prdsharing/sentnew/sentnew', $error);
 			}
 			else
