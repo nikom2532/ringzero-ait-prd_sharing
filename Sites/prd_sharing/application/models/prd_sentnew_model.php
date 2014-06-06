@@ -39,4 +39,9 @@ class PRD_SentNew_model extends CI_Model {
 			
 		return $query->result();
 	}
+	
+	public function get_($value='')
+	{
+		
+	}
 }

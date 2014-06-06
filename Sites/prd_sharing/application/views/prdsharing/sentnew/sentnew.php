@@ -4,7 +4,7 @@
 	}); 
 </script>
 
-<form name="form_sendnew" action="manageNewGROV" method="post">
+<form name="form_sendnew" action="manageNewGROV" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">
@@ -71,7 +71,8 @@
 					</select>
 				</div>
 			</div>
-	
+			
+			<?php // For toggle กลุ่มเป้าหมาย  ?>
 			<style>
 				.grov_active_col.row,
 				.prd_active_col.row{
@@ -150,15 +151,85 @@
 		<legend >
 			File Upload
 		</legend>
+		<?php ///* ?>
+		<div class="uploadfile">
+			<div class="row">
+				<div class="col-lg-6">
+					<label >Attach file</label>
+					<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
+					<input type="file" class="form-control bt" name="fileattach[]" id="fileattach" placeholder="" multiple />
+					<!-- <input type="file" name="file[]" multiple /> -->
+				</div>
+			</div>
+		</div>
+		<?php //*/ ?>
+		
+		<?php /* ?>
+		<div id="mulitplefileuploader">Upload</div>
+		<div id="status"></div>
+		<?php */ ?>
+		
 		<div class="row">
-			<div class="col-lg-6">
-				<label >Attach file</label>
-				<input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" >
-				<!-- <input class="bt" type="submit" name="share" value="BROWSE"> -->
+			<div style="text-align: center;">
+				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="Add more file" />
 			</div>
 		</div>
 	</fieldset>
-	
+	<script>
+		
+		var str =""+
+			"<div class=\"row\">"+
+			"	<div class=\"col-lg-6\">"+
+			"		<label >Attach file</label>"+
+			"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach[]\" id=\"fileattach\" placeholder=\"\" multiple />"+
+			"	</div>"+
+			"</div>";
+		$("input.bt#addmorefile").click(function(){
+			$("div.uploadfile").append(str);
+		});
+		
+		/*
+		$(document).ready(function()
+		{
+			$("#fileuploader").uploadFile({
+			url:"YOUR_FILE_UPLOAD_URL",
+			fileName:"myfile"
+			});
+		});
+		*/
+		/*
+		$(document).ready(function()
+		{
+			var settings = {
+			    url: "http://localhost:126/upload.php",
+			    dragDrop:true,
+			    fileName: "myfile",
+			    allowedTypes:"jpg,png,gif,doc,pdf,zip",	
+			    returnType:"json",
+				 onSuccess:function(files,data,xhr)
+			    {
+			       // alert((data));
+			    },
+			    showDelete:true,
+			    deleteCallback: function(data,pd)
+				{
+				    for(var i=0;i<data.length;i++)
+				    {
+				        $.post("http://localhost:126/delete.php",{op:"delete",name:data[i]},
+				        function(resp, textStatus, jqXHR)
+				        {
+				            //Show Message  
+				            $("#status").append("<div>File Deleted</div>");
+				        });
+				     }      
+				    pd.statusbar.hide(); //You choice to hide/not.
+			
+				}
+			}
+			var uploadObj = $("#mulitplefileuploader").uploadFile(settings);
+		});
+		*/
+	</script>
 	<div class="row">
 		<div class="col-lg-12" style="text-align: center;    float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก">

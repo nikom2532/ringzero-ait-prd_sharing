@@ -48,62 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-//########### MYSQL
-
-// $db['default']['hostname'] = 'localhost';
-// $db['default']['username'] = 'iming';
-// $db['default']['password'] = 'iming';
-// $db['default']['database'] = 'ringzero_ait_prd_sharing';
-// $db['default']['dbdriver'] = 'mysql';
-
-//########### SQL Server
-
-// $db['default']['hostname'] = 'NIKOM2532-PC:1433';
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'nikom2532';
-$db['default']['password'] = 'cominter';
-$db['default']['database'] = 'ringzero_ait_prd_sharing';
-$db['default']['dbdriver'] = 'sqlsrv';
-// $db['default']['dbdriver'] = 'mssql';
-
-//##################
-
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
-
-//######### 2nd Database Connection #########
-
-$db['nnt_data_center_old']['hostname'] = 'localhost';
-$db['nnt_data_center_old']['username'] = 'nikom2532';
-$db['nnt_data_center_old']['password'] = 'cominter';
-$db['nnt_data_center_old']['database'] = 'NNT_DataCenter_2';
-$db['nnt_data_center_old']['dbdriver'] = 'sqlsrv';
-
-$db['nnt_data_center_old']['dbprefix'] = '';
-$db['nnt_data_center_old']['pconnect'] = TRUE;
-$db['nnt_data_center_old']['db_debug'] = TRUE;
-$db['nnt_data_center_old']['cache_on'] = FALSE;
-$db['nnt_data_center_old']['cachedir'] = '';
-$db['nnt_data_center_old']['char_set'] = 'utf8';
-$db['nnt_data_center_old']['dbcollat'] = 'utf8_general_ci';
-$db['nnt_data_center_old']['swap_pre'] = '';
-$db['nnt_data_center_old']['autoinit'] = TRUE;
-$db['nnt_data_center_old']['stricton'] = FALSE;
-
-//##################
-
-$db['nnt_data_center_pooh']['hostname'] = '111.223.32.9:1433';
+$db['nnt_data_center_pooh']['hostname'] = '111.223.32.9';
 $db['nnt_data_center_pooh']['username'] = 'dbuser_km';
 $db['nnt_data_center_pooh']['password'] = '123456';
-$db['nnt_data_center_pooh']['database'] = 'NNT_DataCenter';
+$db['nnt_data_center_pooh']['database'] = 'NNT_DataCenter_2';
 $db['nnt_data_center_pooh']['dbdriver'] = 'sqlsrv';
 
 $db['nnt_data_center_pooh']['dbprefix'] = '';
@@ -116,6 +64,7 @@ $db['nnt_data_center_pooh']['dbcollat'] = 'utf8_general_ci';
 $db['nnt_data_center_pooh']['swap_pre'] = '';
 $db['nnt_data_center_pooh']['autoinit'] = TRUE;
 $db['nnt_data_center_pooh']['stricton'] = FALSE;
+
 
 
 /* End of file database.php */
