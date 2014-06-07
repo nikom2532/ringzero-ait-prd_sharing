@@ -29,6 +29,8 @@ class PRD_SentNew_model extends CI_Model {
 	public function get_NT05_Policy()
 	{
 		$query = $this->db_ntt_old->
+			where('NT05_Status', 'Y')->
+			order_by('NT05_Sequence', 'asc')->
 			get('NT05_Policy');
 			
 		return $query->result();

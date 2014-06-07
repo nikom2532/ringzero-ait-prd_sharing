@@ -50,8 +50,15 @@ class PRD_sentNew extends CI_Controller {
 			// $config['max_height']  = '768';
 // 	
 			$this->load->library('upload', $config);
-	
-			if ( ! $this->upload->do_upload('fileattach[]'))
+			
+			
+			//PHP Upload ธรรมดา 
+			
+			
+			
+			
+			
+			if ( ! $this->upload->do_upload('fileattach'))
 			{
 				$error = array('error' => $this->upload->display_errors());
 				

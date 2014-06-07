@@ -48,7 +48,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >วันที่</label>
-				<input type="text" class="form-control datepicker fromdate" name="start_date" id="start_date" value="<?php 
+				<input type="text" class="form-control datepicker fromdate" name="start_date" id="start_date" readonly="true" value="<?php 
 					if(isset($post_start_date)){
 						echo $post_start_date;
 					}
@@ -56,7 +56,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ถึง</label>
-				<input type="text" class="form-control datepicker todate"name="end_date" id="end_date" value="<?php 
+				<input type="text" class="form-control datepicker todate"name="end_date" id="end_date" readonly="true" value="<?php 
 					if(isset($post_end_date)){
 						echo $post_end_date;
 					}

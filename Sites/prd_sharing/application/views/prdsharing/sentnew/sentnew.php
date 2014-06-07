@@ -1,7 +1,12 @@
 <script>
-	$(function() {
-		$(".datepicker").datepicker();
-	}); 
+	$(function(){
+		$(".datepicker").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+		});
+	});
 </script>
 
 <form name="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
@@ -15,7 +20,7 @@
 			<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 			<div class="row">
 				<div class="col-lg-6">
-					<label >ช่วงวันที่</label>
+					<label >ข่าววันที่</label>
 					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" >
 				</div>
 			</div>
@@ -23,22 +28,22 @@
 				<div class="col-lg-6">
 					<label >กระทรวง</label>
 					<select name="Minis_ID">
-	<?php
+<?php
 						foreach ($Ministry as $Ministry_item) {
 							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
-	?>
+?>
 					</select>
 				</div>
 				<div class="col-lg-6">
 					<label >กรม</label>
 					<select name="Dep_ID">
-	<?php
+<?php
 						// var_dump($Department);
 						foreach ($Department as $Department_item) {
 							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
 						}
-	?>
+?>
 					</select>
 				</div>
 			</div>
@@ -49,7 +54,9 @@
 						<option value="">เลือกนโยบาย</option>
 <?php
 						foreach ($NT05_Policy as $NT05_Policy_item) {
-							?><option value="<?php echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;?></option><?php
+							?><option value="<?php 
+								echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;
+							?></option><?php
 						}
 ?>
 					</select>
@@ -107,8 +114,13 @@
 					<select name="grov_active" id="grov_active">
 						<option value="">เลือกเผยแพร่</option>
 <?php
-						foreach ($SC07_Department as $Department_item) {
-							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+/*
+						// foreach ($SC07_Department as $Department_item) {
+							// ?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+						// }
+						*/
+						foreach ($Ministry as $Ministry_item) {
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
 ?>
 					</select>
@@ -121,8 +133,13 @@
 					<select name="prd_active" id="prd_active">
 						<option value="">เลือกเผยแพร่</option>
 <?php
-						foreach ($Ministry as $Ministry_item) {
-							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+/*
+						// foreach ($Ministry as $Ministry_item) {
+							// ?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						// }
+						*/
+						foreach ($SC07_Department as $Department_item) {
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
 						}
 ?>
 					</select>
