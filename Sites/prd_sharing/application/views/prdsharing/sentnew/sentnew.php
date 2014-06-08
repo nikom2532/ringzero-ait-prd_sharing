@@ -9,7 +9,7 @@
 	});
 </script>
 
-<form name="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
+<form name="form_sendnew" id="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">
@@ -105,6 +105,9 @@
 						$(".prd_active_col").css("display", "none");
 					});
 				});
+				
+				$("#form_sendnew #submit")
+				
 			</script>
 			
 			
@@ -259,7 +262,7 @@
 	</script>
 	<div class="row">
 		<div class="col-lg-12" style="text-align: center; float: left;">
-			<input class="bt" type="submit" name="share" value="บันทึก">
+			<input class="bt" type="submit" name="share" id="submit" value="บันทึก">
 			<input class="bt" type="button" name="share" value="ยกเลิก" onclick="document.location.href = 'manageNewGROV'">
 		</div>
 	</div>

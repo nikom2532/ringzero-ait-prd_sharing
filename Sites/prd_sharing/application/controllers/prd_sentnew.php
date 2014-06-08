@@ -42,21 +42,16 @@ class PRD_sentNew extends CI_Controller {
 				$this->input->post('SendIn_Detail')
 			);
 			
-			
+			/*
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|doc';
 			// $config['max_size']	= '100';
 			// $config['max_width']  = '1024';
 			// $config['max_height']  = '768';
-// 	
 			$this->load->library('upload', $config);
 			
 			
 			//PHP Upload ธรรมดา 
-			
-			
-			
-			
 			
 			if ( ! $this->upload->do_upload('fileattach'))
 			{
@@ -73,13 +68,11 @@ class PRD_sentNew extends CI_Controller {
 				// $this->load->view('prdsharing/sentnew/upload_success', $data);
 				
 				redirect('/manageNewGROV?aaa=aaa', 'refresh');
-				
 			}
-			
-			
+			*/
 			
 			// redirect('/manageNewGROV', 'refresh');
-		}
+		} 
 		else{
 			redirect('/manageNewGROV', 'refresh');
 		}

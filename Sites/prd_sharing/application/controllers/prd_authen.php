@@ -33,9 +33,9 @@ class PRD_Authen extends CI_Controller {
 			if($authen != null){
 				// echo "can login";
 				
+				$_SESSION["member_id"] = $authen[0]->Mem_Username;
 				
 				redirect('/homePRD', 'refresh');
-				
 			}
 			else{
 				$data["error"] = "Username or Password wrong";
