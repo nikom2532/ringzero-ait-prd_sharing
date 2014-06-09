@@ -41,14 +41,19 @@
 //$route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
-$route['default_controller'] = 'prd_authen';
-$route['(:any)'] = 'prd_authen';
-$route['index'] = 'prd_authen';
+// $route['default_controller'] = 'prd_authen';
+// $route['(:any)'] = 'prd_authen';
+// $route['index'] = 'prd_authen';
 $route['authen_proc'] = 'prd_authen/authen';
 
 
 $route['homePRD'] = 'prd_homeprd';
 $route['sentNew'] = 'prd_sentnew';
+
+// $route['sentNew/(:any)'] = 'prd_sentnew';
+
+$route['sentNew_Department'] = 'prd_sentnew/get_Department';
+
 $route['sentNew_Upload'] = 'prd_sentNew/sentnew_process';
 
 $route['rss'] = 'prd_rss';

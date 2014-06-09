@@ -28,6 +28,7 @@
 				<div class="col-lg-6">
 					<label >กระทรวง</label>
 					<select name="Minis_ID" id="Minis_ID">
+						<option value="">เลือกกระทรวง</option>
 <?php
 						foreach ($Ministry as $Ministry_item) {
 							?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
@@ -38,7 +39,9 @@
 				<div class="col-lg-6">
 					<label >กรม</label>
 					<select name="Dep_ID" id="Dep_ID">
+						<option value="">เลือกกรม</option>
 <?php
+						/*
 						// var_dump($Department);
 						foreach ($Department as $Department_item) {
 							?><option data-minis_id="<?php
@@ -49,13 +52,15 @@
 								}
 							?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
 						}
+						*/
+						/* ?><option value=""></option><?php */
 ?>
 					</select>
 				</div>
 			</div>
 			
 			<script>
-				
+				/*
 				$("select#Minis_ID").change(function() {
 					
 					// var minis_id = $(this).attr("data-minis_id");
@@ -73,9 +78,40 @@
 					// alert(this);
 					alert(minis_id);
 				});
+				*/
 				
+				$('select#Minis_ID').change(function(){
+					// debugger;
+				    var type_id = $('select#Minis_ID').val();
+				    if (type_id != ""){
+				        var post_url = "<?php echo base_url(); ?>PRD_sentNew/get_Department/" + type_id;
+				    	// debugger;
+				    	// alert(post_url);
+				        $.ajax({
+				            type: "POST",
+				             url: post_url,
+							 dataType :'json',
+				             success: function(subtype)
+				              {
+				              	// var a = JSON.parse(subtype);
+				                $('#Dep_ID').empty();
+				                
+				                var text = "<option value=\"\">เลือกกรม</option>";
+				                
+								$.each(subtype,function(index,val) 
+								{
+									text = text+
+									"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+									$('#Dep_ID').append(text);
+								});
+							} //end success
+						}); //end AJAX
+				    } else {
+				        $('#SubTypeID').empty();
+				    }//end if
+				}); //end change 
 			</script>
-			
+
 			<div class="row">
 				<div class="col-lg-6">
 					<label >นโยบายรัฐบาล</label>

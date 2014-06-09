@@ -35,9 +35,9 @@ class PRD_sentNew extends CI_Controller {
 	
 	public function get_Department($Ministry_ID='')
 	{
-		$data['Department'] = $this->PRD_SentNew_model->get_Department_Unique($Ministry_ID);
+		$_data = $this->PRD_SentNew_model->get_Department_Unique($Ministry_ID);
+		echo json_encode($_data);
 	}
-	
 	
 	public function sentnew_process()
 	{
@@ -86,7 +86,7 @@ class PRD_sentNew extends CI_Controller {
 			*/
 			
 			// redirect('/manageNewGROV', 'refresh');
-		} 
+		}
 		else{
 			redirect('/manageNewGROV', 'refresh');
 		}
