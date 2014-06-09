@@ -40,13 +40,8 @@ class PRD_Authen extends CI_Controller {
                    'member_id'  => $authen[0]->Mem_Username
 				);
 				
-				// var_dump($member_id);
-				
-				// $this->session->userdata($member_id);
 				$this->session->set_userdata($member_id);
-				
-				echo $this->session->userdata($member_id);
-				
+				// echo $this->session->userdata($member_id);
 				// var_dump($this->session->all_userdata());
 				
 				redirect('/homePRD', 'refresh');
