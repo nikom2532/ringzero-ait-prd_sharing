@@ -16,12 +16,9 @@ class PRD_HomePRD extends CI_Controller {
 
 	public function index()
 	{
-		echo $_SESSION["member_id"];
-		
 		//Check Is Authen?
-		if($_SESSION["member_id"] != ""){
+		if($this->session->userdata('member_id') != ""){
 			
-		
 			$data['title'] = 'Home';
 			if($this->input->post("news_title") != ""){
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
@@ -136,7 +133,7 @@ class PRD_HomePRD extends CI_Controller {
 			$this->load->view('prdsharing/templates/footer', $data);
 		}
 		else{
-			// redirect('/', 'refresh');
+			redirect('/', 'refresh');
 		}
 	}
 }
