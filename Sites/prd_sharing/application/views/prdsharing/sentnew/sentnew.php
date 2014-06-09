@@ -5,8 +5,10 @@
 			numberOfMonths: 1,
 			changeMonth: true,
 			changeYear: true,
+			minDate: 0 
 		});
 	});
+	
 </script>
 
 <form name="form_sendnew" id="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
