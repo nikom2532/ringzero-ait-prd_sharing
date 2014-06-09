@@ -27,6 +27,7 @@ class PRD_sentNew extends CI_Controller {
 			$this->load->view('prdsharing/sentnew/sentnew', $data);
 			$this->load->view('prdsharing/templates/footer');
 			
+			
 		}
 		else{
 			redirect('/', 'refresh');
@@ -85,7 +86,7 @@ class PRD_sentNew extends CI_Controller {
 			}
 			*/
 			
-			// redirect('/manageNewGROV', 'refresh');
+			redirect('/manageNewGROV', 'refresh');
 		}
 		else{
 			redirect('/manageNewGROV', 'refresh');

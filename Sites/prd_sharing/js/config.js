@@ -4,6 +4,27 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+	
+	/*
+	config.toolbarGroups = [
+		{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
+	];
+	
+	// Remove some buttons, provided by the standard plugins, which we don't
+	// need to have in the Standard(s) toolbar.
+	config.removeButtons = 'Underline,Subscript,Superscript';
+
+	// Se the most common block elements.
+	config.format_tags = 'p;h1;h2;h3;pre';
+
+	// Make dialogs simpler.
+	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
+	*/
+	
+	
+	
+	
 	// Define changes to default configuration here.
 	// For the complete reference:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -35,4 +56,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
 };

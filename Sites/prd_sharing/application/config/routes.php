@@ -41,7 +41,7 @@
 //$route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
-// $route['default_controller'] = 'prd_authen';
+$route['default_controller'] = 'prd_authen';
 // $route['(:any)'] = 'prd_authen';
 // $route['index'] = 'prd_authen';
 $route['authen_proc'] = 'prd_authen/authen';
@@ -60,6 +60,9 @@ $route['rss'] = 'prd_rss';
 $route['manageNew'] = 'prd_managenew';
 
 $route['manageUser'] = 'prd_manageuser';
+$route['manageUserPRD'] = 'prd_manageuser_prd';
+$route['manageUserGOVE'] = 'prd_manageuser_gove';
+
 $route['manageInfo_Category'] = 'prd_manageinfo_category';
 $route['reportPRD'] = 'prd_reportprd';
 

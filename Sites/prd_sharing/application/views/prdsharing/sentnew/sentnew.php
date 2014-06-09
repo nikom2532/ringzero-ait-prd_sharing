@@ -228,13 +228,14 @@
 					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" >
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-lg-11">
 					<label >เนื้อหา</label>
 					<textarea class="ckeditor" name="SendIn_Detail"></textarea>
 				</div>
 			</div>
-	
+			
 			<!--<div class="col-lg-12" style="text-align: center;    float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก">
 			<input class="bt" type="submit" name="share" value="ยกเลิก">
@@ -286,7 +287,6 @@
 			
 			$("div.uploadfile").append(str);
 			number++;
-			alert(number);
 		});
 		
 		/*

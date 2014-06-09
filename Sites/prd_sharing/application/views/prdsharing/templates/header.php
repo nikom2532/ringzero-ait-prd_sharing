@@ -98,7 +98,7 @@
 							}
 							*/
                         ?></li>
-                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageUser">Manage User</a><?php
+                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="manageUserPRD">Manage User</a><?php
                         	/*
                         	if(!($title == "Manage Users")){
 	                        	?><a href="manageUser"><?php

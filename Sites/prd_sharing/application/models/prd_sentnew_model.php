@@ -57,6 +57,7 @@ class PRD_SentNew_model extends CI_Model {
 	public function get_SC07_Department()
 	{
 		$query = $this->db_ntt_old->
+			order_by('SC07_DepartmentSeq')->
 			get('SC07_Department');
 			
 		return $query->result();

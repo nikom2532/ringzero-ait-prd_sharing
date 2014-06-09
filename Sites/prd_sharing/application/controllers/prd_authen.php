@@ -20,6 +20,11 @@ class PRD_Authen extends CI_Controller {
 	{
 		$data['title'] = 'Login PRD Sharing';
 		
+		
+		//FOr Test Logout
+		$this->session->unset_userdata('member_id');
+		
+		
 		if(
 			$this->input->post('username') != "" && 
 			$this->input->post('password') != ""
