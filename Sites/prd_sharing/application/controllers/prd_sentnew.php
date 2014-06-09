@@ -33,6 +33,11 @@ class PRD_sentNew extends CI_Controller {
 		}
 	}
 	
+	public function get_Department($Ministry_ID='')
+	{
+		$data['Department'] = $this->PRD_SentNew_model->get_Department_Unique($Ministry_ID);
+	}
+	
 	
 	public function sentnew_process()
 	{

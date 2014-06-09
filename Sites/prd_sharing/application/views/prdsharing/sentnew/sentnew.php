@@ -27,26 +27,55 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >กระทรวง</label>
-					<select name="Minis_ID">
+					<select name="Minis_ID" id="Minis_ID">
 <?php
 						foreach ($Ministry as $Ministry_item) {
-							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+							?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
 ?>
 					</select>
 				</div>
 				<div class="col-lg-6">
 					<label >กรม</label>
-					<select name="Dep_ID">
+					<select name="Dep_ID" id="Dep_ID">
 <?php
 						// var_dump($Department);
 						foreach ($Department as $Department_item) {
-							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+							?><option data-minis_id="<?php
+								foreach ($Ministry as $Ministry_item) {
+									if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
+										echo $Ministry_item->Minis_ID;
+									}
+								}
+							?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
 						}
 ?>
 					</select>
 				</div>
 			</div>
+			
+			<script>
+				
+				$("select#Minis_ID").change(function() {
+					
+					// var minis_id = $(this).attr("data-minis_id");
+					// var minis_id = $("select#Minis_ID:selected").attr("data-minis_id");
+					
+					var minis_id = $(this).find(':selected').data('minis_id');
+					
+					// if(minis_id == $(select#Dep_ID).data('minis_id')){
+// 						
+					// }
+					
+					// $(select#Dep_ID).data('minis_id')
+					
+					// if(minis_id == )
+					// alert(this);
+					alert(minis_id);
+				});
+				
+			</script>
+			
 			<div class="row">
 				<div class="col-lg-6">
 					<label >นโยบายรัฐบาล</label>
@@ -149,7 +178,6 @@
 				</div>
 			</div>
 			
-	
 			<div class="row">
 				<div class="col-lg-11">
 					<label >แผนงานโครงการ/กิจกรรม</label>

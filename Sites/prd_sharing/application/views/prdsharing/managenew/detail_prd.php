@@ -15,12 +15,19 @@
 					foreach ($get_NT01_News_videos as $videos) {
 						if(isset($videos->NT10_VDOPath)){
 ?>
-							<video width="461" height="358" controls autoplay>
+							<script src="//embed.flowplayer.org/5.4.6/embed.min.js">
+							<div class="flowplayer" style="width: 461px; height: 358px;">
+								<video>
+									<source type="video/webm" src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
+								</video>
+							</div></script>
+							
+							<!-- <video width="461" height="358" controls autoplay>
 								<source src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
 								<object data="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
 									<embed src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
 								</object>
-							</video>
+							</video> -->
 <?php
 						}
 					}

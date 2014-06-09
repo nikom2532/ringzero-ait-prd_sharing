@@ -26,6 +26,16 @@ class PRD_SentNew_model extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_Department_Unique($Ministry_ID = '')
+	{
+		$query = $this->db->
+			where('Dep_Status', '1')->
+			where('Ministry_ID', $Ministry_ID)->
+			get('Department');
+			
+		return $query->result();
+	}
+	
 	public function get_NT05_Policy()
 	{
 		$query = $this->db_ntt_old->
