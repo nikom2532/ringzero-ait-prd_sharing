@@ -67,7 +67,8 @@
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 				
 				
-				<select name="NewsTypeID" class="form-control" style="width: 65%;"><?php
+				<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
+					<option value="">เลือกหมวดหมู่ข่าว</option><?php
 					foreach ($NT02_NewsType as $newType_item) {
 						?><option value="<?php echo $newType_item->NT02_TypeID; ?>"><?php echo $newType_item->NT02_TypeName; ?></option><?php
 					}
@@ -80,16 +81,19 @@
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 				
 				
-				<select name="NewsSubTypeID" class="form-control" style="width: 65%;"><?php
+				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
+					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
+					/*
 					foreach ($NT03_NewsSubType as $newType_item) {
 						?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>"><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
 					}
+					*/
 				?></select>
 				
 				
 			</div>
 		</div>
-	
+		
 		<div class="row">
 			<div class="col-lg-6">
 				<div style="float: left;width: 30%;">
@@ -311,3 +315,36 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('select#NewsTypeID').change(function(){
+		// debugger;
+	    var type_id = $('select#NewsTypeID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+			// debugger;
+			// alert(post_url);
+			$.ajax({
+				type: "POST",
+				url: post_url,
+				dataType :'json',
+				success: function(subtype)
+				{
+					// var a = JSON.parse(subtype);
+					$('#NewsSubTypeID').empty();
+					
+					var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
+					$('#NewsSubTypeID').append(text);
+					
+					$.each(subtype,function(index,val)
+					{
+						var text = ""+
+						"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
+						$('#NewsSubTypeID').append(text);
+					});
+				} //end success
+			}); //end AJAX
+		} else {
+			$('#NewsSubTypeID').empty();
+		}//end if
+	}); //end change 
+</script>

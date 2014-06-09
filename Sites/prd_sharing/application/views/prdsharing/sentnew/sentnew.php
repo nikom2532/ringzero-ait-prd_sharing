@@ -251,7 +251,7 @@
 				<div class="col-lg-6">
 					<label >Attach file</label>
 					<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
-					<input type="file" class="form-control bt" name="fileattach[]" id="fileattach" placeholder="" multiple />
+					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
 					<!-- <input type="file" name="file[]" multiple /> -->
 				</div>
 			</div>
@@ -270,16 +270,21 @@
 		</div>
 	</fieldset>
 	<script>
+		var number = 2;
 		
-		var str =""+
+		$("input.bt#addmorefile").click(function(){
+			
+			var str =""+
 			"<div class=\"row\">"+
 			"	<div class=\"col-lg-6\">"+
 			"		<label >Attach file</label>"+
-			"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach[]\" id=\"fileattach\" placeholder=\"\" multiple />"+
+			"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
 			"	</div>"+
 			"</div>";
-		$("input.bt#addmorefile").click(function(){
+			
 			$("div.uploadfile").append(str);
+			number++;
+			alert(number);
 		});
 		
 		/*

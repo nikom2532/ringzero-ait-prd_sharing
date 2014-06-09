@@ -267,6 +267,13 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			// LIMIT('20,0')->	
 			get('NT03_NewsSubType')->result();
 	}
+	public function get_NT03_NewsSubType_Unique($NT02_TypeID = '')
+	{
+		return $this->db_ntt_old->
+			// LIMIT('20,0')->
+			where('NT02_TypeID', $NT02_TypeID)->
+			get('NT03_NewsSubType')->result();
+	}
 	
 	//#########  Database New  ##########
 	

@@ -132,4 +132,11 @@ class PRD_ManageNewPRD extends CI_Controller {
 			redirect('/', 'refresh');
 		}
 	}
+	
+	public function get_NT02_TypeID($NT02_TypeID='')
+	{
+		$_data = $this->prd_managenewprd_model->get_NT03_NewsSubType_Unique($NT02_TypeID);
+		echo json_encode($_data);
+	}
+	
 }
