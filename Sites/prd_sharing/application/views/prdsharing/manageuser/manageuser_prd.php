@@ -78,6 +78,9 @@
 			<p class="col-5" style="width: 30%;float: left; ">
 				หน่วยงาน
 			</p>
+			<!-- <p class="col-5" style="width: 15%;float: left; ">
+				ตำแหน่ง
+			</p> -->
 			<p class="col-6" style="width: 15%;float: left; ">
 				จังหวัด
 			</p>
@@ -90,7 +93,7 @@
 		
 		// var_dump($SC03_User);
 		
-		foreach ($Member as $Member_item) {
+		foreach ($SC03_User as $SC03_User_item) {
 			
 			if($i % 2 == 1){
 				?><div class="odd"><?php
@@ -99,21 +102,22 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="userInfo?userid=<?php echo $Member_item->Mem_ID; ?>">
+					<a href="userInfo?userid=<?php echo $SC03_User_item->SC03_UserId; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
 						<p class="col-2" style="width: 10%;float: left; ">
-							<?php echo $Member_item->Mem_Username; ?>
+							<?php echo $SC03_User_item->SC03_UserName; ?>
 						</p>
 						<p class="col-3" style="width: 20%;float: left; ">
-							<?php echo $Member_item->Mem_Name." ".$Member_item->Mem_LasName; ?>
+							<?php echo $SC03_User_item->SC03_FName." ".$SC03_User_item->SC03_LName; ?>
 						</p>
 						<p class="col-4" style="width: 10%;float: left; ">
 							-
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
 <?php
+							/*
 							$count=0;
 							foreach ($Department as $Department_item) {
 								if($Department_item->Dep_ID == $Member_item->Mem_Department){
@@ -125,14 +129,30 @@
 								echo "-";
 							}
 							// echo $Member_item->Mem_Department; 
+							*/
+							
+							foreach ($SC07_Department as $SC07_Department_item) {
+								
+								if($SC03_User_item->SC07_DepartmentId == $SC07_Department_item->SC07_DepartmentId){
+									echo $SC07_Department_item-> SC07_DepartmentName;
+								}
+								
+							}
+							
+							// SC07_Department
 ?>
 						</p>
+						
+						<!-- <p class="col-5" style="width: 15%;float: left; ">
+							
+						</p> -->
+						
 						<p class="col-6" style="width: 15%;float: left; ">
 <?php
 							// var_dump($Member_item);
 							$count=0;
 							foreach ($CM06_Province as $CM06_Province_item) {
-								if($CM06_Province_item->CM06_ProvinceID == $Member_item->Prov_ID){
+								if($CM06_Province_item->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceID){
 									echo $CM06_Province_item->CM06_ProvinceName;
 									$count++;
 								}
@@ -148,10 +168,10 @@
 							// foreach ($Member as $Member_item) {
 								// if($Member_item->)
 							// }
-							if($Member_item->Mem_Status == "1"){
+							if($SC03_User_item->SC03_Status == "1"){
 								echo "เปิดการใช้งาน";
 							}
-							elseif($Member_item->Mem_Status == "0"){
+							elseif($SC03_User_item->SC03_Status == "0"){
 								echo "ปิดการใช้งาน";
 							}
 ?>

@@ -240,4 +240,42 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		return $query_getProvince;
 	}
 	// $this->db->limit($limit, $start);
+	
+	
+	public function get_SC07_Department($SC07_DepartmentId = '')
+	{
+		$query_SC07_Department = $this->db_ntt_old->
+			select('
+				SC07_Department.SC07_DepartmentId,
+				SC07_Department.SC07_DepartmentName
+			');
+			if($SC07_DepartmentId != ''){
+				$query_SC07_Department = $query_SC07_Department->
+					where('SC07_DepartmentId', $SC07_DepartmentId);
+			}
+			$query_SC07_Department = $query_SC07_Department->
+				get('SC07_Department')->result();
+		
+		return $query_SC07_Department;
+	}
+	
+	/*
+	public function get_SC03_Position($value='')
+	{
+		$query_SC07_Department = $this->db_ntt_old->
+			select('
+				SC07_Department.SC07_DepartmentId,
+				SC07_Department.SC07_DepartmentName
+			');
+			if($SC07_DepartmentId != ''){
+				$query_SC07_Department = $query_SC07_Department->
+					where('SC07_DepartmentId', $SC07_DepartmentId);
+			}
+			$query_SC07_Department = $query_SC07_Department->
+				get('SC07_Department')->result();
+		
+		return $query_SC07_Department;
+	}
+	*/
+	
 }
