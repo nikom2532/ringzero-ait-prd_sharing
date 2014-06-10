@@ -99,7 +99,7 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="userInfo?userid=<?php echo $SC03_User_item->SC03_UserId; ?>">
+					<a href="userInfo_PRD?userid=<?php echo $SC03_User_item->SC03_UserId; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>

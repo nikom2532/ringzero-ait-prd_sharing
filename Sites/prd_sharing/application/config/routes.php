@@ -81,7 +81,9 @@ $route['manageNewEditPRD'] = 'prd_manageneweditprd';
 $route['manageNewGROV'] = 'prd_managenewgrov';
 $route['manageNewPRD'] = 'prd_managenewprd';
 $route['reportGOVE'] = 'prd_reportgove';
-$route['userInfo'] = 'prd_userinfo';
+$route['userInfo_PRD'] = 'prd_userinfo_prd';
+$route['userInfo_GOVE'] = 'prd_userinfo_gove';
+
 $route['register'] = 'prd_userinfo_register';
 
 

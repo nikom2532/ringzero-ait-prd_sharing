@@ -103,7 +103,7 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="userInfo?userid=<?php echo $Member_item->Mem_ID; ?>">
+					<a href="userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
