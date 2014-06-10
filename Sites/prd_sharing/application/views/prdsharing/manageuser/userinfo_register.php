@@ -157,9 +157,11 @@
 				<select name="mem_ampur" id="mem_ampur">
 					<option value="">เลือกอำเภอ</option>
 <?php
+						/*
 						foreach ($CM07_Ampur as $Ampur) {
 							?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
 						}
+						*/
 ?>
 				</select>
 			</div>
@@ -168,16 +170,18 @@
 				<select name="mem_tumbon" id="mem_tumbon">
 					<option value="">เลือกตำบล</option>
 <?php
+						/*
 						foreach ($CM08_Tumbon as $Tumbon) {
 							?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
 						}
+						*/
 ?>
 				</select>
 			</div>
 		</div>
 		
 		<script>
-			
+			//อำเภอ
 			$('select#mem_province').change(function(){
 				// debugger;
 			    var type_id = $('select#mem_province').val();
@@ -210,6 +214,38 @@
 			    }//end if
 			}); //end change
 			
+			//ตำบล
+			$('select#mem_ampur').change(function(){
+				// debugger;
+			    var type_id = $('select#mem_ampur').val();
+			    if (type_id != ""){
+			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
+			    	// debugger;
+			    	// alert(post_url);
+			        $.ajax({
+			            type: "POST",
+			             url: post_url,
+						 dataType :'json',
+			             success: function(subtype)
+			              {
+			              	// var a = JSON.parse(subtype);
+			                $('#mem_tumbon').empty();
+			                
+			                var text = "<option value=\"\">เลือกอำเภอ</option>";
+			                $('#mem_tumbon').append(text);
+			                
+							$.each(subtype,function(index,val)
+							{
+								text = ""+
+								"<option value=\""+val.CM08_TumbonID+"\">"+val.CM08_TumbonName+"</option>";
+								$('#mem_tumbon').append(text);
+							});
+						} //end success
+					}); //end AJAX
+			    } else {
+			        $('#SubTypeID').empty();
+			    }//end if
+			}); //end change
 		</script>
 		
 		<div class="row">
