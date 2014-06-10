@@ -1,6 +1,6 @@
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form action="manageUser" method="post">
+	<form action="register/" method="post">
 		<input type="hidden" name="register_new_member" value="yes" />
 		<div class="row">
 			<div class="row" id="gove-title">
@@ -272,7 +272,7 @@
 				</div>
 				<div class="row">
 					<label class="label">เบอร์มือถือ</label>
-					<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" />
+					<input type="text" class="form-control" name="mem_mobile" id="Mem_Mobile" placeholder="" />
 				</div>
 			</div>
 		</div>

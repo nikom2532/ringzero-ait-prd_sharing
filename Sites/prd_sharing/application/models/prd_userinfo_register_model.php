@@ -110,4 +110,63 @@ class PRD_UserInfo_Register_model extends CI_Model {
 		
 		return $query;
 	}
+	
+	public function set_Member(
+		$sex = '',
+		$mem_title = '',
+		$fname = '',
+		$lname = '',
+		$engfname = '',
+		$englname = '',
+		$mem_username = '',
+		$mem_password = '',
+		$mem_cardID = '',
+		$mem_ministry = '',
+		$mem_department = '',
+		$mem_province = '',
+		$mem_ampur = '',
+		$mem_tumbon = '',
+		$mem_address = '',
+		$mem_email = '',
+		$mem_postcode = '',
+		$mem_nickname = '',
+		$mem_tel = '',
+		$mem_mobile = '',
+		$group_member = '',
+		$mem_status = ''
+	)
+	{
+		$data = array(
+			'Mem_Sex' => $sex,
+			'Mem_Title' => $mem_title,
+			'Mem_Name' => $fname,
+			'Mem_LasName' => $lname,
+			'Mem_EngName' => $engfname,
+			'Mem_EngLasName' => $englname,
+			'Mem_Username' => $mem_username,
+			'Mem_Password' => $mem_password,
+			'Mem_CardID' => $mem_cardID,
+			'Mem_Ministry' => $mem_ministry,
+			'Mem_Department' => $mem_department,
+			'Prov_ID' => $mem_province,
+			'Ampur_ID' => $mem_ampur,
+			'Tumbon_ID' => $mem_tumbon,
+			'Mem_Address' => $mem_address,
+			'Mem_Email' => $mem_email,
+			'Mem_Postcode' => $mem_postcode,
+			'Mem_NickName' => $mem_nickname,
+			'Mem_Tel' => $mem_tel,
+			'Mem_Mobile' => $mem_mobile,
+			'Group_ID' => $group_member,
+			'Mem_Status' => $mem_status,
+			
+			'Group_ID' => '1'
+		);
+		//Group_ID = 1 is GOVE
+		
+		$query_setMember = $this->db->
+			insert('Member', $data);
+			
+		return $query_setMember;
+	}
 }
