@@ -78,9 +78,6 @@
 			<p class="col-5" style="width: 30%;float: left; ">
 				หน่วยงาน
 			</p>
-			<!-- <p class="col-5" style="width: 15%;float: left; ">
-				ตำแหน่ง
-			</p> -->
 			<p class="col-6" style="width: 15%;float: left; ">
 				จังหวัด
 			</p>
@@ -117,20 +114,6 @@
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
 <?php
-							/*
-							$count=0;
-							foreach ($Department as $Department_item) {
-								if($Department_item->Dep_ID == $Member_item->Mem_Department){
-									echo $Department_item->Dep_Name;
-									$count++;
-								}
-							}
-							if($count==0){
-								echo "-";
-							}
-							// echo $Member_item->Mem_Department; 
-							*/
-							
 							foreach ($SC07_Department as $SC07_Department_item) {
 								
 								if($SC03_User_item->SC07_DepartmentId == $SC07_Department_item->SC07_DepartmentId){
@@ -138,14 +121,8 @@
 								}
 								
 							}
-							
-							// SC07_Department
 ?>
 						</p>
-						
-						<!-- <p class="col-5" style="width: 15%;float: left; ">
-							
-						</p> -->
 						
 						<p class="col-6" style="width: 15%;float: left; ">
 <?php
@@ -165,22 +142,40 @@
 						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
 <?php 
-							// foreach ($Member as $Member_item) {
-								// if($Member_item->)
-							// }
+							$count=0;
+							foreach ($Member as $Member_item) {
+								if(
+									$Member_item->Mem_OldID == $SC03_User_item->SC03_UserId &&
+									$Member_item->Mem_Status == "1"
+								){
+									$count++;
+									// echo "เปิดการใช้งาน";
+								}
+								else{
+									// echo "ปิดการใช้งาน";
+								}
+							}
+							if($count>0){
+								echo "เปิดการใช้งาน";
+							}
+							else{
+								echo "ปิดการใช้งาน";
+							}
+							
+							/*
 							if($SC03_User_item->SC03_Status == "1"){
 								echo "เปิดการใช้งาน";
 							}
 							elseif($SC03_User_item->SC03_Status == "0"){
 								echo "ปิดการใช้งาน";
 							}
+							*/
 ?>
 						</p>
 					</a>
 				</div>
 <?php
 		}
-		
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">

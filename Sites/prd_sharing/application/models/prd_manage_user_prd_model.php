@@ -81,6 +81,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 				Member.Mem_Department,
 				Member.Prov_ID,
 				Member.Mem_Status,
+				Member.Mem_OldID,
 				GroupMember.Group_Status,
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
