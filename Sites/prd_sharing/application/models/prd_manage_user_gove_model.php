@@ -284,6 +284,17 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 		return $query_getDepartment;
 	}
 	
+	public function get_Ministry()
+	{
+		$query_getMinistry = $this->db->
+			select('
+				Ministry.Minis_ID,
+				Ministry.Minis_Name
+			')->
+			get('Ministry')->result();
+		
+		return $query_getMinistry;
+	}
 	
 	public function get_CM06_Province()
 	{
@@ -296,5 +307,4 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 		
 		return $query_getProvince;
 	}
-	// $this->db->limit($limit, $start);
 }

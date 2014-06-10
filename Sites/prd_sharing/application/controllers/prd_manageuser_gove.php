@@ -6,7 +6,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->library('session');
-		$this->load->model('prd_manage_user_model');
+		$this->load->model('prd_manage_user_gove_model');
 	}
 
 	public function index()
@@ -16,12 +16,13 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 			
 			$data['title'] = 'Manage Users';
 			
-			$data['CM06_Province'] = $this->prd_manage_user_model->get_CM06_Province();
-			$data['Department'] = $this->prd_manage_user_model->get_Department();
+			$data['Ministry'] = $this->prd_manage_user_gove_model->get_Ministry();
+			$data['CM06_Province'] = $this->prd_manage_user_gove_model->get_CM06_Province();
+			$data['Department'] = $this->prd_manage_user_gove_model->get_Department();
 			
 			// if($this->input->post('manage_user_is_search') == "yes"){
 	// 			
-				// $data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User_search(
+				// $data['SC03_User'] = $this->prd_manage_user_gove_model->get_SC03_User_search(
 					// $this->input->post('search_key'),
 					// $this->input->post('sc03_status'),
 					// $this->input->post('cm06_province_id')
@@ -38,7 +39,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 					$mem_title = $this->input->post('tname_other_text');
 				}
 				
-				$this->prd_manage_user_model->set_Member(
+				$this->prd_manage_user_gove_model->set_Member(
 					$this->input->post('sex'),
 					$mem_title,
 					$this->input->post('fname'),
@@ -74,7 +75,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 					$mem_title = $this->input->post('tname_other_text');
 				}
 				
-				$this->prd_manage_user_model->update_Member(
+				$this->prd_manage_user_gove_model->update_Member(
 					$this->input->post('member_id'),
 					$this->input->post('sex'),
 					$mem_title,
@@ -103,7 +104,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 			}
 			
 			if($this->input->post('manage_user_is_search') == "yes"){
-				$data['Member'] = $this->prd_manage_user_model->
+				$data['Member'] = $this->prd_manage_user_gove_model->
 					get_Member_search(
 						$this->input->post('search_key'),
 						$this->input->post('mem_status'),
@@ -114,8 +115,8 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 				$data['post_province_id'] = $this->input->post('province_id');
 			}
 			else{
-				$data['Member'] = $this->prd_manage_user_model->get_Member();
-				$data['SC03_User'] = $this->prd_manage_user_model->get_SC03_User();
+				$data['Member'] = $this->prd_manage_user_gove_model->get_Member();
+				$data['SC03_User'] = $this->prd_manage_user_gove_model->get_SC03_User();
 			}
 			
 			

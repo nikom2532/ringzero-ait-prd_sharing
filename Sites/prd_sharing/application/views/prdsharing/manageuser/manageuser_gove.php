@@ -76,8 +76,11 @@
 			<p class="col-4" style="width: 10%;float: left; ">
 				วันที่สมัคร
 			</p>
-			<p class="col-5" style="width: 30%;float: left; ">
-				หน่วยงาน
+			<p class="col-5" style="width: 15%;float: left; ">
+				กระทรวง
+			</p>
+			<p class="col-5" style="width: 15%;float: left; ">
+				กรม
 			</p>
 			<p class="col-6" style="width: 15%;float: left; ">
 				จังหวัด
@@ -113,7 +116,7 @@
 						<p class="col-4" style="width: 10%;float: left; ">
 							-
 						</p>
-						<p class="col-5" style="width: 30%;float: left; ">
+						<p class="col-5" style="width: 15%;float: left; ">
 <?php
 							$count=0;
 							foreach ($Department as $Department_item) {
@@ -128,6 +131,25 @@
 							// echo $Member_item->Mem_Department; 
 ?>
 						</p>
+						
+						<p class="col-5" style="width: 15%;float: left; ">
+<?php
+							/*
+							$count=0;
+							foreach ($Ministry as $Ministry_item) {
+								if($Ministry_item->Minis_ID == $Member_item->Mem_Ministry){
+									echo $Ministry_item->Minis_Name;
+									$count++;
+								}
+							}
+							if($count==0){
+								echo "-";
+							}
+							// echo $Member_item->Mem_Department; 
+							*/
+?>
+						</p>
+						
 						<p class="col-6" style="width: 15%;float: left; ">
 <?php
 							// var_dump($Member_item);
