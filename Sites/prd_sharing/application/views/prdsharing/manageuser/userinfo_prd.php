@@ -4,7 +4,7 @@
 		<input type="hidden" name="update_member" value="yes" />
 		<input type="hidden" name="member_id" value="<?php echo $Mem_ID; ?>" />
 <?php
-		foreach ($Member as $Member_item) {
+		foreach ($SC03_User as $SC03_User_item) {
 			
 ?>
 			<div class="row">
@@ -20,14 +20,14 @@
 <?php
 					
 ?>
-					<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" <?php
-						if($Member_item->Mem_Sex == "ผู้ชาย"){
+					<input type="radio" name="sex" id="sex_male" value="M" <?php
+						if($SC03_User_item->SC03_Gender == "M"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="sex_male" class="txt-radio">ผู้ชาย</label>
-					<input type="radio" name="sex" id="sex_female" value="ผู้หญิง" <?php
-						if($Member_item->Mem_Sex == "ผู้หญิง"){
+					<input type="radio" name="sex" id="sex_female" value="F" <?php
+						if($SC03_User_item->SC03_Gender == "F"){
 							?>checked="checked"<?php
 						}
 					?> />
@@ -41,21 +41,21 @@
 				</div>
 				<div class="col-right">
 					<input type="radio" name="mem_title" value="0" id="tname_male" <?php
-						if($Member_item->Mem_Title == "นาย"){
+						if($SC03_User_item->SC03_TName == "นาย"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_male" class="txt-radio">นาย</label>
 					
 					<input type="radio" name="mem_title" value="1" id="tname_female" <?php
-						if($Member_item->Mem_Title == "นาง"){
+						if($SC03_User_item->SC03_TName == "นาง"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_female" class="txt-radio">นาง</label>
 					
 					<input type="radio" name="mem_title" value="2" id="tname_girl" <?php
-						if($Member_item->Mem_Title == "นางสาว"){
+						if($SC03_User_item->SC03_TName == "นางสาว"){
 							?>checked="checked"<?php
 						}
 					?> />
@@ -63,9 +63,9 @@
 					
 					<input type="radio" name="prefix" value="3" id="tname_other" <?php
 						if(
-							$Member_item->Mem_Title != "นาย" &&
-							$Member_item->Mem_Title != "นาง" &&
-							$Member_item->Mem_Title != "นางสาว"
+							$SC03_User_item->SC03_TName != "นาย" &&
+							$SC03_User_item->SC03_TName != "นาง" &&
+							$SC03_User_item->SC03_TName != "นางสาว"
 						){
 							?>checked="checked"<?php
 						}
@@ -79,27 +79,27 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label class="label">ชื่อ (ไทย)</label>
-					<input type="text" class="form-control" name="fname" id="fname" placeholder="" value="<?php echo $Member_item->Mem_Name;?>" />
+					<input type="text" class="form-control" name="fname" id="fname" placeholder="" value="<?php echo $SC03_User_item->SC03_FName;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label class="label">นามสกุล (ไทย)</label>
-					<input type="text" class="form-control" name="lname" id="lname" placeholder="" value="<?php echo $Member_item->Mem_LasName;?>" />
+					<input type="text" class="form-control" name="lname" id="lname" placeholder="" value="<?php echo $SC03_User_item->SC03_LName;?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ชื่อ (อังกฤษ)</label>
-					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" value="<?php echo $Member_item->Mem_EngName;?>" />
+					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" value="<?php echo $SC03_User_item->Mem_EngName;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label >นามสกุล (อังกฤษ)</label>
-					<input type="text" class="form-control" name="englname" id="englname" placeholder="" value="<?php echo $Member_item->Mem_EngLasName;?>" />
+					<input type="text" class="form-control" name="englname" id="englname" placeholder="" value="<?php echo $SC03_User_item->Mem_EngLasName;?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >Username</label>
-					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" value="<?php echo $Member_item->Mem_Username;?>" />
+					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" value="<?php echo $SC03_User_item->SC03_UserName;?>" />
 				</div>
 			</div>
 			<div class="row">
@@ -115,7 +115,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
-					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" value="<?php echo $Member_item->Mem_CardID;?>" />
+					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" value="<?php echo $SC03_User_item->SC03_IDCard;?>" />
 				</div>
 			</div>
 			<div class="row">

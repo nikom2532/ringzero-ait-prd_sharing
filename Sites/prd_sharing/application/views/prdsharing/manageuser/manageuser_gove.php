@@ -54,13 +54,13 @@
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<div class="row" style="margin-top: 20px;">
 		<a href="manageUserPRD">
-		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
+		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 20%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			MANAGER USER PRD
 		</p></a>
 		
 		<a href="manageUserGOVE">
-		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
-			MANAGER USER GOVE
+		<p style="margin-left:3% ;border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 20%;text-align:center;float: left;">
+			MANAGER USER Government
 		</p></a>
 
 	</div>
@@ -175,11 +175,15 @@
 								// if($Member_item->)
 							// }
 							if($Member_item->Mem_Status == "1"){
-								echo "เปิดการใช้งาน";
+								echo "ใช้งาน";
 							}
 							elseif($Member_item->Mem_Status == "0"){
+								echo "รออนุมัติ";
+							}
+							elseif($Member_item->Mem_Status == "-1"){
 								echo "ปิดการใช้งาน";
 							}
+							
 ?>
 						</p>
 					</a>

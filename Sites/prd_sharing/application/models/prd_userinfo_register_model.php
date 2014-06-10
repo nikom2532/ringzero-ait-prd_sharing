@@ -158,7 +158,7 @@ class PRD_UserInfo_Register_model extends CI_Model {
 			'Mem_Tel' => $mem_tel,
 			'Mem_Mobile' => $mem_mobile,
 			'Group_ID' => $group_member,
-			'Mem_Status' => $mem_status,
+			'Mem_Status' => '0',
 			'Group_ID' => '1',
 			'Mem_CreateDate' => date('Y-m-d H:i:s')
 		);

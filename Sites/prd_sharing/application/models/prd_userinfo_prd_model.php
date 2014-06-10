@@ -45,8 +45,10 @@ class PRD_UserInfo_PRD_model extends CI_Model {
 	{
 		$query_getUser = $this->db_ntt_old->
 			select('
+				SC03_User.SC03_Gender,
 				SC03_User.SC03_UserId,
 				SC03_User.SC03_UserName,
+				SC03_User.SC03_TName,
 				SC03_User.SC03_FName,
 				SC03_User.SC03_LName,
 				SC03_User.SC07_DepartmentId,
