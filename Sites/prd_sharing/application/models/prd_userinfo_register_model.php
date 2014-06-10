@@ -11,6 +11,7 @@ class PRD_UserInfo_Register_model extends CI_Model {
 	public function get_Ministry()
 	{
 		$query = $this->db->
+			where('Minis_Status', '1')->
 			get('Ministry');
 			
 		return $query->result();
@@ -19,6 +20,17 @@ class PRD_UserInfo_Register_model extends CI_Model {
 	public function get_Department()
 	{
 		$query = $this->db->
+			where('Dep_Status', '1')->
+			get('Department');
+			
+		return $query->result();
+	}
+	
+	public function get_Department_Unique($Ministry_ID = '')
+	{
+		$query = $this->db->
+			where('Dep_Status', '1')->
+			where('Ministry_ID', $Ministry_ID)->
 			get('Department');
 			
 		return $query->result();
@@ -48,6 +60,19 @@ class PRD_UserInfo_Register_model extends CI_Model {
 		return $query_getProvince;
 	}
 	
+	public function get_CM07_Ampur_Unique($ProvinceID = '')
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM07_Ampur.CM07_AmpurName,
+				CM07_Ampur.CM07_AmpurID,
+			')->
+			where('CM06_ProvinceID', $ProvinceID)->
+			get('CM07_Ampur')->result();
+		
+		return $query_getProvince;
+	}
+	
 	public function get_CM08_Tumbon()
 	{
 		$query_getProvince = $this->db_ntt_old->
@@ -55,6 +80,19 @@ class PRD_UserInfo_Register_model extends CI_Model {
 				CM08_Tumbon.CM08_TumbonName,
 				CM08_Tumbon.CM08_TumbonID,
 			')->
+			get('CM08_Tumbon')->result();
+		
+		return $query_getProvince;
+	}
+	
+	public function get_CM08_Tumbon_Unique($AmpurID = '')
+	{
+		$query_getProvince = $this->db_ntt_old->
+			select('
+				CM08_Tumbon.CM08_TumbonName,
+				CM08_Tumbon.CM08_TumbonID,
+			')->
+			where('CM07_AmpurID', $AmpurID)->
 			get('CM08_Tumbon')->result();
 		
 		return $query_getProvince;

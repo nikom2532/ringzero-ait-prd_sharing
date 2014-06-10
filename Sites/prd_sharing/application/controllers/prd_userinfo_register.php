@@ -22,7 +22,7 @@ class PRD_UserInfo_Register extends CI_Controller {
 			$data['CM08_Tumbon'] = $this->prd_userinfo_register_model->get_CM08_Tumbon();
 			$data['GroupMember'] = $this->prd_userinfo_register_model->get_GroupMember();
 			
-	
+			
 			$this->load->view('prdsharing/templates/header_authen', $data);
 			$this->load->view('prdsharing/manageuser/userinfo_register', $data);
 			$this->load->view('prdsharing/templates/footer');
@@ -31,5 +31,23 @@ class PRD_UserInfo_Register extends CI_Controller {
 		else{
 			redirect('/', 'refresh');
 		}
+	}
+	
+	public function get_Department($Ministry_ID='')
+	{
+		$_data = $this->prd_userinfo_register_model->get_Department_Unique($Ministry_ID);
+		echo json_encode($_data);
+	}
+	
+	public function get_CM07_Ampur_Unique($ProvinceID = '')
+	{
+		$_data = $this->prd_userinfo_register_model->get_CM07_Ampur_Unique($ProvinceID);
+		echo json_encode($_data);
+	}
+	
+	public function get_CM08_Tumbon_Unique($AmpurID = '')
+	{
+		$_data = $this->prd_userinfo_register_model->get_CM08_Tumbon_Unique($AmpurID);
+		echo json_encode($_data);
 	}
 }

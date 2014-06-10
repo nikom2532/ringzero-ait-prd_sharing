@@ -99,10 +99,11 @@
 				                $('#Dep_ID').empty();
 				                
 				                var text = "<option value=\"\">เลือกกรม</option>";
+				                $('#Dep_ID').append(text);
 				                
 								$.each(subtype,function(index,val) 
 								{
-									text = text+
+									text = ""+
 									"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
 									$('#Dep_ID').append(text);
 								});

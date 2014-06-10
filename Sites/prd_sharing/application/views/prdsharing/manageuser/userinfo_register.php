@@ -80,31 +80,68 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
-				<select name="mem_ministry">
+				<select name="mem_ministry" id="mem_ministry">
 					<option value="">เลือกประเภทตำแหน่ง</option>
 <?php
-						foreach ($Ministry as $Ministry_item) {
-							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
-						}
+					foreach ($Ministry as $Ministry_item) {
+						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+					}
 ?>
 				</select>
 			</div>
 			<div class="col-lg-6">
 				<label >กรม</label>
-				<select name="mem_department">
+				<select name="mem_department" id="mem_department">
 					<option value="">เลือกตำแหน่ง</option>
 <?php
-						foreach ($Department as $Department_item) {
-							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
-						}
+					/*
+					foreach ($Department as $Department_item) {
+						?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+					}
+					*/
 ?>
 				</select>
 			</div>
 		</div>
+		
+		<script>
+			$('select#mem_ministry').change(function(){
+				// debugger;
+			    var type_id = $('select#mem_ministry').val();
+			    if (type_id != ""){
+			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
+			    	// debugger;
+			    	// alert(post_url);
+			        $.ajax({
+			            type: "POST",
+			             url: post_url,
+						 dataType :'json',
+			             success: function(subtype)
+			              {
+			              	// var a = JSON.parse(subtype);
+			                $('#mem_department').empty();
+			                
+			                var text = "<option value=\"\">เลือกกรม</option>";
+			                $('#mem_department').append(text);
+			                
+							$.each(subtype,function(index,val)
+							{
+								text = ""+
+								"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+								$('#mem_department').append(text);
+							});
+						} //end success
+					}); //end AJAX
+			    } else {
+			        $('#SubTypeID').empty();
+			    }//end if
+			}); //end change
+		</script>
+		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
-				<select name="mem_province">
+				<select name="mem_province" id="mem_province">
 					<option value="">เลือกจังหวัด</option>
 <?php
 						foreach ($CM06_Province as $Province) {
@@ -117,7 +154,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >อำเภอ</label>
-				<select name="mem_ampur">
+				<select name="mem_ampur" id="mem_ampur">
 					<option value="">เลือกอำเภอ</option>
 <?php
 						foreach ($CM07_Ampur as $Ampur) {
@@ -128,7 +165,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ตำบล</label>
-				<select name="mem_tumbon">
+				<select name="mem_tumbon" id="mem_tumbon">
 					<option value="">เลือกตำบล</option>
 <?php
 						foreach ($CM08_Tumbon as $Tumbon) {
@@ -138,7 +175,43 @@
 				</select>
 			</div>
 		</div>
-	
+		
+		<script>
+			
+			$('select#mem_province').change(function(){
+				// debugger;
+			    var type_id = $('select#mem_province').val();
+			    if (type_id != ""){
+			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
+			    	// debugger;
+			    	// alert(post_url);
+			        $.ajax({
+			            type: "POST",
+			             url: post_url,
+						 dataType :'json',
+			             success: function(subtype)
+			              {
+			              	// var a = JSON.parse(subtype);
+			                $('#mem_ampur').empty();
+			                
+			                var text = "<option value=\"\">เลือกอำเภอ</option>";
+			                $('#mem_ampur').append(text);
+			                
+							$.each(subtype,function(index,val)
+							{
+								text = ""+
+								"<option value=\""+val.CM07_AmpurID+"\">"+val.CM07_AmpurName+"</option>";
+								$('#mem_ampur').append(text);
+							});
+						} //end success
+					}); //end AJAX
+			    } else {
+			        $('#SubTypeID').empty();
+			    }//end if
+			}); //end change
+			
+		</script>
+		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ที่อยู่</label>
@@ -167,6 +240,7 @@
 				</div>
 			</div>
 		</div>
+		<?php /* ?>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ระดับผู้ใช้งาน</label>
@@ -189,7 +263,7 @@
 				</select>
 			</div>
 		</div>
-	
+		<?php */ ?>
 		<div class="col-lg-12" style="text-align: center;    float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก" />
 			<input class="bt" type="button" name="share" value="ยกเลิก" />
