@@ -138,6 +138,8 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 				Member.Mem_Department,
 				Member.Prov_ID,
 				Member.Mem_Status,
+				Member.Mem_Ministry,
+				Member.Mem_CreateDate,
 				GroupMember.Group_Status,
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->

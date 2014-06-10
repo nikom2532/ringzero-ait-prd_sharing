@@ -114,7 +114,14 @@
 							<?php echo $Member_item->Mem_Name." ".$Member_item->Mem_LasName; ?>
 						</p>
 						<p class="col-4" style="width: 10%;float: left; ">
-							-
+<?php
+							if($Member_item->Mem_CreateDate != null){
+								echo $Member_item->Mem_CreateDate;
+							}
+							else{
+								echo "-";
+							}
+?>
 						</p>
 						<p class="col-5" style="width: 15%;float: left; ">
 <?php
@@ -128,13 +135,11 @@
 							if($count==0){
 								echo "-";
 							}
-							// echo $Member_item->Mem_Department; 
 ?>
 						</p>
 						
 						<p class="col-5" style="width: 15%;float: left; ">
 <?php
-							/*
 							$count=0;
 							foreach ($Ministry as $Ministry_item) {
 								if($Ministry_item->Minis_ID == $Member_item->Mem_Ministry){
@@ -145,8 +150,6 @@
 							if($count==0){
 								echo "-";
 							}
-							// echo $Member_item->Mem_Department; 
-							*/
 ?>
 						</p>
 						

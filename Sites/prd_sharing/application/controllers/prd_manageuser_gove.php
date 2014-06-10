@@ -16,9 +16,9 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 			
 			$data['title'] = 'Manage Users';
 			
-			$data['Ministry'] = $this->prd_manage_user_gove_model->get_Ministry();
 			$data['CM06_Province'] = $this->prd_manage_user_gove_model->get_CM06_Province();
 			$data['Department'] = $this->prd_manage_user_gove_model->get_Department();
+			$data['Ministry'] = $this->prd_manage_user_gove_model->get_Ministry();
 			
 			// if($this->input->post('manage_user_is_search') == "yes"){
 	// 			
