@@ -172,8 +172,9 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 				SC03_User.SC07_DepartmentId,
 				SC03_User.CM06_ProvinceID,
 				SC03_User.SC03_Status,
+				SC03_User.SC03_RegisterDate,
 				CM06_Province.CM06_ProvinceName,
-				SC07_Department.SC07_DepartmentName
+				SC07_Department.SC07_DepartmentName,
 			')->
 			where('SC03_User.SC03_Status', "T")->
 			join('CM06_Province', 'CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId', 'left')->

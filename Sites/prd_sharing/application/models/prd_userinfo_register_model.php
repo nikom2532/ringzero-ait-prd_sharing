@@ -159,8 +159,8 @@ class PRD_UserInfo_Register_model extends CI_Model {
 			'Mem_Mobile' => $mem_mobile,
 			'Group_ID' => $group_member,
 			'Mem_Status' => $mem_status,
-			
-			'Group_ID' => '1'
+			'Group_ID' => '1',
+			'Mem_CreateDate' => date('Y-m-d H:i:s')
 		);
 		//Group_ID = 1 is GOVE
 		

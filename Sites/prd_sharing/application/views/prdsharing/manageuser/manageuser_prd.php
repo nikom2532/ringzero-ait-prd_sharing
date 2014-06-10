@@ -109,8 +109,15 @@
 						<p class="col-3" style="width: 20%;float: left; ">
 							<?php echo $SC03_User_item->SC03_FName." ".$SC03_User_item->SC03_LName; ?>
 						</p>
-						<p class="col-4" style="width: 10%;float: left; ">
-							-
+						<p class="col-4" style="width: 10%;float: left; text-align: center;">
+<?php 
+							if(isset($SC03_User_item->SC03_RegisterDate)){
+								echo $SC03_User_item->SC03_RegisterDate; 
+							}
+							else{
+								echo "-";
+							}
+?>
 						</p>
 						<p class="col-5" style="width: 30%;float: left; ">
 <?php
