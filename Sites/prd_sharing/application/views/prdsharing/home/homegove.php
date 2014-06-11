@@ -36,6 +36,8 @@
 		<div class="event">
 			<p class="col-1" style="width: 20%;float: left; ">
 <?php
+				//Remove the star out
+				/*
 				if($news_item->SendIn_view <= 0){
 					$star_count = 0;
 				}
@@ -61,6 +63,7 @@
 				for ($i=0; $i < $star_count_less; $i++) { 
 					?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
 				}
+				*/
 ?>
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
