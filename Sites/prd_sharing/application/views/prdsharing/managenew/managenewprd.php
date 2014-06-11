@@ -295,6 +295,12 @@
 			$i++;
 		endforeach;
 		//End Count News's Row 
+		
+		if($i == 0){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
+		}
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">

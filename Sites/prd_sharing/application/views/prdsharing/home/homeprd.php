@@ -14,7 +14,7 @@
 <?php
 		//Start to count News's rows
 		// var_dump($New_News);
-		
+		$countNews=0;
 		foreach($news as $news_item):
 ?>
 		<div class="odd">
@@ -159,8 +159,15 @@
 			</p>
 		</div>
 <?php
+		$countNews++;
 		endforeach;
 		//End Count News's Row 
+		
+		if($countNews == 0){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
+		}
 ?>
 
 		<p><?php //echo $links; ?></p>
