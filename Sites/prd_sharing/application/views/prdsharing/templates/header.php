@@ -19,6 +19,8 @@
 	
 	<script src="js/jquery.uploadfile.min.js"></script>
 	
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+	
     <link href="css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="css/style.css" rel="stylesheet" charset="utf-8">
     <script src="js/ckeditor.js"></script>

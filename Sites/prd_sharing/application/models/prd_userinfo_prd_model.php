@@ -51,8 +51,22 @@ class PRD_UserInfo_PRD_model extends CI_Model {
 				SC03_User.SC03_TName,
 				SC03_User.SC03_FName,
 				SC03_User.SC03_LName,
+				SC03_User.SC03_EngTName,
+				SC03_User.SC03_EngFName,
+				SC03_User.SC03_EngLName,
+				SC03_User.SC03_UserName,
+				SC03_User.SC03_IDCard,
+				SC03_User.SC03_Address,
+				SC03_User.SC03_Email,
+				
 				SC03_User.SC07_DepartmentId,
 				SC03_User.CM06_ProvinceID,
+				SC03_User.CM07_AmpurId,
+				SC03_User.CM08_TumbonId,
+				
+				SC03_User.SC03_Tel,
+				
+				
 				SC03_User.SC03_Status,
 				CM06_Province.CM06_ProvinceName,
 				SC07_Department.SC07_DepartmentName

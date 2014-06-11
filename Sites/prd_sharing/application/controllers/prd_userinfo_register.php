@@ -4,7 +4,8 @@ class PRD_UserInfo_Register extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->model('prd_userinfo_register_model');
 	}
@@ -61,9 +62,22 @@ class PRD_UserInfo_Register extends CI_Controller {
 			$data['GroupMember'] = $this->prd_userinfo_register_model->get_GroupMember();
 			
 			
-			$this->load->view('prdsharing/templates/header_authen', $data);
-			$this->load->view('prdsharing/manageuser/userinfo_register', $data);
-			$this->load->view('prdsharing/templates/footer');
+			// $this->form_validation->set_rules('mem_password1', 'mem_password1', 'required');
+			
+			
+			// if ($this->form_validation->run() == FALSE)
+			// {
+				// $this->load->view('prdsharing/templates/header_authen', $data);
+				// $this->load->view('prdsharing/manageuser/userinfo_register', $data);
+				// $this->load->view('prdsharing/templates/footer');
+// 				
+			// }
+			// else
+			// {
+				$this->load->view('prdsharing/templates/header_authen', $data);
+				$this->load->view('prdsharing/manageuser/userinfo_register', $data);
+				$this->load->view('prdsharing/templates/footer');
+			// }
 			
 		}
 	}

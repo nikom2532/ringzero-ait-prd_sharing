@@ -37,32 +37,58 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 		$mem_status = ''
 	)
 	{
-		$data = array(
-			'Mem_Sex' => $sex,
-			'Mem_Title' => $mem_title,
-			'Mem_Name' => $fname,
-			'Mem_LasName' => $lname,
-			'Mem_EngName' => $engfname,
-			'Mem_EngLasName' => $englname,
-			'Mem_Username' => $mem_username,
-			'Mem_Password' => $mem_password,
-			'Mem_CardID' => $mem_cardID,
-			'Mem_Ministry' => $mem_ministry,
-			'Mem_Department' => $mem_department,
-			'Prov_ID' => $mem_province,
-			'Ampur_ID' => $mem_ampur,
-			'Tumbon_ID' => $mem_tumbon,
-			'Mem_Address' => $mem_address,
-			'Mem_Email' => $mem_email,
-			'Mem_Postcode' => $mem_postcode,
-			'Mem_NickName' => $mem_nickname,
-			'Mem_Tel' => $mem_tel,
-			'Mem_Mobile' => $mem_moble,
-			'Group_ID' => $group_member,
-			'Mem_Status' => $mem_status
-		);
-		
-		var_dump($data);
+		if($mem_password == ""){
+			$data = array(
+				'Mem_Sex' => $sex,
+				'Mem_Title' => $mem_title,
+				'Mem_Name' => $fname,
+				'Mem_LasName' => $lname,
+				'Mem_EngName' => $engfname,
+				'Mem_EngLasName' => $englname,
+				'Mem_Username' => $mem_username,
+				'Mem_CardID' => $mem_cardID,
+				'Mem_Ministry' => $mem_ministry,
+				'Mem_Department' => $mem_department,
+				'Prov_ID' => $mem_province,
+				'Ampur_ID' => $mem_ampur,
+				'Tumbon_ID' => $mem_tumbon,
+				'Mem_Address' => $mem_address,
+				'Mem_Email' => $mem_email,
+				'Mem_Postcode' => $mem_postcode,
+				'Mem_NickName' => $mem_nickname,
+				'Mem_Tel' => $mem_tel,
+				'Mem_Mobile' => $mem_moble,
+				'Group_ID' => $group_member,
+				'Mem_Status' => $mem_status
+			);
+		}
+		else{
+			$data = array(
+				'Mem_Sex' => $sex,
+				'Mem_Title' => $mem_title,
+				'Mem_Name' => $fname,
+				'Mem_LasName' => $lname,
+				'Mem_EngName' => $engfname,
+				'Mem_EngLasName' => $englname,
+				'Mem_Username' => $mem_username,
+				'Mem_Password' => $mem_password,
+				'Mem_CardID' => $mem_cardID,
+				'Mem_Ministry' => $mem_ministry,
+				'Mem_Department' => $mem_department,
+				'Prov_ID' => $mem_province,
+				'Ampur_ID' => $mem_ampur,
+				'Tumbon_ID' => $mem_tumbon,
+				'Mem_Address' => $mem_address,
+				'Mem_Email' => $mem_email,
+				'Mem_Postcode' => $mem_postcode,
+				'Mem_NickName' => $mem_nickname,
+				'Mem_Tel' => $mem_tel,
+				'Mem_Mobile' => $mem_moble,
+				'Group_ID' => $group_member,
+				'Mem_Status' => $mem_status
+			);
+		}
+		// var_dump($data);
 		
 		$query_setMember = $this->db->
 			where('Member.Mem_ID', $Mem_ID)->

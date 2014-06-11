@@ -89,11 +89,11 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ชื่อ (อังกฤษ)</label>
-					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" value="<?php echo $SC03_User_item->Mem_EngName;?>" />
+					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" value="<?php echo $SC03_User_item->SC03_EngFName;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label >นามสกุล (อังกฤษ)</label>
-					<input type="text" class="form-control" name="englname" id="englname" placeholder="" value="<?php echo $SC03_User_item->Mem_EngLasName;?>" />
+					<input type="text" class="form-control" name="englname" id="englname" placeholder="" value="<?php echo $SC03_User_item->SC03_EngLName;?>" />
 				</div>
 			</div>
 			<div class="row">
@@ -102,7 +102,7 @@
 					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" value="<?php echo $SC03_User_item->SC03_UserName;?>" />
 				</div>
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-6">
 					<label >Password</label>
 					<input type="text" class="form-control" name="mem_password1" id="mem_password1" placeholder="" value="<?php //echo $SC03_User_item->SC03_Password;?>" />
@@ -111,7 +111,7 @@
 					<label >Confirm Password</label>
 					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" >
 				</div>
-			</div>
+			</div> -->
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
@@ -149,7 +149,9 @@
 						<option value="">เลือกจังหวัด</option>
 <?php
 						foreach ($CM06_Province as $Province) {
-							?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
+							if($Province->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceId){
+								?><option value="<?php echo $Province->CM06_ProvinceID;?>" selected='selected'><?php echo $Province->CM06_ProvinceName;?></option><?php
+							}
 						}
 ?>
 					</select>
@@ -162,7 +164,12 @@
 						<option value="">เลือกอำเภอ</option>
 <?php
 						foreach ($CM07_Ampur as $Ampur) {
-							?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
+							if($Ampur->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceId){
+								if($Ampur->CM07_AmpurID == $SC03_User_item->CM07_AmpurId){
+									?><option value="<?php echo $Ampur->CM07_AmpurID;?>" selected='selected'><?php echo $Ampur->CM07_AmpurName;?></option><?php
+								
+								}
+							}
 						}
 ?>
 					</select>
@@ -173,7 +180,11 @@
 						<option value="">เลือกตำบล</option>
 <?php
 						foreach ($CM08_Tumbon as $Tumbon) {
-							?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+							if($Tumbon->CM07_AmpurID == $SC03_User_item->CM07_AmpurID){
+								if($Tumbon->CM08_TumbonID == $SC03_User_item->CM08_TumbonId){
+									?><option value="<?php echo $Tumbon->CM08_TumbonID;?>" selected='selected'><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+								}
+							}
 						}
 ?>
 					</select>
@@ -185,24 +196,24 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ที่อยู่</label>
-					<textarea rows="4" cols="50" class="txt-area" name="mem_address"></textarea>
+					<textarea rows="4" cols="50" class="txt-area" name="mem_address"><?php echo $SC03_User_item->SC03_Address; ?></textarea>
 				</div>
 				<div class="col-lg-6">
 					<div class="row">
 						<label class="label">Email</label>
-						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
+						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" value="<?php echo $SC03_User_item->SC03_Email; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">รหัสไปรษณีย์</label>
-						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" />
+						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" value="<?php // echo $SC03_User_item->; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">ชื่อผู้ติดต่อ</label>
-						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" />
+						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" value="<?php // echo $SC03_User_item->SC03_Email; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์ที่ทำงาน</label>
-						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" />
+						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" value="<?php echo $SC03_User_item->SC03_Tel; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์มือถือ</label>

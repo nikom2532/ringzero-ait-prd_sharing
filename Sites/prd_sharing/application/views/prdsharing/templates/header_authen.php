@@ -14,6 +14,10 @@
 	<script src="js/jqueryui/jquery-1.10.2.js"></script>
 	<link rel="stylesheet" href="css/jqueryui/jquery-ui-1.10.4.custom.min.css">
 	<script src="js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script> 
+	
+	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script> -->
+	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+	<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 
     <link href="css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="css/style.css" rel="stylesheet" charset="utf-8">

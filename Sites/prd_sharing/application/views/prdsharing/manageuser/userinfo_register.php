@@ -1,6 +1,9 @@
+<!-- <?php echo validation_errors(); ?> -->
+
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form action="register/" method="post">
+	<form id="form_userinfo" action="register/" method="post">
+	<!-- <?php echo form_open('form'); ?> -->
 		<input type="hidden" name="register_new_member" value="yes" />
 		<div class="row">
 			<div class="row" id="gove-title">
@@ -62,12 +65,13 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label id="mem_password1" >Password</label>
-				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" />
+				<label id="mem_password1">Password</label>
+				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" required />
 			</div>
 			<div class="col-lg-6">
-				<label id="mem_password2" >Confirm Password</label>
-				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
+				<label id="mem_password2">Confirm Password</label>
+				<!-- <input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" /> -->
+				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" />
 			</div>
 		</div>
 			
@@ -300,9 +304,47 @@
 			</div>
 		</div>
 		<?php */ ?>
-		<div class="col-lg-12" style="text-align: center;    float: left;">
+		<div class="col-lg-12" style="text-align: center; float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก" />
 			<input class="bt" type="button" name="share" value="ยกเลิก" />
 		</div>
 	</form>
+	<script>
+		// $( "#form_userinfo" ).validate({
+		  // rules: {
+		    // mem_password1: {
+			    // required: true
+		    // },
+		    // mem_password2: {
+		      // equalTo: "#mem_password1"
+// 		      
+		    // }
+		  // }
+		// });
+		
+		function check_pass(text1, text2){
+			
+			$('#mem_password2').html(text2);
+			
+			// mem_password2
+		}
+		
+		/*
+		var validator = $("#form_userinfo").validate({
+			rules: {        	        		
+				mem_password1 :"required",
+				mem_password2: function(){
+					equalTo: '#mem_password1'
+			    }		
+	    	},  	                          
+		    messages: {
+	    		mem_password1 :" Enter Password",
+	    		mem_password2 :" Enter Confirm Password Same as Password"
+		    }
+		});
+		if(validator.form()){
+			alert('Sucess');
+		}
+		*/
+	</script>
 </div><!-- #manage-user -->
