@@ -86,7 +86,11 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				Member.Mem_EngLasName,
 				Member.Mem_Username,
 				Member.Mem_CardID,
-				
+				Member.Prov_ID,
+				Member.Ampur_ID,
+				Member.Tumbon_ID,
+				Member.Mem_Ministry,
+				Member.Mem_Department,
 				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->

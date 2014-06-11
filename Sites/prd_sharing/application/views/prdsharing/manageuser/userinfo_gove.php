@@ -146,9 +146,16 @@
 			</div>
 			
 			<script>
-				$('select#mem_ministry').change(function(){
+				function push_mem_department(id){
 					// debugger;
-				    var type_id = $('select#mem_ministry').val();
+				    
+				    if(id != ""){
+				    	var type_id = id;
+				    }
+				    else{
+				    	var type_id = $('select#mem_ministry').val();
+				    }
+				    
 				    if (type_id != ""){
 				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
 				    	// debugger;
@@ -176,7 +183,23 @@
 				    } else {
 				        $('#SubTypeID').empty();
 				    }//end if
+				}
+				
+				
+				//Change mem_ministry
+				$('select#mem_ministry').change(function(){
+					push_mem_department('');
 				}); //end change
+				
+				//Load mem_ministry
+				$( document ).ready(function() {
+					
+					$('select#mem_ministry option').filter(function() {
+				        return ($(this).val() == '<?php echo $Member_item->Mem_Ministry; ?>'); //To select Blue
+				    }).attr("selected","selected");
+					
+					push_mem_department('<?php echo $Member_item->Mem_Ministry; ?>');
+				});
 			</script>
 			
 			<div class="row">
@@ -222,10 +245,15 @@
 			</div>
 			
 			<script>
-				//อำเภอ
-				$('select#mem_province').change(function(){
-					// debugger;
-				    var type_id = $('select#mem_province').val();
+				//###################  อำเภอ  ##########################
+				function push_mem_province(id){
+					if(id != ""){
+				    	var type_id = id;
+				    }
+				    else{
+				    	var type_id = $('select#mem_province').val();
+				    }
+				    // debugger;
 				    if (type_id != ""){
 				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
 				    	// debugger;
@@ -253,12 +281,33 @@
 				    } else {
 				        $('#SubTypeID').empty();
 				    }//end if
+				}
+				
+				//Change mem_province
+				$('select#mem_province').change(function(){
+					push_mem_province('');
 				}); //end change
 				
-				//ตำบล
-				$('select#mem_ampur').change(function(){
+				
+				//Load mem_province
+				$( document ).ready(function() {
+					
+					$('select#mem_province option').filter(function() {
+				        return ($(this).val() == '<?php echo $Member_item->Prov_ID; ?>'); //To select Blue
+				    }).attr("selected","selected");
+					
+					push_mem_province('<?php echo $Member_item->Prov_ID; ?>');
+				});
+				
+				//##################  ตำบล  ######################
+				function push_mem_ampur(id){
+					if(id != ""){
+				    	var type_id = id;
+				    }
+				    else{
+				    	var type_id = $('select#mem_ampur').val();
+				    }
 					// debugger;
-				    var type_id = $('select#mem_ampur').val();
 				    if (type_id != ""){
 				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
 				    	// debugger;
@@ -286,7 +335,25 @@
 				    } else {
 				        $('#SubTypeID').empty();
 				    }//end if
+				}
+				
+				//Change mem_province
+				$('select#mem_ampur').change(function(){
+					push_mem_ampur('');
 				}); //end change
+				
+				
+				//Load mem_province
+				$( document ).ready(function() {
+					
+					$('select#mem_ampur option').filter(function() {
+				        return ($(this).val() == '<?php echo $Member_item->Ampur_ID; ?>'); //To select Blue
+				    }).attr("selected","selected");
+					
+					push_mem_ampur('<?php echo $Member_item->Ampur_ID; ?>');
+				});
+				
+				
 			</script>
 <?php
 			//*
