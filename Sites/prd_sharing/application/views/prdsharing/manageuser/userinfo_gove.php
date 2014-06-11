@@ -186,10 +186,6 @@
 				}
 				
 				
-				//Change mem_ministry
-				$('select#mem_ministry').change(function(){
-					push_mem_department('');
-				}); //end change
 				
 				//Load mem_ministry
 				$( document ).ready(function() {
@@ -199,9 +195,25 @@
 				    }).attr("selected","selected");
 					
 					push_mem_department('<?php echo $Member_item->Mem_Ministry; ?>');
+					
+					//Change mem_ministry
+					$('select#mem_ministry').change(function(){
+						push_mem_department('');
+					}); //end change
+<?php
+					if($Member_item->Mem_Department != ''){
+?>
+						$('select#mem_department option').filter(function() {
+					        return ($(this).val() == '<?php echo $Member_item->Mem_Department; ?>'); //To select Blue
+					    }).prop('selected', true);
+					    
+					    // .attr("selected","selected");
+						// .prop('selected', true)
+<?php
+					}
+?>
 				});
 			</script>
-			
 			<div class="row">
 				<div class="col-lg-6">
 					<label >จังหวัด</label>
