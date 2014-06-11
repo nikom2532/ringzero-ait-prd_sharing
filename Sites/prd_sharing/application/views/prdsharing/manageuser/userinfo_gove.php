@@ -125,7 +125,11 @@
 						<option value="">เลือกกระทรวง</option>
 <?php
 						foreach ($Ministry as $Ministry_item) {
-							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>" <?php
+								if($Member_item->Mem_Ministry == $Ministry_item->Minis_ID){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
 ?>
 					</select>
@@ -135,20 +139,23 @@
 					<select name="mem_department" id="mem_department">
 						<option value="">เลือกกรม</option>
 <?php
-						/*
 						foreach ($Department as $Department_item) {
-							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+							
+							if($Department_item->Ministry_ID == $Member_item->Mem_Ministry){
+								?><option value="<?php echo $Department_item->Dep_ID;?>" <?php
+									if($Department_item->Dep_ID == $Member_item->Mem_Department){
+										?>selected='selected'<?php
+									}
+								?>><?php echo $Department_item->Dep_Name; ?></option><?php
+							}
 						}
-						*/
 ?>
 					</select>
 				</div>
 			</div>
-			
 			<script>
 				function push_mem_department(id){
 					// debugger;
-				    
 				    if(id != ""){
 				    	var type_id = id;
 				    }
@@ -166,7 +173,6 @@
 							 dataType :'json',
 				             success: function(subtype)
 				              {
-				              	// var a = JSON.parse(subtype);
 				                $('#mem_department').empty();
 				                
 				                var text = "<option value=\"\">เลือกกรม</option>";
@@ -185,22 +191,22 @@
 				    }//end if
 				}
 				
-				
-				
 				//Load mem_ministry
 				$( document ).ready(function() {
 					
-					$('select#mem_ministry option').filter(function() {
-				        return ($(this).val() == '<?php echo $Member_item->Mem_Ministry; ?>'); //To select Blue
-				    }).attr("selected","selected");
-					
-					push_mem_department('<?php echo $Member_item->Mem_Ministry; ?>');
+					// $('select#mem_ministry option').filter(function() {
+				        // return ($(this).val() == '<?php //echo $Member_item->Mem_Ministry; ?>'); //To select Blue
+				    // }).attr("selected","selected");
+// 					
+					// push_mem_department('<?php echo $Member_item->Mem_Ministry; ?>');
 					
 					//Change mem_ministry
 					$('select#mem_ministry').change(function(){
+						// alert('');
 						push_mem_department('');
 					}); //end change
-<?php
+<?php				
+					/*
 					if($Member_item->Mem_Department != ''){
 ?>
 						$('select#mem_department option').filter(function() {
@@ -211,6 +217,7 @@
 						// .prop('selected', true)
 <?php
 					}
+					*/
 ?>
 				});
 			</script>
@@ -220,8 +227,13 @@
 					<select name="mem_province" id="mem_province">
 						<option value="">เลือกจังหวัด</option>
 <?php
+						// var_dump($CM06_Province);
 						foreach ($CM06_Province as $Province) {
-							?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
+							?><option value="<?php echo $Province->CM06_ProvinceID;?>" <?php
+								if($Province->CM06_ProvinceID == $Member_item->Prov_ID){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Province->CM06_ProvinceName;?></option><?php
 						}
 ?>
 					</select>
@@ -233,11 +245,17 @@
 					<select name="mem_ampur" id="mem_ampur">
 						<option value="">เลือกอำเภอ</option>
 <?php
-						/*
 						foreach ($CM07_Ampur as $Ampur) {
-							?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
+							
+							if($Ampur->CM06_ProvinceID == $Member_item->Prov_ID){
+								?><option value="<?php echo $Ampur->CM07_AmpurID;?>" <?php
+									if($Ampur->CM07_AmpurID == $Member_item->Ampur_ID){
+										?>selected='selected'<?php
+									}
+								?>><?php echo $Ampur->CM07_AmpurName;?></option><?php
+							}
 						}
-						*/
+						
 ?>
 					</select>
 				</div>
@@ -246,11 +264,16 @@
 					<select name="mem_tumbon" id="mem_tumbon">
 						<option value="">เลือกตำบล</option>
 <?php
-						/*
 						foreach ($CM08_Tumbon as $Tumbon) {
-							?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+							if($Tumbon->CM07_AmpurID == $Member_item->Ampur_ID){
+								
+								?><option value="<?php echo $Tumbon->CM08_TumbonID;?>" <?php
+									if($Tumbon->CM08_TumbonID == $Member_item->Tumbon_ID){
+										?>selected='selected'<?php
+									}
+								?>><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+							}
 						}
-						*/
 ?>
 					</select>
 				</div>
@@ -301,15 +324,15 @@
 				}); //end change
 				
 				
-				//Load mem_province
-				$( document ).ready(function() {
-					
-					$('select#mem_province option').filter(function() {
-				        return ($(this).val() == '<?php echo $Member_item->Prov_ID; ?>'); //To select Blue
-				    }).attr("selected","selected");
-					
-					push_mem_province('<?php echo $Member_item->Prov_ID; ?>');
-				});
+				// //Load mem_province
+				// $( document ).ready(function() {
+// 					
+					// $('select#mem_province option').filter(function() {
+				        // return ($(this).val() == '<?php echo $Member_item->Prov_ID; ?>'); //To select Blue
+				    // }).attr("selected","selected");
+// 					
+					// push_mem_province('<?php echo $Member_item->Prov_ID; ?>');
+				// });
 				
 				//##################  ตำบล  ######################
 				function push_mem_ampur(id){
@@ -355,15 +378,15 @@
 				}); //end change
 				
 				
-				//Load mem_province
-				$( document ).ready(function() {
-					
-					$('select#mem_ampur option').filter(function() {
-				        return ($(this).val() == '<?php echo $Member_item->Ampur_ID; ?>'); //To select Blue
-				    }).attr("selected","selected");
-					
-					push_mem_ampur('<?php echo $Member_item->Ampur_ID; ?>');
-				});
+				// //Load mem_province
+				// $( document ).ready(function() {
+// 					
+					// $('select#mem_ampur option').filter(function() {
+				        // return ($(this).val() == '<?php echo $Member_item->Ampur_ID; ?>'); //To select Blue
+				    // }).attr("selected","selected");
+// 					
+					// push_mem_ampur('<?php echo $Member_item->Ampur_ID; ?>');
+				// });
 				
 				
 			</script>

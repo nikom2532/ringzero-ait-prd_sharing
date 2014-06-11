@@ -178,6 +178,15 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_Department_Unique($Ministry_ID = '')
+	{
+		$query = $this->db->
+			where('Ministry_ID', $Ministry_ID)->
+			get('Department');
+			
+		return $query->result();
+	}
+	
 	public function get_CM06_Province()
 	{
 		$query_getProvince = $this->db_ntt_old->
@@ -196,6 +205,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 			select('
 				CM07_Ampur.CM07_AmpurName,
 				CM07_Ampur.CM07_AmpurID,
+				CM07_Ampur.CM06_ProvinceID
 			')->
 			get('CM07_Ampur')->result();
 		
@@ -208,6 +218,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 			select('
 				CM08_Tumbon.CM08_TumbonName,
 				CM08_Tumbon.CM08_TumbonID,
+				CM08_Tumbon.CM07_AmpurID
 			')->
 			get('CM08_Tumbon')->result();
 		

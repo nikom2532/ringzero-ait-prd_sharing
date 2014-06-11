@@ -67,6 +67,7 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 				$data['Ministry'] = $this->PRD_UserInfo_GOVE_model->get_Ministry();
 				$data['Department'] = $this->PRD_UserInfo_GOVE_model->get_Department();
 				
+				
 				$data['CM06_Province'] = $this->PRD_UserInfo_GOVE_model->get_CM06_Province();
 				$data['CM07_Ampur'] = $this->PRD_UserInfo_GOVE_model->get_CM07_Ampur();
 				$data['CM08_Tumbon'] = $this->PRD_UserInfo_GOVE_model->get_CM08_Tumbon();
