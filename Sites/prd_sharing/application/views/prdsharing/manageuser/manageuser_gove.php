@@ -126,9 +126,9 @@
 						<p class="col-5" style="width: 15%;float: left; ">
 <?php
 							$count=0;
-							foreach ($Department as $Department_item) {
-								if($Department_item->Dep_ID == $Member_item->Mem_Department){
-									echo $Department_item->Dep_Name;
+							foreach ($Ministry as $Ministry_item) {
+								if($Ministry_item->Minis_ID == $Member_item->Mem_Ministry){
+									echo $Ministry_item->Minis_Name;
 									$count++;
 								}
 							}
@@ -141,9 +141,9 @@
 						<p class="col-5" style="width: 15%;float: left; ">
 <?php
 							$count=0;
-							foreach ($Ministry as $Ministry_item) {
-								if($Ministry_item->Minis_ID == $Member_item->Mem_Ministry){
-									echo $Ministry_item->Minis_Name;
+							foreach ($Department as $Department_item) {
+								if($Department_item->Dep_ID == $Member_item->Mem_Department){
+									echo $Department_item->Dep_Name;
 									$count++;
 								}
 							}
