@@ -51,10 +51,11 @@ class PRD_HomePRD extends CI_Controller {
 				$data['news'] = $this->prd_homeprd_model->get_NT01_News();
 			}
 			
-			
 			$data['NT01_NewsType'] = $this->prd_homeprd_model->get_NT01_NewsType();
 			
 			$data['Category'] = $this->prd_homeprd_model->get_Category();
+			
+			var_dump($data['Category']);
 			
 			// After Load the Page --> Will insert the UserID from Old Database to New Database
 			//Insert News Table from Old Database to New Database

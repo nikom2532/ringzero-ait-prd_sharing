@@ -89,18 +89,18 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 		$i=0;
 		foreach ($query_read_new_category as $item) {
 			
-			if($item->Cate_Status == "0"){
+			if($item->Cate_Status == "N"){
 			
 				$data = array(
-					'Cate_Status' => '1',
+					'Cate_Status' => 'Y',
 					'Cate_UpdateDate' => date('Y-m-d h:m:s'),
 					'MemUpdate_ID' => $this->session->userdata('member_id')
 				);
 				
 			}
-			elseif($item->Cate_Status == "1"){
+			elseif($item->Cate_Status == "Y"){
 				$data = array(
-					'Cate_Status' => '0',
+					'Cate_Status' => 'N',
 					'Cate_UpdateDate' => date('Y-m-d h:m:s'),
 					'MemUpdate_ID' => $this->session->userdata('member_id')
 				);
@@ -116,7 +116,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 			
 			$data = array(
 				'Cate_OldID' => $NT02_TypeID,
-				'Cate_Status' => '1',
+				'Cate_Status' => 'Y',
 				'Cate_UpdateDate' => date('Y-m-d h:m:s')
 			);
 			

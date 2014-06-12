@@ -8,6 +8,14 @@ class PRD_HomePRD_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	public function get_New_News()
+	{
+		$query_news = $this->db->
+			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
+			get('News')->result();
+		return $query_news;
+	}
+	
 	public function get_NT01_News()
 	{
 		$StrQuery = "
@@ -48,14 +56,6 @@ class PRD_HomePRD_model extends CI_Model {
 			query($StrQuery)->result();
 		
 		return $query;
-	}
-	
-	public function get_New_News()
-	{
-		$query_news = $this->db->
-			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
-			get('News')->result();
-		return $query_news;
 	}
 	
 	public function get_NT01_NewsType()
