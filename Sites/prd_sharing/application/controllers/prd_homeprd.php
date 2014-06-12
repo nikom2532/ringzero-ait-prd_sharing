@@ -28,6 +28,9 @@ class PRD_HomePRD extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Home';
+			
+			$category = $this->prd_homeprd_model->get_Category();
+			
 			if($this->input->post("news_title") != ""){
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("end_date")) );
@@ -48,14 +51,10 @@ class PRD_HomePRD extends CI_Controller {
 			}
 			else{
 				
-				$data['news'] = $this->prd_homeprd_model->get_NT01_News();
+				$data['news'] = $this->prd_homeprd_model->get_NT01_News($category);
 			}
 			
-			$data['NT01_NewsType'] = $this->prd_homeprd_model->get_NT01_NewsType();
 			
-			$data['Category'] = $this->prd_homeprd_model->get_Category();
-			
-			var_dump($data['Category']);
 			
 			// After Load the Page --> Will insert the UserID from Old Database to New Database
 			//Insert News Table from Old Database to New Database

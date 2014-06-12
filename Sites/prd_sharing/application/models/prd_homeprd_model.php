@@ -16,8 +16,15 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query_news;
 	}
 	
-	public function get_NT01_News()
+	public function get_NT01_News($Cate_OldID = array())
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$StrQuery = "
 			SELECT TOP 20 
 				NT01_News.NT01_NewsID, 
@@ -50,14 +57,30 @@ class PRD_HomePRD_model extends CI_Model {
 				NT02_NewsType.NT02_Status = 'Y'
 			AND
 				NT01_News.NT01_Status = 'Y'
+		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
+		$StrQuery .= "
 			group by NT01_News.NT01_NewsID
 		";
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		
 		return $query;
 	}
 	
+	/*
 	public function get_NT01_NewsType()
 	{
 		$query = $this->db_ntt_old->
@@ -73,18 +96,16 @@ class PRD_HomePRD_model extends CI_Model {
 			get('NT02_NewsType')->result();
 		return $query;
 	}
+	*/
 	
 	public function get_Category()
 	{
 		return $this->db->
 			SELECT('
-				Category.Cate_ID,
 				Category.Cate_OldID,
-				Category.Cate_Status,
-				Category.Cate_UpdateDate,
-				Category.MemUpdate_ID
 			')->
-			LIMIT('20,0')->	
+			LIMIT('20,0')->
+			where('Category.Cate_Status', 'Y')->
 			get('Category')->result();
 	}
 	
