@@ -13,6 +13,12 @@ class PRD_Authen_Logout extends CI_Controller {
 	{
 		//Logout
 		$this->session->unset_userdata('member_id');
+		$this->session->unset_userdata('Mem_Username');
+		$this->session->unset_userdata('Mem_Title');
+		$this->session->unset_userdata('Mem_Name');
+		$this->session->unset_userdata('Mem_LasName');
+		$this->session->unset_userdata('Mem_EngName');
+		$this->session->unset_userdata('Mem_EngLasName');
 		redirect('/', 'refresh');
 	}
 }
