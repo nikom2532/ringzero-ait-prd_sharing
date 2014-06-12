@@ -13,19 +13,9 @@
 		</div>
 <?php
 		//Start to count News's rows
-		// var_dump($New_News);
-		// var_dump($NT01_NewsType);
-		var_dump($news);
+		// var_dump($news);
 		$countNews=0;
 		foreach($news as $news_item):
-			
-			/*
-			foreach ($Category as $Category_item) {
-				if($Category_item->Cate_Status == 'Y'){
-					
-				}
-			}
-			*/
 ?>
 			<div class="odd">
 				<p class="col-1" style="width: 20%; float: left; "><?php
