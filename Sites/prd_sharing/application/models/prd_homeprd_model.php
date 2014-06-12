@@ -76,24 +76,29 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 				MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 				MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
+				MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 				MAX(SC03_User.SC03_FName) AS SC03_FName, 
 				MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 				MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 				MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 				MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
 			FROM NT01_News 
-			LEFT JOIN 
-				SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-			LEFT JOIN 
-				NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-			LEFT JOIN 
-				NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-			LEFT JOIN 
-				NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN NT02_NewsType 
+				ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
+			LEFT JOIN SC03_User 
+				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+			LEFT JOIN NT10_VDO 
+				ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN NT11_Picture 
+				ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN NT12_Voice 
+				ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
 			LEFT JOIN 
 				NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 			WHERE 
-				NT08_PubTypeID = '11'
+				NT01_News.NT08_PubTypeID = '11'
+			AND
+				NT02_NewsType.NT02_Status = 'Y'
 			AND
 				NT01_News.NT01_Status = 'Y'
 			group by NT01_News.NT01_NewsID
@@ -176,6 +181,8 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 				MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
 			FROM NT01_News 
+			LEFT JOIN NT02_NewsType 
+				ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 			LEFT JOIN 
 				SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 			LEFT JOIN 
@@ -188,6 +195,8 @@ class PRD_HomePRD_model extends CI_Model {
 				NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 			WHERE 
 				NT08_PubTypeID = '11'
+			AND
+				NT02_NewsType.NT02_Status = 'Y'
 			AND
 				NT01_News.NT01_Status = 'Y'
 			AND 
@@ -242,6 +251,8 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 				MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
 			FROM NT01_News 
+			LEFT JOIN NT02_NewsType 
+				ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 			LEFT JOIN SC03_User
 				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
 			LEFT JOIN NT10_VDO
@@ -254,6 +265,8 @@ class PRD_HomePRD_model extends CI_Model {
 				ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
 			WHERE 
 				NT08_PubTypeID = '11'
+			AND
+				NT02_NewsType.NT02_Status = 'Y'
 			AND
 				NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
 			AND
@@ -310,6 +323,8 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 				MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
 			FROM NT01_News 
+			LEFT JOIN NT02_NewsType 
+				ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 			LEFT JOIN SC03_User
 				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
 			LEFT JOIN NT10_VDO
@@ -322,6 +337,8 @@ class PRD_HomePRD_model extends CI_Model {
 				ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
 			WHERE 
 				NT08_PubTypeID = '11'
+			AND
+				NT02_NewsType.NT02_Status = 'Y'
 			AND
 				NT01_News.NT01_Status = 'Y'
 			AND

@@ -93,14 +93,16 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 			
 				$data = array(
 					'Cate_Status' => '1',
-					'Cate_UpdateDate' => date('Y-m-d h:m:s')
+					'Cate_UpdateDate' => date('Y-m-d h:m:s'),
+					'MemUpdate_ID' => $this->session->userdata('member_id')
 				);
 				
 			}
 			elseif($item->Cate_Status == "1"){
 				$data = array(
 					'Cate_Status' => '0',
-					'Cate_UpdateDate' => date('Y-m-d h:m:s')
+					'Cate_UpdateDate' => date('Y-m-d h:m:s'),
+					'MemUpdate_ID' => $this->session->userdata('member_id')
 				);
 			}
 			

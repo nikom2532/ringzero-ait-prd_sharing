@@ -18,45 +18,45 @@ class PRD_Authen extends CI_Controller {
 	
 	public function authen()
 	{
-		$data['title'] = 'Login PRD Sharing';
-		
-		
-		//FOr Test Logout
-		$this->session->unset_userdata('member_id');
-		
-		
-		if(
-			$this->input->post('username') != "" && 
-			$this->input->post('password') != ""
-		){
+		if($this->session->userdata('member_id') != ""){
+			$data['title'] = 'Login PRD Sharing';
 			
-			$authen = $this->prd_authen_model->
-				get_Member(
-					$this->input->post('username'),
-					$this->input->post('password')
-				);
+			//FOr Test Logout
+			// $this->session->unset_userdata('member_id');
 			
-			if($authen != null){
-				// echo "can login";
+			if(
+				$this->input->post('username') != "" && 
+				$this->input->post('password') != ""
+			){
+				$authen = $this->prd_authen_model->
+					get_Member(
+						$this->input->post('username'),
+						$this->input->post('password')
+					);
 				
-				// $_SESSION["member_id"] = $authen[0]->Mem_Username;
-				
-				$member_id = array(
-                   'member_id'  => $authen[0]->Mem_Username
-				);
-				
-				$this->session->set_userdata($member_id);
-				// echo $this->session->userdata($member_id);
-				// var_dump($this->session->all_userdata());
-				
-				redirect('/homePRD', 'refresh');
+				if($authen != null){
+					// echo "can login";
+					// $_SESSION["member_id"] = $authen[0]->Mem_Username;
+					$member_id = array(
+	                   'member_id'  => $authen[0]->Mem_ID
+					);
+					
+					$this->session->set_userdata($member_id);
+					// echo $this->session->userdata($member_id);
+					// var_dump($this->session->all_userdata());
+					
+					redirect('/homePRD', 'refresh');
+				}
+				else{
+					$data["error"] = "Username or Password wrong";
+				}
 			}
-			else{
-				$data["error"] = "Username or Password wrong";
-			}
+			
+			$this->load->view('prdsharing/templates/header_authen', $data);
+			$this->load->view('prdsharing/authen/login', $data);
 		}
-		
-		$this->load->view('prdsharing/templates/header_authen', $data);
-		$this->load->view('prdsharing/authen/login', $data);
+		else{
+			redirect('/', 'refresh');
+		}
 	}
 }

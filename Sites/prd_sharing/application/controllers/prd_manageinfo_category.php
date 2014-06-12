@@ -47,11 +47,16 @@ class PRD_ManageInfo_Category extends CI_Controller {
 	
 	public function set_category($cate_oldid='' )
 	{
-		$_data = $this->prd_manageinfo_category_model->
-			set_Category(
-				$cate_oldid
-			);
-			
-		echo json_encode($_data);
+		if($this->session->userdata('member_id') != ""){
+			$_data = $this->prd_manageinfo_category_model->
+				set_Category(
+					$cate_oldid
+				);
+				
+			echo json_encode($_data);
+		}
+		else{
+			redirect('/', 'refresh');
+		}
 	}
 }
