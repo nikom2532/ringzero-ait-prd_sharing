@@ -69,10 +69,7 @@
 				</p>
 			</div>
 <?php
-			
-			
-			var_dump($category_old);
-			
+			// var_dump($category_old);
 			
 			$i=1;
 			foreach ($category_old as $catagory_old_item) {
