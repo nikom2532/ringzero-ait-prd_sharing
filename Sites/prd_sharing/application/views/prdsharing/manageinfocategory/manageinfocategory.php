@@ -68,30 +68,34 @@
 					ประเภทข่าว
 				</p>
 			</div>
-			
 <?php
+			
+			
+			var_dump($category_old);
+			
+			
 			$i=1;
-			foreach ($category_old as $catalog_old_item) {
+			foreach ($category_old as $catagory_old_item) {
 				if($i%2 == 1){
 					?><div class="odd"><?php
 				}
 				else{
 					?><div class="event"><?php
 				}
-				
-						$typeName = $catalog_old_item->NT02_TypeName;
-						$tick = $catalog_old_item->NT02_Status;
+						$typeName = $catagory_old_item->NT02_TypeName;
+						$tick = $catagory_old_item->NT02_Status;
+						
 						foreach ($category_new as $category_new_item){
-							if($catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID){
-								$print = $catalog_new_item->CateName;
-								$tick = $catalog_new_item->Cate_Status;
+							if($catagory_old_item->NT02_TypeID == $category_new_item->Cate_OldID){
+								$print = $category_new_item->CateName;
+								$tick = $category_new_item->Cate_Status;
 							}
 						}
 						
-						// echo $catalog_old_item->NT02_TypeID == $category_new_item->Cate_OldID;
+						// echo $catagory_old_item->NT02_TypeID == $category_new_item->Cate_OldID;
 ?>
 						<span class="col-1" style="width: 20%;float: left; text-align: center;">
-							<input type="checkbox" name="vehicle" value="Car" <?php
+							<input type="checkbox" name="cate_oldid" id="cate_oldid" onclick="set_Category_box('<?php echo $catagory_old_item->NT02_TypeID; ?>'); " value="<?php echo $catagory_old_item->NT02_TypeID; ?>" <?php
 								if($tick == "Y"){ ?>checked='checked'<?php } ?> />
 						</span>
 						<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
@@ -101,24 +105,77 @@
 <?php
 				$i++;
 			}
+			
+			// cate_oldid
+			
 ?>
-			<div class="footer-table">
-				<p style="width: 70%;float: left;margin-top: 20px;">
-					ทั้งหมด: 73 รายการ (4หน้า)
-				</p>
-				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-					<img src="images/table/pev.png" style="margin: -5px 10px 0;">
-					<span style="margin-top: 10px;">
-						<select style="">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-						</select> / 100</span>
-					<img src="images/table/next.png" style="margin: -5px 10px 0;">
-					<img src="images/table/end.png" style="margin: -5px 10px 0;">
-				</p>
-			</div>
+<!-- <input type="button" id="aaaaa" value="aaaa" /> -->
+		<script>
+		
+		function set_Category_box(cate_oldid) {
+			
+			// alert(mem_update_id);
+			
+		    
+		    if (cate_oldid != ""){
+		        var post_url = "<?php echo base_url(); ?>PRD_ManageInfo_Category/set_category/" + cate_oldid;
+		        
+		        // alert(post_url);
+		        
+		        $.ajax({
+		            type: "POST",
+		             url: post_url,
+					 dataType :'json',
+		             success: function(subtype)
+		              {
+		              	/*
+		              	// var a = JSON.parse(subtype);
+		                $('#mem_department').empty();
+		                
+		                var text = "<option value=\"\">เลือกกรม</option>";
+		                $('#mem_department').append(text);
+		                
+						$.each(subtype,function(index,val)
+						{
+							text = ""+
+							"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+							$('#mem_department').append(text);
+						});
+						*/
+					} //end success
+				}); //end AJAX
+				
+				
+				
+		    } else {
+		        $('#SubTypeID').empty();
+		    }//end if
+			
+		}
+		
+		// $(document).ready(function() {
+		/*
+			$('#cate_oldid').click(function () {
+			    $("#txtAge").toggle(this.checked);
+			});
+			
+			
+			
+			$('#cate_oldid').click(function(){
+				
+				alert("asdf");
+				// if($(this).is(":checked")) {
+		        // }
+		        // $('#textbox1').val($(this).is(':checked'));    
+				
+				// var type_id = $('#cate_oldid').val();
+				// alert(type_id);
+				
+			});
+			
+		// });
+		*/
+		</script>
 		</div>
 	</div>
 </div>
