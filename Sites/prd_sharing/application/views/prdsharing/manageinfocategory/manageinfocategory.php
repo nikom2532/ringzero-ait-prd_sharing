@@ -128,20 +128,7 @@
 					 dataType :'json',
 		             success: function(subtype)
 		              {
-		              	/*
-		              	// var a = JSON.parse(subtype);
-		                $('#mem_department').empty();
-		                
-		                var text = "<option value=\"\">เลือกกรม</option>";
-		                $('#mem_department').append(text);
-		                
-						$.each(subtype,function(index,val)
-						{
-							text = ""+
-							"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
-							$('#mem_department').append(text);
-						});
-						*/
+		              	
 					} //end success
 				}); //end AJAX
 				

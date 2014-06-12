@@ -66,11 +66,12 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 	{
 		return $this->db->
 			SELECT('
-				Cate_ID,
-				Cate_OldID,
-				Cate_Status,
-				Cate_UpdateDate,
-				MemUpdate_ID
+				Category.Cate_ID,
+				Category.Cate_OldID,
+				Category.CateName,
+				Category.Cate_Status,
+				Category.Cate_UpdateDate,
+				Category.MemUpdate_ID
 			')->
 			LIMIT('20,0')->	
 			join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
