@@ -6,69 +6,10 @@ class PRD_HomePRD_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
-		
-		
-		
-		// $this->db_ntt_pooh = $this->load->database('nnt_data_center_pooh', TRUE);
 	}
-	
-	//##################### For Test P'Ooh Database #########################
 	
 	public function get_NT01_News()
 	{
-		//Test
-		/*
-		$serverName = "111.223.32.9";
-		$connectionInfo = array( "Database"=>"NNT_DataCenter", "UID"=>"dbuser_km", "PWD"=>"123456");
-		$conn = sqlsrv_connect( $serverName, $connectionInfo);
-		if( $conn ) {
-			echo "Connection established.<br />";
-			
-			// $query = "SELECT TOP 1000 [field1]
-			      // ,[field2]
-			  // FROM [ringzero_ait_prd_sharing].[dbo].[test]";
-			// $stmt = sqlsrv_query($conn, $query);
-			// // print_r($stmt);
-			// while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-			      // echo $row['field1'].", ".$row['field2']."<br />";
-			// }
-		}else{
-			echo "Connection could not be established.<br />";
-			echo "<pre>";
-			print_r(sqlsrv_errors());
-			echo "</pre>";
-		}
-		*/
-		//####################################
-		
-		
-		
-		// return $this->db->get('News')->result();
-		// $query = $this->db_ntt_old->
-			// Limit(20, 0)->
-			// select('
-				// NT01_News.NT01_NewsID,
-				// NT01_News.NT01_UpdDate,
-				// NT01_News.NT01_CreDate,
-				// NT01_News.NT01_NewsTitle,
-				// NT01_News.NT01_ViewCount,
-				// SC03_User.SC03_FName, 
-				// NT10_VDO.NT10_FileStatus,
-				// NT11_Picture.NT11_FileStatus,
-				// NT12_Voice.NT12_FileStatus,
-				// NT13_OtherFile.NT13_FileStatus
-			// ')->
-			// join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
-			// join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
-			// join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			// join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			// join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			// where('NT01_News.NT08_PubTypeID', '11')->
-			// where('NT01_News.NT01_Status', 'Y')->
-			// get('NT01_News')->result();
-			
-		//##################
-		
 		$StrQuery = "
 			SELECT TOP 20 
 				NT01_News.NT01_NewsID, 
@@ -103,14 +44,8 @@ class PRD_HomePRD_model extends CI_Model {
 				NT01_News.NT01_Status = 'Y'
 			group by NT01_News.NT01_NewsID
 		";
-		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
-		
-		//##################
-		// var_dump($query->num_rows());
-		// var_dump($query);
-		// var_dump($query->result());
 		
 		return $query;
 	}
@@ -123,51 +58,40 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query_news;
 	}
 	
+	public function get_NT01_NewsType()
+	{
+		$query = $this->db_ntt_old->
+			SELECT('
+				NT02_NewsType.NT02_TypeID,
+				NT02_NewsType.NT02_TypeName,
+				NT02_NewsType.NT02_Status,
+				NT02_NewsType.NT02_TypeNameEn,
+				NT02_NewsType.NT02_Sequence
+			')->
+			// LIMIT('20,0')->	
+			where('NT02_Status', 'Y')->
+			get('NT02_NewsType')->result();
+		return $query;
+	}
+	
+	public function get_Category()
+	{
+		return $this->db->
+			SELECT('
+				Category.Cate_ID,
+				Category.Cate_OldID,
+				Category.Cate_Status,
+				Category.Cate_UpdateDate,
+				Category.MemUpdate_ID
+			')->
+			LIMIT('20,0')->	
+			get('Category')->result();
+	}
+	
 	//##################### search ###################
 	
 	public function get_NT01_News_search_title($news_title)
 	{
-		// echo "search title";
-		
-		// return $this->db_ntt_old->
-			// Limit(20, 0)->
-			// // select('
-				// // NT01_News.NT01_NewsID,
-				// // NT01_News.NT01_UpdDate,
-				// // NT01_News.NT01_CreDate,
-				// // NT01_News.NT01_NewsTitle,
-				// // NT01_News.NT01_ViewCount,
-				// // SC03_User.SC03_FName, 
-				// // NT10_VDO.NT10_FileStatus,
-				// // NT11_Picture.NT11_FileStatus,
-				// // NT12_Voice.NT12_FileStatus,
-				// // NT13_OtherFile.NT13_FileStatus
-			// // ')->
-// 			
-			// select('
-				// NT01_News.NT01_NewsID, 
-				// MAX(NT01_News.NT01_UpdDate), 
-				// MAX(NT01_News.NT01_CreDate), 
-				// MAX(NT01_News.NT01_NewsTitle), 
-				// MAX(NT01_News.NT01_ViewCount), 
-				// MAX(SC03_User.SC03_FName), 
-				// MAX(NT10_VDO.NT10_FileStatus), 
-				// MAX(NT11_Picture.NT11_FileStatus), 
-				// MAX(NT12_Voice.NT12_FileStatus), 
-				// MAX(NT13_OtherFile.NT13_FileStatus)
-			// ')->
-// 			
-			// join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			// join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
-			// join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			// join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			// join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			// group_by('NT01_News.NT01_NewsID')->
-			// where('NT08_PubTypeID', '11')->
-			// like('NT01_News.NT01_NewsTitle', $news_title)->
-			// get('NT01_News')->result();
-			
-		
 		$StrQuery = "
 			SELECT TOP 20 
 				NT01_News.NT01_NewsID, 
@@ -175,6 +99,7 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 				MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 				MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
+				MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 				MAX(SC03_User.SC03_FName) AS SC03_FName, 
 				MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 				MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
@@ -212,32 +137,6 @@ class PRD_HomePRD_model extends CI_Model {
 	}
 	public function get_NT01_News_search_title_start($news_title, $start)
 	{
-		/*
-		return $this->db_ntt_old->
-			Limit(20, 0)->
-			select('
-				NT01_News.NT01_NewsID,
-				NT01_News.NT01_UpdDate, 
-				NT01_News.NT01_CreDate,
-				NT01_News.NT01_NewsTitle,
-				NT01_News.NT01_ViewCount,
-				SC03_User.SC03_FName, 
-				NT10_VDO.NT10_FileStatus,
-				NT11_Picture.NT11_FileStatus,
-				NT12_Voice.NT12_FileStatus,
-				NT13_OtherFile.NT13_FileStatus
-			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
-			like('News_Title', $news_title)->
-			where("News_Date >=", $start)->
-			get('NT01_News')->result();
-		*/
-		
 		$StrQuery = "
 			SELECT 
 				NT01_News.NT01_NewsID, 
@@ -245,6 +144,7 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 				MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 				MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
+				MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 				MAX(SC03_User.SC03_FName) AS SC03_FName, 
 				MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 				MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
@@ -283,33 +183,6 @@ class PRD_HomePRD_model extends CI_Model {
 	}
 	public function get_NT01_News_search_title_start_end($news_title, $start, $end)
 	{
-		/*
-		return $this->db_ntt_old->
-			Limit(20, 0)->
-			like('News_Title', $news_title)->
-			where("News_Date >=", $start)->
-			where("News_Date <=", $end)->
-			select('
-				NT01_News.NT01_NewsID,
-				NT01_News.NT01_UpdDate, 
-				NT01_News.NT01_CreDate,
-				NT01_News.NT01_NewsTitle,
-				NT01_News.NT01_ViewCount,
-				SC03_User.SC03_FName, 
-				NT10_VDO.NT10_FileStatus,
-				NT11_Picture.NT11_FileStatus,
-				NT12_Voice.NT12_FileStatus,
-				NT13_OtherFile.NT13_FileStatus
-			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
-			get('NT01_News')->result();
-		*/
-		
 		$StrQuery = "
 			SELECT 
 				NT01_News.NT01_NewsID, 
@@ -317,6 +190,7 @@ class PRD_HomePRD_model extends CI_Model {
 				MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 				MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 				MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
+				MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 				MAX(SC03_User.SC03_FName) AS SC03_FName, 
 				MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 				MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
@@ -351,39 +225,17 @@ class PRD_HomePRD_model extends CI_Model {
 						Convert(datetime, '".$end."')
 			group by NT01_News.NT01_NewsID
 		";
-		
-		// like('News_Title', $news_title)->
-		// where("News_Date >=", $start)->
-		// where("News_Date <=", $end)->
-		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
-			
 		return $query;
-		
 	}
 	
 	
 	//##################### Old Database --- Set #########################
 	
 	
-	public function set_News(
-		$news='' /*,
-		$NT10_VDO='',
-		$NT11_Picture='',
-		$NT12_Voice='',
-		$NT13_OtherFile=''
-		*/
-	)
+	public function set_News($news='')
 	{
-		//Test insert 1 record
-		// $data = array(
-			   // 'News_OldID' => "99",
-			   // 'News_Date' => date('Y-m-d h:m:s')
-		// );
-		
-		//########
-		
 		foreach ($news as $news_item) {
 			
 			$newsCreDate = strtotime($news_item->NT01_CreDate);
@@ -425,8 +277,6 @@ class PRD_HomePRD_model extends CI_Model {
 			else{
 				$NT13_FileStatus = "0";
 			}
-			
-			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => $newsDate,
@@ -437,7 +287,6 @@ class PRD_HomePRD_model extends CI_Model {
 			   'News_Active' => "1" //,
 			   // 'News_StatusPublic' => "1"
 			);
-			
 			$query2 = $this->db->
 						where('News_OldID', $data['News_OldID'])->
 						get('News');
@@ -445,7 +294,6 @@ class PRD_HomePRD_model extends CI_Model {
 			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
 			}
-			
 	    }
 	}
 	
@@ -491,11 +339,4 @@ class PRD_HomePRD_model extends CI_Model {
         }
         return false;
 	}
-	
-	public function get_testdb2()
-	{
-		return $this->db_ntt_old->get('SC03_User')->result();
-	}
-	
-	// $this->db->limit($limit, $start);
 }

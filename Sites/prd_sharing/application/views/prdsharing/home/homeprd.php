@@ -14,152 +14,167 @@
 <?php
 		//Start to count News's rows
 		// var_dump($New_News);
+		// var_dump($NT01_NewsType);
 		$countNews=0;
 		foreach($news as $news_item):
-?>
-		<div class="odd">
-			<p class="col-1" style="width: 20%;float: left; "><?php
-				if($news_item->NT01_UpdDate == ""){
-					foreach ($New_News as $New_News_item) {
-						if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
-							if($New_News_item->News_UpdateDate == ""){
-								echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
-							}
-							else{
-								echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
-							}
-						}
-					}
-					// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-				}
-				else{
-					foreach ($New_News as $New_News_item) {
-						if($New_News_item->News_OldID == $news_item->NT01_NewsID){
-							
-							if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
-								if($New_News_item->News_Date > $news_item->NT01_UpdDate){
-									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
-								}
-								else{
-									echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-								}
-							}
-							else{
-								if($New_News_item->News_UpdateDate > $news_item->NT01_UpdDate){
-									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
-								}
-								else{
-									echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-								}
-							}
+			
+			foreach ($NT01_NewsType as $NT01_NewsType_item) {
+				if($NT01_NewsType_item->NT02_TypeID == $news_item->NT02_TypeID){
+					// echo $NT01_NewsType_item->NT02_TypeID;
+					// var_dump($news_item);
+					
+					foreach ($Category as $Category_item) {
+						if($Category_item->Cate_Status == 'Y'){
 							
 						}
 					}
-					// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
-				}
-			?></p>
-			<p class="col-2" style="width: 80%;float: left; ">
-<?php
-				$i=0;
-				foreach ($New_News as $New_News_item) {
-					if(
-						$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
-						$New_News_item->News_UpdateID > 0
-					){
-							echo $New_News_item->News_Title;
-							$i++;
-					}
-				}
-				if($i == 0){
-					echo $news_item->NT01_NewsTitle; 
-				}
+					
 ?>
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 20%;float: left; ">
+					<div class="odd">
+						<p class="col-1" style="width: 20%; float: left; "><?php
+							if($news_item->NT01_UpdDate == ""){
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+										if($New_News_item->News_UpdateDate == ""){
+											echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+										}
+										else{
+											echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+										}
+									}
+								}
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+							}
+							else{
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+										
+										if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
+											if($New_News_item->News_Date > $news_item->NT01_UpdDate){
+												echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+											}
+											else{
+												echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+											}
+										}
+										else{
+											if($New_News_item->News_UpdateDate > $news_item->NT01_UpdDate){
+												echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+											}
+											else{
+												echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+											}
+										}
+										
+									}
+								}
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
+							}
+						?></p>
+						<p class="col-2" style="width: 80%;float: left; ">
+		<?php
+							$i=0;
+							foreach ($New_News as $New_News_item) {
+								if(
+									$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
+									$New_News_item->News_UpdateID > 0
+								){
+										echo $New_News_item->News_Title;
+										$i++;
+								}
+							}
+							if($i == 0){
+								echo $news_item->NT01_NewsTitle; 
+							}
+		?>
+						</p>
+					</div>
+					<div class="event">
+						<p class="col-1" style="width: 20%;float: left; ">
+		<?php
+							if($news_item->NT01_ViewCount <= 0){
+								$star_count = 0;
+							}
+							elseif($news_item->NT01_ViewCount <= 20){
+								$star_count = 1;
+							}
+							elseif($news_item->NT01_ViewCount <= 40){
+								$star_count = 2;
+							}
+							elseif($news_item->NT01_ViewCount <= 60){
+								$star_count = 3;
+							}
+							elseif($news_item->NT01_ViewCount <= 80){
+								$star_count = 4;
+							}
+							else{
+								$star_count = 5;
+							}
+							$star_count_less = 5 - $star_count;
+							for ($i=0; $i < $star_count; $i++) {
+								?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
+							}
+							for ($i=0; $i < $star_count_less; $i++) {
+								?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
+							}
+		?>
+						</p>
+						<p class="col-2" style="width: 20%;float: left; ">
+							<img src="images/icon/people.png" style="margin: -10px 10px 0;">
+							ผู้สื่อข่าว: <?php echo $news_item->SC03_FName; ?></p>
+						<p class="col-3" style="width: 20%;float: left; ">
+							<img src="images/icon/view.png" style="margin: -10px 10px 0;">
+							views: <?php 
+								if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
+									echo "0";
+								}
+								else{
+									echo $news_item->NT01_ViewCount;
+								}
+						?></p>
+						<p class="col-4" style="width: 20%;float: left; ">
+							<a href="detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
+						</p>
+						<p class="col-5" style="width: 20%;float: left;  text-align: center;">
+							
+							<img src="images/icon/<?php
+								if($news_item->NT10_FileStatus == "Y"){ //Video
+									?>vdo<?php
+								}else{
+									?>null<?php
+								}
+							?>.png" width="17" style="margin: -10px 10px 0;">
+							
+							<img src="images/icon/<?php 
+								if($news_item->NT12_FileStatus){ //Voice
+									?>voice_512x512<?php
+								}else{
+									?>null<?php
+								}
+							?>.png" width="17" style="margin: -10px 10px 0;">
+							
+							
+							<img src="images/icon/<?php 
+								if($news_item->NT13_FileStatus){ //Document
+									?>Document.jpg<?php
+								}else{
+									?>null.png<?php
+								}
+							?>" width="17" style="margin: -10px 10px 0;">
+							
+							<img src="images/icon/<?php
+								if($news_item->NT11_FileStatus){ //Picture
+									?>pic<?php
+								}else{
+									?>null<?php
+								}	
+							?>.png" width="17" style="margin: -10px 10px 0;">
+						</p>
+					</div>
 <?php
-				if($news_item->NT01_ViewCount <= 0){
-					$star_count = 0;
+					$countNews++;
 				}
-				elseif($news_item->NT01_ViewCount <= 20){
-					$star_count = 1;
-				}
-				elseif($news_item->NT01_ViewCount <= 40){
-					$star_count = 2;
-				}
-				elseif($news_item->NT01_ViewCount <= 60){
-					$star_count = 3;
-				}
-				elseif($news_item->NT01_ViewCount <= 80){
-					$star_count = 4;
-				}
-				else{
-					$star_count = 5;
-				}
-				$star_count_less = 5 - $star_count;
-				for ($i=0; $i < $star_count; $i++) {
-					?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
-				}
-				for ($i=0; $i < $star_count_less; $i++) {
-					?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
-				}
-?>
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				<img src="images/icon/people.png" style="margin: -10px 10px 0;">
-				ผู้สื่อข่าว: <?php echo $news_item->SC03_FName; ?></p>
-			<p class="col-3" style="width: 20%;float: left; ">
-				<img src="images/icon/view.png" style="margin: -10px 10px 0;">
-				views: <?php 
-					if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
-						echo "0";
-					}
-					else{
-						echo $news_item->NT01_ViewCount;
-					}
-			?></p>
-			<p class="col-4" style="width: 20%;float: left; ">
-				<a href="detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
-			</p>
-			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
-				
-				<img src="images/icon/<?php
-					if($news_item->NT10_FileStatus == "Y"){ //Video
-						?>vdo<?php
-					}else{
-						?>null<?php
-					}
-				?>.png" width="17" style="margin: -10px 10px 0;">
-				
-				<img src="images/icon/<?php 
-					if($news_item->NT12_FileStatus){ //Voice
-						?>voice_512x512<?php
-					}else{
-						?>null<?php
-					}
-				?>.png" width="17" style="margin: -10px 10px 0;">
-				
-				
-				<img src="images/icon/<?php 
-					if($news_item->NT13_FileStatus){ //Document
-						?>Document.jpg<?php
-					}else{
-						?>null.png<?php
-					}
-				?>" width="17" style="margin: -10px 10px 0;">
-				
-				<img src="images/icon/<?php
-					if($news_item->NT11_FileStatus){ //Picture
-						?>pic<?php
-					}else{
-						?>null<?php
-					}	
-				?>.png" width="17" style="margin: -10px 10px 0;">
-			</p>
-		</div>
-<?php
-		$countNews++;
+			}
 		endforeach;
 		//End Count News's Row 
 		
