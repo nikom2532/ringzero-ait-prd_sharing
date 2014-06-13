@@ -19,7 +19,6 @@ class PRD_HomePRD extends CI_Controller {
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
-			
 			$data['member_id'] = $this->session->userdata('member_id');
 			$data['session_Mem_Username'] = $this->session->userdata('Mem_Username');
 			$data['session_Mem_Title'] = $this->session->userdata('Mem_Title');
@@ -34,7 +33,13 @@ class PRD_HomePRD extends CI_Controller {
 			
 			if($this->input->post("news_title") != ""){ //For search
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
-					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(($this->input->post("news_title")), ($this->input->post("start_date")), ($this->input->post("end_date")) );
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(
+						($this->input->post("news_title")), 
+						($this->input->post("start_date")), 
+						($this->input->post("end_date")),
+						$category,
+						$page
+					);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
 					$data['post_end_date'] = $this->input->post("end_date");
@@ -47,7 +52,13 @@ class PRD_HomePRD extends CI_Controller {
 						);
 				}
 				elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){ //For search title start
-					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start(($this->input->post("news_title")), ($this->input->post("start_date")) );
+					// echo "test";
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start(
+						($this->input->post("news_title")), 
+						($this->input->post("start_date")),
+						$category,
+						$page
+					);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
 					$count_row = $this->prd_homeprd_model->
