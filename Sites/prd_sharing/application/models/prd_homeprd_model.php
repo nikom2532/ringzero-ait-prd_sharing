@@ -16,7 +16,7 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query_news;
 	}
 	
-	public function get_NT01_News($Cate_OldID = array(), $page=1, $row_per_page=20)
+	public function get_NT01_News_count($Cate_OldID = array())
 	{
 		$statusArray = array();
 		foreach($Cate_OldID as $val){
@@ -25,6 +25,48 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
+		$StrQuery = "
+				SELECT
+					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
+				FROM NT01_News 
+				LEFT JOIN NT02_NewsType 
+					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
+				WHERE 
+					NT01_News.NT08_PubTypeID = '11'
+				AND
+					NT02_NewsType.NT02_Status = 'Y'
+				AND
+					NT01_News.NT01_Status = 'Y'
+		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
+	}
+	
+	public function get_NT01_News($Cate_OldID = array(), $page=1, $row_per_page=20)
+	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
 		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
@@ -85,10 +127,6 @@ class PRD_HomePRD_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
-		// WITH LIMIT AS(
-		// ROW_NUMBER() OVER (ORDER BY [NT01_NewsID] DESC) AS 'RowNumber'
-		// )
-		// SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();

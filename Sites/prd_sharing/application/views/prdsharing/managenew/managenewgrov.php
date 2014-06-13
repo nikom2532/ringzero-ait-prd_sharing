@@ -166,9 +166,9 @@
 				<p class="col-2" style="width: 14%;float: left; ">
 					<a href="manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
 				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 				</p>
 				<p class="col-1" style="width: 35%;float: left; ">
 					<?php echo $news_item->SendIn_Issue; ?>
@@ -185,7 +185,7 @@
 					// echo $news_item->SendIn_CreateDate;
 				?></p>
 				<p class="col-3" style="width: 25%;float: left; ">
-					<img src="images/icon/<?php 
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						if($news_item->File_Status == '1'){
 							?>vdo<?php
 						}else{
@@ -193,7 +193,7 @@
 						}
 					?>.png" style="margin: -10px 10px 0;">
 					
-					<img src="images/icon/<?php 
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						if($news_item->File_Status == '2'){
 							?>voice_512x512<?php
 						}else{
@@ -202,7 +202,7 @@
 					?>.png" style="margin: -10px 10px 0;">
 					
 					
-					<img src="images/icon/<?php 
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						if($news_item->File_Status == '3'){
 							?>Document.jpg<?php
 						}else{
@@ -210,7 +210,7 @@
 						}
 					?>" style="margin: -10px 10px 0;">
 					
-					<img src="images/icon/<?php
+					<img src="<?php echo base_url(); ?>images/icon/<?php
 						if($news_item->File_Status == '4'){
 							?>like<?php
 						}else{
@@ -235,7 +235,7 @@
 			ทั้งหมด: 73 รายการ (4หน้า)
 		</p>
 		<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-			<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+			<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
 			<span style="margin-top: 10px;">
 				<select style="">
 					<option value="1">1</option>
@@ -243,8 +243,8 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 				</select> / 100</span>
-			<img src="images/table/next.png" style="margin: -5px 10px 0;">
-			<img src="images/table/end.png" style="margin: -5px 10px 0;">
+			<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+			<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 		</p>
 	</div> -->
 </div>

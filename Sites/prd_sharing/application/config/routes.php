@@ -48,8 +48,10 @@ $route['authen_proc'] = 'prd_authen/authen';
 $route['logout'] = 'PRD_Authen_Logout';
 
 
-
 $route['homePRD'] = 'prd_homeprd';
+$route['homePRD/(:num)'] = "prd_homeprd/index/$1";
+
+
 $route['sentNew'] = 'prd_sentnew';
 
 // $route['sentNew/(:any)'] = 'prd_sentnew';

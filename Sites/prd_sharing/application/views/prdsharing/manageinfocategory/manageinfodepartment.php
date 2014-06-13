@@ -91,7 +91,7 @@
 							<?php echo $i; ?>
 						</p>
 						<p class="col-2 DepartmentDelete" data-dep_id="<?php echo $department_item->Dep_ID; ?>" style="width: 5%;float: left; cursor:pointer; " <?php /* onclick="DepartmentDelete('<?php echo $department_item->Dep_ID; ?>')" */ ?>  >
-							<img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+							<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 						</p>
 						<p class="col-2" style="width: 20%;float: left; ">
 							<a href="infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>

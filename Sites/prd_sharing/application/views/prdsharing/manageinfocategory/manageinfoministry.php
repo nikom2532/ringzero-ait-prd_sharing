@@ -111,7 +111,7 @@
 						if($countDepartment > 0){
 ?>
 							<p class="col-2" style="width: 10%;float: left; cursor:not-allowed; ">
-								<img src="images/icon/delete_lock.png" style="margin: -5px 10px 0;" alt="มีข้อมูลกระทรวงอยู่ ไม่สามารถลบได้">
+								<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;" alt="มีข้อมูลกระทรวงอยู่ ไม่สามารถลบได้">
 							</p>
 <?php
 						}
@@ -121,7 +121,7 @@
 								<!-- href="manageInfo_Ministry_del?del=1&minis_id=<?php echo $ministry_item->Minis_ID; ?>" -->
 								
 								<!-- <a id="ministry_delete_btn" href="#" onclick="MinistryDelete(); "> -->
-									<img src="images/icon/delete.png" style="margin: -5px 10px 0;" >
+									<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;" >
 							</p>
 <?php
 						}

@@ -9,13 +9,13 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<img src="images/rss.png" style="margin: 10px 10px 0;text-align: right;">
+			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right;">
 		</div>
 <?php
 		//Start to count News's rows
 		// var_dump($news);
 		$countNews=0;
-		foreach($news as $news_item):
+		foreach($news as $news_item):	
 ?>
 			<div class="odd">
 				<p class="col-1" style="width: 20%; float: left; "><?php
@@ -99,18 +99,18 @@
 					}
 					$star_count_less = 5 - $star_count;
 					for ($i=0; $i < $star_count; $i++) {
-						?><img src="images/icon/star-on-big.png" width="16" />&nbsp;<?php
+						?><img src="<?php echo base_url(); ?>images/icon/star-on-big.png" width="16" />&nbsp;<?php
 					}
 					for ($i=0; $i < $star_count_less; $i++) {
-						?><img src="images/icon/star-off-big.png" width="16" />&nbsp;<?php
+						?><img src="<?php echo base_url(); ?>images/icon/star-off-big.png" width="16" />&nbsp;<?php
 					}
 ?>
 				</p>
 				<p class="col-2" style="width: 20%;float: left; ">
-					<img src="images/icon/people.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/people.png" style="margin: -10px 10px 0;">
 					ผู้สื่อข่าว: <?php echo $news_item->SC03_FName; ?></p>
 				<p class="col-3" style="width: 20%;float: left; ">
-					<img src="images/icon/view.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/view.png" style="margin: -10px 10px 0;">
 					views: <?php 
 						if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
 							echo "0";
@@ -124,7 +124,7 @@
 				</p>
 				<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 					
-					<img src="images/icon/<?php
+					<img src="<?php echo base_url(); ?>images/icon/<?php
 						if($news_item->NT10_FileStatus == "Y"){ //Video
 							?>vdo<?php
 						}else{
@@ -132,7 +132,7 @@
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
-					<img src="images/icon/<?php 
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						if($news_item->NT12_FileStatus){ //Voice
 							?>voice_512x512<?php
 						}else{
@@ -141,7 +141,7 @@
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					
-					<img src="images/icon/<?php 
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						if($news_item->NT13_FileStatus){ //Document
 							?>Document.jpg<?php
 						}else{
@@ -149,7 +149,7 @@
 						}
 					?>" width="17" style="margin: -10px 10px 0;">
 					
-					<img src="images/icon/<?php
+					<img src="<?php echo base_url(); ?>images/icon/<?php
 						if($news_item->NT11_FileStatus){ //Picture
 							?>pic<?php
 						}else{
@@ -169,27 +169,86 @@
 <?php
 		}
 ?>
-
-		<p><?php //echo $links; ?></p>
-
-		<!-- <div class="footer-table">
-			<p style="width: 70%;float: left;margin-top: 20px;">
-				ทั้งหมด: 73 รายการ (4หน้า)
-			</p>
-			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="images/table/pev.png" style="margin: -5px 10px 0;">
-				<span style="margin-top: 10px;">
-					<select style="">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select> / 100</span>
-				<a href="homePRD?paging=">
-					<img src="images/table/next.png" style="margin: -5px 10px 0;">
-				</a>
-				<img src="images/table/end.png" style="margin: -5px 10px 0;">
-			</p>
-		</div> -->
+			<link href="http://localhost:127/assets/css/style-report.css" rel="stylesheet" type="text/css">
+			<li class="num_page clearfix">
+            	<div class="float_l"><span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span></div>
+                
+                <div class="pagebtn float_r clearfix">
+                	<div><a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a></div>
+                	<div><a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a></div>
+                    <div class="num_page02">
+                			<span class="select-menu set_pagebtn float_r">  
+                            <span><?php echo $current_page; ?></span>    
+                                   
+            				<select onchange="jump_page(this.value)">
+<?php 
+								// var_dump($page_url);
+		        				foreach ($page_url as $item) {
+									?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
+								}
+?>
+							</select>
+							</span>   
+							<?php 
+							// var_dump($page_url[0]);
+							// echo $page_url[0]['selected'];
+							?>                                                               
+                    </div>
+                    <div class="num100"><span> / <?php echo $total_page; ?></span></div>
+                    <div><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a></div>
+                    <div><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a></div>
+                </div>	<!--num_pages-->
+            </li>
+            
+			<!-- <div class="footer-table">
+				<p style="width: 70%;float: left;margin-top: 20px;">
+					ทั้งหมด:  รายการ ( หน้า)
+				</p>
+				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+					<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
+					<span style="margin-top: 10px;">
+						<select style="">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select> / 100</span>
+					<a href="homePRD?paging=">
+						<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+					</a>
+					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
+				</p>
+			</div> -->
+		
+            <script>
+            	
+            	function jump_page(val){
+					location='<?php echo $jump_url; ?>/'+val;
+				}
+				function nextPage(val){
+					var nextpage = parseInt(val)+1;
+					if(<?php echo $total_page; ?>==val){
+						nextpage = val;
+					}
+					$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+nextpage);
+					$("#homeSearch").submit();
+				}
+				function lastPage(val){
+					$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+val);
+					$("#homeSearch").submit();
+				}
+				function prevPage(val){
+					var prevpage = parseInt(val)-1;
+					$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+prevpage);
+					$("#homeSearch").submit();
+				}
+				function firstPage(){
+					$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/1");
+					$("#homeSearch").submit();
+				}
+				
+            </script>
+            
+            
 	</div>
 </div>

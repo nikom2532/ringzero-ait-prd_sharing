@@ -49,8 +49,8 @@
 					<label style="width: 100%;" >ผู้สื่อข่าว</label>
 				</div>
 				<div style="margin-left: 2%;float: left;">
-					<img src="images/icon/sh.png" style="margin: -5px 10px 0;">
-					<img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 				</div>
 			</div>
 			<div class="col-lg-6">

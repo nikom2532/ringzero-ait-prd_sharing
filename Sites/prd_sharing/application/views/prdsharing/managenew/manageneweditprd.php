@@ -305,7 +305,7 @@
 					// var_dump($news[4]->NT11_FileStatus);
 					// var_dump($news[3]);
 					if($news[3]->NT10_FileStatus == "Y"){
-						?><img src="images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
+						?><img src="<?php echo base_url(); ?>images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[3]->NT10_FileStatus."<br />";
 						foreach ($news[3] as $vdo) {
 							// var_dump($vdo);
@@ -315,7 +315,7 @@
 						}
 					}
 					if($news[4]->NT11_FileStatus == "Y"){
-						?><img src="images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
+						?><img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[4]->NT12_FileStatus."<br />";
 						foreach($news[4] as $vdo) {
 							if(isset($vdo->NT12_FileStatus)){
@@ -324,7 +324,7 @@
 						}
 					}
 					if($news[5]->NT12_FileStatus == "Y"){
-						?><img src="images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
+						?><img src="<?php echo base_url(); ?>images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
 						// echo $news[5]->NT13_FileStatus."<br />";
 						foreach ($news[5] as $vdo) {
 							if(isset($vdo->NT13_FileStatus)){
@@ -333,7 +333,7 @@
 						}
 					}
 					if($news[6]->NT13_FileStatus == "Y"){
-						?><img src="images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
+						?><img src="<?php echo base_url(); ?>images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
 						// echo $news[6]->NT11_FileStatus."<br />";
 						foreach ($news[6] as $vdo) {
 							if(isset($vdo->NT11_FileStatus)){

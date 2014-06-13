@@ -11,22 +11,22 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../favicon.ico"> 
     
-    <link href="css/uploadfile.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     
-	<script src="js/jqueryui/jquery-1.10.2.js"></script>
-	<link rel="stylesheet" href="css/jqueryui/jquery-ui-1.10.4.custom.min.css">
-	<script src="js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jqueryui/jquery-ui-1.10.4.custom.min.css">
+	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
 	
-	<script src="js/jquery.uploadfile.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/jquery.uploadfile.min.js"></script>
 	
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
 	
-    <link href="css/reset.css" rel="stylesheet" charset="utf-8">
-    <link href="css/style.css" rel="stylesheet" charset="utf-8">
-    <script src="js/ckeditor.js"></script>
+    <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
+    <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
+    <script src="<?php echo base_url(); ?>js/ckeditor.js"></script>
 <?php
     if($title == "Sent News"){
- 	   ?><link rel="stylesheet" href="css/sample.css"><?php
+ 	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php
 	}
 ?>
 </head>
@@ -37,12 +37,12 @@
             <div class="bg-header">
                 <div id="header">
                     <div class="logo">
-                        <img src="images/NNT_logo.png" alt="Logo" style="width:110px;">
+                        <img src="<?php echo base_url(); ?>images/NNT_logo.png" alt="Logo" style="width:110px;">
                         <h1>
                             <label class="th">ระบบช่องทางเผยแพร่ ข้อมูลข่าวสาร</br>
                             <span class="bold">หน่วยงานภาครัฐ กรมประชาสัมพันธ์</span></label>
                         </h1>
-                        <img src="images/sh_logo_header.png" alt="Logo" style="width:100%">
+                        <img src="<?php echo base_url(); ?>images/sh_logo_header.png" alt="Logo" style="width:100%">
                     </div>
                 </div>
             </div>

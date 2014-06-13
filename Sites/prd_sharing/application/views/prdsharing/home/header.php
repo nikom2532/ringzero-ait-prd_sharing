@@ -36,7 +36,7 @@
 </script>
 <div id="search-form">
 
-	<form name="search_form" action="<?php echo $home_search; ?>" method="post">
+	<form name="homeSearch" id="homeSearch" action="<?php echo $home_search; ?>" method="post">
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>

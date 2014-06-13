@@ -43,8 +43,8 @@
 						<label style="width: 100%;" >ผู้สื่อข่าว</label>
 					</div>
 					<div style="margin-left: 2%;float: left;">
-						<img src="images/icon/sh.png" style="margin: -5px 10px 0;">
-						<img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+						<img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
+						<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 					</div>
 				</div>
 			</div>
@@ -58,8 +58,8 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="">
-				<a class="icon" href="#"><img src="images/rss_btn.png" style=""></a>
-				<a class="icon" href="#"><img src="images/rss.png" style=""></a>
+				<a class="icon" href="#"><img src="<?php echo base_url(); ?>images/rss_btn.png" style=""></a>
+				<a class="icon" href="#"><img src="<?php echo base_url(); ?>images/rss.png" style=""></a>
 				<input type="text" class="form-control" id="InputKeyword" placeholder="" style="margin-top: -30px;
 				padding: 20px 18px 0;
 				vertical-align: baseline;width:50%">
@@ -89,10 +89,10 @@
 					<a href="detail">Icon ไฟล์แนบ</a>
 				</p>
 				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
-					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
 				</p>
 			</div>
 			<div class="event">
@@ -106,10 +106,10 @@
 					<a href="detail">Icon ไฟล์แนบ</a>
 				</p>
 				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
-					<img src="images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="images/icon/null.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
 				</p>
 			</div>
 			<div class="footer-table">
@@ -117,7 +117,7 @@
 					ทั้งหมด: 73 รายการ (4หน้า)
 				</p>
 				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-					<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
 					<span style="margin-top: 10px;">
 						<select style="">
 							<option value="1">1</option>
@@ -125,8 +125,8 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select> / 100</span>
-					<img src="images/table/next.png" style="margin: -5px 10px 0;">
-					<img src="images/table/end.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 				</p>
 			</div>
 		</div>

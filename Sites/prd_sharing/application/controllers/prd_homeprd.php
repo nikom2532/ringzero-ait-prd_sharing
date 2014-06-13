@@ -8,7 +8,7 @@ class PRD_HomePRD extends CI_Controller {
 		$this->load->helper("url");
 		$this->load->library('session');
 		$this->load->model('prd_homeprd_model');
-		$this->load->library('ait');
+		// $this->load->library('ait');
 	}
 	
 	public function getReporter($reporter){
@@ -51,13 +51,65 @@ class PRD_HomePRD extends CI_Controller {
 				}
 			}
 			else{
-				$data['news'] = $this->prd_homeprd_model->get_NT01_News($category);
+				$data['news'] = $this->prd_homeprd_model->
+					get_NT01_News(
+						$category,
+						$page
+					);
+					
+					
 			}
 			
-			// $this->ait->pagination($count_row,"broadcast/datalist/",$page,$row_per_page);
+			//#################### Pagination ########################
+			$row_per_page = 20;
+			$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+			$data['count_row'] = $count_row;
+			// $data_pagination = $this->ait->pagination($count_row,"homePRD/",$page,$row_per_page);
+			$url = "homePRD";
+			
+			$total_page   = $count_row / $row_per_page;
+			$page_mod     = $count_row % $row_per_page;
+			if($page_mod > 0){
+				list($unsign) = explode(".",$total_page);
+				$total_page = $unsign + 1;
+			}
+			$currentPage = $page == null?1:$page;
+			$page_url = array();
+			for($i = 0;$i < $total_page;$i++){
+				array_push($page_url,array(
+						"page"    =>$i + 1,
+						"value"   =>$i + 1,
+						"selected"=>($i + 1 == $page?"selected=selected":"")
+					));
+			}
+			$data['total_page'] = $total_page;
+			$data['current_page'] = $currentPage;
+			
+			$data['jump_url'] = base_url().$url;
+			$data['next_page'] = 
+				$currentPage == $total_page
+					? base_url()."index.php/".$url."$total_page"
+					: base_url()."index.php/".$url.($currentPage + 1);
+			
+			$data["prev_page"] = 
+				($currentPage > 1
+				? base_url()."index.php/".$url.($currentPage - 1)
+				: base_url()."index.php/".$url."1");
+				
+			$data["total_page"]  =
+				($total_page == 0?1 : $total_page);
+				
+			$data["page_url"] = $page_url;
+			
+			$data["first_page"] = base_url()."index.php/".$url."1";
+			$data["last_page"] = base_url()."index.php/".$url."$total_page";
+			$data["current_page"] = $page;
+			$data["row_per_page"] = $row_per_page;
 			
 			
-			// After Load the Page --> Will insert the UserID from Old Database to New Database
+			//#########################################################
+			
+			//After Load the Page --> Will insert the UserID from Old Database to New Database
 			//Insert News Table from Old Database to New Database
 			$this->prd_homeprd_model->set_News(
 				$data['news']
@@ -65,11 +117,8 @@ class PRD_HomePRD extends CI_Controller {
 			
 			$data['New_News'] = $this->prd_homeprd_model->get_New_News();
 			
-			
 			$this->load->view('prdsharing/templates/header', $data);
-			
 			$data['home_search'] = "homePRD";
-			
 			$this->load->view('prdsharing/home/header', $data);
 			$this->load->view('prdsharing/home/homeprd', $data);
 			$this->load->view('prdsharing/templates/footer', $data);

@@ -100,8 +100,8 @@
 					<label style="width: 100%;" >ผู้สื่อข่าว</label>
 				</div>
 				<div style="margin-left: 2%;float: left;">
-					<img src="images/icon/sh.png" style="margin: -5px 10px 0;">
-					<img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 				</div>
 			</div>
 			<div style="float: left;margin-right: 5%;width: 45%;">
@@ -179,9 +179,9 @@
 					<p class="col-2" style="width: 16%;float: left; ">
 						<a href="manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -5px 10px 0;">
+					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 					</p>
 					<p class="col-1" style="width: 35%;float: left; ">
 <?php 
@@ -307,7 +307,7 @@
 				ทั้งหมด: 73 รายการ (4หน้า)
 			</p>
 			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
 				<span style="margin-top: 10px;">
 					<select style="">
 						<option value="1">1</option>
@@ -315,8 +315,8 @@
 						<option value="3">3</option>
 						<option value="4">4</option>
 					</select> / 100</span>
-				<img src="images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="images/table/end.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 			</p>
 		</div>
 	</div>

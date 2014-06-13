@@ -114,10 +114,10 @@
 				xxxxxxxxx
 			</p>
 			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/null.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
 			</p>
 		</div>
 		<div class="event">
@@ -143,10 +143,10 @@
 				xxxxxxxxx
 			</p>
 			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="images/icon/null.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
+				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
 			</p>
 		</div>
 		<div class="footer-table">
@@ -154,7 +154,7 @@
 				ทั้งหมด: 73 รายการ (4หน้า)
 			</p>
 			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
 				<span style="margin-top: 10px;">
 					<select style="">
 						<option value="1">1</option>
@@ -162,8 +162,8 @@
 						<option value="3">3</option>
 						<option value="4">4</option>
 					</select> / 100</span>
-				<img src="images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="images/table/end.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 			</p>
 		</div>
 	</div>

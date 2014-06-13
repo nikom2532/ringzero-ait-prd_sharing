@@ -53,9 +53,9 @@
 					<p class="col-2" style="width: 16%;float: left; ">
 						<a href="detail" ><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/like.png" style="margin: -10px 10px 0;">
+					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -10px 10px 0;">
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="images/icon/delete.png" style="margin: -5px 10px 0;">
+					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 					</p>
 					<p class="col-1" style="width: 40%;float: left; ">
 						<?php echo $news_item->NT01_NewsTitle; ?>
@@ -69,7 +69,7 @@
 						// }
 					?></p>
 					<p class="col-4" style="width: 25%;float: left;  text-align: center;">
-						<img src="images/icon/<?php 
+						<img src="<?php echo base_url(); ?>images/icon/<?php 
 					if($news_item->News_StatusVDO){
 						?>vdo<?php
 					}else{
@@ -77,7 +77,7 @@
 					}
 						?>.png" width="17" style="margin: -10px 10px 0;">
 						
-						<img src="images/icon/<?php 
+						<img src="<?php echo base_url(); ?>images/icon/<?php 
 							if($news_item->News_StatusVoice){
 								?>voice_512x512<?php
 							}else{
@@ -86,7 +86,7 @@
 						?>.png" width="17" style="margin: -10px 10px 0;">
 						
 						
-						<img src="images/icon/<?php 
+						<img src="<?php echo base_url(); ?>images/icon/<?php 
 							if($news_item->News_StatusOtherFile){
 								?>Document.jpg<?php
 							}else{
@@ -94,7 +94,7 @@
 							}
 						?>" width="17" style="margin: -10px 10px 0;">
 						
-						<img src="images/icon/<?php
+						<img src="<?php echo base_url(); ?>images/icon/<?php
 							if($news_item->News_StatusPublic){
 								?>like<?php
 							}else{
@@ -114,7 +114,7 @@
 					ทั้งหมด: 73 รายการ (4หน้า)
 				</p>
 				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-					<img src="images/table/pev.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
 					<span style="margin-top: 10px;">
 						<select style="">
 							<option value="1">1</option>
@@ -122,8 +122,8 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select> / 100</span>
-					<img src="images/table/next.png" style="margin: -5px 10px 0;">
-					<img src="images/table/end.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 				</p>
 			</div>
 		</div>

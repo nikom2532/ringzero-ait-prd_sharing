@@ -35,12 +35,12 @@
             <div class="bg-header">
                 <div id="header">
                     <div class="logo">
-                        <img src="images/NNT_logo.png" alt="Logo" style="width:110px;">
+                        <img src="<?php echo base_url(); ?>images/NNT_logo.png" alt="Logo" style="width:110px;">
                         <h1>
                             <label class="th">ระบบช่องทางเผยแพร่ ข้อมูลข่าวสาร</br>
                             <span class="bold">หน่วยงานภาครัฐ กรมประชาสัมพันธ์</span></label>
                         </h1>
-                        <img src="images/sh_logo_header.png" alt="Logo" style="width:100%">
+                        <img src="<?php echo base_url(); ?>images/sh_logo_header.png" alt="Logo" style="width:100%">
                     </div>
                 </div>
             </div>

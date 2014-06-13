@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="vdo">
-						<!-- <img src="images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
+						<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
 <?php
 						foreach ($get_grov_fileattach as $file) {
 							if($file->File_Type == "video"){
@@ -43,10 +43,10 @@
 							}
 						}
 ?>
-						<!-- <img src="images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">
-						<img src="images/pic/p2.png" alt="vdo" style="width:30%;margin:10px 4% 0;">
-						<img src="images/pic/p4.png" alt="vdo" style="width:30%;margin-top:10px;">
-						<img src="images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
+						<!-- <img src="<?php echo base_url(); ?>images/pic/p1.png" alt="vdo" style="width:30%;margin-top:10px;">
+						<img src="<?php echo base_url(); ?>images/pic/p2.png" alt="vdo" style="width:30%;margin:10px 4% 0;">
+						<img src="<?php echo base_url(); ?>images/pic/p4.png" alt="vdo" style="width:30%;margin-top:10px;">
+						<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 					</div>
 				</div>
 				<div class="col-lg-6" >
