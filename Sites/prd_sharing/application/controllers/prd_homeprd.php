@@ -114,8 +114,8 @@ class PRD_HomePRD extends CI_Controller {
 			
 			$data['New_News'] = $this->prd_homeprd_model->get_New_News();
 			
-			$this->load->view('prdsharing/templates/header', $data);
 			$data['home_search'] = "homePRD";
+			$this->load->view('prdsharing/templates/header', $data);
 			$this->load->view('prdsharing/home/header', $data);
 			$this->load->view('prdsharing/home/homeprd', $data);
 			$this->load->view('prdsharing/templates/footer', $data);
