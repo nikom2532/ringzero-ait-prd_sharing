@@ -8,13 +8,14 @@ class PRD_HomePRD extends CI_Controller {
 		$this->load->helper("url");
 		$this->load->library('session');
 		$this->load->model('prd_homeprd_model');
+		$this->load->library('ait');
 	}
 	
 	public function getReporter($reporter){
 		return $data['Reporter'] = $this->prd_homeprd_model->get_NT01_News_Reporter($reporter);
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
@@ -50,10 +51,10 @@ class PRD_HomePRD extends CI_Controller {
 				}
 			}
 			else{
-				
 				$data['news'] = $this->prd_homeprd_model->get_NT01_News($category);
 			}
 			
+			// $this->ait->pagination($count_row,"broadcast/datalist/",$page,$row_per_page);
 			
 			
 			// After Load the Page --> Will insert the UserID from Old Database to New Database
