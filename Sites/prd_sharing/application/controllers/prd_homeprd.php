@@ -46,7 +46,12 @@ class PRD_HomePRD extends CI_Controller {
 				}
 				else{
 					// echo "search title";
-					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title($this->input->post("news_title"));
+					$data['news'] = $this->prd_homeprd_model->
+						get_NT01_News_search_title(
+							$this->input->post("news_title"),
+							$category,
+							$page
+						);
 					$data['post_news_title'] = $this->input->post("news_title");
 				}
 			}
@@ -56,8 +61,6 @@ class PRD_HomePRD extends CI_Controller {
 						$category,
 						$page
 					);
-					
-					
 			}
 			
 			//#################### Pagination ########################
@@ -84,28 +87,22 @@ class PRD_HomePRD extends CI_Controller {
 			}
 			$data['total_page'] = $total_page;
 			$data['current_page'] = $currentPage;
-			
 			$data['jump_url'] = base_url().$url;
 			$data['next_page'] = 
 				$currentPage == $total_page
 					? base_url()."index.php/".$url."$total_page"
 					: base_url()."index.php/".$url.($currentPage + 1);
-			
 			$data["prev_page"] = 
 				($currentPage > 1
 				? base_url()."index.php/".$url.($currentPage - 1)
 				: base_url()."index.php/".$url."1");
-				
 			$data["total_page"]  =
 				($total_page == 0?1 : $total_page);
-				
 			$data["page_url"] = $page_url;
-			
 			$data["first_page"] = base_url()."index.php/".$url."1";
 			$data["last_page"] = base_url()."index.php/".$url."$total_page";
 			$data["current_page"] = $page;
 			$data["row_per_page"] = $row_per_page;
-			
 			
 			//#########################################################
 			
