@@ -29,7 +29,7 @@ ROW_NUMBER() OVER (ORDER BY MAX([NNT_DataCenter_2].[dbo].[NT01_News].[NT01_NewsI
  AND [NNT_DataCenter_2].[dbo].[NT01_News].[NT01_Status] = 'Y' 
  AND [NNT_DataCenter_2].[dbo].[NT01_News].[NT02_TypeID] IN ('1','2','5','6','7','3','4','17','16','15','14','13','12','11','10','8','9') 
  group by [NNT_DataCenter_2].[dbo].[NT01_News].[NT01_NewsID]
- order by [NNT_DataCenter_2].[dbo].[NT01_News].[NT01_NewsID]
+
 )
 
  SELECT * from LIMIT WHERE RowNumber BETWEEN 0 AND 20

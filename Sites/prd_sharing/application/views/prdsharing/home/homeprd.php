@@ -15,6 +15,7 @@
 		//Start to count News's rows
 		// var_dump($news);
 		$countNews=0;
+		// var_dump($news);
 		foreach($news as $news_item):	
 ?>
 			<div class="odd">
