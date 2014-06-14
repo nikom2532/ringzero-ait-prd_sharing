@@ -170,7 +170,7 @@
 <?php
 		}
 ?>
-			<link href="http://localhost:127/assets/css/style-report.css" rel="stylesheet" type="text/css">
+			<link href="<?php echo base_url(); ?>assets/css/style-report.css" rel="stylesheet" type="text/css">
 			<li class="num_page clearfix">
             	<div class="float_l"><span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span></div>
                 
