@@ -101,9 +101,9 @@ class PRD_HomePRD_model extends CI_Model {
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
 					NT01_News.NT01_Status = 'Y'
+				AND
+					NT02_NewsType.NT02_Status = 'Y'
 		";
 		if($Cate_OldID != ""){
 			$StrQuery .= "

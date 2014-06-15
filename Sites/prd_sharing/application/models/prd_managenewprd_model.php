@@ -23,6 +23,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				NT01_News.NT01_NewsReferance,
 				NT01_News.NT01_UpdUserID,
 				NT01_News.NT01_CreUserID,
+				NT01_News.NT01_Status,
 				SC03_User.SC03_FName,
 				NT10_VDO.NT10_FileStatus,
 				NT11_Picture.NT11_FileStatus,
@@ -34,7 +35,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
+			where('NT01_News.NT08_PubTypeID', '11')->
 			get('NT01_News')->result();
 	}
 	
@@ -55,6 +56,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				NT01_News.NT01_NewsReferance,
 				NT01_News.NT01_UpdUserID,
 				NT01_News.NT01_CreUserID,
+				NT01_News.NT01_Status,
 				SC03_User.SC03_FName,
 				NT10_VDO.NT10_FileStatus,
 				NT11_Picture.NT11_FileStatus,
@@ -136,6 +138,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				NT01_News.NT01_NewsReferance,
 				NT01_News.NT01_UpdUserID,
 				NT01_News.NT01_CreUserID,
+				NT01_News.NT01_Status,
 				SC03_User.SC03_FName,
 				NT10_VDO.NT10_FileStatus,
 				NT11_Picture.NT11_FileStatus,

@@ -179,8 +179,14 @@
 					<p class="col-2" style="width: 16%;float: left; ">
 						<a href="manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
-					</p>
+					<p class="col-1" style="width: 5%;float: left; "><?php 
+						if($news_item->NT01_Status == 'Y'){
+							?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
+						}
+						else{
+							?>-<?php
+						}
+					?></p>
 					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 					</p>
 					<p class="col-1" style="width: 35%;float: left; ">
