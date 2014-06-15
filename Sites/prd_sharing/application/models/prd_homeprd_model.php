@@ -261,8 +261,12 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 	}
 	
-	public function get_NT01_News_search_title_start($news_title, $start, $Cate_OldID = array(), $page=1, $row_per_page=20)
+	public function get_NT01_News_search_title_start($news_title, $startdate, $Cate_OldID = array(), $page=1, $row_per_page=20)
 	{
+		// $startdate = "2004-06-01 00:00:00.000";
+		// echo $startdate;
+		
+		
 		$statusArray = array();
 		foreach($Cate_OldID as $val){
 			// echo $val->Cate_OldID;
@@ -301,12 +305,19 @@ class PRD_HomePRD_model extends CI_Model {
 					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
 				LEFT JOIN NT13_OtherFile
 					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE 
-					NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
+				WHERE
+				(
+						NT08_PubTypeID = '11'
+					AND
+						NT02_NewsType.NT02_Status = 'Y'
+					AND
+						NT01_News.NT01_Status = 'Y'
+					AND
+						NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+					AND
+						NT01_NewsDate > Convert(datetime, '".$startdate."')
+				)
+					
 		";
 		if($Cate_OldID != ""){
 			$StrQuery .= "
@@ -321,10 +332,6 @@ class PRD_HomePRD_model extends CI_Model {
 			";
 		}
 		$StrQuery .= "
-				AND
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-				AND
-					NT01_NewsDate > Convert(datetime, '".$start."')
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -336,7 +343,7 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT01_News_search_title_start_count($news_title, $start, $Cate_OldID = array())
+	public function get_NT01_News_search_title_start_count($news_title, $startdate, $Cate_OldID = array())
 	{
 		$statusArray = array();
 		foreach($Cate_OldID as $val){
@@ -359,8 +366,7 @@ class PRD_HomePRD_model extends CI_Model {
 				AND
 					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
 				AND
-					NT01_NewsDate > Convert(datetime, '".$start."')
-				group by NT01_News.NT01_NewsID
+					NT01_NewsDate > Convert(datetime, '".$startdate."')
 		";
 		if($Cate_OldID != ""){
 			$StrQuery .= "
@@ -374,6 +380,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
+		$StrQuery .= "
+			group by NT01_News.NT01_NewsID
+		";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -383,7 +392,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 	}
 	
-	public function get_NT01_News_search_title_start_end($news_title, $start, $end, $Cate_OldID = array(), $page=1, $row_per_page=20)
+	public function get_NT01_News_search_title_start_end($news_title, $startdate, $enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
 	{
 		$statusArray = array();
 		foreach($Cate_OldID as $val){
@@ -450,9 +459,9 @@ class PRD_HomePRD_model extends CI_Model {
 				AND
 					NT01_NewsDate 
 						BETWEEN 
-							Convert(datetime, '".$start."') 
+							Convert(datetime, '".$startdate."') 
 							AND
-							Convert(datetime, '".$end."')
+							Convert(datetime, '".$enddate."')
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -503,6 +512,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
+		$StrQuery .= "
+			group by NT01_News.NT01_NewsID
+		";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
