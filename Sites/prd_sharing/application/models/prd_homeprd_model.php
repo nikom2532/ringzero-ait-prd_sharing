@@ -187,7 +187,6 @@ class PRD_HomePRD_model extends CI_Model {
 					NT02_NewsType.NT02_Status = 'Y'
 				AND
 					NT01_News.NT01_Status = 'Y'
-					
 			";
 		if($Cate_OldID != ""){
 			$StrQuery .= "
@@ -212,7 +211,7 @@ class PRD_HomePRD_model extends CI_Model {
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
-			
+		
 		return $query;
 	}
 	

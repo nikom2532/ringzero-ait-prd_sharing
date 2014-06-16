@@ -104,41 +104,68 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NewsSubTypeID = ''
 	)
 	{
-		$query = $this->db_ntt_old->
-			LIMIT('20,0')->
-			select('
-				NT01_News.NT01_NewsID,
-				NT01_News.NT01_UpdDate,
-				NT01_News.NT01_CreDate,
-				NT01_News.NT01_NewsTitle,
-				NT01_News.NT01_NewsSource,
-				NT01_News.NT01_NewsReferance,
-				NT01_News.NT01_UpdUserID,
-				NT01_News.NT01_CreUserID,
-				NT01_News.NT01_Status,
-				SC03_User.SC03_FName,
-				NT10_VDO.NT10_FileStatus,
-				NT11_Picture.NT11_FileStatus,
-				NT12_Voice.NT12_FileStatus,
-				NT13_OtherFile.NT13_FileStatus
-			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
-			like('NT01_News.NT01_NewsTitle', $News_Title);
-			
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					NT01_News.NT01_NewsID,
+					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
+					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
+					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
+					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
+					MAX(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
+					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
+					MAX(NT01_News.NT01_Status) AS NT01_Status,
+					MAX(SC03_User.SC03_FName) AS SC03_FName, 
+					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
+					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
+					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
+					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+				
+				
+				
+				FROM NT01_News 
+				LEFT JOIN 
+					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+				LEFT JOIN 
+					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+				LEFT JOIN 
+					NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+				LEFT JOIN 
+					NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+				LEFT JOIN 
+					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
+				WHERE 
+					NT08_PubTypeID = '11'
+				AND
+					NT02_NewsType.NT02_Status = 'Y'
+				AND
+					NT01_News.NT01_Status = 'Y'
+				AND 
+					NT01_News.NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+				group by NT01_News.NT01_NewsID
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+			";
 			// if(isset($NewsTypeID) || $NewsTypeID == ''){
 				// $query = $query->where('NT01_News.NT02_TypeID = '.$NewsTypeID);
 			// }
 			// if(isset($NewsSubTypeID) || $NewsSubTypeID = ''){
 				// $query = $query->where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID);
 			// }	
-			
-			$query = $query->get('NT01_News')->result();
-			
+			$query = $this->db_ntt_old->
+				query($StrQuery)->result();
 			return $query;
 	}
 

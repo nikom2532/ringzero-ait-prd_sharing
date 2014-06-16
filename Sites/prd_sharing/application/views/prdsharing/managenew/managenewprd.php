@@ -309,7 +309,7 @@
 		}
 ?>
 		<div class="footer-table">
-			<p style="width: 70%;float: left;margin-top: 20px;">
+			<!-- <p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)
 			</p>
 			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
@@ -323,7 +323,7 @@
 					</select> / 100</span>
 				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
 				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-			</p>
+			</p> -->
 		</div>
 	</div>
 </div>
