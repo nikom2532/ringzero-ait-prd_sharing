@@ -26,7 +26,7 @@
 				}
 				else{
 					// echo $news_item->SendIn_CreateDate;
-					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_UpdateDate));
+					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 				}
 				
 			?></p>
