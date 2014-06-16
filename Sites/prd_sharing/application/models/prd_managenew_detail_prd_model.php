@@ -181,6 +181,40 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 		
 		return $query_file2;
 	}
+
+	public function get_NT01_News_query_file3($NT01_NewsID = ''){
+		
+		$query_file3 = $this->db_ntt_old->
+			select('
+				NT12_Voice.NT12_VoiceName,
+				NT12_Voice.NT12_VoicePath,
+				NT12_Voice.NT12_Extension,
+				NT12_Voice.NT12_FileStatus
+			')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+			// var_dump($query_file2);
+		return $query_file3;
+	}
+
+	public function get_NT01_News_query_file4($NT01_NewsID = ''){
+		
+		$query_file4 = $this->db_ntt_old->
+			select('
+				NT13_OtherFile.NT13_FileName,
+				NT13_OtherFile.NT13_FilePath,
+				NT13_OtherFile.NT13_Extension,
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+			// var_dump($query_file4);
+		return $query_file4;
+	}
 	
 	//###################################################
 	

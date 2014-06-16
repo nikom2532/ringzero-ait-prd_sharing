@@ -8,31 +8,30 @@
 						echo $news[3]->NT10_VDOPath;
 					?>" alt="vdo" style="width:100%;"> -->
 					
-					
-					<div class="news-form" style="color: red;">ไม่มี File Video</div>
+					<?php // <div class="news-form" style="color: red;">ไม่มี File Video</div> ?>
 <?php
 					//ไม่มี File Video
 					foreach ($get_NT01_News_videos as $videos) {
 						if(isset($videos->NT10_VDOPath)){
 ?>
-							<script src="//embed.flowplayer.org/5.4.6/embed.min.js">
+							<!-- <script src="//embed.flowplayer.org/5.4.6/embed.min.js"> -->
+							<script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
 							<div class="flowplayer" style="width: 461px; height: 358px;">
 								<video>
 									<source type="video/webm" src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
 								</video>
 							</div></script>
 							
-							<!-- <video width="461" height="358" controls autoplay>
+							<?php /* <video width="461" height="358" controls autoplay>
 								<source src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" type="video/mp4">
 								<object data="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
 									<embed src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>" width="461" height="358">
 								</object>
-							</video> -->
+							</video> */ ?>
 <?php
 						}
 					}
 ?>
-					
 				</div>
 				<div class="image-list">
 <?php
@@ -62,11 +61,30 @@
 					<img src="<?php echo base_url(); ?>images/pic/p4.png" alt="vdo" style="width:30%;margin-top:10px;">
 					<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 				</div>
+<?php
+					foreach ($get_NT01_News_Voice as $voice) {
+						// var_dump($voice);
+						if(isset($voice->NT12_VoicePath)){
+							?><div class="news-form voice-list">
+								
+								<img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;">
+								?><a  href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" ><?php echo $voice->NT12_VoiceName; ?></a>
+							</div><?php
+						}
+					}
+					foreach ($get_NT01_News_OtherFile as $OtherFile) {
+						// var_dump($voice);
+						if(isset($OtherFile->NT13_FilePath)){
+							?><div class="news-form otherfiles-list">
+								<img src="<?php echo base_url(); ?>images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;">
+								<a  href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $OtherFile->NT13_FilePath; ?>" ><?php echo $OtherFile->NT13_FileName; ?></a>
+							</div><?php
+						}
+					}
+?>
 			</div>
 			<div class="col-lg-6" ><?php
-				
 				foreach ($news as $news_item) {
-				
 					?><div id="detail">
 						<h1><?php 
 								echo $news_item->NT01_NewsTitle;
