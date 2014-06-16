@@ -6,13 +6,17 @@
 ?>
 			<div class="row" id="gove-title">
 				<!-- นายกรัฐมนตรี ย้ำผู้ว่าราชการจังหวัดทั่วประเทศในแนวทางแก้ปัญหาภัยแล้ง ภัยหนาว และอุบัติเหตุในช่วงปีใหม่  -->
-				<?php echo $news_item->SendIn_Issue; ?>
+<?php 
+				echo $news_item->SendIn_Issue; 
+				$LeftContainerCount=0;
+?>
 			</div>
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="vdo">
+				<div class="col-lg-6" >
+					<div class="vdo" >
 						<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
 <?php
+						$file_count = 0;
 						foreach ($get_grov_fileattach as $file) {
 							if($file->File_Type == "video"){
 								?><video width="461" height="358" controls autoplay>
@@ -21,7 +25,12 @@
 										<embed src="<?php echo $file->File_Path; ?>" width="461" height="358">
 									</object> 
 								</video><?php
+								$file_count++;
+								$LeftContainerCount++;
 							}
+						}
+						if($file_count == 0){
+							?><?php
 						}
 ?>
 					</div>
@@ -40,6 +49,7 @@
 									}
 								?>"><?php
 								$i++;
+								$LeftContainerCount++;
 							}
 						}
 ?>
@@ -49,7 +59,14 @@
 						<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 					</div>
 				</div>
-				<div class="col-lg-6" >
+				<div class="col-lg-<?php 
+					if($LeftContainerCount == 0){
+						?>12<?php
+					}
+					else{
+						?>6<?php
+					}
+				?>" >
 					<div id="detail">
 						<h1>นโยบายรัฐบาล : <?php echo $news_item->Policy_ID; ?></h1>
 						<h1>แผนงานโครงการ &#47; กิจกรรม : <?php echo $news_item->SendIn_Plan; ?></h1>

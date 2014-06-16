@@ -1,6 +1,7 @@
 <div class="content">
 	<div id="detail-form">
 		<div class="row">
+			<?php $LeftContainerCount=0; ?>
 			<div class="col-lg-6">
 				<div class="vdo">
 					<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;">
@@ -29,6 +30,7 @@
 								</object>
 							</video> */ ?>
 <?php
+							$LeftContainerCount++;
 						}
 					}
 ?>
@@ -40,19 +42,18 @@
 					foreach ($get_NT01_News_pictures as $image) {
 						
 						// var_dump($image);
-						
 						if(isset($image->NT11_PicPath)){
 							
-						?><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
-							if($i % 3 == 2){
-								?>margin:10px 4% 0;<?php
-							}
-							else{
-								?>margin-top:10px;<?php
-							}
-						?>"><?php
-						$i++;
-						
+							?><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
+								if($i % 3 == 2){
+									?>margin:10px 4% 0;<?php
+								}
+								else{
+									?>margin-top:10px;<?php
+								}
+							?>"><?php
+							$i++;
+							$LeftContainerCount++;
 						}
 					}
 ?>
@@ -62,28 +63,46 @@
 					<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 				</div>
 <?php
+					$voice_count = 0;
 					foreach ($get_NT01_News_Voice as $voice) {
 						// var_dump($voice);
 						if(isset($voice->NT12_VoicePath)){
-							?><div class="news-form voice-list">
-								
-								<img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;">
-								?><a  href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" ><?php echo $voice->NT12_VoiceName; ?></a>
-							</div><?php
+							if($voice_count == 0){
+								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><?php
+							}
+									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
+							if($voice_count == 0){
+								?></div><?php
+							}
+							$voice_count++;
+							$LeftContainerCount++;
 						}
 					}
+					$OtherFile_count = 0;
 					foreach ($get_NT01_News_OtherFile as $OtherFile) {
 						// var_dump($voice);
 						if(isset($OtherFile->NT13_FilePath)){
-							?><div class="news-form otherfiles-list">
-								<img src="<?php echo base_url(); ?>images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;">
-								<a  href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $OtherFile->NT13_FilePath; ?>" ><?php echo $OtherFile->NT13_FileName; ?></a>
-							</div><?php
+							if($voice_count == 0){
+								?><div class="otherfiles-list" style="margin-top: 30px;"><?php
+							}
+									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $OtherFile->NT13_FilePath; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->NT13_FileName; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
+							if($voice_count == 0){
+								?></div><?php
+							}
+							$OtherFile_count++;
+							$LeftContainerCount++;
 						}
 					}
 ?>
 			</div>
-			<div class="col-lg-6" ><?php
+			<div class="col-lg-<?php 
+					if($LeftContainerCount == 0){
+						?>12<?php
+					}
+					else{
+						?>6<?php
+					}
+				?>" ><?php
 				foreach ($news as $news_item) {
 					?><div id="detail">
 						<h1><?php 
@@ -112,7 +131,14 @@
 					<div class="news-form">
 						<h1 style="margin-bottom: 5px;">ข้อมูลข่าวและที่มา</h1>
 						<p>
-							ผู้สื่อข่าว : <?php echo $news_item->NT01_ReporterID; ?>
+							ผู้สื่อข่าว : <?php 
+							if($news_item->NT01_ReporterID != ""){
+								echo $news_item->NT01_ReporterID; 
+							}
+							else{
+								?>-<?php
+							}
+							?>
 						</p>
 						<p>
 							Rewriter : <?php 
@@ -123,7 +149,12 @@
 						</p>
 						<p>
 							แหล่งที่มา : <?php 
-							$news_item->NT01_NewsSource;
+							if($news_item->NT01_NewsSource != ""){
+								echo $news_item->NT01_NewsSource;
+							}
+							else{
+								echo "-";
+							}
 							// if($news_item->NT01_NewsReferance != ""){
 								// echo " : ".$news_item->NT01_NewsReferance;;
 							// }
