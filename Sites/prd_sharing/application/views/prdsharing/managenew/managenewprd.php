@@ -31,6 +31,7 @@
 </script>
 <div id="search-form">
 	<form name="search_form" action="manageNewPRD" method="post">
+		<input type="hidden" name="managenewsprd_is_search" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
@@ -46,7 +47,7 @@
 			<div class="col-lg-6">
 				<label >วันที่</label>
 				<input type="text" class="form-control datepicker fromdate" name="start_date" id="fromdate" placeholder="" readonly="true" value="<?php 
-					if(isset($post_start_date)){
+					if($post_start_date != ""){
 						echo $post_start_date;
 					}
 				?>">
@@ -54,7 +55,7 @@
 			<div class="col-lg-6">
 				<label >ถึง</label>
 				<input type="text" class="form-control datepicker todate" name="end_date" id="todate" placeholder="" readonly="true" value="<?php 
-					if(isset($post_end_date)){
+					if($post_end_date != ""){
 						echo $post_end_date;
 					}
 				?>">
@@ -69,12 +70,17 @@
 				
 				<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าว</option><?php
+					// var_dump($NT02_NewsType);
 					foreach ($NT02_NewsType as $newType_item) {
-						?><option value="<?php echo $newType_item->NT02_TypeID; ?>"><?php echo $newType_item->NT02_TypeName; ?></option><?php
+						?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+							if($newType_item->NT02_TypeID == $post_News_type_id){
+								?>selected='selected'<?php
+							}
+						?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
 					}
 				?></select>
 				
-				
+				<?php //echo $post_News_type_id; ?>
 			</div>
 			<div class="col-lg-6">
 				<label >หมวดหมู่ข่าวย่อย</label>
@@ -83,11 +89,16 @@
 				
 				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
-					/*
 					foreach ($NT03_NewsSubType as $newType_item) {
-						?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>"><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+						if($newType_item->NT02_TypeID == $post_News_type_id){
+							
+							?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
+								if($post_News_subtype_id != ""){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+						}
 					}
-					*/
 				?></select>
 				
 				

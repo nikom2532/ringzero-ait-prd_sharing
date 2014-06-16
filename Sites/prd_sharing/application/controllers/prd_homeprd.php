@@ -119,17 +119,17 @@ class PRD_HomePRD extends CI_Controller {
 			$data['jump_url'] = base_url().$url;
 			$data['next_page'] = 
 				$currentPage == $total_page
-					? base_url()."index.php/".$url."$total_page"
-					: base_url()."index.php/".$url.($currentPage + 1);
+					? base_url().$url."$total_page"
+					: base_url().$url.($currentPage + 1);
 			$data["prev_page"] = 
 				($currentPage > 1
-				? base_url()."index.php/".$url.($currentPage - 1)
-				: base_url()."index.php/".$url."1");
+				? base_url().$url.($currentPage - 1)
+				: base_url().$url."1");
 			$data["total_page"]  =
 				($total_page == 0?1 : $total_page);
 			$data["page_url"] = $page_url;
-			$data["first_page"] = base_url()."index.php/".$url."1";
-			$data["last_page"] = base_url()."index.php/".$url."$total_page";
+			$data["first_page"] = base_url().$url."1";
+			$data["last_page"] = base_url().$url."$total_page";
 			$data["current_page"] = $page;
 			$data["row_per_page"] = $row_per_page;
 			
