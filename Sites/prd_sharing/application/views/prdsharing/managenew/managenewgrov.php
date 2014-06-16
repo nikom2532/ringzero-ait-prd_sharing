@@ -119,7 +119,7 @@
 <div class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<div class="row" style="margin-top: 20px;">
-		<a href="manageNewPRD">
+		<a href="<?php echo base_url(); ?>manageNewPRD">
 		<p style=" border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;float: left;border: 1px solid #dcdcdc;">
 			PRD NEWS
 		</p></a>
@@ -164,7 +164,7 @@
 					<?php //echo $i++; ?>
 				</p>
 				<p class="col-2" style="width: 14%;float: left; ">
-					<a href="manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
+					<a href="<?php echo base_url(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
 				</p>
