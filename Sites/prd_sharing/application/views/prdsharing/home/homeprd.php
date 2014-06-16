@@ -170,38 +170,32 @@
 <?php
 		}
 ?>
-			<link href="<?php echo base_url(); ?>assets/css/style-report.css" rel="stylesheet" type="text/css">
-			<li class="num_page clearfix">
-            	<div class="float_l"><span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span></div>
+			<!-- <link href="<?php echo base_url(); ?>assets/css/style-report.css" rel="stylesheet" type="text/css"> -->
+			<div class="footer-table">
+            	<p style="width: 70%;float: left;margin-top: 20px;">
+					<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
+				</p>
                 
-                <div class="pagebtn float_r clearfix">
-                	<div><a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a></div>
-                	<div><a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a></div>
-                    <div class="num_page02">
-                			<span class="select-menu set_pagebtn float_r">  
-                            <span><?php echo $current_page; ?></span>    
-                                   
-            				<select onchange="jump_page(this.value)">
+                <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+                	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
+                	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
+                    <span style="margin-top: 10px;">
+						<!-- <span><?php //echo $current_page; ?></span> -->
+						<select onchange="jump_page(this.value)">
 <?php 
-								// var_dump($page_url);
-		        				foreach ($page_url as $item) {
-									?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
-								}
+							// var_dump($page_url);
+							foreach ($page_url as $item) {
+								?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
+							}
 ?>
-							</select>
-							</span>   
-							<?php 
-							// var_dump($page_url[0]);
-							// echo $page_url[0]['selected'];
-							?>                                                               
-                    </div>
-                    <div class="num100"><span> / <?php echo $total_page; ?></span></div>
-                    <div><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a></div>
-                    <div><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a></div>
-                </div>	<!--num_pages-->
-            </li>
+						</select> / <?php echo $total_page; ?>
+                    </span>
+                    <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
+                    <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+                </p>
+            </div>
             
-			<!-- <div class="footer-table">
+			<?php /* <div class="footer-table">
 				<p style="width: 70%;float: left;margin-top: 20px;">
 					ทั้งหมด:  รายการ ( หน้า)
 				</p>
@@ -219,7 +213,7 @@
 					</a>
 					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 				</p>
-			</div> -->
+			</div> */ ?>
 		
             <script>
             	
