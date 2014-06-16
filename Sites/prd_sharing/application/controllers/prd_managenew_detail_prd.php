@@ -22,7 +22,7 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 			$data['session_Mem_EngName'] = $this->session->userdata('Mem_EngName');
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
-			$data['title'] = 'Manage News';
+			$data['title'] = 'Home';
 			
 			$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
 			

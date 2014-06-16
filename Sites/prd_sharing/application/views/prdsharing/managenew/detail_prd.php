@@ -1,3 +1,14 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.fancybox').fancybox();
+	});
+</script>
+<style type="text/css">
+	.fancybox-custom .fancybox-skin {
+		box-shadow: 0 0 50px #222;
+	}
+</style>
+
 <div class="content">
 	<div id="detail-form">
 		<div class="row">
@@ -44,14 +55,14 @@
 						// var_dump($image);
 						if(isset($image->NT11_PicPath)){
 							
-							?><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
+							?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" class="fancybox" data-fancybox-group="gallery"><img src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $image->NT11_PicPath; ?>" alt="pic" style="width:30%;<?php
 								if($i % 3 == 2){
 									?>margin:10px 4% 0;<?php
 								}
 								else{
 									?>margin-top:10px;<?php
 								}
-							?>"><?php
+							?>"></a><?php
 							$i++;
 							$LeftContainerCount++;
 						}
@@ -63,6 +74,13 @@
 					<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 				</div>
 <?php
+					foreach ($get_NT01_News_videos as $videos) {
+						
+						if($videos->NT10_VDOPath != ""){
+							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><a style="text-decoration:none; text-decoration:none; " href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->NT10_VDOPath; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+						}
+					}
+
 					$voice_count = 0;
 					foreach ($get_NT01_News_Voice as $voice) {
 						// var_dump($voice);
@@ -70,7 +88,7 @@
 							if($voice_count == 0){
 								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><?php
 							}
-									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
+									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" style="text-decoration:none; text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png"></a><?php
 							if($voice_count == 0){
 								?></div><?php
 							}
@@ -133,7 +151,7 @@
 						<p>
 							ผู้สื่อข่าว : <?php 
 							if($news_item->NT01_ReporterID != ""){
-								echo $news_item->NT01_ReporterID; 
+								echo $news_item->ReporterName; 
 							}
 							else{
 								?>-<?php
