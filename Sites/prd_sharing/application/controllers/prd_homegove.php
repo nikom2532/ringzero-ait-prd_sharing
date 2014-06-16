@@ -9,7 +9,7 @@ class PRD_HomeGOVE extends CI_Controller {
 		$this->load->model('prd_homegove_model');
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
@@ -23,14 +23,23 @@ class PRD_HomeGOVE extends CI_Controller {
 			
 			
 			$data['title'] = 'Home';
+			$row_per_page = 20;
 			
 			if($this->input->post("news_title") != ""){
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 					$data['news'] = $this->prd_homegove_model->
 						get_gove_search_title_start_end(
+							$page, 
+							$row_per_page,
 							($this->input->post("news_title")), 
 							($this->input->post("start_date")), 
 							($this->input->post("end_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_title_start_end_count(
+							$this->input->post("news_title"),
+							$this->input->post("start_date"),
+							$this->input->post("end_date")
 						);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
@@ -39,8 +48,15 @@ class PRD_HomeGOVE extends CI_Controller {
 				elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
 					$data['news'] = $this->prd_homegove_model->
 						get_gove_search_title_start(
+							$page, 
+							$row_per_page,
 							($this->input->post("news_title")), 
 							($this->input->post("start_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_title_start_count(
+							$this->input->post("news_title"),
+							$this->input->post("start_date")
 						);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
@@ -48,16 +64,64 @@ class PRD_HomeGOVE extends CI_Controller {
 				else{
 					$data['news'] = $this->prd_homegove_model->
 						get_gove_search_title(
+							$page, 
+							$row_per_page,
+							$this->input->post("news_title")
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_title_count(
 							$this->input->post("news_title")
 						);
 					$data['post_news_title'] = $this->input->post("news_title");
 				}
 			}
 			else{
-				$data['news'] = $this->prd_homegove_model->get_gove();
+				$data['news'] = $this->prd_homegove_model->get_gove($page, $row_per_page);
+				$count_row = $this->prd_homegove_model->get_gove_count();
 			}
-			//For Test
-			// var_dump($data['news']);
+			
+			//############## Pagination = For no Search ################
+			// $count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+			$data['count_row'] = $count_row;
+			// $data_pagination = $this->ait->pagination($count_row,"homePRD/",$page,$row_per_page);
+			$url = "homePRD";
+			
+			$total_page   = $count_row / $row_per_page;
+			$page_mod     = $count_row % $row_per_page;
+			if($page_mod > 0){
+				list($unsign) = explode(".",$total_page);
+				$total_page = $unsign + 1;
+			}
+			$currentPage = $page == null?1:$page;
+			$page_url = array();
+			for($i = 0;$i < $total_page;$i++){
+				array_push($page_url,array(
+						"page"    =>$i + 1,
+						"value"   =>$i + 1,
+						"selected"=>($i + 1 == $page?"selected=selected":"")
+					));
+			}
+			$data['total_page'] = $total_page;
+			$data['current_page'] = $currentPage;
+			$data['jump_url'] = base_url().$url;
+			$data['next_page'] = 
+				$currentPage == $total_page
+					? base_url().$url."$total_page"
+					: base_url().$url.($currentPage + 1);
+			$data["prev_page"] = 
+				($currentPage > 1
+				? base_url().$url.($currentPage - 1)
+				: base_url().$url."1");
+			$data["total_page"]  =
+				($total_page == 0?1 : $total_page);
+			$data["page_url"] = $page_url;
+			$data["first_page"] = base_url().$url."1";
+			$data["last_page"] = base_url().$url."$total_page";
+			$data["current_page"] = $page;
+			$data["row_per_page"] = $row_per_page;
+			
+			//#########################################################
+			
 	
 			$this->load->view('prdsharing/templates/header', $data);
 			
