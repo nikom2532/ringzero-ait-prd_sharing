@@ -10,7 +10,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 		$this->load->library("pagination");
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
@@ -40,10 +40,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 				);
 			}
 			
-			
 			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
-			
-			
+			$category = $this->prd_managenewprd_model->get_Category();
 			
 			if($this->input->post("news_title") != ""){
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { // Start->End
@@ -119,7 +117,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 				}
 			}
 			else{	//## No Search ##
-				$data['news'] = $this->prd_managenewprd_model->get_NT01_News();
+				$data['news'] = $this->prd_managenewprd_model->get_NT01_News($category, $page);
+				$count_row = $this->prd_managenewprd_model->get_NT01_News_count($category);	
 			}
 			
 			

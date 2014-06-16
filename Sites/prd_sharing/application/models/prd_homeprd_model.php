@@ -135,7 +135,6 @@ class PRD_HomePRD_model extends CI_Model {
 			SELECT('
 				Category.Cate_OldID,
 			')->
-			LIMIT('20,0')->
 			where('Category.Cate_Status', 'Y')->
 			get('Category')->result();
 	}
