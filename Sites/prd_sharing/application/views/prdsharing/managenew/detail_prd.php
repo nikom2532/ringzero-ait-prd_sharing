@@ -88,7 +88,12 @@
 							if($voice_count == 0){
 								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><?php
 							}
+									?><audio width="482" height="270" controls>
+										<source src="<?php echo $voice->NT12_VoicePath; ?>" type="audio/mpeg">
+									</audio><?php
+									/*
 									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->NT12_VoicePath; ?>" style="text-decoration:none; text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png"></a><?php
+									*/
 							if($voice_count == 0){
 								?></div><?php
 							}
