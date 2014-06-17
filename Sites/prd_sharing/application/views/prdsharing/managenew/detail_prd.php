@@ -75,7 +75,7 @@
 				</div>
 <?php
 					foreach ($get_NT01_News_videos as $videos) {
-						// echo $videos->Url;
+						echo $videos->Url;
 						if($videos->Url != ""){
 							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><a style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 						}

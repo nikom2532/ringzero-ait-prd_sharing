@@ -157,6 +157,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			")->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT10_VDO.NT10_FileStatus', 'Y')->
 			get('NT01_News')->result();
 		return $query_file1;
 		// $query = $this->db_ntt_old->select('*')->
@@ -175,6 +176,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			")->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT11_Picture.NT11_FileStatus', 'Y')->
 			get('NT01_News')->result();
 		return $query_file2;
 		// $query = $this->db_ntt_old->select('*')->
@@ -194,6 +196,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			")->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT12_Voice.NT12_FileStatus', 'Y')->
 			get('NT01_News')->result();
 			
 			// var_dump($query_file2);
@@ -216,6 +219,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			")->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT13_OtherFile.NT13_FileStatus', 'Y')->
 			get('NT01_News')->result();
 		return $query_file4;
 		

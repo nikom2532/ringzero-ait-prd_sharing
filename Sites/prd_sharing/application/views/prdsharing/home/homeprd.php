@@ -135,7 +135,7 @@
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->NT12_FileStatus){ //Voice
+						if($news_item->NT12_FileStatus == 'Y'){ //Voice
 							?>voice_512x512<?php
 						}else{
 							?>null<?php
@@ -144,7 +144,7 @@
 					
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->NT13_FileStatus){ //Document
+						if($news_item->NT13_FileStatus == 'Y'){ //Document
 							?>Document.jpg<?php
 						}else{
 							?>null.png<?php
@@ -152,7 +152,7 @@
 					?>" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
-						if($news_item->NT11_FileStatus){ //Picture
+						if($news_item->NT11_FileStatus == 'Y'){ //Picture
 							?>pic<?php
 						}else{
 							?>null<?php
