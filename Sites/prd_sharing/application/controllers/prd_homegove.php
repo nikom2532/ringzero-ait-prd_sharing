@@ -144,9 +144,7 @@ class PRD_HomeGOVE extends CI_Controller {
 			}
 			
 			//############## Pagination = For no Search ################
-			// $count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
 			$data['count_row'] = $count_row;
-			// $data_pagination = $this->ait->pagination($count_row,"homePRD/",$page,$row_per_page);
 			$url = "homePRD";
 			
 			$total_page   = $count_row / $row_per_page;

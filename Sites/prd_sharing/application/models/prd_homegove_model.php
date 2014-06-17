@@ -33,6 +33,19 @@ class PRD_HomeGOVE_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		// WHERE 
+			// SendInformation.SendIn_Status = '1'
+		// AND
+			// CASE WHEN SendIn_UpdateDate IS NULL
+				// THEN 
+					 // SendIn_CreateDate
+				// ELSE
+					// SendIn_UpdateDate
+			// END
+			// SendInformation.PRD_Status = Member.Mem_Ministry
+		
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;

@@ -72,7 +72,10 @@ $route['reportPRD'] = 'prd_reportprd';
 
 $route['detail_prd'] = 'prd_managenew_detail_prd';
 $route['detail_grov'] = 'prd_managenew_detail_grov';
+
 $route['homeGOVE'] = 'prd_homegove';
+$route['homeGOVE/(:num)'] = "prd_homegove/index/$1";
+
 $route['infoDepartment'] = 'prd_infodepartment';
 $route['infoDepartmentNew'] = 'prd_infodepartment_new';
 $route['infoMinistry'] = 'prd_infoministry';

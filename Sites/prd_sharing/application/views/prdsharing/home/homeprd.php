@@ -172,7 +172,6 @@
 <?php
 		}
 ?>
-			<!-- <link href="<?php echo base_url(); ?>assets/css/style-report.css" rel="stylesheet" type="text/css"> -->
 			<div class="footer-table">
             	<p style="width: 70%;float: left;margin-top: 20px;">
 					<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
@@ -246,7 +245,5 @@
 				}
 				
             </script>
-            
-            
 	</div>
 </div>
