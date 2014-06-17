@@ -70,7 +70,7 @@ class PRD_HomePRD_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-	echo	$StrQuery = "
+		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 

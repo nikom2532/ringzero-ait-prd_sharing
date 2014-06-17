@@ -24,7 +24,7 @@
 <?php
 					//ไม่มี File Video
 					foreach ($get_NT01_News_videos as $videos) {
-						if(isset($videos->Url)){
+						if($videos->Url != ""){
 ?>
 							<!-- <script src="//embed.flowplayer.org/5.4.6/embed.min.js"> -->
 							<script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
@@ -84,7 +84,7 @@
 					$voice_count = 0;
 					foreach ($get_NT01_News_Voice as $voice) {
 						// var_dump($voice);
-						if(isset($voice->Url)){
+						if($voice->Url != ""){
 							if($voice_count == 0){
 								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><?php
 							}
@@ -152,7 +152,7 @@
 					$OtherFile_count = 0;
 					foreach ($get_NT01_News_OtherFile as $OtherFile) {
 						// var_dump($voice);
-						if(isset($OtherFile->Url)){
+						if($OtherFile->Url != ""){
 							if($voice_count == 0){
 								?><div class="otherfiles-list" style="margin-top: 30px;"><?php
 							}
