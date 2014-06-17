@@ -30,6 +30,11 @@ class PRD_HomePRD extends CI_Controller {
 			$data['title'] = 'Home';
 			
 			$category = $this->prd_homeprd_model->get_Category();
+			// $data['file_video'] = $this->prd_homeprd_model->get_NT01_News_query_file1();
+			// $data['file_voice'] = $this->prd_homeprd_model->get_NT01_News_query_file3();
+			// $data['file_other'] = $this->prd_homeprd_model->get_NT01_News_query_file4();
+			// $data['file_picture'] = $this->prd_homeprd_model->get_NT01_News_query_file2();
+			
 			
 			if($this->input->post("news_title") != ""){ //For search
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
@@ -154,9 +159,7 @@ class PRD_HomePRD extends CI_Controller {
 			
 			//After Load the Page --> Will insert the UserID from Old Database to New Database
 			//Insert News Table from Old Database to New Database
-			$this->prd_homeprd_model->set_News(
-				$data['news']
-			);
+			$this->prd_homeprd_model->set_News($data['news']);
 			
 			$data['New_News'] = $this->prd_homeprd_model->get_New_News();
 			

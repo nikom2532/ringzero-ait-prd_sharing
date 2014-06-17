@@ -70,7 +70,7 @@ class PRD_HomePRD_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-	echo	$StrQuery = "
+		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
@@ -80,24 +80,12 @@ class PRD_HomePRD_model extends CI_Model {
 					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
 					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
 					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User 
 					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-				LEFT JOIN NT10_VDO 
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN NT11_Picture 
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN NT12_Voice 
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 				AND
@@ -163,24 +151,12 @@ class PRD_HomePRD_model extends CI_Model {
 					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
 					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
 					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN 
 					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-				LEFT JOIN 
-					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN 
-					NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN 
-					NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT08_PubTypeID = '11'
 				AND
@@ -285,24 +261,12 @@ class PRD_HomePRD_model extends CI_Model {
 					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
 					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
 					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
 					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
 				WHERE
 				(
 						NT08_PubTypeID = '11'
@@ -412,24 +376,12 @@ class PRD_HomePRD_model extends CI_Model {
 					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
 					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
 					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
 					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
 				WHERE
 				(
 						NT08_PubTypeID = '11'
@@ -646,7 +598,37 @@ class PRD_HomePRD_model extends CI_Model {
 			return $val->NUMROW;
 		}
 	}
-	
+
+	//##################### File Attachments ##########################
+// 	
+	// public function get_NT01_News_query_file1($NT01_NewsID = ''){
+		// $query = $this->db_ntt_old->select('*')->
+			// // where('NewsID', $NT01_NewsID)->
+			// get('VW03_Video');
+		// return $query->result();
+	// }
+// 
+	// public function get_NT01_News_query_file2($NT01_NewsID = ''){
+		// $query = $this->db_ntt_old->select('*')->
+			// // where('NewsID', $NT01_NewsID)->
+			// get('VW04_Picture');
+		// return $query->result();
+	// }
+// 
+	// public function get_NT01_News_query_file3($NT01_NewsID = ''){
+		// $query_file1 = $this->db_ntt_old->
+			// select("*")->
+			// // where('VW05_Voice.NewsID', $NT01_NewsID)->
+			// get('VW05_Voice')->result();
+		// return $query_file1;
+	// }
+// 
+	// public function get_NT01_News_query_file4($NT01_NewsID = ''){
+		// $query = $this->db_ntt_old->select('*')->
+			// // where('NewsID', $NT01_NewsID)->
+			// get('VW06_OtherFile');
+		// return $query->result();
+	// }
 	
 	//##################### Old Database --- Set #########################
 	

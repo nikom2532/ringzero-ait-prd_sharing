@@ -124,41 +124,49 @@
 					<a href="<?php echo base_url(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
 				</p>
 				
-				<p class="col-5" style="width: 20%;float: left;  text-align: center;">
+				<!-- <p class="col-5" style="width: 20%;float: left;  text-align: center;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
-						if($news_item->NT10_FileStatus == "Y"){ //Video
-							?>vdo<?php
-						}else{
-							?>null<?php
+						foreach ($file_video as $news_item) {
+							if($news_item->NT10_FileStatus == "Y"){ //Video
+								?>vdo<?php
+							}else{
+								?>null<?php
+							}
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->NT12_FileStatus){ //Voice
-							?>voice_512x512<?php
-						}else{
-							?>null<?php
+						foreach ($file_voice as $news_item) {
+							if($news_item->NT12_FileStatus){ //Voice
+								?>voice_512x512<?php
+							}else{
+								?>null<?php
+							}
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->NT13_FileStatus){ //Document
-							?>Document.jpg<?php
-						}else{
-							?>null.png<?php
+						foreach ($file_other as $news_item) {
+							if($news_item->NT13_FileStatus){ //Document
+								?>Document.jpg<?php
+							}else{
+								?>null.png<?php
+							}
 						}
 					?>" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
-						if($news_item->NT11_FileStatus){ //Picture
-							?>pic<?php
-						}else{
-							?>null<?php
+						foreach ($file_picture as $news_item) {
+							if($news_item->NT11_FileStatus){ //Picture
+								?>pic<?php
+							}else{
+								?>null<?php
+							}
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
-				</p>
+				</p> -->
 				
 			</div>
 <?php

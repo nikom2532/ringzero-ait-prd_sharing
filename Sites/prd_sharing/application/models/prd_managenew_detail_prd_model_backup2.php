@@ -148,81 +148,88 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 	}
 
 	public function get_NT01_News_query_file1($NT01_NewsID = ''){
+		/*
 		$query_file1 = $this->db_ntt_old->
-			select("
-				NT10_VDO.NT10_VDOName AS FileName,
-				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT10_VDO.NT10_VDOPath AS Url,
+			select('
+				NT10_VDO.NT10_VDOName,
+				NT10_VDO.NT10_VDOPath,
 				NT10_VDO.NT10_Extension,
 				NT10_VDO.NT10_FileStatus,
-			")->
+			')->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		return $query_file1;
-		// $query = $this->db_ntt_old->select('*')->
-			// where('NewsID', $NT01_NewsID)->
-			// get('VW03_Video');
-		// return $query->result();
+		*/
+		$query = $this->db_ntt_old->select('*')->
+			where('NewsID', $NT01_NewsID)->
+			get('VW03_Video');
+		return $query->result();
 	}
 
 	public function get_NT01_News_query_file2($NT01_NewsID = ''){
+		/*
 		$query_file2 = $this->db_ntt_old->
-			select("
-				NT11_Picture.NT11_PicName AS FileName,
-				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT11_Picture.NT11_PicPath AS Url,
+			select('
+				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_PicPath,
 				NT11_Picture.NT11_Extension,
 				NT11_Picture.NT11_FileStatus
-			")->
+			')->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		return $query_file2;
-		// $query = $this->db_ntt_old->select('*')->
-			// where('NewsID', $NT01_NewsID)->
-			// get('VW04_Picture');
-		// return $query->result();
+		*/
+		$query = $this->db_ntt_old->select('*')->
+			where('NewsID', $NT01_NewsID)->
+			get('VW04_Picture');
+		return $query->result();
 	}
 
 	public function get_NT01_News_query_file3($NT01_NewsID = ''){
+		/*
 		//Join with normal database
 		$query_file3 = $this->db_ntt_old->
-			select("
-				NT12_Voice.NT12_VoiceName AS FileName,
-				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT12_Voice.NT12_VoicePath AS Url,
+			select('
+				NT12_Voice.NT12_VoiceName,
+				NT12_Voice.NT12_VoicePath,
 				NT12_Voice.NT12_Extension,
 				NT12_Voice.NT12_FileStatus
-			")->
+			')->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 			
 			// var_dump($query_file2);
 		return $query_file3;
+		*/
 		
-		// $query_file1 = $this->db_ntt_old->
-			// select("*")->
-			// where('VW05_Voice.NewsID', $NT01_NewsID)->
-			// get('VW05_Voice')->result();
-		// return $query_file1;
+		$query_file1 = $this->db_ntt_old->
+			select("*")->
+			where('VW05_Voice.NewsID', $NT01_NewsID)->
+			get('VW05_Voice')->result();
+		return $query_file1;
 	}
 
 	public function get_NT01_News_query_file4($NT01_NewsID = ''){
+		/*
 		$query_file4 = $this->db_ntt_old->
-			select("
-				NT13_OtherFile.NT13_FileName AS FileName,
-				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=' + NT13_OtherFile.NT13_FilePath AS Url,
+			select('
+				NT13_OtherFile.NT13_FileName,
+				NT13_OtherFile.NT13_FilePath,
 				NT13_OtherFile.NT13_Extension,
 				NT13_OtherFile.NT13_FileStatus
-			")->
+			')->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
 		return $query_file4;
-		
-		// $query = $this->db_ntt_old->select('*')->
-			// where('NewsID', $NT01_NewsID)->
-			// get('VW06_OtherFile');
-		// return $query->result();
+		*/
+		$query = $this->db_ntt_old->select('*')->
+			where('NewsID', $NT01_NewsID)->
+			get('VW06_OtherFile');
+		return $query->result();
 	}
 	
 	//###################################################
