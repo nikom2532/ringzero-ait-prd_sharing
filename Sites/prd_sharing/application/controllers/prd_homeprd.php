@@ -68,45 +68,97 @@ class PRD_HomePRD extends CI_Controller {
 							$category
 						);
 				}
-				elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){ //For search title start
+				elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){ //For search title end
 					// echo "test";
-					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start(
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_end(
 						($this->input->post("news_title")), 
-						($this->input->post("start_date")),
+						($this->input->post("end_date")),
 						$category,
 						$page
 					);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
 					$count_row = $this->prd_homeprd_model->
-						get_NT01_News_search_title_start_count(
+						get_NT01_News_search_title_end_count(
 							$this->input->post("news_title"),
+							$this->input->post("end_date"),
+							$category
+						);
+				}
+				else{
+						//For search title
+						$data['news'] = $this->prd_homeprd_model->
+							get_NT01_News_search_title(
+								$this->input->post("news_title"),
+								$category,
+								$page
+							);
+						$data['post_news_title'] = $this->input->post("news_title");
+						$count_row = $this->prd_homeprd_model->
+							get_NT01_News_search_title_count(
+								$this->input->post("news_title"),
+								$category
+							);
+				}
+			}
+			else{
+				//For search start end
+				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_start_end(
+						($this->input->post("start_date")), 
+						($this->input->post("end_date")),
+						$category,
+						$page
+					);
+					$data['post_start_date'] = $this->input->post("start_date");
+					$data['post_end_date'] = $this->input->post("end_date");
+					$count_row = $this->prd_homeprd_model->
+						get_NT01_News_search_start_end_count(
+							$this->input->post("start_date"),
+							$this->input->post("end_date"),
+							$category
+						);
+				}
+				
+				//For search start
+				elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
+					// echo "test";
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_start(
+						($this->input->post("start_date")),
+						$category,
+						$page
+					);
+					$data['post_start_date'] = $this->input->post("start_date");
+					$count_row = $this->prd_homeprd_model->
+						get_NT01_News_search_start_count(
 							$this->input->post("start_date"),
 							$category
 						);
 				}
-				else{ //For search title
-					$data['news'] = $this->prd_homeprd_model->
-						get_NT01_News_search_title(
-							$this->input->post("news_title"),
-							$category,
-							$page
-						);
-					$data['post_news_title'] = $this->input->post("news_title");
-					$count_row = $this->prd_homeprd_model->
-						get_NT01_News_search_title_count(
-							$this->input->post("news_title"),
-							$category
-						);
-				}
-			}
-			else{ //For no Search
-				$data['news'] = $this->prd_homeprd_model->
-					get_NT01_News(
+				//For search end
+				elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
+					// echo "test";
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_end(
+						($this->input->post("end_date")),
 						$category,
 						$page
 					);
-				$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+					$data['post_end_date'] = $this->input->post("end_date");
+					$count_row = $this->prd_homeprd_model->
+						get_NT01_News_search_end_count(
+							$this->input->post("end_date"),
+							$category
+						);
+				}
+				else{
+					//For no Search
+					$data['news'] = $this->prd_homeprd_model->
+						get_NT01_News(
+							$category,
+							$page
+						);
+					$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+				}
 			}
 
 			//############## Pagination = For no Search ################
