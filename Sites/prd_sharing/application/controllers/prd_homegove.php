@@ -61,6 +61,22 @@ class PRD_HomeGOVE extends CI_Controller {
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
 				}
+				elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
+					$data['news'] = $this->prd_homegove_model->
+						get_gove_search_title_start(
+							$page, 
+							$row_per_page,
+							($this->input->post("news_title")), 
+							($this->input->post("end_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_title_start_count(
+							$this->input->post("news_title"),
+							$this->input->post("end_date")
+						);
+					$data['post_news_title'] = $this->input->post("news_title");
+					$data['post_end_date'] = $this->input->post("end_date");
+				}
 				else{
 					$data['news'] = $this->prd_homegove_model->
 						get_gove_search_title(
@@ -76,8 +92,55 @@ class PRD_HomeGOVE extends CI_Controller {
 				}
 			}
 			else{
-				$data['news'] = $this->prd_homegove_model->get_gove($page, $row_per_page);
-				$count_row = $this->prd_homegove_model->get_gove_count();
+				
+				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
+					$data['news'] = $this->prd_homegove_model->
+						get_gove_search_start_end(
+							$page, 
+							$row_per_page,
+							($this->input->post("start_date")), 
+							($this->input->post("end_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_start_end_count(
+							$this->input->post("start_date"),
+							$this->input->post("end_date")
+						);
+					$data['post_start_date'] = $this->input->post("start_date");
+					$data['post_end_date'] = $this->input->post("end_date");
+				}
+				
+				elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
+					$data['news'] = $this->prd_homegove_model->
+						get_gove_search_start(
+							$page, 
+							$row_per_page,
+							($this->input->post("start_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_start_count(
+							$this->input->post("start_date")
+						);
+					$data['post_start_date'] = $this->input->post("start_date");
+				}
+				elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
+					$data['news'] = $this->prd_homegove_model->
+						get_gove_search_end(
+							$page, 
+							$row_per_page,
+							($this->input->post("end_date")) 
+						);
+					$count_row = $this->prd_homegove_model->
+						get_gove_search_end_count(
+							$this->input->post("end_date")
+						);
+					$data['post_end_date'] = $this->input->post("end_date");
+				}
+				
+				else{
+					$data['news'] = $this->prd_homegove_model->get_gove($page, $row_per_page);
+					$count_row = $this->prd_homegove_model->get_gove_count();
+				}
 			}
 			
 			//############## Pagination = For no Search ################
