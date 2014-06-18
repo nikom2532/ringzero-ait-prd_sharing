@@ -119,16 +119,16 @@
 				<div style="float:left; width: 25%; text-align: right;">ผู้สื่อข่าว</div>
 				<div style="float:left; width: 60%; margin-left: 30px;">
 					<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
-						<option value="">Choose...</option>
-						<option value="1">jQuery</option>
-						<option value="2">jQuery2</option>
-		<?php
-						/*
+						<option value="">โปรดเลือก...</option>
+<?php
 						foreach ($SC03_User as $SC03_User_item) {
-							?><option value="<?php echo $SC03_User->SC03_UserId; ?>"><?php echo $SC03_User->SC03_TName." ".$SC03_User->SC03_FName; ?></option><?php
+							?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
+								if($post_reporter_id != ""){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
 						}
-						*/
-		?>
+?>
 					</select>
 					<script>
 						jQuery(document).ready(function(){

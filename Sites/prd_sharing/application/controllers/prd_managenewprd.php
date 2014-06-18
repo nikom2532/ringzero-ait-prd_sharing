@@ -54,7 +54,12 @@ class PRD_ManageNewPRD extends CI_Controller {
 						$this->input->post('start_date'),
 						$this->input->post('end_date'),
 						$this->input->post('NewsTypeID'),
-						$this->input->post('NewsSubTypeID')
+						$this->input->post('NewsSubTypeID'),
+						$this->input->post('reporter_id'),
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('filter_other')
 					);
 				$count_row = $this->prd_managenewprd_model->
 					get_NT01_News_search_count(
@@ -62,7 +67,12 @@ class PRD_ManageNewPRD extends CI_Controller {
 						$this->input->post('start_date'),
 						$this->input->post('end_date'),
 						$this->input->post('NewsTypeID'),
-						$this->input->post('NewsSubTypeID')
+						$this->input->post('NewsSubTypeID'),
+						$this->input->post('reporter_id'),
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('	')
 					);
 				
 				$data['post_news_title'] = $this->input->post('news_title');
@@ -70,7 +80,11 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_end_date'] = $this->input->post('end_date');
 				$data['post_News_type_id'] = $this->input->post('NewsTypeID');
 				$data['post_News_subtype_id'] = $this->input->post('NewsSubTypeID');
-				
+				$data['post_reporter_id'] = $this->input->post('reporter_id');
+				$data['post_filter_vdo'] = $this->input->post('filter_vdo');
+				$data['post_filter_sound'] = $this->input->post('filter_sound');
+				$data['post_filter_image'] = $this->input->post('filter_image');
+				$data['post_filter_other'] = $this->input->post('filter_other');
 			}
 			else{	//## No Search ##
 				$data['news'] = $this->prd_managenewprd_model->get_NT01_News($page, $row_per_page);
@@ -80,6 +94,11 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_end_date'] = "";
 				$data['post_News_type_id'] = "";
 				$data['post_News_subtype_id'] = "";
+				$data['post_reporter_id'] = "";
+				$data['post_filter_vdo'] = "";
+				$data['post_filter_sound'] = "";
+				$data['post_filter_image'] = "";
+				$data['post_filter_other'] = "";
 			}
 			
 			//############## Pagination = For no Search ################

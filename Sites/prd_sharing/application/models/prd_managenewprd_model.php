@@ -34,7 +34,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			LIMIT(20,0)->
 			SELECT("
 				SC03_User.SC03_UserId,
-				SC03_User.SC03_TName+' '+SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
+				SC03_User.SC03_TName+''+SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
 			")->
 			get("SC03_User")->result();
 	}
@@ -119,7 +119,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$startdate = '',
 		$enddate = '',
 		$NewsTypeID = '',
-		$NewsSubTypeID = ''
+		$NewsSubTypeID = '',
+		$ReporterID = '',
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
 	)
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
@@ -206,6 +211,37 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
 			";
 		}
+		if($ReporterID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_ReporterID = '".$ReporterID."'
+			";
+		}
+		if($filter_vdo == '1'){
+			$StrQuery .= "
+				AND
+					NT10_VDO.NT10_FileStatus = 'Y'
+			";
+		}
+		if($filter_sound == '1'){
+			$StrQuery .= "
+				AND
+					NT11_Picture.NT11_FileStatus = 'Y'
+			";
+		}
+		if($filter_image == '1'){
+			$StrQuery .= "
+				AND
+					NT12_Voice.NT12_FileStatus = 'Y'
+			";
+		}
+		if($filter_other == '1'){
+			$StrQuery .= "
+				AND
+					NT13_OtherFile.NT13_FileStatus = 'Y'
+			";
+		}
+		
 		$StrQuery .= "
 				group by NT01_News.NT01_NewsID
 			)
