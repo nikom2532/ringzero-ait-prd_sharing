@@ -8,6 +8,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('prd_managenewprd_model');
 		$this->load->library("pagination");
+		$this->load->helper('utility_helper');
 	}
 
 	public function index($page = 1)
@@ -30,7 +31,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$return = $this->prd_managenewprd_model->set_prd_news(
 					$this->input->post("NT01_NewsID"),
 					$this->input->post("NT01_NewsTitle"),
-					$this->input->post("NT01_NewsDesc"),
+					htmldecode($this->input->post("NT01_NewsDesc")),
 					$this->input->post("NT01_NewsSource"),
 					$this->input->post("NT01_NewsReferance"),
 					$this->input->post("NT01_NewsTag"),

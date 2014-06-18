@@ -7,6 +7,7 @@ class PRD_manageNewEditPRD extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('prd_manageneweditprd_model');
+		$this->load->helper('utility_helper');
 	}
 
 	public function index()

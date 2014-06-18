@@ -36,7 +36,7 @@
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
 				<input class="txt-field" type="text" value="<?php 
-					if(isset($post_news_title)){
+					if($post_news_title != ""){
 						echo $post_news_title;
 					}
 				?>" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
@@ -91,7 +91,6 @@
 					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 					foreach ($NT03_NewsSubType as $newType_item) {
 						if($newType_item->NT02_TypeID == $post_News_type_id){
-							
 							?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
 								if($post_News_subtype_id != ""){
 									?>selected='selected'<?php
