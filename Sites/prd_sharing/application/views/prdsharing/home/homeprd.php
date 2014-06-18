@@ -20,6 +20,7 @@
 ?>
 			<div class="odd">
 				<p class="col-1" style="width: 20%; float: left; "><?php
+					/*
 					if($news_item->NT01_UpdDate == ""){
 						foreach ($New_News as $New_News_item) {
 							if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
@@ -56,8 +57,9 @@
 								
 							}
 						}
-						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 					}
+					*/
+					echo date("d/m/Y h:m:s", strtotime($news_item->NT01_NewsDate));
 				?></p>
 				<p class="col-2" style="width: 80%;float: left; ">
 <?php

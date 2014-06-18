@@ -74,6 +74,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -157,6 +158,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -279,6 +281,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -406,6 +409,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -531,6 +535,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -591,7 +596,6 @@ class PRD_HomePRD_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
-		echo date("m-d-Y",strtotime($startdate));
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
@@ -668,6 +672,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -804,6 +809,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -923,6 +929,7 @@ class PRD_HomePRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 

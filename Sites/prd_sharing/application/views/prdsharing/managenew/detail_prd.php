@@ -13,7 +13,7 @@
 	<div id="detail-form">
 		<div class="row">
 			<?php $LeftContainerCount=0; ?>
-			<div class="col-lg-6">
+			<div class="col-lg-6" id="leftContainer">
 				<div class="vdo">
 					<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;">
 					<img src="<?php
@@ -75,9 +75,10 @@
 				</div>
 <?php
 					foreach ($get_NT01_News_videos as $videos) {
-						echo $videos->Url;
+						// echo $videos->Url;
 						if($videos->Url != ""){
 							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><a style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+							$LeftContainerCount++;
 						}
 					}
 
@@ -166,6 +167,14 @@
 					}
 ?>
 			</div>
+			
+<?php
+			if($LeftContainerCount == 0){
+				?><script>
+					$("#leftContainer").css("display", "none");
+				</script><?php
+			}
+?>
 			<div class="col-lg-<?php 
 					if($LeftContainerCount == 0){
 						?>12<?php
@@ -179,7 +188,7 @@
 						<h1><?php 
 								echo $news_item->NT01_NewsTitle;
 						?></h1>
-						<p><?php 
+						<div><?php 
 							if($news_item->NT01_UpdDate == ""){
 								echo date("d/m/Y", strtotime($news_item->NT01_CreDate));
 							}
@@ -194,43 +203,44 @@
 									echo $news_item->NT01_ViewCount; 
 								}
 							?> ผู้เข้าชม)
-						</p>
-						<p><?php
+						</div>
+						<div><?php
 							echo $news_item->NT01_NewsDesc;
-						?></p>
-					</div>
-					<div class="news-form">
-						<h1 style="margin-bottom: 5px;">ข้อมูลข่าวและที่มา</h1>
-						<p>
-							ผู้สื่อข่าว : <?php 
-							if($news_item->NT01_ReporterID != ""){
-								echo $news_item->ReporterName; 
-							}
-							else{
-								?>-<?php
-							}
-							?>
-						</p>
-						<p>
-							Rewriter : <?php 
-								foreach ($get_NT01_News_ReWriteName as $reWriteName) {
-									echo $reWriteName->ReWriteName;
+						?></div>
+					
+						<div class="news-form">
+							<h1 style="margin-bottom: 5px;">ข้อมูลข่าวและที่มา</h1>
+							<p>
+								ผู้สื่อข่าว : <?php 
+								if($news_item->NT01_ReporterID != ""){
+									echo $news_item->ReporterName; 
 								}
-							?>
-						</p>
-						<p>
-							แหล่งที่มา : <?php 
-							if($news_item->NT01_NewsSource != ""){
-								echo $news_item->NT01_NewsSource;
-							}
-							else{
-								echo "-";
-							}
-							// if($news_item->NT01_NewsReferance != ""){
-								// echo " : ".$news_item->NT01_NewsReferance;;
-							// }
-							?>
-						</p>
+								else{
+									?>-<?php
+								}
+								?>
+							</p>
+							<p>
+								Rewriter : <?php 
+									foreach ($get_NT01_News_ReWriteName as $reWriteName) {
+										echo $reWriteName->ReWriteName;
+									}
+								?>
+							</p>
+							<p>
+								แหล่งที่มา : <?php 
+								if($news_item->NT01_NewsSource != ""){
+									echo $news_item->NT01_NewsSource;
+								}
+								else{
+									echo "-";
+								}
+								// if($news_item->NT01_NewsReferance != ""){
+									// echo " : ".$news_item->NT01_NewsReferance;;
+								// }
+								?>
+							</p>
+						</div>
 					</div>
 <?php
 				}
