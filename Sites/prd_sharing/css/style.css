@@ -1,3 +1,4 @@
+/*
 @font-face{
     font-family: 'supermarket';
     src:url('../fonts/supermarket/supermarket.eot');
@@ -7,6 +8,17 @@
 
     font-weight: normal;
     font-style: normal;
+}
+*/
+@font-face{
+   font-family: 'supermarketregular';
+   src: url('../fonts/dew_supermarket/614685059-supermarket-webfont.eot');
+   src: url('../fonts/dew_supermarket/614685059-supermarket-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/dew_supermarket/614685059-supermarket-webfont.woff') format('woff'),
+        url('../fonts/dew_supermarket/614685059-supermarket-webfont.ttf') format('truetype'),
+        url('../fonts/dew_supermarket/614685059-supermarket-webfont.svg#supermarketregular') format('svg');
+   font-weight: normal;
+   font-style: normal;
 }
 
 body{
@@ -37,7 +49,7 @@ a {color: #666;}
 .box-article-header h2,
 .box-sidebar-header h2,
 .box-contact h4 {
-    font-family: supermarket;/*  */
+    font-family: 'supermarketregular' !important;
 }
 
 #header{
@@ -96,7 +108,7 @@ a {color: #666;}
 #detail h1,.news-form h1{
     color: #0808a7;
     font-size: large;
-    font-family: supermarket;
+    font-family: 'supermarketregular' !important;
 }
 #detail p{
     margin-top: 20px;

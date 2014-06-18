@@ -41,7 +41,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 			}
 			
 			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
-			// $category = $this->prd_managenewprd_model->get_Category();
+			$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
 			$row_per_page = 20;
 			
 			if($this->input->post("managenewsprd_is_search") == "yes"){
@@ -63,7 +63,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 						$this->input->post('end_date'),
 						$this->input->post('NewsTypeID'),
 						$this->input->post('NewsSubTypeID')
-					);	
+					);
 				
 				$data['post_news_title'] = $this->input->post('news_title');
 				$data['post_start_date'] = $this->input->post('start_date');

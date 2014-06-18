@@ -8,16 +8,38 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
-	//#########  Database Old  ##########
-	public function get_Category()
+	public function get_NT02_NewsType()
 	{
-		return $this->db->
-			SELECT('
-				Category.Cate_OldID,
-			')->
-			where('Category.Cate_Status', 'Y')->
-			get('Category')->result();
+		return $this->db_ntt_old->
+			// LIMIT('20,0')->	
+			get('NT02_NewsType')->result();
 	}
+	public function get_NT03_NewsSubType()
+	{
+		return $this->db_ntt_old->
+			// LIMIT('20,0')->	
+			get('NT03_NewsSubType')->result();
+	}
+	public function get_NT03_NewsSubType_Unique($NT02_TypeID = '')
+	{
+		return $this->db_ntt_old->
+			// LIMIT('20,0')->
+			where('NT02_TypeID', $NT02_TypeID)->
+			get('NT03_NewsSubType')->result();
+	}
+	
+	public function get_SC03_User()
+	{
+		return $this->db_ntt_old->
+			LIMIT(20,0)->
+			SELECT("
+				SC03_User.SC03_UserId,
+				SC03_User.SC03_TName+' '+SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
+			")->
+			get("SC03_User")->result();
+	}
+	
+	//############################ News #############################
 	
 	public function get_NT01_News($page=1, $row_per_page=20, $Cate_OldID = array())
 	{
@@ -94,8 +116,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$page=1, 
 		$row_per_page=20, 
 		$News_Title = '',
-		$start_date = '',
-		$end_date = '',
+		$startdate = '',
+		$enddate = '',
 		$NewsTypeID = '',
 		$NewsSubTypeID = ''
 	)
@@ -142,26 +164,34 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			";
 		}
 		if(
-			($start_date != '') && 
-			!($end_date != '')
+			($startdate != '') && 
+			!($enddate != '')
 		){
 			$StrQuery .= "
 				AND
-					NT01_NewsDate > Convert(datetime, '".$start_date."')
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
-			($start_date != '') &&
-			($end_date != '')
+			($startdate != '') && 
+			!($enddate != '')
 		){
-			echo "aaa";
 			$StrQuery .= "
 				AND
-					NT01_NewsDate 
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
 						BETWEEN 
-							Convert(datetime, '".$start_date."') 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
-							Convert(datetime, '".$end_date."')
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
 		if($NewsTypeID != ''){
@@ -188,8 +218,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	public function get_NT01_News_search_count(
 		$News_Title = '',
-		$start_date = '',
-		$end_date = '',
+		$startdate = '',
+		$enddate = '',
 		$NewsTypeID = '',
 		$NewsSubTypeID = ''
 	)
@@ -208,25 +238,34 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			";
 		}
 		if(
-			(isset($start_date) || $start_date != '') &&
-			!(isset($end_date) || $end_date != '')
+			($startdate != '') && 
+			!($enddate != '')
 		){
 			$StrQuery .= "
 				AND
-					NT01_NewsDate > Convert(datetime, '".$startdate."')
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
-			(isset($start_date) || $start_date != '') &&
-			(isset($end_date) || $end_date != '')
+			($startdate != '') && 
+			!($enddate != '')
 		){
 			$StrQuery .= "
 				AND
-					NT01_NewsDate 
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			(isset($startdate) || $startdate != '') &&
+			(isset($enddate) || $enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
 						BETWEEN 
-							Convert(datetime, '".$start_date."') 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
-							Convert(datetime, '".$end_date."')
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
 		if(isset($NewsTypeID) || $NewsTypeID != ''){
@@ -252,6 +291,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		}
 	}
 	
+	/*
 	//for search where have no update
 	public function get_NT01_News_Search_IsHaveUpdateDate(
 		$News_Title = '' //,
@@ -291,56 +331,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			
 			get('NT01_News')->result();
 	}
-	
-	public function get_NT01_News_Search_Title_start($News_Title = '', $start_date = '')
-	{
-		return $this->db_ntt_old->
-			LIMIT('20,0')->
-			select('
-				NT01_News.NT01_NewsID,
-				NT01_News.NT01_UpdDate,
-				NT01_News.NT01_CreDate,
-				NT01_News.NT01_NewsTitle,
-				NT01_News.NT01_NewsSource,
-				NT01_News.NT01_NewsReferance,
-				NT01_News.NT01_UpdUserID,
-				NT01_News.NT01_CreUserID,
-				NT01_News.NT01_Status,
-				SC03_User.SC03_FName,
-				NT10_VDO.NT10_FileStatus,
-				NT11_Picture.NT11_FileStatus,
-				NT12_Voice.NT12_FileStatus,
-				NT13_OtherFile.NT13_FileStatus
-			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
-			like('NT01_News.NT01_NewsTitle', $News_Title)->
-			get('NT01_News')->result();
-	}
-	
-	public function get_NT02_NewsType()
-	{
-		return $this->db_ntt_old->
-			// LIMIT('20,0')->	
-			get('NT02_NewsType')->result();
-	}
-	public function get_NT03_NewsSubType()
-	{
-		return $this->db_ntt_old->
-			// LIMIT('20,0')->	
-			get('NT03_NewsSubType')->result();
-	}
-	public function get_NT03_NewsSubType_Unique($NT02_TypeID = '')
-	{
-		return $this->db_ntt_old->
-			// LIMIT('20,0')->
-			where('NT02_TypeID', $NT02_TypeID)->
-			get('NT03_NewsSubType')->result();
-	}
+	*/
 	
 	//#########  Database New  ##########
 	

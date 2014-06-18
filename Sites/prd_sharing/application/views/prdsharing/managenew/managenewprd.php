@@ -104,30 +104,66 @@
 				
 			</div>
 		</div>
-		
 		<div class="row">
-			<div class="col-lg-6">
+			<!-- <div class="col-lg-6">
 				<div style="float: left;width: 30%;">
 					<label style="width: 100%;" >ผู้สื่อข่าว</label>
 				</div>
-				<div style="margin-left: 2%;float: left;">
-					<img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
+				<div style="margin-left: 20%;float: left;">
+					<!-- <img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"> -->
+				<!--</div>
+			</div> -->
+			
+			<div style="float:left; width: 50%">
+				<div style="float:left; width: 25%; text-align: right;">ผู้สื่อข่าว</div>
+				<div style="float:left; width: 60%; margin-left: 30px;">
+					<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
+						<option value="">Choose...</option>
+						<option value="1">jQuery</option>
+						<option value="2">jQuery2</option>
+		<?php
+						/*
+						foreach ($SC03_User as $SC03_User_item) {
+							?><option value="<?php echo $SC03_User->SC03_UserId; ?>"><?php echo $SC03_User->SC03_TName." ".$SC03_User->SC03_FName; ?></option><?php
+						}
+						*/
+		?>
+					</select>
+					<script>
+						jQuery(document).ready(function(){
+							jQuery(".reporter_id_chosen").chosen({});
+						});
+						
+						var config = {
+		     				'.chosen-select'           : {},
+						    '.chosen-select-deselect'  : {allow_single_deselect:true},
+						    '.chosen-select-no-single' : {disable_search_threshold:10},
+						    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+						    '.chosen-select-width'     : {width:"95%"}
+						}
+						for (var selector in config) {
+							$(selector).chosen(config[selector]);
+						}
+					</script>
 				</div>
 			</div>
-			<div style="float: left;margin-right: 5%;width: 45%;">
-				<label style="margin-left: 11%;">ไฟล์ประกอบข่าว</label>
-				<input type="checkbox" name="vdo" value="0">
-				วิดีโอ
-				<input type="checkbox" name="sound" value="1">
-				เสียง
-				<input type="checkbox" name="image" value="2">
-				ภาพ
-				<input type="checkbox" name="other" value="3">
-				อื่นๆ
+			
+			<div style="float:left; width: 50%">
+				<div style="float: left;margin-right: 5%;margin-left:30px">
+					<label style="margin-left: 11%;">ไฟล์ประกอบข่าว</label>
+					<input type="checkbox" name="filter_vdo" value="1" />
+					วิดีโอ
+					<input type="checkbox" name="filter_sound" value="1" />
+					เสียง
+					<input type="checkbox" name="filter_image" value="1" />
+					ภาพ
+					<input type="checkbox" name="filter_other" value="1" />
+					อื่นๆ
+				</div>
 			</div>
 		</div>
-	
+		
 		<div class="col-lg-12" style="text-align: center;">
 			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 		</div>

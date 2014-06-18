@@ -40,6 +40,10 @@
 	<!-- Add Media helper (this is optional) -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
     
+    <!-- Jquery Choosen -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/chosen.css" />
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/chosen.jquery.js"></script>
+    
 <?php
     if($title == "Sent News"){
  	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php

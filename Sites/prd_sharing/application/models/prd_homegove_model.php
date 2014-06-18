@@ -137,7 +137,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
-				WHERE 
+				AND 
 					SendInformation.SendIn_Status = '1'
 		";
 		$StrQuery .= $this->str_case;
