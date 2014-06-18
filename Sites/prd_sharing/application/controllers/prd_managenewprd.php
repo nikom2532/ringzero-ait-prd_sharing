@@ -103,7 +103,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 			
 			//############## Pagination = For no Search ################
 			$data['count_row'] = $count_row;
-			$url = "homePRD";
+			$url = "manageNewPRD";
 			
 			$total_page   = $count_row / $row_per_page;
 			$page_mod     = $count_row % $row_per_page;

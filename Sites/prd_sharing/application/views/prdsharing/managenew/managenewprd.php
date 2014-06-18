@@ -30,7 +30,7 @@
 	});
 </script>
 <div id="search-form">
-	<form name="search_form" action="manageNewPRD" method="post">
+	<form name="search_form" id="homeSearch" action="manageNewPRD" method="post">
 		<input type="hidden" name="managenewsprd_is_search" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">
@@ -377,21 +377,6 @@
                 <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
                 <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
             </p>
-			<!-- <p style="width: 70%;float: left;margin-top: 20px;">
-				ทั้งหมด: 73 รายการ (4หน้า)
-			</p>
-			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
-				<span style="margin-top: 10px;">
-					<select style="">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select> / 100</span>
-				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-			</p> -->
 		</div>
 	</div>
 </div>
@@ -400,7 +385,7 @@
 		location='<?php echo $jump_url; ?>/'+val;
 	}
 	function nextPage(val){
-		// debugger;
+		debugger;
 		var nextpage = parseInt(val)+1;
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;

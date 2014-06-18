@@ -86,7 +86,10 @@ $route['manageNewApproveGROV'] = 'prd_managenewapprovegrov';
 $route['manageNewEditGROV'] = 'prd_manageneweditgrov';
 $route['manageNewEditPRD'] = 'prd_manageneweditprd';
 $route['manageNewGROV'] = 'prd_managenewgrov';
+
 $route['manageNewPRD'] = 'prd_managenewprd';
+$route['manageNewPRD/(:num)'] = 'prd_managenewprd/index/$1';
+
 $route['reportGOVE'] = 'prd_reportgove';
 $route['userInfo_PRD'] = 'prd_userinfo_prd';
 $route['userInfo_GOVE'] = 'prd_userinfo_gove';
