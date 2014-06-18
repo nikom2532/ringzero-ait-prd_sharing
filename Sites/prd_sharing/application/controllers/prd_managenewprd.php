@@ -72,7 +72,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 						$this->input->post('filter_vdo'),
 						$this->input->post('filter_sound'),
 						$this->input->post('filter_image'),
-						$this->input->post('	')
+						$this->input->post('filter_other')
 					);
 				
 				$data['post_news_title'] = $this->input->post('news_title');
