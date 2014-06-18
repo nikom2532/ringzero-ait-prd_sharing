@@ -5,13 +5,59 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->load->library('session');
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
+		
+		//Find Member What is Department and Ministry
+		
+		$Member = $this->session->userdata('member_id');
+		$StrQueryMember = "
+			SELECT
+				Mem_Ministry,
+				Mem_Department
+			FROM Member
+			where Mem_ID = ".$Member."
+		";
+		$QueryMember = $this->db->query($StrQueryMember)->result();
+		$this->case = 0;
+		$this->str_case = "";
+		foreach ($QueryMember as $Member_item) {
+			if($Member_item->Mem_Ministry == "" && $Member_item->Mem_Department == ""){
+				$this->case = 1;
+				$this->str_case = "";
+			}
+			elseif($Member_item->Mem_Ministry != "" && $Member_item->Mem_Department == ""){
+				$this->case = 2;
+				$this->str_case = "
+					AND 
+						SendInformation.PRD_Status = Member.Mem_Ministry
+				";
+			}
+			elseif($Member_item->Mem_Ministry == "" && $Member_item->Mem_Department != ""){
+				$this->case = 3;
+				$this->str_case = "
+					AND 
+						SendInformation.GOVE_Status = Member.Mem_Department
+				";
+			}
+			elseif($Member_item->Mem_Ministry != "" && $Member_item->Mem_Department != ""){
+				$this->case = 4;
+				$this->str_case = "
+					AND 
+						SendInformation.PRD_Status = Member.Mem_Ministry
+					AND 
+						SendInformation.GOVE_Status = Member.Mem_Department
+				";
+			}
+		}
+		
 	}
 	
 	public function get_gove($page=1, $row_per_page=20)
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -29,22 +75,15 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
-		
-		// WHERE 
-			// SendInformation.SendIn_Status = '1'
-		// AND
-			// CASE WHEN SendIn_UpdateDate IS NULL
-				// THEN 
-					 // SendIn_CreateDate
-				// ELSE
-					// SendIn_UpdateDate
-			// END
-			// SendInformation.PRD_Status = Member.Mem_Ministry
-		
 		
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -61,7 +100,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -95,6 +137,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				WHERE 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -116,7 +163,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -154,6 +204,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -185,7 +240,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -222,6 +280,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -253,7 +316,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -293,6 +359,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 									Convert(datetime, '".$startdate."') 
 									AND
 									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -326,7 +397,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 									Convert(datetime, '".$startdate."') 
 									AND
 									Convert(datetime, '".$enddate."')
+					AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -361,6 +435,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -390,7 +469,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -425,6 +507,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -454,7 +541,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 										ELSE
 											SendIn_UpdateDate
 									END
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -492,6 +582,11 @@ class PRD_HomeGOVE_model extends CI_Model {
 									Convert(datetime, '".$startdate."') 
 									AND
 									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		$StrQuery .= $this->str_case;
+		$StrQuery .= "
 				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -523,7 +618,10 @@ class PRD_HomeGOVE_model extends CI_Model {
 									Convert(datetime, '".$startdate."') 
 									AND
 									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
 		";
+		$StrQuery .= $this->str_case;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
@@ -532,7 +630,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 		}
 	}
 	
-	//##########################################################
+	//########################### Other test #############################
 	
 	public function get_gove_record_count()
 	{
