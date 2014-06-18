@@ -219,7 +219,6 @@
 			</div> */ ?>
 		
             <script>
-            	
             	function jump_page(val){
 					location='<?php echo $jump_url; ?>/'+val;
 				}
@@ -245,7 +244,6 @@
 					$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/1");
 					$("#homeSearch").submit();
 				}
-				
             </script>
 	</div>
 </div>
