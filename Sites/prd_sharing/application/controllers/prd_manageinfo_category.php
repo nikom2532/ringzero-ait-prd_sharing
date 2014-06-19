@@ -56,6 +56,8 @@ class PRD_ManageInfo_Category extends CI_Controller {
 					$this->input->post('NT02_TypeName'),
 					$Category_search2
 				);
+				$data['post_NT02_TypeName'] = $this->input->post('NT02_TypeName');
+				$data['post_NT02_Status'] = $this->input->post('NT02_Status');
 			}
 			
 			else{

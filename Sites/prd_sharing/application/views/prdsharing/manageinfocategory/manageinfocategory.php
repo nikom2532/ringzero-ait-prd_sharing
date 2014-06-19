@@ -9,7 +9,13 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<label >คำค้นหา</label>
-						<input type="text" class="form-control" name="NT02_TypeName" id="NT02_TypeName" placeholder="" >
+						<input type="text" class="form-control" name="NT02_TypeName" id="NT02_TypeName" placeholder="" value="<?php
+							if(isset($post_NT02_TypeName)){
+								if($post_NT02_TypeName != ""){
+									echo $post_NT02_TypeName;
+								}
+							}
+						?>">
 					</div>
 					<div class="col-lg-6">
 						<label >สถานะ</label>
@@ -17,22 +23,22 @@
 						
 						<select name="NT02_Status" style="">
 							<option value="" <?php
-								if(isset($post_dep_status)){
-									if($post_dep_status == "1"){
+								if(isset($post_NT02_Status)){
+									if($post_NT02_Status == "1"){
 										?>selected="selected"<?php
 									}
 								}
 							?>>เลือกสถานะ</option>
 							<option value="Y" <?php
-								if(isset($post_dep_status)){
-									if($post_dep_status == "Y"){
+								if(isset($post_NT02_Status)){
+									if($post_NT02_Status == "Y"){
 										?>selected="selected"<?php
 									}
 								}
 							?>>ใช้งานได้</option>
 							<option value="N" <?php
-								if(isset($post_dep_status)){
-									if($post_dep_status == "N"){
+								if(isset($post_NT02_Status)){
+									if($post_NT02_Status == "N"){
 										?>selected="selected"<?php
 									}
 								}
