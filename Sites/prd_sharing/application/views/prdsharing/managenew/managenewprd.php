@@ -90,13 +90,13 @@
 				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 					foreach ($NT03_NewsSubType as $newType_item) {
-						if($newType_item->NT02_TypeID == $post_News_type_id){
+						// if($newType_item->NT02_TypeID == $post_News_type_id){
 							?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
 								if($post_News_subtype_id != ""){
 									?>selected='selected'<?php
 								}
 							?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
-						}
+						// }
 					}
 				?></select>
 				
@@ -414,30 +414,31 @@
 	    var type_id = $('select#NewsTypeID').val();
 		if (type_id != ""){
 			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
-			// debugger;
-			// alert(post_url);
-			$.ajax({
-				type: "POST",
-				url: post_url,
-				dataType :'json',
-				success: function(subtype)
+		}
+		else{
+			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(subtype)
+			{
+				// var a = JSON.parse(subtype);
+				$('#NewsSubTypeID').empty();
+				
+				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
+				$('#NewsSubTypeID').append(text);
+				
+				$.each(subtype,function(index,val)
 				{
-					// var a = JSON.parse(subtype);
-					$('#NewsSubTypeID').empty();
-					
-					var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
+					var text = ""+
+					"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
 					$('#NewsSubTypeID').append(text);
-					
-					$.each(subtype,function(index,val)
-					{
-						var text = ""+
-						"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
-						$('#NewsSubTypeID').append(text);
-					});
-				} //end success
-			}); //end AJAX
-		} else {
-			$('#NewsSubTypeID').empty();
-		}//end if
+				});
+			} //end success
+		}); //end AJAX
 	}); //end change 
 </script>

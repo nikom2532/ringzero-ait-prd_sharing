@@ -82,8 +82,12 @@ $route['infoDepartment'] = 'prd_infodepartment';
 $route['infoDepartmentNew'] = 'prd_infodepartment_new';
 $route['infoMinistry'] = 'prd_infoministry';
 $route['infoMinistryNew'] = 'prd_infoministry_new';
+
 $route['manageInfo_Department'] = 'prd_manageinfo_department';
+$route['manageInfo_Department/(:num)'] = 'prd_manageinfo_department/index/$1';
 $route['manageInfo_Ministry'] = 'prd_manageinfo_ministry';
+$route['manageInfo_Ministry/(:num)'] = 'prd_manageinfo_ministry/index/$1';
+
 $route['manageNewApproveGROV'] = 'prd_managenewapprovegrov';
 $route['manageNewEditGROV'] = 'prd_manageneweditgrov';
 $route['manageNewEditPRD'] = 'prd_manageneweditprd';
