@@ -149,16 +149,20 @@
 			</div>
 			
 			<div style="float:left; width: 50%">
-				<div style="float: left;margin-right: 5%;margin-left:30px">
-					<label style="margin-left: 11%;">ไฟล์ประกอบข่าว</label>
-					<input type="checkbox" name="filter_vdo" value="1" />
-					วิดีโอ
-					<input type="checkbox" name="filter_sound" value="1" />
-					เสียง
-					<input type="checkbox" name="filter_image" value="1" />
-					ภาพ
-					<input type="checkbox" name="filter_other" value="1" />
-					อื่นๆ
+				<div style="float: left;margin-right: 5%;margin-left:30px;-moz-binding; width: 100%">
+					<label style="margin-left: 5%; margin-right: 5%;">ไฟล์ประกอบข่าว</label>
+					<input type="checkbox" name="filter_vdo" id="filter_vdo" value="1" />
+					<label for="filter_vdo" >วิดีโอ</label>
+					
+					<input type="checkbox" name="filter_sound" id="filter_sound" value="1" />
+					<label for="filter_sound" >เสียง</label>
+					
+					<input type="checkbox" name="filter_image" id="filter_image" value="1" />
+					<label for="filter_image" >ภาพ</label>
+					
+					<input type="checkbox" name="filter_other" id="filter_other" value="1" />
+					<label for="filter_other" >อื่นๆ</label>
+					
 				</div>
 			</div>
 		</div>

@@ -239,7 +239,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่างภาพ</label>
-				<label ><?php echo $news[2]->CamCoderName;  ?></label>
+				<label ><?php echo $news[2]->CamCoderName; ?></label>
 			</div>
 			<div class="col-lg-6">
 				<label >Tag</label>
