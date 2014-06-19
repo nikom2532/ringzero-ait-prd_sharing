@@ -130,6 +130,11 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_NT02_NewsType()
+	{
+		
+	}
+	
 	public function get_Category()
 	{
 		return $this->db->

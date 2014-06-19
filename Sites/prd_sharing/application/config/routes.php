@@ -68,6 +68,8 @@ $route['manageUserPRD'] = 'prd_manageuser_prd';
 $route['manageUserGOVE'] = 'prd_manageuser_gove';
 
 $route['manageInfo_Category'] = 'prd_manageinfo_category';
+$route['manageInfo_Category/(:num)'] = "prd_manageinfo_category/index/$1";
+
 $route['reportPRD'] = 'prd_reportprd';
 
 $route['detail_prd'] = 'prd_managenew_detail_prd';
