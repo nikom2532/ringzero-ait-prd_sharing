@@ -386,9 +386,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -512,9 +512,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -649,9 +649,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -724,13 +724,13 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$StrQuery .= "
 				AND
-					(
-						NT01_News.NT01_NewsDate
-						BETWEEN 
-							'".date("Y-m-d H:i:s", strtotime($startdate))."'
-							AND
-							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
-					)
+				(
+					NT01_News.NT01_NewsDate
+					BETWEEN 
+						'".date("Y-m-d H:i:s", strtotime($startdate))."'
+						AND
+						'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
+				)
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -766,14 +766,22 @@ class PRD_HomePRD_model extends CI_Model {
 				AND
 					NT01_News.NT01_Status = 'Y'
 				AND
-					(
-						CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
-						BETWEEN 
-							'".date("m-d-Y",strtotime($startdate))."'
-							AND
-							'".date("m-d-Y",strtotime($enddate))."'
-					)
+				(
+					NT01_News.NT01_NewsDate
+					BETWEEN 
+						'".date("Y-m-d H:i:s", strtotime($startdate))."'
+						AND
+						'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
+				)
 		";
+				// AND
+				// (
+					// CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
+					// BETWEEN 
+						// '".date("m-d-Y",strtotime($startdate))."'
+						// AND
+						// '".date("m-d-Y",strtotime($enddate))."'
+				// )
 		if($Cate_OldID != ""){
 			$StrQuery .= "
 				AND 
@@ -786,9 +794,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -906,9 +914,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -1026,9 +1034,9 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-			group by NT01_News.NT01_NewsID
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();

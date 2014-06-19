@@ -164,7 +164,7 @@ class PRD_HomePRD extends CI_Controller {
 			//############## Pagination = For no Search ################
 			$row_per_page = 20;
 			// $count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
-			$data['count_row'] = $count_row;
+		 	$data['count_row'] = $count_row;
 			// $data_pagination = $this->ait->pagination($count_row,"homePRD/",$page,$row_per_page);
 			$url = "homePRD";
 			
