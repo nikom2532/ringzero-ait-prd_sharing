@@ -247,12 +247,12 @@
 								$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
 								$New_News_item->News_UpdateID > 0
 							){
-									echo $New_News_item->News_Title;
+									echo mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8');
 									$i_item++;
 							}
 						}
 						if($i_item == 0){
-							echo $news_item->NT01_NewsTitle; 
+							echo mb_substr($news_item->NT01_NewsTitle, 0, 120, 'UTF-8'); 
 						}
 ?>
 					</p>
