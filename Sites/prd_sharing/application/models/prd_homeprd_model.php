@@ -867,13 +867,14 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
+	echo	$StrQuery .= "
 				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($startdate))."'
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($startdate))."'
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+					// CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($startdate))."'
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
@@ -902,6 +903,7 @@ class PRD_HomePRD_model extends CI_Model {
 				AND
 					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($startdate))."'
 		";
+					// NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($startdate))."'
 		if($Cate_OldID != ""){
 			$StrQuery .= "
 				AND 

@@ -1,0 +1,17 @@
+Listen 120
+NameVirtualHost *:120
+
+<VirtualHost *:120>
+  DocumentRoot "D:/www/ringzero-ait-prd_sharing/Sites/prd_sharing"
+  <Directory "D:/www/ringzero-ait-prd_sharing/Sites/prd_sharing">
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    <IfVersion < 2.3 >
+      Order allow,deny                          
+      Allow from all
+    </IfVersion>
+    <IfVersion >= 2.3 >
+      Require all granted
+    </IfVersion>
+  </Directory>
+</VirtualHost>

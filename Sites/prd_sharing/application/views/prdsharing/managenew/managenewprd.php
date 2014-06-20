@@ -223,13 +223,13 @@
 				?><div class="event"><?php
 			}
 ?>
-					<p class="col-1" style="width: 4%;float: left; ">
+					<p class="col-1" style="width: 4%;float: left; word-wrap: break-word;">
 						<?php echo $i+1; ?>
 					</p>
-					<p class="col-2" style="width: 16%;float: left; ">
+					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word;">
 						<a href="<?php echo base_url(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; "><?php 
+					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word;"><?php 
 						if($news_item->NT01_Status == 'Y'){
 							?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
 						}
@@ -237,9 +237,9 @@
 							?>-<?php
 						}
 					?></p>
-					<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
+					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word;"><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 					</p>
-					<p class="col-1" style="width: 35%;float: left; ">
+					<p class="col-1" style="width: 35%;float: left; word-wrap: break-word;">
 <?php 
 						$i_item=0;
 						foreach ($New_News as $New_News_item) {
@@ -256,7 +256,7 @@
 						}
 ?>
 					</p>
-					<p class="col-1" style="width: 10%;float: left; "><?php
+					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php
 						// if($news_item->NT01_UpdDate == ""){
 							// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 						// }
@@ -303,7 +303,7 @@
 							// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 						}
 					?></p>
-					<p class="col-1" style="width: 10%;float: left; ">
+					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;">
 <?php
 						$i_item=0;
 						foreach ($New_News as $New_News_item) {
@@ -320,7 +320,7 @@
 						}
 ?>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; ">
+					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word;">
 <?php 
 						$i_item=0;
 						foreach ($New_News as $New_News_item) {
@@ -337,7 +337,7 @@
 						}
 ?>
 					</p>
-					<p class="col-1" style="width: 10%;float: left; "><?php 
+					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php 
 						echo $news_item->SC03_FName;
 						// if($news_item->NT01_UpdUserID == ""){
 							// echo $news_item->NT01_CreUserID;
