@@ -18,70 +18,157 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $this->db->where('Dep_Status', '1')->
 			get('Department')->result();
 	}
-	
-	public function get_grov()
+	public function get_department_Unique($Ministry_ID = '')
 	{
-		// return $this->db->get('SendInformation')->result();
-		return $this->db->
-			select('
-				SendInformation.SendIn_ID,
-				SendInformation.SendIn_UpdateDate,
-				SendInformation.SendIn_CreateDate,
-				SendInformation.SendIn_Issue,
-				SendInformation.SendIn_view,
-				FileAttach.File_Status, 
-			')->
-			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
-			get('SendInformation')->result();
-	}
-	public function get_grov_search_title($news_title)
-	{
-		return $this->db->
-			select('
-				SendInformation.SendIn_ID,
-				SendInformation.SendIn_UpdateDate,
-				SendInformation.SendIn_CreateDate,
-				SendInformation.SendIn_Issue,
-				SendInformation.SendIn_view,
-				FileAttach.File_Status
-			')->
-			join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
-			like('SendIn_Issue', $news_title)->
-			get('SendInformation')->result();
-	}
-	public function get_grov_search_title_start($news_title, $start)
-	{
-		/*
 		$query = $this->db->
-			like('SendIn_Issue', $news_title)->
-			where("News_Date >=", $start)->
-			get('SendInformation')->result();
-		*/
-			
-			// SendIn_CreateDate
-			// SendIn_UpdateDate
-			
+			where('Dep_Status', '1');
+		if($Ministry_ID != ""){
+			$query = $query->where('Ministry_ID', $Ministry_ID);
+		}
+		$query = $query->
+			get('Department')->result();
+		return $query;
+	}
+	
+	public function get_grov(
+		$page=1, 
+		$row_per_page=20
+	)
+	{
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		
 		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					SendInformation.SendIn_ID,
+					SendInformation.SendIn_UpdateDate,
+					SendInformation.SendIn_CreateDate,
+					SendInformation.SendIn_Issue,
+					SendInformation.SendIn_view,
+					FileAttach.File_Status, 
+					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
+				FROM
+					SendInformation
+				LEFT JOIN
+					FileAttach
+				ON 
+					SendInformation.SendIn_ID = FileAttach.SendIn_ID
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
+	public function get_grov_count()
+	{
+		$StrQuery = "
+			SELECT
+				COUNT((SendInformation.SendIn_ID)) AS NUMROW
+			FROM
+				SendInformation
+			LEFT JOIN
+				FileAttach
+			ON 
+				SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
+	}
+	
+	public function get_grov_search(
+		$page=1, 
+		$row_per_page=20, 
+		$news_title = '', 
+		$startdate = '', 
+		$enddate = '',
+		$Ministry_ID = '',
+		$Department_ID = ''
+	)
+	{
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		
+		$StrQuery = "
+		WITH LIMIT AS(
 			SELECT 
 				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_view,
-				FileAttach.File_Status
+				FileAttach.File_Status,
+				ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 			FROM SendInformation 
 			LEFT JOIN FileAttach
 				ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 			WHERE 
-				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
-			And
-				Convert(datetime, '".$start."') <
-								CASE WHEN SendIn_UpdateDate IS NULL  
-									THEN 
-										 SendIn_CreateDate
-									ELSE
-										SendIn_UpdateDate
-								END
+		";
+		if($news_title != ""){
+			$StrQuery .= "
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND
+			";
+		}
+		if($startdate != "" && $enddate == "" ){
+			$StrQuery .= "
+					Convert(datetime, '".$startdate."') <
+						CASE WHEN SendIn_UpdateDate IS NULL  
+							THEN 
+								 SendIn_CreateDate
+							ELSE
+								SendIn_UpdateDate
+						END
+				AND
+			";
+		}
+		elseif($startdate == "" && $enddate != "" ){
+			$StrQuery .= "
+					Convert(datetime, '".$enddate."') >
+						CASE WHEN SendIn_UpdateDate IS NULL  
+							THEN 
+								 SendIn_CreateDate
+							ELSE
+								SendIn_UpdateDate
+						END
+				AND
+			";
+		}
+		elseif($startdate != "" && $enddate != "" ){
+			$StrQuery .= "
+					CASE WHEN SendIn_UpdateDate IS NOT NULL  
+							THEN 
+								SendIn_UpdateDate 
+							ELSE
+								SendIn_CreateDate
+						END
+									BETWEEN 
+										Convert(datetime, '".$startdate."') 
+										AND
+										Convert(datetime, '".$enddate."')
+				AND
+			";
+		}
+		if($Ministry_ID != ""){
+			$StrQuery .= "
+					Ministry_ID = '".$Ministry_ID."'
+				AND
+			";
+		}
+		if($Department_ID != ""){
+			$StrQuery .= "
+					Dep_ID = '".$Department_ID."'
+			";
+		}
+		$StrQuery .= "
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
 		
 		$query = $this->db->
@@ -89,68 +176,27 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		
 		return $query;
 	}
-	public function get_grov_search_title_start_end($news_title, $start, $end)
+	
+	public function get_grov_search_count()
 	{
-		/*
-		$query = $this->db->
-			like('SendIn_Issue', $news_title)->
-			where("News_Date >=", $start)->
-			where("News_Date <=", $end)->
-			get('SendInformation')->result();
-			
-		return $query;
-		*/
-		
 		$StrQuery = "
-			SELECT 
-				SendInformation.SendIn_ID,
-				SendInformation.SendIn_UpdateDate,
-				SendInformation.SendIn_CreateDate,
-				SendInformation.SendIn_Issue,
-				SendInformation.SendIn_view,
-				FileAttach.File_Status
-			FROM SendInformation 
-			LEFT JOIN FileAttach
-				ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
-			WHERE 
-				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
-			And
-				CASE WHEN SendIn_UpdateDate IS NOT NULL  
-					THEN 
-						SendIn_UpdateDate 
-					ELSE
-						SendIn_CreateDate
-				END
-							BETWEEN 
-								Convert(datetime, '".$start."') 
-								AND
-								Convert(datetime, '".$end."')
-		;";
-		
+			SELECT
+				COUNT((SendInformation.SendIn_ID)) AS NUMROW
+			FROM
+				SendInformation
+			LEFT JOIN
+				FileAttach
+			ON 
+				SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
 		$query = $this->db->
 			query($StrQuery)->result();
-		
-		return $query;
-	}
-	
-	public function get_grov_record_count()
-	{
-		return $this->db->count_all('SendInformation');
-	}
-	
-	public function get_grov_limit($limit, $start)
-	{
-		$this->db->limit($limit, $start);
-		$query = $this->db->get('SendInformation');
 			
-		if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return false;
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
+	
 	//##########################
 	
 	//For record a new news
@@ -170,8 +216,4 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			return $this->db->where("SendIn_ID", $SendIn_ID)->
 				update("SendInformation", $data);
 	}
-	
-	
-	
-	// $this->db->limit($limit, $start);
 }

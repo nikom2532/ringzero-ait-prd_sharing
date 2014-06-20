@@ -45,7 +45,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	//############################ News #############################
 	
-	public function get_NT01_News($page=1, $row_per_page=20, $Cate_OldID = array())
+	public function get_NT01_News($page=1, $row_per_page=20)
 	{
 		$statusArray = array();
 		foreach($Cate_OldID as $val){

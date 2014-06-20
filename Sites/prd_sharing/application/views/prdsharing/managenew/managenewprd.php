@@ -247,6 +247,7 @@
 								$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
 								$New_News_item->News_UpdateID > 0
 							){
+									// echo strlen(mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8'));
 									echo mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8');
 									$i_item++;
 							}

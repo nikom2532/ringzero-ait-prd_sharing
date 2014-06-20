@@ -183,7 +183,6 @@
 							elseif($Member_item->Mem_Status == "-1"){
 								echo "ปิดการใช้งาน";
 							}
-							
 ?>
 						</p>
 					</a>
@@ -191,7 +190,6 @@
 <?php
 			$i++;
 		}
-		
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">

@@ -33,7 +33,7 @@
 </script>
 <div id="search-form">
 	<form name="search_form" action="manageNewGROV" method="post">
-		
+		<input type="hidden" name="manageNewGROV_is_submit" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
@@ -68,21 +68,19 @@
 			<div class="col-lg-6">
 				<!-- Ministry  -->
 				<label >กระทรวง</label>
-				
-				
-				<select name="Ministry_ID" class="form-control" style="width: 65%;"><?php
+				<select name="Ministry_ID" id="Ministry_ID" class="form-control" style="width: 65%;">
+					<option value="" >เลือกกระทรวง</option><?php
 					foreach ($ministry as $ministry_item) {
 						?><option value="<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_Name; ?></option><?php
 					}
 				?></select>
-				
-				
 			</div>
 			<div class="col-lg-6">
 				<!-- department -->
 				<label >กรม</label>
 				
-				<select name="Dep_ID" class="form-control" style="width: 65%;"><?php
+				<select name="Dep_ID" id="Dep_ID" class="form-control" style="width: 65%;">
+					<option value="" >เลือกกรม</option><?php
 					foreach ($department as $department_item) {
 						?><option value="<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_Name; ?></option><?php
 					}
@@ -247,5 +245,40 @@
 			<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
 		</p>
 	</div> -->
+	</div>
 </div>
-</div>
+<script>
+	$('select#Ministry_ID').change(function(){
+		// debugger;
+	    var type_id = $('select#Ministry_ID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url(); ?>PRD_ManageNewGROV/get_department/" + type_id;
+		}
+		else{
+			var post_url = "<?php echo base_url(); ?>PRD_ManageNewGROV/get_department/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(subtype)
+			{
+				// var a = JSON.parse(subtype);
+				$('#Dep_ID').empty();
+				
+				var text = "<option value=\"\">เลือกกรม</option>";
+				$('#Dep_ID').append(text);
+				
+				$.each(subtype,function(index,val)
+				{
+					var text = ""+
+					"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+					$('#Dep_ID').append(text);
+				});
+			} //end success
+		}); //end AJAX
+	}); //end change 
+	
+</script>

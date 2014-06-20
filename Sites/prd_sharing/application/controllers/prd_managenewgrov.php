@@ -10,7 +10,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 		$this->load->library("pagination");
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
@@ -24,6 +24,8 @@ class PRD_ManageNewGROV extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Manage News';
+			
+			$row_per_page = 20;
 			
 			if($this->input->post("manageNewEditPRD_record") == "yes"){
 				// echo "record";
@@ -49,27 +51,31 @@ class PRD_ManageNewGROV extends CI_Controller {
 				);
 			}
 			
-			if($this->input->post("sendin_issue") != ""){
-				// echo "search";
-				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
-					$data['news'] = $this->prd_managenewgrov_model->get_grov_search_title_start_end(($this->input->post("sendin_issue")), ($this->input->post("start_date")), ($this->input->post("end_date")) );
-					$data['post_sendin_issue'] = $this->input->post('sendin_issue');
-					$data['post_start_date'] = $this->input->post('start_date');
-					$data['post_end_date'] = $this->input->post('end_date');
-				}
-				elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
-					$data['news'] = $this->prd_managenewgrov_model->get_grov_search_title_start(($this->input->post("sendin_issue")), ($this->input->post("start_date")) );
-					$data['post_sendin_issue'] = $this->input->post('sendin_issue');
-					$data['post_start_date'] = $this->input->post('start_date');
-				}
-				else{
-					$data['news'] = $this->prd_managenewgrov_model->get_grov_search_title($this->input->post("sendin_issue"));
-					$data['post_sendin_issue'] = $this->input->post('sendin_issue');
-				}
+			if($this->input->post("manageNewGROV_is_submit") == "yes"){
+				
+				$data['news'] = $this->prd_managenewgrov_model->get_grov_search(
+					$page,
+					$row_per_page,
+					$this->input->post("sendin_issue"), 
+					$this->input->post("start_date"), 
+					$this->input->post("end_date"),
+					$this->input->post("Ministry_ID"),
+					$this->input->post("Dep_ID")
+				);
+				
+				$data['post_sendin_issue'] = $this->input->post('sendin_issue');
+				$data['post_start_date'] = $this->input->post('start_date');
+				$data['post_end_date'] = $this->input->post('end_date');
+				$data['post_Ministry_ID'] = $this->input->post('Ministry_ID');
+				$data['post_Dep_ID'] = $this->input->post('Dep_ID');
+				
 			}
 			else{
 				// echo "no search";
-				$data['news'] = $this->prd_managenewgrov_model->get_grov();
+				$data['news'] = $this->prd_managenewgrov_model->get_grov(
+					$page,
+					$row_per_page
+				);
 			}
 			
 			$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
@@ -83,5 +89,10 @@ class PRD_ManageNewGROV extends CI_Controller {
 		else{
 			redirect('/', 'refresh');
 		}
+	}
+	public function get_department($Ministry_ID ='')
+	{
+		$_data = $this->prd_managenewgrov_model->get_department_Unique($Ministry_ID);
+		echo json_encode($_data);
 	}
 }
