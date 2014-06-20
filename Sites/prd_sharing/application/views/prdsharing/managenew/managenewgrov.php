@@ -71,7 +71,13 @@
 				<select name="Ministry_ID" id="Ministry_ID" class="form-control" style="width: 65%;">
 					<option value="" >เลือกกระทรวง</option><?php
 					foreach ($ministry as $ministry_item) {
-						?><option value="<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_Name; ?></option><?php
+						?><option value="<?php echo $ministry_item->Minis_ID; ?>" <?php 
+							if(isset($post_Ministry_ID)){
+								if($ministry_item->Minis_ID == $post_Ministry_ID){
+									?>selected='selected'<?php
+								}
+							}
+						?>><?php echo $ministry_item->Minis_Name; ?></option><?php
 					}
 				?></select>
 			</div>
@@ -82,7 +88,13 @@
 				<select name="Dep_ID" id="Dep_ID" class="form-control" style="width: 65%;">
 					<option value="" >เลือกกรม</option><?php
 					foreach ($department as $department_item) {
-						?><option value="<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_Name; ?></option><?php
+						?><option value="<?php echo $department_item->Dep_ID; ?>"  <?php 
+							if(isset($post_Dep_ID)){
+								if($department_item->Dep_ID == $post_Dep_ID){
+									?>selected='selected'<?php
+								}
+							}
+						?>><?php echo $department_item->Dep_Name; ?></option><?php
 					}
 				?></select>
 				
