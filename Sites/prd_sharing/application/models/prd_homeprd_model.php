@@ -80,6 +80,8 @@ class PRD_HomePRD_model extends CI_Model {
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
 					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
+					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
+					
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
@@ -1079,6 +1081,7 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	public function set_News($news='')
 	{
+		// var_dump($news);
 		foreach ($news as $news_item) {
 			
 			$newsCreDate = strtotime($news_item->NT01_CreDate);
@@ -1095,7 +1098,6 @@ class PRD_HomePRD_model extends CI_Model {
 			else{
 				$newsDate = $news_item->NT01_CreDate;
 			}
-			
 			if($news_item->NT11_FileStatus == "Y"){
 				$NT11_FileStatus = "1";
 			}
@@ -1120,6 +1122,7 @@ class PRD_HomePRD_model extends CI_Model {
 			else{
 				$NT13_FileStatus = "0";
 			}
+			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => $newsDate,
@@ -1133,11 +1136,26 @@ class PRD_HomePRD_model extends CI_Model {
 			   // 'News_StatusPublic' => "1"
 			);
 			$query2 = $this->db->
-						where('News_OldID', $data['News_OldID'])->
-						get('News');
+				where('News_OldID', $data['News_OldID'])->
+				get('News');
 						
 			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
+			}
+			else{
+				$data = array(
+				   'News_Date' => $newsDate,
+				   'News_StatusPhoto' => $NT11_FileStatus,
+				   'News_StatusVDO' => $NT10_FileStatus,
+				   'News_StatusVoice' => $NT12_FileStatus,
+				   'News_StatusOtherFile' => $NT13_FileStatus,
+				   'News_OldCateID' => $news_item->NT02_TypeID,
+				   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
+				   'News_Active' => "1"
+				);
+				$this->db->
+					where('News_OldID', $news_item->NT01_NewsID)->
+					update("News", $data);
 			}
 	    }
 	}
