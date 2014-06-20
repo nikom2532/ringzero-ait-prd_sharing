@@ -23,7 +23,7 @@ class PRD_ManageInfo_Category extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Manage Info';
-			$row_per_page=20;
+			$row_per_page = 20;
 			$data_Category = $this->prd_manageinfo_category_model->get_Category(); // For load all Category New
 			
 			if($this->input->post('manageInfo_Category_is_search') == "yes"){

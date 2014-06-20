@@ -132,17 +132,43 @@ class PRD_HomePRD_model extends CI_Model {
 	
 	public function get_NT02_NewsType()
 	{
-		
+		return $this->db_ntt_old->
+			SELECT('
+				NT02_NewsType.NT02_TypeID
+			')->
+			where('NT02_NewsType.NT02_Status', 'Y')->
+			get('NT02_NewsType')->result();
 	}
 	
-	public function get_Category()
+	public function get_Category($NT02_NewsType = '')
 	{
-		return $this->db->
-			SELECT('
-				Category.Cate_OldID,
-			')->
-			where('Category.Cate_Status', 'Y')->
-			get('Category')->result();
+		// return $this->db->
+			// SELECT('
+				// Category.Cate_OldID,
+			// ')->
+			// // join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
+			// where('Category.Cate_Status', 'Y')->
+			// get('Category')->result();
+		
+		$statusArray = array();
+		foreach($NT02_NewsType as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->NT02_TypeID."'";
+		}
+		$NT02_NewsType = implode(",",$statusArray);
+		
+		$strQuery = "
+			SELECT 
+				Category.Cate_OldID
+			FROM 
+				Category
+			WHERE 
+				Category.Cate_Status = 'Y'
+			AND 
+				Category.Cate_OldID IN (".$NT02_NewsType.")
+		";
+		$query = $this->db->query($strQuery)->result();
+		return $query;
 	}
 	
 	//##################### search ###################

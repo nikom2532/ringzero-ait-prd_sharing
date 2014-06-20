@@ -338,7 +338,7 @@
 ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php 
-						echo $news_item->SC03_FName;
+						echo $news_item->SC03_FName." ".$news_item->SC03_LName;
 						// if($news_item->NT01_UpdUserID == ""){
 							// echo $news_item->NT01_CreUserID;
 						// }

@@ -182,6 +182,7 @@
 					</a>
 				</div>
 <?php
+			$i++;
 		}
 ?>
 		<div class="footer-table">

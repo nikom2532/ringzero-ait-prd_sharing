@@ -70,6 +70,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
 					MAX(NT01_News.NT01_Status) AS NT01_Status,
 					MAX(SC03_User.SC03_FName) AS SC03_FName,
+					MAX(SC03_User.SC03_LName) AS SC03_LName,
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus,
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 

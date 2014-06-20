@@ -21,7 +21,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 				Category.Cate_UpdateDate,
 				Category.MemUpdate_ID
 			')->
-			join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
+			// join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
 			get('Category')->result();
 	}
 	
