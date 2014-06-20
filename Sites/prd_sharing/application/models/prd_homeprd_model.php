@@ -1127,6 +1127,8 @@ class PRD_HomePRD_model extends CI_Model {
 			   'News_StatusVDO' => $NT10_FileStatus,
 			   'News_StatusVoice' => $NT12_FileStatus,
 			   'News_StatusOtherFile' => $NT13_FileStatus,
+			   'News_OldCateID' => $news_item->NT02_TypeID,
+			   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
 			   'News_Active' => "1" //,
 			   // 'News_StatusPublic' => "1"
 			);

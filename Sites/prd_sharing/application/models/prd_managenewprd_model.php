@@ -47,12 +47,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	public function get_NT01_News($page=1, $row_per_page=20)
 	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
+		// $statusArray = array();
+		// foreach($Cate_OldID as $val){
+			// // echo $val->Cate_OldID;
+			// $statusArray[] = "'".$val->Cate_OldID."'";
+		// }
+		// $Cate_OldID = implode(",",$statusArray);
 		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;

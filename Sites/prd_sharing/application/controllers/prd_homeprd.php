@@ -30,7 +30,9 @@ class PRD_HomePRD extends CI_Controller {
 			$data['title'] = 'Home';
 			
 			$NT02_NewsType = $this->prd_homeprd_model->get_NT02_NewsType();
+			// var_dump($NT02_NewsType);
 			$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
+			var_dump($category);
 			
 			if($this->input->post("news_title") != ""){ //For search
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
@@ -161,7 +163,7 @@ class PRD_HomePRD extends CI_Controller {
 					$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
 				}
 			}
-			var_dump($data['news']);
+			// var_dump($data['news'][0]);
 			
 			//$category = $category
 
