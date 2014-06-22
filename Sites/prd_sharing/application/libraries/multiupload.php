@@ -14,6 +14,11 @@ class Multiupload{
 	* TODO : Initialize config upload data
 	*-------------------------------------------------------------------------------*/
 	public function init(){
+		/*
+		foreach($this->_files as $field => $file){
+			var_dump($file['name']);
+		}
+		*/
 		$this->config = array(
 			'upload_path' => $this->upload_path,
 			'allowed_types' => $this->allowed_types,
@@ -31,13 +36,16 @@ class Multiupload{
 	public function do_upload(){
 		$CI=& get_instance();
 		$CI->load->library('upload', $this->config);
+		
 		foreach($this->_files as $field => $file){
+			
             if($file['error'] == 0){
                 if ($CI->upload->do_upload($field)){
-                        $data = $CI->upload->data();
-                        array_push($this->file_name, $data['file_name']);
+                    $data = $CI->upload->data();
+					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
+                    array_push($this->file_name, $data['file_name']);
                 }else{
-                        $errors = $CI->upload->display_errors();
+                    $errors = $CI->upload->display_errors();
                 }
             }
         }

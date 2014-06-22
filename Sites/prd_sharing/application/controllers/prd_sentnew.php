@@ -7,6 +7,7 @@ class PRD_sentNew extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('PRD_SentNew_model');
+		$this->load->library('multiupload');
 	}
 
 	public function index()
@@ -30,18 +31,15 @@ class PRD_sentNew extends CI_Controller {
 			$data['TargetGroup'] = $this->PRD_SentNew_model->get_TargetGroup();
 			$data['SC07_Department'] = $this->PRD_SentNew_model->get_SC07_Department();
 			
-			
 			$this->load->view('prdsharing/templates/header', $data);
 			$this->load->view('prdsharing/sentnew/sentnew', $data);
 			$this->load->view('prdsharing/templates/footer');
-			
-			
 		}
 		else{
 			redirect('/', 'refresh');
 		}
 	}
-	
+
 	public function get_Department($Ministry_ID='')
 	{
 		$_data = $this->PRD_SentNew_model->get_Department_Unique($Ministry_ID);
@@ -52,6 +50,7 @@ class PRD_sentNew extends CI_Controller {
 	{
 		if ($this->input->post('sentnew_is_add')) {
 			
+			//record a new news
 			$query_sentnew_record = $this->PRD_SentNew_model->set_sentnew(
 				$this->input->post('create_date'),
 				$this->input->post('Minis_ID'),
@@ -65,35 +64,21 @@ class PRD_sentNew extends CI_Controller {
 				$this->input->post('SendIn_Detail')
 			);
 			
-			/*
-			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png|doc';
-			// $config['max_size']	= '100';
-			// $config['max_width']  = '1024';
-			// $config['max_height']  = '768';
-			$this->load->library('upload', $config);
+			// Import library
+			$this->load->library("multiupload");
+			$this->multiupload->_files = $_FILES;
+			$this->multiupload->upload_path = "./uploads";
+			$this->multiupload->allowed_types = "jpg|png|doc|docs|xls";
+			$this->multiupload->max_size = "2048";
+			$this->multiupload->init();
+			$file_name = $this->multiupload->do_upload();
 			
+			// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
 			
-			//PHP Upload ธรรมดา 
-			
-			if ( ! $this->upload->do_upload('fileattach'))
-			{
-				$error = array('error' => $this->upload->display_errors());
-				
-				var_dump($error);
-				
-				// $this->load->view('prdsharing/sentnew/sentnew', $error);
-			}
-			else
-			{
-				$data = array('upload_data' => $this->upload->data());
-	
-				// $this->load->view('prdsharing/sentnew/upload_success', $data);
-				
-				redirect('/manageNewGROV?aaa=aaa', 'refresh');
-			}
-			*/
-			
+			$set_AttachFile = $this->PRD_SentNew_model->set_AttachFile(
+				$query_sentnew_record,
+				$file_name
+			);
 			redirect('/manageNewGROV', 'refresh');
 		}
 		else{
