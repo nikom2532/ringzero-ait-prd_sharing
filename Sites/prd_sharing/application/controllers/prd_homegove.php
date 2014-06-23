@@ -164,20 +164,20 @@ class PRD_HomeGOVE extends CI_Controller {
 			}
 			$data['total_page'] = $total_page;
 			$data['current_page'] = $currentPage;
-			$data['jump_url'] = base_url().$url;
+			$data['jump_url'] = base_url().$url.index_page();
 			$data['next_page'] = 
 				$currentPage == $total_page
-					? base_url().$url."$total_page"
-					: base_url().$url.($currentPage + 1);
+					? base_url().$url.index_page()."$total_page"
+					: base_url().$url.index_page().($currentPage + 1);
 			$data["prev_page"] = 
 				($currentPage > 1
-				? base_url().$url.($currentPage - 1)
-				: base_url().$url."1");
+				? base_url().$url.index_page().($currentPage - 1)
+				: base_url().$url.index_page()."1");
 			$data["total_page"]  =
 				($total_page == 0?1 : $total_page);
 			$data["page_url"] = $page_url;
-			$data["first_page"] = base_url().$url."1";
-			$data["last_page"] = base_url().$url."$total_page";
+			$data["first_page"] = base_url().$url.index_page()."1";
+			$data["last_page"] = base_url().$url.index_page()."$total_page";
 			$data["current_page"] = $page;
 			$data["row_per_page"] = $row_per_page;
 			
