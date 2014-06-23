@@ -33,7 +33,7 @@ class PRD_ManageNew_detail_GROV extends CI_Controller {
 		
 		}
 		else{
-			redirect(base_url().'/', 'refresh');
+			redirect(base_url().'', 'refresh');
 		}
 	}
 }

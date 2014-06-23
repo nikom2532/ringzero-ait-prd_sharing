@@ -30,7 +30,7 @@ class PRD_InfoMinistry_New extends CI_Controller {
 		
 		}
 		else{
-			redirect(base_url().'/', 'refresh');
+			redirect(base_url().'', 'refresh');
 		}
 	}
 }

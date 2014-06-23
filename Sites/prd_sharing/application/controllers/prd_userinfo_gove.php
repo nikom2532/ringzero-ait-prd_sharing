@@ -88,7 +88,7 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 			}
 		}
 		else{
-			redirect(base_url().'/', 'refresh');
+			redirect(base_url().'', 'refresh');
 		}
 	}
 }

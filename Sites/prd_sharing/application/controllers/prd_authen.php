@@ -17,7 +17,7 @@ class PRD_Authen extends CI_Controller {
 			$this->load->view('prdsharing/authen/login', $data);
 		}
 		else{
-			redirect(base_url().'/homePRD', 'refresh');
+			redirect(base_url().'homePRD', 'refresh');
 		}
 	}
 	
@@ -54,7 +54,7 @@ class PRD_Authen extends CI_Controller {
 				// echo $this->session->userdata($member_id);
 				// var_dump($this->session->all_userdata());
 				
-				redirect(base_url().'/homePRD', 'refresh');
+				redirect(base_url().'homePRD', 'refresh');
 			}
 			else{
 				$data["error"] = "Username or Password wrong";

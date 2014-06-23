@@ -46,7 +46,7 @@ class PRD_UserInfo extends CI_Controller {
 			
 		}
 		else{
-			redirect(base_url().'/', 'refresh');
+			redirect(base_url().'', 'refresh');
 		}
 	}
 }
