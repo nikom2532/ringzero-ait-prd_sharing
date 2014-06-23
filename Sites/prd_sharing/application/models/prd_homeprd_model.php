@@ -169,6 +169,7 @@ class PRD_HomePRD_model extends CI_Model {
 			AND 
 				Category.Cate_OldID IN (".$NT02_NewsType.")
 		";
+		// exit;
 		$query = $this->db->query($strQuery)->result();
 		return $query;
 	}
