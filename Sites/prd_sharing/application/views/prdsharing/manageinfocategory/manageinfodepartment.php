@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="form" action="manageInfo_Department" method="post">
+		<form name="form" name="manageinfo_department_form" id="manageinfo_department_form" action="manageInfo_Department" method="post">
 			<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
 			<div id="search-form">
 				<div class="row">
@@ -12,6 +12,7 @@
 						<label >สถานะ</label>
 						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 						<select name="dep_status" style="">
+							<option value="" >เลือกสถานะ</option>
 							<option value="1" <?php
 								if(isset($post_dep_status)){
 									if($post_dep_status == "1"){
@@ -120,33 +121,62 @@
 		</div>
 	</div>
 </div>
+<div class="footer-table" style="background-color: inherit">
+	<p style="width: 70%;float: left;margin-top: 20px;">
+		<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
+	</p>
+    
+    <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+    	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
+    	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
+        <span style="margin-top: 10px;">
+			<!-- <span><?php //echo $current_page; ?></span> -->
+			<select onchange="jump_page(this.value)">
+<?php 
+				// var_dump($page_url);
+				foreach ($page_url as $item) {
+					?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
+				}
+?>
+			</select> / <?php echo $total_page; ?>
+        </span>
+        <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
+        <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+    </p>
+</div>
+
 
 <script>
+	function jump_page(val){
+		location='<?php echo $jump_url; ?>/'+val;
+	}
+	function nextPage(val){
+		debugger;
+		var nextpage = parseInt(val)+1;
+		if(<?php echo $total_page; ?>==val){
+			nextpage = val;
+		}
+		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+nextpage);
+		$("#manageinfo_department_form").submit();
+	}
+	function lastPage(val){
+		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+val);
+		$("#manageinfo_department_form").submit();
+	}
+	function prevPage(val){
+		var prevpage = parseInt(val)-1;
+		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+prevpage);
+		$("#manageinfo_department_form").submit();
+	}
+	function firstPage(){
+		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/1");
+		$("#manageinfo_department_form").submit();
+	}
 	
 	$(".DepartmentDelete").click( function() {
-		
 		var dep_id = $(this).attr("data-dep_id");
-		// alert(id);
-		
-		
 		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+dep_id) == true) {
 	        location.href="manageInfo_Department?del_department=1&dep_id="+dep_id;
 	    }
-	    else {
-	    	
-	    }
-		
-		
 	});
-	
-	
-	// function DepartmentDelete(dep_id) {
-	    // if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+dep_id) == true) {
-	        // location.href="manageInfo_Department?del_department=1&dep_id="+dep_id;
-	    // }
-	    // else {
-// 	    	
-	    // }
-	// }
-	
 </script>

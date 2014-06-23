@@ -43,17 +43,32 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			get("SC03_User")->result();
 	}
 	
+	//############################ Delete News #############################
+	
+	public function delete_NT01_News($old_news_id = '')
+	{
+		$StrQuery = "
+			UPDATE News
+			SET 
+				News_Delete = '1',
+			WHERE News_OldID = '".$old_news_id."'
+		";
+	}
+	
+	public function undelete_NT01_News($old_news_id = '')
+	{
+		$StrQuery = "
+			UPDATE News
+			SET 
+				News_Delete = '1',
+			WHERE News_OldID = '".$old_news_id."'
+		";
+	}
+	
 	//############################ News #############################
 	
 	public function get_NT01_News($page=1, $row_per_page=20)
 	{
-		// $statusArray = array();
-		// foreach($Cate_OldID as $val){
-			// // echo $val->Cate_OldID;
-			// $statusArray[] = "'".$val->Cate_OldID."'";
-		// }
-		// $Cate_OldID = implode(",",$statusArray);
-		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
