@@ -179,7 +179,7 @@
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS
 		</p>
-		<a href="<?php echo base_url(); ?>manageNewGROV">
+		<a href="<?php echo base_url().index_page(); ?>manageNewGROV">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			Government Agencies
 		</p></a>
@@ -227,7 +227,7 @@
 						<?php echo $i+1; ?>
 					</p>
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word;">
-						<a href="<?php echo base_url(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
 					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word; text-align: center; "><?php 
 						if($news_item->NT01_Status == 'Y'){

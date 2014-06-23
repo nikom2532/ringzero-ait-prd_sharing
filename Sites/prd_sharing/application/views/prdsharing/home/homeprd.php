@@ -2,7 +2,7 @@
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS
 		</p>
-		<a href="<?php echo base_url(); ?>homeGOVE">
+		<a href="<?php echo base_url().index_page(); ?>homeGOVE">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			Government Agencies
 		</p></a>
@@ -123,7 +123,7 @@
 						}
 				?></p>
 				<p class="col-4" style="width: 20%;float: left; ">
-					<a href="<?php echo base_url(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
+					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
 				</p>
 				
 				<p class="col-5" style="width: 20%;float: left;  text-align: center;">
@@ -211,7 +211,7 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select> / 100</span>
-					<a href="<?php echo base_url(); ?>homePRD?paging=">
+					<a href="<?php echo base_url().index_page(); ?>homePRD?paging=">
 						<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
 					</a>
 					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">

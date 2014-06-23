@@ -70,12 +70,12 @@
 <div class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<div class="row" style="margin-top: 20px;">
-		<a href="<?php echo base_url(); ?>manageUserPRD">
+		<a href="<?php echo base_url().index_page(); ?>manageUserPRD">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 20%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			MANAGER USER PRD
 		</p></a>
 		
-		<a href="<?php echo base_url(); ?>manageUserGOVE">
+		<a href="<?php echo base_url().index_page(); ?>manageUserGOVE">
 		<p style="margin-left:3% ;border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 20%;text-align:center;float: left;">
 			MANAGER USER Government
 		</p></a>
@@ -120,7 +120,7 @@
 				?><div class="event"><?php
 			}
 ?>
-					<a href="<?php echo base_url(); ?>userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>">
+					<a href="<?php echo base_url().index_page(); ?>userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>">
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>

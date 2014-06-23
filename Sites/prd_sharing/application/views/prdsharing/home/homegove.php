@@ -1,5 +1,5 @@
 	<div class="row">
-		<a href="<?php echo base_url(); ?>homePRD">
+		<a href="<?php echo base_url().index_page(); ?>homePRD">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;float: left;border: 1px solid #dcdcdc;">
 			PRD NEWS
 		</p></a>
@@ -77,7 +77,7 @@
 					echo $news_item->SendIn_view;
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
-				<a href="<?php echo base_url(); ?>detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>">open new link</a>
+				<a href="<?php echo base_url().index_page(); ?>detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 				<img src="<?php echo base_url(); ?>images/icon/<?php 

@@ -35,7 +35,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 }

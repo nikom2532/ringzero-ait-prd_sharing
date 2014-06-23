@@ -170,7 +170,7 @@ class PRD_HomePRD extends CI_Controller {
 			$this->load->view('prdsharing/templates/footer', $data);
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 }

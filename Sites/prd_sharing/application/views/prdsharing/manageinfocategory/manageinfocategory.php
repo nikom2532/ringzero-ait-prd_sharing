@@ -74,11 +74,11 @@
 				<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;text-align:center;float: left;width: 15%;">
 					Category
 				</p>
-				<a href="<?php echo base_url(); ?>manageInfo_Ministry">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Ministry">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Ministry
 				</p></a>
-				<a href="<?php echo base_url(); ?>manageInfo_Department">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Department">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Department
 				</p></a>

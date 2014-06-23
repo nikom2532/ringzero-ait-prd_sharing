@@ -55,11 +55,11 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width: 100%;">
-				<a href="<?php echo base_url(); ?>manageInfo_Category">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Category">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
-				<a href="<?php echo base_url(); ?>manageInfo_Ministry">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Ministry">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Ministry
 				</p></a>
@@ -109,7 +109,7 @@
 							<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
 						</p>
 						<p class="col-2" style="width: 20%;float: left; ">
-							<a href="<?php echo base_url(); ?>infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>
+							<a href="<?php echo base_url().index_page(); ?>infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>
 						</p>
 						<p class="col-3" style="width: 30%;float: left; ">
 							<?php echo $department_item->Minis_Name; ?>

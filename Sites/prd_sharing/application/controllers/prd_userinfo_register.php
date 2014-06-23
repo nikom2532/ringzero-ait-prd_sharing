@@ -15,7 +15,7 @@ class PRD_UserInfo_Register extends CI_Controller {
 		
 		if($this->input->post('register_new_member') == "yes"){
 			
-			// redirect(base_url().'PRD_UserInfo_Register/set_register_new_member', 'refresh');
+			// redirect(base_url().index_page().'PRD_UserInfo_Register/set_register_new_member', 'refresh');
 			
 			if($this->input->post('mem_title') != "อื่นๆ"){
 				$mem_title = $this->input->post('mem_title');
@@ -49,7 +49,7 @@ class PRD_UserInfo_Register extends CI_Controller {
 				$this->input->post('mem_status')
 			);
 			
-			redirect(base_url().'manageUserGOVE', 'refresh');
+			redirect(base_url().index_page().'manageUserGOVE', 'refresh');
 		}
 		else{
 			

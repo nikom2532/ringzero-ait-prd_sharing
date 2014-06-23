@@ -59,7 +59,7 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 					$this->input->post('mem_status')
 				);
 				
-				redirect(base_url().'manageUserGOVE', 'refresh');
+				redirect(base_url().index_page().'manageUserGOVE', 'refresh');
 			}
 			else {
 				
@@ -88,7 +88,7 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 			}
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 }

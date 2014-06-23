@@ -140,7 +140,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 			
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 	public function get_department($Ministry_ID ='')

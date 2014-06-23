@@ -85,7 +85,7 @@
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS DATA CENTER
 		</p>
-		<a href="<?php echo base_url(); ?>reportGOVE">
+		<a href="<?php echo base_url().index_page(); ?>reportGOVE">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			Government Agencies
 		</p></a>

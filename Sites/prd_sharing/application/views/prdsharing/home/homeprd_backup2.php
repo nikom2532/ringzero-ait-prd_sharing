@@ -2,7 +2,7 @@
 		<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;width: 15%;text-align:center;float: left;">
 			PRD NEWS
 		</p>
-		<a href="<?php echo base_url(); ?>homeGOVE">
+		<a href="<?php echo base_url().index_page(); ?>homeGOVE">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 			Government Agencies
 		</p></a>
@@ -121,7 +121,7 @@
 						}
 				?></p>
 				<p class="col-4" style="width: 20%;float: left; ">
-					<a href="<?php echo base_url(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
+					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
 				</p>
 				
 				<!-- <p class="col-5" style="width: 20%;float: left;  text-align: center;">
@@ -187,8 +187,8 @@
 				</p>
                 
                 <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-                	<a href="<?php echo base_url(); ?>javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
-                	<a href="<?php echo base_url(); ?>javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
+                	<a href="<?php echo base_url().index_page(); ?>javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
+                	<a href="<?php echo base_url().index_page(); ?>javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
                     <span style="margin-top: 10px;">
 						<!-- <span><?php //echo $current_page; ?></span> -->
 						<select onchange="jump_page(this.value)">
@@ -200,8 +200,8 @@
 ?>
 						</select> / <?php echo $total_page; ?>
                     </span>
-                    <a href="<?php echo base_url(); ?>javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
-                    <a href="<?php echo base_url(); ?>javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+                    <a href="<?php echo base_url().index_page(); ?>javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
+                    <a href="<?php echo base_url().index_page(); ?>javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
                 </p>
             </div>
             
@@ -218,7 +218,7 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select> / 100</span>
-					<a href="<?php echo base_url(); ?>homePRD?paging=">
+					<a href="<?php echo base_url().index_page(); ?>homePRD?paging=">
 						<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
 					</a>
 					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">

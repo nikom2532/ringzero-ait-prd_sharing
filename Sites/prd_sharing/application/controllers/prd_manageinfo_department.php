@@ -137,7 +137,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 			
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 }

@@ -44,7 +44,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['delete_News'] = $this->prd_managenewprd_model->delete_News(
 					$this->input->get('oldnews_id')
 				);
-				redirect(base_url()."manageNewPRD");
+				redirect(base_url().index_page()."manageNewPRD");
 			}
 			
 			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
@@ -162,7 +162,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 			
 		}
 		else{
-			redirect(base_url().'', 'refresh');
+			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
 	

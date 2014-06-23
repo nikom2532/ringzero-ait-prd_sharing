@@ -71,7 +71,7 @@
 
 <div class="table-list">
 	<div class="row">
-		<a href="<?php echo base_url(); ?>reportPRD">
+		<a href="<?php echo base_url().index_page(); ?>reportPRD">
 		<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;float: left;border: 1px solid #dcdcdc; ">
 			PRD NEWS DATA CENTER
 		</p></a>

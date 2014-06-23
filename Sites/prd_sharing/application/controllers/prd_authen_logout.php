@@ -19,6 +19,6 @@ class PRD_Authen_Logout extends CI_Controller {
 		$this->session->unset_userdata('Mem_LasName');
 		$this->session->unset_userdata('Mem_EngName');
 		$this->session->unset_userdata('Mem_EngLasName');
-		redirect(base_url().'', 'refresh');
+		redirect(base_url().index_page().'', 'refresh');
 	}
 }

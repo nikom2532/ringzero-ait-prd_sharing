@@ -64,14 +64,14 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="margin-top: 20px;font-weight: bold;width:100%">
-				<a href="<?php echo base_url(); ?>manageInfo_Category">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Category">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Category
 				</p></a>
 				<p style="border-radius: 15px;padding: 15px;color:#fff;background-color:#0404F5;text-align:center;float: left;margin-left: 10px;width: 15%;">
 					Ministry
 				</p>
-				<a href="<?php echo base_url(); ?>manageInfo_Department">
+				<a href="<?php echo base_url().index_page(); ?>manageInfo_Department">
 				<p style="border-radius: 15px;padding: 15px;background-color:#EDEDED;width: 15%;text-align:center;margin-left: 10px;float: left;border: 1px solid #dcdcdc;">
 					Department
 				</p></a>
@@ -142,8 +142,8 @@
 						}
 ?>
 						<p class="col-2" style="width: 20%;float: left; ">
-							<!-- <a href="<?php echo base_url(); ?>infoMinistry" >รหัสกระทรวง</a> -->
-							<a href="<?php echo base_url(); ?>infoMinistry?minis_id=<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_ID; ?></a>
+							<!-- <a href="<?php echo base_url().index_page(); ?>infoMinistry" >รหัสกระทรวง</a> -->
+							<a href="<?php echo base_url().index_page(); ?>infoMinistry?minis_id=<?php echo $ministry_item->Minis_ID; ?>"><?php echo $ministry_item->Minis_ID; ?></a>
 						</p>
 						<p class="col-3" style="width: 30%;float: left; ">
 							<!-- ชื่อกระทรวง -->
