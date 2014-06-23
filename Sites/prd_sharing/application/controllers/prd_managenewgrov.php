@@ -50,6 +50,12 @@ class PRD_ManageNewGROV extends CI_Controller {
 					$this->input->post('SendIn_Detail')
 				);
 			}
+			else if($this->input->get('is_del_sendinformation') == "1"){
+				$data['delete_News'] = $this->prd_managenewgrov_model->delete_grov(
+					$this->input->get('sendin_id')
+				);
+				redirect(base_url().index_page()."manageNewGROV");
+			}
 			
 			if($this->input->post("manageNewGROV_is_submit") == "yes"){
 				

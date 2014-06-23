@@ -30,6 +30,46 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $query;
 	}
 	
+	
+	public function delete_grov($sendin_id = '')
+	{
+		$isDelete = 0;
+		$checkDelete = "
+			SELECT
+				SendIn_Status
+			FROM
+				SendInformation
+			WHERE 
+				SendIn_ID = '".$sendin_id."'
+		";
+		$checkDeleteQuery = $this->db->
+			query($checkDelete)->result();
+		foreach ($checkDeleteQuery as $checkDeleteItem) {
+			$isDelete = $checkDeleteItem->SendIn_Status;
+		}
+		if($isDelete == -1){
+			$StrQuery = "
+				UPDATE SendInformation
+				SET 
+					SendIn_Status = '1'
+				WHERE 
+					SendIn_ID = '".$sendin_id."'
+			";
+		}
+		else{
+			$StrQuery = "
+				UPDATE SendInformation
+				SET 
+					SendIn_Status = '-1'
+				WHERE 
+					SendIn_ID = '".$sendin_id."'
+			";
+		}
+		$query = $this->db->
+			query($StrQuery);
+		return $query;
+	}
+	
 	public function get_grov(
 		$page=1, 
 		$row_per_page=20
@@ -46,6 +86,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation.SendIn_CreateDate,
 					SendInformation.SendIn_Issue,
 					SendInformation.SendIn_view,
+					SendInformation.SendIn_Status,
 					FileAttach.File_Status, 
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM

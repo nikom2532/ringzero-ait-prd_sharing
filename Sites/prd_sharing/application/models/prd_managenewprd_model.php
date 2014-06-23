@@ -69,7 +69,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				WHERE 
 					News_OldID = '".$old_news_id."'
 			";
-			
 		}
 		else{
 			$StrQuery = "

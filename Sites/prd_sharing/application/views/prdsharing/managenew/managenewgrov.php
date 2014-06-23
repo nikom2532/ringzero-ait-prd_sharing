@@ -178,8 +178,16 @@
 				</p>
 				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
 				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
-				</p>
+				
+				<p class="col-1 SendInformationDelete" data-sendin_id="<?php echo $news_item->SendIn_ID; ?>" style="width: 5%;float: left; word-wrap: break-word; cursor:pointer; text-align: center; "><?php
+					if($news_item->SendIn_Status == -1){
+						?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
+					}
+					else{
+						?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+					}
+				?></p>
+				
 				<p class="col-1" style="width: 35%;float: left; ">
 					<?php echo $news_item->SendIn_Issue; ?>
 				</p>
@@ -266,6 +274,12 @@
     </p>
 </div>
 <script>
+	$(".SendInformationDelete").click( function() {
+		var sendin_id = $(this).attr("data-sendin_id");
+		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่ข่าว = "+sendin_id+" หรือไม่ ") == true) {
+	        location.href="manageNewGROV?is_del_sendinformation=1&sendin_id="+sendin_id;
+	    }
+	});
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}
