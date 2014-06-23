@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="form" action="manageInfo_Ministry" method="post">
+		<form name="form" action="<?php echo base_url().index_page(); ?>manageInfo_Ministry" method="post">
 			<input type="hidden" name="info_ministry_is_add" value="yes" />
 				<div class="row" id="gove-title">
 					รายละเอียดข้อมูล

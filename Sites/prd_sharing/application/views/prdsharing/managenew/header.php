@@ -5,7 +5,7 @@
 </script>
 <div id="search-form">
 
-	<form name="search_form" action="homePRD" method="post">
+	<form name="search_form" action="<?php echo base_url().index_page(); ?>homePRD" method="post">
 
 		<div class="row">
 			<div class="col-lg-12">

@@ -21,7 +21,7 @@
 	</div>
 	<div id="share-form"> 	
 		<div id="search-form">
-			<form name="manageinfo_ministry_form" id="manageinfo_ministry_form" action="manageInfo_Ministry" method="post">
+			<form name="manageinfo_ministry_form" id="manageinfo_ministry_form" action="<?php echo base_url().index_page(); ?>manageInfo_Ministry" method="post">
 				<input type="hidden" name="manageinfo_ministry_is_search" value="yes" />
 				<div class="row">
 					<div class="col-lg-6">

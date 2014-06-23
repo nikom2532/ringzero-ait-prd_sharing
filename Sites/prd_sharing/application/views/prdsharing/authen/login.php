@@ -1,5 +1,5 @@
 <div class="wrapper">
-	<form action="authen_proc" method="post" accept-charset="utf-8">
+	<form action="<?php echo base_url().index_page(); ?>authen_proc" method="post" accept-charset="utf-8">
 		<div class="content">
 			<div id="login-form">
 				<ul>

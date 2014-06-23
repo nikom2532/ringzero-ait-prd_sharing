@@ -1,4 +1,4 @@
-<form name="formManageNewGROV" action="manageNewGROV" method="post">
+<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):

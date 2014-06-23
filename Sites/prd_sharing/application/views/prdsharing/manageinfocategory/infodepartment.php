@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="info_depatment_form" action="manageInfo_Department" method="post">
+		<form name="info_depatment_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post">
 <?php
 			foreach ($department as $department_item) {
 				

@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="info_depatment_form" action="manageInfo_Department" method="post">
+		<form name="info_depatment_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post">
 			<input type="hidden" name="info_department_is_add" value="yes" />
 			<div class="row" id="gove-title" style="margin-top:5%;">
 				รายละเอียดข้อมูล

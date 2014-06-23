@@ -11,7 +11,7 @@
 </script>
 <div class="content">
 	<div id="share-form">
-		<form name="form" name="manageinfo_department_form" id="manageinfo_department_form" action="manageInfo_Department" method="post">
+		<form name="form" name="manageinfo_department_form" id="manageinfo_department_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post">
 			<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
 			<div id="search-form">
 				<div class="row">

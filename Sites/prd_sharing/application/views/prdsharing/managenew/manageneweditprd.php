@@ -9,7 +9,7 @@
 	// var_dump($news[$key]);
 	// echo "1";
 ?>
-<form name="form" action="manageNewPRD" method="post">
+<form name="form" action="<?php echo base_url().index_page(); ?>manageNewPRD" method="post">
 	<input type="hidden" name="NT01_NewsID" value="<?php echo $news[0]->NT01_NewsID; ?>" />
 	<input type="hidden" name="manageNewEditPRD_record" value="yes" />
 	<input type="hidden" name="News_UpdateID" value="<?php echo $New_News[0]->News_UpdateID ; ?>" />

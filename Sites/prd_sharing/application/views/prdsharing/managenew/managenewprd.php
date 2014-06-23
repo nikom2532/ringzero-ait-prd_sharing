@@ -30,7 +30,7 @@
 	});
 </script>
 <div id="search-form">
-	<form name="search_form" id="homeSearch" action="manageNewPRD" method="post">
+	<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewPRD" method="post">
 		<input type="hidden" name="managenewsprd_is_search" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">

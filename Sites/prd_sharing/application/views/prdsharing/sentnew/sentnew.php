@@ -11,7 +11,7 @@
 	
 </script>
 
-<form name="form_sendnew" id="form_sendnew" action="sentNew_Upload" method="post" enctype="multipart/form-data">
+<form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">

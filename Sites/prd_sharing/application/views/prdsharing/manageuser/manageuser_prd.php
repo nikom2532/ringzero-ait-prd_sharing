@@ -10,7 +10,7 @@
     });
 </script>
 <div id="search-form">
-	<form action="manageUser" method="post">
+	<form action="<?php echo base_url().index_page(); ?>manageUser" method="post">
 		<input type="hidden" name="manage_user_is_search" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">

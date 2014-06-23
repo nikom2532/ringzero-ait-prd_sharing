@@ -2,7 +2,7 @@
 
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form id="form_userinfo" action="register/" method="post">
+	<form id="form_userinfo" action="<?php echo base_url().index_page(); ?>register/" method="post">
 	<!-- <?php echo form_open('form'); ?> -->
 		<input type="hidden" name="register_new_member" value="yes" />
 		<div class="row">

@@ -15,7 +15,7 @@
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
-			<form name="form" id="homeSearch" action="manageInfo_Category" method="post">
+			<form name="form" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageInfo_Category" method="post">
 				<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
 				<div class="row">
 					<div class="col-lg-6">

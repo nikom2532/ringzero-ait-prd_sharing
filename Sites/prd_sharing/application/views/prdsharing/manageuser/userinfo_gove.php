@@ -1,6 +1,6 @@
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form action="userInfo_GOVE" method="post">
+	<form action="<?php echo base_url().index_page(); ?>userInfo_GOVE" method="post">
 		<input type="hidden" name="update_member" value="yes" />
 		<input type="hidden" name="member_id" value="<?php echo $Mem_ID; ?>" />
 <?php
