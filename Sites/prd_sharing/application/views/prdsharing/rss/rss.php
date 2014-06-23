@@ -1,3 +1,14 @@
+<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
+</script>
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
@@ -23,18 +34,33 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >หมวดหมู่ข่าว</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+					<span class="select-menu">
+					<span>เลือกหมวดหมู่ข่าว</span>
+						<select>
+							<option></option>
+						</select>
+					</span>
 				</div>
 				<div class="col-lg-6">
 					<label >หมวดหมู่ข่าวย่อย</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+					<span class="select-menu">
+					<span>เลือกหมวดหมู่ข่าว</span>
+						<select>
+							<option></option>
+						</select>
+					</span>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-6">
 					<label >หน่วยงาน</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+					<span class="select-menu">
+					<span>เลือกหน่วยงาน</span>
+						<select>
+							<option></option>
+						</select>
+					</span>
 				</div>
 			</div>
 			<div class="row">

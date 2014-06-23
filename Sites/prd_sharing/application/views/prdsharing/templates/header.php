@@ -13,6 +13,7 @@
     
     <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     
+	
 	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jqueryui/jquery-ui-1.10.4.custom.min.css">
 	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
@@ -57,12 +58,7 @@
             <div class="bg-header">
                 <div id="header">
                     <div class="logo">
-                        <img src="<?php echo base_url(); ?>images/NNT_logo.png" alt="Logo" style="width:110px;">
-                        <h1>
-                            <label class="th">ระบบช่องทางเผยแพร่ ข้อมูลข่าวสาร</br>
-                            <span class="bold">หน่วยงานภาครัฐ กรมประชาสัมพันธ์</span></label>
-                        </h1>
-                        <img src="<?php echo base_url(); ?>images/sh_logo_header.png" alt="Logo" style="width:100%">
+                        <img src="<?php echo base_url(); ?>images/prdsharing_Login.png" alt="Logo" style="width:auto;">
                     </div>
                 </div>
             </div>

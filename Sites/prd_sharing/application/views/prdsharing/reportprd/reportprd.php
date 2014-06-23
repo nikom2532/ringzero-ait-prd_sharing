@@ -1,3 +1,14 @@
+<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
+</script>
 <div id="search-form">
 
 	<div class="row">
@@ -22,11 +33,21 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<label >หน่วยงาน</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<span class="select-menu">
+			  <span>เลือกหน่วยงาน</span>
+				<select name="TypeID" id="TypeID" class="form-control">
+					<option selected="selected" value="0">เลือกหน่วยงาน</option>
+				</select>
+			</span> 
 		</div>
 		<div class="col-lg-6">
 			<label >ประเภทข่าว</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<span class="select-menu">
+			  <span>เลือกประเภทข่าว</span>
+				<select name="TypeID" id="TypeID" class="form-control">
+					<option selected="selected" value="0">เลือกประเภทข่าว</option>
+				</select>
+			</span> 
 		</div>
 	</div>
 
@@ -44,7 +65,12 @@
 		</div>
 		<div class="col-lg-6">
 			<label >ประเภทข่าวย่อย</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			<span class="select-menu">
+			  <span>เลือกประเภทข่าวย่อย</span>
+				<select name="TypeID" id="TypeID" class="form-control">
+					<option selected="selected" value="0">เลือกประเภทข่าวย่อย</option>
+				</select>
+			</span> 
 		</div>
 	</div>
 

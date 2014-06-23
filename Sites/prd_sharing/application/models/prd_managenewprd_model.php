@@ -45,26 +45,39 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	//############################ Delete News #############################
 	
-	public function delete_NT01_News($old_news_id = '')
+	public function delete_News($old_news_id = '')
+	{
+		$checkDelete = "
+			
+		";
+		
+		
+		$StrQuery = "
+			UPDATE News
+			SET 
+				News_Delete = '1'
+			WHERE 
+				News_OldID = '".$old_news_id."'
+		";
+		$query = $this->db->
+			query($StrQuery);
+		return $query;
+	}
+	/*
+	public function undelete_News($old_news_id = '')
 	{
 		$StrQuery = "
 			UPDATE News
 			SET 
-				News_Delete = '1',
-			WHERE News_OldID = '".$old_news_id."'
+				News_Delete = '0'
+			WHERE 
+				News_OldID = '".$old_news_id."'
 		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
 	}
-	
-	public function undelete_NT01_News($old_news_id = '')
-	{
-		$StrQuery = "
-			UPDATE News
-			SET 
-				News_Delete = '1',
-			WHERE News_OldID = '".$old_news_id."'
-		";
-	}
-	
+	*/
 	//############################ News #############################
 	
 	public function get_NT01_News($page=1, $row_per_page=20)

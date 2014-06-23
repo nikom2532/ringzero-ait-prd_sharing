@@ -40,6 +40,12 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$this->input->post("News_UpdateID")
 				);
 			}
+			else if($this->input->get('is_del_oldnews') == "1"){
+				$data['delete_News'] = $this->prd_managenewprd_model->delete_News(
+					$this->input->get('oldnews_id')
+				);
+				redirect(base_url()."manageNewPRD");
+			}
 			
 			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
 			$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();

@@ -229,7 +229,7 @@
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word;">
 						<a href="<?php echo base_url(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
-					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word;"><?php 
+					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word; text-align: center; "><?php 
 						if($news_item->NT01_Status == 'Y'){
 							?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
 						}
@@ -237,8 +237,15 @@
 							?>-<?php
 						}
 					?></p>
-					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word;"><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
-					</p>
+					
+					<p class="col-1 PRDNewsDelete" data-oldnews_id="<?php echo $news_item->NT01_NewsID; ?>" style="width: 5%;float: left; word-wrap: break-word; cursor:pointer; text-align: center; "><?php
+						if($New_News->News_Delete == 1){
+							?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
+						}
+						else{
+							?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+						}
+					?></p>
 					<p class="col-1" style="width: 35%;float: left; word-wrap: break-word;">
 <?php 
 						$i_item=0;
@@ -442,4 +449,11 @@
 			} //end success
 		}); //end AJAX
 	}); //end change 
+	
+	$(".PRDNewsDelete").click( function() {
+		var oldnews_id = $(this).attr("data-oldnews_id");
+		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+ oldnews_id) == true) {
+	        location.href="manageNewPRD?is_del_oldnews=1&oldnews_id="+oldnews_id;
+	    }
+	});
 </script>

@@ -1,3 +1,14 @@
+<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
+</script>
 <div id="search-form">
 	<form action="manageUser" method="post">
 		<input type="hidden" name="manage_user_is_search" value="yes" />
@@ -15,6 +26,8 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะ</label>
+				<span class="select-menu">
+				<span>เลือกสถานะ</span>
 				<select style="" name="mem_status">
 					<option value="1" <?php
 						if(isset($post_search_key)){
@@ -31,9 +44,12 @@
 						}
 					?>>ไม่ใช้งาน</option>
 				</select>
+				</span>
 			</div>
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
+				<span class="select-menu">
+				<span>เลือกจังหวัด</span>
 				<select name="province_id" style="">
 <?php
 					foreach ($CM06_Province as $CM06_Province_item) {
@@ -41,6 +57,7 @@
 					}
 ?>
 				</select>
+				</span>
 			</div>
 		</div>
 	

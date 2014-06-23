@@ -1,6 +1,17 @@
 <?php
 	// var_dump($category_new);
 ?>
+<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
+</script>
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
@@ -20,6 +31,8 @@
 					<div class="col-lg-6">
 						<label >สถานะ</label>
 						<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
+						<span class="select-menu">
+						<span>เลือกสถานะ</span>
 						
 						<select name="NT02_Status" style="">
 							<option value="" <?php
@@ -44,7 +57,7 @@
 								}
 							?>>ใช้งานไม่ได้</option>
 						</select>
-						
+						</span>
 					</div>
 				</div>
 	
