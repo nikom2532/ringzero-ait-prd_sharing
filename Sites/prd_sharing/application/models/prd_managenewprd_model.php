@@ -47,22 +47,44 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	public function delete_News($old_news_id = '')
 	{
+		$isDelete = 0;
 		$checkDelete = "
-			
-		";
-		
-		
-		$StrQuery = "
-			UPDATE News
-			SET 
-				News_Delete = '1'
+			SELECT
+				News_Delete
+			FROM
+				News
 			WHERE 
 				News_OldID = '".$old_news_id."'
 		";
+		$checkDeleteQuery = $this->db->
+			query($checkDelete)->result();
+		foreach ($checkDeleteQuery as $checkDeleteItem) {
+			$isDelete = $checkDeleteItem->News_Delete;
+		}
+		if($isDelete == 1){
+			$StrQuery = "
+				UPDATE News
+				SET 
+					News_Delete = '0'
+				WHERE 
+					News_OldID = '".$old_news_id."'
+			";
+			
+		}
+		else{
+			$StrQuery = "
+				UPDATE News
+				SET 
+					News_Delete = '1'
+				WHERE 
+					News_OldID = '".$old_news_id."'
+			";
+		}
 		$query = $this->db->
 			query($StrQuery);
 		return $query;
 	}
+	
 	/*
 	public function undelete_News($old_news_id = '')
 	{

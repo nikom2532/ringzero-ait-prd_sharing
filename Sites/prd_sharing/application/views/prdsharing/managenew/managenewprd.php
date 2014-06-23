@@ -239,11 +239,17 @@
 					?></p>
 					
 					<p class="col-1 PRDNewsDelete" data-oldnews_id="<?php echo $news_item->NT01_NewsID; ?>" style="width: 5%;float: left; word-wrap: break-word; cursor:pointer; text-align: center; "><?php
-						if($New_News->News_Delete == 1){
-							?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
-						}
-						else{
-							?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+						foreach ($New_News as $New_News_item) {
+							if(
+								$New_News_item->News_OldID ==  $news_item->NT01_NewsID
+							){
+									if($New_News_item->News_Delete == 1){
+										?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
+									}
+									else{
+										?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+									}
+							}
 						}
 					?></p>
 					<p class="col-1" style="width: 35%;float: left; word-wrap: break-word;">
@@ -452,7 +458,7 @@
 	
 	$(".PRDNewsDelete").click( function() {
 		var oldnews_id = $(this).attr("data-oldnews_id");
-		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+ oldnews_id) == true) {
+		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่ข่าว = "+oldnews_id+" หรือไม่ ") == true) {
 	        location.href="manageNewPRD?is_del_oldnews=1&oldnews_id="+oldnews_id;
 	    }
 	});
