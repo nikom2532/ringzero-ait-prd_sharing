@@ -11,20 +11,20 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../favicon.ico">
     
-	<script src="js/jqueryui/jquery-1.10.2.js"></script>
+	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script>
 	<link rel="stylesheet" href="css/jqueryui/jquery-ui-1.10.4.custom.min.css">
-	<script src="js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script> 
+	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script> 
 	
 	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script> -->
 	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
 	<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 
-    <link href="css/reset.css" rel="stylesheet" charset="utf-8">
-    <link href="css/style.css" rel="stylesheet" charset="utf-8">
-    <script src="js/ckeditor.js"></script>
+    <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
+    <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
+    <script src="<?php echo base_url(); ?>js/ckeditor.js"></script>
 <?php
     if($title == "Sent News"){
- 	   ?><link rel="stylesheet" href="css/sample.css"><?php
+ 	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php
 	}
 ?>
 </head>
