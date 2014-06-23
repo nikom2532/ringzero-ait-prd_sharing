@@ -34,7 +34,7 @@ class PRD_InfoDepartment extends CI_Controller {
 			$this->load->view('prdsharing/templates/footer');
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

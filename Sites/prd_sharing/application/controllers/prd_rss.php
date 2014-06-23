@@ -30,7 +30,7 @@ class PRD_rss extends CI_Controller {
 		
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

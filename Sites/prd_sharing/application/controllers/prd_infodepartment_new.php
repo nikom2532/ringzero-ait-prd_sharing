@@ -35,7 +35,7 @@ class PRD_InfoDepartment_New extends CI_Controller {
 		
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

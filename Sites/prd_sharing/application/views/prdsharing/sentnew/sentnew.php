@@ -253,7 +253,7 @@
 		<div class="uploadfile">
 			<div class="row">
 				<div class="col-lg-6">
-					<label >Attach file</label>
+					<label >file แนบเอกสาร 1.) </label>
 					<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
 					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
 					<!-- <input type="file" name="file[]" multiple /> -->
@@ -269,7 +269,7 @@
 		
 		<div class="row">
 			<div style="text-align: center;">
-				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="Add more file" />
+				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 			</div>
 		</div>
 	</fieldset>
@@ -281,7 +281,7 @@
 			var str =""+
 			"<div class=\"row\">"+
 			"	<div class=\"col-lg-6\">"+
-			"		<label >Attach file</label>"+
+			"		<label >file แนบเอกสาร "+(number)+".) </label>"+
 			"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
 			"	</div>"+
 			"</div>";

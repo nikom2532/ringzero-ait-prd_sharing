@@ -41,7 +41,7 @@ class PRD_manageNewEditPRD extends CI_Controller {
 			
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

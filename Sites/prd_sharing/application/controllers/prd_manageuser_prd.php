@@ -99,7 +99,7 @@ class PRD_ManageUser_PRD extends CI_Controller {
 			
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

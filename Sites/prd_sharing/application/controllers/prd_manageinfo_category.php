@@ -120,7 +120,7 @@ class PRD_ManageInfo_Category extends CI_Controller {
 			
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 	
@@ -135,7 +135,7 @@ class PRD_ManageInfo_Category extends CI_Controller {
 			echo json_encode($_data);
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }

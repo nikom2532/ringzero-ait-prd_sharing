@@ -74,7 +74,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 			
 		}
 		else{
-			redirect('/', 'refresh');
+			redirect(base_url().'/', 'refresh');
 		}
 	}
 }
