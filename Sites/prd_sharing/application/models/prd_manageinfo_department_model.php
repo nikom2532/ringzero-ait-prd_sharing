@@ -69,55 +69,155 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		// return $query;
 	}
 	
-	public function get_Department()
+	public function get_Department(
+		$page=1,
+		$row_per_page=20
+	)
 	{
+		/*
 		$return = $this->db->
-			SELECT('
-				Department.Dep_ID,
-				Department.Dep_Name,
-				Department.Dep_Status,
-				Department.Ministry_ID,
-				
-				Ministry.Minis_Name
-			')->
-			LIMIT('20,0')->	
-			join('Ministry', 'Ministry.Minis_ID = Department.Ministry_ID')->
-			get('Department')->result();
-		
-		// var_dump($return);
+		SELECT('
+		Department.Dep_ID,
+		Department.Dep_Name,
+		Department.Dep_Status,
+		Department.Ministry_ID,
+		Ministry.Minis_Name
+		')->
+		LIMIT('20,0')-> 
+		join('Ministry', 'Ministry.Minis_ID = Department.Ministry_ID')->
+		get('Department')->result();
 		
 		return $return;
+		*/
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					Department.Dep_ID,
+					Department.Dep_Name,
+					Department.Dep_Status,
+					Department.Ministry_ID,
+					Ministry.Minis_Name,
+					ROW_NUMBER() OVER (ORDER BY Department.Dep_ID DESC) AS 'RowNumber'
+				FROM 
+					Department
+				LEFT JOIN
+					Ministry
+				ON
+					Ministry.Minis_ID = Department.Ministry_ID
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
 	}
 	
-	
-	public function get_Department_search($departmentName = '', $dep_status = '')
+	public function get_Department_count()
 	{
-		$return = $this->db->
-			SELECT('
-				Department.Dep_ID,
-				Department.Dep_Name,
-				Department.Dep_Status,
-				Department.Ministry_ID,
-				
-				Ministry.Minis_Name
-			')->
-			LIMIT('20,0')->	
-			join('Ministry', 'Ministry.Minis_ID = Department.Ministry_ID');
+		$StrQuery = "
+				SELECT
+					COUNT((Department.Dep_ID)) AS NUMROW
+				FROM Department 
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
 			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
+	}
+	
+	public function get_Department_search(
+		$page=1,
+		$row_per_page=20,
+		$departmentName = '', 
+		$dep_status = ''
+	)
+	{
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					Department.Dep_ID,
+					Department.Dep_Name,
+					Department.Dep_Status,
+					Department.Ministry_ID,
+					Ministry.Minis_Name,
+					ROW_NUMBER() OVER (ORDER BY Department.Dep_ID DESC) AS 'RowNumber'
+				FROM 
+					Department
+				JOIN
+					Ministry
+				ON
+					Ministry.Minis_ID = Department.Ministry_ID
+		";
+		if($departmentName != '' || $dep_status != ''){
+			$StrQuery .= "
+				WHERE
+			";
+		}
 		if($departmentName != ''){
-			$return = $return->
-				like('Department.Dep_Name', $departmentName);
+			$StrQuery .= "
+					Department.Dep_Name LIKE '%".$departmentName."%'
+			";
 		}
 		if($dep_status != ''){
-			$return = $return->
-				like('Department.Dep_Status', $dep_status);
+			if($departmentName != ''){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+					Department.Dep_Status LIKE '%".$dep_status."%'
+			";
 		}
-			
-		$return = $return->get('Department')->result();
-		
-		return $return;
+		$StrQuery .= "
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
 	}
 	
-	
-	// $this->db->limit($limit, $start);
+	public function get_Department_search_count(
+		$departmentName = '', 
+		$dep_status = ''
+	)
+	{
+		$StrQuery = "
+				SELECT
+					COUNT((Department.Dep_ID)) AS NUMROW
+				FROM Department 
+		";
+		if($departmentName != '' || $dep_status != ''){
+			$StrQuery .= "
+				WHERE
+			";
+		}
+		if($departmentName != ''){
+			$StrQuery .= "
+					Department.Dep_Name LIKE '%".$departmentName."%'
+			";
+		}
+		if($dep_status != ''){
+			if($departmentName != ''){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+					Department.Dep_Status LIKE '%".$dep_status."%'
+			";
+		}
+		$query = $this->db->
+			query($StrQuery)->result();
+			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
+	}
 }
