@@ -43,7 +43,9 @@ class Multiupload{
                 if ($CI->upload->do_upload($field)){
                     $data = $CI->upload->data();
 					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
-                    array_push($this->file_name, $data['file_name']);
+					$name = date().$data['file_ext'];
+					rename($data['full_path'], $data['file_path']. $name);
+                    array_push($this->file_name, $name);
                 }else{
                     $errors = $CI->upload->display_errors();
                 }
