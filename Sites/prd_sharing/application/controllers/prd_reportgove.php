@@ -6,7 +6,7 @@ class PRD_reportGOVE extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->library('session');
-		// $this->load->model('news_model');
+		$this->load->model('prd_report_gove_model');
 	}
 
 	public function index()

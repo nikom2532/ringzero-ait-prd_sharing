@@ -6,7 +6,7 @@ class PRD_reportPRD extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->library('session');
-		// $this->load->model('news_model');
+		$this->load->model('PRD_ReportPRD_model');
 	}
 
 	public function index()
