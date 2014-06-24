@@ -407,30 +407,30 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewPRD"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewPRD"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewPRD"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewPRD"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/1");
 		$("#homeSearch").submit();
 	}
 	$('select#NewsTypeID').change(function(){
 		// debugger;
 	    var type_id = $('select#NewsTypeID').val();
 		if (type_id != ""){
-			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
 		}
 		else{
-			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
 		}
 		// debugger;
 		// alert(post_url);
@@ -459,7 +459,7 @@
 	$(".PRDNewsDelete").click( function() {
 		var oldnews_id = $(this).attr("data-oldnews_id");
 		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่ข่าว = "+oldnews_id+" หรือไม่ ") == true) {
-	        location.href="manageNewPRD?is_del_oldnews=1&oldnews_id="+oldnews_id;
+	        location.href="<?php echo base_url().index_page(); ?>manageNewPRD?is_del_oldnews=1&oldnews_id="+oldnews_id;
 	    }
 	});
 </script>

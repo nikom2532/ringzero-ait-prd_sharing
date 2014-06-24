@@ -43,6 +43,23 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			get("SC03_User")->result();
 	}
 	
+	public function checkDelete_News()
+	{
+		$checkDelete = "
+			SELECT
+				News.News_OldID
+			FROM
+				News
+			WHERE 
+				(News.News_Delete <> '1') 
+				or 
+				(News.News_Delete IS NULL)
+		";
+		$checkDeleteQuery = $this->db->
+			query($checkDelete)->result();
+		return $checkDeleteQuery;
+	}
+	
 	//############################ Delete News #############################
 	
 	public function delete_News($old_news_id = '')
@@ -84,25 +101,22 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $query;
 	}
 	
-	/*
-	public function undelete_News($old_news_id = '')
-	{
-		$StrQuery = "
-			UPDATE News
-			SET 
-				News_Delete = '0'
-			WHERE 
-				News_OldID = '".$old_news_id."'
-		";
-		$query = $this->db->
-			query($StrQuery)->result();
-		return $query;
-	}
-	*/
 	//############################ News #############################
 	
-	public function get_NT01_News($page=1, $row_per_page=20)
+	public function get_NT01_News(
+		$page=1, 
+		$row_per_page=20, 
+		$checkDelete_News = ''
+	)
 	{
+		if($checkDelete_News != ""){
+			$statusArray = array();
+			foreach($checkDelete_News as $val){
+				$statusArray[] = "'".$val->News_OldID."'";
+			}
+			$checkDelete_News = implode(",",$statusArray);
+		}
+		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
@@ -139,6 +153,14 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
+		";
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
+		$StrQuery .= "
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -149,8 +171,18 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT01_News_count()
+	public function get_NT01_News_count(
+		$checkDelete_News = ''
+	)
 	{
+		if($checkDelete_News != ""){
+			$statusArray = array();
+			foreach($checkDelete_News as $val){
+				$statusArray[] = "'".$val->News_OldID."'";
+			}
+			$checkDelete_News = implode(",",$statusArray);
+		}
+		
 		$StrQuery = "
 				SELECT
 					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
@@ -158,6 +190,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 		";
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
@@ -178,9 +216,18 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$filter_vdo = '',
 		$filter_sound = '',
 		$filter_image = '',
-		$filter_other = ''
+		$filter_other = '',
+		$checkDelete_News = ''
 	)
 	{
+		if($checkDelete_News != ""){
+			$statusArray = array();
+			foreach($checkDelete_News as $val){
+				$statusArray[] = "'".$val->News_OldID."'";
+			}
+			$checkDelete_News = implode(",",$statusArray);
+		}
+		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
@@ -295,7 +342,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT13_OtherFile.NT13_FileStatus = 'Y'
 			";
 		}
-		
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
 		$StrQuery .= "
 				group by NT01_News.NT01_NewsID
 			)
@@ -311,9 +363,18 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$startdate = '',
 		$enddate = '',
 		$NewsTypeID = '',
-		$NewsSubTypeID = ''
+		$NewsSubTypeID = '',
+		$checkDelete_News = ''
 	)
 	{
+		if($checkDelete_News != ""){
+			$statusArray = array();
+			foreach($checkDelete_News as $val){
+				$statusArray[] = "'".$val->News_OldID."'";
+			}
+			$checkDelete_News = implode(",",$statusArray);
+		}
+		
 		$StrQuery = "
 			SELECT
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
@@ -370,6 +431,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
 			";
 		}
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
 		$StrQuery .= "
 				group by NT01_News.NT01_NewsID
 		";
@@ -380,48 +447,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			return $val->NUMROW;
 		}
 	}
-	
-	/*
-	//for search where have no update
-	public function get_NT01_News_Search_IsHaveUpdateDate(
-		$News_Title = '' //,
-		// $NewsTypeID = '',
-		// $NewsSubTypeID = ''
-	)
-	{
-		return $this->db_ntt_old->
-			LIMIT('20,0')->
-			select('
-				NT01_News.NT01_NewsID,
-				NT01_News.NT01_UpdDate,
-				NT01_News.NT01_CreDate,
-				NT01_News.NT01_NewsTitle,
-				NT01_News.NT01_NewsSource,
-				NT01_News.NT01_NewsReferance,
-				NT01_News.NT01_UpdUserID,
-				NT01_News.NT01_CreUserID,
-				SC03_User.SC03_FName,
-				NT10_VDO.NT10_FileStatus,
-				NT11_Picture.NT11_FileStatus,
-				NT12_Voice.NT12_FileStatus,
-				NT13_OtherFile.NT13_FileStatus
-			')->
-			join('SC03_User', 'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID')->
-			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
-			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
-			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
-			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
-			where('NT08_PubTypeID', '11')->
-			like('NT01_News.NT01_NewsTitle', $News_Title)->
-			
-			// where('NT01_News.NT01_UpdUserID IS NOT NULL', null)->
-			
-			// where('NT01_News.NT02_TypeID = '.$NewsTypeID)->
-			// where('NT01_News.NT03_SubTypeID = '.$NewsSubTypeID)->
-			
-			get('NT01_News')->result();
-	}
-	*/
 	
 	//#########  Database New  ##########
 	

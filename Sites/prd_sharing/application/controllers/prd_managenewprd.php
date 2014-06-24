@@ -50,6 +50,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
 			$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
 			$row_per_page = 20;
+			$checkDelete_News = $this->prd_managenewprd_model->checkDelete_News();
 			
 			if($this->input->post("managenewsprd_is_search") == "yes"){
 				
@@ -94,8 +95,14 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_filter_other'] = $this->input->post('filter_other');
 			}
 			else{	//## No Search ##
-				$data['news'] = $this->prd_managenewprd_model->get_NT01_News($page, $row_per_page);
-				$count_row = $this->prd_managenewprd_model->get_NT01_News_count();
+				$data['news'] = $this->prd_managenewprd_model->get_NT01_News(
+					$page, 
+					$row_per_page, 
+					$checkDelete_News
+				);
+				$count_row = $this->prd_managenewprd_model->get_NT01_News_count(
+					$checkDelete_News
+				);
 				$data['post_news_title'] = "";
 				$data['post_start_date'] = "";
 				$data['post_end_date'] = "";

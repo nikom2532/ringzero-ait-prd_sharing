@@ -1,7 +1,7 @@
 <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
 <script>
     $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select > option:eq(0)").attr("selected","s	elected");
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
