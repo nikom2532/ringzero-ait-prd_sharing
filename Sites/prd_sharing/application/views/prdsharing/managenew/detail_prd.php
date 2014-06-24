@@ -86,7 +86,7 @@
 						// var_dump($voice);
 						if($voice->Url != ""){
 							if($voice_count == 0){
-								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><?php
+								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 30px; "><?php
 							}
 									?>
 									<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
@@ -212,7 +212,7 @@
 							<p>
 								ผู้สื่อข่าว : <?php 
 								if($news_item->NT01_ReporterID != ""){
-									echo $news_item->ReporterName; 
+									echo $news_item->ReporterName." ".$news_item->ReporterSurname; 
 								}
 								else{
 									?>-<?php

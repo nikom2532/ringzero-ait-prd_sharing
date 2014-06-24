@@ -44,7 +44,7 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 		
 		$query_news = $this->db_ntt_old->
 			LIMIT('20,0')->
-			select('
+			select("
 				NT01_News.NT01_NewsID,
 				NT01_News.NT01_NewsTag,
 				NT01_News.NT01_UpdDate,
@@ -56,12 +56,11 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 				NT01_News.NT01_UpdUserID,
 				NT01_News.NT01_CreUserID,
 				NT01_News.NT01_ReporterID,
-				
 				SC03_User.SC03_FName AS ReporterName,
-				
+				SC03_User.SC03_LName AS ReporterSurname,
 				NT01_News.NT01_ApvUserID,
 				NT01_News.NT01_ViewCount
-			')->
+			")->
 			join('SC03_User', 
 				'SC03_User.SC03_UserId = NT01_News.NT01_ReporterID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
