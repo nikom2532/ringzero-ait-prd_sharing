@@ -11,7 +11,7 @@
 </script>
 <div id="search-form">
 
-	<div class="row">
+	<div class="row"> 
 		<div class="col-lg-12">
 			<p style="text-align: center;">
 				รายงานการยื่นยันการเผยแพร่
@@ -90,12 +90,12 @@
 			Government Agencies
 		</p></a>
 	</div>
-	<div class="row">
+	<div class="row" style="width: 1300px; ">
 		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 5%;float: left; ">
+			<p class="col-1" style="width: 4%;float: left; ">
 				ลำดับที่
 			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 11%;float: left; ">
 				เลขที่ข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
@@ -104,77 +104,141 @@
 			<p class="col-2" style="width: 20%;float: left; ">
 				หัวข้อข่าว
 			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				เนื้อหาข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 20%;float: left; ">
 				ผู้สื่อข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
 				หน่วยงาน
 			</p>
+			<p class="col-1" style="width: 10%;float: left; ">
+				จำนวนผู้เข้าชม
+			</p>
 			<p class="col-2" style="width: 15%;float: left; ">
 				icon ไฟล์แนบ
 			</p>
 		</div>
-		<div class="odd">
-			<p class="col-1" style="width: 5%;float: left; ">
-				1
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				03/04/2014
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
-			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 5%;float: left; ">
-				1
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				03/04/2014
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
-			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-			</p>
-		</div>
+		<!-- <div class="testtesttest" style="overflow-x: hidden; overflow-y: auto; "> -->
+	<?php
+			//Start to count News's rows
+			$i=0;
+			foreach($news as $news_item){
+				
+				if($i % 2 == 0){
+					?><div class="odd" style="width: 1300px; "><?php
+				}
+				elseif($i % 2 == 1){
+					?><div class="event" style="width: 1300px; "><?php
+				}
+	?>
+						<p class="col-1" style="width: 4%;float: left; ">
+							1
+						</p>
+						<p class="col-1" style="width: 11%;float: left; ">
+							<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
+						</p>
+						<p class="col-1" style="width: 10%;float: left; "><?php
+							// if($news_item->NT01_UpdDate == ""){
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
+							// }
+							// else{
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+							// }
+							
+							if($news_item->NT01_UpdDate == ""){
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
+										if($New_News_item->News_UpdateDate == ""){
+											echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+										}
+										else{
+											echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+										}
+									}
+								}
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+							}
+							else{
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+										
+										if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
+											if($New_News_item->News_Date > $news_item->NT01_UpdDate){
+												echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
+											}
+											else{
+												echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+											}
+										}
+										else{
+											if($New_News_item->News_UpdateDate > $news_item->NT01_UpdDate){
+												echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
+											}
+											else{
+												echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
+											}
+										}
+										
+									}
+								}
+								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
+							}
+						?></p>
+						<p class="col-2" style="width: 20%;float: left; ">
+	<?php 
+							
+							$i_item=0;
+							foreach ($New_News as $New_News_item) {
+								if(
+									$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
+									$New_News_item->News_UpdateID > 0
+								){
+										// echo strlen(mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8'));
+										echo mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8');
+										$i_item++;
+								}
+							}
+							if($i_item == 0){
+								echo "---";
+								echo mb_substr($news_item->NT01_NewsTitle, 0, 60, 'UTF-8'); 
+							}
+	?>
+						</p>
+						<p class="col-1" style="width: 15%;float: left; ">
+<?php
+							echo $news_item->SC03_FName." ".$news_item->SC03_LName;
+?>
+						</p>
+						<p class="col-1" style="width: 10%;float: left; ">
+<?php
+							echo ;
+?>
+						</p>
+						<p class="col-1" style="width: 10%;float: left; ">
+							xxxxxxxxx
+						</p>
+						<p class="col-2" style="width: 15%;float: left; ">
+							<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
+							<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
+							<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
+							<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
+						</p>
+					</div>
+			
+	<?php
+				$i++;
+			}
+			//End Count News's Row 
+			
+			if($i == 0){
+	?>
+				<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+	<?php
+			}
+	?>
+		<!-- </div> -->
+		
+		
+		
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)

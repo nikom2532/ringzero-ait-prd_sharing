@@ -48,6 +48,13 @@
 				</div>
 				<div class="image-list">
 <?php
+					foreach ($get_NT01_News_videos as $videos) {
+						// echo $videos->Url;
+						if($videos->Url != ""){
+							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+							$LeftContainerCount++;
+						}
+					}
 					$i=1;
 					// var_dump($get_NT01_News_pictures);
 					foreach ($get_NT01_News_pictures as $image) {
@@ -74,14 +81,6 @@
 					<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 				</div>
 <?php
-					foreach ($get_NT01_News_videos as $videos) {
-						// echo $videos->Url;
-						if($videos->Url != ""){
-							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right;"><a style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
-							$LeftContainerCount++;
-						}
-					}
-
 					$voice_count = 0;
 					foreach ($get_NT01_News_Voice as $voice) {
 						// var_dump($voice);
@@ -155,7 +154,7 @@
 						// var_dump($voice);
 						if($OtherFile->Url != ""){
 							if($voice_count == 0){
-								?><div class="otherfiles-list" style="margin-top: 30px;"><?php
+								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
 							}
 									?><a href="<?php echo $OtherFile->Url; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->FileName; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
 							if($voice_count == 0){

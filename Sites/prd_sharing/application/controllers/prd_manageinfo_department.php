@@ -112,20 +112,20 @@ class PRD_manageInfo_Department extends CI_Controller {
 			}
 			$data['total_page'] = $total_page;
 			$data['current_page'] = $currentPage;
-			$data['jump_url'] = base_url().$url.index_page();
+			$data['jump_url'] = base_url().index_page().$url;
 			$data['next_page'] = 
 				$currentPage == $total_page
-					? base_url().$url.index_page()."$total_page"
-					: base_url().$url.index_page().($currentPage + 1);
+					? base_url().index_page().$url."$total_page"
+					: base_url().index_page().$url.($currentPage + 1);
 			$data["prev_page"] = 
 				($currentPage > 1
-				? base_url().$url.index_page().($currentPage - 1)
-				: base_url().$url.index_page()."1");
+				? base_url().index_page().$url.($currentPage - 1)
+				: base_url().index_page().$url."1");
 			$data["total_page"]  =
 				($total_page == 0?1 : $total_page);
 			$data["page_url"] = $page_url;
-			$data["first_page"] = base_url().$url.index_page()."1";
-			$data["last_page"] = base_url().$url.index_page()."$total_page";
+			$data["first_page"] = base_url().index_page().$url."1";
+			$data["last_page"] = base_url().index_page().$url."$total_page";
 			$data["current_page"] = $page;
 			$data["row_per_page"] = $row_per_page;
 			

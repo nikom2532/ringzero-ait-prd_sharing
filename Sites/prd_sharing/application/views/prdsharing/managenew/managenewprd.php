@@ -215,7 +215,7 @@
 <?php
 		//Start to count News's rows
 		$i=0;
-		foreach($news as $news_item):
+		foreach($news as $news_item){
 			if($i % 2 == 0){
 				?><div class="odd"><?php
 			}
@@ -363,7 +363,7 @@
 				</div>
 <?php
 			$i++;
-		endforeach;
+		}
 		//End Count News's Row 
 		
 		if($i == 0){

@@ -1,5 +1,5 @@
 <?php
-class PRD_ReportPRD_model extends CI_Model {
+class PRD_Report_PRD_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -120,6 +120,7 @@ class PRD_ReportPRD_model extends CI_Model {
 					MAX(NT01_News.NT01_Status) AS NT01_Status,
 					MAX(SC03_User.SC03_FName) AS SC03_FName,
 					MAX(SC03_User.SC03_LName) AS SC03_LName,
+					MAX(SC03_User.SC07_DepartmentId) AS SC07_DepartmentId,
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus,
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
@@ -166,6 +167,23 @@ class PRD_ReportPRD_model extends CI_Model {
 		}
 	}
 	
+	/*
+	public function get_SC07_Department()
+	{
+		$StrQuery = "
+			SELECT
+				SC07_DepartmentName
+				
+				(SELECT FROM Where) AS ROW
+			FROM
+				SC07_Department
+		";
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		return $query;
+	}
+	*/
+	
 	public function get_NT01_News_Search(
 		$page=1, 
 		$row_per_page=20, 
@@ -201,7 +219,14 @@ class PRD_ReportPRD_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber', --Comment
+					(
+						SELECT
+							SC07_DepartmentName
+						FROM
+							SC07_Department
+						WHERE
+					)
 				FROM NT01_News 
 				LEFT JOIN 
 					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 

@@ -1,5 +1,5 @@
 <?php
-class PRD_ReportGOVE_model extends CI_Model {
+class PRD_Report_GOVE_model extends CI_Model {
 
 	public function __construct()
 	{
