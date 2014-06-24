@@ -1,81 +1,88 @@
 <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
-<script>
-    $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
-        $(".select-menu > select").live("change",function(){
-            var selectmenu_txt = $(this).find("option:selected").text();
-            $(this).prev("span").text(selectmenu_txt);
-        });
-        
-    });
-</script>
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
-
-			<div class="row">
-				<div class="col-lg-12">
-					<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-					<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;" >
+			<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>rss" method="post">
+				<div class="row">
+					<div class="col-lg-12">
+						<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
+						<input class="txt-field" type="text" value="" name="start_date" id="fromdate" placeholder="" style=" margin-left: 15px;width: 77%;" >
+					</div>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<label >วันที่</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+				<div class="row">
+					<div class="col-lg-6">
+						<label >วันที่</label>
+						<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+					</div>
+					<div class="col-lg-6">
+						<label >ถึง</label>
+						<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<label >ถึง</label>
-					<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+				
+				<div class="row">
+					<div class="col-lg-6">
+						<label >หมวดหมู่ข่าว</label>
+						<span class="select-menu">
+						<span>เลือกหมวดหมู่ข่าว</span>
+							<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
+								<option value="">เลือกหมวดหมู่ข่าว</option><?php
+								// var_dump($NT02_NewsType);
+								foreach ($NT02_NewsType as $newType_item) {
+									?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+										if($newType_item->NT02_TypeID == $post_News_type_id){
+											?>selected='selected'<?php
+										}
+									?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
+								}
+							?></select>
+						</span>
+					</div>
+					<div class="col-lg-6">
+						<label >หมวดหมู่ข่าวย่อย</label>
+						<span class="select-menu">
+						<span>เลือกหมวดหมู่ข่าวย่อย</span>
+							<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
+								<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
+								foreach ($NT03_NewsSubType as $newType_item) {
+									// if($newType_item->NT02_TypeID == $post_News_type_id){
+										?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
+											if($post_News_subtype_id != ""){
+												?>selected='selected'<?php
+											}
+										?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+									// }
+								}
+							?></select>
+						</span>
+					</div>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<label >หมวดหมู่ข่าว</label>
-					<span class="select-menu">
-					<span>เลือกหมวดหมู่ข่าว</span>
-						<select>
-							<option></option>
-						</select>
-					</span>
+	
+				<div class="row">
+					<div class="col-lg-6">
+						<label >หน่วยงาน</label>
+						<span class="select-menu">
+						<span>เลือกหน่วยงาน</span>
+							<select>
+								<option></option>
+							</select>
+						</span>
+					</div>
+					  <div class="col-lg-6">
+						<label >ชื่อนักข่าว</label>
+						<span class="select-menu">
+						<span>เลือกนักข่าว</span>
+						  <select name="UserId" id="UserId" class="chosen-select" placeholder="">
+							<option value="0"> เลือกนักข่าว</option>
+						  </select>
+						</span>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<label >หมวดหมู่ข่าวย่อย</label>
-					<span class="select-menu">
-					<span>เลือกหมวดหมู่ข่าว</span>
-						<select>
-							<option></option>
-						</select>
-					</span>
+				<div class="col-lg-12" style="text-align: center;">
+					<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<label >หน่วยงาน</label>
-					<span class="select-menu">
-					<span>เลือกหน่วยงาน</span>
-						<select>
-							<option></option>
-						</select>
-					</span>
-				</div>
-				  <div class="col-lg-6">
-					<label >ชื่อนักข่าว</label>
-					<span class="select-menu">
-					<span>เลือกนักข่าว</span>
-					  <select name="UserId" id="UserId" class="chosen-select" placeholder="">
-						<option value="0"> เลือกนักข่าว</option>
-					  </select>
-					</span>
-				</div>
-			</div>
-			<div class="col-lg-12" style="text-align: center;">
-				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
-			</div>
-
+			</form>
 		</div>
 	</div>
 
@@ -195,6 +202,32 @@
 	</div>
 </div>
 <script type="text/javascript">
+	function jump_page(val){
+		location='<?php echo $jump_url; ?>/'+val;
+	}
+	function nextPage(val){
+		debugger;
+		var nextpage = parseInt(val)+1;
+		if(<?php echo $total_page; ?>==val){
+			nextpage = val;
+		}
+		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+nextpage);
+		$("#homeSearch").submit();
+	}
+	function lastPage(val){
+		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+val);
+		$("#homeSearch").submit();
+	}
+	function prevPage(val){
+		var prevpage = parseInt(val)-1;
+		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+prevpage);
+		$("#homeSearch").submit();
+	}
+	function firstPage(){
+		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/1");
+		$("#homeSearch").submit();
+	}
+
 $(function(){
 	 $("#makeRss").click(function(){
 		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
@@ -208,4 +241,49 @@ $(function(){
 		 });
 	 });
 });
+
+$('select#NewsTypeID').change(function(){
+	// debugger;
+    var type_id = $('select#NewsTypeID').val();
+	if (type_id != ""){
+		var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+	}
+	else{
+		var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+	}
+	// debugger;
+	// alert(post_url);
+	$.ajax({
+		type: "POST",
+		url: post_url,
+		dataType :'json',
+		success: function(subtype)
+		{
+			// var a = JSON.parse(subtype);
+			$('#NewsSubTypeID').empty();
+			
+			var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
+			$('#NewsSubTypeID').append(text);
+			
+			$.each(subtype,function(index,val)
+			{
+				var text = ""+
+				"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
+				$('#NewsSubTypeID').append(text);
+			});
+			var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+			
+		} //end success
+	}); //end AJAX
+}); //end change 
+
+    $(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+    
 </script>

@@ -163,14 +163,9 @@ class PRD_rss extends CI_Controller {
 			$data['title'][$i] = $this->prd_rss_old_model->get_news($newsid);
 			
 			//Ming
-			// $data['title'][$i] = $this->prd_rss_old_model->get_NT01_News();
-			
-			// $page=1, $row_per_page=20
-			
+			// $data['title'][$i] = $this->prd_rss_old_model->get_NT01_News_RSS();
 			$i++;
 		}
 		$this->load->view('prdsharing/rss/view_rss',$data);
 	}
-	
-	
 }
