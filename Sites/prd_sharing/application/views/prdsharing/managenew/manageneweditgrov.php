@@ -101,7 +101,7 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label id="grov_active" >หน่วยงานภาครัฐ</label>
 				<select name="grov_active" id="grov_active">
-					<option value="">เลือกเผยแพร่</option>
+					<option value="">เลือกหน่วยงานภาครัฐ</option>
 <?php
 					foreach ($SC07_Department as $Department_item) {
 						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php

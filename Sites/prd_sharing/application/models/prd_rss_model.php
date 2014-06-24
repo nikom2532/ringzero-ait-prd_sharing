@@ -41,6 +41,14 @@ class PRD_rss_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_SC07_Department()
+	{
+		$query = $this->db_ntt_old->
+			get('SC07_Department');
+			
+		return $query->result();
+	}
+	
 	public function get_New_News()
 	{
 		$query_news = $this->db->

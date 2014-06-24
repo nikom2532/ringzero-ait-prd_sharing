@@ -26,7 +26,7 @@
 						<label >หมวดหมู่ข่าว</label>
 						<span class="select-menu">
 						<span>เลือกหมวดหมู่ข่าว</span>
-							<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
+							<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 100%;">
 								<option value="">เลือกหมวดหมู่ข่าว</option><?php
 								// var_dump($NT02_NewsType);
 								foreach ($NT02_NewsType as $newType_item) {
@@ -43,7 +43,7 @@
 						<label >หมวดหมู่ข่าวย่อย</label>
 						<span class="select-menu">
 						<span>เลือกหมวดหมู่ข่าวย่อย</span>
-							<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
+							<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 100%;">
 								<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 								foreach ($NT03_NewsSubType as $newType_item) {
 									// if($newType_item->NT02_TypeID == $post_News_type_id){
@@ -64,8 +64,13 @@
 						<label >หน่วยงาน</label>
 						<span class="select-menu">
 						<span>เลือกหน่วยงาน</span>
-							<select>
-								<option></option>
+							<select name="grov_active" id="grov_active">
+								<option value="">เลือกหน่วยงานภาครัฐ</option>
+<?php
+								foreach ($SC07_Department as $Department_item) {
+									?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+								}
+?>
 							</select>
 						</span>
 					</div>
@@ -73,9 +78,23 @@
 						<label >ชื่อนักข่าว</label>
 						<span class="select-menu">
 						<span>เลือกนักข่าว</span>
-						  <select name="UserId" id="UserId" class="chosen-select" placeholder="">
-							<option value="0"> เลือกนักข่าว</option>
-						  </select>
+						  <select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
+							<option value="">เลือกนักข่าว</option>
+	<?php
+							foreach ($SC03_User as $SC03_User_item) {
+								?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
+									if($post_reporter_id != ""){
+										?>selected='selected'<?php
+									}
+								?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
+							}
+	?>
+						</select>
+						<!-- <script>
+							jQuery(document).ready(function(){
+								jQuery(".reporter_id_chosen").chosen({});
+							});
+						</script> -->
 						</span>
 					</div>
 				</div>
@@ -182,21 +201,27 @@
 		}
 ?>
 			<div class="footer-table">
-				<!-- <p style="width: 70%;float: left;margin-top: 20px;">
-					ทั้งหมด: 73 รายการ (4หน้า)
+				<p style="width: 70%;float: left;margin-top: 20px;">
+					<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
 				</p>
-				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-					<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
-					<span style="margin-top: 10px;">
-						<select style="">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-						</select> / 100</span>
-					<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-				</p> -->
+	            
+	            <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+	            	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
+	            	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
+	                <span style="margin-top: 10px;">
+						<!-- <span><?php //echo $current_page; ?></span> -->
+						<select onchange="jump_page(this.value)">
+<?php 
+							// var_dump($page_url);
+							foreach ($page_url as $item) {
+								?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
+							}
+?>
+						</select> / <?php echo $total_page; ?>
+	                </span>
+	                <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
+	                <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+	            </p>
 			</div>
 		</div>
 	</div>
@@ -211,32 +236,32 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url()."rss"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/1");
 		$("#homeSearch").submit();
 	}
 
 $(function(){
 	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
+		 var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
 		 //alert(url);
 		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
 		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
 		 $.post(url,dataSet,function(data){
 			// alert(data);
-			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
+			var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
 			$("#InputRss").val(url).select();
 		 });
 	 });
@@ -246,10 +271,10 @@ $('select#NewsTypeID').change(function(){
 	// debugger;
     var type_id = $('select#NewsTypeID').val();
 	if (type_id != ""){
-		var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+		var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
 	}
 	else{
-		var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+		var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
 	}
 	// debugger;
 	// alert(post_url);

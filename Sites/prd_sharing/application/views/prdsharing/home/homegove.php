@@ -9,7 +9,7 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right;">
+			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right;" id="makeRss">
 		</div>
 <?php
 		// var_dump($news); 
@@ -178,3 +178,20 @@
         </script>
 	</div>
 </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	 $("#makeRss").click(function(){
+		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
+		 //alert(url);
+		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
+		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
+		 $.post(url,dataSet,function(data){
+			//alert(data);
+			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
+			window.open(url);
+			//$("#InputRss").val(url).select();
+		 });
+	 });
+});
+</script>

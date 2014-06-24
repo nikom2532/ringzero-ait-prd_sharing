@@ -26,6 +26,7 @@ class PRD_rss extends CI_Controller {
 			$data['New_News'] = $this->prd_rss_model->get_New_News();
 			
 			$data['SC03_User'] = $this->prd_rss_model->get_SC03_User();
+			$data['SC07_Department'] = $this->prd_rss_model->get_SC07_Department();
 			$row_per_page = 20;
 			
 			if($this->input->post("managenewsprd_is_search") == "yes"){

@@ -61,6 +61,7 @@ $route['sentNew_Department'] = 'prd_sentnew/get_Department';
 $route['sentNew_Upload'] = 'prd_sentNew/sentnew_process';
 
 $route['rss'] = 'prd_rss';
+$route['rss/(:num)'] = 'prd_rss/index/$1';
 $route['manageNew'] = 'prd_managenew';
 
 $route['manageUser'] = 'prd_manageuser';
@@ -105,13 +106,7 @@ $route['userInfo_GOVE'] = 'prd_userinfo_gove';
 
 $route['register'] = 'prd_userinfo_register';
 
-
-
 // $route['testdb'] = 'testsite_db2';
-
-
-
-
 
 
 /* End of file routes.php */

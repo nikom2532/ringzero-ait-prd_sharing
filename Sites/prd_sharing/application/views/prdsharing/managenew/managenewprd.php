@@ -118,7 +118,7 @@
 				<div style="float:left; width: 25%; text-align: right;">ผู้สื่อข่าว</div>
 				<div style="float:left; width: 60%; margin-left: 30px;">
 					<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
-						<option value="">โปรดเลือก...</option>
+						<option value="">เลือกนักข่าว</option>
 <?php
 						foreach ($SC03_User as $SC03_User_item) {
 							?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
