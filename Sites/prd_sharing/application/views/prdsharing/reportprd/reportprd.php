@@ -90,8 +90,9 @@
 			Government Agencies
 		</p></a>
 	</div>
-	<div class="row" style="width: 1300px; ">
-		<div class="header-table" style="text-align: right;" style="width: 1300px; ">
+	
+	<div class="row" style="width: 1000px; overflow-y: hidden; overflow-x: auto; ">
+		<div class="header-table" style="text-align: center; width: 1300px; ">
 			<p class="col-1" style="width: 4%;float: left; ">
 				ลำดับที่
 			</p>
@@ -117,8 +118,8 @@
 				icon ไฟล์แนบ
 			</p>
 		</div>
-		<!-- <div class="testtesttest" style="overflow-x: hidden; overflow-y: auto; "> -->
-	<?php
+		
+		<?php
 			//Start to count News's rows
 			$i=0;
 			foreach($news as $news_item){
@@ -235,27 +236,25 @@
 	<?php
 			}
 	?>
-		<!-- </div> -->
+			<!-- </div> -->
 		
-		
-		
-		<div class="footer-table">
-			<p style="width: 70%;float: left;margin-top: 20px;">
-				ทั้งหมด: 73 รายการ (4หน้า)
-			</p>
-			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
-				<span style="margin-top: 10px;">
-					<select style="">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select> / 100</span>
-				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-			</p>
+			<div class="footer-table">
+				<p style="width: 70%;float: left;margin-top: 20px;">
+					ทั้งหมด: 73 รายการ (4หน้า)
+				</p>
+				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+					<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
+					<span style="margin-top: 10px;">
+						<select style="">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select> / 100</span>
+					<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
+					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
+				</p>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
