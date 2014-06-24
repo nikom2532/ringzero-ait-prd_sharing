@@ -92,52 +92,90 @@
 
 		<div class="row">
 			<div class="header-table">
-				<p class="col-1" style="width: 10%;float: left; ">
+				<p class="col-1" style="width: 5%;float: left; ">
+					
+				</p>
+				<p class="col-2" style="width: 5%;float: left; ">
 					วันที่ข่าว
 				</p>
-				<p class="col-2" style="width: 70%;float: left; ">
+				<p class="col-3" style="width: 70%;float: left; ">
 					หัวข้อข่าว
 				</p>
-				<p class="col-3" style="width: 20%;float: left; ">
+				<p class="col-4" style="width: 20%;float: left; ">
 					Icon ไฟล์แนบ
 				</p>
 			</div>
-			<div class="odd">
-				<p class="col-1" style="width: 5%;float: left; ">
-					999
-				</p>
-				<p class="col-2" style="width: 15%;float: left; ">
-					03/02/2557</br>00:00:00
-				</p>
-				<p class="col-3" style="width: 60%;float: left; ">
-					<a href="<?php echo base_url().index_page(); ?>detail">Icon ไฟล์แนบ</a>
-				</p>
-				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
-					<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
-				</p>
-			</div>
-			<div class="event">
-				<p class="col-1" style="width: 5%;float: left; ">
-					999
-				</p>
-				<p class="col-2" style="width: 15%;float: left; ">
-					หัวข้อข่าว
-				</p>
-				<p class="col-3" style="width: 60%;float: left; ">
-					<a href="<?php echo base_url().index_page(); ?>detail">Icon ไฟล์แนบ</a>
-				</p>
-				<p class="col-4" style="width: 20%;float: left;  text-align: center;">
-					<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
-					<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 10px 0;">
-				</p>
-			</div>
+<?php
+		//Start to count News's rows
+		$i=0;
+		foreach($news as $news_item){
+			if($i % 2 == 0){
+				?><div class="odd"><?php
+			}
+			elseif($i % 2 == 1){
+				?><div class="event"><?php
+			}
+?>
+					<p class="col-1" style="width: 5%;float: left; ">
+						<?php echo ($i+1); ?>
+					</p>
+					<p class="col-2" style="width: 15%;float: left; ">
+						<!-- 03/02/2557</br>00:00:00 -->
+<?php
+						echo date("d/m/Y", strtotime($news_item->NT01_NewsDate))."<br />".date("h:m:s", strtotime($news_item->NT01_NewsDate));
+?>
+					</p>
+					<p class="col-3" style="width: 60%;float: left; ">
+						<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsTitle; ?></a>
+					</p>
+					<p class="col-4" style="width: 20%;float: left;  text-align: center; text-align: center; ">
+						<img src="<?php echo base_url(); ?>images/icon/<?php
+						if($news_item->NT10_FileStatus == "Y"){ //Video
+							?>vdo<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" width="17" style="margin: -10px 10px 0;">
+					
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
+						if($news_item->NT12_FileStatus == 'Y'){ //Voice
+							?>voice_512x512<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" width="17" style="margin: -10px 10px 0;">
+					
+					
+					<img src="<?php echo base_url(); ?>images/icon/<?php 
+						if($news_item->NT13_FileStatus == 'Y'){ //Document
+							?>Document.jpg<?php
+						}else{
+							?>null.png<?php
+						}
+					?>" width="17" style="margin: -10px 10px 0;">
+					
+					<img src="<?php echo base_url(); ?>images/icon/<?php
+						if($news_item->NT11_FileStatus == 'Y'){ //Picture
+							?>pic<?php
+						}else{
+							?>null<?php
+						}
+					?>.png" width="17" style="margin: -10px 10px 0;">
+					</p>
+				</div>
+<?php
+			$i++;
+		}
+		//End Count News's Row 
+		
+		if($i == 0){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
+		}
+?>
 			<div class="footer-table">
-				<p style="width: 70%;float: left;margin-top: 20px;">
+				<!-- <p style="width: 70%;float: left;margin-top: 20px;">
 					ทั้งหมด: 73 รายการ (4หน้า)
 				</p>
 				<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
@@ -151,7 +189,7 @@
 						</select> / 100</span>
 					<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
 					<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-				</p>
+				</p> -->
 			</div>
 		</div>
 	</div>
@@ -164,7 +202,7 @@ $(function(){
 		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
 		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
 		 $.post(url,dataSet,function(data){
-			//alert(data);
+			// alert(data);
 			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
 			$("#InputRss").val(url).select();
 		 });

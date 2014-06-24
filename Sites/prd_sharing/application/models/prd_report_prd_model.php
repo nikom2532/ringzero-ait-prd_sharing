@@ -106,6 +106,27 @@ class PRD_Report_PRD_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
+		// ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
+					// (
+						// SELECT
+							// SC07_Department.SC07_DepartmentName
+						// FROM
+							// SC07_Department
+						// INNER JOIN 
+							// SC03_User
+						// ON 
+							// SC03_User.SC07_DepartmentId = SC07_Department.SC07_DepartmentId
+						// INNER JOIN 
+							// NT01_News
+						// ON 
+							// NT01_News.NT01_ReporterID = SC03_User.SC03_UserID
+						// AND
+							// SC03_User.SC03_UserID = NT01_News.NT01_ReporterID
+						// where NT01_NewsID = NT01_News.NT01_NewsID
+					// ) 
+					// AS SC07_DepartmentName
+		
+		
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -124,23 +145,15 @@ class PRD_Report_PRD_model extends CI_Model {
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus,
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
-					(
-						SELECT
-							SC07_DepartmentName
-						FROM
-							SC07_Department
-						LEFT JOIN SC03_User
-						ON 
-							SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
-						WHERE
-							
-					) AS SC07_DepartmentName
+					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
+					
 					
 				FROM NT01_News 
 				LEFT JOIN SC03_User 
 					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+				JOIN SC07_Department
+					ON 
+					
 				LEFT JOIN NT10_VDO 
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
 				LEFT JOIN NT11_Picture 
@@ -238,7 +251,8 @@ class PRD_Report_PRD_model extends CI_Model {
 							SC07_Department
 						WHERE
 							SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
-					) AS SC07_DepartmentName
+					)
+					AS SC07_DepartmentName
 					
 				FROM NT01_News 
 				LEFT JOIN 

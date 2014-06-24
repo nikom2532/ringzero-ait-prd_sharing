@@ -210,7 +210,7 @@
 						</p>
 						<p class="col-1" style="width: 10%;float: left; ">
 <?php
-							// echo ;
+							echo $news_item->SC07_DepartmentName;
 ?>
 						</p>
 						<p class="col-1" style="width: 10%;float: left; ">
