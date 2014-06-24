@@ -239,18 +239,26 @@
 					?></p>
 					
 					<p class="col-1 PRDNewsDelete" data-oldnews_id="<?php echo $news_item->NT01_NewsID; ?>" style="width: 5%;float: left; word-wrap: break-word; cursor:pointer; text-align: center; "><?php
+						$New_News_delete = 0; //Use for show query only 1 record	
 						foreach ($New_News as $New_News_item) {
 							if(
 								$New_News_item->News_OldID ==  $news_item->NT01_NewsID
 							){
 									if($New_News_item->News_Delete == 1){
-										?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
+										if($New_News_delete == 0){
+											?><img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;"><?php
+											$New_News_delete++;
+										}
 									}
 									else{
-										?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+										if($New_News_delete == 0){
+											?><img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;"><?php
+											$New_News_delete++;
+										}
 									}
 							}
 						}
+						// echo $New_News_delete;
 					?></p>
 					<p class="col-1" style="width: 35%;float: left; word-wrap: break-word;">
 <?php 
@@ -266,7 +274,7 @@
 							}
 						}
 						if($i_item == 0){
-							echo mb_substr($news_item->NT01_NewsTitle, 0, 120, 'UTF-8'); 
+							echo mb_substr($news_item->NT01_NewsTitle, 0, 100, 'UTF-8'); 
 						}
 ?>
 					</p>
@@ -278,6 +286,8 @@
 							// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 						// }
 						
+						
+						/*
 						if($news_item->NT01_UpdDate == ""){
 							foreach ($New_News as $New_News_item) {
 								if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
@@ -316,6 +326,8 @@
 							}
 							// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 						}
+						*/
+						echo date("d/m/Y h:m:s", strtotime($news_item->NT01_NewsDate));
 					?></p>
 					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;">
 <?php

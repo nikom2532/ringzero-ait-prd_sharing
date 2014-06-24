@@ -145,15 +145,14 @@ class PRD_Report_PRD_model extends CI_Model {
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus,
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus
-					
-					
+					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
+					MAX(SC07_Department.SC07_DepartmentName) AS SC07_DepartmentName,
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN SC03_User 
 					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 				JOIN SC07_Department
-					ON 
-					
+					ON SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
 				LEFT JOIN NT10_VDO 
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
 				LEFT JOIN NT11_Picture 

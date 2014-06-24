@@ -1,7 +1,7 @@
 <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
 <script>
     $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","s	elected");
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
@@ -91,7 +91,7 @@
 		</p></a>
 	</div>
 	<div class="row" style="width: 1300px; ">
-		<div class="header-table" style="text-align: right;">
+		<div class="header-table" style="text-align: right;" style="width: 1300px; ">
 			<p class="col-1" style="width: 4%;float: left; ">
 				ลำดับที่
 			</p>
@@ -104,10 +104,10 @@
 			<p class="col-2" style="width: 20%;float: left; ">
 				หัวข้อข่าว
 			</p>
-			<p class="col-1" style="width: 20%;float: left; ">
+			<p class="col-1" style="width: 15%;float: left; ">
 				ผู้สื่อข่าว
 			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 15%;float: left; ">
 				หน่วยงาน
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
@@ -208,7 +208,7 @@
 							echo $news_item->SC03_FName." ".$news_item->SC03_LName;
 ?>
 						</p>
-						<p class="col-1" style="width: 10%;float: left; ">
+						<p class="col-1" style="width: 15%;float: left; ">
 <?php
 							echo $news_item->SC07_DepartmentName;
 ?>

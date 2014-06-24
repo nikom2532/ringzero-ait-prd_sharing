@@ -126,6 +126,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
 					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
@@ -237,6 +238,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT01_News.NT01_NewsID,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
 					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
 					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
@@ -244,6 +246,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
 					MAX(NT01_News.NT01_Status) AS NT01_Status,
 					MAX(SC03_User.SC03_FName) AS SC03_FName, 
+					MAX(SC03_User.SC03_LName) AS SC03_LName,
 					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
@@ -452,10 +455,37 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	public function get_New_News()
 	{
+		// -- MAX(News.News_OldID) AS News_OldID,
+		// -- MAX(News.News_Delete) AS News_Delete,
+		// -- MAX(News.News_UpdateID) AS News_UpdateID,
+		// -- MAX(News.News_Title) AS News_Title,
+		// -- MAX(News.News_Resource) AS News_Resource,
+		// -- MAX(News.News_Reference) AS News_Reference
+				
+		$SQL_query_news = "
+			SELECT 
+				(News.News_OldID) AS News_OldID,
+				(News.News_Delete) AS News_Delete,
+				(News.News_UpdateID) AS News_UpdateID,
+				(News.News_Title) AS News_Title,
+				(News.News_Resource) AS News_Resource,
+				(News.News_Reference) AS News_Reference
+				
+			FROM 
+				News
+			LEFT JOIN
+				Category
+			ON
+				News.Cate_ID = Category.Cate_ID
+		";
 		$query_news = $this->db->
-			join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
-			get('News')->result();
+			query($SQL_query_news)->result();
 		return $query_news;
+		
+		// $query_news = $this->db->
+			// join('Category', 'News.Cate_ID = Category.Cate_ID', 'left')->
+			// get('News')->result();
+		// return $query_news;
 	}
 	
 	public function get_prd_search_title($news_title)
