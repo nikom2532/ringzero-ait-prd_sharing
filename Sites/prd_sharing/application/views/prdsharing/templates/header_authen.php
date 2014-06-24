@@ -16,8 +16,8 @@
 	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script> 
 	
 	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script> -->
-	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
-	<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+	<!-- <script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+	<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script> -->
 
     <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
@@ -34,13 +34,8 @@
         <div class="wrapper">
             <div class="bg-header">
                 <div id="header">
-                    <div class="logo">
-                        <img src="<?php echo base_url(); ?>images/NNT_logo.png" alt="Logo" style="width:110px;">
-                        <h1>
-                            <label class="th">ระบบช่องทางเผยแพร่ ข้อมูลข่าวสาร</br>
-                            <span class="bold">หน่วยงานภาครัฐ กรมประชาสัมพันธ์</span></label>
-                        </h1>
-                        <img src="<?php echo base_url(); ?>images/sh_logo_header.png" alt="Logo" style="width:100%">
+                   <div class="logo">
+                        <img src="<?php echo base_url(); ?>images/prdsharing_Login.png" alt="Logo" style="width:auto;">
                     </div>
                 </div>
             </div>

@@ -125,7 +125,18 @@ class PRD_Report_PRD_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
+					(
+						SELECT
+							SC07_DepartmentName
+						FROM
+							SC07_Department
+						LEFT JOIN SC03_User
+						ON 
+							SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+						WHERE
+							
+					) AS SC07_DepartmentName
 					
 				FROM NT01_News 
 				LEFT JOIN SC03_User 
@@ -219,14 +230,16 @@ class PRD_Report_PRD_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber', --Comment
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
 					(
 						SELECT
 							SC07_DepartmentName
 						FROM
 							SC07_Department
 						WHERE
-					)
+							SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+					) AS SC07_DepartmentName
+					
 				FROM NT01_News 
 				LEFT JOIN 
 					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 

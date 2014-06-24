@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-					<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;">
+					<input class="txt-field" type="text" value="" name="date-from"  placeholder="" style=" margin-left: 15px;width: 77%;" >
 				</div>
 			</div>
 
@@ -62,16 +62,14 @@
 						</select>
 					</span>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<div style="float: left;width: 30%;">
-						<label style="width: 100%;" >ผู้สื่อข่าว</label>
-					</div>
-					<div style="margin-left: 2%;float: left;">
-						<img src="<?php echo base_url(); ?>images/icon/sh.png" style="margin: -5px 10px 0;">
-						<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
-					</div>
+				  <div class="col-lg-6">
+					<label >ชื่อนักข่าว</label>
+					<span class="select-menu">
+					<span>เลือกนักข่าว</span>
+					  <select name="UserId" id="UserId" class="chosen-select" placeholder="">
+						<option value="0"> เลือกนักข่าว</option>
+					  </select>
+					</span>
 				</div>
 			</div>
 			<div class="col-lg-12" style="text-align: center;">
@@ -84,9 +82,9 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="">
-				<a class="icon" href="#"><img src="<?php echo base_url(); ?>images/rss_btn.png" style=""></a>
-				<a class="icon" href="#"><img src="<?php echo base_url(); ?>images/rss.png" style=""></a>
-				<input type="text" class="form-control" id="InputKeyword" placeholder="" style="margin-top: -30px;
+				<img src="<?php echo base_url(); ?>images/rss_btn.png" style="" id="makeRss">
+				<img src="<?php echo base_url(); ?>images/rss.png" style="">
+				<input type="text" class="form-control" id="InputRss" placeholder="" style="margin-top: -30px;
 				padding: 20px 18px 0;
 				vertical-align: baseline;width:50%">
 			</div>
@@ -158,3 +156,18 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+	 $("#makeRss").click(function(){
+		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
+		 //alert(url);
+		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
+		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
+		 $.post(url,dataSet,function(data){
+			//alert(data);
+			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
+			$("#InputRss").val(url).select();
+		 });
+	 });
+});
+</script>
