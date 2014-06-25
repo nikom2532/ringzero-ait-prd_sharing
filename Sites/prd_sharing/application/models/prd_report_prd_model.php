@@ -106,27 +106,6 @@ class PRD_Report_PRD_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-		// ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
-		// (
-			// SELECT
-				// SC07_Department.SC07_DepartmentName
-			// FROM
-				// SC07_Department
-			// INNER JOIN 
-				// SC03_User
-			// ON 
-				// SC03_User.SC07_DepartmentId = SC07_Department.SC07_DepartmentId
-			// INNER JOIN 
-				// NT01_News
-			// ON 
-				// NT01_News.NT01_ReporterID = SC03_User.SC03_UserID
-			// AND
-				// SC03_User.SC03_UserID = NT01_News.NT01_ReporterID
-			// where NT01_NewsID = NT01_News.NT01_NewsID
-		// ) 
-		// AS SC07_DepartmentName
-		
-		
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -189,23 +168,6 @@ class PRD_Report_PRD_model extends CI_Model {
 			return $val->NUMROW;
 		}
 	}
-	
-	/*
-	public function get_SC07_Department()
-	{
-		$StrQuery = "
-			SELECT
-				SC07_DepartmentName
-				
-				(SELECT FROM Where) AS ROW
-			FROM
-				SC07_Department
-		";
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		return $query;
-	}
-	*/
 	
 	public function get_NT01_News_Search(
 		$page=1, 
