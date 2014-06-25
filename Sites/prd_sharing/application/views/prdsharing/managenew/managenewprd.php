@@ -7,7 +7,7 @@
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
 				<input class="txt-field" type="text" value="<?php 
 					if($post_news_title != ""){
-						echo $post_news_title;	
+						echo $post_news_title;
 					}
 				?>" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>
@@ -35,41 +35,39 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หมวดหมู่ข่าว</label>
-				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
-				
-				
-				<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
-					<option value="">เลือกหมวดหมู่ข่าว</option><?php
-					// var_dump($NT02_NewsType);
-					foreach ($NT02_NewsType as $newType_item) {
-						?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
-							if($newType_item->NT02_TypeID == $post_News_type_id){
-								?>selected='selected'<?php
-							}
-						?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
-					}
-				?></select>
-				
+				<span class="select-menu">
+				  <span>เลือกหมวดหมู่ข่าว</span>
+					<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 100%;">
+						<option value="">เลือกหมวดหมู่ข่าว</option><?php
+						// var_dump($NT02_NewsType);
+						foreach ($NT02_NewsType as $newType_item) {
+							?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+								if($newType_item->NT02_TypeID == $post_News_type_id){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
+						}
+					?></select>
+				  </span> 
 				<?php //echo $post_News_type_id; ?>
 			</div>
 			<div class="col-lg-6">
 				<label >หมวดหมู่ข่าวย่อย</label>
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 				
-				
-				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
-					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
-					foreach ($NT03_NewsSubType as $newType_item) {
-						// if($newType_item->NT02_TypeID == $post_News_type_id){
+				<span class="select-menu">
+					<span>เลือกหมวดหมู่ข่าวย่อย</span>
+					<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 100%;">
+						<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
+						foreach ($NT03_NewsSubType as $newType_item) {
 							?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
 								if($post_News_subtype_id != ""){
 									?>selected='selected'<?php
 								}
 							?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
-						// }
-					}
-				?></select>
-				
+						}
+					?></select>
+				</span> 
 				
 			</div>
 		</div>
@@ -86,7 +84,7 @@
 			
 			<div style="float:left; width: 50%">
 				<div style="float:left; width: 25%; text-align: right;">ผู้สื่อข่าว</div>
-				<div style="float:left; width: 60%; margin-left: 30px;">
+				<div style="float:left; width: 55%; margin-left: 50px;">
 					<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
 						<option value="">เลือกนักข่าว</option>
 <?php
@@ -426,6 +424,14 @@
 			}
 		});
 	});
+	$(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}
@@ -480,6 +486,8 @@
 					"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
 					$('#NewsSubTypeID').append(text);
 				});
+				var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+				$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
 			} //end success
 		}); //end AJAX
 	}); //end change 

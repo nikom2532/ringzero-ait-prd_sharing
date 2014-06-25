@@ -381,6 +381,41 @@
 			}
 		});
 	});
+	$('select#NewsTypeID').change(function(){
+		// debugger;
+	    var type_id = $('select#NewsTypeID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+		}
+		else{
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(subtype)
+			{
+				// var a = JSON.parse(subtype);
+				$('#NewsSubTypeID').empty();
+				
+				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
+				$('#NewsSubTypeID').append(text);
+				
+				$.each(subtype,function(index,val)
+				{
+					var text = ""+
+					"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
+					$('#NewsSubTypeID').append(text);
+				});
+				var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+				$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+				
+			} //end success
+		}); //end AJAX
+	}); //end change 
 	$(function(){
         $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
