@@ -279,7 +279,7 @@ class PRD_rss_model extends CI_Model {
 		if($grov_active != ""){
 			$StrQuery .= "
 				AND
-					NT01_News.SC07_Department = '".$grov_active."'
+					SC03_User.SC07_DepartmentId = '".$grov_active."'
 			";
 		}
 		if($ReporterID != ''){
@@ -312,6 +312,10 @@ class PRD_rss_model extends CI_Model {
 			SELECT
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
 			FROM NT01_News 
+			LEFT JOIN 
+				SC03_User 
+			ON 
+				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 		";
@@ -367,7 +371,7 @@ class PRD_rss_model extends CI_Model {
 		if($grov_active != ""){
 			$StrQuery .= "
 				AND
-					NT01_News.SC07_Department = '".$grov_active."'
+					SC03_User.SC07_DepartmentId = '".$grov_active."'
 			";
 		}
 		if($ReporterID != ''){

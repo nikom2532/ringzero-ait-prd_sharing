@@ -1,4 +1,4 @@
-<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script> -->
 <div class="content">
 	<div id="share-form">
 		<div id="search-form">
@@ -7,14 +7,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-						<input class="txt-field" type="text" value="" name="news_title" id="news_title" placeholder="" style=" margin-left: 15px;width: 77%;" value="<?php if(isset($post_news_title)){ echo $post_news_title; } ?>" / >
+						<input class="txt-field" type="text" name="news_title" id="news_title" style="margin-left: 15px;width: 77%;" value="<?php if(isset($post_news_title)){ echo $post_news_title; } ?>" / >
 					</div>
 				</div>
-	
 				<div class="row">
 					<div class="col-lg-6">
 						<label >วันที่</label>
-						<input type="text" class="form-control" name="start_date" id="start_date" value="<?php
+						<input type="text" class="form-control fromdate" name="start_date" id="start_date" value="<?php
 							if(isset($post_start_date)){
 								echo $post_start_date;
 							}
@@ -22,7 +21,7 @@
 					</div>
 					<div class="col-lg-6">
 						<label >ถึง</label>
-						<input type="text" class="form-control" name="end_date" id="end_date" value="<?php 
+						<input type="text" class="form-control todate" name="end_date" id="end_date" value="<?php 
 							if(isset($post_end_date)){
 								echo $post_end_date;
 							}
@@ -74,12 +73,14 @@
 						<span class="select-menu">
 						<span>เลือกหน่วยงาน</span>
 							<select name="grov_active" id="grov_active">
-								<option value="">เลือกหน่วยงานภาครัฐ</option>
+								<option value="">เลือกหน่วยงาน</option>
 <?php
 								foreach ($SC07_Department as $Department_item) {
 									?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php 
-										if($Department_item->SC07_DepartmentId == $post_grov_active){
-											?>selected='selected'<?php
+										if(isset($post_grov_active)){
+											if($Department_item->SC07_DepartmentId == $post_grov_active){
+												?>selected='selected'<?php
+											}
 										}
 									?>><?php echo $Department_item->SC07_DepartmentName; ?></option><?php
 								}
@@ -87,28 +88,30 @@
 							</select>
 						</span>
 					</div>
-					  <div class="col-lg-6">
-						<label >ชื่อนักข่าว</label>
-						<span class="select-menu">
-						<span>เลือกนักข่าว</span>
-						<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
-							<option value="">เลือกนักข่าว</option>
-	<?php
-							foreach ($SC03_User as $SC03_User_item) {
-								?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
-									if($post_reporter_id != ""){
-										?>selected='selected'<?php
-									}
-								?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
-							}
-	?>
-						</select>
+					<div class="" style="width: 50%; float: left; ">
+						<label style="margin-left: 17%">ชื่อนักข่าว</label>
+						<!-- <span class="select-menu"> -->
+						<!-- <span>เลือกนักข่าว</span> -->
+						<span style="margin-left: 7%;">
+							<select name="reporter_id" class="reporter_id_chosen" style="width:285px; margin-left: 5%;">
+								<option value="">เลือกนักข่าว</option>
+<?php
+								foreach ($SC03_User as $SC03_User_item) {
+									?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
+										if($post_reporter_id != ""){
+											?>selected='selected'<?php
+										}
+									?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
+								}
+?>
+							</select>
+						</span>
 						<script>
 							jQuery(document).ready(function(){
-								// jQuery(".reporter_id_chosen").chosen();
+								jQuery(".reporter_id_chosen").chosen();
 							});
 						</script>
-						</span>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="col-lg-12" style="text-align: center;">
@@ -240,6 +243,29 @@
 	</div>
 </div>
 <script type="text/javascript">
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
+	
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}
@@ -266,55 +292,55 @@
 		$("#homeSearch").submit();
 	}
 
-$(function(){
-	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
-		 //alert(url);
-		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
-		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
-		 $.post(url,dataSet,function(data){
-			// alert(data);
-			var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
-			$("#InputRss").val(url).select();
+	$(function(){
+		 $("#makeRss").click(function(){
+			 var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
+			 //alert(url);
+			 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
+			 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
+			 $.post(url,dataSet,function(data){
+				// alert(data);
+				var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
+				$("#InputRss").val(url).select();
+			 });
 		 });
-	 });
-});
-
-$('select#NewsTypeID').change(function(){
-	// debugger;
-    var type_id = $('select#NewsTypeID').val();
-	if (type_id != ""){
-		var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
-	}
-	else{
-		var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
-	}
-	// debugger;
-	// alert(post_url);
-	$.ajax({
-		type: "POST",
-		url: post_url,
-		dataType :'json',
-		success: function(subtype)
-		{
-			// var a = JSON.parse(subtype);
-			$('#NewsSubTypeID').empty();
-			
-			var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
-			$('#NewsSubTypeID').append(text);
-			
-			$.each(subtype,function(index,val)
+	});
+	
+	$('select#NewsTypeID').change(function(){
+		// debugger;
+	    var type_id = $('select#NewsTypeID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+		}
+		else{
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(subtype)
 			{
-				var text = ""+
-				"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
+				// var a = JSON.parse(subtype);
+				$('#NewsSubTypeID').empty();
+				
+				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
 				$('#NewsSubTypeID').append(text);
-			});
-			var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
-			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
-			
-		} //end success
-	}); //end AJAX
-}); //end change 
+				
+				$.each(subtype,function(index,val)
+				{
+					var text = ""+
+					"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
+					$('#NewsSubTypeID').append(text);
+				});
+				var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+				$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+				
+			} //end success
+		}); //end AJAX
+	}); //end change 
 
     $(function(){
         $(".select-menu > select > option:eq(0)").attr("selected","selected");

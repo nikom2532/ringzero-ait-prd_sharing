@@ -50,7 +50,7 @@ class PRD_reportPRD extends CI_Controller {
 			$row_per_page = 20;
 			// $data['SC07_Department'] = $this->prd_report_prd_model->get_SC07_Department();
 			
-			if($this->input->post("managenewsprd_is_search") == "yes"){
+			if($this->input->post("reportprd_is_search") == "yes"){
 				
 				$data['news'] = $this->prd_report_prd_model->
 					get_NT01_News_Search(

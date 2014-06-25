@@ -252,7 +252,7 @@ $(function(){
 	 $("#makeRss").click(function(){
 		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
 		 //alert(url);
-		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
+		 var dataSet={ search: $("input#search").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val() 
 		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
 		 $.post(url,dataSet,function(data){
 			//alert(data);

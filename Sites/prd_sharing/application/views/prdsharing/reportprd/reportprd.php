@@ -1,83 +1,135 @@
-<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
-<script>
-    $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
-        $(".select-menu > select").live("change",function(){
-            var selectmenu_txt = $(this).find("option:selected").text();
-            $(this).prev("span").text(selectmenu_txt);
-        });
-        
-    });
-</script>
 <div id="search-form">
-
-	<div class="row"> 
-		<div class="col-lg-12">
-			<p style="text-align: center;">
-				รายงานการยื่นยันการเผยแพร่
-			</p>
+	<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>reportPRD" method="post">
+		<input type="hidden" name="reportprd_is_search" value="yes" />
+		<div class="row"> 
+			<div class="col-lg-12">
+				<p style="text-align: center;">
+					รายงานการยื่นยันการเผยแพร่
+				</p>
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >ช่วงวันที่เผยแพร่</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >ช่วงวันที่เผยแพร่</label>
+				<input type="text" class="form-control fromdate" name="start_date" id="start_date" placeholder="" value="<?php
+					if(isset($post_start_date)){
+						echo $post_start_date;
+					}
+				?>">
+			</div>
+			<div class="col-lg-6">
+				<label>ถึง</label>
+				<input type="text" class="form-control todate" name="end_date" id="end_date" placeholder="" value="<?php 
+					if(isset($post_end_date)){
+						echo $post_end_date;
+					}
+				?>">
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >ถึง</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >หน่วยงาน</label>
+				<span class="select-menu">
+				  <span>เลือกหน่วยงาน</span>
+					<select name="grov_active" id="grov_active">
+						<option value="">เลือกหน่วยงาน</option>
+	<?php
+						foreach ($SC07_Department as $Department_item) {
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php 
+								if($Department_item->SC07_DepartmentId == $post_grov_active){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Department_item->SC07_DepartmentName; ?></option><?php
+						}
+	?>
+					</select>
+				</span> 
+			</div>
+			<div class="col-lg-6">
+				<label >หมวดหมู่ข่าว</label>
+				<span class="select-menu">
+				  <span>เลือกหมวดหมู่ข่าว</span>
+					<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 100%;">
+						<option value="">เลือกหมวดหมู่ข่าว</option><?php
+						// var_dump($NT02_NewsType);
+						foreach ($NT02_NewsType as $newType_item) {
+							?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+								if($newType_item->NT02_TypeID == $post_News_type_id){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
+						}
+					?></select>
+				</span> 
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >หน่วยงาน</label>
-			<span class="select-menu">
-			  <span>เลือกหน่วยงาน</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกหน่วยงาน</option>
-				</select>
-			</span> 
+	
+		<div class="row">
+			<div style="float:left; width: 50%">
+			<!-- <div class="col-lg-6"> -->
+				<label style="margin-left: 11%;">ไฟล์ประกอบข่าว</label>
+				<input style="margin-left: 30px; " type="checkbox" name="filter_vdo" id="filter_vdo" value="1" <?php 
+					if(isset($post_filter_vdo)){
+						if($post_filter_vdo == "1"){
+							?>checked='checked'<?php
+						}
+					}
+				?> />
+				<label for="filter_vdo" >วิดีโอ</label>
+				
+				<input type="checkbox" name="filter_sound" id="filter_sound" value="1" <?php 
+					if(isset($post_filter_sound)){
+						if($post_filter_sound == "1"){
+							?>checked='checked'<?php
+						}
+					} 
+				?> />
+				<label for="filter_sound" >เสียง</label>
+				
+				<input type="checkbox" name="filter_image" id="filter_image" value="1" <?php 
+					if(isset($post_filter_image)){
+						if($post_filter_image == "1"){
+							?>checked='checked'<?php
+						}
+					} 
+				?> />
+				<label for="filter_image" >ภาพ</label>
+				
+				<input type="checkbox" name="filter_other" id="filter_other" value="1" <?php 
+					if(isset($post_filter_other)){
+						if($post_filter_other == "1"){
+							?>checked='checked'<?php
+						}
+					} 
+				?> />
+				<label for="filter_other" >อื่นๆ</label>
+			</div>
+			<div class="col-lg-6">
+				<label >ประเภทข่าวย่อย</label>
+				<span class="select-menu">
+					<span>เลือกประเภทข่าวย่อย</span>
+					<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 100%;">
+						<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
+						foreach ($NT03_NewsSubType as $newType_item) {
+							// if($newType_item->NT02_TypeID == $post_News_type_id){
+								?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
+									if($post_News_subtype_id != ""){
+										?>selected='selected'<?php
+									}
+								?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
+							// }
+						}
+					?></select>
+				</span> 
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >ประเภทข่าว</label>
-			<span class="select-menu">
-			  <span>เลือกประเภทข่าว</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกประเภทข่าว</option>
-				</select>
-			</span> 
+	
+		<div class="col-lg-12" style="text-align: center;">
+			<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label style="margin-left: 11%;">ไฟล์ประกอบข่าว</label>
-			<input type="checkbox" name="vdo" value="0">
-			วิดีโอ
-			<input type="checkbox" name="sound" value="1">
-			เสียง
-			<input type="checkbox" name="image" value="2">
-			ภาพ
-			<input type="checkbox" name="other" value="3">
-			อื่นๆ
-		</div>
-		<div class="col-lg-6">
-			<label >ประเภทข่าวย่อย</label>
-			<span class="select-menu">
-			  <span>เลือกประเภทข่าวย่อย</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกประเภทข่าวย่อย</option>
-				</select>
-			</span> 
-		</div>
-	</div>
-
-	<div class="col-lg-12" style="text-align: center;">
-		<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
-	</div>
-
+	</form>
 </div>
 
 <div class="table-list">
@@ -307,6 +359,36 @@
 	</div>
 </div>
 <script type="text/javascript">
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
+	$(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}

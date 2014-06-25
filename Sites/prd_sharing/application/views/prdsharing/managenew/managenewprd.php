@@ -1,34 +1,4 @@
 <meta charset="utf-8" />
-
-<script>
-	/*
-	$(function() {
-		$( ".datepicker" ).datepicker();
-	});
-	*/
-	$(function(){
-		$(".fromdate").datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			changeMonth: true,
-			changeYear: true,
-				onSelect: function(selected) {
-					$(".todate").datepicker("option","minDate", selected)
-			}
-		});
-	});
-	$(function(){
-		$(".todate").datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			changeMonth: true,
-			changeYear: true,
-			onSelect: function(selected) {
-				$(".fromdate").datepicker("option","maxDate", selected)
-			}
-		});
-	});
-</script>
 <div id="search-form">
 	<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewPRD" method="post">
 		<input type="hidden" name="managenewsprd_is_search" value="yes" />
@@ -151,16 +121,40 @@
 			<div style="float:left; width: 50%">
 				<div style="float: left;margin-right: 5%;margin-left:30px;-moz-binding; width: 100%">
 					<label style="margin-left: 5%; margin-right: 5%;">ไฟล์ประกอบข่าว</label>
-					<input type="checkbox" name="filter_vdo" id="filter_vdo" value="1" />
+					<input type="checkbox" name="filter_vdo" id="filter_vdo" value="1" <?php 
+						if(isset($post_filter_vdo)){
+							if($post_filter_vdo == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
 					<label for="filter_vdo" >วิดีโอ</label>
 					
-					<input type="checkbox" name="filter_sound" id="filter_sound" value="1" />
+					<input type="checkbox" name="filter_sound" id="filter_sound" value="1" <?php 
+						if(isset($post_filter_sound)){
+							if($post_filter_sound == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
 					<label for="filter_sound" >เสียง</label>
 					
-					<input type="checkbox" name="filter_image" id="filter_image" value="1" />
+					<input type="checkbox" name="filter_image" id="filter_image" value="1" <?php 
+						if(isset($post_filter_image)){
+							if($post_filter_image == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
 					<label for="filter_image" >ภาพ</label>
 					
-					<input type="checkbox" name="filter_other" id="filter_other" value="1" />
+					<input type="checkbox" name="filter_other" id="filter_other" value="1" <?php 
+						if(isset($post_filter_other)){
+							if($post_filter_other == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
 					<label for="filter_other" >อื่นๆ</label>
 					
 				</div>
@@ -410,6 +404,28 @@
 	</div>
 </div>
 <script>
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}

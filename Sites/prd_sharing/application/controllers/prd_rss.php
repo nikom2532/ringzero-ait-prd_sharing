@@ -30,7 +30,6 @@ class PRD_rss extends CI_Controller {
 			$row_per_page = 20;
 			
 			if($this->input->post("rss_is_search") == "yes"){
-				
 				$data['news'] = $this->prd_rss_model->
 					get_NT01_News_Search(
 						$page, 
@@ -66,16 +65,13 @@ class PRD_rss extends CI_Controller {
 			else{	//## No Search ##
 				$data['news'] = $this->prd_rss_model->get_NT01_News($page, $row_per_page);
 				$count_row = $this->prd_rss_model->get_NT01_News_count();
-				$data['post_news_title'] = "";
-				$data['post_start_date'] = "";
-				$data['post_end_date'] = "";
-				$data['post_News_type_id'] = "";
-				$data['post_News_subtype_id'] = "";
-				$data['post_reporter_id'] = "";
-				$data['post_filter_vdo'] = "";
-				$data['post_filter_sound'] = "";
-				$data['post_filter_image'] = "";
-				$data['post_filter_other'] = "";
+				$data['post_news_title'] = $this->input->post('news_title');
+				$data['post_start_date'] = $this->input->post('start_date');
+				$data['post_end_date'] = $this->input->post('end_date');
+				$data['post_News_type_id'] = $this->input->post('NewsTypeID');
+				$data['post_News_subtype_id'] = $this->input->post('NewsSubTypeID');
+				$data['post_grov_active'] = $this->input->post('grov_active');
+				$data['post_reporter_id'] = $this->input->post('reporter_id');
 			}
 
 			
