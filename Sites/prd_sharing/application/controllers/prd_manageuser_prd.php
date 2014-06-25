@@ -92,6 +92,9 @@ class PRD_ManageUser_PRD extends CI_Controller {
 			
 			$data['SC07_Department'] = $this->prd_manage_user_prd_model->get_SC07_Department();
 			
+			$data['set_Update_SC03_User'] = $this->prd_manage_user_prd_model->set_Update_SC03_User(
+				$this->prd_manage_user_prd_model->get_SC03_User_ForUpdate()
+			);
 			
 			$this->load->view('prdsharing/templates/header', $data);
 			$this->load->view('prdsharing/manageuser/manageuser_prd', $data);

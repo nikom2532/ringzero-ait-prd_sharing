@@ -261,23 +261,46 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		return $query_SC07_Department;
 	}
 	
-	/*
-	public function get_SC03_Position($value='')
+	public function get_SC03_User_ForUpdate()
 	{
-		$query_SC07_Department = $this->db_ntt_old->
+		$query_getUser = $this->db_ntt_old->
 			select('
-				SC07_Department.SC07_DepartmentId,
-				SC07_Department.SC07_DepartmentName
-			');
-			if($SC07_DepartmentId != ''){
-				$query_SC07_Department = $query_SC07_Department->
-					where('SC07_DepartmentId', $SC07_DepartmentId);
-			}
-			$query_SC07_Department = $query_SC07_Department->
-				get('SC07_Department')->result();
+				SC03_User.SC03_UserId,
+			')->
+			where('SC03_User.SC03_Status', "T")->
+			get('SC03_User')->result();
 		
-		return $query_SC07_Department;
+		return $query_getUser;
 	}
-	*/
 	
+	public function set_Update_SC03_User($SC03_User='')
+	{
+		foreach ($SC03_User as $SC03_User_item) {
+			
+			$Str_query_Member = "
+				SELECT 
+					Mem_ID
+				FROM 
+					Member
+				WHERE 
+					Mem_OldID = '".$SC03_User_item->SC03_UserId."'
+			";
+			$query_Member = $this->db->
+				query($Str_query_Member);
+			
+			if(!($query_Member->num_rows() > 0)){
+				
+				$data = array(
+					'Mem_Status' => '0',
+					'Group_ID' => '3',
+					'Mem_OLdID' => $SC03_User_item->SC03_UserId
+				);
+				
+				$query_update = $this->db->
+					insert("Member", $data);
+			}
+			
+			return $query_update;
+	    }
+	}
 }
