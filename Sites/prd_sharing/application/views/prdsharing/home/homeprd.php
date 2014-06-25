@@ -261,5 +261,10 @@ $(function(){
 			//$("#InputRss").val(url).select();
 		 });
 	 });
+	 
+	 
+	 //FOr CApture
+	 // $("#makeRss").
+	 
 });
 </script>

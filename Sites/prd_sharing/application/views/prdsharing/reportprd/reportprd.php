@@ -107,9 +107,9 @@
 				<label for="filter_other" >อื่นๆ</label>
 			</div>
 			<div class="col-lg-6">
-				<label >ประเภทข่าวย่อย</label>
+				<label >หมวดหมู่ข่าวย่อย</label>
 				<span class="select-menu">
-					<span>เลือกประเภทข่าวย่อย</span>
+					<span>เลือกหมวดหมู่ข่าวย่อย</span>
 					<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 100%;">
 						<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 						foreach ($NT03_NewsSubType as $newType_item) {

@@ -49,6 +49,9 @@ class PRD_Authen extends CI_Controller {
                    'Mem_LasName' => $authen[0]->Mem_LasName,
                    'Mem_EngName' => $authen[0]->Mem_EngName,
                    'Mem_EngLasName' => $authen[0]->Mem_EngLasName,
+                   'Mem_Status' => $authen[0]->Mem_Status,
+                   'Mem_Ministry' => $authen[0]->Mem_Ministry,
+                   'Group_ID' => $authen[0]->Group_ID
 				);
 				$this->session->set_userdata($member_id);
 				// echo $this->session->userdata($member_id);
@@ -57,6 +60,15 @@ class PRD_Authen extends CI_Controller {
 				redirect(base_url().index_page().'homePRD', 'refresh');
 			}
 			else{
+				//Is not authen with new Datbasev -> Member Table
+				
+				$authen_PRD_DB = $this->prd_authen_model->
+					get_SC03_User(
+						$this->input->post('username'),
+						$this->input->post('password')
+					);
+				
+				
 				$data["error"] = "Username or Password wrong";
 			}
 		}

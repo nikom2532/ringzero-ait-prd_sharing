@@ -83,6 +83,7 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
 			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
+			where('')
 			get('Member');
 			
 		return $query_getUser->result();

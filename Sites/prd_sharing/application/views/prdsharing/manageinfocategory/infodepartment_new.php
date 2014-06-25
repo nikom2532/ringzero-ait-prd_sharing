@@ -10,10 +10,6 @@
 				<div id="search-form">
 					<div class="row">
 						<div class="col-lg-12">
-							<label >ลำดับที่:</label>
-							<span class="number"></span>
-						</div>
-						<div class="col-lg-12">
 							<label >ชื่อกระทรวง:</label>
 							<select class="select-opt" name="ministry_id">
 <?php

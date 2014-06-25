@@ -16,7 +16,21 @@ class PRD_Authen_model extends CI_Model {
 		$query = $this->db->
 			where('Mem_username', $Mem_Username)->
 			where('Mem_Password', $Password)->
+			where('Mem_Status', 1)->
 			get('Member')->result();
+		return $query;
+	}
+	
+	public function get_SC03_User(
+		$Mem_Username = '',
+		$Password = ''
+	)
+	{
+		$query = $this->db_ntt_old->
+			where('SC03_UserName', $Mem_Username)->
+			where('SC03_Password', $Password)->
+			
+			get('SC03_User')->result();
 		return $query;
 	}
 }

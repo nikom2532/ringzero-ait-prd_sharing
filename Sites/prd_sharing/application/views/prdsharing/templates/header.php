@@ -71,86 +71,85 @@
                     <p><b style=" color: #0808A7;font-weight: bold;">Welcome to: </b><span style="color: #0404F5;"><?php echo $session_Mem_Title." ".$session_Mem_Name." ".$session_Mem_LasName; ?></span> | <a href="<?php echo base_url().index_page(); ?>logout">logout</a></p>
                 </div>
                 <div class="menu">
-                    <ul> 
-                        <li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a><?php
-                        	/*
-                        	if(!($title == "Home")){
-                        		?><a href="<?php echo base_url().index_page(); ?>homePRD"><?php
-                        	}
-                        			?>Home<?php 
-                        	if(!($title == "Home PRD")){
-                        			?></a><?php
-                        	}
-							*/
-							
+                    <ul>
+                    	
+                    	<!-- For Real (Admin) -->
+                    	
+                    	<?php // /* ?>
+                    	<li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a><?php
                         ?></li>
                         <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>sentNew">Send News</a><?php
-							/*
-                        	if(!($title == "Sent News")){
-                        		?><a href="<?php echo base_url().index_page(); ?>sentNew"><?php
-                        	}
-                    				?>Send News<?php
-                    		if(!($title == "Sent News")){
-                        		?></a><?php
-							}
-							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>rss">Rss Feed</a><?php
-                        	/*
-                        	if(!($title == "RSS Feed")){
-                        		?><a href="<?php echo base_url().index_page(); ?>rss"><?php
-							}
-                        			?>Rss Feed<?php
-                        	if(!($title == "RSS Feed")){
-                        		?></a><?php
-							}
-							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageNewPRD">Manage News</a><?php
-                        	/*
-							if(!($title == "Manage News")){
-                        		?><a href="<?php echo base_url().index_page(); ?>manageNewPRD"><?php
-							}
-                        			?>Manage News<?php
-                        	if(!($title == "Manage News")){
-                        		?></a><?php
-							}
-							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageUserPRD">Manage User</a><?php
-                        	/*
-                        	if(!($title == "Manage Users")){
-	                        	?><a href="<?php echo base_url().index_page(); ?>manageUser"><?php
-							}
-	                        		?>Manage User<?php
-	                        if(!($title == "Manage Users")){
-	                        	?></a><?php
-							}
-							*/
                         ?></li>
-                        
                         <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageInfo_Category">Manage Info</a><?php
-                        	/*
-                        	if(!($title == "Manage Info")){
-                        		?><a href="<?php echo base_url().index_page(); ?>manageInfo_Category"><?php
-							}
-                        			?>Manage Info<?php
-                    		if(!($title == "Manage Info")){
-                        		?></a><?php
-							}
-							*/
                         ?></li>
                         <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>reportPRD">Report</a><?php
-                        	/*
-                        	if(!($title == "Report")){
-                        		?><a href="<?php echo base_url().index_page(); ?>reportPRD"><?php
-							}
-                        		?>Report<?php
-                    		if(!($title == "Report")){
-                    			?></a><?php
-							}
-							*/
                     	?></li>
+                    	<?php // */ ?>
+                    	
+                    	
+                    	<!-- For Test GROV -->
+                    	
+                    	<?php /* ?>
+                    	<li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>sentNew">Send News</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>rss">Rss Feed</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageNewPRD">Manage News</a><?php
+                        ?></li>
+                        <!-- <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageUserPRD">Manage User</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageInfo_Category">Manage Info</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>reportPRD">Report</a><?php
+                    	?></li> -->
+                    	<li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                    	<?php */ ?>
+                    	
+                    	
+                    	
+                    	<!-- For Test PRD -->
+						
+                    	<?php /* ?>
+                        <li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a><?php
+                        ?></li>
+                        <!-- <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>sentNew">Send News</a><?php
+                        ?></li> -->
+                        <li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>rss">Rss Feed</a><?php
+                        ?></li>
+                        <!-- <li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageNewPRD">Manage News</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageUserPRD">Manage User</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageInfo_Category">Manage Info</a><?php
+                        ?></li>
+                        <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>reportPRD">Report</a><?php
+                    	?></li> -->
+                    	<li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                        <li class="menu-item click"></a><?php
+                        ?></li>
+                        <?php */ ?>
+                        <!-- For Test -->
+                        
                     </ul>
                 </div>
             </div>
