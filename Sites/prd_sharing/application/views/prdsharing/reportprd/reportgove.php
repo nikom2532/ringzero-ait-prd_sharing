@@ -10,63 +10,63 @@
     });
 </script>
 <div id="search-form">
-
-	<div class="row">
-		<div class="col-lg-12">
-			<p style="text-align: center;">
-				รายงานการยื่นยันการเผยแพร่
-			</p>
+	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
+		<div class="row">
+			<div class="col-lg-12">
+				<p style="text-align: center;">
+					รายงานการยื่นยันการเผยแพร่
+				</p>
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >ช่วงวันที่เผยแพร่</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >ช่วงวันที่เผยแพร่</label>
+				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			</div>
+			<div class="col-lg-6">
+				<label >ถึง</label>
+				<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >ถึง</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >กระทรวง</label>
+				<span class="select-menu">
+				  <span>เลือกกระทรวง</span>
+					<select name="TypeID" id="TypeID" class="form-control">
+						<option selected="selected" value="0">เลือกกระทรวง</option>
+					</select>
+				</span> 
+			</div>
+			<div class="col-lg-6">
+				<label >กรม</label>
+				<span class="select-menu">
+				  <span>เลือกกรม</span>
+					<select name="TypeID" id="TypeID" class="form-control">
+						<option selected="selected" value="0">เลือกกรม</option>
+					</select>
+				</span> 
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >กระทรวง</label>
-			<span class="select-menu">
-			  <span>เลือกกระทรวง</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกกระทรวง</option>
-				</select>
-			</span> 
+	
+		<div class="row">
+			<div class="col-lg-6">
+				<label >สถานะ</label>
+				<span class="select-menu">
+				  <span>เลือกสถานะ</span>
+					<select name="TypeID" id="TypeID" class="form-control">
+						<option selected="selected" value="0">เลือกสถานะ</option>
+					</select>
+				</span> 
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<label >กรม</label>
-			<span class="select-menu">
-			  <span>เลือกกรม</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกกรม</option>
-				</select>
-			</span> 
+	
+		<div class="col-lg-12" style="text-align: center;">
+			<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-6">
-			<label >สถานะ</label>
-			<span class="select-menu">
-			  <span>เลือกสถานะ</span>
-				<select name="TypeID" id="TypeID" class="form-control">
-					<option selected="selected" value="0">เลือกสถานะ</option>
-				</select>
-			</span> 
-		</div>
-	</div>
-
-	<div class="col-lg-12" style="text-align: center;">
-		<input class="bt" type="submit" value="ค้นหา" name="share" style="width:18%;padding: 4px;">
-	</div>
-
+	</form>
 </div>
 
 <div class="table-list">
@@ -91,79 +91,55 @@
 				วันที่ข่าว
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
-				หัวข้อข่าว
+				ประเดนข่าว
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				เนื้อหาข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				ผู้สื่อข่าว
+				ผู้เผยแพร่ข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				สถานะ
+				สถานะเผยแพร่
 			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
+			<p class="col-1" style="width: 5%;float: left; ">
+				จำนวนผู้เข้าชม
+			</p>
+			<p class="col-2" style="width: 10%;float: left; ">
 				icon ไฟล์แนบ
 			</p>
 		</div>
 		<div class="odd">
+		<!-- <div class="event"> -->
 			<p class="col-1" style="width: 5%;float: left; ">
-				1
+				ลำดับที่
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxx
+				เลขที่ข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				03/04/2014
+				วันที่ข่าว
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
+				ประเดนข่าว
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
+				เนื้อหาข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
+				ผู้เผยแพร่ข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
-				ใช้งาน
+				สถานะเผยแพร่
 			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
+			<p class="col-1" style="width: 5%;float: left; ">
+				จำนวนผู้เข้าชม
+			</p>
+			<p class="col-2" style="width: 10%;float: left; ">
+				icon ไฟล์แนบ
 			</p>
 		</div>
-		<div class="event">
-			<p class="col-1" style="width: 5%;float: left; ">
-				1
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				03/04/2014
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				xxxxxxxxxxxxxxxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				xxxxxxxxx
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				ใช้งาน
-			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
-				<img src="<?php echo base_url(); ?>images/icon/vdo.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/pic.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-				<img src="<?php echo base_url(); ?>images/icon/null.png" style="margin: -10px 5px 0;">
-			</p>
-		</div>
+		
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
 				ทั้งหมด: 73 รายการ (4หน้า)

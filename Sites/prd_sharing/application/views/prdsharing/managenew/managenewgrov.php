@@ -123,7 +123,7 @@
 		<div class="col-lg-12" style="text-align: center;">
 			<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:18%;padding: 4px;">
 		</div>
-
+	</form>
 </div>
 
 <div class="table-list">
