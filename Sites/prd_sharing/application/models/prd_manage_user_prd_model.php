@@ -299,8 +299,6 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 				$query_update = $this->db->
 					insert("Member", $data);
 			}
-			
-			return $query_update;
 	    }
 	}
 }
