@@ -3,21 +3,30 @@
 	<div id="share-form">
 		<div id="search-form">
 			<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>rss" method="post">
+				<input type="hidden" name="rss_is_search" value="yes" />
 				<div class="row">
 					<div class="col-lg-12">
 						<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-						<input class="txt-field" type="text" value="" name="start_date" id="fromdate" placeholder="" style=" margin-left: 15px;width: 77%;" >
+						<input class="txt-field" type="text" value="" name="news_title" id="news_title" placeholder="" style=" margin-left: 15px;width: 77%;" value="<?php if(isset($post_news_title)){ echo $post_news_title; } ?>" / >
 					</div>
 				</div>
 	
 				<div class="row">
 					<div class="col-lg-6">
 						<label >วันที่</label>
-						<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+						<input type="text" class="form-control" name="start_date" id="start_date" value="<?php
+							if(isset($post_start_date)){
+								echo $post_start_date;
+							}
+						?>" placeholder="" >
 					</div>
 					<div class="col-lg-6">
 						<label >ถึง</label>
-						<input type="text" class="form-control" id="InputKeyword" placeholder="" >
+						<input type="text" class="form-control" name="end_date" id="end_date" value="<?php 
+							if(isset($post_end_date)){
+								echo $post_end_date;
+							}
+						?>" placeholder="" >
 					</div>
 				</div>
 				
@@ -68,7 +77,11 @@
 								<option value="">เลือกหน่วยงานภาครัฐ</option>
 <?php
 								foreach ($SC07_Department as $Department_item) {
-									?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+									?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php 
+										if($Department_item->SC07_DepartmentId == $post_grov_active){
+											?>selected='selected'<?php
+										}
+									?>><?php echo $Department_item->SC07_DepartmentName; ?></option><?php
 								}
 ?>
 							</select>
@@ -78,7 +91,7 @@
 						<label >ชื่อนักข่าว</label>
 						<span class="select-menu">
 						<span>เลือกนักข่าว</span>
-						  <select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
+						<select name="reporter_id" class="reporter_id_chosen" style="width:100%;">
 							<option value="">เลือกนักข่าว</option>
 	<?php
 							foreach ($SC03_User as $SC03_User_item) {
@@ -90,11 +103,11 @@
 							}
 	?>
 						</select>
-						<!-- <script>
+						<script>
 							jQuery(document).ready(function(){
-								jQuery(".reporter_id_chosen").chosen({});
+								// jQuery(".reporter_id_chosen").chosen();
 							});
-						</script> -->
+						</script>
 						</span>
 					</div>
 				</div>

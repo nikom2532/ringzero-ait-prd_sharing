@@ -131,7 +131,7 @@
 					</select>
 					<script>
 						jQuery(document).ready(function(){
-							jQuery(".reporter_id_chosen").chosen({});
+							jQuery(".reporter_id_chosen").chosen();
 						});
 						
 						var config = {

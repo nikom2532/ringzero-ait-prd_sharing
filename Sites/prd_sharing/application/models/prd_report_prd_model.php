@@ -107,24 +107,24 @@ class PRD_Report_PRD_model extends CI_Model {
 		$end = $page*$row_per_page;
 		
 		// ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber',
-					// (
-						// SELECT
-							// SC07_Department.SC07_DepartmentName
-						// FROM
-							// SC07_Department
-						// INNER JOIN 
-							// SC03_User
-						// ON 
-							// SC03_User.SC07_DepartmentId = SC07_Department.SC07_DepartmentId
-						// INNER JOIN 
-							// NT01_News
-						// ON 
-							// NT01_News.NT01_ReporterID = SC03_User.SC03_UserID
-						// AND
-							// SC03_User.SC03_UserID = NT01_News.NT01_ReporterID
-						// where NT01_NewsID = NT01_News.NT01_NewsID
-					// ) 
-					// AS SC07_DepartmentName
+		// (
+			// SELECT
+				// SC07_Department.SC07_DepartmentName
+			// FROM
+				// SC07_Department
+			// INNER JOIN 
+				// SC03_User
+			// ON 
+				// SC03_User.SC07_DepartmentId = SC07_Department.SC07_DepartmentId
+			// INNER JOIN 
+				// NT01_News
+			// ON 
+				// NT01_News.NT01_ReporterID = SC03_User.SC03_UserID
+			// AND
+				// SC03_User.SC03_UserID = NT01_News.NT01_ReporterID
+			// where NT01_NewsID = NT01_News.NT01_NewsID
+		// ) 
+		// AS SC07_DepartmentName
 		
 		
 		$StrQuery = "

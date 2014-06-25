@@ -29,7 +29,7 @@ class PRD_rss extends CI_Controller {
 			$data['SC07_Department'] = $this->prd_rss_model->get_SC07_Department();
 			$row_per_page = 20;
 			
-			if($this->input->post("managenewsprd_is_search") == "yes"){
+			if($this->input->post("rss_is_search") == "yes"){
 				
 				$data['news'] = $this->prd_rss_model->
 					get_NT01_News_Search(
@@ -40,11 +40,9 @@ class PRD_rss extends CI_Controller {
 						$this->input->post('end_date'),
 						$this->input->post('NewsTypeID'),
 						$this->input->post('NewsSubTypeID'),
-						$this->input->post('reporter_id'),
-						$this->input->post('filter_vdo'),
-						$this->input->post('filter_sound'),
-						$this->input->post('filter_image'),
-						$this->input->post('filter_other')
+						$this->input->post('grov_active'),
+						$this->input->post('reporter_id')
+						
 					);
 				$count_row = $this->prd_rss_model->
 					get_NT01_News_search_count(
@@ -53,11 +51,8 @@ class PRD_rss extends CI_Controller {
 						$this->input->post('end_date'),
 						$this->input->post('NewsTypeID'),
 						$this->input->post('NewsSubTypeID'),
-						$this->input->post('reporter_id'),
-						$this->input->post('filter_vdo'),
-						$this->input->post('filter_sound'),
-						$this->input->post('filter_image'),
-						$this->input->post('filter_other')
+						$this->input->post('grov_active'),
+						$this->input->post('reporter_id')
 					);
 				
 				$data['post_news_title'] = $this->input->post('news_title');
@@ -65,11 +60,8 @@ class PRD_rss extends CI_Controller {
 				$data['post_end_date'] = $this->input->post('end_date');
 				$data['post_News_type_id'] = $this->input->post('NewsTypeID');
 				$data['post_News_subtype_id'] = $this->input->post('NewsSubTypeID');
+				$data['post_grov_active'] = $this->input->post('grov_active');
 				$data['post_reporter_id'] = $this->input->post('reporter_id');
-				$data['post_filter_vdo'] = $this->input->post('filter_vdo');
-				$data['post_filter_sound'] = $this->input->post('filter_sound');
-				$data['post_filter_image'] = $this->input->post('filter_image');
-				$data['post_filter_other'] = $this->input->post('filter_other');
 			}
 			else{	//## No Search ##
 				$data['news'] = $this->prd_rss_model->get_NT01_News($page, $row_per_page);
