@@ -187,7 +187,7 @@
 							1
 						</p>
 						<p class="col-1" style="width: 11%;float: left; ">
-							<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
+							<a href="<?php echo base_url().index_page(); ?>reportDetailPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 						</p>
 						<p class="col-1" style="width: 10%;float: left; "><?php
 							// if($news_item->NT01_UpdDate == ""){

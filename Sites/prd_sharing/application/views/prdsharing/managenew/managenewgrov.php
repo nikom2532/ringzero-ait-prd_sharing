@@ -189,7 +189,7 @@
 				?></p>
 				
 				<p class="col-1" style="width: 35%;float: left; ">
-					<?php echo $news_item->SendIn_Issue; ?>
+					<?php echo mb_substr($news_item->SendIn_Issue, 0, 100, 'UTF-8'); ?>
 				</p>
 				<p class="col-1" style="width: 10%;float: left; "><?php
 				
@@ -250,7 +250,7 @@
 ?>
 	</div>
 </div>
-<div class="footer-table">
+<div class="footer-table" style="background-color: inherit; ">
 	<p style="width: 70%;float: left;margin-top: 20px;">
 		<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
 	</p>

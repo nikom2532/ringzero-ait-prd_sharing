@@ -7,7 +7,7 @@
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
 				<input class="txt-field" type="text" value="<?php 
 					if($post_news_title != ""){
-						echo $post_news_title;
+						echo $post_news_title;	
 					}
 				?>" name="news_title"  placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>

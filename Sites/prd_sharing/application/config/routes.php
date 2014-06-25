@@ -71,9 +71,6 @@ $route['manageUserGOVE'] = 'prd_manageuser_gove';
 $route['manageInfo_Category'] = 'prd_manageinfo_category';
 $route['manageInfo_Category/(:num)'] = "prd_manageinfo_category/index/$1";
 
-$route['reportPRD'] = 'prd_reportprd';
-$route['reportPRD/(:num)'] = 'prd_reportprd/index/$1';
-
 $route['detail_prd'] = 'prd_managenew_detail_prd';
 $route['detail_grov'] = 'prd_managenew_detail_grov';
 
@@ -101,7 +98,13 @@ $route['manageNewGROV/(:num)'] = 'prd_managenewgrov/index/$1';
 $route['manageNewPRD'] = 'prd_managenewprd';
 $route['manageNewPRD/(:num)'] = 'prd_managenewprd/index/$1';
 
+$route['reportPRD'] = 'prd_reportprd';
+$route['reportPRD/(:num)'] = 'prd_reportprd/index/$1';
+$route['reportDetailPRD'] = 'prd_report_detail_prd';
+
 $route['reportGOVE'] = 'prd_reportgove';
+$route['reportGOVE/(:num)'] = 'prd_reportgove/index/$1';
+
 $route['userInfo_PRD'] = 'prd_userinfo_prd';
 $route['userInfo_GOVE'] = 'prd_userinfo_gove';
 
