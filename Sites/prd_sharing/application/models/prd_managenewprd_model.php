@@ -101,6 +101,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $query;
 	}
 	
+	//New News For Delete
+	
 	//############################ News #############################
 	
 	public function get_NT01_News(
@@ -453,7 +455,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	//#########  Database New  ##########
 	
-	public function get_New_News()
+	public function get_New_News($news = '')
 	{
 		// -- MAX(News.News_OldID) AS News_OldID,
 		// -- MAX(News.News_Delete) AS News_Delete,
@@ -461,7 +463,13 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		// -- MAX(News.News_Title) AS News_Title,
 		// -- MAX(News.News_Resource) AS News_Resource,
 		// -- MAX(News.News_Reference) AS News_Reference
-				
+		
+		$statusArray = array();
+		foreach($news as $val){
+			$statusArray[] = "'".$val->NT01_NewsID."'";
+		}
+		$news = implode(",",$statusArray);
+		
 		$SQL_query_news = "
 			SELECT 
 				(News.News_OldID) AS News_OldID,
@@ -469,8 +477,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				(News.News_UpdateID) AS News_UpdateID,
 				(News.News_Title) AS News_Title,
 				(News.News_Resource) AS News_Resource,
-				(News.News_Reference) AS News_Reference
-				
+				(News.News_Reference) AS News_Reference,
+				News.News_StatusPublic AS News_StatusPublic
 			FROM 
 				News
 			LEFT JOIN
@@ -478,6 +486,13 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			ON
 				News.Cate_ID = Category.Cate_ID
 		";
+		if($news != ""){
+			$SQL_query_news .= "
+				WHERE 
+					News.News_OldID IN (".$news.")
+			";
+		}
+		
 		$query_news = $this->db->
 			query($SQL_query_news)->result();
 		return $query_news;
@@ -597,7 +612,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NT01_NewsTag='',
 		$NewsTypeID='',
 		$NewsSubTypeID='',
-		$News_UpdateID=''
+		$News_UpdateID = '',
+		$News_StatusPublic = ''
 	)
 	{
 			if(isset($News_UpdateID)){
@@ -607,6 +623,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				$News_UpdateID += 1;
 			}
 			
+			/*
 			$data = array(
 			   'News_Title' => $NT01_NewsTitle,
 			   'News_Detail' => $NT01_NewsDesc,
@@ -617,13 +634,17 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			   'News_OldSubCateID' => $NewsSubTypeID,
 			   'News_UpdateID' => $News_UpdateID_next
 			);
+			*/
+			
+			$data = array(
+			   'News_StatusPublic' => $News_StatusPublic
+			);
 			
 			// var_dump($data);
 			
 			return $this->db->where("News_OldID", $NT01_NewsID)->
 				update("News", $data);
 	}
-	
 	
 	//##########################
 	

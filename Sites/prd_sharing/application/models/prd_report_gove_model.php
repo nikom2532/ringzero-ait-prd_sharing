@@ -65,9 +65,6 @@ class PRD_Report_GOVE_model extends CI_Model {
 					// MAX(FileAttach.File_Status) AS File_Status, 
 					// ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 					
-					
-					
-					
 					// SendInformation.SendIn_ID,
 					// SendInformation.SendIn_UpdateDate,
 					// SendInformation.SendIn_CreateDate,
@@ -79,7 +76,6 @@ class PRD_Report_GOVE_model extends CI_Model {
 					// Member.Mem_LasName,
 					// FileAttach.File_Status, 
 					// ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
-					
 					
 		$StrQuery = "
 			WITH LIMIT AS(

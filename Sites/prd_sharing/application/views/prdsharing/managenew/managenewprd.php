@@ -222,11 +222,22 @@
 						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
 					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word; text-align: center; "><?php 
-						if($news_item->NT01_Status == 'Y'){
-							?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
-						}
-						else{
-							?>-<?php
+						$iNews_StatusPublic = 0;
+						foreach ($New_News as $New_News_item) {
+							if($news_item->NT01_NewsID == $New_News_item->News_OldID){
+								// echo $New_News_item->News_StatusPublic;
+								if($New_News_item->News_StatusPublic == '1'){
+									?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
+									$iNews_StatusPublic++;
+								}
+								else{
+									?>-<?php
+									$iNews_StatusPublic++;
+								}
+								if($iNews_StatusPublic > 0){
+									break;
+								}
+							}
 						}
 					?></p>
 					

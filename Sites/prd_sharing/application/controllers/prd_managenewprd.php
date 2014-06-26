@@ -37,7 +37,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$this->input->post("NT01_NewsTag"),
 					$this->input->post("NewsTypeID"),
 					$this->input->post("NewsSubTypeID"),
-					$this->input->post("News_UpdateID")
+					$this->input->post("News_UpdateID"),
+					$this->input->post("News_StatusPublic")
 				);
 			}
 			else if($this->input->get('is_del_oldnews') == "1"){
@@ -47,8 +48,6 @@ class PRD_ManageNewPRD extends CI_Controller {
 				redirect(base_url().index_page()."manageNewPRD");
 			}
 			
-			$data['New_News'] = $this->prd_managenewprd_model->get_New_News();
-			$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
 			$row_per_page = 20;
 			$checkDelete_News = $this->prd_managenewprd_model->checkDelete_News();
 			
@@ -114,6 +113,14 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data['post_filter_image'] = "";
 				$data['post_filter_other'] = "";
 			}
+			
+			$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
+			$data['New_News'] = $this->prd_managenewprd_model->get_New_News(
+				$data['news']
+			);
+			
+			// var_dump($data['New_News']);
+			// exit;
 			
 			//############## Pagination = For no Search ################
 			$data['count_row'] = $count_row;

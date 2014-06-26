@@ -1,4 +1,4 @@
-<script>
+x<script>
 	$(function() {
 		$( ".datepicker" ).datepicker();
 	});
@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่วงวันที่</label>
-				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="NT01_UpdDate" placeholder="" disabled="disabled" value="<?php 
 					// if($news[0]->NT01_UpdDate == ""){
 						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
 					// }
@@ -31,7 +31,7 @@
 						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_UpdDate));
 					// }
 					
-					
+					/*
 					if($news[0]->NT01_UpdDate == ""){
 						foreach ($New_News as $New_News_item) {
 							if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
@@ -70,14 +70,15 @@
 						}
 						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 					}
-					
+					*/
+					echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_NewsDate));
 				?>">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ประเภทข่าว</label>
-				<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 65%;">
+				<select name="NewsTypeID" id="NewsTypeID" class="form-control" disabled="disabled" style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าว</option><?php
 					foreach ($NT02_NewsType as $newType_item) {
 						?><option 
@@ -91,7 +92,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ประเภทข่าวย่อย</label>
-				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 65%;">
+				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" disabled="disabled" style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 					foreach ($NT03_NewsSubType as $newType_item) {
 						if($newType_item->NT02_TypeID == $news[0]->NT02_TypeID){
@@ -117,7 +118,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หัวข้อข่าว</label>
-				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" disabled="disabled" value="<?php 
 					//echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; 
 					
 					$i_item=0;
@@ -140,7 +141,7 @@
 		<div class="row">
 			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
 				<label >เนื้อหาข่าว</label>
-				<textarea class="ckeditor" name="NT01_NewsDesc"><?php 
+				<textarea class="ckeditor" name="NT01_NewsDesc" disabled="disabled"><?php 
 					//echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Detail; 
 					
 					
@@ -166,7 +167,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >แหล่งที่มา</label>
-				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" value="<?php 
+				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" disabled="disabled" value="<?php 
 					//echo $news[0]->NT01_NewsSource //echo $news[0]->News_Resource; 
 					
 					// var_dump($New_News);
@@ -190,7 +191,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >อ้างอิงจาก</label>
-				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" <?php 
+				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" disabled="disabled" <?php 
 					//echo $news[0]->NT01_NewsReferance; // echo $news[0]->News_Referance; 
 					foreach ($New_News as $New_News_item) {
 						if(
@@ -243,7 +244,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >Tag</label>
-				<input type="text" class="form-control" name="NT01_NewsTag" id="InputKeyword" value="<?php echo $news[0]->NT01_NewsTag; ?>" placeholder="" >
+				<input type="text" class="form-control" name="NT01_NewsTag" id="InputKeyword" disabled="disabled" value="<?php echo $news[0]->NT01_NewsTag; ?>" placeholder="" >
 			</div>
 		</div>
 	
@@ -309,7 +310,31 @@
 				?>
 			</div>
 		</div>
-	
+		
+		<div class="row">
+			<div class="col-lg-6">
+				<label >สถานะ</label>
+				<!-- <label >รอการอนุมัติ</label> -->
+				<?php //echo $New_News[0]->News_StatusPublic; ?>
+				<select name="News_StatusPublic" class="form-control" style="width: 65%;">
+					<option value="0"<?php 
+					
+						// var_dump($New_News);
+					
+						if($New_News[0]->News_StatusPublic == '0' || $New_News[0]->News_StatusPublic == '' || $New_News[0]->News_StatusPublic == null){ 	
+							?>selected='selected'<?php
+						}
+					?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
+					<option value="1"<?php 
+						if($New_News[0]->News_StatusPublic == 1){
+							?>selected='selected'<?php
+						}
+					?>>อนุมัติ</option>
+				</select>
+			</div>
+		</div>
+		
+		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
