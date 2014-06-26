@@ -9,7 +9,7 @@ class PRD_reportGOVE extends CI_Controller {
 		$this->load->model('prd_report_gove_model');
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
@@ -29,7 +29,7 @@ class PRD_reportGOVE extends CI_Controller {
 			
 			if($this->input->post("manageNewGROV_is_submit") == "yes"){
 				
-				$data['news'] = $this->prd_managenewgrov_model->get_grov_search(
+				$data['news'] = $this->prd_report_gove_model->get_grov_search(
 					$page,
 					$row_per_page,
 					$this->input->post("sendin_issue"), 
@@ -38,7 +38,7 @@ class PRD_reportGOVE extends CI_Controller {
 					$this->input->post("Ministry_ID"),
 					$this->input->post("Dep_ID")
 				);
-				$count_row = $this->prd_managenewgrov_model->get_grov_search_count(
+				$count_row = $this->prd_report_gove_model->get_grov_search_count(
 					$this->input->post("sendin_issue"), 
 					$this->input->post("start_date"), 
 					$this->input->post("end_date"),
@@ -54,12 +54,13 @@ class PRD_reportGOVE extends CI_Controller {
 				
 			}
 			else{
+				
 				// echo "no search";
-				$data['news'] = $this->prd_managenewgrov_model->get_grov(
+				$data['news'] = $this->prd_report_gove_model->get_grov(
 					$page,
 					$row_per_page
 				);
-				$count_row = $this->prd_managenewgrov_model->get_grov_count();
+				$count_row = $this->prd_report_gove_model->get_grov_count();
 				$data['post_sendin_issue'] = "";
 				$data['post_start_date'] = "";
 				$data['post_end_date'] = "";
@@ -67,8 +68,8 @@ class PRD_reportGOVE extends CI_Controller {
 				$data['post_Dep_ID'] = "";
 			}
 			
-			$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
-			$data['department'] = $this->prd_managenewgrov_model->get_department();
+			$data['ministry'] = $this->prd_report_gove_model->get_ministry();
+			$data['department'] = $this->prd_report_gove_model->get_department();
 			
 			//############## Pagination = For no Search ################
 			$data['count_row'] = $count_row;

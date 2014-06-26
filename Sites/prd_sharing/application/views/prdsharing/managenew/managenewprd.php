@@ -36,7 +36,7 @@
 			<div class="col-lg-6">
 				<label >หมวดหมู่ข่าว</label>
 				<span class="select-menu">
-				  <span>เลือกหมวดหมู่ข่าว</span>
+					<span>เลือกหมวดหมู่ข่าว</span>
 					<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 100%;">
 						<option value="">เลือกหมวดหมู่ข่าว</option><?php
 						// var_dump($NT02_NewsType);
@@ -48,7 +48,7 @@
 							?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
 						}
 					?></select>
-				  </span> 
+				</span> 
 				<?php //echo $post_News_type_id; ?>
 			</div>
 			<div class="col-lg-6">

@@ -1,36 +1,3 @@
-<script>
-	/*
-	$(function() {
-		$( ".datepicker" ).datepicker({ 
-			changeMonth: true,
-            changeYear: true,
-			dateFormat: 'yy-mm-dd' 
-		}).val();
-	});
-	*/
-	$(function(){
-		$(".fromdate").datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			changeMonth: true,
-			changeYear: true,
-				onSelect: function(selected) {
-					$(".todate").datepicker("option","minDate", selected)
-			}
-		});
-	});
-	$(function(){
-		$(".todate").datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			changeMonth: true,
-			changeYear: true,
-			onSelect: function(selected) {
-				$(".fromdate").datepicker("option","maxDate", selected)
-			}
-		});
-	});
-</script>
 <div id="search-form">
 	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
 		<input type="hidden" name="manageNewGROV_is_submit" value="yes" />
@@ -68,36 +35,40 @@
 			<div class="col-lg-6">
 				<!-- Ministry  -->
 				<label >กระทรวง</label>
-				<select name="Ministry_ID" id="Ministry_ID" class="form-control" style="width: 65%;">
-					<option value="" >เลือกกระทรวง</option><?php
-					foreach ($ministry as $ministry_item) {
-						?><option value="<?php echo $ministry_item->Minis_ID; ?>" <?php 
-							if(isset($post_Ministry_ID)){
-								if($ministry_item->Minis_ID == $post_Ministry_ID){
-									?>selected='selected'<?php
+				<span class="select-menu">
+					<span>เลือกกระทรวง</span>
+					<select name="Ministry_ID" id="Ministry_ID" class="form-control" style="width: 100%;">
+						<option value="" >เลือกกระทรวง</option><?php
+						foreach ($ministry as $ministry_item) {
+							?><option value="<?php echo $ministry_item->Minis_ID; ?>" <?php 
+								if(isset($post_Ministry_ID)){
+									if($ministry_item->Minis_ID == $post_Ministry_ID){
+										?>selected='selected'<?php
+									}
 								}
-							}
-						?>><?php echo $ministry_item->Minis_Name; ?></option><?php
-					}
-				?></select>
+							?>><?php echo $ministry_item->Minis_Name; ?></option><?php
+						}
+					?></select>
+				</span> 
 			</div>
 			<div class="col-lg-6">
 				<!-- department -->
-				<label >กรม</label>
-				
-				<select name="Dep_ID" id="Dep_ID" class="form-control" style="width: 65%;">
-					<option value="" >เลือกกรม</option><?php
-					foreach ($department as $department_item) {
-						?><option value="<?php echo $department_item->Dep_ID; ?>"  <?php 
-							if(isset($post_Dep_ID)){
-								if($department_item->Dep_ID == $post_Dep_ID){
-									?>selected='selected'<?php
+				<label >กระทรวง</label>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="Dep_ID" id="Dep_ID" class="form-control" style="width: 100%;">
+						<option value="" >เลือกกรม</option><?php
+						foreach ($department as $department_item) {
+							?><option value="<?php echo $department_item->Dep_ID; ?>"  <?php 
+								if(isset($post_Dep_ID)){
+									if($department_item->Dep_ID == $post_Dep_ID){
+										?>selected='selected'<?php
+									}
 								}
-							}
-						?>><?php echo $department_item->Dep_Name; ?></option><?php
-					}
-				?></select>
-				
+							?>><?php echo $department_item->Dep_Name; ?></option><?php
+						}
+					?></select>
+				</span> 
 				
 			</div>
 		</div>
@@ -274,12 +245,42 @@
     </p>
 </div>
 <script>
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+	});
+	$(function(){
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
 	$(".SendInformationDelete").click( function() {
 		var sendin_id = $(this).attr("data-sendin_id");
 		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่ข่าว = "+sendin_id+" หรือไม่ ") == true) {
 	        location.href="manageNewGROV?is_del_sendinformation=1&sendin_id="+sendin_id;
 	    }
 	});
+	$(function(){
+        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+        
+    });
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}
@@ -334,6 +335,8 @@
 					"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
 					$('#Dep_ID').append(text);
 				});
+				var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+				$("#Dep_ID").prev("span").text(selectmenu_txt);
 			} //end success
 		}); //end AJAX
 	}); //end change 
