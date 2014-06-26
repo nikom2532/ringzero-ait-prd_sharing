@@ -137,7 +137,7 @@ foreach($news as $news_item):
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-11">
+			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
 				<label >เนื้อหา</label>
 				<textarea class="ckeditor" name="editor1"><?php echo $news_item->SendIn_Detail; ?></textarea>
 			</div>

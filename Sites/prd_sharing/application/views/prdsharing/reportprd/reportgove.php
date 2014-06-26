@@ -134,6 +134,7 @@
 		</div>
 <?php
 		$i = 0;
+		// var_dump($news);
 		foreach($news as $news_item){
 			if($i % 2 == 0){
 				?><div class="odd" style="width: 1400px; "><?php

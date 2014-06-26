@@ -62,6 +62,7 @@ class PRD_reportGOVE extends CI_Controller {
 					$page,
 					$row_per_page
 				);
+				// var_dump($data['news']);
 				$count_row = $this->prd_report_gove_model->get_grov_count();
 				$data['post_sendin_issue'] = "";
 				$data['post_start_date'] = "";
