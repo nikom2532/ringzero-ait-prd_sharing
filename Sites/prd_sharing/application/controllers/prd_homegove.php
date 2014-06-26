@@ -25,6 +25,8 @@ class PRD_HomeGOVE extends CI_Controller {
 			$data['title'] = 'Home';
 			$row_per_page = 20;
 			
+			$data['get_grov_fileattach'] = $this->prd_homegove_model->get_grov_fileattach();
+			
 			if($this->input->post("news_title") != ""){
 				if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
 					$data['news'] = $this->prd_homegove_model->

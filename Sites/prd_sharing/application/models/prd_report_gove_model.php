@@ -8,6 +8,21 @@ class PRD_Report_GOVE_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	public function get_grov_fileattach(){
+		
+		return $this->db->
+			select('
+				FileAttach.File_Name,
+				FileAttach.File_Path,
+				FileAttach.File_Extension,	
+				FileAttach.File_Status,
+				FileAttach.File_Type,
+				FileAttach.SendIn_ID
+			')->
+			join('SendInformation', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			get('FileAttach')->result();
+	}
+	
 	public function get_ministry() 
 	{
 		return $this->db->where('Minis_Status', '1')->

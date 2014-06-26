@@ -80,8 +80,33 @@
 				<a href="<?php echo base_url().index_page(); ?>detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
+<?php
+				$file_vdo_status = 0;
+				$file_voice_status = 0;
+				$file_other_status = 0;
+				$file_image_status = 0;
+				foreach ($get_grov_fileattach as $file) {
+					if($news_item->SendIn_ID == $file->SendIn_ID){
+						
+						if($file->File_Type == "vdo"){
+							$file_vdo_status = 1;
+						}
+						if($file->File_Type == "voice"){
+							$file_voice_status = 1;
+						}
+						if($file->File_Type == "other"){
+							$file_other_status = 1;
+						}
+						if($file->File_Type == "image"){
+							$file_image_status = 1;
+						}
+					}
+					
+				}
+?>
+				
 				<img src="<?php echo base_url(); ?>images/icon/<?php 
-					if($news_item->File_Status == '1'){
+					if($file_vdo_status == '1'){
 						?>vdo<?php
 					}else{
 						?>null<?php
@@ -89,7 +114,7 @@
 				?>.png" style="margin: -10px 10px 0;">
 				
 				<img src="<?php echo base_url(); ?>images/icon/<?php 
-					if($news_item->File_Status == '2'){
+					if($file_voice_status == '1'){
 						?>voice_512x512<?php
 					}else{
 						?>null<?php
@@ -98,7 +123,7 @@
 				
 				
 				<img src="<?php echo base_url(); ?>images/icon/<?php 
-					if($news_item->File_Status == '3'){
+					if($file_other_status == '1'){
 						?>Document.jpg<?php
 					}else{
 						?>null.png<?php
@@ -106,8 +131,8 @@
 				?>" style="margin: -10px 10px 0;">
 				
 				<img src="<?php echo base_url(); ?>images/icon/<?php
-					if($news_item->File_Status == '4'){
-						?>like<?php
+					if($file_image_status == '1'){
+						?>pic<?php
 					}else{
 						?>null<?php
 					}

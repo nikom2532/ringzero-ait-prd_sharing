@@ -160,7 +160,6 @@
 					
 					
 					
-				</div>
 				<div class="col-lg-<?php 
 					if($LeftContainerCount == 0){
 						?>12<?php

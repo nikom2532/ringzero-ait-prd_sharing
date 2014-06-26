@@ -27,6 +27,8 @@ class PRD_reportGOVE extends CI_Controller {
 			
 			$row_per_page = 20;
 			
+			$data['get_grov_fileattach'] = $this->prd_report_gove_model->get_grov_fileattach();
+			
 			if($this->input->post("manageNewGROV_is_submit") == "yes"){
 				
 				$data['news'] = $this->prd_report_gove_model->get_grov_search(

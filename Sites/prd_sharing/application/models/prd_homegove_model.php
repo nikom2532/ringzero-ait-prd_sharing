@@ -53,6 +53,21 @@ class PRD_HomeGOVE_model extends CI_Model {
 		
 	}
 	
+	public function get_grov_fileattach(){
+		
+		return $this->db->
+			select('
+				FileAttach.File_Name,
+				FileAttach.File_Path,
+				FileAttach.File_Extension,	
+				FileAttach.File_Status,
+				FileAttach.File_Type,
+				FileAttach.SendIn_ID
+			')->
+			join('SendInformation', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
+			get('FileAttach')->result();
+	}
+	
 	public function get_gove($page=1, $row_per_page=20)
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
