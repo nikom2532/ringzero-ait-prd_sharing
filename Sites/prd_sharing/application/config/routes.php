@@ -102,8 +102,10 @@ $route['reportPRD'] = 'prd_reportprd';
 $route['reportPRD/(:num)'] = 'prd_reportprd/index/$1';
 $route['reportDetailPRD'] = 'prd_report_detail_prd';
 
+
 $route['reportGOVE'] = 'prd_reportgove';
 $route['reportGOVE/(:num)'] = 'prd_reportgove/index/$1';
+$route['reportDetailGROV'] = 'prd_report_detail_grov';
 
 $route['userInfo_PRD'] = 'prd_userinfo_prd';
 $route['userInfo_GOVE'] = 'prd_userinfo_gove';

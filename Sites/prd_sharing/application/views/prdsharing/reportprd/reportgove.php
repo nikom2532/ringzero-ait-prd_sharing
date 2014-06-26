@@ -146,7 +146,7 @@
 						<?php echo $i; ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; ">
-						<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>reportDetailGROV?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 					</p>
 					<p class="col-1" style="width: 7%;float: left; ">
 <?php
