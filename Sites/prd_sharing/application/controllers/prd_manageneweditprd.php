@@ -28,7 +28,9 @@ class PRD_manageNewEditPRD extends CI_Controller {
 			$data['news'] = $this->prd_manageneweditprd_model->get_NT01_News($this->input->get('news_id'));
 			
 			$data['New_News'] = $this->prd_manageneweditprd_model->get_New_News($this->input->get('news_id'));
-	
+			
+			// var_dump($data['New_News']);
+			// exit;
 			
 			$data['NT02_NewsType'] = $this->prd_manageneweditprd_model->get_NT02_NewsType();
 			$data['NT03_NewsSubType'] = $this->prd_manageneweditprd_model->get_NT03_NewsSubType();

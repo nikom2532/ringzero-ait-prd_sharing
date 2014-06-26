@@ -34,6 +34,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 				NT01_News.NT01_NewsTag,
 				NT01_News.NT01_UpdDate,
 				NT01_News.NT01_CreDate,
+				NT01_News.NT01_NewsDate,
 				NT01_News.NT01_NewsTitle,
 				NT01_News.NT01_NewsDesc,
 				NT01_News.NT01_NewsSource,
