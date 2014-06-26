@@ -168,7 +168,7 @@
 ?>
 					</p>
 					<p class="col-3" style="width: 60%;float: left; ">
-						<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsTitle; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>rss_detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsTitle; ?></a>
 					</p>
 					<p class="col-4" style="width: 20%;float: left;  text-align: center; text-align: center; ">
 						<img src="<?php echo base_url(); ?>images/icon/<?php

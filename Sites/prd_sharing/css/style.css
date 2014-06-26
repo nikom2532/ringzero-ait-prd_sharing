@@ -190,7 +190,7 @@ a {color: #666;}
     height: 52px;
 }
 .footer-table{
-    background-color: #ffffff;
+    background-color: inherit;
     height: 52px;
 }
 .footer-table p{     
@@ -244,12 +244,13 @@ a {color: #666;}
 
 #gove-title{
     border-radius: 15px;
-    padding: 2%;
+    padding: 1% 2%;
     color:#fff;
     background-color:#0404F5;
     /* width: 100%; */
     width: 96%;
     font-size: large;
+    line-height: 30px;
 }
 
 

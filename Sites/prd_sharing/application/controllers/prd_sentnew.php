@@ -75,10 +75,14 @@ class PRD_sentNew extends CI_Controller {
 			
 			// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
 			
+			// var_dump($file_name);	
+			// exit;
+			
 			$set_AttachFile = $this->PRD_SentNew_model->set_AttachFile(
 				$query_sentnew_record,
 				$file_name
 			);
+			
 			redirect(base_url().index_page().'manageNewGROV', 'refresh');
 		}
 		else{

@@ -97,21 +97,28 @@ class PRD_SentNew_model extends CI_Model {
 	)
 	{
 		// var_dump($get_sentnew_SendIn_ID);
+		
+		// var_dump($file_name);
+		// exit;
+		
 		foreach ($file_name as $file_name_item) {
+			
+			// echo ($file_name_item["file_extension"]);
+			// exit;
+			
 			$data = array(
-				'File_Name' => $file_name_item, 
-				// 'File_Name'	=> 'a.png',
-				'File_Path' => '',
-				'File_Extension' => '',
+				'File_Name' => $file_name_item['file_name'], 
+				'File_Path' => $file_name_item['full_path'],
+				'File_Extension' => $file_name_item['file_extension'], 
 				'File_FileSize' => '',
 				'File_Type' => '',
+				'File_Status' => '1',
 				'SendIn_ID' => $get_sentnew_SendIn_ID
 			);
 			
 			$query = $this->db->
 				insert("FileAttach", $data);
-				
-			return $query;
 		}
+		return $query;
 	}
 }

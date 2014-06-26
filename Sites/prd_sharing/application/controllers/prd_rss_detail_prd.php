@@ -22,7 +22,7 @@ class PRD_RSS_detail_PRD extends CI_Controller {
 			$data['session_Mem_EngName'] = $this->session->userdata('Mem_EngName');
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
-			$data['title'] = 'Home';
+			$data['title'] = 'RSS Feed';
 			
 			$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
 			
@@ -35,7 +35,7 @@ class PRD_RSS_detail_PRD extends CI_Controller {
 			$data['get_NT01_News_Voice'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
 			$data['get_NT01_News_OtherFile'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
 			
-			$this->load->view('prdsharing/templates/header_without_menu', $data);
+			$this->load->view('prdsharing/templates/header', $data);
 			$this->load->view('prdsharing/managenew/detail_prd', $data);
 			$this->load->view('prdsharing/templates/footer');
 			

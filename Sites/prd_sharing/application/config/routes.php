@@ -62,6 +62,10 @@ $route['sentNew_Upload'] = 'prd_sentNew/sentnew_process';
 
 $route['rss'] = 'prd_rss';
 $route['rss/(:num)'] = 'prd_rss/index/$1';
+
+$route['rss_detail_prd'] = 'prd_rss_detail_prd';
+
+
 $route['manageNew'] = 'prd_managenew';
 
 $route['manageUser'] = 'prd_manageuser';

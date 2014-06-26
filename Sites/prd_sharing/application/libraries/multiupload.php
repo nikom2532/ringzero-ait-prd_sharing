@@ -7,9 +7,11 @@ class Multiupload{
 	var $max_width = "";
 	var $max_height = "";
 	var $_files = "";
-	var $file_name=array();
 	var $config= array();
-
+	
+	var $file_name=array();
+	var $file_extension = array();
+	
 	/*-------------------------------------------------------------------------------
 	* TODO : Initialize config upload data
 	*-------------------------------------------------------------------------------*/
@@ -43,15 +45,27 @@ class Multiupload{
                 if ($CI->upload->do_upload($field)){
                     $data = $CI->upload->data();
 					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
-					$name = date().$data['file_ext'];
+					$name = microtime(true).$data['file_ext'];
 					rename($data['full_path'], $data['file_path']. $name);
-                    array_push($this->file_name, $name);
+					
+					$return = array(
+						'file_name' => $name,
+						'full_path' => './',
+						'file_extension' => $data['file_ext']
+					);
+					
+                    array_push($this->file_name, $return);
+					
                 }else{
                     $errors = $CI->upload->display_errors();
                 }
             }
         }
-        return $this->file_name;
+		return $this->file_name;
+		// return array(
+			// 'file_name' => $this->file_name,
+			// 'file_extension' => $this->file_extension
+		// );
 	}
 }
 
