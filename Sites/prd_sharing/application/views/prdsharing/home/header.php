@@ -55,7 +55,7 @@
 					<label >วันที่</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control datepicker fromdate" name="start_date" placeholder="" readonly="true" value="<?php 
+					<input type="text" class="form-control datepicker fromdate" name="start_date" placeholder="" value="<?php 
 						if(isset($post_start_date)){
 							echo $post_start_date;
 						}
@@ -67,7 +67,7 @@
 					<label >ถึง</label>
 				</div>
 				<div class="input">
-					<input type="text" class="form-control datepicker todate" name="end_date" placeholder="" readonly="true" value="<?php 
+					<input type="text" class="form-control datepicker todate" name="end_date" placeholder="" value="<?php 
 						if(isset($post_end_date)){
 							echo $post_end_date;
 						}
