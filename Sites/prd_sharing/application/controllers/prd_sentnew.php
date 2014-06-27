@@ -7,7 +7,6 @@ class PRD_sentNew extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('PRD_SentNew_model');
-		$this->load->library('multiupload');
 	}
 
 	public function index()
@@ -15,25 +14,44 @@ class PRD_sentNew extends CI_Controller {
 		//Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
 			
-			$data['member_id'] = $this->session->userdata('member_id');
-			$data['session_Mem_Username'] = $this->session->userdata('Mem_Username');
-			$data['session_Mem_Title'] = $this->session->userdata('Mem_Title');
-			$data['session_Mem_Name'] = $this->session->userdata('Mem_Name');
-			$data['session_Mem_LasName'] = $this->session->userdata('Mem_LasName');
-			$data['session_Mem_EngName'] = $this->session->userdata('Mem_EngName');
-			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
-			
 			$data['title'] = 'Sent News';
 			
-			$data['Ministry'] = $this->PRD_SentNew_model->get_Ministry();
-			$data['Department'] = $this->PRD_SentNew_model->get_Department();
-			$data['NT05_Policy'] = $this->PRD_SentNew_model->get_NT05_Policy();
-			$data['TargetGroup'] = $this->PRD_SentNew_model->get_TargetGroup();
-			$data['SC07_Department'] = $this->PRD_SentNew_model->get_SC07_Department();
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/sentnew/sentnew', $data);
-			$this->load->view('prdsharing/templates/footer');
+			// var_dump($getMenuHeader);
+			// exit;
+			
+			if($showStatus == "yes"){
+				
+				$data['member_id'] = $this->session->userdata('member_id');
+				$data['session_Mem_Username'] = $this->session->userdata('Mem_Username');
+				$data['session_Mem_Title'] = $this->session->userdata('Mem_Title');
+				$data['session_Mem_Name'] = $this->session->userdata('Mem_Name');
+				$data['session_Mem_LasName'] = $this->session->userdata('Mem_LasName');
+				$data['session_Mem_EngName'] = $this->session->userdata('Mem_EngName');
+				$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
+				
+				
+				$data['Ministry'] = $this->PRD_SentNew_model->get_Ministry();
+				$data['Department'] = $this->PRD_SentNew_model->get_Department();
+				$data['NT05_Policy'] = $this->PRD_SentNew_model->get_NT05_Policy();
+				$data['TargetGroup'] = $this->PRD_SentNew_model->get_TargetGroup();
+				$data['SC07_Department'] = $this->PRD_SentNew_model->get_SC07_Department();
+				
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/sentnew/sentnew', $data);
+				$this->load->view('prdsharing/templates/footer');
+				
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
+			
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

@@ -73,9 +73,45 @@
                 <div class="menu">
                     <ul>
                     	
+                    	<!-- Read from the AuhenStatus -->
+<?php
+                    	if($getMenuHeader["Home"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a></li><?php
+                    	}
+						
+						if($getMenuHeader["Sent News"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>sentNew">Send News</a></li><?php
+                    	}
+						
+						if($getMenuHeader["RSS Feed"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "RSS Feed"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>rss">Rss Feed</a></li><?php
+                    	}
+						
+						if($getMenuHeader["Manage News"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Manage News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageNewPRD">Manage News</a></li><?php
+                    	}
+						
+						if($getMenuHeader["Manage Users"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Manage Users"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageUserPRD">Manage User</a></li><?php
+                    	}
+						
+						if($getMenuHeader["Manage Info"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Manage Info"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>manageInfo_Category">Manage Info</a></li><?php
+                    	}
+						
+						if($getMenuHeader["Report"] == "yes"){
+                    		?><li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>reportPRD">Report</a></li><?php
+                    	}
+						if($getMenuHeader["_Tab_less"] > 0){
+							for($i = 0; $i < $getMenuHeader["_Tab_less"]; $i++){
+								?><li class="menu-item click"></li><?php
+							}
+						}
+?>
+                        
                     	<!-- For Real (Admin) -->
                     	
-                    	<?php // /* ?>
+                    	<?php /* ?>
                     	<li class="menu-item <?php if($title == "Home"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>homePRD">Home</a><?php
                         ?></li>
                         <li class="menu-item <?php if($title == "Sent News"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>sentNew">Send News</a><?php
@@ -90,7 +126,7 @@
                         ?></li>
                         <li class="menu-item <?php if($title == "Report"){ ?>onClick<?php } else{ ?>click<?php } ?>"><a href="<?php echo base_url().index_page(); ?>reportPRD">Report</a><?php
                     	?></li>
-                    	<?php // */ ?>
+                    	<?php */ ?>
                     	
                     	
                     	<!-- For Test GROV -->
