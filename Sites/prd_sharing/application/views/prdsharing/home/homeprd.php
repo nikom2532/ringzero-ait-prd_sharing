@@ -115,12 +115,22 @@
 				<p class="col-3" style="width: 20%;float: left; ">
 					<img src="<?php echo base_url(); ?>images/icon/view.png" style="margin: -10px 10px 0;">
 					views: <?php 
-						if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
-							echo "0";
+						
+						// var_dump($New_News);
+						// exit;
+						foreach ($New_News as $New_News_item) {
+							if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+								
+								if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+									echo "0";
+								}
+								else{
+									echo $New_News_item->News_View;
+								}
+							
+							}
 						}
-						else{
-							echo $news_item->NT01_ViewCount;
-						}
+						
 				?></p>
 				<p class="col-4" style="width: 20%;float: left; ">
 					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>

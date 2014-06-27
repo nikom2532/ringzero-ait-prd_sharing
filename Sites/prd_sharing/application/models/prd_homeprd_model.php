@@ -1089,6 +1089,7 @@ class PRD_HomePRD_model extends CI_Model {
 	public function set_News($news='')
 	{
 		// var_dump($news);
+		// exit;
 		foreach ($news as $news_item) {
 			
 			$newsCreDate = strtotime($news_item->NT01_CreDate);
@@ -1130,6 +1131,20 @@ class PRD_HomePRD_model extends CI_Model {
 				$NT13_FileStatus = "0";
 			}
 			
+			$Str_query_find_Cate_ID = "
+				SELECT 
+					Category.Cate_OldID
+				FROM 
+					Category
+				WHERE
+					Category.Cate_OldID = '".$news_item->NT02_TypeID."'
+			";
+			$query_find_Cate_ID = $this->db->
+				query($Str_query_find_Cate_ID)->result();
+			
+			// var_dump($query_find_Cate_ID);
+			// exit;
+			
 			$data = array(
 			   'News_OldID' => $news_item->NT01_NewsID,
 			   'News_Date' => $newsDate,
@@ -1139,13 +1154,23 @@ class PRD_HomePRD_model extends CI_Model {
 			   'News_StatusOtherFile' => $NT13_FileStatus,
 			   'News_OldCateID' => $news_item->NT02_TypeID,
 			   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
+			   'Cate_ID' => $query_find_Cate_ID[0]->Cate_OldID,
+			   'News_View' => 1,
 			   'News_Active' => "1" //,
 			   // 'News_StatusPublic' => "1"
 			);
 			$query2 = $this->db->
 				where('News_OldID', $data['News_OldID'])->
 				get('News');
-						
+			
+			// var_dump($query2->result());
+			$News_View = $query2->result();
+			$News_View = ($News_View[0]->News_View);
+			// echo $News_View;
+			// var_dump(($query2->result()[0]->News_View)+1);
+			
+			// exit;
+			
 			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
 			}
@@ -1158,7 +1183,10 @@ class PRD_HomePRD_model extends CI_Model {
 				   'News_StatusOtherFile' => $NT13_FileStatus,
 				   'News_OldCateID' => $news_item->NT02_TypeID,
 				   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
-				   'News_Active' => "1"
+				   'Cate_ID' => $query_find_Cate_ID[0]->Cate_OldID,
+				   'News_Active' => "1",
+				   'News_View' => $News_View,
+				   // 'Cate_ID' =>
 				);
 				$this->db->
 					where('News_OldID', $news_item->NT01_NewsID)->

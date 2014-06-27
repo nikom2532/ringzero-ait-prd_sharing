@@ -39,6 +39,12 @@ class PRD_Authen extends CI_Controller {
 				);
 			
 			if($authen != null){
+				
+				//#############
+				//SET USER LOG - IMPORTANT
+				// $this->prd_authen_model->set_UserLog($authen[0]->Mem_ID);
+				//#############
+				
 				// echo "can login";
 				// $_SESSION["member_id"] = $authen[0]->Mem_Username;
 				$member_id = array(

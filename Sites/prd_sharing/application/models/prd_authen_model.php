@@ -55,4 +55,24 @@ class PRD_Authen_model extends CI_Model {
 			get('Member')->result();
 		return $query;
 	}
+	
+	//DO NOT REMOVE; 
+	//IT IS THE UserLog.
+	
+	/*
+	public function set_UserLog(
+		$Mem_ID=''
+	)
+	{
+		$data = array(
+			'Log_Date' => ,
+			'Log_IP' => ,
+			'Lo'
+		);
+		
+		$query = $this->db->
+			insert('UserLog', $data)->
+			where('Mem_ID', $Mem_ID)
+	}
+	*/
 }
