@@ -60,17 +60,60 @@ class PRD_Authen extends CI_Controller {
 				redirect(base_url().index_page().'homePRD', 'refresh');
 			}
 			else{
-				//Is not authen with new Datbasev -> Member Table
+				
+				//Is not authen with new Datbase -> Member Table
+				//Authen with Old PRD Database
 				
 				$authen_PRD_DB = $this->prd_authen_model->
 					get_SC03_User(
 						$this->input->post('username'),
 						$this->input->post('password')
 					);
+					
+					// var_dump($authen_PRD_DB);
+					// echo $authen_PRD_DB[0]->SC03_UserID;
+					// exit;
 				
-				
-				$data["error"] = "Username or Password wrong";
+				if($authen_PRD_DB != null){
+					
+					$authen_Member_with_SC03UserID = $this->prd_authen_model->
+						get_Member_with_SC03UserID(
+							$authen_PRD_DB[0]->SC03_UserID
+						);
+						
+						// var_dump($authen_Member_with_SC03UserID);
+						// exit;
+					
+					if($authen_Member_with_SC03UserID != null){
+						
+						
+						$member_id = array(
+		                   'member_id'  => $authen_Member_with_SC03UserID[0]->Mem_ID,
+		                   'Mem_Username' => $authen_PRD_DB[0]->Mem_Username,
+		                   'Mem_Title' => $authen_PRD_DB[0]->Mem_Title,
+		                   'Mem_Name' => $authen_PRD_DB[0]->Mem_Name,
+		                   'Mem_LasName' => $authen_PRD_DB[0]->Mem_LasName,
+		                   'Mem_EngName' => $authen_PRD_DB[0]->Mem_EngName,
+		                   'Mem_EngLasName' => $authen_PRD_DB[0]->Mem_EngLasName,
+		                   'Mem_Status' => $authen_Member_with_SC03UserID[0]->Mem_Status,
+		                   'Mem_Ministry' => $authen_Member_with_SC03UserID[0]->Mem_Ministry,
+		                   'Group_ID' => $authen_Member_with_SC03UserID[0]->Group_ID
+						);
+						$this->session->set_userdata($member_id);
+						// echo $this->session->userdata($member_id);
+						// var_dump($this->session->all_userdata());
+						// exit;
+						redirect(base_url().index_page().'homePRD', 'refresh');
+						
+					}
+				}
+				else{
+					$data["error"] = "Username or Password wrong";
+				}
 			}
+		}
+		else{
+			$data["error"] = "Please enter Username and Password";
 		}
 		
 		$this->load->view('prdsharing/templates/header_authen', $data);

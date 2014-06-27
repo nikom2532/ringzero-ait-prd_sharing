@@ -27,10 +27,32 @@ class PRD_Authen_model extends CI_Model {
 	)
 	{
 		$query = $this->db_ntt_old->
+			select('
+				SC03_User.SC03_UserID,
+				SC03_User.SC03_UserName AS Mem_Username,
+				SC03_User.SC03_TName AS Mem_Title,
+				SC03_User.SC03_FName AS Mem_Name,
+				SC03_User.SC03_LName AS Mem_LasName,
+				SC03_User.SC03_EngTName,
+				SC03_User.SC03_EngFName AS Mem_EngName,
+				SC03_User.SC03_EngLName AS Mem_EngLasName
+			')->
+			
 			where('SC03_UserName', $Mem_Username)->
 			where('SC03_Password', $Password)->
-			
+			where('SC03_Status', 'T')->
 			get('SC03_User')->result();
+		return $query;
+	}
+	
+	public function get_Member_with_SC03UserID(
+		$SC03UserID=''
+	)
+	{
+		$query = $this->db->
+			where('Mem_OldID', $SC03UserID)->
+			where('Mem_Status', 1)->
+			get('Member')->result();
 		return $query;
 	}
 }
