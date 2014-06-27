@@ -23,10 +23,23 @@ class PRD_manageNewApproveGROV extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Manage News';
-	
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/managenew/managenewapprovegrov', $data);
-			$this->load->view('prdsharing/templates/footer');
+			
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
+			
+			if($showStatus == "yes"){
+			
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/managenew/managenewapprovegrov', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 		
 		}
 		else{

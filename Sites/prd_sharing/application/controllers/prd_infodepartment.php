@@ -24,14 +24,28 @@ class PRD_InfoDepartment extends CI_Controller {
 			
 			$data['title'] = 'Manage Info';
 			
-			$data['ministry'] = $this->PRD_Info_Department_model->get_Ministry();
-			$data['department'] = $this->PRD_Info_Department_model->get_Department($this->input->get('dep_id'));
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			// var_dump($data['department']);
+			if($showStatus == "yes"){
 			
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/manageinfocategory/infodepartment', $data);
-			$this->load->view('prdsharing/templates/footer');
+				$data['ministry'] = $this->PRD_Info_Department_model->get_Ministry();
+				$data['department'] = $this->PRD_Info_Department_model->get_Department($this->input->get('dep_id'));
+				
+				// var_dump($data['department']);
+				
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/manageinfocategory/infodepartment', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
+			
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

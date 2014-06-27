@@ -24,12 +24,24 @@ class PRD_InfoMinistry extends CI_Controller {
 			
 			$data['title'] = 'Manage Info';
 			
-			$data['ministry'] = $this->prd_info_ministry_model->get_Ministry($this->input->get('minis_id'));
-	
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/manageinfocategory/infoministry', $data);
-			$this->load->view('prdsharing/templates/footer');
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
+			if($showStatus == "yes"){
+			
+				$data['ministry'] = $this->prd_info_ministry_model->get_Ministry($this->input->get('minis_id'));
+		
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/manageinfocategory/infoministry', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

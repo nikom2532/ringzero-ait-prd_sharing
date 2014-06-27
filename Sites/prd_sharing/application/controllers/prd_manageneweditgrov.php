@@ -23,16 +23,30 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Manage News';
-			$data['news'] = $this->prd_manageneweditgrov_model->get_grov($this->input->get('sendin_id'));
-			$data['TargetGroup'] = $this->prd_manageneweditgrov_model->get_TargetGroup();
-			$data['SC07_Department'] = $this->prd_manageneweditgrov_model->get_SC07_Department();
-			$data['Ministry'] = $this->prd_manageneweditgrov_model->get_Ministry();
 			
-			// var_dump($data['news']);
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/managenew/manageneweditgrov', $data);
-			$this->load->view('prdsharing/templates/footer');
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
+			if($showStatus == "yes"){
+				
+				$data['news'] = $this->prd_manageneweditgrov_model->get_grov($this->input->get('sendin_id'));
+				$data['TargetGroup'] = $this->prd_manageneweditgrov_model->get_TargetGroup();
+				$data['SC07_Department'] = $this->prd_manageneweditgrov_model->get_SC07_Department();
+				$data['Ministry'] = $this->prd_manageneweditgrov_model->get_Ministry();
+				
+				// var_dump($data['news']);
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/managenew/manageneweditgrov', $data);
+				$this->load->view('prdsharing/templates/footer');
+				
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

@@ -24,13 +24,26 @@ class PRD_ManageNew_detail_GROV extends CI_Controller {
 			
 			$data['title'] = 'Home';
 			
-			$data['news'] = $this->prd_managenew_detail_grov_model->get_grov($this->input->get('sendinformation_id'));
-			$data['get_grov_fileattach'] = $this->prd_managenew_detail_grov_model->get_grov_fileattach($this->input->get('sendinformation_id'));
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/managenew/detail_grov', $data);
-			$this->load->view('prdsharing/templates/footer');
-		
+			if($showStatus == "yes"){
+			
+				$data['news'] = $this->prd_managenew_detail_grov_model->get_grov($this->input->get('sendinformation_id'));
+				$data['get_grov_fileattach'] = $this->prd_managenew_detail_grov_model->get_grov_fileattach($this->input->get('sendinformation_id'));
+				
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/managenew/detail_grov', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
+			
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

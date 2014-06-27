@@ -24,20 +24,34 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 			
 			$data['title'] = 'Home';
 			
-			$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			$data['get_NT01_News_ReWriteName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ReWriteName($this->input->get('news_id'));
-			$data['get_NT01_News_CreUser'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CreUser($this->input->get('news_id'));
-			$data['get_NT01_News_CamCoder'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CamCoder($this->input->get('news_id'));
-			$data['get_NT01_News_ApvUserName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ApvUserName($this->input->get('news_id'));
-			$data['get_NT01_News_videos'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file1($this->input->get('news_id'));
-			$data['get_NT01_News_pictures'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file2($this->input->get('news_id'));
-			$data['get_NT01_News_Voice'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
-			$data['get_NT01_News_OtherFile'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
+			if($showStatus == "yes"){
 			
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/managenew/detail_prd', $data);
-			$this->load->view('prdsharing/templates/footer');
+				$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
+				
+				$data['get_NT01_News_ReWriteName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ReWriteName($this->input->get('news_id'));
+				$data['get_NT01_News_CreUser'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CreUser($this->input->get('news_id'));
+				$data['get_NT01_News_CamCoder'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CamCoder($this->input->get('news_id'));
+				$data['get_NT01_News_ApvUserName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ApvUserName($this->input->get('news_id'));
+				$data['get_NT01_News_videos'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file1($this->input->get('news_id'));
+				$data['get_NT01_News_pictures'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file2($this->input->get('news_id'));
+				$data['get_NT01_News_Voice'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
+				$data['get_NT01_News_OtherFile'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
+				
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/managenew/detail_prd', $data);
+				$this->load->view('prdsharing/templates/footer');
+				
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 			
 		// }
 		// else{

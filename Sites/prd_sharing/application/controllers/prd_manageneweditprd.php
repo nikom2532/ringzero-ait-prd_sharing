@@ -25,21 +25,34 @@ class PRD_manageNewEditPRD extends CI_Controller {
 			
 			$data['title'] = 'Manage News';
 			
-			$data['news'] = $this->prd_manageneweditprd_model->get_NT01_News($this->input->get('news_id'));
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			$data['New_News'] = $this->prd_manageneweditprd_model->get_New_News($this->input->get('news_id'));
+			if($showStatus == "yes"){
 			
-			// var_dump($data['New_News']);
-			// exit;
-			
-			$data['NT02_NewsType'] = $this->prd_manageneweditprd_model->get_NT02_NewsType();
-			$data['NT03_NewsSubType'] = $this->prd_manageneweditprd_model->get_NT03_NewsSubType();
-	
-			// var_dump($data['news']);
-	
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/managenew/manageneweditprd', $data);
-			$this->load->view('prdsharing/templates/footer');
+				$data['news'] = $this->prd_manageneweditprd_model->get_NT01_News($this->input->get('news_id'));
+				
+				$data['New_News'] = $this->prd_manageneweditprd_model->get_New_News($this->input->get('news_id'));
+				
+				// var_dump($data['New_News']);
+				// exit;
+				
+				$data['NT02_NewsType'] = $this->prd_manageneweditprd_model->get_NT02_NewsType();
+				$data['NT03_NewsSubType'] = $this->prd_manageneweditprd_model->get_NT03_NewsSubType();
+		
+				// var_dump($data['news']);
+		
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/managenew/manageneweditprd', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 			
 		}
 		else{

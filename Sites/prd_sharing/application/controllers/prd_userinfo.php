@@ -23,26 +23,40 @@ class PRD_UserInfo extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Manage Users';
-			$data['Mem_ID'] = $this->input->get('userid');
 			
-			$data['SC03_User'] = $this->PRD_UserInfo_model->
-				get_SC03_User($this->input->get('userid'));
+			$showStatus = "";
+			$this->load->library('authenstatus');
+			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$this->authenstatus->page_title = $data['title'];
+			$showStatus = $this->authenstatus->checkGroupID();
+			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			$data['Member'] = $this->PRD_UserInfo_model->
-				get_Member($this->input->get('userid'));
+			if($showStatus == "yes"){
 			
-			$data['Ministry'] = $this->PRD_UserInfo_model->get_Ministry();
-			$data['Department'] = $this->PRD_UserInfo_model->get_Department();
-			
-			$data['CM06_Province'] = $this->PRD_UserInfo_model->get_CM06_Province();
-			$data['CM07_Ampur'] = $this->PRD_UserInfo_model->get_CM07_Ampur();
-			$data['CM08_Tumbon'] = $this->PRD_UserInfo_model->get_CM08_Tumbon();
-			$data['GroupMember'] = $this->PRD_UserInfo_model->get_GroupMember();
-			
-	
-			$this->load->view('prdsharing/templates/header', $data);
-			$this->load->view('prdsharing/manageuser/userinfo', $data);
-			$this->load->view('prdsharing/templates/footer');
+				$data['Mem_ID'] = $this->input->get('userid');
+				
+				$data['SC03_User'] = $this->PRD_UserInfo_model->
+					get_SC03_User($this->input->get('userid'));
+				
+				$data['Member'] = $this->PRD_UserInfo_model->
+					get_Member($this->input->get('userid'));
+				
+				$data['Ministry'] = $this->PRD_UserInfo_model->get_Ministry();
+				$data['Department'] = $this->PRD_UserInfo_model->get_Department();
+				
+				$data['CM06_Province'] = $this->PRD_UserInfo_model->get_CM06_Province();
+				$data['CM07_Ampur'] = $this->PRD_UserInfo_model->get_CM07_Ampur();
+				$data['CM08_Tumbon'] = $this->PRD_UserInfo_model->get_CM08_Tumbon();
+				$data['GroupMember'] = $this->PRD_UserInfo_model->get_GroupMember();
+				
+		
+				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/manageuser/userinfo', $data);
+				$this->load->view('prdsharing/templates/footer');
+			}
+			else{
+				redirect(base_url().index_page().'', 'refresh');
+			}
 			
 		}
 		else{

@@ -26,7 +26,7 @@ class AuthenStatus{
 			
 		}
 		elseif($this->Group_ID == 2){
-			$showStatus = "yes";
+			$this->showStatus = "yes";
 		}
 		
 		elseif($this->Group_ID == 3){
