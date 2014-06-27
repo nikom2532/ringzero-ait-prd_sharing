@@ -44,12 +44,12 @@ class PRD_UserInfo_PRD extends CI_Controller {
 				$data['Ministry'] = $this->PRD_UserInfo_PRD_model->get_Ministry();
 				$data['Department'] = $this->PRD_UserInfo_PRD_model->get_Department();
 				
-				$data['CM06_Province'] = $this->PRD_UserInfo_PRD_model->get_CM06_Province();
-				$data['CM07_Ampur'] = $this->PRD_UserInfo_PRD_model->get_CM07_Ampur();
-				$data['CM08_Tumbon'] = $this->PRD_UserInfo_PRD_model->get_CM08_Tumbon();
+				// $data['CM06_Province'] = $this->PRD_UserInfo_PRD_model->get_CM06_Province();
+				// $data['CM07_Ampur'] = $this->PRD_UserInfo_PRD_model->get_CM07_Ampur();
+				// $data['CM08_Tumbon'] = $this->PRD_UserInfo_PRD_model->get_CM08_Tumbon();
 				$data['GroupMember'] = $this->PRD_UserInfo_PRD_model->get_GroupMember();
 				
-		
+				
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/manageuser/userinfo_prd', $data);
 				$this->load->view('prdsharing/templates/footer');
