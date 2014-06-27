@@ -1163,13 +1163,10 @@ class PRD_HomePRD_model extends CI_Model {
 				where('News_OldID', $data['News_OldID'])->
 				get('News');
 			
-			// var_dump($query2->result());
+			//For calculate the View
 			$News_View = $query2->result();
 			$News_View = ($News_View[0]->News_View);
-			// echo $News_View;
-			// var_dump(($query2->result()[0]->News_View)+1);
-			
-			// exit;
+			$News_View += 1;
 			
 			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
