@@ -351,29 +351,29 @@
 								?>
 								<div class="row">
 									<div class="col-lg-6" style="margin-left: 10%; ">
-										<img src="<?php echo base_url(); ?>images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
+										<a href="<?php echo $item->Url; ?>" target="_blank"><img src="<?php echo base_url(); ?>images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"><?php
 										// echo $item->NT10_FileStatus."<br />";	
-										echo $item->NT10_VDOName."<br />";
-									?></div>
+										echo $item->NT10_VDOName."<br />"; ?></a>
+									</div>
 								</div><?php
 							}
 						}
 					}
 				}
-					
-				// var_dump($NT11_Picture);
-				// exit;
+				
 				if(isset($NT11_Picture)){
 					
 					foreach ($NT11_Picture as $item) {
+						// var_dump($item->Url);
+						// exit;
 						if(isset($item->NT11_FileStatus)){
 							if($item->NT11_FileStatus == "Y"){
 								?><div class="row">
-									<div class="col-lg-6" style="margin-left: 10%; ">
-										<img src="<?php echo base_url(); ?>images/icon/pic.png" width="17" style="margin: -10px 10px 0;"> <?php
+									<div class="" style="margin-left: 10%; ">
+										<a href="<?php echo $item->Url; ?>" target="_blank"><img src="<?php echo base_url(); ?>images/icon/pic.png" width="17" style="margin: -10px 10px 0;" /><?php
 										// echo $item->NT12_FileStatus."<br />";
-										echo $item->NT11_PicName."<br />";
-									?></div>
+										echo $item->NT11_PicName."<br />"; ?></a>
+									</div>
 								</div><?php
 							}
 						}
@@ -386,12 +386,13 @@
 						if($item->NT12_FileStatus == "Y"){
 							?><div class="row">
 								<div class="col-lg-6" style="margin-left: 10%; ">
-									<img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
+									<a href="<?php echo $item->Url; ?>" target="_blank"><img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
 									// echo $item->NT13_FileStatus."<br />";
 									if(isset($item->NT12_FileStatus)){
 										echo $item->NT12_VoiceName."<br />";
 									}
-								?></div>
+									?></a>
+								</div>
 							</div><?php
 						}
 					}
@@ -408,7 +409,8 @@
 									if(isset($item->NT13_FileStatus)){
 										echo $item->NT13_FileName."<br />";
 									}
-								?></div>
+									?></a>
+								</div>
 							</div><?php
 						}
 					}

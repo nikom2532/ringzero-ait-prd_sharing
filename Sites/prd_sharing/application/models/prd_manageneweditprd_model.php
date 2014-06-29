@@ -221,14 +221,15 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	public function get_NT10_VDO($NT01_NewsID = '')
 	{
 		$query_file1 = $this->db_ntt_old->
-			select('
+			select("
 				NT10_VDO.NT10_VDOName,
+				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT10_VDO.NT10_VDOPath AS Url,
 				NT10_VDO.NT10_Extension,
-				
 				NT10_VDO.NT10_FileStatus,
-			')->
+			")->
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT10_VDO.NT10_FileStatus', 'Y')->
 			get('NT01_News')->result();
 		
 		return $query_file1;
@@ -237,14 +238,15 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	public function get_NT11_Picture($NT01_NewsID = '')
 	{
 		$query_file2 = $this->db_ntt_old->
-			select('
+			select("
 				NT11_Picture.NT11_PicName,
 				NT11_Picture.NT11_Extension,
-				
+				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT11_Picture.NT11_PicPath AS Url,
 				NT11_Picture.NT11_FileStatus
-			')->
+			")->
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT11_Picture.NT11_FileStatus', 'Y')->
 			get('NT01_News')->result();
 		
 		return $query_file2;
@@ -254,14 +256,15 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	{
 		$query_file3 = $this->db_ntt_old->
 			// LIMIT('20,0')->
-			select('
+			select("
 				NT12_Voice.NT12_VoiceName,
 				NT12_Voice.NT12_Extension,
-				
+				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT12_Voice.NT12_VoicePath AS Url,
 				NT12_Voice.NT12_FileStatus
-			')->
+			")->
 			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT12_Voice.NT12_FileStatus', 'Y')->
 			get('NT01_News')->result();
 			
 	}
@@ -270,14 +273,15 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 	{
 		$query_file4 = $this->db_ntt_old->
 			// LIMIT('20,0')->
-			select('
+			select("
 				NT13_OtherFile.NT13_FileName,
 				NT13_OtherFile.NT13_Extension,
-				
+				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT13_OtherFile.NT13_FilePath AS Url,
 				NT13_OtherFile.NT13_FileStatus
-			')->
+			")->
 			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			where('NT13_OtherFile.NT13_FileStatus', 'Y')->
 			get('NT01_News')->result();
 	}
 	
