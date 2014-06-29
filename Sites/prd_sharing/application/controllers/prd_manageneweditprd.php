@@ -41,6 +41,14 @@ class PRD_manageNewEditPRD extends CI_Controller {
 				// var_dump($data['New_News']);
 				// exit;
 				
+				$data['NT10_VDO'] = $this->prd_manageneweditprd_model->get_NT10_VDO($this->input->get('news_id'));
+				$data['NT11_Picture'] = $this->prd_manageneweditprd_model->get_NT11_Picture($this->input->get('news_id'));
+				$data['NT12_Voice'] = $this->prd_manageneweditprd_model->get_NT12_Voice($this->input->get('news_id'));
+				$data['NT13_OtherFile'] = $this->prd_manageneweditprd_model->get_NT13_OtherFile($this->input->get('news_id'));
+				
+				// var_dump($data['NT10_VDO']);
+				// exit;
+				
 				$data['NT02_NewsType'] = $this->prd_manageneweditprd_model->get_NT02_NewsType();
 				$data['NT03_NewsSubType'] = $this->prd_manageneweditprd_model->get_NT03_NewsSubType();
 		

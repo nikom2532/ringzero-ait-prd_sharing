@@ -28,7 +28,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 		// แล้ว ส่งค่า Returnไป  ทั้งก้อน (ยัด ลง  Array)
 		
 		$query_normal = $this->db_ntt_old->
-			LIMIT('20,0')->
+			// LIMIT('20,0')->
 			select('
 				NT01_News.NT01_NewsID,
 				NT01_News.NT01_NewsTag,
@@ -80,10 +80,9 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-			
-			
+		
 		$query_file2 = $this->db_ntt_old->
-			LIMIT('20,0')->
+			// LIMIT('20,0')->
 			select('
 				NT11_Picture.NT11_PicName,
 				NT11_Picture.NT11_Extension,
@@ -93,10 +92,12 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
 			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
 			get('NT01_News')->result();
-			
-			
+		
+		// var_dump($query_file2);
+		// exit;
+		
 		$query_file3 = $this->db_ntt_old->
-			LIMIT('20,0')->
+			// LIMIT('20,0')->
 			select('
 				NT12_Voice.NT12_VoiceName,
 				NT12_Voice.NT12_Extension,
@@ -109,7 +110,7 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			
 			
 		$query_file4 = $this->db_ntt_old->
-			LIMIT('20,0')->
+			// LIMIT('20,0')->
 			select('
 				NT13_OtherFile.NT13_FileName,
 				NT13_OtherFile.NT13_Extension,
@@ -216,6 +217,70 @@ class PRD_ManageNewEditPRD_model extends CI_Model {
 			get('NT01_News')->result();
 		*/
 	}
+	
+	public function get_NT10_VDO($NT01_NewsID = '')
+	{
+		$query_file1 = $this->db_ntt_old->
+			select('
+				NT10_VDO.NT10_VDOName,
+				NT10_VDO.NT10_Extension,
+				
+				NT10_VDO.NT10_FileStatus,
+			')->
+			join('NT10_VDO', 'NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		return $query_file1;
+	}
+	
+	public function get_NT11_Picture($NT01_NewsID = '')
+	{
+		$query_file2 = $this->db_ntt_old->
+			select('
+				NT11_Picture.NT11_PicName,
+				NT11_Picture.NT11_Extension,
+				
+				NT11_Picture.NT11_FileStatus
+			')->
+			join('NT11_Picture', 'NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+		
+		return $query_file2;
+	}
+	
+	public function get_NT12_Voice($NT01_NewsID = '')
+	{
+		$query_file3 = $this->db_ntt_old->
+			// LIMIT('20,0')->
+			select('
+				NT12_Voice.NT12_VoiceName,
+				NT12_Voice.NT12_Extension,
+				
+				NT12_Voice.NT12_FileStatus
+			')->
+			join('NT12_Voice', 'NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+			
+	}
+	
+	public function get_NT13_OtherFile($NT01_NewsID = '')
+	{
+		$query_file4 = $this->db_ntt_old->
+			// LIMIT('20,0')->
+			select('
+				NT13_OtherFile.NT13_FileName,
+				NT13_OtherFile.NT13_Extension,
+				
+				NT13_OtherFile.NT13_FileStatus
+			')->
+			join('NT13_OtherFile', 'NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID', 'left')->
+			where('NT01_News.NT01_NewsID', $NT01_NewsID)->
+			get('NT01_News')->result();
+	}
+	
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->

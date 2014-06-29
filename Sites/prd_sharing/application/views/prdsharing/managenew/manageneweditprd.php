@@ -324,7 +324,7 @@
 						if($New_News[0]->News_StatusPublic == '0' || $New_News[0]->News_StatusPublic == '' || $New_News[0]->News_StatusPublic == null){ 	
 							?>selected='selected'<?php
 						}
-					?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
+					?>>ไม่อนุมัติ</option>
 					<option value="1"<?php 
 						if($New_News[0]->News_StatusPublic == 1){
 							?>selected='selected'<?php
@@ -338,59 +338,148 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ไฟล์แนบ</label>
+			</div>
+		</div>
+		
 				<?php
-					// var_dump($news[4]->NT11_FileStatus);
-					// var_dump($news[3]);
-					if(isset($news[3]->NT10_FileStatus)){
-						if($news[3]->NT10_FileStatus == "Y"){
-							?><img src="<?php echo base_url(); ?>images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
-							// echo $news[3]->NT10_FileStatus."<br />";
-							foreach ($news[3] as $vdo) {
-								// var_dump($vdo);
-								if(isset($vdo->NT10_FileStatus)){
-									echo $vdo->NT10_VDOName."<br />";
-								}
+					
+				if(isset($NT10_VDO)){
+					
+					foreach ($NT10_VDO as $item) {
+						if(isset($item->NT10_FileStatus)){
+							if($item->NT10_FileStatus == "Y"){
+								?>
+								<div class="row">
+									<div class="col-lg-6" style="margin-left: 10%; ">
+										<img src="<?php echo base_url(); ?>images/icon/vdo.png" width="17" style="margin: -10px 10px 0;"> <?php
+										// echo $item->NT10_FileStatus."<br />";	
+										echo $item->NT10_VDOName."<br />";
+									?></div>
+								</div><?php
 							}
 						}
 					}
-					if(isset($news[4]->NT11_FileStatus)){
-						if($news[4]->NT11_FileStatus == "Y"){
-							?><img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
-							// echo $news[4]->NT12_FileStatus."<br />";
-							foreach($news[4] as $vdo) {
-								if(isset($vdo->NT12_FileStatus)){
-									echo $vdo->NT12_VoiceName."<br />";
-								}
+				}
+					
+				// var_dump($NT11_Picture);
+				// exit;
+				if(isset($NT11_Picture)){
+					
+					foreach ($NT11_Picture as $item) {
+						if(isset($item->NT11_FileStatus)){
+							if($item->NT11_FileStatus == "Y"){
+								?><div class="row">
+									<div class="col-lg-6" style="margin-left: 10%; ">
+										<img src="<?php echo base_url(); ?>images/icon/pic.png" width="17" style="margin: -10px 10px 0;"> <?php
+										// echo $item->NT12_FileStatus."<br />";
+										echo $item->NT11_PicName."<br />";
+									?></div>
+								</div><?php
 							}
 						}
 					}
-					if(isset($news[5]->NT12_FileStatus)){
-						if($news[5]->NT12_FileStatus == "Y"){
-							?><img src="<?php echo base_url(); ?>images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"> <?php
-							// echo $news[5]->NT13_FileStatus."<br />";
-							foreach ($news[5] as $vdo) {
-								if(isset($vdo->NT13_FileStatus)){
-									echo $vdo->NT13_FileName."<br />";
-								}
-							}
+				}
+					
+				if(isset($NT12_Voice)){
+					
+					foreach ($NT12_Voice as $item) {
+						if($item->NT12_FileStatus == "Y"){
+							?><div class="row">
+								<div class="col-lg-6" style="margin-left: 10%; ">
+									<img src="<?php echo base_url(); ?>images/icon/voice_512x512.png" width="17" style="margin: -10px 10px 0;"> <?php
+									// echo $item->NT13_FileStatus."<br />";
+									if(isset($item->NT12_FileStatus)){
+										echo $item->NT12_VoiceName."<br />";
+									}
+								?></div>
+							</div><?php
 						}
 					}
-					if(isset($news[6]->NT13_FileStatus)){
-						if($news[6]->NT13_FileStatus == "Y"){
-							?><img src="<?php echo base_url(); ?>images/icon/like.png" width="17" style="margin: -10px 10px 0;"><?php
-							// echo $news[6]->NT11_FileStatus."<br />";
-							foreach ($news[6] as $vdo) {
-								if(isset($vdo->NT11_FileStatus)){
-									echo $vdo->NT11_PicName."<br />";
-								}
-							}
+				}
+				
+				if(isset($NT12_Voice)){
+					
+					foreach ($NT12_Voice as $item) {
+						if($item->NT13_FileStatus == "Y"){
+							?><div class="row">
+								<div class="col-lg-6" style="margin-left: 10%; ">
+									<img src="<?php echo base_url(); ?>images/icon/Document.jpg" width="17" style="margin: -10px 10px 0;"><?php
+									// echo $item->NT11_FileStatus."<br />";
+									if(isset($item->NT13_FileStatus)){
+										echo $item->NT13_FileName."<br />";
+									}
+								?></div>
+							</div><?php
 						}
 					}
+				}
 				?>
 				<!-- <input type="text" class="form-control" id="InputKeyword" placeholder="" > -->
 				<!-- <input class="bt" type="submit" name="share" value="BROWSE"> -->
 			</div>
 		</div>
+		
+<?php
+		/*
+		$row = 0;
+		foreach ($FileAttach as $FileAttach_item){
+			
+			?><div class="row" style="margin-bottom: 0; padding: 10px 10px; <?php
+				if($row % 2 == 0){
+					?>background-color: #fbfaf6<?php
+				}
+				else{
+					?>background-color: #ededed<?php
+				}
+			?>"> 
+				<div style="float: left; width: 80%; padding-left: 10%; ">
+					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."uploads/".$FileAttach_item->File_Name; ?>"><?php 
+						?><img src="<?php echo base_url(); ?>images/icon/<?php
+						if(
+							strtolower($FileAttach_item->File_Extension) == ".png" ||
+							strtolower($FileAttach_item->File_Extension) == ".jpg" ||
+							strtolower($FileAttach_item->File_Extension) == ".jpeg" ||
+							strtolower($FileAttach_item->File_Extension) == ".bmp" ||
+							strtolower($FileAttach_item->File_Extension) == ".tiff" ||
+							strtolower($FileAttach_item->File_Extension) == ".gif"
+						){
+							?>pic.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".mp3" ||
+							strtolower($FileAttach_item->File_Extension) == ".ogg" ||
+							strtolower($FileAttach_item->File_Extension) == ".wma"
+						){
+							?>voice_512x512.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".avi" ||
+							strtolower($FileAttach_item->File_Extension) == ".mpg" ||
+							strtolower($FileAttach_item->File_Extension) == ".mpg4" ||
+							strtolower($FileAttach_item->File_Extension) == ".mp4" ||
+							strtolower($FileAttach_item->File_Extension) == ".wmv"
+						){
+							?>vdo.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".doc" ||
+							strtolower($FileAttach_item->File_Extension) == ".docs"
+						){
+							?>Document.jpg<?php
+						}
+						else{
+							?>Document.jpg<?php
+						}
+						?>" style="margin-right: 10px; " width="17"><?php 
+						echo $FileAttach_item->File_Name; 
+					?></a>
+				</div>
+			</div><?php
+			$row++;
+		}
+		*/
+?>
+		
 	
 		<div class="col-lg-12" style="text-align: center;    float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก">

@@ -197,7 +197,7 @@ foreach($news as $news_item):
 		$row = 0;
 		foreach ($FileAttach as $FileAttach_item){
 			
-			?><div class="row" style="margin-bottom: 0; padding: 10px 10px; <?php
+			?><div class="row" style="margin-bottom: 0; padding: 10px 0; <?php
 				if($row % 2 == 0){
 					?>background-color: #fbfaf6<?php
 				}
