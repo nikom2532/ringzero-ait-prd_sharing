@@ -70,6 +70,7 @@ $route['manageNew'] = 'prd_managenew';
 
 $route['manageUser'] = 'prd_manageuser';
 $route['manageUserPRD'] = 'prd_manageuser_prd';
+$route['manageUserPRD/(:num)'] = 'prd_manageuser_prd/index/$1';
 $route['manageUserGOVE'] = 'prd_manageuser_gove';
 
 $route['manageInfo_Category'] = 'prd_manageinfo_category';

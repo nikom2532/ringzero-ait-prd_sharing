@@ -97,38 +97,6 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		$CM06_ProvinceID = ''
 	)
 	{
-		// echo $mem_status;
-		/*
-		$query_getMember = $this->db->
-			select('
-				Member.Mem_ID,
-				Member.Mem_Username,
-				Member.Mem_Name,
-				Member.Mem_LasName,
-				Member.Mem_Department,
-				Member.Prov_ID,
-				Member.Mem_Status,
-				GroupMember.Group_Status-,
-			')->
-			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
-			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
-			// like('Member.Mem_Username', $search_key)->
-			// or_like('Member.SC03_FName', $search_key)->
-			// or_like('Member.SC03_LName', $search_key)->
-			
-			where("
-				(Member.Mem_Username LIKE '%".$search_key."%') 
-				OR
-				(Member.Mem_Name LIKE '%".$search_key."%')
-				OR
-				(Member.Mem_LasName LIKE '%".$search_key."%')
-			")->
-			where('Member.Mem_Status', $mem_status)->
-			get('Member');
-			
-		return $query_getUser->result();
-		*/
-		
 		$str_getMember2 = "
 			SELECT 
 				Member.Mem_ID, 
@@ -161,60 +129,202 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 	
 	//##################### Old Database #########################
 	
-	public function get_SC03_User()
+	public function get_SC03_User(
+		$page=1, 
+		$row_per_page=20
+	)
 	{
-		$query_getUser = $this->db_ntt_old->
-			select('
-				SC03_User.SC03_UserId,
-				SC03_User.SC03_UserName,
-				SC03_User.SC03_FName,
-				SC03_User.SC03_LName,
-				SC03_User.SC07_DepartmentId,
-				SC03_User.CM06_ProvinceID,
-				SC03_User.SC03_Status,
-				SC03_User.SC03_RegisterDate,
-				CM06_Province.CM06_ProvinceName,
-				SC07_Department.SC07_DepartmentName,
-			')->
-			where('SC03_User.SC03_Status', "T")->
-			join('CM06_Province', 'CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId', 'left')->
-			join('SC07_Department', 'SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId')->
-			get('SC03_User', 20, 0)->result();
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
 		
-		return $query_getUser;
+		$StrQuery_get_SC03_User = "
+			WITH LIMIT AS(
+				SELECT
+					SC03_User.SC03_UserId,
+					SC03_User.SC03_UserName,
+					SC03_User.SC03_FName,
+					SC03_User.SC03_LName,
+					SC03_User.SC07_DepartmentId,
+					SC03_User.CM06_ProvinceID,
+					SC03_User.SC03_Status,
+					SC03_User.SC03_RegisterDate,
+					CM06_Province.CM06_ProvinceName,
+					SC07_Department.SC07_DepartmentName,
+					ROW_NUMBER() OVER (ORDER BY (SC03_User.SC03_UserId) DESC) AS 'RowNumber'
+				FROM
+					SC03_User
+				LEFT JOIN
+					CM06_Province
+				ON
+					CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId
+				LEFT JOIN
+					SC07_Department
+				ON 
+					SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+				WHERE
+					SC03_User.SC03_Status = 'T'
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+			
+		";
+		$query_get_SC03_User = $this->db_ntt_old->
+			query($StrQuery_get_SC03_User)->result();
+		
+		return $query_get_SC03_User;
+	}
+	
+	public function count_SC03_User()
+	{
+		$StrQuery = "
+			SELECT
+				COUNT(SC03_User.SC03_UserId) AS NUMROW
+			FROM
+				SC03_User
+			LEFT JOIN
+				CM06_Province
+			ON
+				CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId
+			LEFT JOIN
+				SC07_Department
+			ON 
+				SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+			WHERE
+				SC03_User.SC03_Status = 'T' 
+		";
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
 	
 	public function get_SC03_User_search(
+		$page = 1, 
+		$row_per_page = 20,
 		$search_key = '',
 		$SC03_Status = '',
 		$CM06_ProvinceID = ''
 	)
 	{
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		
+		$StrQuery_get_SC03_User = "
+			WITH LIMIT AS(
+				SELECT
+					SC03_User.SC03_UserId,
+					SC03_User.SC03_UserName,
+					SC03_User.SC03_FName,
+					SC03_User.SC03_LName,
+					SC03_User.SC07_DepartmentId,
+					SC03_User.CM06_ProvinceID,
+					SC03_User.SC03_Status,
+					SC03_User.SC03_RegisterDate,
+					CM06_Province.CM06_ProvinceName,
+					SC07_Department.SC07_DepartmentName,
+					ROW_NUMBER() OVER (ORDER BY (SC03_User.SC03_UserId) DESC) AS 'RowNumber'
+				FROM
+					SC03_User
+				LEFT JOIN
+					CM06_Province
+				ON
+					CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId
+				LEFT JOIN
+					SC07_Department
+				ON 
+					SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+				WHERE
+					SC03_User.SC03_Status = 'T'
+		";
+		if($search_key != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+				(
+					(SC03_User.SC03_UserName LIKE '%".$search_key."%') 
+					OR
+					(SC03_User.SC03_FName LIKE '%".$search_key."%')
+					OR
+					(SC03_User.SC03_LName LIKE '%".$search_key."%')
+				)
+			";
+		}
+		if($SC03_Status != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.SC03_Status = '".$SC03_Status."'
+			";
+		}
+		if($CM06_ProvinceID != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.CM06_ProvinceId = '".$CM06_ProvinceID."'
+			";
+		}
+		$StrQuery_get_SC03_User .= "
+				group by SC03_User.SC03_UserId
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		
 		$query_getUser = $this->db_ntt_old->
-			where('SC03_User.SC03_Status', $SC03_Status)->
-			where('SC03_User.CM06_ProvinceId', $CM06_ProvinceID)->
-			where("
-				
-				(SC03_User.SC03_UserName LIKE '%".$search_key."%') 
-				OR
-				(SC03_User.SC03_FName LIKE '%".$search_key."%')
-				OR
-				(SC03_User.SC03_LName LIKE '%".$search_key."%')
-				
-			")->
-			
-			// like('SC03_User.SC03_UserName', $search_key)->
-			// or_like('SC03_User.SC03_FName', $search_key)->
-			// or_like('SC03_User.SC03_LName', $search_key)->
-			get('SC03_User', 50, 0)->result();
-			
-			$str = $this->db->last_query();
-			echo "Asdf";
-			echo $str;
-			
-			exit;
+			query($StrQuery_get_SC03_User)->result();
 		
 		return $query_getUser;
+	}
+	
+	public function count_SC03_User_search(
+		$search_key = '',
+		$SC03_Status = '',
+		$CM06_ProvinceID = ''
+	)
+	{
+		$StrQuery = "
+			SELECT
+				COUNT(SC03_User.SC03_UserId) AS NUMROW
+			FROM
+				SC03_User
+			LEFT JOIN
+				CM06_Province
+			ON
+				CM06_Province.CM06_ProvinceID = SC03_User.CM06_ProvinceId
+			LEFT JOIN
+				SC07_Department
+			ON 
+				SC07_Department.SC07_DepartmentId = SC03_User.SC07_DepartmentId
+			WHERE
+				SC03_User.SC03_Status = 'T' 
+		";
+		if($search_key != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+				(
+					(SC03_User.SC03_UserName LIKE '%".$search_key."%') 
+					OR
+					(SC03_User.SC03_FName LIKE '%".$search_key."%')
+					OR
+					(SC03_User.SC03_LName LIKE '%".$search_key."%')
+				)
+			";
+		}
+		if($SC03_Status != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.SC03_Status = '".$SC03_Status."'
+			";
+		}
+		if($CM06_ProvinceID != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.CM06_ProvinceId = '".$CM06_ProvinceID."'
+			";
+		}
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
 	
 	public function get_Department()
