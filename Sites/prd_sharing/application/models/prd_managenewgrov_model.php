@@ -160,6 +160,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation.SendIn_CreateDate,
 					SendInformation.SendIn_Issue,
 					SendInformation.SendIn_view,
+					SendInformation.SendIn_Status,
 					FileAttach.File_Status,
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM SendInformation 
