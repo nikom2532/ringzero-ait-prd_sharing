@@ -36,30 +36,22 @@ class PRD_ManageNewGROV extends CI_Controller {
 			
 				$row_per_page = 20;
 				
-				if($this->input->post("manageNewEditPRD_record") == "yes"){
-					// echo "record";
-					$return_manageNewEditPRD_record = $this->prd_managenewgrov_model->set_prd_news(
-						$this->input->post("SendIn_ID"),
-						$this->input->post("SendIn_Plan"),
-						$this->input->post("SendIn_Issue")
-					);
-					// var_dump($return_manageNewEditPRD_record);
-				}
-				elseif ($this->input->post('sentnew_is_add')) {
-					$query_sentnew_record = $this->prd_managenewgrov_model->set_sentnew(
-						$this->input->post('create_date'),
-						$this->input->post('Minis_ID'),
-						$this->input->post('Dep_ID'),
-						$this->input->post('NT05_PolicyID'),
-						$this->input->post('Tar_ID'),
-						$this->input->post('grov_active'),
-						$this->input->post('prd_active'),
-						$this->input->post('SendIn_Plan'),
-						$this->input->post('SendIn_Issue'),
-						$this->input->post('SendIn_Detail')
-					);
-				}
-				else if($this->input->get('is_del_sendinformation') == "1"){
+				
+				// elseif ($this->input->post('sentnew_is_add')) {
+					// $query_sentnew_record = $this->prd_managenewgrov_model->set_sentnew(
+						// $this->input->post('create_date'),
+						// $this->input->post('Minis_ID'),
+						// $this->input->post('Dep_ID'),
+						// $this->input->post('NT05_PolicyID'),
+						// $this->input->post('Tar_ID'),
+						// $this->input->post('grov_active'),
+						// $this->input->post('prd_active'),
+						// $this->input->post('SendIn_Plan'),
+						// $this->input->post('SendIn_Issue'),
+						// $this->input->post('SendIn_Detail')
+					// );
+				// }
+				if($this->input->get('is_del_sendinformation') == "1"){
 					$data['delete_News'] = $this->prd_managenewgrov_model->delete_grov(
 						$this->input->get('sendin_id')
 					);

@@ -75,8 +75,8 @@ class PRD_sentNew extends CI_Controller {
 				$this->input->post('Dep_ID'),
 				$this->input->post('NT05_PolicyID'),
 				$this->input->post('Tar_ID'),
-				$this->input->post('grov_active'),
-				$this->input->post('prd_active'),
+				$this->input->post('grov_status'),
+				$this->input->post('prd_status'),
 				$this->input->post('SendIn_Plan'),
 				$this->input->post('SendIn_Issue'),
 				$this->input->post('SendIn_Detail')

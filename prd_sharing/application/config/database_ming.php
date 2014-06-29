@@ -48,11 +48,26 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '112.121.129.117';
-$db['default']['username'] = 'sa';
-$db['default']['password'] = '!NNTDataCenter>>';
-$db['default']['database'] = 'NNT_DataCenter_2';
+//########### MYSQL
+
+// $db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'iming';
+// $db['default']['password'] = 'iming';
+// $db['default']['database'] = 'ringzero_ait_prd_sharing';
+// $db['default']['dbdriver'] = 'mysql';
+
+//########### SQL Server
+
+// $db['default']['hostname'] = 'NIKOM2532-PC:1433';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'nikom2532';
+$db['default']['password'] = 'cominter';
+$db['default']['database'] = 'ringzero_ait_prd_sharing';
 $db['default']['dbdriver'] = 'sqlsrv';
+// $db['default']['dbdriver'] = 'mssql';
+
+//##################
+
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -64,40 +79,45 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-/*$active_group = 'NNT_RSSFEED';
-$active_record = TRUE;*/
+//######### 2nd Database Connection #########
 
-$db['NNT_RSSFEED']['hostname'] = '112.121.129.117';
-$db['NNT_RSSFEED']['username'] = 'sa';
-$db['NNT_RSSFEED']['password'] = '!NNTDataCenter>>';
-$db['NNT_RSSFEED']['database'] = 'NNT_RSSFEED';
-$db['NNT_RSSFEED']['dbdriver'] = 'sqlsrv';
-$db['NNT_RSSFEED']['dbprefix'] = '';
-$db['NNT_RSSFEED']['pconnect'] = TRUE;
-$db['NNT_RSSFEED']['db_debug'] = TRUE;
-$db['NNT_RSSFEED']['cache_on'] = FALSE;
-$db['NNT_RSSFEED']['cachedir'] = '';
-$db['NNT_RSSFEED']['char_set'] = 'utf8';
-$db['NNT_RSSFEED']['dbcollat'] = 'utf8_general_ci';
-$db['NNT_RSSFEED']['swap_pre'] = '';
-$db['NNT_RSSFEED']['autoinit'] = TRUE;
-$db['NNT_RSSFEED']['stricton'] = FALSE;
+$db['nnt_data_center_old']['hostname'] = 'localhost';
+$db['nnt_data_center_old']['username'] = 'nikom2532';
+$db['nnt_data_center_old']['password'] = 'cominter';
+$db['nnt_data_center_old']['database'] = 'NNT_DataCenter_2';
+$db['nnt_data_center_old']['dbdriver'] = 'sqlsrv';
 
-/*$db['default']['hostname'] = '111.223.32.9';
-$db['default']['username'] = 'dbuser_km';
-$db['default']['password'] = '123456';
-$db['default']['database'] = 'NNT_DataCenter';
-$db['default']['dbdriver'] = 'sqlsrv';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;*/
+$db['nnt_data_center_old']['dbprefix'] = '';
+$db['nnt_data_center_old']['pconnect'] = TRUE;
+$db['nnt_data_center_old']['db_debug'] = TRUE;
+$db['nnt_data_center_old']['cache_on'] = FALSE;
+$db['nnt_data_center_old']['cachedir'] = '';
+$db['nnt_data_center_old']['char_set'] = 'utf8';
+$db['nnt_data_center_old']['dbcollat'] = 'utf8_general_ci';
+$db['nnt_data_center_old']['swap_pre'] = '';
+$db['nnt_data_center_old']['autoinit'] = TRUE;
+$db['nnt_data_center_old']['stricton'] = FALSE;
+
+//##################
+
+// $db['nnt_data_center_pooh']['hostname'] = '111.223.32.9:1433';
+$db['nnt_data_center_pooh']['hostname'] = '111.223.32.9';
+$db['nnt_data_center_pooh']['username'] = 'dbuser_km';
+$db['nnt_data_center_pooh']['password'] = '123456';
+$db['nnt_data_center_pooh']['database'] = 'NNT_DataCenter';
+$db['nnt_data_center_pooh']['dbdriver'] = 'sqlsrv';
+
+$db['nnt_data_center_pooh']['dbprefix'] = '';
+$db['nnt_data_center_pooh']['pconnect'] = TRUE;
+$db['nnt_data_center_pooh']['db_debug'] = TRUE;
+$db['nnt_data_center_pooh']['cache_on'] = FALSE;
+$db['nnt_data_center_pooh']['cachedir'] = '';
+$db['nnt_data_center_pooh']['char_set'] = 'utf8';
+$db['nnt_data_center_pooh']['dbcollat'] = 'utf8_general_ci';
+$db['nnt_data_center_pooh']['swap_pre'] = '';
+$db['nnt_data_center_pooh']['autoinit'] = TRUE;
+$db['nnt_data_center_pooh']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

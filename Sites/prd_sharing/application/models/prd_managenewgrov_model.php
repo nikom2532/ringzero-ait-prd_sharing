@@ -78,7 +78,23 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-		$StrQuery = "
+					// MAX(SendInformation.SendIn_ID), 
+					// MAX(SendInformation.SendIn_UpdateDate), 
+					// MAX(SendInformation.SendIn_CreateDate), 
+					// MAX(SendInformation.SendIn_Issue), 
+					// MAX(SendInformation.SendIn_view), 
+					// MAX(SendInformation.SendIn_Status), 
+					// MAX(FileAttach.File_Status), 
+// 					
+					// SendInformation.SendIn_ID,
+					// SendInformation.SendIn_UpdateDate,
+					// SendInformation.SendIn_CreateDate,
+					// SendInformation.SendIn_Issue,
+					// SendInformation.SendIn_view,
+					// SendInformation.SendIn_Status,
+					// FileAttach.File_Status, 
+		
+	echo	$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
 					SendInformation.SendIn_ID,
@@ -351,21 +367,5 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	
 	//##########################
 	
-	//For record a new news
-	public function set_prd_news(
-		$SendIn_ID='',
-		$SendIn_Plan='',
-		$SendIn_Issue='' 	
-	)
-	{
-			$data = array(
-			   'SendIn_Plan' => $SendIn_Plan,
-			   'SendIn_Issue' => $SendIn_Issue,
-			);
-			
-			// var_dump($data);
-			
-			return $this->db->where("SendIn_ID", $SendIn_ID)->
-				update("SendInformation", $data);
-	}
+	
 }

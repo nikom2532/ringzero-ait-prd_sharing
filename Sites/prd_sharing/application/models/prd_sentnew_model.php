@@ -69,13 +69,26 @@ class PRD_SentNew_model extends CI_Model {
 		$Dep_ID,
 		$NT05_PolicyID,
 		$Tar_ID,
-		$grov_active,
-		$prd_active,
+		$GOVE_Status,
+		$PRD_Status,
 		$SendIn_Plan,
 		$SendIn_Issue,
 		$SendIn_Detail
 	)
 	{
+			if($Tar_ID == -1){
+				$PRD_Active = null;
+				$GOVE_Active = null;
+			}
+			elseif($Tar_ID == 3){
+				$PRD_Active = "1";
+				$GOVE_Active = "1";
+			}
+			elseif($Tar_ID == 4){
+				$PRD_Active = "1";
+				$GOVE_Active = "0";
+			}
+			
 			$data = array(
 				'SendIn_CreateDate' => $create_date, 	
 				'Ministry_ID' => $Minis_ID,
@@ -83,7 +96,11 @@ class PRD_SentNew_model extends CI_Model {
 				'Policy_ID' => $NT05_PolicyID,
 				'SendIn_Plan' => $SendIn_Plan,
 				'SendIn_Issue' => $SendIn_Issue,
-				'SendIn_Detail' => $SendIn_Detail
+				'SendIn_Detail' => $SendIn_Detail,
+				'PRD_Active' => $PRD_Active,
+				'PRD_Status' => $PRD_Status,
+				'GOVE_Active' => $GOVE_Active,
+				'GOVE_Status' => $GOVE_Status
 			);
 			
 			$this->db->

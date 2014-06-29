@@ -1,4 +1,4 @@
-<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
+<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>ffile แนบเอกสาร" method="post">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):
@@ -27,30 +27,52 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
-				<select name="">
-					<option value="">เลือกประเภทตำแหน่ง</option>
+				<select name="Minis_ID" id="Minis_ID">
+					<option value="">เลือกกระทรวง</option>
+<?php
+					foreach ($Ministry as $Ministry_item) {
+						?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+					}
+?>
 				</select>
 			</div>
 			<div class="col-lg-6">
 				<label >กรม</label>
-				<select name="">
-					<option value="">เลือกตำแหน่ง</option>
+				<select name="Dep_ID" id="Dep_ID">
+					<option value="">เลือกกรม</option>
+<?php
+					/*
+					// var_dump($Department);
+					foreach ($Department as $Department_item) {
+						?><option data-minis_id="<?php
+							foreach ($Ministry as $Ministry_item) {
+								if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
+									echo $Ministry_item->Minis_ID;
+								}
+							}
+						?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+					}
+					*/
+					/* ?><option value=""></option><?php */
+?>
 				</select>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >นโยบายรัฐบาล</label>
-				<select name="">
+				<select name="NT05_PolicyID">
 					<option value="">เลือกนโยบาย</option>
+<?php
+					foreach ($NT05_Policy as $NT05_Policy_item) {
+						?><option value="<?php 
+							echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;
+						?></option><?php
+					}
+?>
 				</select>
 			</div>
-			<div class="col-lg-6">
-				<label >เผยแพร่</label>
-				<select name="">
-					<option value="">เลือกเผยแพร่</option>
-				</select>
-			</div>
+
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
@@ -103,8 +125,13 @@ foreach($news as $news_item):
 				<select name="grov_active" id="grov_active">
 					<option value="">เลือกหน่วยงานภาครัฐ</option>
 <?php
+					/*
 					foreach ($SC07_Department as $Department_item) {
 						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+					}
+					*/
+					foreach ($Ministry as $Ministry_item) {
+						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 					}
 ?>
 				</select>
@@ -115,10 +142,15 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
 				<select name="prd_active" id="prd_active">
-					<option value="">เลือกเผยแพร่</option>
+					<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
 <?php
+					/*
 					foreach ($Ministry as $Ministry_item) {
 						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+					}
+					*/
+					foreach ($SC07_Department as $Department_item) {
+						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
 					}
 ?>
 				</select>
@@ -174,14 +206,39 @@ foreach($news as $news_item):
 	<legend >
 		File Upload
 	</legend>
+	<div class="uploadfile">
+		<div class="row">
+			<div class="col-lg-6">
+				<label >file แนบเอกสาร 1.) </label>
+				<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
+				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
+				<!-- <input type="file" name="file[]" multiple /> -->
+			</div>
+		</div>
+	</div>
 	<div class="row">
-		<div class="col-lg-6">
-			<label >Attach file</label>
-			<input type="text" class="form-control" id="InputKeyword" placeholder="" >
-			<input class="bt" type="submit" name="share" value="BROWSE">
+		<div style="text-align: center;">
+			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 		</div>
 	</div>
 </fieldset>
+
+<script>
+	var number = 2;
+	$("input.bt#addmorefile").click(function(){
+		
+		var str =""+
+		"<div class=\"row\">"+
+		"	<div class=\"col-lg-6\">"+
+		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
+		"	</div>"+
+		"</div>";
+		
+		$("div.uploadfile").append(str);
+		number++;
+	});
+</script>
 
 <div class="row">
 	<div class="col-lg-12" style="text-align: center;    float: left;">

@@ -31,12 +31,34 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			$showStatus = $this->authenstatus->checkGroupID();
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
+			
+			if($this->input->post("manageNewEditPRD_record") == "yes"){
+				// echo "record";
+				$return_manageNewEditPRD_record = $this->prd_manageneweditgrov_model->set_prd_news(
+					$this->input->post("SendIn_ID"),
+					$this->input->post("SendIn_Plan"),
+					$this->input->post("SendIn_Issue"),
+					$this->input->post('Minis_ID'),
+					$this->input->post('Dep_ID'),
+					$this->input->post('NT05_PolicyID'),
+					$this->input->post('Tar_ID'),
+					$this->input->post('grov_active'),
+					$this->input->post('prd_active'),
+					$this->input->post('SendIn_Detail')
+					
+				);
+				// var_dump($return_manageNewEditPRD_record);
+				
+				redirect(base_url().index_page().'manageNewGROV', 'refresh');
+			}
+			
 			if($showStatus == "yes"){
 				
 				$data['news'] = $this->prd_manageneweditgrov_model->get_grov($this->input->get('sendin_id'));
 				$data['TargetGroup'] = $this->prd_manageneweditgrov_model->get_TargetGroup();
 				$data['SC07_Department'] = $this->prd_manageneweditgrov_model->get_SC07_Department();
 				$data['Ministry'] = $this->prd_manageneweditgrov_model->get_Ministry();
+				$data['NT05_Policy'] = $this->prd_manageneweditgrov_model->get_NT05_Policy();
 				
 				// var_dump($data['news']);
 				$this->load->view('prdsharing/templates/header', $data);

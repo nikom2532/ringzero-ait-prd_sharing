@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่วงวันที่</label>
-				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="NT01_UpdDate" placeholder="" disabled="disabled" value="<?php 
+				<input type="text" class="form-control datepicker" name="NT01_UpdDate" id="NT01_UpdDate" placeholder=""  value="<?php 
 					// if($news[0]->NT01_UpdDate == ""){
 						// echo date("d/m/Y h:m:s", strtotime($news[0]->NT01_CreDate));
 					// }
@@ -78,7 +78,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ประเภทข่าว</label>
-				<select name="NewsTypeID" id="NewsTypeID" class="form-control" disabled="disabled" style="width: 65%;">
+				<select name="NewsTypeID" id="NewsTypeID" class="form-control"  style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าว</option><?php
 					foreach ($NT02_NewsType as $newType_item) {
 						?><option 
@@ -92,7 +92,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ประเภทข่าวย่อย</label>
-				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" disabled="disabled" style="width: 65%;">
+				<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control"  style="width: 65%;">
 					<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 					foreach ($NT03_NewsSubType as $newType_item) {
 						if($newType_item->NT02_TypeID == $news[0]->NT02_TypeID){
@@ -118,7 +118,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >หัวข้อข่าว</label>
-				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder="" disabled="disabled" value="<?php 
+				<input type="text" class="form-control" name="NT01_NewsTitle" id="InputKeyword" placeholder=""  value="<?php 
 					//echo $news[0]->NT01_NewsTitle; //echo $news[0]->News_Title; 
 					
 					$i_item=0;
@@ -141,7 +141,7 @@
 		<div class="row">
 			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
 				<label >เนื้อหาข่าว</label>
-				<textarea class="ckeditor" name="NT01_NewsDesc" disabled="disabled"><?php 
+				<textarea class="ckeditor" name="NT01_NewsDesc" ><?php 
 					//echo $news[0]->NT01_NewsDesc //echo $news[0]->News_Detail; 
 					
 					
@@ -167,7 +167,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >แหล่งที่มา</label>
-				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder="" disabled="disabled" value="<?php 
+				<input type="text" class="form-control" name="NT01_NewsSource" id="InputKeyword" placeholder=""  value="<?php 
 					//echo $news[0]->NT01_NewsSource //echo $news[0]->News_Resource; 
 					
 					// var_dump($New_News);
@@ -191,7 +191,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >อ้างอิงจาก</label>
-				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder="" disabled="disabled" <?php 
+				<input type="text" class="form-control" name="NT01_NewsReferance" id="InputKeyword" placeholder=""  <?php 
 					//echo $news[0]->NT01_NewsReferance; // echo $news[0]->News_Referance; 
 					foreach ($New_News as $New_News_item) {
 						if(
@@ -244,7 +244,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >Tag</label>
-				<input type="text" class="form-control" name="NT01_NewsTag" id="InputKeyword" disabled="disabled" value="<?php echo $news[0]->NT01_NewsTag; ?>" placeholder="" >
+				<input type="text" class="form-control" name="NT01_NewsTag" id="InputKeyword"  value="<?php echo $news[0]->NT01_NewsTag; ?>" placeholder="" >
 			</div>
 		</div>
 	

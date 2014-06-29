@@ -5,7 +5,7 @@
 			numberOfMonths: 1,
 			changeMonth: true,
 			changeYear: true,
-			minDate: 0 
+			minDate: 0
 		});
 	});
 	
@@ -135,7 +135,7 @@
 				<div class="col-lg-6">
 					<label >กลุ่มเป้าหมาย</label>
 					<select name="Tar_ID" id="Tar_ID">
-						<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
+						<option value="" id="-1">เลือกกลุ่มเป้าหมาย</option>
 <?php
 						$i=1;
 						foreach ($TargetGroup as $TargetGroup_item) {
@@ -181,9 +181,9 @@
 			
 			<div class="row grov_active_col" >
 				<div class="col-lg-6">
-					<label id="grov_active" >หน่วยงานภาครัฐ</label>
-					<select name="grov_active" id="grov_active">
-						<option value="">เลือกเผยแพร่</option>
+					<label id="grov_status" >หน่วยงานภาครัฐ</label>
+					<select name="grov_status" id="grov_status">
+						<option value="">เลือกหน่วยงานภาครัฐ</option>
 <?php
 /*
 						// foreach ($SC07_Department as $Department_item) {
@@ -200,9 +200,9 @@
 			
 			<div class="row prd_active_col" >
 				<div class="col-lg-6">
-					<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
-					<select name="prd_active" id="prd_active">
-						<option value="">เลือกเผยแพร่</option>
+					<label id="prd_status" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
+					<select name="prd_status" id="prd_status">
+						<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
 <?php
 /*
 						// foreach ($Ministry as $Ministry_item) {
