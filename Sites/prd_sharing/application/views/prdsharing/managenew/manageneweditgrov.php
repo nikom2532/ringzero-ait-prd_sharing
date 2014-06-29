@@ -193,6 +193,67 @@ foreach($news as $news_item):
 				</select>
 			</div>
 		</div>
+<?php 
+		$row = 0;
+		foreach ($FileAttach as $FileAttach_item){
+			
+			?><div class="row" style="margin-bottom: 0; padding: 10px 10px; <?php
+				if($row % 2 == 0){
+					?>background-color: #fbfaf6<?php
+				}
+				else{
+					?>background-color: #ededed<?php
+				}
+			?>"> 
+				<div style="float: left; width: 20%; padding-left: 10%; ">
+					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."Uploads/".$FileAttach_item->File_Name; ?>"><?php 
+						?><img src="<?php echo base_url(); ?>images/icon/<?php
+						if(
+							strtolower($FileAttach_item->File_Extension) == ".png" ||
+							strtolower($FileAttach_item->File_Extension) == ".jpg" ||
+							strtolower($FileAttach_item->File_Extension) == ".jpeg" ||
+							strtolower($FileAttach_item->File_Extension) == ".bmp" ||
+							strtolower($FileAttach_item->File_Extension) == ".tiff" ||
+							strtolower($FileAttach_item->File_Extension) == ".gif"
+						){
+							?>pic.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".mp3" ||
+							strtolower($FileAttach_item->File_Extension) == ".ogg" ||
+							strtolower($FileAttach_item->File_Extension) == ".wma"
+						){
+							?>voice_512x512.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".avi" ||
+							strtolower($FileAttach_item->File_Extension) == ".mpg" ||
+							strtolower($FileAttach_item->File_Extension) == ".mpg4" ||
+							strtolower($FileAttach_item->File_Extension) == ".mp4" ||
+							strtolower($FileAttach_item->File_Extension) == ".wmv"
+						){
+							?>vdo.png<?php
+						}
+						elseif(
+							strtolower($FileAttach_item->File_Extension) == ".doc" ||
+							strtolower($FileAttach_item->File_Extension) == ".docs"
+						){
+							?>Document.jpg<?php
+						}
+						else{
+							?>Document.jpg<?php
+						}
+						?>" style="margin-right: 10px; " width="17"><?php 
+						echo $FileAttach_item->File_Name; 
+					?></a>
+				</div>
+				<div style="float: left; width: 70%; padding-top: 1%; "> 
+					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
+				</div>
+			</div><?php
+			$row++;
+		}
+?>
 		
 		<!--<div class="col-lg-12" style="text-align: center;    float: left;">
 		<input class="bt" type="submit" name="share" value="บันทึก">

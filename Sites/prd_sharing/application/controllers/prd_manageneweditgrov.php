@@ -60,6 +60,8 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				$data['Ministry'] = $this->prd_manageneweditgrov_model->get_Ministry();
 				$data['NT05_Policy'] = $this->prd_manageneweditgrov_model->get_NT05_Policy();
 				
+				$data['FileAttach'] = $this->prd_manageneweditgrov_model->get_FileAttach($this->input->get('sendin_id'));
+				
 				// var_dump($data['news']);
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/managenew/manageneweditgrov', $data);

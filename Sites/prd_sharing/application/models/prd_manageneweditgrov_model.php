@@ -97,9 +97,12 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 				update("SendInformation", $data);
 	}
 	
-	public function get_($value='')
+	public function get_FileAttach($SendIn_ID = '')
 	{
-		
+		$query = $this->db->
+			where('SendIn_ID', $SendIn_ID)->
+			get('FileAttach')->result();
+		return $query;
 	}
 	
 	public function get_TargetGroup()
