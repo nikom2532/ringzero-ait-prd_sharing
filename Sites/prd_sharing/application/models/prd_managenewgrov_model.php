@@ -85,7 +85,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					// MAX(SendInformation.SendIn_view), 
 					// MAX(SendInformation.SendIn_Status), 
 					// MAX(FileAttach.File_Status), 
-// 					
+					
 					// SendInformation.SendIn_ID,
 					// SendInformation.SendIn_UpdateDate,
 					// SendInformation.SendIn_CreateDate,
@@ -94,7 +94,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					// SendInformation.SendIn_Status,
 					// FileAttach.File_Status, 
 		
-	echo	$StrQuery = "
+		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
 					SendInformation.SendIn_ID,

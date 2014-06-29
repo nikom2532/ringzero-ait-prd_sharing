@@ -290,20 +290,20 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewGROV"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewGROV"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewGROV"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url()."manageNewGROV"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/1");
 		$("#homeSearch").submit();
 	}
 	$('select#Ministry_ID').change(function(){

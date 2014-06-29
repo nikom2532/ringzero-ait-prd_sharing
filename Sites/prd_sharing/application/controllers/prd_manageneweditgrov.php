@@ -51,6 +51,13 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}
+			elseif($this->input->get('is_del_fileattach') == "1"){
+				$delete_fileattach_get_SendIn_ID = $this->prd_manageneweditgrov_model->delete_FileAttach(
+					$this->input->get('File_ID')
+				);
+				
+				redirect(base_url().index_page()."manageNewEditGROV?sendin_id=".$delete_fileattach_get_SendIn_ID);
+			}
 			
 			if($showStatus == "yes"){
 				

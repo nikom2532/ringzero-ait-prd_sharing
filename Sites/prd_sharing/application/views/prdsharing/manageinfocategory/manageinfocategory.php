@@ -156,20 +156,20 @@
 				if(<?php echo $total_page; ?>==val){
 					nextpage = val;
 				}
-				$("#homeSearch").attr("action","<?php echo base_url()."manageInfo_Category"; ?>/"+nextpage);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageInfo_Category"; ?>/"+nextpage);
 				$("#homeSearch").submit();
 			}
 			function lastPage(val){
-				$("#homeSearch").attr("action","<?php echo base_url()."manageInfo_Category"; ?>/"+val);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageInfo_Category"; ?>/"+val);
 				$("#homeSearch").submit();
 			}
 			function prevPage(val){
 				var prevpage = parseInt(val)-1;
-				$("#homeSearch").attr("action","<?php echo base_url()."manageInfo_Category" ?>/"+prevpage);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageInfo_Category" ?>/"+prevpage);
 				$("#homeSearch").submit();
 			}
 			function firstPage(){
-				$("#homeSearch").attr("action","<?php echo base_url()."manageInfo_Category"; ?>/1");
+				$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageInfo_Category"; ?>/1");
 				$("#homeSearch").submit();
 			}
 			

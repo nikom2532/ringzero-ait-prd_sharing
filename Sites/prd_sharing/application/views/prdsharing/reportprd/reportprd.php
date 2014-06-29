@@ -433,20 +433,20 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportPRD"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."reportPRD"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportPRD"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."reportPRD"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportPRD"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."reportPRD"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportPRD"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."reportPRD"; ?>/1");
 		$("#homeSearch").submit();
 	}
 </script>

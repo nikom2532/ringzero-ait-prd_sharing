@@ -183,20 +183,20 @@
 				if(<?php echo $total_page; ?>==val){
 					nextpage = val;
 				}
-				$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+nextpage);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+nextpage);
 				$("#homeSearch").submit();
 			}
 			function lastPage(val){
-				$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+val);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+val);
 				$("#homeSearch").submit();
 			}
 			function prevPage(val){
 				var prevpage = parseInt(val)-1;
-				$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/"+prevpage);
+				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+prevpage);
 				$("#homeSearch").submit();
 			}
 			function firstPage(){
-				$("#homeSearch").attr("action","<?php echo base_url().$home_search; ?>/1");
+				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/1");
 				$("#homeSearch").submit();
 			}
 			

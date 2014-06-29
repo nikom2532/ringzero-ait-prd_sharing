@@ -206,7 +206,7 @@ foreach($news as $news_item):
 				}
 			?>"> 
 				<div style="float: left; width: 20%; padding-left: 10%; ">
-					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."Uploads/".$FileAttach_item->File_Name; ?>"><?php 
+					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."uploads/".$FileAttach_item->File_Name; ?>"><?php 
 						?><img src="<?php echo base_url(); ?>images/icon/<?php
 						if(
 							strtolower($FileAttach_item->File_Extension) == ".png" ||
@@ -247,8 +247,10 @@ foreach($news as $news_item):
 						echo $FileAttach_item->File_Name; 
 					?></a>
 				</div>
-				<div style="float: left; width: 70%; padding-top: 1%; "> 
-					<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
+				<div style="float: left; width: 70%; "> 
+					<a href="#" class="FileAttachDelete" data-File_ID="<?php echo $FileAttach_item->File_ID; ?>">
+						<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0; padding-top: 1%;">
+					</a>
 				</div>
 			</div><?php
 			$row++;
@@ -298,6 +300,13 @@ foreach($news as $news_item):
 		
 		$("div.uploadfile").append(str);
 		number++;
+	});
+	
+	$(".FileAttachDelete").click( function() {
+		var file_ID = $(this).attr("data-File_ID");
+		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่เอกสาร = "+file_ID+" หรือไม่ ") == true) {
+	        location.href="manageNewEditGROV?is_del_fileattach=1&File_ID="+file_ID;
+	    }
 	});
 </script>
 

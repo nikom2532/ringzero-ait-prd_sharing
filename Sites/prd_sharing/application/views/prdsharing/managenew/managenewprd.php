@@ -452,20 +452,20 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."manageNewPRD"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."manageNewPRD"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."manageNewPRD"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."manageNewPRD"; ?>/1");
 		$("#homeSearch").submit();
 	}
 	$('select#NewsTypeID').change(function(){

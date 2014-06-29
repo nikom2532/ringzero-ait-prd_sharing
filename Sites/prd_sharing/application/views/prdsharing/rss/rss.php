@@ -275,20 +275,20 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+nextpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."rss"; ?>/"+nextpage);
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+val);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."rss"; ?>/"+val);
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+prevpage);
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."rss"; ?>/"+prevpage);
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
-		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/1");
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().index_page()."rss"; ?>/1");
 		$("#homeSearch").submit();
 	}
 
