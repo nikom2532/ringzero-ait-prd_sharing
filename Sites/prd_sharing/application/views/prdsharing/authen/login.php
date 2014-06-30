@@ -16,10 +16,10 @@
 						</p>
 					</li>
 					<li style="text-align:center;">
-						<input class="txt-field" type="text" value="" name="username" id="username" placeholder="Username" style="width: 30%">
+						<input class="txt-field" type="text" value="" name="username" id="username" value="NNT_tester" placeholder="Username" style="width: 30%">
 					</li>
 					<li style="margin-top:15px;text-align:center;">
-						<input class="txt-field" type="password" value="" name="password" id="password" placeholder="Password" style="width: 30%">
+						<input class="txt-field" type="password" value="" name="password" id="password" value="123456" placeholder="Password" style="width: 30%">
 					</li>
 					<?php 
 						if(isset($error)){
@@ -72,7 +72,7 @@
 	});
 	
 	function PRD_Authen(){
-		console.log('onclick');
+		// console.log('onclick');
 		var post_url = "http://111.223.32.9/prdservice/api/authenticate";
 		$.ajax({
 			type: 'POST',
@@ -81,7 +81,7 @@
 			data: { username:$("#username").val(), password:$("#password").val() },
 			dataType: 'json',
 			success: function(responseData) {
-				console.log(responseData);
+				// console.log(responseData);
 				var UserID = responseData.UserID;
 				var Authen = responseData.Authenticated;
 				var Username = responseData.UserName;

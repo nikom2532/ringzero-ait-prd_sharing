@@ -15,6 +15,25 @@
 			<?php $LeftContainerCount=0; ?>
 			<div class="col-lg-6" id="leftContainer">
 				<div class="vdo">
+					
+					
+					<!-- For Test video  -->
+					<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
+						<div class="flowplayer" style="width: 461px; height: 358px;">
+							<video>
+								<source type="video/webm" src="<?php echo base_url()."Uploads/video.mp4"; ?>" type="video/mp4">
+							</video>
+						</div>
+					</script> -->
+					
+					<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
+						<div class="flowplayer" style="width: 482px; height: 30px;">
+							<audio width="482" height="30" controls>
+								<source src="<?php echo base_url()."Uploads/voice.wma"; ?>" type="audio/mpeg">
+							</audio>
+						</div>
+					</script> -->
+					
 					<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;">
 					<img src="<?php
 						echo $news[3]->Url;

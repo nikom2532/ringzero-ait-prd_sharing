@@ -2,7 +2,7 @@
 
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form id="form_userinfo" action="<?php echo base_url().index_page(); ?>register/" method="post">
+	<form id="form_userinfo" name="form_userinfo" action="<?php echo base_url().index_page(); ?>register/" onsubmit="return validateForm(); " method="post"  >
 	<!-- <?php echo form_open('form'); ?> -->
 		<input type="hidden" name="register_new_member" value="yes" />
 		<div class="row">
@@ -60,25 +60,25 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >Username</label>
-				<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" />
+				<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label id="mem_password1">Password</label>
-				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" required />
+				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
 				<label id="mem_password2">Confirm Password</label>
 				<!-- <input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" /> -->
-				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" />
+				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required="required"  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" />
 			</div>
 		</div>
 			
 		<div class="row">
 			<div class="col-lg-6">
 				<label >รหัสบัตรประชาชน</label>
-				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" >
+				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
@@ -113,7 +113,7 @@
 				// debugger;
 			    var type_id = $('select#mem_ministry').val();
 			    if (type_id != ""){
-			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
+			        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
 			    	// debugger;
 			    	// alert(post_url);
 			        $.ajax({
@@ -184,74 +184,6 @@
 			</div>
 		</div>
 		
-		<script>
-			//อำเภอ
-			$('select#mem_province').change(function(){
-				// debugger;
-			    var type_id = $('select#mem_province').val();
-			    if (type_id != ""){
-			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
-			    	// debugger;
-			    	// alert(post_url);
-			        $.ajax({
-			            type: "POST",
-			             url: post_url,
-						 dataType :'json',
-			             success: function(subtype)
-			              {
-			              	// var a = JSON.parse(subtype);
-			                $('#mem_ampur').empty();
-			                
-			                var text = "<option value=\"\">เลือกอำเภอ</option>";
-			                $('#mem_ampur').append(text);
-			                
-							$.each(subtype,function(index,val)
-							{
-								text = ""+
-								"<option value=\""+val.CM07_AmpurID+"\">"+val.CM07_AmpurName+"</option>";
-								$('#mem_ampur').append(text);
-							});
-						} //end success
-					}); //end AJAX
-			    } else {
-			        $('#SubTypeID').empty();
-			    }//end if
-			}); //end change
-			
-			//ตำบล
-			$('select#mem_ampur').change(function(){
-				// debugger;
-			    var type_id = $('select#mem_ampur').val();
-			    if (type_id != ""){
-			        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
-			    	// debugger;
-			    	// alert(post_url);
-			        $.ajax({
-			            type: "POST",
-			             url: post_url,
-						 dataType :'json',
-			             success: function(subtype)
-			              {
-			              	// var a = JSON.parse(subtype);
-			                $('#mem_tumbon').empty();
-			                
-			                var text = "<option value=\"\">เลือกอำเภอ</option>";
-			                $('#mem_tumbon').append(text);
-			                
-							$.each(subtype,function(index,val)
-							{
-								text = ""+
-								"<option value=\""+val.CM08_TumbonID+"\">"+val.CM08_TumbonName+"</option>";
-								$('#mem_tumbon').append(text);
-							});
-						} //end success
-					}); //end AJAX
-			    } else {
-			        $('#SubTypeID').empty();
-			    }//end if
-			}); //end change
-		</script>
-		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ที่อยู่</label>
@@ -263,8 +195,8 @@
 					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label">รหัสไปรษณีย์</label>
-					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" />
+					<label class="label Mem_Postcode">รหัสไปรษณีย์</label>
+					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" value="<?php set_value('mem_postcode'); ?>" />
 				</div>
 				<div class="row">
 					<label class="label">ชื่อผู้ติดต่อ</label>
@@ -304,47 +236,102 @@
 			</div>
 		</div>
 		<?php */ ?>
+		
 		<div class="col-lg-12" style="text-align: center; float: left;">
+			<?php echo form_error('mem_postcode', '<div class="error">', '</div>'); ?>
 			<input class="bt" type="submit" name="share" value="บันทึก" />
 			<input class="bt" type="button" name="share" value="ยกเลิก" />
 		</div>
 	</form>
 	<script>
-		// $( "#form_userinfo" ).validate({
-		  // rules: {
-		    // mem_password1: {
-			    // required: true
-		    // },
-		    // mem_password2: {
-		      // equalTo: "#mem_password1"
-// 		      
-		    // }
-		  // }
-		// });
+		function validateForm() {
+		    var Mem_Postcode = document.forms["form_userinfo"]["mem_postcode"].value;
+		    if (Mem_Postcode == null || Mem_Postcode == "") {
+		        alert("First name must be filled out");
+		        document.getElementById('Mem_Postcode').focus();
+		        $('.label.Mem_Postcode').css("color", "red");
+		        return false;
+		    }
+		    
+		    var Mem_Email = document.forms["form_userinfo"]["Mem_Email"].value;
+		    var atpos = Mem_Email.indexOf("@");
+		    var dotpos = Mem_Email.lastIndexOf(".");
+		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=Mem_Email.length) {
+		        alert("Not a valid e-mail address");
+		        document.getElementById('Mem_Email').focus();
+		        $('.label.Mem_Email').css("color", "red");
+		        return false;
+		    }
+		}
 		
 		function check_pass(text1, text2){
-			
 			$('#mem_password2').html(text2);
-			
-			// mem_password2
 		}
 		
-		/*
-		var validator = $("#form_userinfo").validate({
-			rules: {        	        		
-				mem_password1 :"required",
-				mem_password2: function(){
-					equalTo: '#mem_password1'
-			    }		
-	    	},  	                          
-		    messages: {
-	    		mem_password1 :" Enter Password",
-	    		mem_password2 :" Enter Confirm Password Same as Password"
-		    }
-		});
-		if(validator.form()){
-			alert('Sucess');
-		}
-		*/
+		//อำเภอ
+		$('select#mem_province').change(function(){
+			// debugger;
+		    var type_id = $('select#mem_province').val();
+		    if (type_id != ""){
+		        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
+		    	// debugger;
+		    	// alert(post_url);
+		        $.ajax({
+		            type: "POST",
+		             url: post_url,
+					 dataType :'json',
+		             success: function(subtype)
+		              {
+		              	// var a = JSON.parse(subtype);
+		                $('#mem_ampur').empty();
+		                
+		                var text = "<option value=\"\">เลือกอำเภอ</option>";
+		                $('#mem_ampur').append(text);
+		                
+						$.each(subtype,function(index,val)
+						{
+							text = ""+
+							"<option value=\""+val.CM07_AmpurID+"\">"+val.CM07_AmpurName+"</option>";
+							$('#mem_ampur').append(text);
+						});
+					} //end success
+				}); //end AJAX
+		    } else {
+		        $('#SubTypeID').empty();
+		    }//end if
+		}); //end change
+		
+		//ตำบล
+		$('select#mem_ampur').change(function(){
+			// debugger;
+		    var type_id = $('select#mem_ampur').val();
+		    if (type_id != ""){
+		        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
+		    	// debugger;
+		    	// alert(post_url);
+		        $.ajax({
+		            type: "POST",
+		             url: post_url,
+					 dataType :'json',
+		             success: function(subtype)
+		              {
+		              	// var a = JSON.parse(subtype);
+		                $('#mem_tumbon').empty();
+		                
+		                var text = "<option value=\"\">เลือกอำเภอ</option>";
+		                $('#mem_tumbon').append(text);
+		                
+						$.each(subtype,function(index,val)
+						{
+							text = ""+
+							"<option value=\""+val.CM08_TumbonID+"\">"+val.CM08_TumbonName+"</option>";
+							$('#mem_tumbon').append(text);
+						});
+					} //end success
+				}); //end AJAX
+		    } else {
+		        $('#SubTypeID').empty();
+		    }//end if
+		}); //end change
 	</script>
 </div><!-- #manage-user -->

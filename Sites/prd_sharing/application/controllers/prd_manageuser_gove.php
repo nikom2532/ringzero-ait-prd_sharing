@@ -108,7 +108,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 						$page, 
 						$row_per_page
 					);
-					$count_row = $this->prd_manage_user_prd_model->count_Member();
+					$count_row = $this->prd_manage_user_gove_model->count_Member();
 					$data['SC03_User'] = $this->prd_manage_user_gove_model->get_SC03_User();
 				}
 				
