@@ -66,95 +66,183 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 		return $query_setMember;
 	}
 	
-	public function get_Member()
+	public function get_Member(
+		$page=1, 
+		$row_per_page=20
+	)
 	{
-		$query_getUser = $this->db->
-			select('
-				Member.Mem_ID,
-				Member.Mem_Username,
-				Member.Mem_Name,
-				Member.Mem_LasName,
-				Member.Mem_Department,
-				Member.Prov_ID,
-				Member.Mem_Status,
-				Member.Mem_Ministry,
-				Member.Mem_CreateDate,
-				GroupMember.Group_Status,
-			')->
-			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
-			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
-			where_in('Member.Group_ID', array('1', '2'))->
-			get('Member');
-			
-		return $query_getUser->result();
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
+		
+		$strQuery_get_Member = "
+			WITH LIMIT AS(
+				SELECT
+					Member.Mem_ID,
+					Member.Mem_Username,
+					Member.Mem_Name,
+					Member.Mem_LasName,
+					Member.Mem_Department,
+					Member.Prov_ID,
+					Member.Mem_Status,
+					Member.Mem_Ministry,
+					Member.Mem_CreateDate,
+					GroupMember.Group_Status,
+					ROW_NUMBER() OVER (ORDER BY (Member.Mem_ID) DESC) AS 'RowNumber'
+				FROM 
+					Member
+				LEFT JOIN 
+					GroupMember
+				ON
+					GroupMember.Group_ID = Member.Group_ID
+				WHERE
+					Member.Group_ID IN ('1', '2')
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query_get_Member = $this->db->
+			query($strQuery_get_Member)->result();
+		
+		return $query_get_Member;
+	}
+	
+	public function count_Member()
+	{
+		$StrQuery = "
+			SELECT
+				COUNT(Member.Mem_ID) AS NUMROW
+			FROM
+				Member
+			LEFT JOIN 
+				GroupMember
+			ON
+				GroupMember.Group_ID = Member.Group_ID
+			WHERE
+				Member.Group_ID IN ('1', '2')
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
 	
 	public function get_Member_search(
+		$page=1, 
+		$row_per_page = 20,
 		$search_key = '',
 		$mem_status = '',
 		$CM06_ProvinceID = ''
 	)
 	{
-		// echo $mem_status;
-		/*
-		$query_getMember = $this->db->
-			select('
-				Member.Mem_ID,
-				Member.Mem_Username,
-				Member.Mem_Name,
-				Member.Mem_LasName,
-				Member.Mem_Department,
-				Member.Prov_ID,
-				Member.Mem_Status,
-				GroupMember.Group_Status-,
-			')->
-			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
-			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
-			// like('Member.Mem_Username', $search_key)->
-			// or_like('Member.SC03_FName', $search_key)->
-			// or_like('Member.SC03_LName', $search_key)->
-			
-			where("
-				(Member.Mem_Username LIKE '%".$search_key."%') 
-				OR
-				(Member.Mem_Name LIKE '%".$search_key."%')
-				OR
-				(Member.Mem_LasName LIKE '%".$search_key."%')
-			")->
-			where('Member.Mem_Status', $mem_status)->
-			get('Member');
-			
-		return $query_getUser->result();
-		*/
+		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$end = $page*$row_per_page;
 		
-		$str_getMember2 = "
-			SELECT 
-				Member.Mem_ID, 
-				Member.Mem_Username, 
-				Member.Mem_Name, 
-				Member.Mem_LasName, 
-				Member.Mem_Department, 
-				Member.Prov_ID, 
-				Member.Mem_Status, 
-				GroupMember.Group_Status 
-			FROM Member 
-			LEFT JOIN GroupMember 
-				ON GroupMember.Group_ID = Member.Group_ID 
-			WHERE 
-			(
-				(Member.Mem_Username LIKE '%".$search_key."%') 
-				OR 
-				(Member.Mem_Name LIKE '%".$search_key."%') 
-				OR 
-				(Member.Mem_LasName LIKE '%".$search_key."%')
-			)
-			AND Member.Mem_Status = '".$mem_status."'
-			AND Member.Prov_ID = '".$CM06_ProvinceID."'
+		$strQuery_get_Member = "
+			WITH LIMIT AS(
+				SELECT
+					Member.Mem_ID,
+					Member.Mem_Username,
+					Member.Mem_Name,
+					Member.Mem_LasName,
+					Member.Mem_Department,
+					Member.Prov_ID,
+					Member.Mem_Status,
+					Member.Mem_Ministry,
+					Member.Mem_CreateDate,
+					GroupMember.Group_Status,
+					ROW_NUMBER() OVER (ORDER BY (Member.Mem_ID) DESC) AS 'RowNumber'
+				FROM 
+					Member
+				LEFT JOIN 
+					GroupMember
+				ON
+					GroupMember.Group_ID = Member.Group_ID
+				WHERE
+					Member.Group_ID IN ('1', '2')
 		";
+		if($search_key != ""){
+			$strQuery_get_Member .= "
+				AND
+				(
+					(Member.Mem_Username LIKE '%".$search_key."%') 
+					OR 
+					(Member.Mem_Name LIKE '%".$search_key."%') 
+					OR 
+					(Member.Mem_LasName LIKE '%".$search_key."%')
+				)
+			";
+		}
+		if($mem_status != ""){
+			$strQuery_get_Member .= "
+				AND 
+					Member.Mem_Status = '".$mem_status."'
+			";
+		}
+		if($CM06_ProvinceID != ""){
+			$strQuery_get_Member .= "
+				AND 
+					Member.Prov_ID = '".$CM06_ProvinceID."'
+			";
+		}
+		$strQuery_get_Member .= "
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query_get_Member = $this->db->
+			query($strQuery_get_Member)->result();
 		
-		$query_getMember2 = $this->db->query($str_getMember2);
+		return $query_get_Member;
+	}
+	
+	public function count_Member_search(
+		$search_key = '',
+		$mem_status = '',
+		$CM06_ProvinceID = ''
+	)
+	{
+		$StrQuery = "
+			SELECT
+				COUNT(Member.Mem_ID) AS NUMROW
+			FROM
+				Member
+			LEFT JOIN 
+				GroupMember
+			ON
+				GroupMember.Group_ID = Member.Group_ID
+			WHERE
+				Member.Group_ID IN ('1', '2')
+		";
+		if($search_key != ""){
+			$strQuery_get_Member .= "
+				AND
+				(
+					(Member.Mem_Username LIKE '%".$search_key."%') 
+					OR 
+					(Member.Mem_Name LIKE '%".$search_key."%') 
+					OR 
+					(Member.Mem_LasName LIKE '%".$search_key."%')
+				)
+			";
+		}
+		if($mem_status != ""){
+			$strQuery_get_Member .= "
+				AND 
+					Member.Mem_Status = '".$mem_status."'
+			";
+		}
+		if($CM06_ProvinceID != ""){
+			$strQuery_get_Member .= "
+				AND 
+					Member.Prov_ID = '".$CM06_ProvinceID."'
+			";
+		}
+		$query = $this->db->
+			query($StrQuery)->result();
 		
-		return $query_getMember2->result();
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
 	
 	//##################### Old Database #########################

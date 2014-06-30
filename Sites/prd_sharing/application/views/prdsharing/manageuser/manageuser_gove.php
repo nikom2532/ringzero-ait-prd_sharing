@@ -10,12 +10,12 @@
     });
 </script>
 <div id="search-form">
-	<form action="<?php echo base_url().index_page(); ?>manageUser" method="post">
+	<form id="homeSearch" action="<?php echo base_url().index_page(); ?>manageUserGOVE" method="post">
 		<input type="hidden" name="manage_user_is_search" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-				<input class="txt-field" type="text" value="" name="search_key" value="<?php
+				<input class="txt-field" type="text" name="search_key" value="<?php
 					if(isset($post_search_key)){
 						echo $post_search_key;
 					}
@@ -210,20 +210,54 @@
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
-				ทั้งหมด: 73 รายการ (4หน้า)
+				<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
 			</p>
-			<p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-				<img src="<?php echo base_url(); ?>images/table/pev.png" style="margin: -5px 10px 0;">
-				<span style="margin-top: 10px;">
-					<select style="">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select> / 100</span>
-				<img src="<?php echo base_url(); ?>images/table/next.png" style="margin: -5px 10px 0;">
-				<img src="<?php echo base_url(); ?>images/table/end.png" style="margin: -5px 10px 0;">
-			</p>
+            
+            <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
+            	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
+            	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
+                <span style="margin-top: 10px;">
+					<!-- <span><?php //echo $current_page; ?></span> -->
+					<select onchange="jump_page(this.value)">
+<?php 
+						// var_dump($page_url);
+						foreach ($page_url as $item) {
+							?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
+						}
+?>
+					</select> / <?php echo $total_page; ?>
+                </span>
+                <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
+                <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+            </p>
 		</div>
 	</div>
 </div>
+<script>
+	
+	function jump_page(val){
+		location='<?php echo $jump_url; ?>/'+val;
+	}
+	function nextPage(val){
+		var nextpage = parseInt(val)+1;
+		if(<?php echo $total_page; ?>==val){
+			nextpage = val;
+		}
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageUserGOVE"; ?>/"+nextpage);
+		$("#homeSearch").submit();
+	}
+	function lastPage(val){
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageUserGOVE"; ?>/"+val);
+		$("#homeSearch").submit();
+	}
+	function prevPage(val){
+		var prevpage = parseInt(val)-1;
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageUserGOVE"; ?>/"+prevpage);
+		$("#homeSearch").submit();
+	}
+	function firstPage(){
+		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageUserGOVE"; ?>/1");
+		$("#homeSearch").submit();
+	}
+	
+</script>

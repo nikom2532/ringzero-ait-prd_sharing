@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>
-				<input class="txt-field" type="text" value="" name="search_key" value="<?php
+				<input class="txt-field" type="text" name="search_key" value="<?php
 					if(isset($post_search_key)){
 						echo $post_search_key;
 					}

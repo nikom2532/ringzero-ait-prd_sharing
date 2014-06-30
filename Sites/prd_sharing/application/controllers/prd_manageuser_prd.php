@@ -106,10 +106,11 @@ class PRD_ManageUser_PRD extends CI_Controller {
 					);
 					
 					// get_SC03_User_search
-					
 					$data['post_search_key'] = $this->input->post('search_key');
 					$data['post_mem_status'] = $this->input->post('mem_status');
 					$data['post_province_id'] = $this->input->post('province_id');
+					// echo $data['post_search_key'];
+					// exit;
 				}
 				else{
 					$data['Member'] = $this->prd_manage_user_prd_model->get_Member();
