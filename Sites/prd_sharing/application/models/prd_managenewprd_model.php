@@ -623,7 +623,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				$News_UpdateID += 1;
 			}
 			
-			/*
 			$data = array(
 			   'News_Title' => $NT01_NewsTitle,
 			   'News_Detail' => $NT01_NewsDesc,
@@ -632,15 +631,16 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			   'News_Tag' => $NT01_NewsTag,
 			   'News_OldCateID' => $NewsTypeID,
 			   'News_OldSubCateID' => $NewsSubTypeID,
-			   'News_UpdateID' => $News_UpdateID_next
-			);
-			*/
-			
-			$data = array(
+			   'News_UpdateID' => $News_UpdateID_next,
 			   'News_StatusPublic' => $News_StatusPublic
 			);
 			
 			// var_dump($data);
+			// exit;
+			
+			// $data = array(
+			   // 'News_StatusPublic' => $News_StatusPublic
+			// );
 			
 			return $this->db->where("News_OldID", $NT01_NewsID)->
 				update("News", $data);

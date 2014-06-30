@@ -40,7 +40,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$return = $this->prd_managenewprd_model->set_prd_news(
 						$this->input->post("NT01_NewsID"),
 						$this->input->post("NT01_NewsTitle"),
-						htmldecode($this->input->post("NT01_NewsDesc")),
+						// htmldecode($this->input->post("NT01_NewsDesc")),
+						$this->input->post("NT01_NewsDesc"),
 						$this->input->post("NT01_NewsSource"),
 						$this->input->post("NT01_NewsReferance"),
 						$this->input->post("NT01_NewsTag"),

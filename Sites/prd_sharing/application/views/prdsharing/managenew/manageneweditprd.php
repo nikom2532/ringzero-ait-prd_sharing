@@ -137,6 +137,23 @@
 					
 				?>">
 			</div>
+			<!-- <textarea class="" name="NT01_NewsDesc2" ><?php 
+				$i_item=0;
+				foreach ($New_News as $New_News_item) {
+					if(
+						$New_News_item->News_OldID ==  $news[0]->NT01_NewsID &&
+						$New_News_item->News_UpdateID > 0
+					){
+							// echo htmldecode($New_News_item->News_Detail);
+							echo $New_News_item->News_Detail;
+							$i_item++;
+					}
+				}
+				if($i_item == 0){
+					// echo $this->helper->utility_helper->htmldecode($news[0]->NT01_NewsDesc); 
+					echo ($news[0]->NT01_NewsDesc);
+				} 
+			?></textarea> -->
 		</div>
 		<div class="row">
 			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
