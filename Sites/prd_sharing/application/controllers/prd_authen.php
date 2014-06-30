@@ -28,6 +28,8 @@ class PRD_Authen extends CI_Controller {
 		//FOr Test Logout
 		// $this->session->unset_userdata('member_id');
 		
+		// var_dump($_POST);
+		
 		if(
 			$this->input->post('username') != "" && 
 			$this->input->post('password') != ""

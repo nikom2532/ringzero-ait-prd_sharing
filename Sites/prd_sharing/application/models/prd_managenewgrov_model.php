@@ -78,32 +78,18 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-					// MAX(SendInformation.SendIn_ID), 
-					// MAX(SendInformation.SendIn_UpdateDate), 
-					// MAX(SendInformation.SendIn_CreateDate), 
-					// MAX(SendInformation.SendIn_Issue), 
-					// MAX(SendInformation.SendIn_view), 
-					// MAX(SendInformation.SendIn_Status), 
-					// MAX(FileAttach.File_Status), 
-					
-					// SendInformation.SendIn_ID,
-					// SendInformation.SendIn_UpdateDate,
-					// SendInformation.SendIn_CreateDate,
-					// SendInformation.SendIn_Issue,
-					// SendInformation.SendIn_view,
-					// SendInformation.SendIn_Status,
-					// FileAttach.File_Status, 
+		// FileAttach.File_Status, 
 		
-		$StrQuery = "
+	 	$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
+				DINTINCT
 					SendInformation.SendIn_ID,
 					SendInformation.SendIn_UpdateDate,
 					SendInformation.SendIn_CreateDate,
 					SendInformation.SendIn_Issue,
 					SendInformation.SendIn_view,
 					SendInformation.SendIn_Status,
-					FileAttach.File_Status, 
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM
 					SendInformation
@@ -114,6 +100,25 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
+
+	public function get_FileAttach($news='')
+	{
+		$StrQuery = "
+				SELECT
+					FileAttach.File_Status
+				FROM
+					SendInformation
+				LEFT JOIN
+					FileAttach
+				ON 
+					SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;

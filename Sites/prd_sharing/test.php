@@ -1,28 +1,46 @@
 <script>
-	head.js("http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js", "http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js", "http://releases.flowplayer.org/js/flowplayer-3.2.13.min.js", function() {
-	});
-	head.ready(function() {
-		// install flowplayer into container
-		$f("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf", {
-
-			// fullscreen button not needed here
-			plugins : {
-				controls : {
-					fullscreen : false,
-					height : 30,
-					autoHide : false
-				}
+		$(function(){
+	 $("#login").click(function(){
+		 console.log('onclick');
+		 var post_url = "http://111.223.32.9/prdservice/api/authenticate";
+		 $.ajax({
+			type: 'POST',
+			url: 'http://111.223.32.9/prdservice/api/authenticate',
+			crossDomain: true,
+			data: { username:$("#username").val(), password:$("#password").val() },
+			dataType: 'json',
+			success: function(responseData) {
+				console.log(responseData);
+				var UserID = responseData.UserID;
+				var Authen = responseData.Authenticated;
+				var Username = responseData.UserName;
+				var redirectURL = '<?php echo base_url()?>rss/login';
+				redirect(redirectURL,UserID,Authen,Username);
 			},
-
-			clip : {
-				autoPlay : false,
-				// optional: when playback starts close the first audio playback
-				onBeforeBegin : function() {
-					$f("player").close();
-				}
+			error: function (responseData) {
+				alert('POST failed.');
 			}
-
 		});
+	 });
+});
+function redirect(page,value,authen,username)
+{
+	$.ajax({
+		type: 'POST',
+		url: page,
+		data: {UserId: value , Authenticated: authen , Username: username},
+		success:function(rs){
+			if(rs == 'Success')
+			{
+				window.location="<?php echo base_url();?>rss/sharing";
+			}
+			else
+			{
+				//alert(rs);
+				$("#error").show();
+			}
+		}
+	});
+}
 
-	}); 
 </script>
