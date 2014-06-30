@@ -86,7 +86,7 @@
 					// debugger;
 				    var type_id = $('select#Minis_ID').val();
 				    if (type_id != ""){
-				        var post_url = "<?php echo base_url(); ?>PRD_sentNew/get_Department/" + type_id;
+				        var post_url = "<?php echo base_url().index_page(); ?>PRD_sentNew/get_Department/" + type_id;
 				    	// debugger;
 				    	// alert(post_url);
 				        $.ajax({

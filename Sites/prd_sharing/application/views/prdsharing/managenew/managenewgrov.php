@@ -310,10 +310,10 @@
 		// debugger;
 	    var type_id = $('select#Ministry_ID').val();
 		if (type_id != ""){
-			var post_url = "<?php echo base_url(); ?>PRD_ManageNewGROV/get_department/" + type_id;
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewGROV/get_department/" + type_id;
 		}
 		else{
-			var post_url = "<?php echo base_url(); ?>PRD_ManageNewGROV/get_department/";
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewGROV/get_department/";
 		}
 		// debugger;
 		// alert(post_url);
