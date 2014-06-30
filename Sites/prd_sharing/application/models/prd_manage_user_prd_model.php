@@ -262,7 +262,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			";
 		}
 		$StrQuery_get_SC03_User .= "
-				group by SC03_User.SC03_UserId
+				
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -279,7 +279,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		$CM06_ProvinceID = ''
 	)
 	{
-		$StrQuery = "
+		$StrQuery_get_SC03_User = "
 			SELECT
 				COUNT(SC03_User.SC03_UserId) AS NUMROW
 			FROM
@@ -320,7 +320,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			";
 		}
 		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
+			query($StrQuery_get_SC03_User)->result();
 		
 		foreach($query as $val){
 			return $val->NUMROW;

@@ -131,7 +131,9 @@
 						<p class="col-4" style="width: 10%;float: left; text-align: center;">
 <?php 
 							if(isset($SC03_User_item->SC03_RegisterDate)){
-								echo $SC03_User_item->SC03_RegisterDate; 
+								// echo $SC03_User_item->SC03_RegisterDate; 
+								echo date("d/m/Y", strtotime($SC03_User_item->SC03_RegisterDate))."<br />";
+								echo date("h:m:s", strtotime($SC03_User_item->SC03_RegisterDate));
 							}
 							else{
 								echo "-";
@@ -234,7 +236,6 @@
 		location='<?php echo $jump_url; ?>/'+val;
 	}
 	function nextPage(val){
-		debugger;
 		var nextpage = parseInt(val)+1;
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
