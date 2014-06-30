@@ -8,6 +8,26 @@ class PRD_ManageNew_Detail_GROV_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 	}
 	
+	public function set_gove($news='')
+	{
+		foreach ($news as $news_item) {
+			
+			if($news_item->SendIn_view == 0 || $news_item->SendIn_view == null){
+				$data = array(
+				   'SendIn_view' => 1
+				);
+			}
+			else{
+				$data = array(
+				   'SendIn_view' => 1+($news_item->SendIn_view)
+				);
+			}
+			$this->db->
+				where('SendInformation.SendIn_ID', $news_item->SendIn_ID)->
+				update("SendInformation", $data);
+		}
+	}
+	
 	public function get_grov($SendIn_ID = '')
 	{
 		// return $this->db->get('SendInformation')->result();
@@ -45,6 +65,7 @@ class PRD_ManageNew_Detail_GROV_model extends CI_Model {
 			')->
 			join('SendInformation', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			where('FileAttach.SendIn_ID', $SendIn_ID)->
+			where('File_Status', 1)->
 			get('FileAttach')->result();
 		
 	}

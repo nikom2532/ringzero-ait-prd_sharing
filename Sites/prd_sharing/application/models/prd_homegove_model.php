@@ -83,6 +83,8 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				
 				FROM SendInformation 
@@ -143,6 +145,8 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				
 				FROM SendInformation 
@@ -205,8 +209,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -281,8 +289,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -357,8 +369,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -438,8 +454,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -510,8 +530,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -582,8 +606,12 @@ class PRD_HomeGOVE_model extends CI_Model {
 					MAX(SendInformation.Mem_ID) AS Mem_ID,
 					MAX(SendInformation.SendIn_view) AS SendIn_view,
 					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
-				FROM SendInformation 
+				FROM SendInformation
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID 
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
@@ -642,6 +670,26 @@ class PRD_HomeGOVE_model extends CI_Model {
 			
 		foreach($query as $val){
 			return $val->NUMROW;
+		}
+	}
+	
+	public function set_gove($news='')
+	{
+		foreach ($news as $news_item) {
+			
+			if($news_item->SendIn_view == 0 || $news_item->SendIn_view == null){
+				$data = array(
+				   'SendIn_view' => 1
+				);
+			}
+			else{
+				$data = array(
+				   'SendIn_view' => 1+($news_item->SendIn_view)
+				);
+			}
+			$this->db->
+				where('SendInformation.SendIn_ID', $news_item->SendIn_ID)->
+				update("SendInformation", $data);
 		}
 	}
 	

@@ -70,6 +70,24 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_FileAttach($news='')
+	{
+		$StrQuery = "
+				SELECT
+					FileAttach.File_Status
+				FROM
+					SendInformation
+				LEFT JOIN
+					FileAttach
+				ON 
+					SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
 	public function get_grov(
 		$page=1, 
 		$row_per_page=20
@@ -83,13 +101,14 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	 	$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
-				DINTINCT
+				
 					SendInformation.SendIn_ID,
 					SendInformation.SendIn_UpdateDate,
 					SendInformation.SendIn_CreateDate,
 					SendInformation.SendIn_Issue,
 					SendInformation.SendIn_view,
 					SendInformation.SendIn_Status,
+					FileAttach.File_Status,
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM
 					SendInformation
@@ -99,24 +118,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation.SendIn_ID = FileAttach.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		
-		$query = $this->db->
-			query($StrQuery)->result();
-		return $query;
-	}
-
-	public function get_FileAttach($news='')
-	{
-		$StrQuery = "
-				SELECT
-					FileAttach.File_Status
-				FROM
-					SendInformation
-				LEFT JOIN
-					FileAttach
-				ON 
-					SendInformation.SendIn_ID = FileAttach.SendIn_ID
 		";
 		
 		$query = $this->db->

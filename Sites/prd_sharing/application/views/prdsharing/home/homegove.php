@@ -69,7 +69,7 @@
 			</p>
 			<p class="col-2" style="width: 20%;float: left; ">
 				<img src="<?php echo base_url(); ?>images/icon/people.png" style="margin: -10px 10px 0;">
-				ผู้สื่อข่าว: <?php //echo $news_item->Mem_ID; ?>
+				ผู้สื่อข่าว: <?php echo $news_item->Mem_Name." ".$news_item->Mem_LasName; ?>
 			</p>
 			<p class="col-3" style="width: 20%;float: left; ">
 				<img src="<?php echo base_url(); ?>images/icon/view.png" style="margin: -10px 10px 0;">
