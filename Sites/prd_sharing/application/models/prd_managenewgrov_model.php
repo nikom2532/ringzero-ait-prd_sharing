@@ -96,26 +96,24 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
-		// FileAttach.File_Status, 
-		
-	 	$StrQuery = "
+		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
-				
-					SendInformation.SendIn_ID,
-					SendInformation.SendIn_UpdateDate,
-					SendInformation.SendIn_CreateDate,
-					SendInformation.SendIn_Issue,
-					SendInformation.SendIn_view,
-					SendInformation.SendIn_Status,
-					FileAttach.File_Status,
-					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(SendInformation.SendIn_Status) AS SendIn_Status,
+					MAX(FileAttach.File_Status) AS File_Status,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM
 					SendInformation
 				LEFT JOIN
 					FileAttach
 				ON 
 					SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -161,14 +159,14 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
-					SendInformation.SendIn_ID,
-					SendInformation.SendIn_UpdateDate,
-					SendInformation.SendIn_CreateDate,
-					SendInformation.SendIn_Issue,
-					SendInformation.SendIn_view,
-					SendInformation.SendIn_Status,
-					FileAttach.File_Status,
-					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(SendInformation.SendIn_Status) AS SendIn_Status,
+					MAX(FileAttach.File_Status) AS File_Status,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
@@ -255,6 +253,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		$StrQuery .= "
+				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
