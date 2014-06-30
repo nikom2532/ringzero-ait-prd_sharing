@@ -175,37 +175,37 @@
 				?></p>
 				<p class="col-3" style="width: 25%;float: left; ">
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Status == '1'){
+						if($news_item->File_Type == 'video'){
 							?>vdo<?php
 						}else{
 							?>null<?php
 						}
-					?>.png" style="margin: -10px 10px 0;">
+					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Status == '2'){
+						if($news_item->File_Type == 'voice'){
 							?>voice_512x512<?php
 						}else{
 							?>null<?php
 						}
-					?>.png" style="margin: -10px 10px 0;">
+					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Status == '3'){
+						if($news_item->File_Type == 'other'){
 							?>Document.jpg<?php
 						}else{
 							?>null.png<?php
 						}
-					?>" style="margin: -10px 10px 0;">
+					?>" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
-						if($news_item->File_Status == '4'){
-							?>like<?php
+						if($news_item->File_Type == 'image'){
+							?>pic<?php
 						}else{
 							?>null<?php
 						}
-					?>.png" style="margin: -10px 10px 0;">
+					?>.png" width="17" style="margin: -10px 10px 0;">
 				</p>
 			</div>
 <?php
