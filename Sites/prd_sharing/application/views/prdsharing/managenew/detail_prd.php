@@ -202,7 +202,7 @@
 					}
 				?>" ><?php
 				foreach ($news as $news_item) {
-					?><div id="detail">
+					?><div id="detail" style="line-height: 200% ">
 						<h1><?php 
 								echo $news_item->NT01_NewsTitle;
 						?></h1>
@@ -214,11 +214,17 @@
 								echo date("d/m/Y", strtotime($news_item->NT01_UpdDate));
 							}
 							?>  |  (<?php
-								if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
-									echo "0";
-								}
-								else{
-									echo $news_item->NT01_ViewCount; 
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+										
+										if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+											echo "0";
+										}
+										else{
+											echo $New_News_item->News_View;
+										}
+									
+									}
 								}
 							?> ผู้เข้าชม)
 						</div>

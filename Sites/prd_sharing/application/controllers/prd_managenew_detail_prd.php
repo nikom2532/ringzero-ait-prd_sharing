@@ -35,6 +35,8 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 			
 				$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
 				
+				$data["New_News"] = $this->prd_managenew_detail_prd_model->get_New_News($this->input->get('news_id'));
+				
 				$data['get_NT01_News_ReWriteName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ReWriteName($this->input->get('news_id'));
 				$data['get_NT01_News_CreUser'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CreUser($this->input->get('news_id'));
 				$data['get_NT01_News_CamCoder'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CamCoder($this->input->get('news_id'));

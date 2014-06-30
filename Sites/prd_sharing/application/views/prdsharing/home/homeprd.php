@@ -82,19 +82,32 @@
 			<div class="event">
 				<p class="col-1" style="width: 20%;float: left; ">
 <?php
-					if($news_item->NT01_ViewCount <= 0){
+					foreach ($New_News as $New_News_item) {
+						if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+							
+							if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+								$views = 0;
+							}
+							else{
+								$views = $New_News_item->News_View;
+							}
+						
+						}
+					}
+
+					if($views <= 0){
 						$star_count = 0;
 					}
-					elseif($news_item->NT01_ViewCount <= 20){
+					elseif($views <= 20){
 						$star_count = 1;
 					}
-					elseif($news_item->NT01_ViewCount <= 40){
+					elseif($views <= 40){
 						$star_count = 2;
 					}
-					elseif($news_item->NT01_ViewCount <= 60){
+					elseif($views <= 60){
 						$star_count = 3;
 					}
-					elseif($news_item->NT01_ViewCount <= 80){
+					elseif($views <= 80){
 						$star_count = 4;
 					}
 					else{
@@ -115,22 +128,7 @@
 				<p class="col-3" style="width: 20%;float: left; ">
 					<img src="<?php echo base_url(); ?>images/icon/view.png" style="margin: -10px 10px 0;">
 					views: <?php 
-						
-						// var_dump($New_News);
-						// exit;
-						foreach ($New_News as $New_News_item) {
-							if($New_News_item->News_OldID == $news_item->NT01_NewsID){
-								
-								if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
-									echo "0";
-								}
-								else{
-									echo $New_News_item->News_View;
-								}
-							
-							}
-						}
-						
+						echo $views;
 				?></p>
 				<p class="col-4" style="width: 20%;float: left; ">
 					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
