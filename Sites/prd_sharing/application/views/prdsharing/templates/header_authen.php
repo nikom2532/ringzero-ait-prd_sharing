@@ -21,7 +21,7 @@
 
     <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
-    <script src="<?php echo base_url(); ?>js/ckeditor.js"></script>
+    <script src="<?php echo base_url(); ?>js/ckeditor/ckeditor.js"></script>
 <?php
     if($title == "Sent News"){
  	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php

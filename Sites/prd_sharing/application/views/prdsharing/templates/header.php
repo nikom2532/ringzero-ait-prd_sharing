@@ -25,7 +25,7 @@
 	
     <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
-    <script src="<?php echo base_url(); ?>js/ckeditor.js"></script>
+    <script src="<?php echo base_url(); ?>js/ckeditor/ckeditor.js"></script>
     
     <!-- Add fancyBox main JS and CSS files -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/source/jquery.fancybox.js?v=2.1.5"></script>
