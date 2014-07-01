@@ -392,20 +392,105 @@ class PRD_rss_model extends CI_Model {
 	}
 	
 	
-	public function get_news()
+	public function get_news_for_RSS(
+		$News_Title = '',
+		$startdate = '',
+		$enddate = '',
+		$NewsTypeID = '',
+		$NewsSubTypeID = '',
+		$grov_active = '',
+		$ReporterID = ''
+	)
 	{
-		$sql = "
-			SELECT TOP 20 News_OldID
-			FROM News
-			ORDER BY News_Date DESC
+		$StrQuery = "
+			SELECT
+				NT01_NewsID
+			FROM 
+				NT01_News
+			WHERE 
+				NT08_PubTypeID = '11'
 		";
-		return $this->db->query($sql)->result();
+		
+		if($News_Title != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
+			";
+		}
+		if(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+			";
+		}
+		elseif(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
+						BETWEEN 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
+							AND
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
+			";
+		}
+		if($NewsTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT02_TypeID = '".$NewsTypeID."'
+			";
+		}
+		if($NewsSubTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($grov_active != ""){
+			$StrQuery .= "
+				AND
+					SC03_User.SC07_DepartmentId = '".$grov_active."'
+			";
+		}
+		if($ReporterID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_ReporterID = '".$ReporterID."'
+			";
+		}
+		
+		$StrQuery .= "
+			ORDER BY 
+				NT01_NewsDate DESC
+		";
+		return $this->db_ntt_old->query($StrQuery)->result();
 	}
 	
 	//#######################################################################
 	
 	public function generate_rss(
-		$UserID = ''
+		$UserID = '',
+		$search = '',
+		$start_date = '',
+		$end_date = '',
+		$type = '',
+		$subtype = '',
+		$department = '',
+		$reporter = ''
 	)
 	{
 		$today = date("Y-m-d H:i:s");
@@ -415,17 +500,28 @@ class PRD_rss_model extends CI_Model {
 			VALUES ('{$UserID}','{$today}');";
 		$this->db->query($query);
 		$lastid['id'] = $this->prd_rss_model->last_rssid();
+		
 		foreach($lastid['id'] as $last)
 		{
 			$mainid = $last->Main_RssID;
 		}
-		$qr = $this->prd_rss_model->get_news();
+		
+		$qr = $this->prd_rss_model->get_news_for_RSS(
+			$search,
+			$start_date,
+			$end_date,
+			$type,
+			$subtype,
+			$department,
+			$reporter
+		);
+		
 		foreach ($qr as $item_qr)
 		{
 			$sql = "INSERT INTO Detail_RSS (Main_RssID,Detail_NewsID)";
 			$sql .= "VALUES ('";
 			$sql .= $mainid."','";
-			$sql .= $item_qr->News_OldID."');";
+			$sql .= $item_qr->NT01_NewsID."');";
 			$this->db->query($sql);
 		}
 		$sql_update = "
@@ -433,6 +529,7 @@ class PRD_rss_model extends CI_Model {
 			SET Main_RssID_Encode = '".md5($mainid)."'
 			WHERE Main_RssID = '".$mainid."';";
 		$this->db->query($sql_update);
+		
 		return md5($mainid);
 	}
 	public function get_rss_newsid($page)
