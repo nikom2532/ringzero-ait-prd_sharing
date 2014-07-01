@@ -33,7 +33,7 @@
 					<div class="col-lg-6">
 						<label >หมวดหมู่ข่าว</label>
 						<span class="select-menu">
-						<span>เลือกหมวดหมู่ข่าว</span>
+							<span>เลือกหมวดหมู่ข่าว</span>
 							<select name="NewsTypeID" id="NewsTypeID" class="form-control" style="width: 100%;">
 								<option value="">เลือกหมวดหมู่ข่าว</option><?php
 								// var_dump($NT02_NewsType);
@@ -52,7 +52,7 @@
 					<div class="col-lg-6">
 						<label >หมวดหมู่ข่าวย่อย</label>
 						<span class="select-menu">
-						<span>เลือกหมวดหมู่ข่าวย่อย</span>
+							<span>เลือกหมวดหมู่ข่าวย่อย</span>
 							<select name="NewsSubTypeID" id="NewsSubTypeID" class="form-control" style="width: 100%;">
 								<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 								foreach ($NT03_NewsSubType as $newType_item) {
