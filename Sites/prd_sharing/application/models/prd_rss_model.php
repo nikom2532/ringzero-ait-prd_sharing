@@ -380,7 +380,6 @@ class PRD_rss_model extends CI_Model {
 		}
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
-			
 		foreach($query as $val){
 			return $val->NUMROW;
 		}
