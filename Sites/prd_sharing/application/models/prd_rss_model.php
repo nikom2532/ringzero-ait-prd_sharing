@@ -477,6 +477,10 @@ class PRD_rss_model extends CI_Model {
 			ORDER BY 
 				NT01_NewsDate DESC
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		return $this->db_ntt_old->query($StrQuery)->result();
 	}
 	

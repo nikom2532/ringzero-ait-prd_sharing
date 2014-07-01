@@ -39,9 +39,11 @@
 								// var_dump($NT02_NewsType);
 								foreach ($NT02_NewsType as $newType_item) {
 									?><option value="<?php echo $newType_item->NT02_TypeID; ?>" <?php 
+										//*
 										if($newType_item->NT02_TypeID == $post_News_type_id){
 											?>selected='selected'<?php
 										}
+										//*/
 									?>><?php echo $newType_item->NT02_TypeName; ?></option><?php
 								}
 							?></select>
@@ -56,9 +58,11 @@
 								foreach ($NT03_NewsSubType as $newType_item) {
 									// if($newType_item->NT02_TypeID == $post_News_type_id){
 										?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
-											if($post_News_subtype_id != ""){
+											
+											if($newType_item->NT03_SubTypeID == $post_News_subtype_id){
 												?>selected='selected'<?php
 											}
+											
 										?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
 									// }
 								}
@@ -66,7 +70,9 @@
 						</span>
 					</div>
 				</div>
-	
+				
+				<?php //var_dump($NT03_NewsSubType); ?>
+				
 				<div class="row">
 					<div class="col-lg-6">
 						<label >หน่วยงาน</label>
@@ -98,7 +104,7 @@
 <?php
 								foreach ($SC03_User as $SC03_User_item) {
 									?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
-										if($post_reporter_id != ""){
+										if($post_reporter_id != ""){ 	
 											?>selected='selected'<?php
 										}
 									?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
@@ -343,7 +349,15 @@
 	}); //end change 
 
     $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        var selectmenu_txt = $("#NewsTypeID").find("option:selected").text();
+			$("#NewsTypeID").prev("span").text(selectmenu_txt);
+        selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#grov_active").find("option:selected").text();
+			$("#grov_active").prev("span").text(selectmenu_txt);
+        
+        
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);

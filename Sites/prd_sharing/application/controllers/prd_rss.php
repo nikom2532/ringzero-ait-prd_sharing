@@ -154,7 +154,7 @@ class PRD_rss extends CI_Controller {
 			$this->input->post('end_date'),
 			$this->input->post('type'),
 			$this->input->post('subtype'),
-			$this->input->post('department'),
+			$this->input->post('grov_active'),
 			$this->input->post('reporter')
 		);
 		echo $data['rss'];	
