@@ -268,7 +268,8 @@
 		<?php */ ?>
 		
 		<div class="row">
-			<div style="text-align: center;">
+			<div style="text-align: center; ">
+				<!-- <input class="bt" type="button" name="reducemorefile" id="reducemorefile" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" /> -->
 				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 			</div>
 		</div>
@@ -289,6 +290,13 @@
 			$("div.uploadfile").append(str);
 			number++;
 		});
+		/*
+		$("input.bt#reducemorefile").click(function(){
+			
+			$("div.uploadfile").remove(".fileattach"+(--number));
+			number++;
+		});
+		*/
 		
 		/*
 		$(document).ready(function()
