@@ -21,7 +21,7 @@
 	
 	<script src="<?php echo base_url(); ?>js/jquery.uploadfile.min.js"></script>
 	
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script> -->
 	
     <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">

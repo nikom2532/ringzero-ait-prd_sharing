@@ -53,6 +53,7 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('reporter_id')
 							
 						);
+						
 					$count_row = $this->prd_rss_model->
 						get_NT01_News_search_count(
 							$this->input->post('news_title'),
@@ -63,7 +64,6 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('grov_active'),
 							$this->input->post('reporter_id')
 						);
-					
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');
 					$data['post_end_date'] = $this->input->post('end_date');
@@ -83,7 +83,8 @@ class PRD_rss extends CI_Controller {
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
 				}
-	
+				// echo $count_row;
+				// var_dump($data['news']);
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
@@ -157,7 +158,7 @@ class PRD_rss extends CI_Controller {
 			$this->input->post('grov_active'),
 			$this->input->post('reporter')
 		);
-		echo $data['rss'];	
+		echo $data['rss'];
 	}
 	public function view_rss()
 	{

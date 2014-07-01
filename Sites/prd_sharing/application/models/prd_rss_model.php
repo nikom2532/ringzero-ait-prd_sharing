@@ -319,7 +319,7 @@ class PRD_rss_model extends CI_Model {
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 		";
-		if(isset($News_Title) || $News_Title != ''){
+		if($News_Title != ''){
 			$StrQuery .= "
 				AND 
 					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
@@ -335,8 +335,7 @@ class PRD_rss_model extends CI_Model {
 			";
 		}
 		elseif(
-			($startdate != '') && 
-			!($enddate != '')
+			$startdate != '' && !($enddate != '')
 		){
 			$StrQuery .= "
 				AND
@@ -344,8 +343,7 @@ class PRD_rss_model extends CI_Model {
 			";
 		}
 		elseif(
-			(isset($startdate) || $startdate != '') &&
-			(isset($enddate) || $enddate != '')
+			$startdate != '' && $enddate != ''
 		){
 			$StrQuery .= "
 				AND
@@ -356,13 +354,13 @@ class PRD_rss_model extends CI_Model {
 							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
-		if(isset($NewsTypeID) || $NewsTypeID != ''){
+		if($NewsTypeID != ''){
 			$StrQuery .= "
 				AND
 					NT01_News.NT02_TypeID = '".$NewsTypeID."'
 			";
 		}
-		if(isset($NewsSubTypeID) || $NewsSubTypeID != ''){
+		if($NewsSubTypeID != ''){
 			$StrQuery .= "
 				AND
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
@@ -380,9 +378,6 @@ class PRD_rss_model extends CI_Model {
 					NT01_News.NT01_ReporterID = '".$ReporterID."'
 			";
 		}
-		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
-		";
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
@@ -493,7 +488,7 @@ class PRD_rss_model extends CI_Model {
 		$end_date = '',
 		$type = '',
 		$subtype = '',
-		$department = '',
+		$grov_active = '',
 		$reporter = ''
 	)
 	{
@@ -516,9 +511,12 @@ class PRD_rss_model extends CI_Model {
 			$end_date,
 			$type,
 			$subtype,
-			$department,
+			$grov_active,
 			$reporter
 		);
+		
+		// echo $subtype;
+		// exit;
 		
 		foreach ($qr as $item_qr)
 		{

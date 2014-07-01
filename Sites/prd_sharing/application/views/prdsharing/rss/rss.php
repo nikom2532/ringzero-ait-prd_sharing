@@ -303,7 +303,7 @@
 			var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
 			//alert(url);
 			var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val() 
-			,type: $("#NewsTypeID").val(),subtype: $("#NewsSubTypeID").val(),department: $("#grov_active").val(),reporter: $("#reporter_id").val()};
+			,type: $("#NewsTypeID").val(),subtype: $("#NewsSubTypeID").val(),grov_active: $("#grov_active").val(),reporter: $("#reporter_id").val()};
 			$.post(url,dataSet,function(data){
 				// alert(data);
 				var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
