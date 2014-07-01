@@ -516,7 +516,7 @@ class PRD_rss_model extends CI_Model {
 			$reporter
 		);
 		
-		foreach ($qr as $item_qr)
+		foreach($qr as $item_qr)
 		{
 			$sql = "INSERT INTO Detail_RSS (Main_RssID,Detail_NewsID)";
 			$sql .= "VALUES ('";

@@ -83,8 +83,6 @@ class PRD_rss extends CI_Controller {
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
 				}
-				// echo $count_row;
-				// var_dump($data['news']);
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
