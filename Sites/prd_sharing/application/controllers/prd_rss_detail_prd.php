@@ -24,16 +24,18 @@ class PRD_RSS_detail_PRD extends CI_Controller {
 			
 			$data['title'] = 'RSS Feed';
 			
-			$showStatus = "";
-			$this->load->library('authenstatus');
-			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
-			$this->authenstatus->page_title = $data['title'];
-			$showStatus = $this->authenstatus->checkGroupID();
-			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
+			// $showStatus = "";
+			// $this->load->library('authenstatus');
+			// $this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			// $this->authenstatus->page_title = $data['title'];
+			// $showStatus = $this->authenstatus->checkGroupID();
+			// $data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			if($showStatus == "yes"){
+			// if($showStatus == "yes"){
 			
 				$data["news"] = $this->prd_managenew_detail_prd_model->get_NT01_News($this->input->get('news_id'));
+				
+				$data["New_News"] = $this->prd_managenew_detail_prd_model->get_New_News($this->input->get('news_id'));
 				
 				$data['get_NT01_News_ReWriteName'] = $this->prd_managenew_detail_prd_model->get_NT01_News_ReWriteName($this->input->get('news_id'));
 				$data['get_NT01_News_CreUser'] = $this->prd_managenew_detail_prd_model->get_NT01_News_CreUser($this->input->get('news_id'));
@@ -44,13 +46,13 @@ class PRD_RSS_detail_PRD extends CI_Controller {
 				$data['get_NT01_News_Voice'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
 				$data['get_NT01_News_OtherFile'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
 				
-				$this->load->view('prdsharing/templates/header', $data);
+				$this->load->view('prdsharing/templates/header_without_menu', $data);
 				$this->load->view('prdsharing/managenew/detail_prd', $data);
 				$this->load->view('prdsharing/templates/footer');
-			}
-			else{
-				redirect(base_url().index_page().'', 'refresh');
-			}
+			// }
+			// else{
+				// redirect(base_url().index_page().'', 'refresh');
+			// }
 			
 		// }
 		// else{

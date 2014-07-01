@@ -146,6 +146,10 @@ class PRD_rss extends CI_Controller {
 	{
 		$this->load->database();
 		$this->load->model('prd_rss_model');
+		
+		// var_dump($this->input->post());
+		// exit;
+		
 		$data['rss'] = $this->prd_rss_model->generate_rss(
 			$this->session->userdata('member_id')
 		);

@@ -93,7 +93,7 @@
 						<!-- <span class="select-menu"> -->
 						<!-- <span>เลือกนักข่าว</span> -->
 						<span style="margin-left: 7%;">
-							<select name="reporter_id" class="reporter_id_chosen" style="width:285px; margin-left: 5%;">
+							<select name="reporter_id" id="reporter_id" class="reporter_id_chosen" style="width:285px; margin-left: 5%;">
 								<option value="">เลือกนักข่าว</option>
 <?php
 								foreach ($SC03_User as $SC03_User_item) {
@@ -293,17 +293,17 @@
 	}
 
 	$(function(){
-		 $("#makeRss").click(function(){
-			 var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
-			 //alert(url);
-			 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
-			 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
-			 $.post(url,dataSet,function(data){
+		$("#makeRss").click(function(){
+			var url="<?php echo base_url().index_page(); ?>prd_rss/rss_feed";
+			//alert(url);
+			var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val() 
+			,type: $("#NewsTypeID").val(),subtype: $("#NewsSubTypeID").val(),department: $("#grov_active").val(),reporter: $("#reporter_id").val()};
+			$.post(url,dataSet,function(data){
 				// alert(data);
 				var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
 				$("#InputRss").val(url).select();
-			 });
-		 });
+			});
+		});
 	});
 	
 	$('select#NewsTypeID').change(function(){

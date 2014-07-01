@@ -404,7 +404,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			if(!($query_Member->num_rows() > 0)){
 				
 				$data = array(
-					'Mem_Status' => '0',
+					'Mem_Status' => '1',
 					'Group_ID' => '3',
 					'Mem_OLdID' => $SC03_User_item->SC03_UserId
 				);
