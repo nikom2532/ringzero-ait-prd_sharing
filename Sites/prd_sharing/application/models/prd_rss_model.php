@@ -401,6 +401,10 @@ class PRD_rss_model extends CI_Model {
 				NT01_NewsID
 			FROM 
 				NT01_News
+			LEFT JOIN 
+				SC03_User 
+			ON 
+				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 			WHERE 
 				NT08_PubTypeID = '11'
 		";
@@ -466,16 +470,14 @@ class PRD_rss_model extends CI_Model {
 					NT01_News.NT01_ReporterID = '".$ReporterID."'
 			";
 		}
-		
 		$StrQuery .= "
 			ORDER BY 
 				NT01_NewsDate DESC
 		";
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
 		
-		// echo $StrQuery;
-		// exit;
-		
-		return $this->db_ntt_old->query($StrQuery)->result();
+		return $query;
 	}
 	
 	//#######################################################################
@@ -513,9 +515,6 @@ class PRD_rss_model extends CI_Model {
 			$grov_active,
 			$reporter
 		);
-		
-		// echo $subtype;
-		// exit;
 		
 		foreach ($qr as $item_qr)
 		{
