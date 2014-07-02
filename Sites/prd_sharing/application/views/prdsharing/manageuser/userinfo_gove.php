@@ -284,6 +284,9 @@
 			
 			<script>
 				//###################  อำเภอ  ##########################
+				
+				
+				
 				function push_mem_province(id){
 					if(id != ""){
 				    	var type_id = id;
@@ -525,12 +528,36 @@
 				}
 		    });
 		});
-		
+		if(document.getElementById("tname_other").checked == true){
+			$("#tname_other_text").prop('disabled', false);
+		}
+		else{
+			$("#tname_other_text").prop('disabled', true);
+		}
+		$("input[name='mem_title']").change(function(){
+			if(document.getElementById("tname_other").checked == true){
+				$("#tname_other_text").prop('disabled', false);
+			}
+			else{
+				$("#tname_other_text").prop('disabled', true);
+			}
+		});
 		
 		function validateForm() {
-			var mem_password1 = document.getElementById("mem_password1").value;
-			var mem_password2 = document.getElementById("mem_password2").value;
+			var tname_other = document.getElementById("tname_other");
+			var tname_other_text = document.getElementById("tname_other_text");
+			if(tname_other.checked == true){
+				if(tname_other_text.value == ""){
+					alert("โปรดใส่คำนำหน้าอื่นๆ");
+					tname_other_text.focus();
+					return false;
+				}
+			}
+			
+			var mem_password1 = $("input[name=mem_password1]").val();
+			var mem_password2 = $("input[name=mem_password2]").val();
 			if(mem_password1 != mem_password2){
+				alert("โปรดใส่ Password ให้ตรงกันทั้ง 2 ช่อง");
 				document.getElementById("mem_password1").focus();
 				return false;
 			}

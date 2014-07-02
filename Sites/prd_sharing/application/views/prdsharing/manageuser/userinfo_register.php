@@ -88,7 +88,7 @@
 				<select name="mem_ministry" id="mem_ministry">
 					<option value="">เลือกกระทรวง</option>
 <?php
-					foreach ($Ministry as $Ministry_item) {
+					foreach ($Ministry as $Ministry_item) { 
 						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 					}
 ?>
@@ -309,13 +309,38 @@
 				    e.preventDefault();
 				}
 		    });
+			if(document.getElementById("tname_other").checked == true){
+				$("#tname_other_text").prop('disabled', false);
+			}
+			else{
+				$("#tname_other_text").prop('disabled', true);
+			}
+			$("input[name='mem_title']").change(function(){
+				if(document.getElementById("tname_other").checked == true){
+					$("#tname_other_text").prop('disabled', false);
+				}
+				else{
+					$("#tname_other_text").prop('disabled', true);
+				}
+			});
 		});
 		
 		
 		function validateForm() {
-			var mem_password1 = document.getElementById("mem_password1").value;
-			var mem_password2 = document.getElementById("mem_password2").value;
+			var tname_other = document.getElementById("tname_other");
+			var tname_other_text = document.getElementById("tname_other_text");
+			if(tname_other.checked == true){
+				if(tname_other_text.value == ""){
+					alert("โปรดใส่คำนำหน้าอื่นๆ");
+					tname_other_text.focus();
+					return false;
+				}
+			}
+			
+			var mem_password1 = $("input[name=mem_password1]").val();
+			var mem_password2 = $("input[name=mem_password2]").val();
 			if(mem_password1 != mem_password2){
+				alert("โปรดใส่ Password ให้ตรงกันทั้ง 2 ช่อง");
 				document.getElementById("mem_password1").focus();
 				return false;
 			}
@@ -337,10 +362,6 @@
 				$('.label.Mem_Postcode').css("color", "red");
 		        return false;
 		    }
-		}
-		
-		function check_pass(text1, text2){
-			$('#mem_password2').html(text2);
 		}
 		
 		//###################  อำเภอ  ##########################
