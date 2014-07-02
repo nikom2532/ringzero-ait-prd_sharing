@@ -79,27 +79,27 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label class="label">ชื่อ (ไทย)</label>
-					<input type="text" class="form-control" name="fname" id="fname" placeholder="" value="<?php echo $Member_item->Mem_Name;?>" />
+					<input type="text" class="form-control" name="fname" id="fname" placeholder="" required="required" value="<?php echo $Member_item->Mem_Name;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label class="label">นามสกุล (ไทย)</label>
-					<input type="text" class="form-control" name="lname" id="lname" placeholder="" value="<?php echo $Member_item->Mem_LasName;?>" />
+					<input type="text" class="form-control" name="lname" id="lname" placeholder="" required="required" value="<?php echo $Member_item->Mem_LasName;?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ชื่อ (อังกฤษ)</label>
-					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" value="<?php echo $Member_item->Mem_EngName;?>" />
+					<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" required="required" value="<?php echo $Member_item->Mem_EngName;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label >นามสกุล (อังกฤษ)</label>
-					<input type="text" class="form-control" name="englname" id="englname" placeholder="" value="<?php echo $Member_item->Mem_EngLasName;?>" />
+					<input type="text" class="form-control" name="englname" id="englname" placeholder="" required="required" value="<?php echo $Member_item->Mem_EngLasName;?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >Username</label>
-					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" value="<?php echo $Member_item->Mem_Username;?>" />
+					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" value="<?php echo $Member_item->Mem_Username;?>" />
 				</div>
 			</div>
 			<div class="row">
@@ -109,13 +109,13 @@
 				</div>
 				<div class="col-lg-6">
 					<label >Confirm Password</label>
-					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" >
+					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
-					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" value="<?php echo $Member_item->Mem_CardID;?>" />
+					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" value="<?php echo $Member_item->Mem_CardID;?>" />
 				</div>
 			</div>
 			<div class="row">
@@ -154,6 +154,9 @@
 				</div>
 			</div>
 			<script>
+				
+				
+				
 				function push_mem_department(id){
 					// debugger;
 				    if(id != ""){
@@ -400,7 +403,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ที่อยู่</label>
-					<textarea rows="4" cols="50" class="txt-area" name="mem_address"></textarea>
+					<textarea rows="4" cols="50" class="txt-area" name="mem_address" required="required"></textarea>
 				</div>
 				<div class="col-lg-6">
 					<div class="row">
@@ -409,19 +412,19 @@
 					</div>
 					<div class="row">
 						<label class="label">รหัสไปรษณีย์</label>
-						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" />
+						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" required="required" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">ชื่อผู้ติดต่อ</label>
-						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" />
+						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์ที่ทำงาน</label>
-						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" />
+						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์มือถือ</label>
-						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" placeholder="" />
+						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" required="required" placeholder="" />
 					</div>
 				</div>
 			</div>
@@ -458,4 +461,98 @@
 		}
 ?>
 	</form>
+	<script>
+		
+		$(document).ready(function() {
+			$("#Mem_CardID").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+			$("#Mem_Postcode").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+			$("#Mem_Tel").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+		    $("#Mem_Mobile").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+		});
+		
+		
+		function validateForm() {
+			var mem_password1 = document.getElementById("mem_password1").value;
+			var mem_password2 = document.getElementById("mem_password2").value;
+			if(mem_password1 != mem_password2){
+				document.getElementById("mem_password1").focus();
+				return false;
+			}
+			
+		    var Mem_Email = document.forms["form_userinfo"]["Mem_Email"].value;
+		    var atpos = Mem_Email.indexOf("@");
+		    var dotpos = Mem_Email.lastIndexOf(".");
+		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=Mem_Email.length) {
+		        alert("โปรดใส่ e-mail ให้ตรง");
+		        document.getElementById('Mem_Email').focus();
+		        $('.label.Mem_Email').css("color", "red");
+		        return false;
+		    }
+		    
+		    var Mem_Postcode = document.forms["form_userinfo"]["mem_postcode"].value;
+			if (Mem_Postcode == null || Mem_Postcode == "") {
+				alert("โปรดใส่รหัสไปรษณีย์");
+				document.getElementById('Mem_Postcode').focus();
+				$('.label.Mem_Postcode').css("color", "red");
+		        return false;
+		    }
+		}
+		
+	</script>
 </div><!-- #manage-user -->

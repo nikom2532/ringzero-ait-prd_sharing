@@ -40,21 +40,21 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label class="label">ชื่อ (ไทย)</label>
-				<input type="text" class="form-control" name="fname" id="fname" placeholder="" />
+				<input type="text" class="form-control" name="fname" id="fname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
 				<label class="label">นามสกุล (ไทย)</label>
-				<input type="text" class="form-control" name="lname" id="lname" placeholder="" />
+				<input type="text" class="form-control" name="lname" id="lname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ชื่อ (อังกฤษ)</label>
-				<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" />
+				<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
 				<label >นามสกุล (อังกฤษ)</label>
-				<input type="text" class="form-control" name="englname" id="englname" placeholder="" />
+				<input type="text" class="form-control" name="englname" id="englname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
@@ -188,7 +188,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ที่อยู่</label>
-				<textarea rows="4" cols="50" class="txt-area" name="mem_address"></textarea>
+				<textarea rows="4" cols="50" class="txt-area" name="mem_address" required="required"></textarea>
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
@@ -197,19 +197,19 @@
 				</div>
 				<div class="row">
 					<label class="label Mem_Postcode">รหัสไปรษณีย์</label>
-					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" value="<?php set_value('mem_postcode'); ?>" />
+					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" />
 				</div>
 				<div class="row">
 					<label class="label">ชื่อผู้ติดต่อ</label>
-					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" placeholder="" />
+					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">เบอร์ที่ทำงาน</label>
-					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" placeholder="" />
+					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" />
 				</div>
 				<div class="row">
 					<label class="label">เบอร์มือถือ</label>
-					<input type="text" class="form-control" name="mem_mobile" id="Mem_Mobile" placeholder="" />
+					<input type="text" class="form-control" name="mem_mobile" id="Mem_Mobile" required="required" placeholder="" />
 				</div>
 			</div>
 		</div>
@@ -245,9 +245,80 @@
 		</div>
 	</form>
 	<script>
+		function validate_Mem_CardID(){
+			
+		}
+		$(document).ready(function() {
+			$("#Mem_CardID").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+			$("#Mem_Postcode").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+			$("#Mem_Tel").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+		    $("#Mem_Mobile").keydown(function (e) {
+				// Allow: backspace, delete, tab, escape, enter and .
+				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+					// Allow: Ctrl+A
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					// Allow: home, end, left, right
+					(e.keyCode >= 35 && e.keyCode <= 39)) {
+						// let it happen, don't do anything
+						return;
+					}
+				// Ensure that it is a number and stop the keypress
+				if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				    e.preventDefault();
+				}
+		    });
+		});
+		
+		
 		function validateForm() {
-			
-			
+			var mem_password1 = document.getElementById("mem_password1").value;
+			var mem_password2 = document.getElementById("mem_password2").value;
+			if(mem_password1 != mem_password2){
+				document.getElementById("mem_password1").focus();
+				return false;
+			}
 			
 		    var Mem_Email = document.forms["form_userinfo"]["Mem_Email"].value;
 		    var atpos = Mem_Email.indexOf("@");
