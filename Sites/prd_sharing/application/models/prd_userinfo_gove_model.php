@@ -191,6 +191,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 	public function get_Ministry()
 	{
 		$query = $this->db->
+			where('Minis_Status', '1')->
 			get('Ministry');
 			
 		return $query->result();

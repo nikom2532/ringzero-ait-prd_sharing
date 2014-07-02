@@ -9,7 +9,7 @@
 		$i++;
 	}
 	foreach($query as $item)
-	{	
+	{
 		$first_rss = '<?xml version="1.0" encoding="utf-8"?>';
 		$first_rss .= '<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0">';
 		$first_rss .= '<channel>';
@@ -30,11 +30,14 @@
 		$text_rss .= '&lt;br /&gt;&lt;b&gt;ที่มาของข่าว :'.$item->Rewrite;
 		$text_rss .= ':&lt;/b&gt;';
 		$text_rss .= '</description>';*/
-		$text_rss .= '<a10:updated>'.date('c');
+		// $text_rss .= '<a10:updated>'.date('c');
+		$text_rss .= '<a10:updated>'.$item->News_Date;
 		$text_rss .= '</a10:updated>';
-		$text_rss .= '<pubDate>'.date('c');
+		// $text_rss .= '<pubDate>'.date('c');
+		$text_rss .= '<pubDate>'.$item->News_Date;
 		$text_rss .= '</pubDate>';
-		$text_rss .= '<updated>'.date('c');
+		// $text_rss .= '<updated>'.date('c');
+		$text_rss .= '<updated>'.$item->News_Date;
 		$text_rss .= '</updated>';
 		$text_rss .= '</item>';
 

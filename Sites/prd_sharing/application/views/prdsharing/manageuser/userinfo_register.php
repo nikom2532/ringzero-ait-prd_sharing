@@ -71,7 +71,8 @@
 			<div class="col-lg-6">
 				<label id="mem_password2">Confirm Password</label>
 				<!-- <input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" /> -->
-				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required="required"  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" />
+				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required="required" /> 
+				<!-- onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" -->
 			</div>
 		</div>
 			
@@ -191,7 +192,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
-					<label class="label">Email</label>
+					<label class="label Mem_Email">Email</label>
 					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 				</div>
 				<div class="row">
@@ -245,21 +246,24 @@
 	</form>
 	<script>
 		function validateForm() {
-		    var Mem_Postcode = document.forms["form_userinfo"]["mem_postcode"].value;
-		    if (Mem_Postcode == null || Mem_Postcode == "") {
-		        alert("First name must be filled out");
-		        document.getElementById('Mem_Postcode').focus();
-		        $('.label.Mem_Postcode').css("color", "red");
-		        return false;
-		    }
-		    
+			
+			
+			
 		    var Mem_Email = document.forms["form_userinfo"]["Mem_Email"].value;
 		    var atpos = Mem_Email.indexOf("@");
 		    var dotpos = Mem_Email.lastIndexOf(".");
 		    if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=Mem_Email.length) {
-		        alert("Not a valid e-mail address");
+		        alert("โปรดใส่ e-mail ให้ตรง");
 		        document.getElementById('Mem_Email').focus();
 		        $('.label.Mem_Email').css("color", "red");
+		        return false;
+		    }
+		    
+		    var Mem_Postcode = document.forms["form_userinfo"]["mem_postcode"].value;
+			if (Mem_Postcode == null || Mem_Postcode == "") {
+				alert("โปรดใส่รหัสไปรษณีย์");
+				document.getElementById('Mem_Postcode').focus();
+				$('.label.Mem_Postcode').css("color", "red");
 		        return false;
 		    }
 		}

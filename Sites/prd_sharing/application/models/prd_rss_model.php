@@ -534,18 +534,37 @@ class PRD_rss_model extends CI_Model {
 	}
 	public function get_rss_newsid($page)
 	{
+		// $query = "
+			// SELECT 
+				// Detail_RSS.Detail_NewsID,
+				// Detail_RSS.Main_RssID
+			// FROM 
+				// Detail_RSS
+			// INNER JOIN 
+				// Main_RSS
+			// ON 
+				// Detail_RSS.Main_RssID = Main_RSS.Main_RssID
+			// WHERE 
+				// Main_RSS.Main_RssID_Encode = '$page'
+		// ";
 		$query = "
 			SELECT 
 				Detail_RSS.Detail_NewsID,
-				Detail_RSS.Main_RssID
+				Detail_RSS.Main_RssID,
+				News.News_Date
 			FROM 
 				Detail_RSS
 			INNER JOIN 
 				Main_RSS
 			ON 
 				Detail_RSS.Main_RssID = Main_RSS.Main_RssID
+			INNER JOIN
+				News
+			ON 
+				News.News_OldID = Detail_RSS.Detail_NewsID
 			WHERE 
-				Main_RSS.Main_RssID_Encode = '$page'";
+				Main_RSS.Main_RssID_Encode = '$page'
+		";
 		return $this->db->query($query)->result();
 	}
 }
