@@ -199,6 +199,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
 			";
 		}
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
@@ -358,6 +359,10 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		echo $StrQuery;
+		exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;

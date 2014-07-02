@@ -404,7 +404,7 @@
 							?><option value="<?php echo $item['value']; ?>" <?php echo $item['selected']; ?>><?php echo $item['value']; ?></option><?php
 						}
 ?>
-					</select> / <?php echo $total_page; ?>
+					</select> / <?php echo $total_page; //var_dump($count_row); ?>
                 </span>
                 <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
                 <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
@@ -447,7 +447,6 @@
 		location='<?php echo $jump_url; ?>/'+val;
 	}
 	function nextPage(val){
-		debugger;
 		var nextpage = parseInt(val)+1;
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;

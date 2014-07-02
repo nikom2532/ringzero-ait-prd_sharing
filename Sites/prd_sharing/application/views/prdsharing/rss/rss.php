@@ -276,7 +276,7 @@
 		location='<?php echo $jump_url; ?>/'+val;
 	}
 	function nextPage(val){
-		debugger;
+		// debugger;
 		var nextpage = parseInt(val)+1;
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;

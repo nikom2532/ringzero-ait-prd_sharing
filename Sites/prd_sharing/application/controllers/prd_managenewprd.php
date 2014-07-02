@@ -76,7 +76,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('filter_vdo'),
 							$this->input->post('filter_sound'),
 							$this->input->post('filter_image'),
-							$this->input->post('filter_other')
+							$this->input->post('filter_other'), 
+							$checkDelete_News
 						);
 					$count_row = $this->prd_managenewprd_model->
 						get_NT01_News_search_count(
@@ -89,8 +90,11 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('filter_vdo'),
 							$this->input->post('filter_sound'),
 							$this->input->post('filter_image'),
-							$this->input->post('filter_other')
+							$this->input->post('filter_other'), 
+							$checkDelete_News
 						);
+					// var_dump($count_row);
+					// exit;
 					
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');
@@ -109,6 +113,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 						$row_per_page, 
 						$checkDelete_News
 					);
+					
 					$count_row = $this->prd_managenewprd_model->get_NT01_News_count(
 						$checkDelete_News
 					);
