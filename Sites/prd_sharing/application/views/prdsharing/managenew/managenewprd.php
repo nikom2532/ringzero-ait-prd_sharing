@@ -219,7 +219,7 @@
 						<?php echo $i+1; ?>
 					</p>
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word;">
-						<a href="<?php echo base_url(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
 					<p class="col-1" style="width: 5%;float: left; word-wrap: break-word; text-align: center; "><?php 
 						$iNews_StatusPublic = 0;

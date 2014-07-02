@@ -267,7 +267,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				LEFT JOIN 
 					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
-					NT08_PubTypeID = '11'
+					NT01_News.NT08_PubTypeID = '11'
 		";
 		if($News_Title != ''){
 			$StrQuery .= "
