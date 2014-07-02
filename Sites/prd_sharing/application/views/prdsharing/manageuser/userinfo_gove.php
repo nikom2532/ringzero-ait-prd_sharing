@@ -164,7 +164,7 @@
 				    }
 				    
 				    if (type_id != ""){
-				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
+				        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
 				    	// debugger;
 				    	// alert(post_url);
 				        $.ajax({
@@ -290,7 +290,7 @@
 				    }
 				    // debugger;
 				    if (type_id != ""){
-				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
+				        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
 				    	// debugger;
 				    	// alert(post_url);
 				        $.ajax({
@@ -344,7 +344,7 @@
 				    }
 					// debugger;
 				    if (type_id != ""){
-				        var post_url = "<?php echo base_url(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
+				        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
 				    	// debugger;
 				    	// alert(post_url);
 				        $.ajax({
