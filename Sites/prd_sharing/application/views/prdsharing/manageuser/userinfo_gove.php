@@ -321,8 +321,12 @@
 				//Change mem_province
 				$('select#mem_province').change(function(){
 					push_mem_province('');
+					
+					$('#mem_tumbon').empty();
+	                var text = "<option value=\"\" selected='selected'>เลือกตำบล</option>";
+	                $('#mem_tumbon').append(text);
+					
 				}); //end change
-				
 				
 				// //Load mem_province
 				// $( document ).ready(function() {
@@ -372,7 +376,7 @@
 				    }//end if
 				}
 				
-				//Change mem_province
+				//Change mem_ampur
 				$('select#mem_ampur').change(function(){
 					push_mem_ampur('');
 				}); //end change

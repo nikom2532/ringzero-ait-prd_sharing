@@ -85,7 +85,7 @@
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
 				<select name="mem_ministry" id="mem_ministry">
-					<option value="">เลือกประเภทตำแหน่ง</option>
+					<option value="">เลือกกระทรวง</option>
 <?php
 					foreach ($Ministry as $Ministry_item) {
 						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
@@ -268,10 +268,15 @@
 			$('#mem_password2').html(text2);
 		}
 		
-		//อำเภอ
-		$('select#mem_province').change(function(){
-			// debugger;
-		    var type_id = $('select#mem_province').val();
+		//###################  อำเภอ  ##########################
+		function push_mem_province(id){
+			if(id != ""){
+		    	var type_id = id;
+		    }
+		    else{
+		    	var type_id = $('select#mem_province').val();
+		    }
+		    // debugger;
 		    if (type_id != ""){
 		        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM07_Ampur_Unique/" + type_id;
 		    	// debugger;
@@ -299,12 +304,28 @@
 		    } else {
 		        $('#SubTypeID').empty();
 		    }//end if
+		}
+		
+		//Change mem_province
+		$('select#mem_province').change(function(){
+			push_mem_province('');
+			
+			$('#mem_tumbon').empty();
+            var text = "<option value=\"\" selected='selected'>เลือกตำบล</option>";
+            $('#mem_tumbon').append(text);
+			
 		}); //end change
 		
-		//ตำบล
-		$('select#mem_ampur').change(function(){
+		
+		//##################  ตำบล  ######################
+		function push_mem_ampur(id){
+			if(id != ""){
+		    	var type_id = id;
+		    }
+		    else{
+		    	var type_id = $('select#mem_ampur').val();
+		    }
 			// debugger;
-		    var type_id = $('select#mem_ampur').val();
 		    if (type_id != ""){
 		        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_CM08_Tumbon_Unique/" + type_id;
 		    	// debugger;
@@ -318,7 +339,7 @@
 		              	// var a = JSON.parse(subtype);
 		                $('#mem_tumbon').empty();
 		                
-		                var text = "<option value=\"\">เลือกอำเภอ</option>";
+		                var text = "<option value=\"\">เลือกตำบล</option>";
 		                $('#mem_tumbon').append(text);
 		                
 						$.each(subtype,function(index,val)
@@ -332,6 +353,12 @@
 		    } else {
 		        $('#SubTypeID').empty();
 		    }//end if
+		}
+		
+		//Change mem_ampur
+		$('select#mem_ampur').change(function(){
+			push_mem_ampur('');
 		}); //end change
+		
 	</script>
 </div><!-- #manage-user -->
