@@ -340,12 +340,17 @@
 								$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
 								$New_News_item->News_UpdateID > 0
 							){
-									echo $New_News_item->News_Resource;
+									echo mb_substr($New_News_item->News_Resource, 0, 20, 'UTF-8');
 									$i_item++;
 							}
 						}
 						if($i_item == 0){
-							$news_item->NT01_NewsSource;
+							if($news_item->NT01_NewsSource != ""){
+								echo mb_substr($news_item->NT01_NewsSource, 0, 20, 'UTF-8');
+							}
+							else{
+								echo "-";
+							}
 						}
 ?>
 					</p>
@@ -357,17 +362,24 @@
 								$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
 								$New_News_item->News_UpdateID > 0
 							){
-									echo $New_News_item->News_Reference;
+									echo mb_substr($New_News_item->News_Reference, 0, 20, 'UTF-8');
 									$i_item++;
 							}
 						}
 						if($i_item == 0){
-							$news_item->NT01_NewsReferance;
+							if($news_item->NT01_NewsReferance != ""){
+								echo mb_substr($news_item->NT01_NewsReferance, 0, 20, 'UTF-8');
+							}
+							else{
+								echo "-";
+							}
 						}
 ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php 
-						echo $news_item->SC03_FName." ".$news_item->SC03_LName;
+						$name = $news_item->SC03_FName." ".$news_item->SC03_LName;
+						echo mb_substr($name, 0, 20, 'UTF-8')
+						
 						// if($news_item->NT01_UpdUserID == ""){
 							// echo $news_item->NT01_CreUserID;
 						// }
