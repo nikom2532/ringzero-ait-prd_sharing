@@ -99,7 +99,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >Username</label>
-					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" value="<?php echo $Member_item->Mem_Username;?>" />
+					<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" value="<?php echo $Member_item->Mem_Username;?>" disabled='disabled' />
 				</div>
 			</div>
 			<div class="row">
@@ -115,7 +115,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
-					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" value="<?php echo $Member_item->Mem_CardID;?>" onkeyup="autoTab_IdentificationCitizen(this); " />
+					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" value="<?php echo $Member_item->Mem_CardID;?>" onkeyup="autoTab_IdentificationCitizen(this); " maxlength="17" />
 				</div>
 			</div>
 			<div class="row">
@@ -415,7 +415,7 @@
 					</div>
 					<div class="row">
 						<label class="label">รหัสไปรษณีย์</label>
-						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" required="required" placeholder="" />
+						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" required="required" placeholder="" maxlength="5" />
 					</div>
 					<div class="row">
 						<label class="label">ชื่อผู้ติดต่อ</label>
