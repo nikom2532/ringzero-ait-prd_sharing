@@ -79,7 +79,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >รหัสบัตรประชาชน</label>
-				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" />
+				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" onkeyup="autoTab_IdentificationCitizen(this); " maxlength="17" />
 			</div>
 		</div>
 		<div class="row">
@@ -197,7 +197,7 @@
 				</div>
 				<div class="row">
 					<label class="label Mem_Postcode">รหัสไปรษณีย์</label>
-					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" />
+					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" maxlength="5" />
 				</div>
 				<div class="row">
 					<label class="label">ชื่อผู้ติดต่อ</label>
@@ -325,6 +325,23 @@
 			});
 		});
 		
+		function autoTab_IdentificationCitizen(obj){
+			var StrPattern = "_-____-_____-_-__";
+			var pattern=new String(StrPattern); // กำหนดรูปแบบในนี้ 
+			var pattern_ex=new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้ 
+			var returnText=new String("");
+			var obj_l=obj.value.length;
+			var obj_l2=obj_l-1;
+			for(i=0;i<pattern.length;i++){
+				if(obj_l2==i && pattern.charAt(i+1)==pattern_ex){
+					returnText+=obj.value+pattern_ex;
+					obj.value=returnText;
+				}
+			}
+			if(obj_l>=pattern.length){
+				obj.value=obj.value.substr(0,pattern.length);
+			}
+		}
 		
 		function validateForm() {
 			var tname_other = document.getElementById("tname_other");

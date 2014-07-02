@@ -115,7 +115,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >รหัสบัตรประชาชน</label>
-					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" value="<?php echo $Member_item->Mem_CardID;?>" />
+					<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" value="<?php echo $Member_item->Mem_CardID;?>" onkeyup="autoTab_IdentificationCitizen(this); " />
 				</div>
 			</div>
 			<div class="row">
@@ -542,6 +542,24 @@
 				$("#tname_other_text").prop('disabled', true);
 			}
 		});
+		
+		function autoTab_IdentificationCitizen(obj){
+			var StrPattern = "_-____-_____-_-__";
+			var pattern=new String(StrPattern); // กำหนดรูปแบบในนี้ 
+			var pattern_ex=new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้ 
+			var returnText=new String("");
+			var obj_l=obj.value.length;
+			var obj_l2=obj_l-1;
+			for(i=0;i<pattern.length;i++){
+				if(obj_l2==i && pattern.charAt(i+1)==pattern_ex){
+					returnText+=obj.value+pattern_ex;
+					obj.value=returnText;
+				}
+			}
+			if(obj_l>=pattern.length){
+				obj.value=obj.value.substr(0,pattern.length);
+			}
+		}
 		
 		function validateForm() {
 			var tname_other = document.getElementById("tname_other");

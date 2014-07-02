@@ -16,8 +16,6 @@ class PRD_UserInfo_Register extends CI_Controller {
 				
 				// redirect(base_url().index_page().'PRD_UserInfo_Register/set_register_new_member', 'refresh');
 				
-				exit;
-				
 				if($this->input->post('mem_title') != "อื่นๆ"){
 					$mem_title = $this->input->post('mem_title');
 				}
