@@ -278,7 +278,7 @@
 				<div class="col-lg-6">
 					<label >ระดับผู้ใช้งาน</label>
 					<span class="select-menu">
-						<span>เลือกกระทรวง</span>
+						<span>เลือกระดับผู้ใช้งาน</span>
 						<select name="group_member">
 							<option value="-1">เลือกระดับผู้ใช้งาน</option>
 	<?php
@@ -298,17 +298,24 @@
 				<div class="col-lg-6">
 					<label >สถานะการใช้งาน</label>
 					<span class="select-menu">
-						<span>เลือกกระทรวง</span>
+						<span><?php 
+							if($Member_item->Mem_Status == "1"){
+								?>เปิดการใช้งาน<?php
+							}
+							elseif($Member_item->Mem_Status == "0" || $Member_item->Mem_Status == "" || $Member_item->Mem_Status == null){
+								?>ปิดการใช้งาน<?php
+							}
+						?></span>
 						<select name="mem_status">
 							<option value="1" <?php 
 								if($Member_item->Mem_Status == "1"){
 									?>checked='checked'<?php
-								} 
+								}
 							?>>เปิดการใช้งาน</option>
 							<option value="0" <?php 
 								if($Member_item->Mem_Status == "0" || $Member_item->Mem_Status == "" || $Member_item->Mem_Status == null){
 									?>checked='checked'<?php
-								} 
+								}
 							?>>ปิดการใช้งาน</option>
 						</select>
 					</span>
