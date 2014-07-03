@@ -32,7 +32,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 		$mem_postcode = '',
 		$mem_nickname = '',
 		$mem_tel = '',
-		$mem_moble = '',
+		$mem_mobile = '',
 		$group_member = '',
 		$mem_status = ''
 	)
@@ -56,7 +56,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Mem_Postcode' => $mem_postcode,
 				'Mem_NickName' => $mem_nickname,
 				'Mem_Tel' => $mem_tel,
-				'Mem_Mobile' => $mem_moble,
+				'Mem_Mobile' => $mem_mobile,
 				'Group_ID' => $group_member,
 				'Mem_Status' => $mem_status
 			);
@@ -82,7 +82,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Mem_Postcode' => $mem_postcode,
 				'Mem_NickName' => $mem_nickname,
 				'Mem_Tel' => $mem_tel,
-				'Mem_Mobile' => $mem_moble,
+				'Mem_Mobile' => $mem_mobile,
 				'Group_ID' => $group_member,
 				'Mem_Status' => $mem_status
 			);
@@ -120,6 +120,13 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				Member.Mem_Ministry,
 				Member.Mem_Department,
 				Member.Group_ID,
+				Member.Mem_Address,
+				Member.Mem_Email,
+				Member.Mem_Postcode,
+				Member.Mem_NickName,
+				Member.Mem_Tel,
+				Member.Mem_Mobile,
+				Member.Mem_Status,
 				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->

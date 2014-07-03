@@ -66,7 +66,7 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 						$this->input->post('mem_postcode'),
 						$this->input->post('mem_nickname'),
 						$this->input->post('mem_tel'),
-						$this->input->post('mem_moble'),
+						$this->input->post('mem_mobile'),
 						$this->input->post('group_member'),
 						$this->input->post('mem_status')
 					);

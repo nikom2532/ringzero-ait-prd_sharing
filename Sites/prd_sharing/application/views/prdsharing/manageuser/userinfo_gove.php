@@ -20,7 +20,7 @@
 <?php
 					
 ?>
-					<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" <?php
+					<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" required="required" <?php
 						if($Member_item->Mem_Sex == "ผู้ชาย"){
 							?>checked="checked"<?php
 						}
@@ -40,7 +40,7 @@
 					<label class="label">คำนำหน้า</label>
 				</div>
 				<div class="col-right">
-					<input type="radio" name="mem_title" value="0" id="tname_male" <?php
+					<input type="radio" name="mem_title" value="0" id="tname_male" required="required" <?php
 						if($Member_item->Mem_Title == "นาย"){
 							?>checked="checked"<?php
 						}
@@ -61,11 +61,14 @@
 					?> />
 					<label for="tname_girl" class="txt-radio">นางสาว</label>
 					
-					<input type="radio" name="prefix" value="3" id="tname_other" <?php
+					<input type="radio" name="mem_title" value="3" id="tname_other" <?php
 						if(
 							$Member_item->Mem_Title != "นาย" &&
 							$Member_item->Mem_Title != "นาง" &&
-							$Member_item->Mem_Title != "นางสาว"
+							$Member_item->Mem_Title != "นางสาว" &&
+							$Member_item->Mem_Title != "" &&
+							$Member_item->Mem_Title != 0 &&
+							$Member_item->Mem_Title != null
 						){
 							?>checked="checked"<?php
 						}
@@ -406,7 +409,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ที่อยู่</label>
-					<textarea rows="4" cols="50" class="txt-area" name="mem_address" required="required"></textarea>
+					<textarea rows="4" cols="50" class="txt-area" name="mem_address" required="required"><?php echo $Member_item->Mem_Address; ?></textarea>
 				</div>
 				<div class="col-lg-6">
 					<div class="row">
@@ -427,7 +430,7 @@
 					</div>
 					<div class="row">
 						<label class="label">เบอร์มือถือ</label>
-						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" required="required" placeholder="" value="<?php echo $Member_item->Mem_Moble; ?>" />
+						<input type="text" class="form-control" name="mem_mobile" id="Mem_Moblie" required="required" placeholder="" value="<?php echo $Member_item->Mem_Mobile; ?>" />
 					</div>
 				</div>
 			</div>

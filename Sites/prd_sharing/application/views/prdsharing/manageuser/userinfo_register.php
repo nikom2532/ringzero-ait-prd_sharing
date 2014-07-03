@@ -15,7 +15,7 @@
 				<label class="label">เพศ</label>
 			</div>
 			<div class="col-right">
-				<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" checked="checked">
+				<input type="radio" name="sex" id="sex_male" value="ผู้ชาย" required="required" checked="checked">
 				<label for="sex_male" class="txt-radio">ผู้ชาย</label>
 				<input type="radio" name="sex" id="sex_female" value="ผู้หญิง">
 				<label for="sex_female" class="txt-radio">ผู้หญิง</label>
@@ -26,7 +26,7 @@
 				<label class="label">คำนำหน้า</label>
 			</div>
 			<div class="col-right">
-				<input type="radio" name="mem_title" value="นาย" id="tname_male" checked="checked" />
+				<input type="radio" name="mem_title" value="นาย" id="tname_male" required="required" checked="checked" />
 				<label for="tname_male" class="txt-radio">นาย</label>
 				<input type="radio" name="mem_title" value="นาง" id="tname_female" />
 				<label for="tname_female" class="txt-radio">นาง</label>
