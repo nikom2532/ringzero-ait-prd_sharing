@@ -492,6 +492,9 @@
 			$('#mem_tumbon').empty();
             var text = "<option value=\"\" selected='selected'>เลือกตำบล</option>";
             $('#mem_tumbon').append(text);
+            
+            var selectmenu_txt = $("#mem_tumbon").find("option:selected").text();
+			$("#mem_tumbon").prev("span").text(selectmenu_txt);
 			
 		}); //end change
 		
