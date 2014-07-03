@@ -1,4 +1,4 @@
-<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script> -->
 <script>
     $(function(){
         $(".select-menu > select > option:eq(0)").attr("selected","selected");
@@ -27,24 +27,24 @@
 			<div class="col-lg-6">
 				<label >สถานะ</label>
 				<span class="select-menu">
-				<span>เลือกสถานะ</span>
-				<select style="" name="mem_status">
-					<option value="">เลือกสถานะ</option>
-					<option value="1" <?php
-						if(isset($post_search_key)){
-							if($post_search_key == "1"){
-								?>selected='selected'<?php
+					<span>เลือกสถานะ</span>
+					<select style="" name="mem_status">
+						<option value="">เลือกสถานะ</option>
+						<option value="1" <?php
+							if(isset($post_search_key)){
+								if($post_search_key == "1"){
+									?>selected='selected'<?php
+								}
 							}
-						}
-					?>>ใช้งาน</option>
-					<option value="0" <?php
-						if(isset($post_search_key)){
-							if($post_search_key == "0"){
-								?>selected='selected'<?php
+						?>>ใช้งาน</option>
+						<option value="0" <?php
+							if(isset($post_search_key)){
+								if($post_search_key == "0"){
+									?>selected='selected'<?php
+								}
 							}
-						}
-					?>>ไม่ใช้งาน</option>
-				</select>
+						?>>ไม่ใช้งาน</option>
+					</select>
 				</span>
 			</div>
 			<div class="col-lg-6">

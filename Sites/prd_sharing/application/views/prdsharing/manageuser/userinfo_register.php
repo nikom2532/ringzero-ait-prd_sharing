@@ -1,5 +1,22 @@
 <!-- <?php echo validation_errors(); ?> -->
-
+<style>
+	.row .col-lg-6 span.select-menu{
+		width: 62%;
+	}
+	.row .col-lg-6 span.select-menu select,
+	#sentnews .col-lg-6 select{
+		width: 100%;
+	}
+	.select-menu:hover {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+	.select-menu {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+	.row .col-lg-6 span.select-menu select{
+		width: 100% !important;
+	}
+</style>
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 	<form id="form_userinfo" name="form_userinfo" action="<?php echo base_url().index_page(); ?>register/" onsubmit="return validateForm(); " method="post"  >
@@ -85,27 +102,33 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
-				<select name="mem_ministry" id="mem_ministry">
-					<option value="">เลือกกระทรวง</option>
+				<span class="select-menu">
+					<span>เลือกกระทรวง</span>
+					<select name="mem_ministry" id="mem_ministry">
+						<option value="">เลือกกระทรวง</option>
 <?php
-					foreach ($Ministry as $Ministry_item) { 
-						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
-					}
+						foreach ($Ministry as $Ministry_item) { 
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						}
 ?>
-				</select>
+					</select>
+				</span>
 			</div>
 			<div class="col-lg-6">
 				<label >กรม</label>
-				<select name="mem_department" id="mem_department">
-					<option value="">เลือกตำแหน่ง</option>
+				<span class="select-menu">
+					<span>เลือกสถานะ</span>
+					<select name="mem_department" id="mem_department">
+						<option value="">เลือกตำแหน่ง</option>
 <?php
-					/*
-					foreach ($Department as $Department_item) {
-						?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
-					}
-					*/
+						/*
+						foreach ($Department as $Department_item) {
+							?><option value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+						}
+						*/
 ?>
-				</select>
+					</select>
+				</span>
 			</div>
 		</div>
 		
@@ -135,6 +158,10 @@
 								"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
 								$('#mem_department').append(text);
 							});
+							
+							var selectmenu_txt = $("#mem_department").find("option:selected").text();
+							$("#mem_department").prev("span").text(selectmenu_txt);
+							
 						} //end success
 					}); //end AJAX
 			    } else {
@@ -146,42 +173,51 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >จังหวัด</label>
-				<select name="mem_province" id="mem_province">
-					<option value="">เลือกจังหวัด</option>
-<?php
-						foreach ($CM06_Province as $Province) {
-							?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
-						}
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกจังหวัด</span>
+					<select name="mem_province" id="mem_province">
+						<option value="">เลือกจังหวัด</option>
+	<?php
+							foreach ($CM06_Province as $Province) {
+								?><option value="<?php echo $Province->CM06_ProvinceID;?>"><?php echo $Province->CM06_ProvinceName;?></option><?php
+							}
+	?>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >อำเภอ</label>
-				<select name="mem_ampur" id="mem_ampur">
-					<option value="">เลือกอำเภอ</option>
-<?php
-						/*
-						foreach ($CM07_Ampur as $Ampur) {
-							?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
-						}
-						*/
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกระทรวง</span>
+					<select name="mem_ampur" id="mem_ampur">
+						<option value="">เลือกอำเภอ</option>
+	<?php
+							/*
+							foreach ($CM07_Ampur as $Ampur) {
+								?><option value="<?php echo $Ampur->CM07_AmpurID;?>"><?php echo $Ampur->CM07_AmpurName;?></option><?php
+							}
+							*/
+	?>
+					</select>
+				</span>
 			</div>
 			<div class="col-lg-6">
 				<label >ตำบล</label>
-				<select name="mem_tumbon" id="mem_tumbon">
-					<option value="">เลือกตำบล</option>
-<?php
-						/*
-						foreach ($CM08_Tumbon as $Tumbon) {
-							?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
-						}
-						*/
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกระทรวง</span>
+					<select name="mem_tumbon" id="mem_tumbon">
+						<option value="">เลือกตำบล</option>
+	<?php
+							/*
+							foreach ($CM08_Tumbon as $Tumbon) {
+								?><option value="<?php echo $Tumbon->CM08_TumbonID;?>"><?php echo $Tumbon->CM08_TumbonName;?></option><?php
+							}
+							*/
+	?>
+					</select>
+				</span>
 			</div>
 		</div>
 		
@@ -309,7 +345,33 @@
 				    e.preventDefault();
 				}
 		    });
+		    
 		});
+		
+		$(function(){
+			var selectmenu_txt = $("#mem_ministry").find("option:selected").text();
+			$("#mem_ministry").prev("span").text(selectmenu_txt);
+			
+			var selectmenu_txt = $("#mem_department").find("option:selected").text();
+			$("#mem_department").prev("span").text(selectmenu_txt);
+			
+			var selectmenu_txt = $("#mem_province").find("option:selected").text();
+			$("#mem_province").prev("span").text(selectmenu_txt);
+			
+			var selectmenu_txt = $("#mem_ampur").find("option:selected").text();
+			$("#mem_ampur").prev("span").text(selectmenu_txt);
+			
+			var selectmenu_txt = $("#mem_tumbon").find("option:selected").text();
+			$("#mem_tumbon").prev("span").text(selectmenu_txt);
+		    
+	        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+	        $(".select-menu > select").live("change",function(){
+	            var selectmenu_txt = $(this).find("option:selected").text();
+	            $(this).prev("span").text(selectmenu_txt);
+	        });
+	        
+		});
+		
 		if(document.getElementById("tname_other").checked == true){
 			$("#tname_other_text").prop('disabled', false);
 		}
@@ -324,8 +386,6 @@
 				$("#tname_other_text").prop('disabled', true);
 			}
 		});
-		
-		
 		
 		function autoTab_IdentificationCitizen(obj){
 			var StrPattern = "_-____-_____-_-__";
@@ -414,6 +474,10 @@
 							"<option value=\""+val.CM07_AmpurID+"\">"+val.CM07_AmpurName+"</option>";
 							$('#mem_ampur').append(text);
 						});
+						
+						var selectmenu_txt = $("#mem_ampur").find("option:selected").text();
+						$("#mem_ampur").prev("span").text(selectmenu_txt);
+						
 					} //end success
 				}); //end AJAX
 		    } else {
@@ -463,6 +527,9 @@
 							"<option value=\""+val.CM08_TumbonID+"\">"+val.CM08_TumbonName+"</option>";
 							$('#mem_tumbon').append(text);
 						});
+						var selectmenu_txt = $("#mem_tumbon").find("option:selected").text();
+						$("#mem_tumbon").prev("span").text(selectmenu_txt);
+						
 					} //end success
 				}); //end AJAX
 		    } else {
@@ -474,6 +541,5 @@
 		$('select#mem_ampur').change(function(){
 			push_mem_ampur('');
 		}); //end change
-		
 	</script>
 </div><!-- #manage-user -->

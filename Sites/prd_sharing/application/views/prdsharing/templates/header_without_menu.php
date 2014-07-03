@@ -14,7 +14,8 @@
     <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     
 	
-	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script>
+	<!-- <script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script> -->
+	<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jqueryui/jquery-ui-1.10.4.custom.min.css">
 	<script src="<?php echo base_url(); ?>js/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
 	

@@ -1,6 +1,6 @@
 <style>
 	.row .col-lg-6 span.select-menu{
-		width: 60%;
+		width: 62%;
 	}
 	.row .col-lg-6 span.select-menu select,
 	#sentnews .col-lg-6 select{
