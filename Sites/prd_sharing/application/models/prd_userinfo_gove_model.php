@@ -45,7 +45,6 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Mem_LasName' => $lname,
 				'Mem_EngName' => $engfname,
 				'Mem_EngLasName' => $englname,
-				// 'Mem_Username' => $mem_username,
 				'Mem_CardID' => $mem_cardID,
 				'Mem_Ministry' => $mem_ministry,
 				'Mem_Department' => $mem_department,
@@ -61,6 +60,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Group_ID' => $group_member,
 				'Mem_Status' => $mem_status
 			);
+			// 'Mem_Username' => $mem_username,
 		}
 		else{
 			$data = array(
@@ -70,7 +70,6 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Mem_LasName' => $lname,
 				'Mem_EngName' => $engfname,
 				'Mem_EngLasName' => $englname,
-				// 'Mem_Username' => $mem_username,
 				'Mem_Password' => $mem_password,
 				'Mem_CardID' => $mem_cardID,
 				'Mem_Ministry' => $mem_ministry,
@@ -87,8 +86,11 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				'Group_ID' => $group_member,
 				'Mem_Status' => $mem_status
 			);
+			// 'Mem_Username' => $mem_username,
 		}
 		// var_dump($data);
+		
+		// exit;
 		
 		$query_setMember = $this->db->
 			where('Member.Mem_ID', $Mem_ID)->
@@ -117,6 +119,7 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 				Member.Tumbon_ID,
 				Member.Mem_Ministry,
 				Member.Mem_Department,
+				Member.Group_ID,
 				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->

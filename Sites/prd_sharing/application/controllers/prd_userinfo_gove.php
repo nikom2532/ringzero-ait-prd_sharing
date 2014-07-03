@@ -35,7 +35,8 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 			
 				if($this->input->post('update_member') == "yes"){
 					
-					//For Update member
+					
+					// exit;
 					
 					if($this->input->post('mem_title') != "อื่นๆ"){
 						$mem_title = $this->input->post('mem_title');

@@ -1,6 +1,6 @@
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form action="<?php echo base_url().index_page(); ?>userInfo_GOVE" method="post">
+	<form id="form_userinfo" name="form_userinfo" action="<?php echo base_url().index_page(); ?>userInfo_GOVE" method="post" onsubmit="return validateForm(); ">
 		<input type="hidden" name="update_member" value="yes" />
 		<input type="hidden" name="member_id" value="<?php echo $Mem_ID; ?>" />
 <?php
@@ -105,11 +105,11 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >Password</label>
-					<input type="text" class="form-control" name="mem_password1" id="mem_password1" placeholder="" value="<?php //echo $SC03_User_item->SC03_Password;?>" />
+					<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" value="<?php //echo $SC03_User_item->SC03_Password;?>" />
 				</div>
 				<div class="col-lg-6">
 					<label >Confirm Password</label>
-					<input type="text" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
+					<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" />
 				</div>
 			</div>
 			<div class="row">
@@ -410,24 +410,24 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="row">
-						<label class="label">Email</label>
-						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
+						<label class="label Mem_Email">Email</label>
+						<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" value="<?php echo $Member_item->Mem_Email; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">รหัสไปรษณีย์</label>
-						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" required="required" placeholder="" maxlength="5" />
+						<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" required="required" placeholder="" value="<?php echo $Member_item->Mem_Postcode; ?>" maxlength="5" />
 					</div>
 					<div class="row">
 						<label class="label">ชื่อผู้ติดต่อ</label>
-						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
+						<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" value="<?php echo $Member_item->Mem_NickName; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์ที่ทำงาน</label>
-						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" />
+						<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" value="<?php echo $Member_item->Mem_Tel; ?>" />
 					</div>
 					<div class="row">
 						<label class="label">เบอร์มือถือ</label>
-						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" required="required" placeholder="" />
+						<input type="text" class="form-control" name="mem_moble" id="Mem_Moble" required="required" placeholder="" value="<?php echo $Member_item->Mem_Moble; ?>" />
 					</div>
 				</div>
 			</div>
@@ -438,7 +438,11 @@
 						<option value="-1">เลือกระดับผู้ใช้งาน</option>
 <?php
 						foreach ($GroupMember as $GroupMember_item) {
-							?><option value="<?php echo $GroupMember_item->Group_ID;?>"><?php echo $GroupMember_item->Group_Desc;?></option><?php
+							?><option value="<?php echo $GroupMember_item->Group_ID;?>" <?php 
+								if($GroupMember_item->Group_ID == $Member_item->Group_ID){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $GroupMember_item->Group_Desc;?></option><?php
 						}
 ?>
 					</select>
@@ -448,8 +452,16 @@
 				<div class="col-lg-6">
 					<label >สถานะการใช้งาน</label>
 					<select name="mem_status">
-						<option value="1">เปิดการใช้งาน</option>
-						<option value="0">ปิดการใช้งาน</option>
+						<option value="1" <?php 
+							if($Member_item->Mem_Status == "1"){
+								?>checked='checked'<?php
+							} 
+						?>>เปิดการใช้งาน</option>
+						<option value="0" <?php 
+							if($Member_item->Mem_Status == "0" || $Member_item->Mem_Status == "" || $Member_item->Mem_Status == null){
+								?>checked='checked'<?php
+							} 
+						?>>ปิดการใช้งาน</option>
 					</select>
 				</div>
 			</div>
@@ -596,7 +608,7 @@
 				document.getElementById('Mem_Postcode').focus();
 				$('.label.Mem_Postcode').css("color", "red");
 		        return false;
-		    }
+			}
 		}
 		
 	</script>

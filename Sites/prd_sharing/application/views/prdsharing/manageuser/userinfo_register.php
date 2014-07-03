@@ -309,21 +309,23 @@
 				    e.preventDefault();
 				}
 		    });
+		});
+		if(document.getElementById("tname_other").checked == true){
+			$("#tname_other_text").prop('disabled', false);
+		}
+		else{
+			$("#tname_other_text").prop('disabled', true);
+		}
+		$("input[name='mem_title']").change(function(){
 			if(document.getElementById("tname_other").checked == true){
 				$("#tname_other_text").prop('disabled', false);
 			}
 			else{
 				$("#tname_other_text").prop('disabled', true);
 			}
-			$("input[name='mem_title']").change(function(){
-				if(document.getElementById("tname_other").checked == true){
-					$("#tname_other_text").prop('disabled', false);
-				}
-				else{
-					$("#tname_other_text").prop('disabled', true);
-				}
-			});
 		});
+		
+		
 		
 		function autoTab_IdentificationCitizen(obj){
 			var StrPattern = "_-____-_____-_-__";
