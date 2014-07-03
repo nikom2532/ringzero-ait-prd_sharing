@@ -53,7 +53,7 @@
 			</div>
 			<div class="col-lg-6">
 				<!-- department -->
-				<label >กระทรวง</label>
+				<label >กรม</label>
 				<span class="select-menu">
 					<span>เลือกกรม</span>
 					<select name="Dep_ID" id="Dep_ID" class="form-control" style="width: 100%;">

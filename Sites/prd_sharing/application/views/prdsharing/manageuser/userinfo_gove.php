@@ -373,38 +373,12 @@
 		}
 		//Load mem_ministry
 		$( document ).ready(function() {
-			
-			// $('select#mem_ministry option').filter(function() {
-		        // return ($(this).val() == '<?php //echo $Member_item->Mem_Ministry; ?>'); //To select Blue
-		    // }).attr("selected","selected");
-	// 					
-			// push_mem_department('<?php echo $Member_item->Mem_Ministry; ?>');
-			
-			//Change mem_ministry
 			$('select#mem_ministry').change(function(){
-				// alert('');
 				push_mem_department('');
 			}); //end change
-<?php				
-			/*
-						if($Member_item->Mem_Department != ''){
-	?>
-							$('select#mem_department option').filter(function() {
-						        return ($(this).val() == '<?php echo $Member_item->Mem_Department; ?>'); //To select Blue
-						    }).prop('selected', true);
-						    
-						    // .attr("selected","selected");
-							// .prop('selected', true)
-	<?php
-						}
-						*/
-?>
 		});
 		
-		
 		//###################  อำเภอ  ##########################
-		
-		
 		
 		function push_mem_province(id){
 			if(id != ""){

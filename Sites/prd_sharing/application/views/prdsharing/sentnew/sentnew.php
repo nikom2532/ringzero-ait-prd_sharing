@@ -13,20 +13,6 @@
 	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
 	}
 </style>
-
-<script>
-	$(function(){
-		$(".datepicker").datepicker({
-			dateFormat: 'yy-mm-dd',
-			numberOfMonths: 1,
-			changeMonth: true,
-			changeYear: true,
-			minDate: 0
-		});
-	});
-	
-</script>
-
 <form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
@@ -82,63 +68,6 @@
 					</span>
 				</div>
 			</div>
-			
-			<script>
-				/*
-				$("select#Minis_ID").change(function() {
-					
-					// var minis_id = $(this).attr("data-minis_id");
-					// var minis_id = $("select#Minis_ID:selected").attr("data-minis_id");
-					
-					var minis_id = $(this).find(':selected').data('minis_id');
-					
-					// if(minis_id == $(select#Dep_ID).data('minis_id')){
-// 						
-					// }
-					
-					// $(select#Dep_ID).data('minis_id')
-					
-					// if(minis_id == )
-					// alert(this);
-					alert(minis_id);
-				});
-				*/
-				
-				$('select#Minis_ID').change(function(){
-					// debugger;
-				    var type_id = $('select#Minis_ID').val();
-				    if (type_id != ""){
-				        var post_url = "<?php echo base_url().index_page(); ?>PRD_sentNew/get_Department/" + type_id;
-				    	// debugger;
-				    	// alert(post_url);
-				        $.ajax({
-				            type: "POST",
-				             url: post_url,
-							 dataType :'json',
-				             success: function(subtype)
-				              {
-				              	// var a = JSON.parse(subtype);
-				                $('#Dep_ID').empty();
-				                
-				                var text = "<option value=\"\">เลือกกรม</option>";
-				                $('#Dep_ID').append(text);
-				                
-								$.each(subtype,function(index,val) 
-								{
-									text = ""+
-									"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
-									$('#Dep_ID').append(text);
-								});
-								var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
-								$("#Dep_ID").prev("span").text(selectmenu_txt);
-							} //end success
-						}); //end AJAX
-				    } else {
-				        $('#SubTypeID').empty();
-				    }//end if
-				}); //end change 
-			</script>
-
 			<div class="row">
 				<div class="col-lg-6">
 					<label >นโยบายรัฐบาล</label>
@@ -184,30 +113,6 @@
 					display:none;
 				}
 			</style>
-			<script>
-				// $("select#Tar_ID").text("asdf");
-				
-				$("select#Tar_ID").change(function() {
-					$( "select#Tar_ID option#target1:selected" ).each(function() {
-						$(".grov_active_col").css("display", "BLOCK");
-						$(".prd_active_col").css("display", "BLOCK");
-					});
-					
-					$( "select#Tar_ID option#target2:selected" ).each(function() {
-						$(".grov_active_col").css("display", "none");
-						$(".prd_active_col").css("display", "BLOCK");
-					});
-					
-					$( "select#Tar_ID option#target0:selected" ).each(function() {
-						$(".grov_active_col").css("display", "none");
-						$(".prd_active_col").css("display", "none");
-					});
-				});
-				
-				$("#form_sendnew #submit")
-				
-			</script>
-			
 			
 			<div class="row grov_active_col" >
 				<div class="col-lg-6">
@@ -311,100 +216,184 @@
 			</div>
 		</div>
 	</fieldset>
-	<script>
-		var number = 2;
-		$("input.bt#addmorefile").click(function(){
-			var str =""+
-			"<div class=\"row\">"+
-			"	<div class=\"col-lg-6\">"+
-			"		<label >file แนบเอกสาร "+(number)+".) </label>"+
-			"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
-			"	</div>"+
-			"	<!-- <div class=\"col-lg-6\">"+
-			"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
-			"	</div> -->";
-			"</div>";
-			
-			$("div.uploadfile").append(str);
-			number++;
-		});
-		$("input.bt#reducemorefile").click(function(){
-			if(number > 2){
-				$("div.uploadfile .row:last").remove();
-				number--;
-			}
-		});
-		
-		$(function(){
-	        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
-	        var selectmenu_txt = $("#Minis_ID").find("option:selected").text();
-				$("#Minis_ID").prev("span").text(selectmenu_txt);
-	        selectmenu_txt = $("#Dep_ID").find("option:selected").text();
-				$("#Dep_ID").prev("span").text(selectmenu_txt);
-			selectmenu_txt = $("#NT05_PolicyID").find("option:selected").text();
-				$("#NT05_PolicyID").prev("span").text(selectmenu_txt);
-	        selectmenu_txt = $("#Tar_ID").find("option:selected").text();
-				$("#Tar_ID").prev("span").text(selectmenu_txt);
-			selectmenu_txt = $("#grov_status").find("option:selected").text();
-				$("#grov_status").prev("span").text(selectmenu_txt);
-			selectmenu_txt = $("#prd_status").find("option:selected").text();
-				$("#prd_status").prev("span").text(selectmenu_txt);
-	        
-	        
-	        
-	        $(".select-menu > select").live("change",function(){
-	            var selectmenu_txt = $(this).find("option:selected").text();
-	            $(this).prev("span").text(selectmenu_txt);
-	        });
-	    });
-		
-		/*
-		$(document).ready(function()
-		{
-			$("#fileuploader").uploadFile({
-			url:"YOUR_FILE_UPLOAD_URL",
-			fileName:"myfile"
-			});
-		});
-		*/
-		/*
-		$(document).ready(function()
-		{
-			var settings = {
-			    url: "http://localhost:126/upload.php",
-			    dragDrop:true,
-			    fileName: "myfile",
-			    allowedTypes:"jpg,png,gif,doc,pdf,zip",	
-			    returnType:"json",
-				 onSuccess:function(files,data,xhr)
-			    {
-			       // alert((data));
-			    },
-			    showDelete:true,
-			    deleteCallback: function(data,pd)
-				{
-				    for(var i=0;i<data.length;i++)
-				    {
-				        $.post("http://localhost:126/delete.php",{op:"delete",name:data[i]},
-				        function(resp, textStatus, jqXHR)
-				        {
-				            //Show Message  
-				            $("#status").append("<div>File Deleted</div>");
-				        });
-				     }      
-				    pd.statusbar.hide(); //You choice to hide/not.
-			
-				}
-			}
-			var uploadObj = $("#mulitplefileuploader").uploadFile(settings);
-		});
-		*/
-	</script>
 	<div class="row">
 		<div class="col-lg-12" style="text-align: center; float: left;">
 			<input class="bt" type="submit" name="share" id="submit" value="บันทึก">
 			<input class="bt" type="button" name="share" value="ยกเลิก" onclick="document.location.href = 'manageNewGROV'">
 		</div>
 	</div>
-
 </form>
+<script>
+	$(function(){
+		$(".datepicker").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			minDate: 0
+		});
+	});
+	
+	/*
+	$("select#Minis_ID").change(function() {
+		
+		// var minis_id = $(this).attr("data-minis_id");
+		// var minis_id = $("select#Minis_ID:selected").attr("data-minis_id");
+		
+		var minis_id = $(this).find(':selected').data('minis_id');
+		
+		// if(minis_id == $(select#Dep_ID).data('minis_id')){
+// 						
+		// }
+		
+		// $(select#Dep_ID).data('minis_id')
+		
+		// if(minis_id == )
+		// alert(this);
+		alert(minis_id);
+	});
+	*/
+	
+	$('select#Minis_ID').change(function(){
+		// debugger;
+	    var type_id = $('select#Minis_ID').val();
+	    if (type_id != ""){
+	        var post_url = "<?php echo base_url().index_page(); ?>PRD_sentNew/get_Department/" + type_id;
+	    	// debugger;
+	    	// alert(post_url);
+	        $.ajax({
+	            type: "POST",
+	             url: post_url,
+				 dataType :'json',
+	             success: function(subtype)
+	              {
+	              	// var a = JSON.parse(subtype);
+	                $('#Dep_ID').empty();
+	                
+	                var text = "<option value=\"\">เลือกกรม</option>";
+	                $('#Dep_ID').append(text);
+	                
+					$.each(subtype,function(index,val) 
+					{
+						text = ""+
+						"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+						$('#Dep_ID').append(text);
+					});
+					var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+					$("#Dep_ID").prev("span").text(selectmenu_txt);
+				} //end success
+			}); //end AJAX
+	    } else {
+	        $('#SubTypeID').empty();
+	    }//end if
+	}); //end change 
+	// $("select#Tar_ID").text("asdf");
+	
+	$("select#Tar_ID").change(function() {
+		$( "select#Tar_ID option#target1:selected" ).each(function() {
+			$(".grov_active_col").css("display", "BLOCK");
+			$(".prd_active_col").css("display", "BLOCK");
+		});
+		
+		$( "select#Tar_ID option#target2:selected" ).each(function() {
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "BLOCK");
+		});
+		
+		$( "select#Tar_ID option#target0:selected" ).each(function() {
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		});
+	});
+	
+	// $("#form_sendnew #submit")
+	
+	
+	var number = 2;
+	$("input.bt#addmorefile").click(function(){
+		var str =""+
+		"<div class=\"row\">"+
+		"	<div class=\"col-lg-6\">"+
+		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
+		"	</div>"+
+		"	<!-- <div class=\"col-lg-6\">"+
+		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
+		"	</div> -->";
+		"</div>";
+		
+		$("div.uploadfile").append(str);
+		number++;
+	});
+	$("input.bt#reducemorefile").click(function(){
+		if(number > 2){
+			$("div.uploadfile .row:last").remove();
+			number--;
+		}
+	});
+	
+	$(function(){
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        var selectmenu_txt = $("#Minis_ID").find("option:selected").text();
+			$("#Minis_ID").prev("span").text(selectmenu_txt);
+        selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+			$("#Dep_ID").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#NT05_PolicyID").find("option:selected").text();
+			$("#NT05_PolicyID").prev("span").text(selectmenu_txt);
+        selectmenu_txt = $("#Tar_ID").find("option:selected").text();
+			$("#Tar_ID").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#grov_status").find("option:selected").text();
+			$("#grov_status").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#prd_status").find("option:selected").text();
+			$("#prd_status").prev("span").text(selectmenu_txt);
+        
+        
+        
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+	
+	/*
+	$(document).ready(function()
+	{
+		$("#fileuploader").uploadFile({
+		url:"YOUR_FILE_UPLOAD_URL",
+		fileName:"myfile"
+		});
+	});
+	*/
+	/*
+	$(document).ready(function()
+	{
+		var settings = {
+		    url: "http://localhost:126/upload.php",
+		    dragDrop:true,
+		    fileName: "myfile",
+		    allowedTypes:"jpg,png,gif,doc,pdf,zip",	
+		    returnType:"json",
+			 onSuccess:function(files,data,xhr)
+		    {
+		       // alert((data));
+		    },
+		    showDelete:true,
+		    deleteCallback: function(data,pd)
+			{
+			    for(var i=0;i<data.length;i++)
+			    {
+			        $.post("http://localhost:126/delete.php",{op:"delete",name:data[i]},
+			        function(resp, textStatus, jqXHR)
+			        {
+			            //Show Message  
+			            $("#status").append("<div>File Deleted</div>");
+			        });
+			     }      
+			    pd.statusbar.hide(); //You choice to hide/not.
+		
+			}
+		}
+		var uploadObj = $("#mulitplefileuploader").uploadFile(settings);
+	});
+	*/
+</script>

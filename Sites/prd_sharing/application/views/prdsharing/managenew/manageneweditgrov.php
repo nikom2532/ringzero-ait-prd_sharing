@@ -1,3 +1,18 @@
+<style>
+	.row .col-lg-6 span.select-menu{
+		width: 62%;
+	}
+	.row .col-lg-6 span.select-menu select,
+	#sentnews .col-lg-6 select{
+		width: 100%;
+	}
+	.select-menu:hover {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+	.select-menu {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+</style>
 <form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>ffile แนบเอกสาร" method="post">
 <?php
 //Start to count News GROV's rows
@@ -27,66 +42,78 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กระทรวง</label>
-				<select name="Minis_ID" id="Minis_ID">
-					<option value="">เลือกกระทรวง</option>
+				<span class="select-menu">
+					<span>เลือกกระทรวง</span>
+					<select name="Minis_ID" id="Minis_ID">
+						<option value="">เลือกกระทรวง</option>
 <?php
-					foreach ($Ministry as $Ministry_item) {
-						?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
-					}
+						foreach ($Ministry as $Ministry_item) {
+							?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						}
 ?>
-				</select>
+					</select>
+				</span>
 			</div>
 			<div class="col-lg-6">
 				<label >กรม</label>
-				<select name="Dep_ID" id="Dep_ID">
-					<option value="">เลือกกรม</option>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="Dep_ID" id="Dep_ID">
+						<option value="">เลือกกรม</option>
 <?php
-					/*
-					// var_dump($Department);
-					foreach ($Department as $Department_item) {
-						?><option data-minis_id="<?php
-							foreach ($Ministry as $Ministry_item) {
-								if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
-									echo $Ministry_item->Minis_ID;
+						/*
+						// var_dump($Department);
+						foreach ($Department as $Department_item) {
+							?><option data-minis_id="<?php
+								foreach ($Ministry as $Ministry_item) {
+									if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
+										echo $Ministry_item->Minis_ID;
+									}
 								}
-							}
-						?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
-					}
-					*/
-					/* ?><option value=""></option><?php */
+							?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+						}
+						*/
+						/* ?><option value=""></option><?php */
 ?>
-				</select>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >นโยบายรัฐบาล</label>
-				<select name="NT05_PolicyID">
-					<option value="">เลือกนโยบาย</option>
+				<span class="select-menu">
+					<span>เลือกนโยบายรัฐบาล</span>
+					<select name="NT05_PolicyID">
+						<option value="">เลือกนโยบาย</option>
 <?php
-					foreach ($NT05_Policy as $NT05_Policy_item) {
-						?><option value="<?php 
-							echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;
-						?></option><?php
-					}
+						foreach ($NT05_Policy as $NT05_Policy_item) {
+							?><option value="<?php 
+								echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;
+							?></option><?php
+						}
 ?>
-				</select>
+					</select>
+				</span>
 			</div>
 
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >กลุ่มเป้าหมาย</label>
-				<select name="Tar_ID" id="Tar_ID">
-					<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
-<?php
-					$i=1;
-					foreach ($TargetGroup as $TargetGroup_item) {
-						?><option id="target<?php echo $i; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
-						$i++;
-					}
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="Tar_ID" id="Tar_ID">
+						<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
+	<?php
+						$i=1;
+						foreach ($TargetGroup as $TargetGroup_item) {
+							?><option id="target<?php echo $i; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
+							$i++;
+						}
+	?>
+					</select>
+				</span>
 			</div>
 		</div>
 		
@@ -97,63 +124,47 @@ foreach($news as $news_item):
 				display:none;
 			}
 		</style>
-		<script>
-			// $("select#Tar_ID").text("asdf");
-			
-			$("select#Tar_ID").change(function() {
-				$( "select#Tar_ID option#target1:selected" ).each(function() {
-					$(".grov_active_col").css("display", "BLOCK");
-					$(".prd_active_col").css("display", "BLOCK");
-				});
-				
-				$( "select#Tar_ID option#target2:selected" ).each(function() {
-					$(".grov_active_col").css("display", "none");
-					$(".prd_active_col").css("display", "BLOCK");
-				});
-				
-				$( "select#Tar_ID option#target0:selected" ).each(function() {
-					$(".grov_active_col").css("display", "none");
-					$(".prd_active_col").css("display", "none");
-				});
-			});
-		</script>
-		
-		
 		<div class="row grov_active_col" >
 			<div class="col-lg-6">
 				<label id="grov_active" >หน่วยงานภาครัฐ</label>
-				<select name="grov_active" id="grov_active">
-					<option value="">เลือกหน่วยงานภาครัฐ</option>
-<?php
-					/*
-					foreach ($SC07_Department as $Department_item) {
-						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
-					}
-					*/
-					foreach ($Ministry as $Ministry_item) {
-						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
-					}
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="grov_active" id="grov_active">
+						<option value="">เลือกหน่วยงานภาครัฐ</option>
+	<?php
+						/*
+						foreach ($SC07_Department as $Department_item) {
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+						}
+						*/
+						foreach ($Ministry as $Ministry_item) {
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						}
+	?>
+					</select>
+				</span>
 			</div>
 		</div>
 		
 		<div class="row prd_active_col" >
 			<div class="col-lg-6">
 				<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
-				<select name="prd_active" id="prd_active">
-					<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
-<?php
-					/*
-					foreach ($Ministry as $Ministry_item) {
-						?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
-					}
-					*/
-					foreach ($SC07_Department as $Department_item) {
-						?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
-					}
-?>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="prd_active" id="prd_active">
+						<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
+	<?php
+						/*
+						foreach ($Ministry as $Ministry_item) {
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+						}
+						*/
+						foreach ($SC07_Department as $Department_item) {
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+						}
+	?>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row">
@@ -178,19 +189,21 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label >สถานะ</label>
 				<label >รอการอนุมัติ</label>
-				
-				<select name="sendin_status" class="form-control" style="width: 65%;">
-					<option value="0"<?php 
-						if($news_item->SendIn_Status == '0' || $news_item->SendIn_Status == ''){
-							?> checked='checked' <?php
-						}
-					?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
-					<option value="1"<?php 
-						if($news_item->SendIn_Status == '1'){
-							?> checked='checked' <?php
-						}
-					?>>อนุมัติ</option>
-				</select>
+				<span class="select-menu">
+					<span>เลือกกรม</span>
+					<select name="sendin_status" class="form-control" style="width: 65%;">
+						<option value="0"<?php 
+							if($news_item->SendIn_Status == '0' || $news_item->SendIn_Status == ''){
+								?> checked='checked' <?php
+							}
+						?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
+						<option value="1"<?php 
+							if($news_item->SendIn_Status == '1'){
+								?> checked='checked' <?php
+							}
+						?>>อนุมัติ</option>
+					</select>
+				</span>	
 			</div>
 		</div>
 <?php 
@@ -287,6 +300,78 @@ foreach($news as $news_item):
 </fieldset>
 
 <script>
+	function push_mem_department(id){
+		// debugger;
+	    if(id != ""){
+	    	var type_id = id;
+	    }
+	    else{
+	    	var type_id = $('select#mem_ministry').val();
+	    }
+	    
+	    var type_id = $('select#Minis_ID').val();
+	    if (type_id != ""){
+	        var post_url = "<?php echo base_url().index_page(); ?>PRD_sentNew/get_Department/" + type_id;
+	    	// debugger;
+	    	// alert(post_url);
+	        $.ajax({
+	            type: "POST",
+	             url: post_url,
+				 dataType :'json',
+	             success: function(subtype)
+	              {
+	              	// var a = JSON.parse(subtype);
+	                $('#Dep_ID').empty();
+	                
+	                var text = "<option value=\"\">เลือกกรม</option>";
+	                $('#Dep_ID').append(text);
+	                
+					$.each(subtype,function(index,val) 
+					{
+						text = ""+
+						"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+						$('#Dep_ID').append(text);
+					});
+					var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+					$("#Dep_ID").prev("span").text(selectmenu_txt);
+				} //end success
+			}); //end AJAX
+	    } else {
+	        $('#SubTypeID').empty();
+	    }//end if
+	}
+	$( document ).ready(function() {
+		$('select#Minis_ID').change(function(){
+			push_mem_department('');
+			
+			$('#Dep_ID').empty();
+            var text = "<option value=\"\" selected='selected'>เลือกกรม</option>";
+            $('#Dep_ID').append(text);
+            
+            var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+			$("#Dep_ID").prev("span").text(selectmenu_txt);
+		});
+	});
+	
+	// $("select#Tar_ID").text("asdf");
+			
+	$("select#Tar_ID").change(function() {
+		$( "select#Tar_ID option#target1:selected" ).each(function() {
+			$(".grov_active_col").css("display", "BLOCK");
+			$(".prd_active_col").css("display", "BLOCK");
+		});
+		
+		$( "select#Tar_ID option#target2:selected" ).each(function() {
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "BLOCK");
+		});
+		
+		$( "select#Tar_ID option#target0:selected" ).each(function() {
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		});
+	});
+	
 	var number = 2;
 	$("input.bt#addmorefile").click(function(){
 		
@@ -308,6 +393,28 @@ foreach($news as $news_item):
 	        location.href="manageNewEditGROV?is_del_fileattach=1&File_ID="+file_ID;
 	    }
 	});
+	
+	$(function(){
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        var selectmenu_txt = $("#Minis_ID").find("option:selected").text();
+			$("#Minis_ID").prev("span").text(selectmenu_txt);
+        selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+			$("#Dep_ID").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#NT05_PolicyID").find("option:selected").text();
+			$("#NT05_PolicyID").prev("span").text(selectmenu_txt);
+        selectmenu_txt = $("#Tar_ID").find("option:selected").text();
+			$("#Tar_ID").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#grov_status").find("option:selected").text();
+			$("#grov_status").prev("span").text(selectmenu_txt);
+		selectmenu_txt = $("#prd_status").find("option:selected").text();
+			$("#prd_status").prev("span").text(selectmenu_txt);
+        
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+    
 </script>
 
 <div class="row">
