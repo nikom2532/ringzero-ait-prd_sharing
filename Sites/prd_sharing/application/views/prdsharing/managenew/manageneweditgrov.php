@@ -12,6 +12,9 @@
 	.select-menu {
 	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
 	}
+	.row .col-lg-6 span.select-menu select{
+		width: 100% !important;
+	}
 </style>
 <form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post">
 <?php
@@ -190,16 +193,16 @@ foreach($news as $news_item):
 				<label >สถานะ</label>
 				<label >รอการอนุมัติ</label>
 				<span class="select-menu">
-					<span>เลือกกรม</span>
-					<select name="sendin_status" class="form-control" style="width: 65%;">
+					<span>เลือกสถานะ</span>
+					<select name="sendin_status" id="sendin_status" class="form-control" style="width: 65%;">
 						<option value="0"<?php 
 							if($news_item->SendIn_Status == '0' || $news_item->SendIn_Status == ''){
-								?> checked='checked' <?php
+								?> selected='selected'<?php
 							}
-						?>>ไม่อนุมัติ&frasl;รอการอนุมัติ</option>
+						?>>ไม่อนุมัติ</option>
 						<option value="1"<?php 
 							if($news_item->SendIn_Status == '1'){
-								?> checked='checked' <?php
+								?> selected='selected'<?php
 							}
 						?>>อนุมัติ</option>
 					</select>
@@ -303,6 +306,9 @@ foreach($news as $news_item):
 </fieldset>
 
 <script>
+	var selectmenu_txt = $("#sendin_status").find("option:selected").text();
+	$("#sendin_status").prev("span").text(selectmenu_txt);
+	
 	function push_mem_department(id){
 		// debugger;
 	    if(id != ""){

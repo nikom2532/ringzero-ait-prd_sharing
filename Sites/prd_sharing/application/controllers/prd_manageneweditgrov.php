@@ -34,6 +34,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			
 			if($this->input->post("manageNewEditGROV_record") == "yes"){
 				// echo "record";
+				
 				$return_manageNewEditGROV_record = $this->prd_manageneweditgrov_model->set_prd_news(
 					$this->input->post("SendIn_ID"),
 					$this->input->post("SendIn_Plan"),
@@ -44,7 +45,8 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('Tar_ID'),
 					$this->input->post('grov_active'),
 					$this->input->post('prd_active'),
-					$this->input->post('SendIn_Detail')
+					$this->input->post('SendIn_Detail'),
+					$this->input->post('sendin_status')
 				);
 				// var_dump($return_manageNewEditGROV_record);
 				

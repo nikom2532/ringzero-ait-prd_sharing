@@ -1,6 +1,6 @@
 <style>
 	.row .col-lg-6 span.select-menu{
-		width: 62%;
+		width: 62%;	
 	}
 	.row .col-lg-6 span.select-menu select,
 	#sentnews .col-lg-6 select{
@@ -328,6 +328,7 @@
 	
 	$("input.bt#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
+		// var file_id = $(this).data("file_id");
 		$("div.uploadfile .row.file_"+file_id).remove();
 	});
 	
