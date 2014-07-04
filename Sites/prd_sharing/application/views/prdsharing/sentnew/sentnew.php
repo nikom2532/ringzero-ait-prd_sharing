@@ -192,14 +192,14 @@
 		</legend>
 		<?php ///* ?>
 		<div class="uploadfile">
-			<div class="row">
+			<div class="row file_1">
 				<div class="col-lg-6">
 					<label >file แนบเอกสาร 1.) </label>
 					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
 				</div>
-				<!-- <div class="col-lg-6">
-					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-				</div> -->
+				<div class="col-lg-6">
+					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+				</div>
 			</div>
 		</div>
 		<?php //*/ ?>
@@ -211,7 +211,7 @@
 		
 		<div class="row">
 			<div style="text-align: center; ">
-				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+				<!-- <input class="bt" type="button" name="reducemorefile" id="reducemorefile" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" /> -->
 				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 			</div>
 		</div>
@@ -312,25 +312,25 @@
 	var number = 2;
 	$("input.bt#addmorefile").click(function(){
 		var str =""+
-		"<div class=\"row\">"+
+		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-6\">"+
 		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
 		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
 		"	</div>"+
-		"	<!-- <div class=\"col-lg-6\">"+
-		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
-		"	</div> -->";
+		"	<div class=\"col-lg-6\">"+
+		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
+		"	</div>";
 		"</div>";
 		
 		$("div.uploadfile").append(str);
 		number++;
 	});
-	$("input.bt#reducemorefile").click(function(){
-		if(number > 2){
-			$("div.uploadfile .row:last").remove();
-			number--;
-		}
+	
+	$("input.bt#reducemorefile").live('click', function(){
+		var file_id = $(this).attr("data-file_id");
+		$("div.uploadfile .row.file_"+file_id).remove();
 	});
+	
 	
 	$(function(){
         // $(".select-menu > select > option:eq(0)").attr("selected","selected");
