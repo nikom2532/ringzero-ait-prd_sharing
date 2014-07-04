@@ -127,8 +127,8 @@ class PRD_SentNew_model extends CI_Model {
 				'File_Name' => $file_name_item['file_name'], 
 				'File_Path' => $file_name_item['full_path'],
 				'File_Extension' => $file_name_item['file_extension'], 
-				'File_FileSize' => '',
-				'File_Type' => '',
+				'File_FileSize' => $file_name_item["file_size"],
+				'File_Type' => $file_name_item["file_type"],
 				'File_Status' => '1',
 				'SendIn_ID' => $get_sentnew_SendIn_ID
 			);

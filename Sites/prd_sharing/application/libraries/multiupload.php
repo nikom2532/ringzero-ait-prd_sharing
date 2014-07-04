@@ -44,6 +44,7 @@ class Multiupload{
             if($file['error'] == 0){
                 if ($CI->upload->do_upload($field)){
                     $data = $CI->upload->data();
+					
 					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
 					$name = microtime(true).$data['file_ext'];
 					rename($data['full_path'], $data['file_path']. $name);
@@ -51,7 +52,9 @@ class Multiupload{
 					$return = array(
 						'file_name' => $name,
 						'full_path' => './',
-						'file_extension' => $data['file_ext']
+						'file_extension' => $data['file_ext'],
+						'file_type' => $data["file_type"],
+						'file_size' => $data["file_size"]
 					);
 					
                     array_push($this->file_name, $return);

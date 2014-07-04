@@ -185,13 +185,12 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
 				<label >เนื้อหา</label>
-				<textarea class="ckeditor" name="editor1"><?php echo $news_item->SendIn_Detail; ?></textarea>
+				<textarea class="ckeditor" name="SendIn_Detail"><?php echo $news_item->SendIn_Detail; ?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะ</label>
-				<label >รอการอนุมัติ</label>
 				<span class="select-menu">
 					<span>เลือกสถานะ</span>
 					<select name="sendin_status" id="sendin_status" class="form-control" style="width: 65%;">

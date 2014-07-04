@@ -147,8 +147,14 @@
 				<p class="col-2" style="width: 14%;float: left; ">
 					<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
-				<p class="col-1" style="width: 5%;float: left; "><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;">
-				</p>
+				<p class="col-1" style="width: 5%;float: left; text-align: center; "><?php
+					if($news_item->SendIn_Status == "1"){
+						?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
+					}
+					else{
+						?>-<?php
+					}
+				?></p>
 				
 				<p class="col-1 SendInformationDelete" data-sendin_id="<?php echo $news_item->SendIn_ID; ?>" style="width: 5%;float: left; word-wrap: break-word; cursor:pointer; text-align: center; "><?php
 					if($news_item->SendIn_Status == -1){

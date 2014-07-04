@@ -93,7 +93,7 @@
 					<span class="select-menu">
 						<span>เลือกกลุ่มเป้าหมาย</span>
 						<select name="Tar_ID" id="Tar_ID">
-							<option value="" id="-1">เลือกกลุ่มเป้าหมาย</option>
+							<option value="-1" id="target0">เลือกกลุ่มเป้าหมาย</option>
 	<?php
 							$i=1;
 							foreach ($TargetGroup as $TargetGroup_item) {

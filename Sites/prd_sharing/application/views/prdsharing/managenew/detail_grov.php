@@ -170,8 +170,9 @@
 					<div id="detail">
 						<h1>นโยบายรัฐบาล : <?php 
 							if(isset($news_item->Policy_ID)){
-								echo $news_item->Policy_ID; 
-								
+								if($news_item->Policy_ID != "" && $news_item->Policy_ID != "0" && $news_item->Policy_ID == null){
+									echo $news_item->Policy_ID; 
+								}
 							}
 						?></h1>
 						<h1>แผนงานโครงการ &#47; กิจกรรม : <?php echo $news_item->SendIn_Plan; ?></h1>
