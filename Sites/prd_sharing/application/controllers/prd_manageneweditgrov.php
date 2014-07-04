@@ -35,7 +35,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			if($this->input->post("manageNewEditGROV_record") == "yes"){
 				// echo "record";
 				
-				$return_manageNewEditGROV_record = $this->prd_manageneweditgrov_model->set_prd_news(
+				$return_manageNewEditGROV_record = $this->prd_manageneweditgrov_model->set_update_grov(
 					$this->input->post("SendIn_ID"),
 					$this->input->post("SendIn_Plan"),
 					$this->input->post("SendIn_Issue"),
@@ -49,6 +49,24 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('sendin_status')
 				);
 				// var_dump($return_manageNewEditGROV_record);
+				
+				// Import library
+				$this->load->library("multiupload");
+				$this->multiupload->_files = $_FILES;
+				$this->multiupload->upload_path = "./uploads";
+				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|mp3|ogg|mp4|avi";
+				$this->multiupload->max_size = "2048";
+				$this->multiupload->init();
+				$file_name = $this->multiupload->do_upload();
+				
+				// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
+				// var_dump($_FILES);
+				// exit;
+				
+				$set_AttachFile = $this->prd_manageneweditgrov_model->set_AttachFile(
+					$this->input->post("SendIn_ID"),
+					$file_name
+				);
 				
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}

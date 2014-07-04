@@ -16,7 +16,7 @@
 		width: 100% !important;
 	}
 </style>
-<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post">
+<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):
