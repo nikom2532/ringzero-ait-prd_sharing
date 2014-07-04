@@ -29,7 +29,7 @@
 <?php
 						$file_count = 0;
 						foreach ($get_grov_fileattach as $file) {
-							if($file->File_Type == "video"){
+							if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "video/")){
 								?><video width="461" height="358" controls autoplay>
 									<source src="<?php echo $url.$file->File_Name; ?>" type="video/mp4">
 									<object data="<?php echo $url.$file->File_Name; ?>" width="461" height="358">
@@ -49,8 +49,9 @@
 <?php
 						$i=1;
 						// var_dump($get_NT01_News_pictures);
+						
 						foreach ($get_grov_fileattach as $file) {
-							if($file->File_Type == "image"){
+							if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "image/")){
 								?><a href="<?php echo $url.$file->File_Name; ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $url.$file->File_Name; ?>" alt="pic" style="width:30%;<?php
 									if($i % 3 == 2){
 										?>margin:10px 4% 0;<?php
@@ -74,7 +75,7 @@
 					$voice_count = 0;
 					foreach ($get_grov_fileattach as $file) {
 						// var_dump($voice);
-						if($file->File_Type == "voice"){
+						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "voice/")){
 							if($voice_count == 0){
 								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 30px; "><?php
 							}
@@ -142,7 +143,7 @@
 					$OtherFile_count = 0;
 					foreach ($get_grov_fileattach as $file) {
 						// var_dump($voice);
-						if($file->File_Type == "otherfile"){
+						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "otherfile/")){
 							if($voice_count == 0){
 								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
 							}

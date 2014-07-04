@@ -54,7 +54,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				$this->load->library("multiupload");
 				$this->multiupload->_files = $_FILES;
 				$this->multiupload->upload_path = "./uploads";
-				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|mp3|ogg|mp4|avi";
+				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|xlsx|csv|mp3|ogg|mp4|avi";
 				$this->multiupload->max_size = "2048";
 				$this->multiupload->init();
 				$file_name = $this->multiupload->do_upload();
