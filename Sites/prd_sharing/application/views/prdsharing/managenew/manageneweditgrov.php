@@ -283,12 +283,15 @@ foreach($news as $news_item):
 		File Upload
 	</legend>
 	<div class="uploadfile">
-		<div class="row">
+		<div class="row file_1">
 			<div class="col-lg-6">
 				<label >file แนบเอกสาร 1.) </label>
 				<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
 				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
 				<!-- <input type="file" name="file[]" multiple /> -->
+			</div>
+			<div class="col-lg-6">
+				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
 			</div>
 		</div>
 	</div>
@@ -374,18 +377,26 @@ foreach($news as $news_item):
 	
 	var number = 2;
 	$("input.bt#addmorefile").click(function(){
-		
 		var str =""+
-		"<div class=\"row\">"+
+		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-6\">"+
 		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
 		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
+		"	</div>"+
+		"	<div class=\"col-lg-6\">"+
+		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
 		"	</div>"+
 		"</div>";
 		
 		$("div.uploadfile").append(str);
 		number++;
 	});
+	
+	$("input.bt#reducemorefile").live('click', function(){
+		var file_id = $(this).attr("data-file_id");
+		$("div.uploadfile .row.file_"+file_id).remove();
+	});
+	
 	
 	$(".FileAttachDelete").click( function() {
 		var file_ID = $(this).attr("data-File_ID");

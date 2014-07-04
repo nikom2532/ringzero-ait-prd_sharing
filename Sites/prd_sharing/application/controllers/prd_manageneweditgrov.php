@@ -45,7 +45,6 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('grov_active'),
 					$this->input->post('prd_active'),
 					$this->input->post('SendIn_Detail')
-					
 				);
 				// var_dump($return_manageNewEditGROV_record);
 				

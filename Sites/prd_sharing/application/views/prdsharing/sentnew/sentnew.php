@@ -319,7 +319,7 @@
 		"	</div>"+
 		"	<div class=\"col-lg-6\">"+
 		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
-		"	</div>";
+		"	</div>"+
 		"</div>";
 		
 		$("div.uploadfile").append(str);
