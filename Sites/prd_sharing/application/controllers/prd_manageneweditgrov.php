@@ -32,9 +32,9 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			
-			if($this->input->post("manageNewEditPRD_record") == "yes"){
+			if($this->input->post("manageNewEditGROV_record") == "yes"){
 				// echo "record";
-				$return_manageNewEditPRD_record = $this->prd_manageneweditgrov_model->set_prd_news(
+				$return_manageNewEditGROV_record = $this->prd_manageneweditgrov_model->set_prd_news(
 					$this->input->post("SendIn_ID"),
 					$this->input->post("SendIn_Plan"),
 					$this->input->post("SendIn_Issue"),
@@ -47,7 +47,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('SendIn_Detail')
 					
 				);
-				// var_dump($return_manageNewEditPRD_record);
+				// var_dump($return_manageNewEditGROV_record);
 				
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}

@@ -13,12 +13,12 @@
 	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
 	}
 </style>
-<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>ffile แนบเอกสาร" method="post">
+<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):
 ?>
-	<input type="hidden" name="manageNewEditPRD_record" value="yes" />
+	<input type="hidden" name="manageNewEditGROV_record" value="yes" />
 	<input type="hidden" name="SendIn_ID" value="<?php echo $news_item->SendIn_ID; ?>" />
 <fieldset class="frame-input">
 	<legend >
