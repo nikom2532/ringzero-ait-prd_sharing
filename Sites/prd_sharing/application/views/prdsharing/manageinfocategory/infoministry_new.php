@@ -9,17 +9,19 @@
 				<div id="manage-info">
 					<div id="search-form">
 						<div class="row">
+							<?php /* ?>
 							<div class="col-lg-12">
 								<label >ลำดับที่:</label>
 								<span class="number"></span>
 							</div>
+							<?php */ ?>
 							<div class="col-lg-12">
 								<label >ชื่อกระทรวง:</label>
-								<input type="text" class="form-control txt-field" name="minis_name" id="InputKeyword" value="" placeholder="" >
+								<input type="text" class="form-control txt-field" name="minis_name" id="InputKeyword" value="" placeholder="" required="required" >
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด:</label>
-								<textarea rows="4" cols="50" name="minis_desc" class="txt-area"></textarea>
+								<textarea rows="4" cols="50" name="minis_desc" class="txt-area" required="required"></textarea>
 							</div>
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>

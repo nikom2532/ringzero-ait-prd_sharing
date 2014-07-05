@@ -36,11 +36,11 @@
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกรม:</label>
-								<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="<?php echo $department_item->Dep_Name; ?>" placeholder="" >
+								<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="<?php echo $department_item->Dep_Name; ?>" placeholder="" required="required">
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด:</label>
-								<textarea rows="4" cols="50" class="txt-area" name="dep_desc"><?php echo $department_item->Dep_Desc; ?></textarea>
+								<textarea rows="4" cols="50" class="txt-area" name="dep_desc" required="required"><?php echo $department_item->Dep_Desc; ?></textarea>
 							</div>
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>

@@ -22,11 +22,11 @@
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกระทรวง:</label>
-								<input type="text" class="form-control txt-field" name="minis_name" id="InputKeyword" value="<?php echo $ministry_item->Minis_Name; ?>" placeholder="" >
+								<input type="text" class="form-control txt-field" name="minis_name" id="InputKeyword" value="<?php echo $ministry_item->Minis_Name; ?>" placeholder="" required="required">
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด:</label>
-								<textarea rows="4" cols="50" name="minis_desc" class="txt-area"><?php echo $ministry_item->Minis_Desc; ?></textarea>
+								<textarea rows="4" cols="50" name="minis_desc" class="txt-area" required="required"><?php echo $ministry_item->Minis_Desc; ?></textarea>
 							</div>
 							<div class="col-lg-12">
 								<label >สถานะการใช้งาน:</label>

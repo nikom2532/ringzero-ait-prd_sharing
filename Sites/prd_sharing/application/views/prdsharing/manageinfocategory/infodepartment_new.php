@@ -21,11 +21,11 @@
 						</div>
 						<div class="col-lg-12">
 							<label >ชื่อกรม:</label>
-							<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="" placeholder="" >
+							<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="" placeholder="" required="required">
 						</div>
 						<div class="col-lg-12">
 							<label >รายละเอียด:</label>
-							<textarea rows="4" cols="50" class="txt-area" name="dep_desc"></textarea>
+							<textarea rows="4" cols="50" class="txt-area" name="dep_desc" required="required"></textarea>
 						</div>
 						<div class="col-lg-12">
 							<label >สถานะการใช้งาน:</label>
