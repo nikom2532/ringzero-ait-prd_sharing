@@ -110,7 +110,7 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 6%;float: left; "></p>
+			<!-- <p class="col-1" style="width: 6%;float: left; "></p> -->
 			<p class="col-2" style="width: 14%;float: left; ">
 				เลขที่ข่าว
 			</p>
@@ -120,13 +120,13 @@
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
 			</p>
-			<p class="col-1" style="width: 35%;float: left; ">
+			<p class="col-1" style="width: 46%;float: left; ">
 				ประเด็นประชาสัมพันธ์
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
 				วันที่
 			</p>
-			<p class="col-3" style="width: 25%;float: left; ">
+			<p class="col-3" style="width: 20%;float: left; ">
 				Icon ไฟล์แนบ
 			</p>
 		</div>
@@ -141,10 +141,10 @@
 			?><div class="event"><?php
 		}
 ?>
-				<p class="col-1" style="width: 6%;float: left; ">
+				<!-- <p class="col-1" style="width: 6%;float: left; ">
 					<?php //echo $i++; ?>
-				</p>
-				<p class="col-2" style="width: 14%;float: left; ">
+				</p> -->
+				<p class="col-2" style="width: 14%;float: left; text-align: center; ">
 					<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; text-align: center; "><?php
@@ -165,8 +165,14 @@
 					}
 				?></p>
 				
-				<p class="col-1" style="width: 35%;float: left; ">
-					<?php echo mb_substr($news_item->SendIn_Issue, 0, 100, 'UTF-8'); ?>
+				<p class="col-1" style="width: 46%;float: left; ">
+<?php 
+					$SendIn_Issue = $news_item->SendIn_Issue;
+					if(mb_strlen($SendIn_Issue)>=100){
+						$SendIn_Issue = mb_substr($SendIn_Issue, 0, 100, 'UTF-8')."...";
+					}
+					echo $SendIn_Issue;
+?>
 				</p>
 				<p class="col-1" style="width: 10%;float: left; "><?php
 				
@@ -179,7 +185,7 @@
 					
 					// echo $news_item->SendIn_CreateDate;
 				?></p>
-				<p class="col-3" style="width: 25%;float: left; ">
+				<p class="col-3" style="width: 20%;float: left; text-align: center; ">
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						// if($news_item->File_Type == 'video'){
 						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/")){

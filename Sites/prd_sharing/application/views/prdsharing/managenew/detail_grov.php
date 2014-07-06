@@ -11,6 +11,8 @@
 <div class="content">
 	<div id="detail-form">
 <?php
+	$url = base_url()."Uploads\\";
+	
 	// var_dump($get_grov_fileattach);
 		foreach ($news as $news_item) {
 ?>
@@ -19,7 +21,6 @@
 <?php 
 				echo $news_item->SendIn_Issue; 
 				$LeftContainerCount=0;
-				$url = base_url()."Uploads\\";
 ?>
 			</div>
 			<div class="row">
@@ -30,18 +31,34 @@
 						$file_count = 0;
 						foreach ($get_grov_fileattach as $file) {
 							if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "video/")){
+								/* 
 								?><video width="461" height="358" controls autoplay>
 									<source src="<?php echo $url.$file->File_Name; ?>" type="video/mp4">
 									<object data="<?php echo $url.$file->File_Name; ?>" width="461" height="358">
 										<embed src="<?php echo $url.$file->File_Name; ?>" width="461" height="358">
 									</object> 
-								</video><?php
+								</video> 
+								*/
+								?><script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
+									<div class="flowplayer" style="width: 461px; height: 358px;">
+										<video>
+											<source type="video/webm" src="<?php echo $url.$file->File_Name; ?>" type="video/mp4">
+										</video>
+									</div>
+								</script><?php
 								$file_count++;
 								$LeftContainerCount++;
 							}
 						}
 						if($file_count == 0){
 							?><?php
+						}
+						foreach ($get_NT01_News_videos as $videos) {
+							// echo $videos->Url;
+							if($videos->Url != ""){
+								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+								$LeftContainerCount++;
+							}
 						}
 ?>
 					</div>

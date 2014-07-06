@@ -47,11 +47,12 @@
 ?>
 							<!-- <script src="//embed.flowplayer.org/5.4.6/embed.min.js"> -->
 							<script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
-							<div class="flowplayer" style="width: 461px; height: 358px;">
-								<video>
-									<source type="video/webm" src="<?php echo $videos->Url; ?>" type="video/mp4">
-								</video>
-							</div></script>
+								<div class="flowplayer" style="width: 461px; height: 358px;">
+									<video>
+										<source type="video/webm" src="<?php echo $videos->Url; ?>" type="video/mp4">
+									</video>
+								</div>
+							</script>
 							
 							<?php /* <video width="461" height="358" controls autoplay>
 								<source src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->Url; ?>" type="video/mp4">
