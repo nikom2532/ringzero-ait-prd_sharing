@@ -82,24 +82,34 @@ class PRD_sentNew extends CI_Controller {
 				$this->input->post('SendIn_Detail')
 			);
 			
-			// Import library
-			$this->load->library("multiupload");
-			$this->multiupload->_files = $_FILES;
-			$this->multiupload->upload_path = "./uploads";
-			$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|mp3|ogg|mp4|avi";
-			$this->multiupload->max_size = "2048";
-			$this->multiupload->init();
-			$file_name = $this->multiupload->do_upload();
-			
-			// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
-			
-			// var_dump($file_name);	
-			// exit;
-			
-			$set_AttachFile = $this->PRD_SentNew_model->set_AttachFile(
-				$query_sentnew_record,
-				$file_name
-			);
+			$return_num_files = 0;
+			foreach ($_FILES as $file) {
+				if($file["name"] != null)
+				{
+					$return_num_files++;
+				}
+			}
+				
+			if($return_num_files > 0){
+				// Import library
+				$this->load->library("multiupload");
+				$this->multiupload->_files = $_FILES;
+				$this->multiupload->upload_path = "./uploads";
+				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|mp3|ogg|mp4|avi";
+				$this->multiupload->max_size = "2048";
+				$this->multiupload->init();
+				$file_name = $this->multiupload->do_upload();
+				
+				// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
+				
+				// var_dump($file_name);	
+				// exit;
+				
+				$set_AttachFile = $this->PRD_SentNew_model->set_AttachFile(
+					$query_sentnew_record,
+					$file_name
+				);
+			}
 			
 			redirect(base_url().index_page().'manageNewGROV', 'refresh');
 		}

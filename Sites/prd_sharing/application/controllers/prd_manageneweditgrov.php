@@ -50,23 +50,35 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				);
 				// var_dump($return_manageNewEditGROV_record);
 				
-				// Import library
-				$this->load->library("multiupload");
-				$this->multiupload->_files = $_FILES;
-				$this->multiupload->upload_path = "./uploads";
-				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|xlsx|csv|mp3|ogg|mp4|avi";
-				$this->multiupload->max_size = "2048";
-				$this->multiupload->init();
-				$file_name = $this->multiupload->do_upload();
 				
-				// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
-				// var_dump($_FILES);
-				// exit;
+				$return_num_files = 0;
+				foreach ($_FILES as $file) {
+					if($file["name"] != null)
+					{
+						$return_num_files++;
+					}
+				}
 				
-				$set_AttachFile = $this->prd_manageneweditgrov_model->set_AttachFile(
-					$this->input->post("SendIn_ID"),
-					$file_name
-				);
+				if($return_num_files > 0){
+					
+					// Import library
+					$this->load->library("multiupload");
+					$this->multiupload->_files = $_FILES;
+					$this->multiupload->upload_path = "./uploads";
+					$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|xlsx|csv|mp3|ogg|mp4|avi";
+					$this->multiupload->max_size = "2048";
+					$this->multiupload->init();
+					$file_name = $this->multiupload->do_upload();
+					
+					// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
+					// var_dump($_FILES);
+					// exit;
+					
+					$set_AttachFile = $this->prd_manageneweditgrov_model->set_AttachFile(
+						$this->input->post("SendIn_ID"),
+						$file_name
+					);
+				}
 				
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}
@@ -74,7 +86,6 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				$delete_fileattach_get_SendIn_ID = $this->prd_manageneweditgrov_model->delete_FileAttach(
 					$this->input->get('File_ID')
 				);
-				
 				redirect(base_url().index_page()."manageNewEditGROV?sendin_id=".$delete_fileattach_get_SendIn_ID);
 			}
 			

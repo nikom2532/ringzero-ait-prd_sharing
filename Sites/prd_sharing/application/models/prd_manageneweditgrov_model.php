@@ -136,8 +136,9 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 	
 	public function delete_FileAttach($File_ID = '')
 	{
+		
 		//######## find File name ##########
-		$query = $this->db->
+		$queryFilename = $this->db->
 			SELECT('
 				FileAttach.File_Name,
 				FileAttach.SendIn_ID
@@ -146,8 +147,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			get('FileAttach')->result();
 		
 		// echo ($query[0]->File_Name);
-		// exit;	
-		
+		// exit;
 		
 		//######## make delete file name status ##########
 		$StrQuery = "
@@ -157,16 +157,15 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			WHERE 
 				File_ID = '".$File_ID."'
 		";
-		$query = $this->db->
+		$queryDeleteStatus = $this->db->
 			query($StrQuery);
-		
 		
 		//########### Delete File ############
 		// $file = str_replace("\\","/", FCPATH).'uploads/aa/1403760326.2499.PNG';	
-		$FileAttach = FCPATH.'uploads/'.$query[0]->File_Name;
+		$FileAttach = FCPATH.'uploads/'.$queryFilename[0]->File_Name;
 		unlink($FileAttach);
 		
-		return $query[0]->SendIn_ID;
+		return $queryFilename[0]->SendIn_ID;
 	}
 	
 	public function get_TargetGroup()
