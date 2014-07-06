@@ -45,20 +45,15 @@
 											<source type="video/webm" src="<?php echo $url.$file->File_Name; ?>" type="video/mp4">
 										</video>
 									</div>
-								</script><?php
+								</script>
+								
+								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 								$file_count++;
 								$LeftContainerCount++;
 							}
 						}
 						if($file_count == 0){
 							?><?php
-						}
-						foreach ($get_NT01_News_videos as $videos) {
-							// echo $videos->Url;
-							if($videos->Url != ""){
-								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
-								$LeftContainerCount++;
-							}
 						}
 ?>
 					</div>

@@ -19,7 +19,7 @@
 		foreach($news as $news_item):	
 ?>
 			<div class="odd">
-				<p class="col-1" style="width: 20%; float: left; "><?php
+				<p class="col-1" style="width: 18%; float: left; padding-left: 2%; "><?php
 					/*
 					if($news_item->NT01_UpdDate == ""){
 						foreach ($New_News as $New_News_item) {
@@ -80,7 +80,7 @@
 				</p>
 			</div>
 			<div class="event">
-				<p class="col-1" style="width: 20%;float: left; ">
+				<p class="col-1" style="width: 18%;float: left; padding-left: 2%; ">
 <?php
 					foreach ($New_News as $New_News_item) {
 						if($New_News_item->News_OldID == $news_item->NT01_NewsID){
