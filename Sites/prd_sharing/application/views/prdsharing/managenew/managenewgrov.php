@@ -197,7 +197,7 @@
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						// if($news_item->File_Type == 'voice'){
-						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "voice/")){
+						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/")){
 							?>voice_512x512<?php
 						}else{
 							?>null<?php
@@ -210,7 +210,7 @@
 						if(
 							!(
 								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/") ||
-								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "voice/") ||
+								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/") ||
 								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")
 							)
 						){

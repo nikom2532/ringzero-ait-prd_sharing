@@ -31,6 +31,10 @@ class PRD_HomeGOVE extends CI_Controller {
 			$showStatus = $this->authenstatus->checkGroupID();
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
+			$CI_stringManagement =& get_instance();
+			$CI_stringManagement->load->library('string_management');
+			$data["CI_stringManagement"] = $CI_stringManagement;
+			
 			if($showStatus == "yes"){
 			
 				$row_per_page = 20;
