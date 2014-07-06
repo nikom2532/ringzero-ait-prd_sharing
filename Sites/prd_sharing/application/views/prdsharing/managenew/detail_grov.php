@@ -203,10 +203,10 @@
 							ผู้เผยแพร่ข่าว : <?php echo $news_item->Mem_Name." ".$news_item->Mem_LasName; ?>
 						</p>
 						<p>
-							กระทรวง : <?php ?>
+							กระทรวง : <?php echo $news_item->Minis_Name; ?>
 						</p>
 						<p>
-							กรม : <?php ?>
+							กรม : <?php echo $news_item->Dep_Name; ?>
 						</p>
 					</div>
 				</div>

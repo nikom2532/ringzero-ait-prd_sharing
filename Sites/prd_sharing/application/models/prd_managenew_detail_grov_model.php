@@ -45,9 +45,14 @@ class PRD_ManageNew_Detail_GROV_model extends CI_Model {
 				
 				SendInformation.Mem_ID,
 				Member.Mem_Name,
-				Member.Mem_LasName
+				Member.Mem_LasName,
+				
+				Ministry.Minis_Name,
+				Department.Dep_Name,
 			')->
 			join('Member', 'SendInformation.Mem_ID = Member.Mem_ID', 'left')->
+			join('Ministry', 'Ministry.Minis_ID = SendInformation.Ministry_ID', 'left')->
+			join('Department', 'Department.Dep_ID = SendInformation.Dep_ID', 'left')->
 			where('SendInformation.SendIn_ID', $SendIn_ID)->
 			get('SendInformation')->result();
 	}
