@@ -181,7 +181,8 @@
 				?></p>
 				<p class="col-3" style="width: 25%;float: left; ">
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Type == 'video'){
+						// if($news_item->File_Type == 'video'){
+						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/")){
 							?>vdo<?php
 						}else{
 							?>null<?php
@@ -189,7 +190,8 @@
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Type == 'voice'){
+						// if($news_item->File_Type == 'voice'){
+						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "voice/")){
 							?>voice_512x512<?php
 						}else{
 							?>null<?php
@@ -198,7 +200,14 @@
 					
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
-						if($news_item->File_Type == 'other'){
+						// if($news_item->File_Type == 'other'){
+						if(
+							!(
+								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/") ||
+								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "voice/") ||
+								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")
+							)
+						){
 							?>Document.jpg<?php
 						}else{
 							?>null.png<?php
@@ -206,7 +215,8 @@
 					?>" width="17" style="margin: -10px 10px 0;">
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
-						if($news_item->File_Type == 'image'){
+						// if($news_item->File_Type == 'image'){
+						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")){
 							?>pic<?php
 						}else{
 							?>null<?php

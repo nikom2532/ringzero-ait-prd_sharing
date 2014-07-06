@@ -101,6 +101,10 @@ class PRD_ManageNewGROV extends CI_Controller {
 				$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
 				$data['department'] = $this->prd_managenewgrov_model->get_department();
 				
+				$CI_stringManagement =& get_instance();
+				$CI_stringManagement->load->library('string_management');
+				$data["CI_stringManagement"] = $CI_stringManagement;
+				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
 				$url = "manageNewGROV";
