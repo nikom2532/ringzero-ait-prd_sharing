@@ -195,7 +195,7 @@
 			<div class="row file_1">
 				<div class="col-lg-6">
 					<label >file แนบเอกสาร 1.) </label>
-					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" multiple />
+					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" multiple />
 				</div>
 				<div class="col-lg-6">
 					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
@@ -315,7 +315,7 @@
 		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-6\">"+
 		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" multiple />"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" multiple />"+
 		"	</div>"+
 		"	<div class=\"col-lg-6\">"+
 		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
@@ -332,6 +332,20 @@
 		$("div.uploadfile .row.file_"+file_id).remove();
 	});
 	
+	function check_file_ext(file_id){
+		// var file_id = $(this).attr("data-file_id");
+		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();
+		
+		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
+		
+		if($.inArray(
+			ext, 
+			['jpg','jpeg','gif','png','doc','docs','xls','xlsx','csv','mp3','ogg','mp4','avi','wmv']
+		) == -1) {
+			    alert('invalid extension!');
+			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val("");
+		}
+	}
 	
 	$(function(){
         // $(".select-menu > select > option:eq(0)").attr("selected","selected");

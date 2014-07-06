@@ -95,7 +95,7 @@ class PRD_sentNew extends CI_Controller {
 				$this->load->library("multiupload");
 				$this->multiupload->_files = $_FILES;
 				$this->multiupload->upload_path = "./uploads";
-				$this->multiupload->allowed_types = "jpg|png|doc|docs|xls|xlsx|csv|mp3|ogg|mp4|avi|wmv";
+				$this->multiupload->allowed_types = "jpg|jpeg|gif|png|doc|docs|xls|xlsx|csv|mp3|ogg|mp4|avi|wmv";
 				$this->multiupload->max_size = "2048";
 				$this->multiupload->init();
 				$file_name = $this->multiupload->do_upload();
