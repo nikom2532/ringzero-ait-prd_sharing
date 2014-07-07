@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../favicon.ico"> 
+    <!-- <link rel="shortcut icon" href="../favicon.ico">  -->
     
     <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     

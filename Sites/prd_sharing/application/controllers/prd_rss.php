@@ -13,7 +13,6 @@ class PRD_rss extends CI_Controller {
 	{
 		// Check Is Authen?
 		if($this->session->userdata('member_id') != ""){
-			
 			$data['member_id'] = $this->session->userdata('member_id');
 			$data['session_Mem_Username'] = $this->session->userdata('Mem_Username');
 			$data['session_Mem_Title'] = $this->session->userdata('Mem_Title');
@@ -37,6 +36,10 @@ class PRD_rss extends CI_Controller {
 				
 				$data['SC03_User'] = $this->prd_rss_model->get_SC03_User();
 				$data['SC07_Department'] = $this->prd_rss_model->get_SC07_Department();
+				
+				$NT02_NewsType = $this->prd_rss_model->get_NT02_NewsType();
+				$category = $this->prd_rss_model->get_Category($NT02_NewsType);
+				
 				$row_per_page = 20;
 				
 				if($this->input->post("rss_is_search") == "yes"){
@@ -50,8 +53,8 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('grov_active'),
-							$this->input->post('reporter_id')
-							
+							$this->input->post('reporter_id'),
+							$category
 						);
 						
 					$count_row = $this->prd_rss_model->
@@ -62,7 +65,8 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('grov_active'),
-							$this->input->post('reporter_id')
+							$this->input->post('reporter_id'),
+							$category
 						);
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');
@@ -73,8 +77,14 @@ class PRD_rss extends CI_Controller {
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
 				}
 				else{	//## No Search ##
-					$data['news'] = $this->prd_rss_model->get_NT01_News($page, $row_per_page);
-					$count_row = $this->prd_rss_model->get_NT01_News_count();
+					$data['news'] = $this->prd_rss_model->get_NT01_News(
+						$page, 
+						$row_per_page,
+						$category
+					);
+					$count_row = $this->prd_rss_model->get_NT01_News_count(
+						$category
+					);
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');
 					$data['post_end_date'] = $this->input->post('end_date');
@@ -135,7 +145,6 @@ class PRD_rss extends CI_Controller {
 			else{
 				redirect(base_url().index_page().'', 'refresh');
 			}
-			
 		}
 		else{
 			redirect(base_url().index_page().'', 'refresh');

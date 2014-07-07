@@ -16,12 +16,15 @@ class PRD_rss_model extends CI_Model {
 		return $this->db->query($query)->result();
 	}
 	
+	/*
 	public function get_NT02_NewsType()
 	{
 		return $this->db_ntt_old->
 			// LIMIT('20,0')->	
 			get('NT02_NewsType')->result();
 	}
+	*/
+	
 	public function get_NT03_NewsSubType()
 	{
 		return $this->db_ntt_old->
@@ -69,10 +72,55 @@ class PRD_rss_model extends CI_Model {
 	
 	//#########################################################################
 	
+	public function get_NT02_NewsType()
+	{
+		return $this->db_ntt_old->
+			// SELECT('
+				// NT02_NewsType.NT02_TypeID
+			// ')->
+			where('NT02_NewsType.NT02_Status', 'Y')->
+			get('NT02_NewsType')->result();
+	}
+	
+	public function get_Category($NT02_NewsType = '')
+	{
+		$statusArray = array();
+		foreach($NT02_NewsType as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->NT02_TypeID."'";
+		}
+		$NT02_NewsType = implode(",",$statusArray);
+		
+		$strQuery = "
+			SELECT 
+				Category.Cate_OldID
+			FROM 
+				Category
+			WHERE 
+				Category.Cate_Status = 'Y'
+			AND 
+				Category.Cate_OldID IN (".$NT02_NewsType.")
+		";
+		// exit;
+		$query = $this->db->query($strQuery)->result();
+		return $query;
+	}
+	
 	//############################ News #############################
 	
-	public function get_NT01_News($page=1, $row_per_page=20)
+	public function get_NT01_News(
+		$page=1, 
+		$row_per_page=20,
+		$Cate_OldID = '' 
+	)
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
@@ -109,8 +157,21 @@ class PRD_rss_model extends CI_Model {
 				LEFT JOIN 
 					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
-				
 					NT01_News.NT08_PubTypeID = '11'
+		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
+		$StrQuery .= "	
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -121,8 +182,15 @@ class PRD_rss_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT01_News_count()
+	public function get_NT01_News_count($Cate_OldID = '')
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$StrQuery = "
 				SELECT
 					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
@@ -130,6 +198,18 @@ class PRD_rss_model extends CI_Model {
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
@@ -190,9 +270,17 @@ class PRD_rss_model extends CI_Model {
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
 		$grov_active = '',
-		$ReporterID = ''
+		$ReporterID = '',
+		$Cate_OldID = ''
 	)
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		$StrQuery = "
@@ -228,6 +316,18 @@ class PRD_rss_model extends CI_Model {
 				WHERE 
 					NT08_PubTypeID = '11'
 		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
 		if($News_Title != ''){
 			$StrQuery .= "
 				AND 
@@ -306,9 +406,17 @@ class PRD_rss_model extends CI_Model {
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
 		$grov_active = '',
-		$ReporterID = ''
+		$ReporterID = '',
+		$Cate_OldID = ''
 	)
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$StrQuery = "
 			SELECT
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
@@ -320,6 +428,18 @@ class PRD_rss_model extends CI_Model {
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
 		if($News_Title != ''){
 			$StrQuery .= "
 				AND 

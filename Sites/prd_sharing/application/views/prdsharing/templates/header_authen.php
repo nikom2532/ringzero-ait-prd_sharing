@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../favicon.ico">
+    <!-- <link rel="shortcut icon" href="../favicon.ico"> -->
     
 	<!-- <script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script> -->
 	<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
