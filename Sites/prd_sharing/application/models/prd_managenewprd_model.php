@@ -29,6 +29,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				where('NT02_TypeID', $NT02_TypeID);
 		}
 		$query = $query->
+			where('NT03_Status', 'Y')->
 			get('NT03_NewsSubType')->result();
 		return $query;
 	}
