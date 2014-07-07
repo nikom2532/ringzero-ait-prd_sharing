@@ -410,7 +410,7 @@ foreach($news as $news_item):
 		
 		if($.inArray(
 			ext, 
-			['jpg','jpeg','gif','png','doc','docs','xls','xlsx','csv','mp3','ogg','mp4','avi','wmv']
+			['jpg','jpeg','gif','png','doc','docs','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
 			    alert('invalid extension!');
 			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val("");
