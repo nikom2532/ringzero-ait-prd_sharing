@@ -31,7 +31,15 @@
 				
 			?></p>
 			<p class="col-2" style="width: 80%;float: left; ">
-				<?php echo $news_item->SendIn_Issue; ?>
+<?php 
+				// echo $news_item->SendIn_Issue; 
+				
+				$SendIn_Issue = $news_item->SendIn_Issue;
+				if(mb_strlen($SendIn_Issue)>=200){
+					$SendIn_Issue = mb_substr($SendIn_Issue, 0, 200, 'UTF-8')."...";
+				}
+				echo $SendIn_Issue;
+?>
 			</p>
 		</div>
 		<div class="event">

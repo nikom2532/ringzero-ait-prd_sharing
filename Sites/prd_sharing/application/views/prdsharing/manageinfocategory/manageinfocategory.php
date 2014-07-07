@@ -175,7 +175,7 @@
 			
 			function set_Category_box(cate_oldid) {
 			    if (cate_oldid != ""){
-			        var post_url = "<?php echo base_url(); ?>PRD_ManageInfo_Category/set_category/" + cate_oldid;
+			        var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageInfo_Category/set_category/" + cate_oldid;
 			        $.ajax({
 			            type: "POST",
 			             url: post_url,

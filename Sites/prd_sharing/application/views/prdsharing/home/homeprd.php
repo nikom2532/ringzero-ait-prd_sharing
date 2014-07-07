@@ -69,12 +69,25 @@
 							$New_News_item->News_OldID ==  $news_item->NT01_NewsID &&
 							$New_News_item->News_UpdateID > 0
 						){
-								echo $New_News_item->News_Title;
+								// echo $New_News_item->News_Title;
+								
+								$News_Title = $New_News_item->News_Title;
+								if(mb_strlen($News_Title)>=150){
+									$News_Title = mb_substr($News_Title, 0, 150, 'UTF-8')."...";
+								}
+								echo $News_Title;
 								$i++;
 						}
 					}
 					if($i == 0){
-						echo $news_item->NT01_NewsTitle; 
+						// echo $news_item->NT01_NewsTitle; 
+						
+						$News_Title = $news_item->NT01_NewsTitle;
+						if(mb_strlen($News_Title)>=150){
+							$News_Title = mb_substr($News_Title, 0, 150, 'UTF-8')."...";
+						}
+						echo $News_Title;
+						$i++;
 					}
 ?>
 				</p>

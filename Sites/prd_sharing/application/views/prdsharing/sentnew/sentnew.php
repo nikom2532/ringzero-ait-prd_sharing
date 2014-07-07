@@ -193,9 +193,10 @@
 		<?php ///* ?>
 		<div class="uploadfile">
 			<div class="row file_1">
-				<div class="col-lg-6">
-					<label >file แนบเอกสาร 1.) </label>
+				<div class="col-lg-6" >
+					<label >file แนบเอกสาร 1.)</label>
 					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" multiple />
+					<!-- <a href="#" name="reducemorefile" id="reducemorefile" data-file_id="1"><img src="<?php echo base_url(); ?>images/icon/delete.png" style="width: 20px" /></a> -->
 				</div>
 				<div class="col-lg-6">
 					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
@@ -340,7 +341,7 @@
 		
 		if($.inArray(
 			ext, 
-			['jpg','jpeg','gif','png','doc','docs','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
+			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
 			    alert('invalid extension!');
 			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val("");

@@ -140,13 +140,13 @@
 
 		<div class="row">
 			<div class="header-table">
-				<p class="col-1" style="width: 5%;float: left; ">
+				<p class="col-1" style="width: 15%;float: left; ">
 					
 				</p>
-				<p class="col-2" style="width: 5%;float: left; ">
+				<p class="col-2" style="width: 10%;float: left; text-align: left; ">
 					วันที่ข่าว
 				</p>
-				<p class="col-3" style="width: 70%;float: left; ">
+				<p class="col-3" style="width: 55%;float: left; ">
 					หัวข้อข่าว
 				</p>
 				<p class="col-4" style="width: 20%;float: left; ">
@@ -164,17 +164,25 @@
 				?><div class="event"><?php
 			}
 ?>
-					<p class="col-1" style="width: 5%;float: left; ">
-						<?php echo ($i+1); ?>
+					<p class="col-1" style="width: 15%;float: left; ">
+						<?php echo $news_item->NT01_NewsID; ?>
 					</p>
-					<p class="col-2" style="width: 15%;float: left; ">
+					<p class="col-2" style="width: 10%;float: left; ">
 						<!-- 03/02/2557</br>00:00:00 -->
 <?php
 						echo date("d/m/Y", strtotime($news_item->NT01_NewsDate))."<br />".date("h:m:s", strtotime($news_item->NT01_NewsDate));
 ?>
 					</p>
-					<p class="col-3" style="width: 60%;float: left; ">
-						<a href="<?php echo base_url().index_page(); ?>rss_detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsTitle; ?></a>
+					<p class="col-3" style="width: 55%;float: left; ">
+						<a href="<?php echo base_url().index_page(); ?>rss_detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php 
+						$News_Title = $news_item->NT01_NewsTitle;
+						if(mb_strlen($News_Title)>=150){
+							$News_Title = mb_substr($News_Title, 0, 150, 'UTF-8')."...";
+						}
+						echo $News_Title;
+						
+						// echo $news_item->NT01_NewsTitle; 
+						?></a>
 					</p>
 					<p class="col-4" style="width: 20%;float: left;  text-align: center; text-align: center; ">
 						<img src="<?php echo base_url(); ?>images/icon/<?php

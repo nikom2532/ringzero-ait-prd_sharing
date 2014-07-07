@@ -109,6 +109,7 @@ class PRD_rss_model extends CI_Model {
 				LEFT JOIN 
 					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
+				
 					NT01_News.NT08_PubTypeID = '11'
 				group by NT01_News.NT01_NewsID
 			)
