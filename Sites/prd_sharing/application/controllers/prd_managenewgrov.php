@@ -58,9 +58,11 @@ class PRD_ManageNewGROV extends CI_Controller {
 					redirect(base_url().index_page()."manageNewGROV");
 				}
 				
+				$FileAttach = $this->prd_managenewgrov_model->get_FileAttach();
+				
 				if($this->input->post("manageNewGROV_is_submit") == "yes"){
 					
-					$data['news'] = $this->prd_managenewgrov_model->get_grov_search(
+					$news = $this->prd_managenewgrov_model->get_grov_search(
 						$page,
 						$row_per_page,
 						$this->input->post("sendin_issue"), 
@@ -86,10 +88,11 @@ class PRD_ManageNewGROV extends CI_Controller {
 				}
 				else{
 					// echo "no search";
-					$data['news'] = $this->prd_managenewgrov_model->get_grov(
+					$news = $this->prd_managenewgrov_model->get_grov(
 						$page,
 						$row_per_page
 					);
+					
 					$count_row = $this->prd_managenewgrov_model->get_grov_count();
 					$data['post_sendin_issue'] = "";
 					$data['post_start_date'] = "";
@@ -98,12 +101,42 @@ class PRD_ManageNewGROV extends CI_Controller {
 					$data['post_Dep_ID'] = "";
 				}
 				
-				$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
-				$data['department'] = $this->prd_managenewgrov_model->get_department();
-				
 				$CI_stringManagement =& get_instance();
 				$CI_stringManagement->load->library('string_management');
 				$data["CI_stringManagement"] = $CI_stringManagement;
+				
+				
+				//Add File Status to News
+				foreach ($news as $news_item) {
+					foreach ($FileAttach as $FileAttach_item) {
+						if(
+							$news_item->SendIn_ID == $FileAttach_item->SendIn_ID
+						){
+								if($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/")){
+									$news_item->File_Type_video = 1;
+								}
+								elseif($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/")){
+									$news_item->File_Type_voice = 1;
+								}
+								elseif($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")){
+									$news_item->File_Type_image = 1;
+								}
+								elseif(
+									(
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/") ||
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/") ||
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")
+									)
+								){
+											$news_item->File_Type_document = 1;
+								}
+						}
+					}
+				}
+				
+				$data["news"] = $news;
+				$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
+				$data['department'] = $this->prd_managenewgrov_model->get_department();
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;

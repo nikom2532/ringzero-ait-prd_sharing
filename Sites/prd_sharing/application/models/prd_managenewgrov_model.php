@@ -70,17 +70,17 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_FileAttach($news='')
+	public function get_FileAttach()
 	{
 		$StrQuery = "
-				SELECT
-					FileAttach.File_Status
-				FROM
-					SendInformation
-				LEFT JOIN
-					FileAttach
-				ON 
-					SendInformation.SendIn_ID = FileAttach.SendIn_ID
+			SELECT
+				FileAttach.File_Type,
+				FileAttach.SendIn_ID,
+				FileAttach.File_Status
+			FROM
+				FileAttach
+			WHERE 
+				FileAttach.File_Status = 1
 		";
 		
 		$query = $this->db->
@@ -95,7 +95,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
-		
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -118,6 +118,26 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					(SendInformation.SendIn_ID) AS SendIn_ID,
+					(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					(SendInformation.SendIn_view) AS SendIn_view,
+					(SendInformation.SendIn_Status) AS SendIn_Status,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY (SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM
+					SendInformation
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
 		
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -126,6 +146,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 	
 	public function get_grov_count()
 	{
+		/*	
 		$StrQuery = "
 			SELECT
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -135,6 +156,13 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				FileAttach
 			ON 
 				SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		*/
+		$StrQuery = "
+			SELECT
+				COUNT((SendInformation.SendIn_ID)) AS NUMROW
+			FROM
+				SendInformation
 		";
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -157,6 +185,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -171,6 +200,24 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				FROM SendInformation 
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					(SendInformation.SendIn_ID) AS SendIn_ID,
+					(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					(SendInformation.SendIn_view) AS SendIn_view,
+					(SendInformation.SendIn_Status) AS SendIn_Status,
+					(FileAttach.File_Status) AS File_Status,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
 		";
 		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
 			$StrQuery .= "
@@ -273,6 +320,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$Department_ID = ''
 	)
 	{
+		/*
 		$StrQuery = "
 			SELECT
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -282,6 +330,13 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				FileAttach
 			ON 
 				SendInformation.SendIn_ID = FileAttach.SendIn_ID
+		";
+		*/
+		$StrQuery = "
+			SELECT
+				COUNT((SendInformation.SendIn_ID)) AS NUMROW
+			FROM
+				SendInformation
 		";
 		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
 			$StrQuery .= "

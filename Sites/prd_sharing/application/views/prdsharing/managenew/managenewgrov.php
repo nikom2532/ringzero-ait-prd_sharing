@@ -188,7 +188,8 @@
 				<p class="col-3" style="width: 20%;float: left; text-align: center; ">
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						// if($news_item->File_Type == 'video'){
-						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/")){
+						// if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/")){
+						if($news_item->File_Type_video == 1){
 							?>vdo<?php
 						}else{
 							?>null<?php
@@ -197,7 +198,8 @@
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						// if($news_item->File_Type == 'voice'){
-						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/")){
+						// if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/")){
+						if($news_item->File_Type_voice == 1){
 							?>voice_512x512<?php
 						}else{
 							?>null<?php
@@ -207,13 +209,14 @@
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php 
 						// if($news_item->File_Type == 'other'){
-						if(
-							!(
-								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/") ||
-								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/") ||
-								$news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")
-							)
-						){
+						// if(
+							// !(
+								// $news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "video/") ||
+								// $news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "audio/") ||
+								// $news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")
+							// )
+						// ){
+						if($news_item->File_Type_document == 1){
 							?>Document.jpg<?php
 						}else{
 							?>null.png<?php
@@ -222,7 +225,8 @@
 					
 					<img src="<?php echo base_url(); ?>images/icon/<?php
 						// if($news_item->File_Type == 'image'){
-						if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")){
+						// if($news_item->File_Type == $CI_stringManagement->string_management->startsWith($news_item->File_Type, "image/")){
+						if($news_item->File_Type_image == 1){
 							?>pic<?php
 						}else{
 							?>null<?php
