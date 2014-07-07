@@ -155,6 +155,7 @@
 					$OtherFile_count = 0;
 					foreach ($get_grov_fileattach as $file) {
 						// var_dump($voice);
+						/*
 						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "otherfile/")){
 							if($voice_count == 0){
 								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
@@ -166,6 +167,7 @@
 							$OtherFile_count++;
 							$LeftContainerCount++;
 						}
+						*/
 					}
 ?>
 				</div>

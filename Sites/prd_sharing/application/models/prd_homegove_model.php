@@ -53,6 +53,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 		
 	}
 	
+	/*
 	public function get_grov_fileattach(){
 		
 		return $this->db->
@@ -67,12 +68,31 @@ class PRD_HomeGOVE_model extends CI_Model {
 			join('SendInformation', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->
 			get('FileAttach')->result();
 	}
+	*/
+	
+	public function get_FileAttach()
+	{
+		$StrQuery = "
+			SELECT
+				FileAttach.File_Type,
+				FileAttach.SendIn_ID,
+				FileAttach.File_Status
+			FROM
+				FileAttach
+			WHERE 
+				FileAttach.File_Status = 1
+		";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
 	
 	public function get_gove($page=1, $row_per_page=20)
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
-		
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -95,6 +115,29 @@ class PRD_HomeGOVE_model extends CI_Model {
 				WHERE 
 					SendInformation.SendIn_Status = '1'
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
+				WHERE 
+					SendInformation.SendIn_Status = '1'
+		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
 				group by SendInformation.SendIn_ID
@@ -109,6 +152,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_count()
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -117,6 +161,16 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendInformation.SendIn_Status = '1'
 		";
@@ -135,6 +189,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -159,6 +214,32 @@ class PRD_HomeGOVE_model extends CI_Model {
 				AND 
 					SendInformation.SendIn_Status = '1'
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,s
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
+				WHERE 
+					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
 				group by SendInformation.SendIn_ID
@@ -172,6 +253,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_count($news_title = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -180,6 +262,18 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				AND 
@@ -199,6 +293,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -217,6 +312,40 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					Convert(datetime, '".$startdate."') <
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				And
@@ -245,6 +374,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_start_count($news_title = '', $startdate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -253,6 +383,26 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					Convert(datetime, '".$startdate."') <
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				And
@@ -279,6 +429,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -310,6 +461,40 @@ class PRD_HomeGOVE_model extends CI_Model {
 				AND 
 					SendInformation.SendIn_Status = '1'
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
+				WHERE 
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					Convert(datetime, '".$enddate."') >
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
 				group by SendInformation.SendIn_ID
@@ -325,6 +510,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_end_count($news_title = '', $enddate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -333,6 +519,26 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					Convert(datetime, '".$enddate."') >
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				And
@@ -359,6 +565,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -377,6 +584,43 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					CASE WHEN SendIn_UpdateDate IS NULL  
+						THEN 
+							SendIn_CreateDate
+						ELSE
+							SendIn_UpdateDate
+					END
+								BETWEEN 
+									Convert(datetime, '".$startdate."') 
+									AND
+									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				And
@@ -407,6 +651,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_start_end_count($news_title = '', $startdate = '', $enddate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -415,6 +660,29 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				And
+					CASE WHEN SendIn_UpdateDate IS NULL  
+						THEN 
+							SendIn_CreateDate
+						ELSE
+							SendIn_UpdateDate
+					END
+								BETWEEN 
+									Convert(datetime, '".$startdate."') 
+									AND
+									Convert(datetime, '".$enddate."')
+					AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				And
@@ -444,6 +712,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -462,6 +731,38 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					Convert(datetime, '".$startdate."') <
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					Convert(datetime, '".$startdate."') <
 									CASE WHEN SendIn_UpdateDate IS NULL  
@@ -488,6 +789,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_start_count($startdate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -496,6 +798,24 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					Convert(datetime, '".$startdate."') <
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					Convert(datetime, '".$startdate."') <
 									CASE WHEN SendIn_UpdateDate IS NULL  
@@ -520,6 +840,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -549,6 +870,38 @@ class PRD_HomeGOVE_model extends CI_Model {
 				AND 
 					SendInformation.SendIn_Status = '1'
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
+				WHERE 
+					Convert(datetime, '".$enddate."') >
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
 				group by SendInformation.SendIn_ID
@@ -564,6 +917,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_end_count($enddate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -572,6 +926,24 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					Convert(datetime, '".$enddate."') >
+									CASE WHEN SendIn_UpdateDate IS NULL  
+										THEN 
+											 SendIn_CreateDate
+										ELSE
+											SendIn_UpdateDate
+									END
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
 					Convert(datetime, '".$enddate."') >
 									CASE WHEN SendIn_UpdateDate IS NULL  
@@ -596,6 +968,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	{
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
+		/*
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT 
@@ -628,6 +1001,41 @@ class PRD_HomeGOVE_model extends CI_Model {
 				AND 
 					SendInformation.SendIn_Status = '1'
 		";
+		*/
+		$StrQuery = "
+			WITH LIMIT AS(
+				SELECT 
+					MAX(SendInformation.SendIn_ID) AS SendIn_ID,
+					MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate,
+					MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
+					MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
+					MAX(SendInformation.Mem_ID) AS Mem_ID,
+					MAX(SendInformation.SendIn_view) AS SendIn_view,
+					MAX(FileAttach.File_Status) AS File_Status,
+					MAX(Member.Mem_Name) AS Mem_Name,
+					MAX(Member.Mem_LasName) AS Mem_LasName,
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
+					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+				FROM SendInformation
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID 
+				WHERE 
+					CASE WHEN SendIn_UpdateDate IS NULL  
+						THEN 
+							SendIn_CreateDate
+						ELSE
+							SendIn_UpdateDate
+					END
+								BETWEEN 
+									Convert(datetime, '".$startdate."') 
+									AND
+									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
 				group by SendInformation.SendIn_ID
@@ -642,6 +1050,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_start_end_count($startdate = '', $enddate = '')
 	{
+		/*
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
@@ -650,6 +1059,28 @@ class PRD_HomeGOVE_model extends CI_Model {
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
+				WHERE 
+					CASE WHEN SendIn_UpdateDate IS NULL  
+						THEN 
+							SendIn_CreateDate
+						ELSE
+							SendIn_UpdateDate
+					END
+								BETWEEN 
+									Convert(datetime, '".$startdate."') 
+									AND
+									Convert(datetime, '".$enddate."')
+				AND 
+					SendInformation.SendIn_Status = '1'
+		";
+		*/
+		$StrQuery = "
+				SELECT
+					COUNT((SendInformation.SendIn_ID)) AS NUMROW
+				FROM SendInformation 
+				LEFT JOIN Member 
+					ON SendInformation.Mem_ID = Member.Mem_ID
+				LEFT JOIN Fidformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
 					CASE WHEN SendIn_UpdateDate IS NULL  
 						THEN 

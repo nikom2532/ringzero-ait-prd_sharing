@@ -89,6 +89,7 @@
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 <?php
+				/*
 				$file_vdo_status = 0;
 				$file_voice_status = 0;
 				$file_other_status = 0;
@@ -122,8 +123,14 @@
 					}
 					
 				}
-?>
+				*/
 				
+				$file_vdo_status = $news_item->File_Type_video;
+				$file_voice_status = $news_item->File_Type_voice;
+				$file_other_status = $news_item->File_Type_document;
+				$file_image_status = $news_item->File_Type_image;
+				
+?>
 				<img src="<?php echo base_url(); ?>images/icon/<?php 
 					if($file_vdo_status == '1'){
 						?>vdo<?php

@@ -106,7 +106,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 				$data["CI_stringManagement"] = $CI_stringManagement;
 				
 				
-				//Add File Status to News
+				//###### Add File_Status to News ######
 				foreach ($news as $news_item) {
 					foreach ($FileAttach as $FileAttach_item) {
 						if(
@@ -133,6 +133,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 						}
 					}
 				}
+				//###### End Add File_Status to News ######
 				
 				$data["news"] = $news;
 				$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();

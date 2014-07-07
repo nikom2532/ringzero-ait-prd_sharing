@@ -39,11 +39,12 @@ class PRD_HomeGOVE extends CI_Controller {
 			
 				$row_per_page = 20;
 				
-				$data['get_grov_fileattach'] = $this->prd_homegove_model->get_grov_fileattach();
+				// $data['get_grov_fileattach'] = $this->prd_homegove_model->get_grov_fileattach();
+				$FileAttach = $this->prd_homegove_model->get_FileAttach();
 				
 				if($this->input->post("news_title") != ""){
 					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_title_start_end(
 								$page, 
 								$row_per_page,
@@ -62,7 +63,7 @@ class PRD_HomeGOVE extends CI_Controller {
 						$data['post_end_date'] = $this->input->post("end_date");
 					}
 					elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_title_start(
 								$page, 
 								$row_per_page,
@@ -78,7 +79,7 @@ class PRD_HomeGOVE extends CI_Controller {
 						$data['post_start_date'] = $this->input->post("start_date");
 					}
 					elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_title_start(
 								$page, 
 								$row_per_page,
@@ -94,7 +95,7 @@ class PRD_HomeGOVE extends CI_Controller {
 						$data['post_end_date'] = $this->input->post("end_date");
 					}
 					else{
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_title(
 								$page, 
 								$row_per_page,
@@ -110,7 +111,7 @@ class PRD_HomeGOVE extends CI_Controller {
 				else{
 					
 					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_start_end(
 								$page, 
 								$row_per_page,
@@ -127,7 +128,7 @@ class PRD_HomeGOVE extends CI_Controller {
 					}
 					
 					elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_start(
 								$page, 
 								$row_per_page,
@@ -140,7 +141,7 @@ class PRD_HomeGOVE extends CI_Controller {
 						$data['post_start_date'] = $this->input->post("start_date");
 					}
 					elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
-						$data['news'] = $this->prd_homegove_model->
+						$news = $this->prd_homegove_model->
 							get_gove_search_end(
 								$page, 
 								$row_per_page,
@@ -154,10 +155,41 @@ class PRD_HomeGOVE extends CI_Controller {
 					}
 					
 					else{
-						$data['news'] = $this->prd_homegove_model->get_gove($page, $row_per_page);
+						$news = $this->prd_homegove_model->get_gove($page, $row_per_page);
 						$count_row = $this->prd_homegove_model->get_gove_count();
 					}
 				}
+				
+				//###### Add File_Status to News ######
+				foreach ($news as $news_item) {
+					foreach ($FileAttach as $FileAttach_item) {
+						if(
+							$news_item->SendIn_ID == $FileAttach_item->SendIn_ID
+						){
+								if($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/")){
+									$news_item->File_Type_video = 1;
+								}
+								elseif($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/")){
+									$news_item->File_Type_voice = 1;
+								}
+								elseif($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")){
+									$news_item->File_Type_image = 1;
+								}
+								elseif(
+									(
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/") ||
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/") ||
+										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")
+									)
+								){
+											$news_item->File_Type_document = 1;
+								}
+						}
+					}
+				}
+				//###### End Add File_Status to News ######
+				
+				$data["news"] = $news;
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
@@ -200,7 +232,7 @@ class PRD_HomeGOVE extends CI_Controller {
 				//#########################################################
 				
 				// $this->prd_homegove_model->set_gove(
-					// $data['news']
+					// $news
 				// );
 				
 				$this->load->view('prdsharing/templates/header', $data);
