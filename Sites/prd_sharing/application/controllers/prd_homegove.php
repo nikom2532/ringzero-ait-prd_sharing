@@ -199,12 +199,9 @@ class PRD_HomeGOVE extends CI_Controller {
 				
 				//#########################################################
 				
-				
-				$this->prd_homegove_model->set_gove(
-					$data['news']
-				);
-				
-				
+				// $this->prd_homegove_model->set_gove(
+					// $data['news']
+				// );
 				
 				$this->load->view('prdsharing/templates/header', $data);
 				

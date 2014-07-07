@@ -1155,18 +1155,13 @@ class PRD_HomePRD_model extends CI_Model {
 			   'News_OldCateID' => $news_item->NT02_TypeID,
 			   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
 			   'Cate_ID' => $query_find_Cate_ID[0]->Cate_OldID,
-			   'News_View' => 1,
+			   'News_View' => 0,
 			   'News_Active' => "1" //,
 			   // 'News_StatusPublic' => "1"
 			);
 			$query2 = $this->db->
 				where('News_OldID', $data['News_OldID'])->
 				get('News');
-			
-			//For calculate the View
-			$News_View = $query2->result();
-			$News_View = ($News_View[0]->News_View);
-			$News_View += 1;
 			
 			if(!($query2->num_rows() > 0)){
 				$this->db->insert("News", $data);
@@ -1182,7 +1177,6 @@ class PRD_HomePRD_model extends CI_Model {
 				   'News_OldSubCateID' => $news_item->NT03_SubTypeID,
 				   'Cate_ID' => $query_find_Cate_ID[0]->Cate_OldID,
 				   'News_Active' => "1",
-				   'News_View' => $News_View,
 				   // 'Cate_ID' =>
 				);
 				$this->db->

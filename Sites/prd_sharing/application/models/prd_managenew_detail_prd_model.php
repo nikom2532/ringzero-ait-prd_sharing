@@ -259,5 +259,25 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 	
 	//##########################
 	
-	// $this->db->limit($limit, $start);
+	public function set_News_increase_view($NT01_NewsID='')
+	{
+		$query2 = $this->db->
+			select('News.News_View')->
+			where('News_OldID', $NT01_NewsID)->
+			get('News');
+		
+		//For calculate the View
+		$News_View = $query2->result();
+		$News_View = ($News_View[0]->News_View);
+		$News_View += 1;
+		
+		$data = array(
+		   'News_View' => $News_View,
+		);
+		
+		$this->db->
+			where('News_OldID', $NT01_NewsID)->
+			update("News", $data);
+	}
+	
 }

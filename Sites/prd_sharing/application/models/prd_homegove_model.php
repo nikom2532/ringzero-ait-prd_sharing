@@ -673,6 +673,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 		}
 	}
 	
+	/*
 	public function set_gove($news='')
 	{
 		foreach ($news as $news_item) {
@@ -692,6 +693,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				update("SendInformation", $data);
 		}
 	}
+	*/
 	
 	//########################### Other test #############################
 	
