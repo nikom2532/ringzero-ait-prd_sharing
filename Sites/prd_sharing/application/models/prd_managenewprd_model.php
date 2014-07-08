@@ -491,7 +491,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
 			";
 		}
-		echo $StrQuery;
+		// echo $StrQuery;
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
