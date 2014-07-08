@@ -80,22 +80,22 @@
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
 			<p class="col-1" style="width: 5%;float: left; "></p>
-			<p class="col-2" style="width: 10%;float: left; ">
+			<p class="col-2" style="width: 10%;float: left; text-align: left; ">
 				Username
 			</p>
-			<p class="col-3" style="width: 20%;float: left; ">
+			<p class="col-3" style="width: 20%;float: left; text-align: left; ">
 				ชื่อ-นามสกุล
 			</p>
-			<p class="col-4" style="width: 10%;float: left; ">
+			<p class="col-4" style="width: 10%;float: left; text-align: left; ">
 				วันที่สมัคร
 			</p>
-			<p class="col-5" style="width: 30%;float: left; ">
+			<p class="col-5" style="width: 30%;float: left; text-align: left; ">
 				หน่วยงาน
 			</p>
-			<p class="col-6" style="width: 15%;float: left; ">
+			<p class="col-6" style="width: 15%;float: left; text-align: left; ">
 				จังหวัด
 			</p>
-			<p class="col-7" style="width: 10%;float: left; ">
+			<p class="col-7" style="width: 10%;float: left; text-align: left; ">
 				สถานะการใช้งาน
 			</p>
 		</div>
@@ -123,7 +123,7 @@
 						<p class="col-3" style="width: 20%;float: left; ">
 							<?php echo $SC03_User_item->SC03_FName." ".$SC03_User_item->SC03_LName; ?>
 						</p>
-						<p class="col-4" style="width: 10%;float: left; text-align: center;">
+						<p class="col-4" style="width: 10%;float: left; text-align: left;">
 <?php 
 							if(isset($SC03_User_item->SC03_RegisterDate)){
 								// echo $SC03_User_item->SC03_RegisterDate; 
@@ -131,7 +131,7 @@
 								echo date("h:m:s", strtotime($SC03_User_item->SC03_RegisterDate));
 							}
 							else{
-								echo "-";
+								echo "<span style='margin-left: 20%'>-</span>";
 							}
 ?>
 						</p>
