@@ -46,6 +46,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/chosen.css" />
     <script type="text/javascript" src="<?php echo base_url(); ?>js/chosen.jquery.js"></script>
     
+	<!-- flowplayer.js -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/flowplayer546/flowplayer.min.js"></script>
+	
+	<!-- player styling -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/flowplayer546/skin/minimalist.css">
+    
 <?php
     if($title == "Sent News"){
  	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php
