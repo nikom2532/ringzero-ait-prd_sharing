@@ -267,8 +267,8 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
 		
-		echo $StrQuery_get_SC03_User;
-		exit;
+		// echo $StrQuery_get_SC03_User;
+		// exit;
 		
 		$query_getUser = $this->db_ntt_old->
 			query($StrQuery_get_SC03_User)->result();

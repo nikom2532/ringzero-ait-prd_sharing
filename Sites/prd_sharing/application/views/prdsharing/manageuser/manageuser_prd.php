@@ -1,14 +1,4 @@
 <!-- <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script> -->
-<script>
-    $(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
-        $(".select-menu > select").live("change",function(){
-            var selectmenu_txt = $(this).find("option:selected").text();
-            $(this).prev("span").text(selectmenu_txt);
-        });
-        
-    });
-</script>
 <div id="search-form">
 	<form id="homeSearch" action="<?php echo base_url().index_page(); ?>manageUserPRD" method="post">
 		<input type="hidden" name="manage_user_is_search" value="yes" />
@@ -22,24 +12,23 @@
 				?>" placeholder="" style=" margin-left: 15px;width: 77%;">
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="col-lg-6">
 				<label >สถานะ</label>
 				<span class="select-menu">
 					<span>เลือกสถานะ</span>
-					<select style="" name="mem_status">
+					<select style="" name="mem_status" id="mem_status">
 						<option value="">เลือกสถานะ</option>
 						<option value="1" <?php
-							if(isset($post_search_key)){
-								if($post_search_key == "1"){
+							if(isset($post_mem_status)){
+								if($post_mem_status == "1"){
 									?>selected='selected'<?php
 								}
 							}
 						?>>ใช้งาน</option>
 						<option value="0" <?php
-							if(isset($post_search_key)){
-								if($post_search_key == "0"){
+							if(isset($post_mem_status)){
+								if($post_mem_status == "0"){
 									?>selected='selected'<?php
 								}
 							}
@@ -51,11 +40,17 @@
 				<label >จังหวัด</label>
 				<span class="select-menu">
 				<span>เลือกจังหวัด</span>
-				<select name="province_id" style="">
+				<select name="province_id" id="province_id" style="">
 					<option value="">เลือกจังหวัด</option>
 <?php				
 					foreach ($CM06_Province as $CM06_Province_item) {
-						?><option value="<?php echo $CM06_Province_item->CM06_ProvinceID; ?>"><?php echo $CM06_Province_item->CM06_ProvinceName; ?></option><?php
+						?><option value="<?php echo $CM06_Province_item->CM06_ProvinceID; ?>" <?php 
+							if(isset($post_province_id)){
+								if($CM06_Province_item->CM06_ProvinceID == $post_province_id){
+									?>selected='selected'<?php
+								}
+							}
+						?>><?php echo $CM06_Province_item->CM06_ProvinceName; ?></option><?php
 					}
 ?>
 				</select>
@@ -105,13 +100,13 @@
 			</p>
 		</div>
 <?php
-		$i=1;
+		$i=0;
 		
 		// var_dump($SC03_User);
 		
 		foreach ($SC03_User as $SC03_User_item) {
 			
-			if($i % 2 == 1){
+			if($i % 2 == 0){
 				?><div class="odd"><?php
 			}
 			else{
@@ -205,6 +200,11 @@
 <?php
 			$i++;
 		}
+		if($i == 0){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่พบข้อมูล</div>
+<?php
+		}
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
@@ -256,4 +256,18 @@
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageUserPRD"; ?>/1");
 		$("#homeSearch").submit();
 	}
+	
+    $(function(){
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+		var selectmenu_txt = $("#mem_status").find("option:selected").text();
+			$("#mem_status").prev("span").text(selectmenu_txt);
+			
+        selectmenu_txt = $("#province_id").find("option:selected").text();
+			$("#province_id").prev("span").text(selectmenu_txt);
+			
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
 </script>

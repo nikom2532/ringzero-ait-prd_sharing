@@ -90,29 +90,15 @@
 <?php
 						foreach ($SC03_User as $SC03_User_item) {
 							?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
-								if($post_reporter_id != ""){
-									?>selected='selected'<?php
+								if(isset($post_reporter_id)){
+									if($SC03_User_item->SC03_UserId == $post_reporter_id){
+										?>selected='selected'<?php
+									}
 								}
 							?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
 						}
 ?>
 					</select>
-					<script>
-						jQuery(document).ready(function(){
-							jQuery(".reporter_id_chosen").chosen();
-						});
-						
-						var config = {
-		     				'.chosen-select'           : {},
-						    '.chosen-select-deselect'  : {allow_single_deselect:true},
-						    '.chosen-select-no-single' : {disable_search_threshold:10},
-						    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-						    '.chosen-select-width'     : {width:"95%"}
-						}
-						for (var selector in config) {
-							$(selector).chosen(config[selector]);
-						}
-					</script>
 				</div>
 			</div>
 			
@@ -482,8 +468,31 @@
 			}
 		});
 	});
+	
+	jQuery(document).ready(function(){
+		jQuery(".reporter_id_chosen").chosen();
+	});
+	
+	var config = {
+		'.chosen-select'           : {},
+	    '.chosen-select-deselect'  : {allow_single_deselect:true},
+	    '.chosen-select-no-single' : {disable_search_threshold:10},
+	    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+	    '.chosen-select-width'     : {width:"95%"}
+	}
+	for (var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
+	
 	$(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        
+        var selectmenu_txt = $("#NewsTypeID").find("option:selected").text();
+			$("#NewsTypeID").prev("span").text(selectmenu_txt);
+			
+		var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+        
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
