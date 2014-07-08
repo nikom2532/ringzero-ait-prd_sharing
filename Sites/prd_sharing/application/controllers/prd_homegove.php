@@ -176,7 +176,7 @@ class PRD_HomeGOVE extends CI_Controller {
 									$news_item->File_Type_image = 1;
 								}
 								elseif(
-									(
+									!(
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/") ||
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/") ||
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")

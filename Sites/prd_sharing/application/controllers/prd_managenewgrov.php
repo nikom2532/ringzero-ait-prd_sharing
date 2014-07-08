@@ -105,6 +105,8 @@ class PRD_ManageNewGROV extends CI_Controller {
 				$CI_stringManagement->load->library('string_management');
 				$data["CI_stringManagement"] = $CI_stringManagement;
 				
+				// var_dump($FileAttach);
+				// exit;
 				
 				//###### Add File_Status to News ######
 				foreach ($news as $news_item) {
@@ -112,6 +114,8 @@ class PRD_ManageNewGROV extends CI_Controller {
 						if(
 							$news_item->SendIn_ID == $FileAttach_item->SendIn_ID
 						){
+							// var_dump($news_item);
+							// exit;
 								if($FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/")){
 									$news_item->File_Type_video = 1;
 								}
@@ -122,7 +126,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 									$news_item->File_Type_image = 1;
 								}
 								elseif(
-									(
+									!(
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "video/") ||
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "audio/") ||
 										$FileAttach_item->File_Type == $CI_stringManagement->string_management->startsWith($FileAttach_item->File_Type, "image/")

@@ -9,7 +9,7 @@
 	}
 </style>
 <div class="content">
-	<div id="detail-form">
+	<div id="detail-form" style="margin-bottom: 30px; ">
 <?php
 	$url = base_url()."Uploads\\";
 	
@@ -47,7 +47,7 @@
 									</div>
 								</script>
 								
-								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+								<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 								$file_count++;
 								$LeftContainerCount++;
 							}
@@ -156,23 +156,27 @@
 						}
 ?>
 					<!-- </div> -->
+					<div class="otherfiles-list" style="margin-top: 20px; text-align: right; ">
 <?php
-					$OtherFile_count = 0;
-					foreach ($get_grov_fileattach as $file) {
-						// var_dump($voice);
-						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "otherfile/")){
-							if($voice_count == 0){
-								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
-							}
-									?><a href="<?php echo $url.$file->File_Name; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $url.$file->File_Name; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
-							if($voice_count == 0){
+						$OtherFile_count = 0;
+						foreach ($get_grov_fileattach as $file) {
+							// if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "otherfile/")){
+							if(
+								!(
+									$file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "video/") ||
+									$file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "image/") ||
+									$file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "audio/")
+								)
+							){
+								?><div style="margin-top: 15px; "><?php
+									?><a href="<?php echo $url.$file->File_Name; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $file->File_Name; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
 								?></div><?php
+								$OtherFile_count++;
+								$LeftContainerCount++;
 							}
-							$OtherFile_count++;
-							$LeftContainerCount++;
 						}
-					}
 ?>
+					</div>
 				</div>
 					
 					
@@ -217,13 +221,34 @@
 					<div class="news-form">
 						<h1 style="margin-bottom: 5px;">ข้อมูลข่าวและที่มา</h1>
 						<p>
-							ผู้เผยแพร่ข่าว : <?php echo $news_item->Mem_Name." ".$news_item->Mem_LasName; ?>
+							ผู้เผยแพร่ข่าว : 
+<?php 
+							if($news_item->Mem_Name != ""){
+								echo $news_item->Mem_Name." ".$news_item->Mem_LasName; 
+							}
+							else {
+								?>-<?php
+							}
+?>
 						</p>
 						<p>
-							กระทรวง : <?php echo $news_item->Minis_Name; ?>
+							กระทรวง : 
+<?php 
+							if($news_item->Minis_Name != ""){
+								echo $news_item->Minis_Name; 
+							}
+							else{
+								?>-<?php
+							}
+?>
 						</p>
 						<p>
-							กรม : <?php echo $news_item->Dep_Name; ?>
+							กรม : 
+<?php 
+							if($news_item->Dep_Name != ""){
+								echo $news_item->Dep_Name; 
+							}
+?>
 						</p>
 					</div>
 				</div>
