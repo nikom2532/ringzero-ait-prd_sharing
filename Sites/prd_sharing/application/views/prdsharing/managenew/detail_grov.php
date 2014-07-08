@@ -39,14 +39,23 @@
 									</object> 
 								</video> 
 								*/
-								?><script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
+								/*
+								<script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
 									<div class="flowplayer" style="width: 461px; height: 358px;">
 										<video>
 											<source type="video/webm" src="<?php echo $url.$file->File_Name; ?>" type="video/mp4">
 										</video>
 									</div>
 								</script>
-								
+								*/
+								?>
+								<div class="video_player" style="margin-bottom: 20px; ">
+									
+									<div class="flowplayer" style="width: 461px; height: 358px;">
+										<video src="<?php echo $url.$file->File_Name; ?>" type="video/mp4"></video>
+									</div>
+									
+								</div>
 								<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 								$file_count++;
 								$LeftContainerCount++;
@@ -56,6 +65,7 @@
 							?><?php
 						}
 ?>
+						
 					</div>
 					<div class="image-list">
 <?php
