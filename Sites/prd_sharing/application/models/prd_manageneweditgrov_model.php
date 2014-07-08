@@ -113,6 +113,9 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 		$file_name
 	)
 	{
+		// var_dump($file_name);
+		// exit;
+		$i = 0;
 		foreach ($file_name as $file_name_item) {
 			
 			// echo ($file_name_item["file_extension"]);
@@ -130,8 +133,14 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			
 			$query = $this->db->
 				insert("FileAttach", $data);
+			$i++;
 		}
-		return $query;
+		if($i> 0){
+			return $query;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public function delete_FileAttach($File_ID = '')

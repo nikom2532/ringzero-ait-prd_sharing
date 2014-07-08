@@ -82,92 +82,95 @@
 						<img src="<?php echo base_url(); ?>images/pic/p4.png" alt="vdo" style="width:30%;margin-top:10px;">
 						<img src="<?php echo base_url(); ?>images/pic/p3.png" alt="vdo" style="width:30%;margin-top:10px;"> -->
 					</div>
-					
-					<?php
-					$voice_count = 0;
-					foreach ($get_grov_fileattach as $file) {
-						// var_dump($voice);
-						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "voice/")){
-							if($voice_count == 0){
-								?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 30px; "><?php
-							}
-									?>
-									<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
-									<audio width="482" height="270" controls>
-										<source src="<?php echo $voice->Url; ?>" type="audio/mpeg">
-									</audio>
-									</script> -->
-									
-									<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo $url.$file->File_Name; ?>">
-										<object width="100%" height="100%" id="mb_api" name="mb_api" data="http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf" type="application/x-shockwave-flash">
-											<param name="allowfullscreen" value="true">
-											<param name="allowscriptaccess" value="always">
-											<param name="quality" value="high">
-											<param name="bgcolor" value="#000000">
-											<param name="flashvars" value="config={&quot;plugins&quot;:{&quot;controls&quot;:{&quot;fullscreen&quot;:false,&quot;height&quot;:30,&quot;autoHide&quot;:false}},&quot;clip&quot;:{&quot;autoPlay&quot;:false,&quot;url&quot;:&quot;<?php echo $voice->Url; ?>&quot;},&quot;playerId&quot;:&quot;mb&quot;,&quot;playlist&quot;:[{&quot;autoPlay&quot;:false,&quot;url&quot;:&quot;<?php echo $voice->Url; ?>&quot;}]}">
-											<audio width="482" height="30" controls>
-												<source src="<?php echo $url.$file->File_Name; ?>" type="audio/mpeg">
-											</audio>
-										</object>
-									</a>
-									
-									
-									<script>
-										head.js("http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js", "http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js", "http://releases.flowplayer.org/js/flowplayer-3.2.13.min.js", function() {
-										});
-										head.ready(function() {
-											// install flowplayer into container
-											$f("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf", {
-									
-												// fullscreen button not needed here
-												plugins : {
-													controls : {
-														fullscreen : false,
-														height : 30,
-														autoHide : false
-													}
-												},
-									
-												clip : {
-													autoPlay : false,
-													// optional: when playback starts close the first audio playback
-													onBeforeBegin : function() {
-														$f("player").close();
-													}
-												}
-									
+					<!-- <div class="audio-list"> -->
+						<?php
+						$voice_count = 0;
+						foreach ($get_grov_fileattach as $file) {
+							// var_dump($file->File_Type);	
+							// echo $url.$file->File_Name;
+							if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "audio/")){
+								if($voice_count == 0){
+									?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; margin-bottom: 30px; "><?php
+								}
+										?>
+										<?php //* ?>
+										<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js"> -->
+										<audio width="482" height="270" controls>
+											<source src="<?php echo $url.$file->File_Name ?>" type="audio/mpeg">
+										</audio>
+										<!-- </script> -->
+										<?php //*/ ?>
+										
+										<?php /* ?>
+										<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo $url.$file->File_Name; ?>">
+											<object width="100%" height="100%" id="mb_api" name="mb_api" data="http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf" type="application/x-shockwave-flash">
+												<param name="allowfullscreen" value="true">
+												<param name="allowscriptaccess" value="always">
+												<param name="quality" value="high">
+												<param name="bgcolor" value="#000000">
+												<param name="flashvars" value="config={&quot;plugins&quot;:{&quot;controls&quot;:{&quot;fullscreen&quot;:false,&quot;height&quot;:30,&quot;autoHide&quot;:false}},&quot;clip&quot;:{&quot;autoPlay&quot;:false,&quot;url&quot;:&quot;<?php echo $voice->Url; ?>&quot;},&quot;playerId&quot;:&quot;mb&quot;,&quot;playlist&quot;:[{&quot;autoPlay&quot;:false,&quot;url&quot;:&quot;<?php echo $voice->Url; ?>&quot;}]}">
+												<audio width="482" height="30" controls>
+													<source src="<?php echo $url.$file->File_Name; ?>" type="audio/mpeg">
+												</audio>
+											</object>
+										</a>
+										<script>
+											head.js("http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js", "http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js", "http://releases.flowplayer.org/js/flowplayer-3.2.13.min.js", function() {
 											});
-									
-										}); 
-									</script>
-									
-									<?php
-									/*
-									?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->url; ?>" style="text-decoration:none; text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png"></a><?php
-									*/
-							if($voice_count == 0){
-								?></div><?php
+											head.ready(function() {
+												// install flowplayer into container
+												$f("mb", "http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf", {
+										
+													// fullscreen button not needed here
+													plugins : {
+														controls : {
+															fullscreen : false,
+															height : 30,
+															autoHide : false
+														}
+													},
+										
+													clip : {
+														autoPlay : false,
+														// optional: when playback starts close the first audio playback
+														onBeforeBegin : function() {
+															$f("player").close();
+														}
+													}
+										
+												});
+										
+											}); 
+										</script>
+										<?php */ ?>
+										<?php
+										/*
+										?><a href="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $voice->url; ?>" style="text-decoration:none; text-decoration:none; "><?php echo $voice->NT12_VoiceName; ?><img src="<?php echo base_url(); ?>images/icon/download.png"></a><?php
+										*/
+								if($voice_count == 0){
+									?></div><?php
+								}
+								// $voice_count++;
+								$LeftContainerCount++;
 							}
-							$voice_count++;
-							$LeftContainerCount++;
 						}
-					}
+?>
+					<!-- </div> -->
+<?php
 					$OtherFile_count = 0;
 					foreach ($get_grov_fileattach as $file) {
 						// var_dump($voice);
-						/*
 						if($file->File_Type == $CI_stringManagement->string_management->startsWith($file->File_Type, "otherfile/")){
 							if($voice_count == 0){
 								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
 							}
-									?><a href="<?php echo $url.$file->File_Name; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->File_Name; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
+									?><a href="<?php echo $url.$file->File_Name; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $url.$file->File_Name; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
 							if($voice_count == 0){
 								?></div><?php
 							}
 							$OtherFile_count++;
 							$LeftContainerCount++;
 						}
-						*/
 					}
 ?>
 				</div>

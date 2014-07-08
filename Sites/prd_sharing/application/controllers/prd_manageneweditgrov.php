@@ -61,12 +61,18 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				
 				if($return_num_files > 0){
 					
+					// var_dump($_FILES);
+					// exit;
+					
 					// Import library
 					$this->load->library("multiupload");
 					$this->multiupload->_files = $_FILES;
 					$this->multiupload->upload_path = "./uploads";
 					$this->multiupload->allowed_types = "jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv";
-					$this->multiupload->max_size = "2048";
+					// $this->multiupload->max_size = "0";
+					// $this->multiupload->max_width = "0";
+					// $this->multiupload->max_height = "0";
+					
 					$this->multiupload->init();
 					$file_name = $this->multiupload->do_upload();
 					
@@ -79,7 +85,6 @@ class PRD_manageNewEditGROV extends CI_Controller {
 						$file_name
 					);
 				}
-				
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}
 			elseif($this->input->get('is_del_fileattach') == "1"){

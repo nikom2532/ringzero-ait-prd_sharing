@@ -11,6 +11,27 @@ class PRD_Authen extends CI_Controller {
 
 	public function index()
 	{
+		//##########################################################
+		/*
+		//For Test when have no internet
+		$member_id = array(
+           'member_id'  => 11,
+           'Mem_Username' => 'aaa',
+           'Mem_Title' => 'Mr.',
+           'Mem_Name' => 'admin',
+           'Mem_LasName' => 'admin',
+           'Mem_Status' => 1,
+           'Mem_Ministry' => '',
+           'Group_ID' => 2
+		);
+		
+		$this->session->set_userdata($member_id);
+		redirect(base_url().index_page().'homePRD', 'refresh');
+		
+		//End For Test when have no internet
+		*/
+		//##########################################################
+		
 		if($this->session->userdata('member_id') == ""){
 			$data['title'] = 'Login PRD Sharing';
 			$this->load->view('prdsharing/templates/header_authen', $data);
@@ -50,16 +71,16 @@ class PRD_Authen extends CI_Controller {
 				// echo "can login";
 				// $_SESSION["member_id"] = $authen[0]->Mem_Username;
 				$member_id = array(
-                   'member_id'  => $authen[0]->Mem_ID,
-                   'Mem_Username' => $authen[0]->Mem_Username,
-                   'Mem_Title' => $authen[0]->Mem_Title,
-                   'Mem_Name' => $authen[0]->Mem_Name,
-                   'Mem_LasName' => $authen[0]->Mem_LasName,
-                   'Mem_EngName' => $authen[0]->Mem_EngName,
-                   'Mem_EngLasName' => $authen[0]->Mem_EngLasName,
-                   'Mem_Status' => $authen[0]->Mem_Status,
-                   'Mem_Ministry' => $authen[0]->Mem_Ministry,
-                   'Group_ID' => $authen[0]->Group_ID
+		           'member_id'  => $authen[0]->Mem_ID,
+		           'Mem_Username' => $authen[0]->Mem_Username,
+		           'Mem_Title' => $authen[0]->Mem_Title,
+		           'Mem_Name' => $authen[0]->Mem_Name,
+		           'Mem_LasName' => $authen[0]->Mem_LasName,
+		           'Mem_EngName' => $authen[0]->Mem_EngName,
+		           'Mem_EngLasName' => $authen[0]->Mem_EngLasName,
+		           'Mem_Status' => $authen[0]->Mem_Status,
+		           'Mem_Ministry' => $authen[0]->Mem_Ministry,
+		           'Group_ID' => $authen[0]->Group_ID
 				);
 				$this->session->set_userdata($member_id);
 				// echo $this->session->userdata($member_id);
