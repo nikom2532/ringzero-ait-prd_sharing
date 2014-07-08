@@ -25,18 +25,33 @@ class PRD_UserInfo_PRD_model extends CI_Model {
 				Member.Mem_EngLasName,
 				Member.Mem_Username,
 				Member.Mem_CardID,
-				
+				Member.Mem_Status,
+				Member.Group_ID,
 				GroupMember.Group_Status
 			')->
 			join('GroupMember', 'GroupMember.Group_ID = Member.Group_ID', 'left')->
 			// join('CM06_Province', 'CM06_Province.CM06_ProvinceID = Member.CM06_ProvinceId', 'left')->
-			where('Member.Mem_ID', $userID)->
+			where('Member.Mem_OldID', $userID)->
 			get('Member');
 			
 		return $query_getUser->result();
 	}
 	
-	
+	public function update_Member(
+		$Mem_ID = '',
+		$mem_status = ''
+	)
+	{
+		$data = array(
+			'Mem_Status' => $mem_status
+		);
+		
+		$query_setMember = $this->db->
+			where('Member.Mem_OldID', $Mem_ID)->
+			update('Member', $data);
+			
+		return $query_setMember;
+	}
 	
 	
 	//##################### Old Database #########################

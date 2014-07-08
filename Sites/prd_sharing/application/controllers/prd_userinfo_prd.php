@@ -32,6 +32,23 @@ class PRD_UserInfo_PRD extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($showStatus == "yes"){
+				
+				if($this->input->post('update_member') == "yes"){
+					//For Update member
+					
+					if($this->input->post('mem_title') != "อื่นๆ"){
+						$mem_title = $this->input->post('mem_title');
+					}
+					else{
+						$mem_title = $this->input->post('tname_other_text');
+					}
+					
+					$this->PRD_UserInfo_PRD_model->update_Member(
+						$this->input->post('member_id'),
+						$this->input->post('mem_status')
+					);
+					redirect(base_url().index_page().'manageUserPRD', 'refresh');
+				}
 			
 				$data['Mem_ID'] = $this->input->get('userid');
 				
@@ -40,7 +57,7 @@ class PRD_UserInfo_PRD extends CI_Controller {
 				
 				$data['Member'] = $this->PRD_UserInfo_PRD_model->
 					get_Member($this->input->get('userid'));
-				
+					
 				$data['Ministry'] = $this->PRD_UserInfo_PRD_model->get_Ministry();
 				$data['Department'] = $this->PRD_UserInfo_PRD_model->get_Department();
 				

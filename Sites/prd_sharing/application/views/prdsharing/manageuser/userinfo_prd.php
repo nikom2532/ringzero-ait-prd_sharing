@@ -10,12 +10,11 @@
 </style>
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
-	<form action="<?php echo base_url().index_page(); ?>manageUserPRD" method="post">
+	<form action="<?php echo base_url().index_page(); ?>userInfo_PRD" method="post">
 		<input type="hidden" name="update_member" value="yes" />
 		<input type="hidden" name="member_id" value="<?php echo $Mem_ID; ?>" />
 <?php
 		foreach ($SC03_User as $SC03_User_item) {
-			
 ?>
 			<div class="row">
 				<div class="row" id="gove-title">
@@ -27,9 +26,6 @@
 					<label class="label">เพศ</label>
 				</div>
 				<div class="col-right">
-<?php
-					
-?>
 					<input type="radio" name="sex" id="sex_male" value="M" disabled="disabled" <?php
 						if($SC03_User_item->SC03_Gender == "M"){
 							?>checked="checked"<?php
@@ -239,26 +235,47 @@
 <?php
 						foreach ($GroupMember as $GroupMember_item) {
 							?><option value="<?php echo $GroupMember_item->Group_ID;?>" <?php 
-								if($GroupMember_item->Group_ID == $SC03_User->SC)
+								if($GroupMember_item->Group_ID == $Member[0]->Group_ID){
+									?>selected='selected'<?php
+								}
 							?>><?php echo $GroupMember_item->Group_Desc;?></option><?php
 						}
 ?>
 					</select>
 				</div>
 			</div>
+<?php
+			$status = "";
+			foreach ($Member as $Member_item) {
+				if($Member_item->Mem_Status == 0){
+					$status = 0;
+				}
+				elseif($Member_item->Mem_Status == 1){
+					$status = 1;
+				}
+			}
+?>
 			<div class="row">
 				<div class="col-lg-6">
 					<label >สถานะการใช้งาน</label>
-					<select name="mem_status" class="other" >
-						<option value="1">เปิดการใช้งาน</option>
-						<option value="0">ปิดการใช้งาน</option>
+					<select name="mem_status" id="mem_status" class="other" >
+						<option value="1" <?php 
+							if($status == 1){
+								?>selected='selected'<?php
+							}
+						?>>เปิดการใช้งาน</option>
+						<option value="0" <?php 
+							if($status == 0){
+								?>selected='selected'<?php
+							}
+						?>>ปิดการใช้งาน</option>
 					</select>
 				</div>
 			</div>
 <?php
 			//*/
 ?>
-			<div class="col-lg-12" style="text-align: center;    float: left;">
+			<div class="col-lg-12" style="text-align: center; float: left;">
 				<input class="bt" type="submit" name="share" value="บันทึก">
 				<input class="bt" type="button" name="share" value="ยกเลิก" onclick="document.location='<?php echo base_url().index_page(); ?>manageUserPRD'">
 			</div>
