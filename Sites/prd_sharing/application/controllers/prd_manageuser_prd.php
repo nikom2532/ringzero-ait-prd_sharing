@@ -40,7 +40,7 @@ class PRD_ManageUser_PRD extends CI_Controller {
 				
 				// if($this->input->post('manage_user_is_search') == "yes"){
 		// 			
-					// $data['SC03_User'] = $this->prd_manage_user_prd_model->get_SC03_User_search(
+					// $SC03_User = $this->prd_manage_user_prd_model->get_SC03_User_search(
 						// $this->input->post('search_key'),
 						// $this->input->post('sc03_status'),
 						// $this->input->post('cm06_province_id')
@@ -85,24 +85,27 @@ class PRD_ManageUser_PRD extends CI_Controller {
 				}
 				
 				if($this->input->post('manage_user_is_search') == "yes"){
-					$data['Member'] = $this->prd_manage_user_prd_model->
-						get_Member_search(
-							$this->input->post('search_key'),
-							$this->input->post('mem_status'),
-							$this->input->post('province_id')
-						);
-					
-					$data['SC03_User'] = $this->prd_manage_user_prd_model->get_SC03_User_search(
-						$page, 
-						$row_per_page,
+					$Member = $this->prd_manage_user_prd_model->get_Member_search(
 						$this->input->post('search_key'),
 						$this->input->post('mem_status'),
 						$this->input->post('province_id')
 					);
+					
+					$Member_Status = $this->prd_manage_user_prd_model->get_Member_Status(
+						$this->input->post('mem_status')
+					);
+					
+					$SC03_User = $this->prd_manage_user_prd_model->get_SC03_User_search(
+						$page, 
+						$row_per_page,
+						$this->input->post('search_key'),
+						$this->input->post('province_id'),
+						$Member_Status
+					);
 					$count_row = $this->prd_manage_user_prd_model->count_SC03_User_search(
 						$this->input->post('search_key'),
-						$this->input->post('mem_status'),
-						$this->input->post('province_id')
+						$this->input->post('province_id'),
+						$Member_Status
 					);
 					
 					// get_SC03_User_search
@@ -113,8 +116,8 @@ class PRD_ManageUser_PRD extends CI_Controller {
 					// exit;
 				}
 				else{
-					$data['Member'] = $this->prd_manage_user_prd_model->get_Member();
-					$data['SC03_User'] = $this->prd_manage_user_prd_model->get_SC03_User(
+					$Member = $this->prd_manage_user_prd_model->get_Member();
+					$SC03_User = $this->prd_manage_user_prd_model->get_SC03_User(
 						$page, 
 						$row_per_page
 					);
@@ -123,8 +126,22 @@ class PRD_ManageUser_PRD extends CI_Controller {
 					$data['post_search_key'] = "";
 					$data['post_mem_status'] = "";
 					$data['post_province_id'] = "";
+					
+					//###### Add Mem_Status to SC03_User ######
+					foreach ($SC03_User as $SC03_User_item) {
+						foreach ($Member as $Member_item) {
+							if($SC03_User_item->SC03_UserId == $Member_item->Mem_OldID){
+								if($Member_item->Mem_Status == 1){
+									$SC03_User_item->Mem_Status = 1;
+								}
+							}
+						}
+					}
+					//###### End Add Mem_Status to SC03_User ######
 				}
 				
+				$data['SC03_User'] = $SC03_User;
+				$data['Member'] = $Member;
 				
 				$data['SC07_Department'] = $this->prd_manage_user_prd_model->get_SC07_Department();
 				

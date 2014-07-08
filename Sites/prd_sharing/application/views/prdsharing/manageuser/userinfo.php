@@ -5,7 +5,6 @@
 		<input type="hidden" name="member_id" value="<?php echo $Mem_ID; ?>" />
 <?php
 		foreach ($Member as $Member_item) {
-			
 ?>
 			<div class="row">
 				<div class="row" id="gove-title">

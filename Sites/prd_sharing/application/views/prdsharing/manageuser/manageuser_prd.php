@@ -165,6 +165,7 @@
 						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
 <?php 
+							/*
 							$count=0;
 							foreach ($Member as $Member_item) {
 								if(
@@ -184,15 +185,15 @@
 							else{
 								echo "ปิดการใช้งาน";
 							}
-							
-							/*
-							if($SC03_User_item->SC03_Status == "1"){
+							*/
+							///*
+							if($SC03_User_item->Mem_Status == "1"){
 								echo "เปิดการใช้งาน";
 							}
-							elseif($SC03_User_item->SC03_Status == "0"){
+							elseif($SC03_User_item->Mem_Status == "0"){
 								echo "ปิดการใช้งาน";
 							}
-							*/
+							//*/
 ?>
 						</p>
 					</a>

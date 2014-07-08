@@ -150,6 +150,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 					SC03_User.SC03_RegisterDate,
 					CM06_Province.CM06_ProvinceName,
 					SC07_Department.SC07_DepartmentName,
+					'0' AS Mem_Status,
 					ROW_NUMBER() OVER (ORDER BY (SC03_User.SC03_UserId) DESC) AS 'RowNumber'
 				FROM
 					SC03_User
@@ -199,14 +200,34 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		}
 	}
 	
+	public function get_Member_Status($Mem_Status = '')
+	{
+		$query_getUser = $this->db->
+			select('
+				Member.Mem_OldID
+			')->
+			where('Mem_Status', $Mem_Status)->
+			get('Member');
+			
+		return $query_getUser->result();
+	}
+	
 	public function get_SC03_User_search(
 		$page = 1, 
 		$row_per_page = 20,
 		$search_key = '',
-		$SC03_Status = '',
-		$CM06_ProvinceID = ''
+		$CM06_ProvinceID = '',
+		$Member_Status = '' //$Member_Status return all Old_SC03_User
 	)
 	{
+		if($Member_Status != ""){
+			$statusArray = array();
+			foreach($Member_Status as $val){
+				$statusArray[] = "'".$val->Mem_OldID."'";
+			}
+			$Member_Status = implode(",",$statusArray);
+		}
+		
 		$start = $page==1?0:$page*$row_per_page-($row_per_page);
 		$end = $page*$row_per_page;
 		
@@ -223,6 +244,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 					SC03_User.SC03_RegisterDate,
 					CM06_Province.CM06_ProvinceName,
 					SC07_Department.SC07_DepartmentName,
+					'0' AS Mem_Status,
 					ROW_NUMBER() OVER (ORDER BY (SC03_User.SC03_UserId) DESC) AS 'RowNumber'
 				FROM
 					SC03_User
@@ -249,16 +271,22 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 				)
 			";
 		}
-		if($SC03_Status != ""){
-			$StrQuery_get_SC03_User .= "
-				AND
-					SC03_User.SC03_Status = '".$SC03_Status."'
-			";
-		}
+		// if($SC03_Status != ""){
+			// $StrQuery_get_SC03_User .= "
+				// AND
+					// SC03_User.SC03_Status = '".$SC03_Status."'
+			// ";
+		// }
 		if($CM06_ProvinceID != ""){
 			$StrQuery_get_SC03_User .= "
 				AND
 					SC03_User.CM06_ProvinceId = '".$CM06_ProvinceID."'
+			";
+		}
+		if($Member_Status != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.SC03_UserId IN (".$Member_Status.")
 			";
 		}
 		$StrQuery_get_SC03_User .= "
@@ -278,10 +306,18 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 	
 	public function count_SC03_User_search(
 		$search_key = '',
-		$SC03_Status = '',
-		$CM06_ProvinceID = ''
+		$CM06_ProvinceID = '',
+		$Member_Status = '' //$Member_Status return all Old_SC03_User
 	)
 	{
+		if($Member_Status != ""){
+			$statusArray = array();
+			foreach($Member_Status as $val){
+				$statusArray[] = "'".$val->Mem_OldID."'";
+			}
+			$Member_Status = implode(",",$statusArray);
+		}
+		
 		$StrQuery_get_SC03_User = "
 			SELECT
 				COUNT(SC03_User.SC03_UserId) AS NUMROW
@@ -302,7 +338,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			$StrQuery_get_SC03_User .= "
 				AND
 				(
-					(SC03_User.SC03_UserName LIKE '%".$search_key."%') 
+					(SC03_User.SC03_UserName LIKE '%".$search_key."%')
 					OR
 					(SC03_User.SC03_FName LIKE '%".$search_key."%')
 					OR
@@ -310,16 +346,22 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 				)
 			";
 		}
-		if($SC03_Status != ""){
-			$StrQuery_get_SC03_User .= "
-				AND
-					SC03_User.SC03_Status = '".$SC03_Status."'
-			";
-		}
+		// if($SC03_Status != ""){
+			// $StrQuery_get_SC03_User .= "
+				// AND
+					// SC03_User.SC03_Status = '".$SC03_Status."'
+			// ";
+		// }
 		if($CM06_ProvinceID != ""){
 			$StrQuery_get_SC03_User .= "
 				AND
 					SC03_User.CM06_ProvinceId = '".$CM06_ProvinceID."'
+			";
+		}
+		if($Member_Status != ""){
+			$StrQuery_get_SC03_User .= "
+				AND
+					SC03_User.SC03_UserId IN (".$Member_Status.")
 			";
 		}
 		$query = $this->db_ntt_old->
