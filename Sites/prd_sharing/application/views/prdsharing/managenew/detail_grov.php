@@ -8,6 +8,35 @@
 		box-shadow: 0 0 50px #222;
 	}
 </style>
+<?php
+    // .flowplayer { width: 400px; height: 20px; background-color: #000000; margin: 0px 0px 0px 0px;   }
+// 
+    // /* Keep the controls visible while loading */
+    // .flowplayer.is-loading .fp-controls,.flowplayer.is-loading .fp-time{display:block;}
+// 
+    // /* disable the waiting animation */
+    // .flowplayer.is-loading .fp-waiting{display:none;}
+// 
+    // /* disable the speed display we don't need this */
+    // .fp-speed{display:none;}
+// 
+    // /* Override fixed-controls to not sit below the player */
+    // .flowplayer.is-audio.fixed-controls .fp-controls{bottom:0px;}
+// 
+    // /* Override the time with fixed-controls to sit at the bottom */
+    // .flowplayer.is-audio.fixed-controls .fp-time em{bottom:5px;}
+// 
+    // /* position the controls */
+    // .flowplayer.is-audio.is-mouseover .fp-controls,.flowplayer.fixed-controls .fp-controls{height:20px;}
+// 
+    // /* disable the background play button */
+    // .flowplayer.is-audio.is-splash .fp-ui,.flowplayer.is-paused .fp-ui{background:none left no-repeat;background-size:12%;}
+// 
+    // /* display the controls even with splash enabled */
+    // .flowplayer.is-audio.is-splash .fp-controls, .flowplayer.is-splash .fp-time { display:block !important }
+?>
+
+
 <div class="content">
 	<div id="detail-form" style="margin-bottom: 30px; ">
 <?php
@@ -50,11 +79,9 @@
 								*/
 								?>
 								<div class="video_player" style="margin-bottom: 20px; ">
-									
 									<div class="flowplayer" style="width: 461px; height: 358px;">
 										<video src="<?php echo $url.$file->File_Name; ?>" type="video/mp4"></video>
 									</div>
-									
 								</div>
 								<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 								$file_count++;
@@ -103,14 +130,51 @@
 									?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; margin-bottom: 30px; "><?php
 								}
 										?>
-										<?php //* ?>
+										<?php ///* ?>
 										<!-- <script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js"> -->
 										<audio width="482" height="270" controls>
-											<source src="<?php echo $url.$file->File_Name ?>" type="audio/mpeg">
+											<source src="<?php echo $url.$file->File_Name; ?>" type="audio/mpeg">
 										</audio>
 										<!-- </script> -->
 										<?php //*/ ?>
 										
+										<?php /* ?>
+										<!-- <div id="player" class="flowplayer fixed-controls play-button is-splash is-audio" data-engine="audio" data-embed="false">
+										    <video preload="none">
+											    <source type="video/mp4" src="<?php echo $url.$file->File_Name; ?>">
+										    	<source type="video/mpeg" src="<?php echo $url.$file->File_Name; ?>">
+    											<source type="video/ogg" src="<?php echo $url.$file->File_Name; ?>">
+										    </video>
+										    
+									    </div> -->
+										<?php */ ?>
+									    
+									    <?php /* ?>
+									    <a id="mb" style="display:block;width:648px;height:30px;" href="<?php echo $url.$file->File_Name; ?>"></a>
+									    <script>
+										    jQuery(document).ready(function (){
+												$f("mb", "<?php echo base_url(); ?>js/flowplayer546/flowplayer.swf", {
+												    // fullscreen button not needed here
+												    plugins: {
+												        controls: {
+												            fullscreen: false,
+												            height: 30,
+												            autoHide: false
+												        }
+												    },
+												    clip: {
+												        autoPlay: false,
+												        // optional: when playback starts close the first audio playback
+												        onBeforeBegin: function() {
+												            $f("player").close();
+												        }
+												    }
+												});
+											});
+									    </script>
+									    <?php */ ?>
+									    
+									    
 										<?php /* ?>
 										<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo $url.$file->File_Name; ?>">
 											<object width="100%" height="100%" id="mb_api" name="mb_api" data="http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf" type="application/x-shockwave-flash">
