@@ -350,15 +350,14 @@ foreach($news as $news_item):
 	</legend>
 	<div class="uploadfile">
 		<div class="row file_1">
-			<div class="col-lg-6">
-				<label >file แนบเอกสาร 1.) </label>
-				<!-- <input type="file" class="form-control bt" name="fileattach" id="fileattach" placeholder="" /> -->
-				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" placeholder="" onchange="check_file_ext('1');" multiple />
-				<!-- <input type="file" name="file[]" multiple /> -->
+			<div class="col-lg-12" style="margin-left: 5%; ">
+				file แนบเอกสาร 1.)
+				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
-			<div class="col-lg-6">
+			<!-- <div class="col-lg-6">
 				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="row">
@@ -448,12 +447,10 @@ foreach($news as $news_item):
 	$("input.bt#addmorefile").click(function(){
 		var str =""+
 		"<div class=\"row file_"+(number)+"\">"+
-		"	<div class=\"col-lg-6\">"+
-		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" multiple />"+
-		"	</div>"+
-		"	<div class=\"col-lg-6\">"+
-		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
+		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+		"		file แนบเอกสาร "+(number)+".)"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
 		
@@ -461,7 +458,7 @@ foreach($news as $news_item):
 		number++;
 	});
 	
-	$("input.bt#reducemorefile").live('click', function(){
+	$("#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
 		// if(file_id > 1){
 			$("div.uploadfile .row.file_"+file_id).remove();

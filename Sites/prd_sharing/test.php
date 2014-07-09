@@ -1,3 +1,3 @@
-<div class=\"col-lg-6\">
-	<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />
-</div>
+file แนบเอกสาร 1.)
+					<input type=\"file\" class=\"form-control bt\" name=\"fileattach1\" id=\"fileattach\" onchange=\"check_file_ext('1');\" placeholder=\"\" style=\"width: 40%; \" multiple />
+					<a href=\"#\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\"><img src=\"<?php echo base_url(); ?>images/icon/delete_lock.png\" style=\"width: 20px; margin-left: 15px;\" /></a>
