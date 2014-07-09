@@ -155,6 +155,9 @@ class PRD_rss extends CI_Controller {
 		$this->load->database();
 		$this->load->model('prd_rss_model');
 		
+		$NT02_NewsType = $this->prd_rss_model->get_NT02_NewsType();
+		$category = $this->prd_rss_model->get_Category($NT02_NewsType);
+		
 		$data['rss'] = $this->prd_rss_model->generate_rss(
 			$this->session->userdata('member_id'),
 			$this->input->post('search'),
@@ -163,7 +166,8 @@ class PRD_rss extends CI_Controller {
 			$this->input->post('type'),
 			$this->input->post('subtype'),
 			$this->input->post('grov_active'),
-			$this->input->post('reporter')
+			$this->input->post('reporter'),
+			$category
 		);
 		echo $data['rss'];
 	}
@@ -178,11 +182,8 @@ class PRD_rss extends CI_Controller {
 		{
 			$newsid = $item->Detail_NewsID;
 			
-			//Jay Version 2014/6/24
 			$data['title'][$i] = $this->prd_rss_old_model->get_news($newsid);
 			
-			//Ming
-			// $data['title'][$i] = $this->prd_rss_old_model->get_NT01_News_RSS();
 			$i++;
 		}
 		$this->load->view('prdsharing/rss/view_rss',$data);

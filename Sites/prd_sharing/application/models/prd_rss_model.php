@@ -143,19 +143,29 @@ class PRD_rss_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-					
-				FROM NT01_News 
-				LEFT JOIN SC03_User 
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-				LEFT JOIN NT10_VDO 
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN NT11_Picture 
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN NT12_Voice 
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
+				FROM 
+					NT01_News 
 				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
+					SC03_User 
+				ON 
+					SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+				LEFT JOIN 
+					NT10_VDO 
+				ON 
+					NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+				LEFT JOIN 
+					NT11_Picture 
+				ON 
+					NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+				LEFT JOIN 
+					NT12_Voice 
+				ON 
+					NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+				LEFT JOIN 
+					NT13_OtherFile 
+				ON 
+					NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 		";
@@ -176,6 +186,10 @@ class PRD_rss_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		
@@ -210,55 +224,14 @@ class PRD_rss_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
+		$StrQuery .= "
+		";
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
 		foreach($query as $val){
 			return $val->NUMROW;
 		}
-	}
-	
-	public function get_NT01_News_RSS()
-	{
-		$StrQuery = "
-				SELECT
-					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
-					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
-					MAX(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
-					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
-					MAX(NT01_News.NT01_Status) AS NT01_Status,
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(SC03_User.SC03_FName) AS SC03_FName,
-					MAX(SC03_User.SC03_LName) AS SC03_LName,
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus,
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-					
-				FROM NT01_News 
-				LEFT JOIN SC03_User 
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-				LEFT JOIN NT10_VDO 
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN NT11_Picture 
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN NT12_Voice 
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				group by NT01_News.NT01_NewsID
-		";
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		
-		return $query;
 	}
 	
 	public function get_NT01_News_Search(
@@ -301,18 +274,29 @@ class PRD_rss_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
+				FROM 
+					NT01_News 
 				LEFT JOIN 
-					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+					SC03_User 
+				ON 
+					SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 				LEFT JOIN 
-					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+					NT10_VDO 
+				ON 
+					NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
 				LEFT JOIN 
-					NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+					NT11_Picture 
+				ON 
+					NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
 				LEFT JOIN 
-					NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+					NT12_Voice 
+				ON 
+					NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
 				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
+					NT13_OtherFile 
+				ON 
+					NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT08_PubTypeID = '11'
 		";
@@ -394,6 +378,7 @@ class PRD_rss_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		// group by NT01_News.NT01_NewsID
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
@@ -420,11 +405,8 @@ class PRD_rss_model extends CI_Model {
 		$StrQuery = "
 			SELECT
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-			FROM NT01_News 
-			LEFT JOIN 
-				SC03_User 
-			ON 
-				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+			FROM 
+				NT01_News 
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 		";
@@ -514,22 +496,39 @@ class PRD_rss_model extends CI_Model {
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
 		$grov_active = '',
-		$ReporterID = ''
+		$ReporterID = '',
+		$Cate_OldID = ''
 	)
 	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
 		$StrQuery = "
 			SELECT
-				NT01_NewsID
+				(NT01_News.NT01_NewsID) AS NT01_NewsID,
+				(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
+				ROW_NUMBER() OVER (ORDER BY (NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
 			FROM 
 				NT01_News
-			LEFT JOIN 
-				SC03_User 
-			ON 
-				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
 			WHERE 
-				NT08_PubTypeID = '11'
+				NT01_News.NT08_PubTypeID = '11'
 		";
-		
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
 		if($News_Title != ''){
 			$StrQuery .= "
 				AND
@@ -591,10 +590,13 @@ class PRD_rss_model extends CI_Model {
 					NT01_News.NT01_ReporterID = '".$ReporterID."'
 			";
 		}
-		$StrQuery .= "
-			ORDER BY 
-				NT01_NewsDate DESC
-		";
+		// $StrQuery .= "
+			// group by NT01_News.NT01_NewsID
+		// ";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		
@@ -611,7 +613,8 @@ class PRD_rss_model extends CI_Model {
 		$type = '',
 		$subtype = '',
 		$grov_active = '',
-		$reporter = ''
+		$reporter = '',
+		$Cate_OldID = ''
 	)
 	{
 		$today = date("Y-m-d H:i:s");
@@ -634,8 +637,12 @@ class PRD_rss_model extends CI_Model {
 			$type,
 			$subtype,
 			$grov_active,
-			$reporter
+			$reporter,
+			$Cate_OldID
 		);
+		
+		// var_dump($qr);
+		// exit;
 		
 		foreach($qr as $item_qr)
 		{
@@ -675,17 +682,20 @@ class PRD_rss_model extends CI_Model {
 				News.News_Date
 			FROM 
 				Detail_RSS
-			INNER JOIN 
+			LEFT JOIN 
 				Main_RSS
 			ON 
 				Detail_RSS.Main_RssID = Main_RSS.Main_RssID
-			INNER JOIN
+			LEFT JOIN
 				News
 			ON 
 				News.News_OldID = Detail_RSS.Detail_NewsID
 			WHERE 
 				Main_RSS.Main_RssID_Encode = '$page'
+			order by News.News_Date DESC
 		";
+		// echo $query;
+		// exit;
 		return $this->db->query($query)->result();
 	}
 }

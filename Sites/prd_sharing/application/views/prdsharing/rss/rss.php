@@ -130,8 +130,8 @@
 	<div id="table-list">
 		<div class="row">
 			<div class="col-lg-left" style="">
-				<img src="<?php echo base_url(); ?>images/rss_btn.png" style="" id="makeRss">
-				<img src="<?php echo base_url(); ?>images/rss.png" style="">
+				<img src="<?php echo base_url(); ?>images/rss_btn.png" style="cursor: pointer;" id="makeRss" />
+				<!-- <img src="<?php echo base_url(); ?>images/rss.png" style=""> -->
 				<input type="text" class="form-control" id="InputRss" placeholder="" style="margin-top: -30px;
 				padding: 20px 18px 0;
 				vertical-align: baseline;width:50%">
