@@ -193,14 +193,14 @@
 		<?php ///* ?>
 		<div class="uploadfile">
 			<div class="row file_1">
-				<div class="col-lg-6" >
-					<label >file แนบเอกสาร 1.)</label>
-					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" multiple />
-					<!-- <a href="#" name="reducemorefile" id="reducemorefile" data-file_id="1"><img src="<?php echo base_url(); ?>images/icon/delete.png" style="width: 20px" /></a> -->
+				<div class="col-lg-12" style="margin-left: 5%; ">
+					file แนบเอกสาร 1.)
+					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+					<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 				</div>
-				<div class="col-lg-6">
+				<!-- <div class="col-lg-6">
 					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<?php //*/ ?>
@@ -311,26 +311,36 @@
 	
 	
 	var number = 2;
+	var count = 1;
 	$("input.bt#addmorefile").click(function(){
 		var str =""+
 		"<div class=\"row file_"+(number)+"\">"+
-		"	<div class=\"col-lg-6\">"+
-		"		<label >file แนบเอกสาร "+(number)+".) </label>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" multiple />"+
+		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+		"		file แนบเอกสาร "+(number)+".)"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
-		"	<div class=\"col-lg-6\">"+
+		"	<!--<div class=\"col-lg-6\">"+
 		"		<input class=\"bt\" type=\"button\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" value=\"ลด file แนบเอกสาร\" style=\"background-color: #E20000; border: 1px solid #E20000\" />"+
-		"	</div>"+
+		"	</div> -->"+
 		"</div>";
 		
 		$("div.uploadfile").append(str);
 		number++;
+		count++;
 	});
 	
-	$("input.bt#reducemorefile").live('click', function(){
+	$("#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
 		// var file_id = $(this).data("file_id");
-		$("div.uploadfile .row.file_"+file_id).remove();
+		// if(count > 1){
+			$("div.uploadfile .row.file_"+file_id).remove();
+			count--;
+		// }
+		// else{
+			// $("div.uploadfile .row.file_"+file_id).val(number);
+		// }
+		
 	});
 	
 	function check_file_ext(file_id){

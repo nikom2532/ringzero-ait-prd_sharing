@@ -257,7 +257,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
 				FROM 
 					NT01_News 
 				LEFT JOIN 

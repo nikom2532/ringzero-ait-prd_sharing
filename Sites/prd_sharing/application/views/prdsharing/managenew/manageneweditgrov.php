@@ -463,7 +463,9 @@ foreach($news as $news_item):
 	
 	$("input.bt#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
-		$("div.uploadfile .row.file_"+file_id).remove();
+		// if(file_id > 1){
+			$("div.uploadfile .row.file_"+file_id).remove();
+		// }
 	});
 	
 	function check_file_ext(file_id){
