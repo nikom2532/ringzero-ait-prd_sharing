@@ -211,12 +211,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					(SendInformation.SendIn_Issue) AS SendIn_Issue,
 					(SendInformation.SendIn_view) AS SendIn_view,
 					(SendInformation.SendIn_Status) AS SendIn_Status,
-					(FileAttach.File_Status) AS File_Status,
 					'0' AS File_Type_video,
 					'0' AS File_Type_voice,
 					'0' AS File_Type_document,
 					'0' AS File_Type_image,
-					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
+					ROW_NUMBER() OVER (ORDER BY (SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM SendInformation 
 		";
 		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
@@ -301,7 +300,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		$StrQuery .= "
-				group by SendInformation.SendIn_ID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
