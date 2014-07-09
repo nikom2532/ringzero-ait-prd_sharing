@@ -71,8 +71,10 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 	)
 	{
 			if($Tar_ID == ""){
-				$PRD_Active = null;
-				$GOVE_Active = null;
+				$PRD_Active = "0";
+				$GOVE_Active = "0";
+				$PRD_Status = null;
+				$GOVE_Status = null;
 			}
 			elseif($Tar_ID == 3){
 				$PRD_Active = "1";
@@ -81,6 +83,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			elseif($Tar_ID == 4){
 				$PRD_Active = "1";
 				$GOVE_Active = "0";
+				$GOVE_Status = null;
 			}
 			
 			$data = array(

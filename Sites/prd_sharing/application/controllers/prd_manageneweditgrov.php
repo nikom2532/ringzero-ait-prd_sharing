@@ -43,8 +43,8 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('Dep_ID'),
 					$this->input->post('NT05_PolicyID'),
 					$this->input->post('Tar_ID'),
-					$this->input->post('grov_active'),
-					$this->input->post('prd_active'),
+					$this->input->post('grov_status'),
+					$this->input->post('prd_status'),
 					$this->input->post('SendIn_Detail'),
 					$this->input->post('sendin_status')
 				);

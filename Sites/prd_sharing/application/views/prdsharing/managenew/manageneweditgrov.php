@@ -112,14 +112,23 @@ foreach($news as $news_item):
 						$i=1;
 						$target_selected = 0;
 						//Check TargetGroup selected
-						if($news_item->PRD_Status == 1 && $news_item->GOVE_Status == 1){
-							$target_selected = 3;
+						if(
+							$news_item->PRD_Active == 1 && 
+							$news_item->GOVE_Active == 1
+						){
+								$target_selected = 3;
 						}
-						elseif($news_item->PRD_Status == 1 && $news_item->GOVE_Status == 0){
-							$target_selected = 4;
+						elseif(
+							$news_item->PRD_Active == 1 && 
+							($news_item->GOVE_Active == 0 || $news_item->GOVE_Active == null || $news_item->GOVE_Active == "")
+						){
+								$target_selected = 4;
 						}
-						elseif($news_item->PRD_Status == 0 && $news_item->GOVE_Status == 0){
-							$target_selected = 0;
+						elseif(
+							($news_item->PRD_Active == 0 || $news_item->PRD_Active == null || $news_item->PRD_Active == "") && 
+							($news_item->GOVE_Active == 0 || $news_item->GOVE_Active == null || $news_item->GOVE_Active == "")
+						){
+								$target_selected = 0;
 						}
 						
 						foreach ($TargetGroup as $TargetGroup_item) {
@@ -143,8 +152,8 @@ foreach($news as $news_item):
 		if($target_selected == 0){
 ?>
 			<style>
-				.grov_active_col.row,
-				.prd_active_col.row{
+				.grov_status_col.row,
+				.prd_status_col.row{
 					display:none;
 				}
 			</style>
@@ -153,8 +162,8 @@ foreach($news as $news_item):
 		elseif($target_selected == 3){
 ?>
 			<style>
-				.grov_active_col.row,
-				.prd_active_col.row{
+				.grov_status_col.row,
+				.prd_status_col.row{
 					display: BLOCK;
 				}
 			</style>
@@ -163,10 +172,10 @@ foreach($news as $news_item):
 		elseif($target_selected == 4){
 ?>
 			<style>
-				.prd_active_col.row{
+				.prd_status_col.row{
 					display: BLOCK;
 				}
-				.grov_active_col.row{
+				.grov_status_col.row{
 					display: none;
 				}
 			</style>
@@ -174,12 +183,12 @@ foreach($news as $news_item):
 		}
 ?>
 		
-		<div class="row grov_active_col" >
+		<div class="row grov_status_col" >
 			<div class="col-lg-6">
-				<label id="grov_active" >หน่วยงานภาครัฐ</label>
+				<label>หน่วยงานภาครัฐ</label>
 				<span class="select-menu">
 					<span>เลือกหน่วยงานภาครัฐ</span>
-					<select name="grov_active" id="grov_active">
+					<select name="grov_status" id="grov_status">
 						<option value="">เลือกหน่วยงานภาครัฐ</option>
 	<?php
 						/*
@@ -189,7 +198,7 @@ foreach($news as $news_item):
 						*/
 						foreach ($Ministry as $Ministry_item) {
 							?><option value="<?php echo $Ministry_item->Minis_ID;?>" <?php
-								if($Ministry_item->Minis_ID == $news_item->GOVE_Active){
+								if($Ministry_item->Minis_ID == $news_item->GOVE_Status){
 									?>selected='selected'<?php
 								}
 							?>><?php echo $Ministry_item->Minis_Name;?></option><?php
@@ -200,12 +209,12 @@ foreach($news as $news_item):
 			</div>
 		</div>
 		
-		<div class="row prd_active_col" >
+		<div class="row prd_status_col" >
 			<div class="col-lg-6">
-				<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
+				<label>หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
 				<span class="select-menu">
 					<span>เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</span>
-					<select name="prd_active" id="prd_active">
+					<select name="prd_status" id="prd_status">
 						<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
 	<?php
 						/*
@@ -215,7 +224,7 @@ foreach($news as $news_item):
 						*/
 						foreach ($SC07_Department as $Department_item) {
 							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php
-								if($Department_item->SC07_DepartmentId == $news_item->PRD_Active){
+								if($Department_item->SC07_DepartmentId == $news_item->PRD_Status){
 									?>selected='selected'<?php
 								}
 							?>><?php echo $Department_item->SC07_DepartmentName;?></option><?php
@@ -420,18 +429,18 @@ foreach($news as $news_item):
 			
 	$("select#Tar_ID").live("change",function() {
 		$( "select#Tar_ID option#target3:selected" ).each(function() {
-			$(".prd_active_col").css("display", "BLOCK");
-			$(".grov_active_col").css("display", "BLOCK");
+			$(".prd_status_col").css("display", "BLOCK");
+			$(".grov_status_col").css("display", "BLOCK");
 		});
 		
 		$( "select#Tar_ID option#target4:selected" ).each(function() {
-			$(".prd_active_col").css("display", "BLOCK");
-			$(".grov_active_col").css("display", "none");
+			$(".prd_status_col").css("display", "BLOCK");
+			$(".grov_status_col").css("display", "none");
 		});
 		
 		$( "select#Tar_ID option#target0:selected" ).each(function() {
-			$(".prd_active_col").css("display", "none");
-			$(".grov_active_col").css("display", "none");
+			$(".prd_status_col").css("display", "none");
+			$(".grov_status_col").css("display", "none");
 		});
 	});
 	
