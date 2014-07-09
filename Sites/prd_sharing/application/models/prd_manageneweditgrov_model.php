@@ -40,12 +40,14 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 				SendInformation.SendIn_ID,
 				SendInformation.SendIn_UpdateDate,
 				SendInformation.SendIn_CreateDate,
-				
 				SendInformation.SendIn_Plan,
 				SendInformation.SendIn_Issue,
 				SendInformation.SendIn_Detail,
 				SendInformation.SendIn_Status,
-				
+				SendInformation.PRD_Active,
+				SendInformation.PRD_Status,
+				SendInformation.GOVE_Active,
+				SendInformation.GOVE_Status
 			')->
 				// FileAttach.File_Status
 			// join('FileAttach', 'SendInformation.SendIn_ID = FileAttach.SendIn_ID', 'left')->

@@ -278,7 +278,7 @@
 						
 ?>
 					</p>
-					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php
+					<p class="col-1" style="width: 8%; margin-left: 2%; float: left; word-wrap: break-word;"><?php
 						// if($news_item->NT01_UpdDate == ""){
 							// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 						// }
@@ -339,7 +339,7 @@
 							){
 									
 									$News_Resource = $New_News_item->News_Resource;
-									if(mb_strlen($News_Resource)>=100){
+									if(mb_strlen($News_Resource)>=20){
 										$News_Resource = mb_substr($News_Resource, 0, 20, 'UTF-8')."...";
 									}
 									echo $News_Resource;
@@ -350,13 +350,13 @@
 							if($news_item->NT01_NewsSource != ""){
 								
 								$News_Resource = $news_item->NT01_NewsSource;
-								if(mb_strlen($News_Resource)>=100){
+								if(mb_strlen($News_Resource)>=20){
 									$News_Resource = mb_substr($News_Resource, 0, 20, 'UTF-8')."...";
 								}
 								echo $News_Resource;
 							}
 							else{
-								echo "-";
+								?><span style="margin-left: 50%; ">-</span><?php
 							}
 						}
 ?>
@@ -371,7 +371,7 @@
 							){
 									
 									$News_Reference = $New_News_item->News_Reference;
-									if(mb_strlen($News_Reference)>=100){
+									if(mb_strlen($News_Reference)>=20){
 										$News_Reference = mb_substr($News_Reference, 0, 20, 'UTF-8')."...";
 									}
 									echo $News_Reference;
@@ -382,24 +382,34 @@
 							if($news_item->NT01_NewsReferance != ""){
 								
 								$News_Reference = $news_item->NT01_NewsReferance;
-								if(mb_strlen($News_Reference)>=100){
+								if(mb_strlen($News_Reference)>=20){
 									$News_Reference = mb_substr($News_Reference, 0, 20, 'UTF-8')."...";
 								}
 								echo $News_Reference;
 							}
 							else{
-								echo "-";
+								?><span style="margin-left: 50%; ">-</span><?php
 							}
 						}
 ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; word-wrap: break-word;"><?php 
-						$name = $news_item->SC03_FName." ".$news_item->SC03_LName;
-						
-						if(mb_strlen($name)>=100){
-							$name = mb_substr($name, 0, 20, 'UTF-8')."...";
+						if(isset($news_item->SC03_FName)){
+							if($news_item->SC03_FName != ""){
+								$name = $news_item->SC03_FName." ".$news_item->SC03_LName;
+								
+								if(mb_strlen($name)>=20){
+									$name = mb_substr($name, 0, 20, 'UTF-8')."...";
+								}
+								echo $name;
+							}
+							else{
+								?><span style="margin-left: 50%; ">-</span><?php
+							}
 						}
-						echo $name;
+						else{
+							?><span style="margin-left: 50%; ">-</span><?php
+						}
 						
 						// if($news_item->NT01_UpdUserID == ""){
 							// echo $news_item->NT01_CreUserID;

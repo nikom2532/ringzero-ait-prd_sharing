@@ -105,13 +105,32 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label >กลุ่มเป้าหมาย</label>
 				<span class="select-menu">
-					<span>เลือกกรม</span>
+					<span>เลือกกลุ่มเป้าหมาย</span>
 					<select name="Tar_ID" id="Tar_ID">
 						<option value="" id="target0">เลือกกลุ่มเป้าหมาย</option>
 	<?php
 						$i=1;
+						$target_selected = 0;
+						//Check TargetGroup selected
+						if($news_item->PRD_Status == 1 && $news_item->GOVE_Status == 1){
+							$target_selected = 3;
+						}
+						elseif($news_item->PRD_Status == 1 && $news_item->GOVE_Status == 0){
+							$target_selected = 4;
+						}
+						elseif($news_item->PRD_Status == 0 && $news_item->GOVE_Status == 0){
+							$target_selected = 0;
+						}
+						
 						foreach ($TargetGroup as $TargetGroup_item) {
-							?><option id="target<?php echo $i; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>"><?php echo $TargetGroup_item->Tar_Name;?></option><?php
+							?><option id="target<?php echo $TargetGroup_item->Tar_ID; ?>" value="<?php echo $TargetGroup_item->Tar_ID;?>" <?php
+								if($TargetGroup_item->Tar_ID == null || $TargetGroup_item->Tar_ID == "" || $TargetGroup_item->Tar_ID == 0){
+									$TargetGroup_item->Tar_ID = 0;
+								}
+								if($TargetGroup_item->Tar_ID == $target_selected){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $TargetGroup_item->Tar_Name;?></option><?php
 							$i++;
 						}
 	?>
@@ -119,19 +138,47 @@ foreach($news as $news_item):
 				</span>
 			</div>
 		</div>
+<?php 
+		// For toggle กลุ่มเป้าหมาย
+		if($target_selected == 0){
+?>
+			<style>
+				.grov_active_col.row,
+				.prd_active_col.row{
+					display:none;
+				}
+			</style>
+<?php
+		}
+		elseif($target_selected == 3){
+?>
+			<style>
+				.grov_active_col.row,
+				.prd_active_col.row{
+					display: BLOCK;
+				}
+			</style>
+<?php
+		}
+		elseif($target_selected == 4){
+?>
+			<style>
+				.prd_active_col.row{
+					display: BLOCK;
+				}
+				.grov_active_col.row{
+					display: none;
+				}
+			</style>
+<?php
+		}
+?>
 		
-		<?php // For toggle กลุ่มเป้าหมาย  ?>
-		<style>
-			.grov_active_col.row,
-			.prd_active_col.row{
-				display:none;
-			}
-		</style>
 		<div class="row grov_active_col" >
 			<div class="col-lg-6">
 				<label id="grov_active" >หน่วยงานภาครัฐ</label>
 				<span class="select-menu">
-					<span>เลือกกรม</span>
+					<span>เลือกหน่วยงานภาครัฐ</span>
 					<select name="grov_active" id="grov_active">
 						<option value="">เลือกหน่วยงานภาครัฐ</option>
 	<?php
@@ -141,7 +188,11 @@ foreach($news as $news_item):
 						}
 						*/
 						foreach ($Ministry as $Ministry_item) {
-							?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+							?><option value="<?php echo $Ministry_item->Minis_ID;?>" <?php
+								if($Ministry_item->Minis_ID == $news_item->GOVE_Active){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
 	?>
 					</select>
@@ -153,7 +204,7 @@ foreach($news as $news_item):
 			<div class="col-lg-6">
 				<label id="prd_active" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
 				<span class="select-menu">
-					<span>เลือกกรม</span>
+					<span>เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</span>
 					<select name="prd_active" id="prd_active">
 						<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
 	<?php
@@ -163,7 +214,11 @@ foreach($news as $news_item):
 						}
 						*/
 						foreach ($SC07_Department as $Department_item) {
-							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
+							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php
+								if($Department_item->SC07_DepartmentId == $news_item->PRD_Active){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Department_item->SC07_DepartmentName;?></option><?php
 						}
 	?>
 					</select>
@@ -363,20 +418,20 @@ foreach($news as $news_item):
 	
 	// $("select#Tar_ID").text("asdf");
 			
-	$("select#Tar_ID").change(function() {
-		$( "select#Tar_ID option#target1:selected" ).each(function() {
-			$(".grov_active_col").css("display", "BLOCK");
+	$("select#Tar_ID").live("change",function() {
+		$( "select#Tar_ID option#target3:selected" ).each(function() {
 			$(".prd_active_col").css("display", "BLOCK");
+			$(".grov_active_col").css("display", "BLOCK");
 		});
 		
-		$( "select#Tar_ID option#target2:selected" ).each(function() {
-			$(".grov_active_col").css("display", "none");
+		$( "select#Tar_ID option#target4:selected" ).each(function() {
 			$(".prd_active_col").css("display", "BLOCK");
+			$(".grov_active_col").css("display", "none");
 		});
 		
 		$( "select#Tar_ID option#target0:selected" ).each(function() {
-			$(".grov_active_col").css("display", "none");
 			$(".prd_active_col").css("display", "none");
+			$(".grov_active_col").css("display", "none");
 		});
 	});
 	

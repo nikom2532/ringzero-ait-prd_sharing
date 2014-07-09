@@ -142,7 +142,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
 					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
 					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
 					
 				FROM NT01_News 
 				LEFT JOIN SC03_User 
@@ -169,6 +169,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		// echo $StrQuery;
+		// exit;
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		
@@ -271,6 +273,12 @@ class PRD_ManageNewPRD_model extends CI_Model {
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 		";
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
 		if($News_Title != ''){
 			$StrQuery .= "
 				AND 
@@ -350,17 +358,13 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT13_OtherFile.NT13_FileStatus = 'Y'
 			";
 		}
-		if($checkDelete_News != ""){
-			$StrQuery .= "
-					AND 
-						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
-			";
-		}
 		$StrQuery .= "
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		// echo $StrQuery;
+		// exit;
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
