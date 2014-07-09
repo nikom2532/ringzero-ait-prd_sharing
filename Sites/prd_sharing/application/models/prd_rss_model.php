@@ -677,9 +677,10 @@ class PRD_rss_model extends CI_Model {
 		// ";
 		$query = "
 			SELECT 
-				Detail_RSS.Detail_NewsID,
-				Detail_RSS.Main_RssID,
-				News.News_Date
+				MAX(Detail_RSS.Detail_NewsID) AS Detail_NewsID,
+				MAX(Detail_RSS.Main_RssID) AS Main_RssID,
+				MAX(News.News_Date) AS News_Date,
+				ROW_NUMBER() OVER (ORDER BY (News.News_Date) DESC) AS 'RowNumber'
 			FROM 
 				Detail_RSS
 			LEFT JOIN 
@@ -692,7 +693,7 @@ class PRD_rss_model extends CI_Model {
 				News.News_OldID = Detail_RSS.Detail_NewsID
 			WHERE 
 				Main_RSS.Main_RssID_Encode = '$page'
-			order by News.News_Date DESC
+			GROUP BY News.News_Date 
 		";
 		// echo $query;
 		// exit;
