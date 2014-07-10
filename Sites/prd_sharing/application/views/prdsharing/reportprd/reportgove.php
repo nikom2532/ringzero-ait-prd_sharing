@@ -203,7 +203,7 @@
 						if($news_item->SendIn_Status == "1"){
 							echo "เผยแพร่";
 						}
-						else if($news_item->SendIn_Status == "0" || $news_item->SendIn_Status = "" || $news_item->SendIn_Status == null){
+						else if($news_item->SendIn_Status == "0" || $news_item->SendIn_Status = "" || $news_item->SendIn_Status == null || $news_item->SendIn_Status == "-1"){
 							echo "ไม่ได้เผยแพร่";
 						}
 ?>
@@ -287,7 +287,7 @@
 		}
 		if($i == 0){
 ?>
-			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+			<div class="news-form" style="width: 1400px; padding: 15px 0; color: red; text-align: center;">ไม่มีข้อความ</div>
 <?php
 		}
 ?>

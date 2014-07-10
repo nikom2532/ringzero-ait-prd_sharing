@@ -327,11 +327,11 @@
 			//End Count News's Row 
 			
 			if($i == 0){
-	?>
-				<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
-	<?php
+?>
+				<div class="news-form" style="width: 1300px; padding: 15px 0; color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
 			}
-	?>
+?>
 			<!-- </div> -->
 		
 		</div>
