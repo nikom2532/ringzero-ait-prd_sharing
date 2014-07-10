@@ -361,6 +361,17 @@ class PRD_Report_GOVE_model extends CI_Model {
 					Dep_ID = '".$Department_ID."'
 			";
 		}
+		if($SendIn_Status != ""){
+			if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != "" || $Department_ID != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			
+			$StrQuery .= "
+					SendInformation.SendIn_Status = '".$SendIn_Status."'
+			";
+		}
 		$query = $this->db->
 			query($StrQuery)->result();
 			
