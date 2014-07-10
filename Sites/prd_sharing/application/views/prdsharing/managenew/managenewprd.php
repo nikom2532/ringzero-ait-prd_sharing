@@ -164,7 +164,7 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<!-- <p class="col-1" style="width: 4%;float: left; "></p> -->
+			<p class="col-1" style="width: 2%; padding-left: 1%; float: left; "></p>
 			<p class="col-2" style="width: 16%;float: left; ">
 				เลขที่ข่าว
 			</p>
@@ -174,7 +174,7 @@
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
 			</p>
-			<p class="col-1" style="width: 35%;float: left; ">
+			<p class="col-1" style="width: 32%;float: left; ">
 				หัวข้อข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
@@ -201,9 +201,9 @@
 				?><div class="event"><?php
 			}
 ?>
-					<!-- <p class="col-1" style="width: 4%;float: left; word-wrap: break-word;">
-						<?php echo $i+1; ?>
-					</p> -->
+					<p class="col-1" style="width: 2%; padding-left: 1%; float: left; word-wrap: break-word;">
+						<?php echo $news_item->RowNumber; ?>
+					</p>
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word; text-align: center; ">
 						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
@@ -249,7 +249,7 @@
 						}
 						// echo $New_News_delete;
 					?></p>
-					<p class="col-1" style="width: 35%;float: left; word-wrap: break-word;">
+					<p class="col-1" style="width: 32%;float: left; word-wrap: break-word;">
 <?php 
 						$i_item=0;
 						foreach ($New_News as $New_News_item) {
