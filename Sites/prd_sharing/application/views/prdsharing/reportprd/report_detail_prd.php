@@ -209,11 +209,19 @@
 								echo date("d/m/Y", strtotime($news_item->NT01_UpdDate));
 							}
 							?>  |  (<?php
-								if($news_item->NT01_ViewCount == 0 || $news_item->NT01_ViewCount == ""){
-									echo "0";
-								}
-								else{
-									echo $news_item->NT01_ViewCount; 
+								$count_News_View = 0;
+								foreach ($New_News as $New_News_item) {
+									if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+										if($count_News_View <= 0){
+											if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+												echo "0";
+											}
+											else{
+												echo $New_News_item->News_View;
+												$count_News_View++;
+											}
+										}
+									}
 								}
 							?> ผู้เข้าชม)
 						</div>

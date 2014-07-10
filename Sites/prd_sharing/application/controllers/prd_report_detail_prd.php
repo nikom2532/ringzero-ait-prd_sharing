@@ -32,7 +32,9 @@ class PRD_Report_detail_PRD extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($showStatus == "yes"){
-			
+				
+				$this->prd_report_detail_prd_model->set_News_increase_view($this->input->get('news_id'));
+				
 				$data["news"] = $this->prd_report_detail_prd_model->get_NT01_News($this->input->get('news_id'));
 				$data['New_News'] = $this->prd_report_detail_prd_model->get_New_News();
 				

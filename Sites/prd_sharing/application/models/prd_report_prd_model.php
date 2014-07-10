@@ -142,6 +142,8 @@ class PRD_Report_PRD_model extends CI_Model {
 					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
+				AND
+					NT01_News.NT01_Status = 'Y'
 				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -160,6 +162,8 @@ class PRD_Report_PRD_model extends CI_Model {
 				FROM NT01_News 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
+				AND
+					NT01_News.NT01_Status = 'Y'
 		";
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
@@ -234,6 +238,8 @@ class PRD_Report_PRD_model extends CI_Model {
 					NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT08_PubTypeID = '11'
+				AND
+					NT01_News.NT01_Status = 'Y'
 		";
 		if($News_Title != ''){
 			$StrQuery .= "
@@ -339,6 +345,8 @@ class PRD_Report_PRD_model extends CI_Model {
 			FROM NT01_News 
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
+			AND
+				NT01_News.NT01_Status = 'Y'
 		";
 		if(isset($News_Title) || $News_Title != ''){
 			$StrQuery .= "

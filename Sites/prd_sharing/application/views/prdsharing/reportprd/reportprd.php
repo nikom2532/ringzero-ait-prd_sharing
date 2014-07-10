@@ -183,8 +183,8 @@
 					?><div class="event" style="width: 1300px; "><?php
 				}
 	?>
-						<p class="col-1" style="width: 4%;float: left; ">
-							1
+						<p class="col-1" style="width: 2.8%;float: left; padding-left: 1.2%">
+							<?php echo $news_item->RowNumber; ?>
 						</p>
 						<p class="col-1" style="width: 11%;float: left; ">
 							<a href="<?php echo base_url().index_page(); ?>reportDetailPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
@@ -266,7 +266,20 @@
 ?>
 						</p>
 						<p class="col-1" style="width: 10%;float: left; ">
-							xxxxxxxxx
+<?php
+							foreach ($New_News as $New_News_item) {
+								if($New_News_item->News_OldID == $news_item->NT01_NewsID){
+									
+									if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+										echo "0";
+									}
+									else{
+										echo $New_News_item->News_View;
+									}
+								
+								}
+							}
+?>
 						</p>
 						<p class="col-2" style="width: 15%;float: left; ">
 							<img src="<?php echo base_url(); ?>images/icon/<?php
