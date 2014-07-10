@@ -71,30 +71,6 @@ class PRD_Report_GOVE_model extends CI_Model {
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
-					// MAX(SendInformation.SendIn_ID) AS SendIn_ID,
-					// MAX(SendInformation.SendIn_UpdateDate) AS SendIn_UpdateDate, 
-					// MAX(SendInformation.SendIn_CreateDate) AS SendIn_CreateDate,
-					// MAX(SendInformation.SendIn_Issue) AS SendIn_Issue,
-					// MAX(SendInformation.SendIn_Detail) AS SendIn_Detail,
-					// MAX(SendInformation.SendIn_view) AS SendIn_view,
-					// MAX(SendInformation.SendIn_Status) AS SendIn_Status,
-					// MAX(Member.Mem_Name) AS Mem_Name,
-					// MAX(Member.Mem_LasName) AS Mem_LasName,
-					// MAX(FileAttach.File_Status) AS File_Status, 
-					// ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
-					
-					// SendInformation.SendIn_ID,
-					// SendInformation.SendIn_UpdateDate,
-					// SendInformation.SendIn_CreateDate,
-					// SendInformation.SendIn_Issue,
-					// SendInformation.SendIn_Detail,
-					// SendInformation.SendIn_view,
-					// SendInformation.SendIn_Status,
-					// Member.Mem_Name,
-					// Member.Mem_LasName,
-					// FileAttach.File_Status, 
-					// ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
-					
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -149,7 +125,8 @@ class PRD_Report_GOVE_model extends CI_Model {
 		$startdate = '', 
 		$enddate = '',
 		$Ministry_ID = '',
-		$Department_ID = ''
+		$Department_ID = '',
+		$SendIn_Status = ''
 	)
 	{
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
@@ -178,10 +155,17 @@ class PRD_Report_GOVE_model extends CI_Model {
 				ON 
 					SendInformation.Mem_ID = Member.Mem_ID
 		";
-		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
-			$StrQuery .= "
-				WHERE
-			";
+		if(
+			$news_title != "" || 
+			$startdate != "" || 
+			$enddate != "" || 
+			$Ministry_ID != "" || 
+			$Department_ID != "" || 
+			$SendIn_Status != ""
+		){
+				$StrQuery .= "
+					WHERE
+				";
 		}
 		if($news_title != ""){
 			$StrQuery .= "
@@ -259,6 +243,17 @@ class PRD_Report_GOVE_model extends CI_Model {
 					Dep_ID = '".$Department_ID."'
 			";
 		}
+		if($SendIn_Status != ""){
+			if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != "" || $Department_ID != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			
+			$StrQuery .= "
+					SendInformation.SendIn_Status = '".$SendIn_Status."'
+			";
+		}
 		$StrQuery .= "
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -275,7 +270,8 @@ class PRD_Report_GOVE_model extends CI_Model {
 		$startdate = '', 
 		$enddate = '',
 		$Ministry_ID = '',
-		$Department_ID = ''
+		$Department_ID = '',
+		$SendIn_Status = ''
 	)
 	{
 		$StrQuery = "

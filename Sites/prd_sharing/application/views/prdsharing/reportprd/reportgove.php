@@ -4,7 +4,8 @@
 	}
 </style>
 <div id="search-form">
-	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
+	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page(); ?>reportGOVE" method="post">
+		<input type="hidden" name="reportGROV_is_submit" value="yes" />
 		<div class="row">
 			<div class="col-lg-12">
 				<p style="text-align: center;">
@@ -16,7 +17,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<label >ช่วงวันที่เผยแพร่</label>
-				<input type="text" class="form-control datepicker fromdate" name="start_date" id="start_date" readonly="true" value="<?php 
+				<input type="text" class="form-control datepicker fromdate" name="start_date" id="start_date" value="<?php 
 					if(isset($post_start_date)){
 						echo $post_start_date;
 					}
@@ -24,7 +25,7 @@
 			</div>
 			<div class="col-lg-6">
 				<label >ถึง</label>
-				<input type="text" class="form-control datepicker todate"name="end_date" id="end_date" readonly="true" value="<?php 
+				<input type="text" class="form-control datepicker todate"name="end_date" id="end_date" value="<?php 
 					if(isset($post_end_date)){
 						echo $post_end_date;
 					}
@@ -79,8 +80,28 @@
 				<label >สถานะ</label>
 				<span class="select-menu">
 				  <span>เลือกสถานะ</span>
-					<select name="TypeID" id="TypeID" class="form-control">
-						<option selected="selected" value="0">เลือกสถานะ</option>
+					<select name="SendIn_Status" id="SendIn_Status" class="form-control">
+						<option selected="selected" value="" <?php
+							if(isset($post_SendIn_Status)){
+								if($post_SendIn_Status == ""){
+									?>selected='selected'<?php
+								}
+							}
+						?>>เลือกสถานะ</option>
+						<option selected="selected" value="0" <?php
+							if(isset($post_SendIn_Status)){
+								if($post_SendIn_Status == "0"){
+									?>selected='selected'<?php
+								}
+							}
+						?>>ไม่ได้เผยแพร่</option>
+						<option selected="selected" value="1" <?php
+							if(isset($post_SendIn_Status)){
+								if($post_SendIn_Status == "1"){
+									?>selected='selected'<?php
+								}
+							}
+						?>>เผยแพร่</option>
 					</select>
 				</span> 
 			</div>
@@ -264,6 +285,11 @@
 <?php
 			$i++;
 		}
+		if($i == 0){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
+		}
 ?>
 	</div>
 	<div class="footer-table">
@@ -292,6 +318,26 @@
 	
 </div>
 <script>
+	$(function(){
+		$(".fromdate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+				onSelect: function(selected) {
+					$(".todate").datepicker("option","minDate", selected)
+			}
+		});
+		$(".todate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 1,
+			changeMonth: true,
+			changeYear: true,
+			onSelect: function(selected) {
+				$(".fromdate").datepicker("option","maxDate", selected)
+			}
+		});
+	});
     $(function(){
         // $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
@@ -299,6 +345,14 @@
             $(this).prev("span").text(selectmenu_txt);
         });
         
+		var selectmenu_txt = $("#Ministry_ID").find("option:selected").text();
+			$("#Ministry_ID").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+			$("#Dep_ID").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#SendIn_Status").find("option:selected").text();
+			$("#SendIn_Status").prev("span").text(selectmenu_txt);
     });
     
     function jump_page(val){

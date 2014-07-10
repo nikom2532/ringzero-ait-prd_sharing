@@ -300,12 +300,17 @@
 	    }
 	});
 	$(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
         });
         
+        var selectmenu_txt = $("#Ministry_ID").find("option:selected").text();
+			$("#Ministry_ID").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#Dep_ID").find("option:selected").text();
+			$("#Dep_ID").prev("span").text(selectmenu_txt);
     });
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
