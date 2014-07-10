@@ -182,7 +182,7 @@
 						if($news_item->SendIn_Status == "1"){
 							echo "เผยแพร่";
 						}
-						else if($news_item->SendIn_Status == "0"){
+						else if($news_item->SendIn_Status == "0" || $news_item->SendIn_Status = "" || $news_item->SendIn_Status == null){
 							echo "ไม่ได้เผยแพร่";
 						}
 ?>

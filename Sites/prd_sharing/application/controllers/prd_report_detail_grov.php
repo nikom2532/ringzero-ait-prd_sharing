@@ -34,11 +34,17 @@ class PRD_Report_detail_GROV extends CI_Controller {
 			if($showStatus == "yes"){
 			
 				$data['news'] = $this->prd_report_detail_grov_model->get_grov($this->input->get('sendinformation_id'));
-				
 				$data['get_grov_fileattach'] = $this->prd_report_detail_grov_model->get_grov_fileattach($this->input->get('sendinformation_id'));
 				
+				$this->prd_report_detail_grov_model->set_gove($data['news']);
+				
+				$CI_stringManagement =& get_instance();
+				$CI_stringManagement->load->library('string_management');
+				$data["CI_stringManagement"] = $CI_stringManagement;
+				
 				$this->load->view('prdsharing/templates/header', $data);
-				$this->load->view('prdsharing/reportprd/report_detail_grov', $data);
+				// $this->load->view('prdsharing/reportprd/report_detail_grov', $data);
+				$this->load->view('prdsharing/managenew/detail_grov', $data);
 				$this->load->view('prdsharing/templates/footer');
 				
 			}
