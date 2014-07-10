@@ -199,6 +199,7 @@
 					</p>
 					<p class="col-2" style="width: 13%;float: left; ">
 <?php
+						/*
 						$file_vdo_status = 0;
 						$file_voice_status = 0;
 						$file_other_status = 0;
@@ -219,42 +220,45 @@
 									$file_image_status = 1;
 								}
 							}
-							
 						}
+						*/
 ?>
-						
 						<img src="<?php echo base_url(); ?>images/icon/<?php 
-							if($file_vdo_status == '1'){
+							// if($file_vdo_status == '1'){
+							if($news_item->File_Type_video == 1){
 								?>vdo<?php
 							}else{
 								?>null<?php
 							}
-						?>.png" style="margin: -10px 10px 0;">
+						?>.png" width="17" style="margin: -10px 10px 0;">
 						
 						<img src="<?php echo base_url(); ?>images/icon/<?php 
-							if($file_voice_status == '1'){
+							// if($file_voice_status == '1'){
+							if($news_item->File_Type_voice == 1){
 								?>voice_512x512<?php
 							}else{
 								?>null<?php
 							}
-						?>.png" style="margin: -10px 10px 0;">
+						?>.png" width="17" style="margin: -10px 10px 0;">
 						
 						
 						<img src="<?php echo base_url(); ?>images/icon/<?php 
-							if($file_other_status == '1'){
+							// if($file_other_status == '1'){
+							if($news_item->File_Type_document == 1){
 								?>Document.jpg<?php
 							}else{
 								?>null.png<?php
 							}
-						?>" style="margin: -10px 10px 0;">
+						?>" width="17" style="margin: -10px 10px 0;">
 						
 						<img src="<?php echo base_url(); ?>images/icon/<?php
-							if($file_image_status == '1'){
+							// if($file_image_status == '1'){
+							if($news_item->File_Type_image == 1){
 								?>pic<?php
 							}else{
 								?>null<?php
 							}
-						?>.png" style="margin: -10px 10px 0;">
+						?>.png" width="17" style="margin: -10px 10px 0;">
 					</p>
 			</div>
 <?php

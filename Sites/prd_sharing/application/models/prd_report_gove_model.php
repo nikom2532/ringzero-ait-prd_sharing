@@ -45,6 +45,24 @@ class PRD_Report_GOVE_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_FileAttach()
+	{
+		$StrQuery = "
+			SELECT
+				FileAttach.File_Type,
+				FileAttach.SendIn_ID,
+				FileAttach.File_Status
+			FROM
+				FileAttach
+			WHERE 
+				FileAttach.File_Status = 1
+		";
+		
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
 	public function get_grov(
 		$page=1, 
 		$row_per_page=20
@@ -89,14 +107,13 @@ class PRD_Report_GOVE_model extends CI_Model {
 					SendInformation.SendIn_Status,
 					Member.Mem_Name,
 					Member.Mem_LasName,
-					FileAttach.File_Status, 
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM
 					SendInformation
-				LEFT JOIN
-					FileAttach
-				ON
-					SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				LEFT JOIN
 					Member
 				ON 
@@ -116,10 +133,6 @@ class PRD_Report_GOVE_model extends CI_Model {
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
-			LEFT JOIN
-				FileAttach
-			ON 
-				SendInformation.SendIn_ID = FileAttach.SendIn_ID
 		";
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -154,13 +167,12 @@ class PRD_Report_GOVE_model extends CI_Model {
 					SendInformation.SendIn_Status,
 					Member.Mem_Name,
 					Member.Mem_LasName,
-					FileAttach.File_Status, 
+					'0' AS File_Type_video,
+					'0' AS File_Type_voice,
+					'0' AS File_Type_document,
+					'0' AS File_Type_image,
 					ROW_NUMBER() OVER (ORDER BY SendInformation.SendIn_ID DESC) AS 'RowNumber'
 				FROM SendInformation 
-				LEFT JOIN
-					FileAttach
-				ON
-					SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				LEFT JOIN
 					Member
 				ON 
@@ -271,10 +283,6 @@ class PRD_Report_GOVE_model extends CI_Model {
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
-			LEFT JOIN
-				FileAttach
-			ON 
-				SendInformation.SendIn_ID = FileAttach.SendIn_ID
 		";
 		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
 			$StrQuery .= "
