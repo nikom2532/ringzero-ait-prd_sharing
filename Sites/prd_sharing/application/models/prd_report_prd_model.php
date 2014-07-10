@@ -110,6 +110,7 @@ class PRD_Report_PRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
@@ -195,6 +196,7 @@ class PRD_Report_PRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID,
+					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
 					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 

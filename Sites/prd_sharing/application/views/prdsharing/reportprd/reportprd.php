@@ -154,7 +154,7 @@
 			<p class="col-1" style="width: 10%;float: left; ">
 				วันที่ข่าว
 			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
+			<p class="col-2" style="width: 25%;float: left; ">
 				หัวข้อข่าว
 			</p>
 			<p class="col-1" style="width: 15%;float: left; ">
@@ -166,7 +166,7 @@
 			<p class="col-1" style="width: 10%;float: left; ">
 				จำนวนผู้เข้าชม
 			</p>
-			<p class="col-2" style="width: 15%;float: left; ">
+			<p class="col-2" style="width: 10%;float: left; ">
 				icon ไฟล์แนบ
 			</p>
 		</div>
@@ -196,7 +196,7 @@
 							// else{
 								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
 							// }
-							
+							/*
 							if($news_item->NT01_UpdDate == ""){
 								foreach ($New_News as $New_News_item) {
 									if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
@@ -235,10 +235,11 @@
 								}
 								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 							}
+							*/
+							echo $news_item->NT01_NewsDate;
 						?></p>
-						<p class="col-2" style="width: 20%;float: left; ">
-	<?php 
-							
+						<p class="col-2" style="width: 25%;float: left; ">
+<?php 
 							$i_item=0;
 							foreach ($New_News as $New_News_item) {
 								if(
@@ -253,19 +254,23 @@
 							if($i_item == 0){
 								echo mb_substr($news_item->NT01_NewsTitle, 0, 60, 'UTF-8'); 
 							}
-	?>
-						</p>
-						<p class="col-1" style="width: 15%;float: left; ">
-<?php
-							echo $news_item->SC03_FName." ".$news_item->SC03_LName;
 ?>
 						</p>
-						<p class="col-1" style="width: 15%;float: left; ">
+						<p class="col-1" style="width: 13%; padding-left: 2%; float: left; ">
+<?php
+							$ReportName = $news_item->SC03_FName." ".$news_item->SC03_LName;
+							if(mb_strlen($ReportName)>=30){
+								$ReportName = mb_substr($ReportName, 0, 30, 'UTF-8')."...";
+							}
+							echo $ReportName;
+?>
+						</p>
+						<p class="col-1" style="width: 13%; padding-left: 2%; float: left; ">
 <?php
 							echo $news_item->SC07_DepartmentName;
 ?>
 						</p>
-						<p class="col-1" style="width: 10%;float: left; ">
+						<p class="col-1" style="width: 6%; padding-left: 4%; float: left; ">
 <?php
 							foreach ($New_News as $New_News_item) {
 								if($New_News_item->News_OldID == $news_item->NT01_NewsID){
@@ -281,7 +286,7 @@
 							}
 ?>
 						</p>
-						<p class="col-2" style="width: 15%;float: left; ">
+						<p class="col-2" style="width: 10%;float: left; ">
 							<img src="<?php echo base_url(); ?>images/icon/<?php
 								if($news_item->NT10_FileStatus == "Y"){ //Video
 									?>vdo<?php
