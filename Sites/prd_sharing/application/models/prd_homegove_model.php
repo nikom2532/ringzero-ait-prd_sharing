@@ -90,7 +90,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove($page=1, $row_per_page=20)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -187,7 +187,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title($page=1, $row_per_page=20, $news_title = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -291,7 +291,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_start($page=1, $row_per_page=20, $news_title = '', $startdate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -427,7 +427,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_end($page=1, $row_per_page=20, $news_title = '', $enddate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -563,7 +563,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_title_start_end($page=1, $row_per_page=20, $news_title = '', $startdate = '', $enddate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -710,7 +710,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_start($page=1, $row_per_page=20, $startdate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -838,7 +838,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_end($page=1, $row_per_page=20, $enddate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -966,7 +966,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 	
 	public function get_gove_search_start_end($page=1, $row_per_page=20, $startdate = '', $enddate = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "

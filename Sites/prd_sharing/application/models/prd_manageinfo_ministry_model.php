@@ -93,7 +93,7 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	
 	public function get_Ministry($page=1, $row_per_page=20)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(
@@ -136,7 +136,7 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 	
 	public function get_Ministry_search($page=1, $row_per_page=20, $MinisName = '', $MinisStatus = '')
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(

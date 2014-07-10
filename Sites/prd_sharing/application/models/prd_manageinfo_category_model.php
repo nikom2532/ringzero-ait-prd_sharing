@@ -27,7 +27,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 	
 	public function get_NT02_NewsType($page=1, $row_per_page=20)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(
@@ -130,7 +130,7 @@ class PRD_ManageInfo_Category_model extends CI_Model {
 		}
 		$Category_Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(

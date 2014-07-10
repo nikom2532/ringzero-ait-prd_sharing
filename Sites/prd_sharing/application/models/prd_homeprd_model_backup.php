@@ -67,7 +67,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 	echo	$StrQuery = "
@@ -150,7 +150,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "
@@ -272,7 +272,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "
@@ -399,7 +399,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "
@@ -524,7 +524,7 @@ class PRD_HomePRD_model extends CI_Model {
 		}
 		$Cate_OldID = implode(",",$statusArray);
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "

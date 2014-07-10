@@ -93,7 +93,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$row_per_page=20
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
 		$StrQuery = "
@@ -182,7 +182,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$Department_ID = ''
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		/*

@@ -71,7 +71,7 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 		$row_per_page=20
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$strQuery_get_Member = "
@@ -135,7 +135,7 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 		$CM06_ProvinceID = ''
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$strQuery_get_Member = "

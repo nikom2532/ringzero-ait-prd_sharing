@@ -103,7 +103,7 @@ class PRD_Report_PRD_model extends CI_Model {
 	
 	public function get_NT01_News($page=1, $row_per_page=20)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "
@@ -184,7 +184,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		$filter_other = ''
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery = "

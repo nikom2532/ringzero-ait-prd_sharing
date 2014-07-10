@@ -74,7 +74,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		$row_per_page=20
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery_get_SC03_User = "
@@ -168,7 +168,7 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			$Member_Status = implode(",",$statusArray);
 		}
 		
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
 		$StrQuery_get_SC03_User = "

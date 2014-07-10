@@ -89,7 +89,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		
 		return $return;
 		*/
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(
@@ -136,7 +136,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		$dep_status = ''
 	)
 	{
-		$start = $page==1?0:$page*$row_per_page-($row_per_page);
+		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
 			WITH LIMIT AS(
