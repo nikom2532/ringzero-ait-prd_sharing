@@ -338,19 +338,40 @@ class PRD_Report_PRD_model extends CI_Model {
 		$startdate = '',
 		$enddate = '',
 		$NewsTypeID = '',
-		$NewsSubTypeID = ''
+		$NewsSubTypeID = '',
+		$ReporterID = '',
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
 	)
 	{
 		$StrQuery = "
 			SELECT
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
 			FROM NT01_News 
+			LEFT JOIN 
+				NT10_VDO 
+			ON 
+				NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN 
+				NT11_Picture 
+			ON 
+				NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN 
+				NT12_Voice 
+			ON 
+				NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN 
+				NT13_OtherFile 
+			ON 
+				NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 			AND
 				NT01_News.NT01_Status = 'Y'
 		";
-		if(isset($News_Title) || $News_Title != ''){
+		if($News_Title != ''){
 			$StrQuery .= "
 				AND 
 					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
@@ -375,8 +396,8 @@ class PRD_Report_PRD_model extends CI_Model {
 			";
 		}
 		elseif(
-			(isset($startdate) || $startdate != '') &&
-			(isset($enddate) || $enddate != '')
+			($startdate != '') &&
+			($enddate != '')
 		){
 			$StrQuery .= "
 				AND
@@ -387,21 +408,51 @@ class PRD_Report_PRD_model extends CI_Model {
 							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
-		if(isset($NewsTypeID) || $NewsTypeID != ''){
+		if($NewsTypeID != ''){
 			$StrQuery .= "
 				AND
 					NT01_News.NT02_TypeID = '".$NewsTypeID."'
 			";
 		}
-		if(isset($NewsSubTypeID) || $NewsSubTypeID != ''){
+		if($NewsSubTypeID != ''){
 			$StrQuery .= "
 				AND
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
 			";
 		}
-		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
-		";
+		if($ReporterID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_ReporterID = '".$ReporterID."'
+			";
+		}
+		if($filter_vdo == '1'){
+			$StrQuery .= "
+				AND
+					NT10_VDO.NT10_FileStatus = 'Y'
+			";
+		}
+		if($filter_sound == '1'){
+			$StrQuery .= "
+				AND
+					NT11_Picture.NT11_FileStatus = 'Y'
+			";
+		}
+		if($filter_image == '1'){
+			$StrQuery .= "
+				AND
+					NT12_Voice.NT12_FileStatus = 'Y'
+			";
+		}
+		if($filter_other == '1'){
+			$StrQuery .= "
+				AND
+					NT13_OtherFile.NT13_FileStatus = 'Y'
+			";
+		}
+		// $StrQuery .= "
+				// group by NT01_News.NT01_NewsID
+		// ";
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
