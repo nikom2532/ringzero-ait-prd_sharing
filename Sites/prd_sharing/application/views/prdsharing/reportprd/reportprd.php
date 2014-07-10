@@ -430,7 +430,7 @@
 		}); //end AJAX
 	}); //end change 
 	$(function(){
-        $(".select-menu > select > option:eq(0)").attr("selected","selected");
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
