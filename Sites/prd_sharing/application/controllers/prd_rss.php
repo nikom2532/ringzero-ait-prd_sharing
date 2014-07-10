@@ -176,8 +176,27 @@ class PRD_rss extends CI_Controller {
 		$this->load->database();
 		$this->load->model('prd_rss_model');
 		$this->load->model('prd_rss_old_model');
-		$data['query'] = $this->prd_rss_model->get_rss_newsid($this->uri->segment(3));
+		
+		$get_rss_newsid = $this->prd_rss_model->get_rss_newsid($this->uri->segment(3));
+		$NewsNews = $this->prd_rss_model->get_NewsNews();
+		
+		
+		//###########  DETAIL_RSS and NEWS Merge together  #############
+		foreach ($get_rss_newsid as $get_rss_newsid_item) {
+			foreach ($NewsNews as $NewsNews_item) {
+				if($get_rss_newsid_item->Detail_NewsID == $NewsNews_item->News_OldID){
+					$get_rss_newsid_item->News_Date = $NewsNews_item->News_Date;
+				}
+			}
+		}
+		//##############################################################
+		
+		// var_dump($get_rss_newsid);
+		// exit;
+		
+		$data['query'] = $get_rss_newsid;
 		$i = 0;
+		
 		foreach($data['query'] as $item)
 		{
 			$newsid = $item->Detail_NewsID;

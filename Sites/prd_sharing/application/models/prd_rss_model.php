@@ -675,6 +675,8 @@ class PRD_rss_model extends CI_Model {
 			// WHERE 
 				// Main_RSS.Main_RssID_Encode = '$page'
 		// ";
+		
+		/*
 		$query = "
 			SELECT 
 				MAX(Detail_RSS.Detail_NewsID) AS Detail_NewsID,
@@ -695,8 +697,57 @@ class PRD_rss_model extends CI_Model {
 				Main_RSS.Main_RssID_Encode = '$page'
 			GROUP BY News.News_Date 
 		";
+		*/
+		
+		//OLD -- Use News for query the date
+		/*
+		$query = "
+			SELECT 
+				(Detail_RSS.Detail_NewsID) AS Detail_NewsID,
+				(Detail_RSS.Main_RssID) AS Main_RssID,
+				
+				(News.News_Date) AS News_Date,
+				ROW_NUMBER() OVER (ORDER BY (News.News_Date) DESC) AS 'RowNumber'
+			FROM 
+				Detail_RSS
+			LEFT JOIN
+				News
+			ON 
+				News.News_OldID = Detail_RSS.Detail_NewsID
+			LEFT JOIN 
+				Main_RSS
+			ON 
+				Detail_RSS.Main_RssID = Main_RSS.Main_RssID
+			WHERE 
+				Main_RSS.Main_RssID_Encode = '$page'
+		";
+		*/
+		
+		//NEW -- Do not use News_Date to Query Date, but will take News + Detail_RSS table to merge together in the controller.
+		$query = "
+			SELECT 
+				(Detail_RSS.Detail_NewsID) AS Detail_NewsID,
+				(Detail_RSS.Main_RssID) AS Main_RssID,
+				'News.News_Date' AS News_Date
+			FROM 
+				Detail_RSS
+			LEFT JOIN 
+				Main_RSS
+			ON 
+				Detail_RSS.Main_RssID = Main_RSS.Main_RssID
+			WHERE 
+				Main_RSS.Main_RssID_Encode = '$page'
+		";
+		
 		// echo $query;
 		// exit;
 		return $this->db->query($query)->result();
+	}
+	public function get_NewsNews()
+	{
+		//For will merge with Detail_RSS Table
+		$query = $this->db->
+			get('News')->result();
+		return $query;
 	}
 }
