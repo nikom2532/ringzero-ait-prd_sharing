@@ -40,7 +40,7 @@
 <div class="content">
 	<div id="detail-form" style="margin-bottom: 30px; ">
 <?php
-	$url = base_url()."Uploads\\";
+	$url = base_url()."Uploads/";
 	
 	// var_dump($get_grov_fileattach);
 		foreach ($news as $news_item) {
