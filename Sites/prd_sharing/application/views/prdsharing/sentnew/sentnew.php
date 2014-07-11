@@ -13,7 +13,7 @@
 	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
 	}
 </style>
-<form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" enctype="multipart/form-data">
+<form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">
@@ -24,8 +24,8 @@
 			<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 			<div class="row">
 				<div class="col-lg-6">
-					<label >ข่าววันที่</label>
-					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" >
+					<label >ข่าววันที่ *</label>
+					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" required="required" >
 				</div>
 			</div>
 			<div class="row">
@@ -160,21 +160,21 @@
 			
 			<div class="row">
 				<div class="col-lg-11">
-					<label >แผนงานโครงการ/กิจกรรม</label>
-					<input type="text" class="form-control" name="SendIn_Plan" id="SendIn_Plan" placeholder="" >
+					<label >แผนงานโครงการ/กิจกรรม *</label>
+					<input type="text" class="form-control" name="SendIn_Plan" id="SendIn_Plan" placeholder="" required="required" >
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-11">
-					<label >ประเด็นประชาสัมพันธ์</label>
-					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" >
+					<label >ประเด็นประชาสัมพันธ์ *</label>
+					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" required="required" >
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-lg-11">
-					<label >เนื้อหา</label>
-					<textarea class="ckeditor" name="SendIn_Detail"></textarea>
+					<label >เนื้อหา *</label>
+					<textarea class="ckeditor" name="SendIn_Detail" required="required"></textarea>
 				</div>
 			</div>
 			
@@ -307,9 +307,6 @@
 		});
 	});
 	
-	// $("#form_sendnew #submit")
-	
-	
 	var number = 2;
 	var count = 1;
 	$("input.bt#addmorefile").click(function(){
@@ -373,13 +370,37 @@
 		selectmenu_txt = $("#prd_status").find("option:selected").text();
 			$("#prd_status").prev("span").text(selectmenu_txt);
         
-        
-        
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
             $(this).prev("span").text(selectmenu_txt);
         });
     });
+    
+	function validateForm() {
+		var create_date = document.forms["form_sendnew"]["create_date"].value;
+		if (create_date=null || create_date=="") {
+			alert("โปรดใส่ค่า ข่าววันที่");
+			return false;
+		}
+		
+		var SendIn_Plan = document.forms["form_sendnew"]["SendIn_Plan"].value;
+		if (SendIn_Plan=null || SendIn_Plan=="") {
+			alert("โปรดใส่ค่า แผนงานโครงการ/กิจกรรม");
+			return false;
+		}
+		
+		var SendIn_Issue = document.forms["form_sendnew"]["SendIn_Issue"].value;
+		if (SendIn_Issue=null || SendIn_Issue=="") {
+			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
+			return false;
+		}
+		
+		var SendIn_Detail = document.forms["form_sendnew"]["SendIn_Detail"].value;
+		if (SendIn_Detail=null || SendIn_Detail=="") {
+			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
+			return false;
+		}
+	}
 	
 	/*
 	$(document).ready(function()
