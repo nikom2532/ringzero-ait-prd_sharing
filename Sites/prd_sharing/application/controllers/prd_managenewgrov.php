@@ -62,6 +62,13 @@ class PRD_ManageNewGROV extends CI_Controller {
 				
 				if($this->input->post("manageNewGROV_is_submit") == "yes"){
 					
+					$filter_AttachFile = $this->prd_managenewgrov_model->filter_AttachFile(
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('filter_other')
+					);
+					
 					$news = $this->prd_managenewgrov_model->get_grov_search(
 						$page,
 						$row_per_page,
@@ -69,14 +76,16 @@ class PRD_ManageNewGROV extends CI_Controller {
 						$this->input->post("start_date"), 
 						$this->input->post("end_date"),
 						$this->input->post("Ministry_ID"),
-						$this->input->post("Dep_ID")
+						$this->input->post("Dep_ID"),
+						$filter_AttachFile
 					);
 					$count_row = $this->prd_managenewgrov_model->get_grov_search_count(
 						$this->input->post("sendin_issue"), 
 						$this->input->post("start_date"), 
 						$this->input->post("end_date"),
 						$this->input->post("Ministry_ID"),
-						$this->input->post("Dep_ID")
+						$this->input->post("Dep_ID"),
+						$filter_AttachFile
 					);
 					
 					$data['post_sendin_issue'] = $this->input->post('sendin_issue');
@@ -84,6 +93,10 @@ class PRD_ManageNewGROV extends CI_Controller {
 					$data['post_end_date'] = $this->input->post('end_date');
 					$data['post_Ministry_ID'] = $this->input->post('Ministry_ID');
 					$data['post_Dep_ID'] = $this->input->post('Dep_ID');
+					$data['post_filter_vdo'] = $this->input->post('filter_vdo');
+					$data['post_filter_sound'] = $this->input->post('filter_sound');
+					$data['post_filter_image'] = $this->input->post('filter_image');
+					$data['post_filter_other'] = $this->input->post('filter_other');
 					
 				}
 				else{
@@ -99,6 +112,10 @@ class PRD_ManageNewGROV extends CI_Controller {
 					$data['post_end_date'] = "";
 					$data['post_Ministry_ID'] = "";
 					$data['post_Dep_ID'] = "";
+					$data['post_filter_vdo'] = "";
+					$data['post_filter_sound'] = "";
+					$data['post_filter_image'] = "";
+					$data['post_filter_other'] = "";
 				}
 				
 				$CI_stringManagement =& get_instance();

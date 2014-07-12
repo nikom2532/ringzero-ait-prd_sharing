@@ -88,6 +88,64 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $query;
 	}
 	
+	public function filter_AttachFile(
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
+	)
+	{
+		// $CI_stringManagement =& get_instance();
+		// $CI_stringManagement->load->library('string_management');
+		
+		// $CI_stringManagement->string_management->startsWith($file->File_Type, "video/")){
+		
+		$StrQuery = "
+			SELECT DISTINCT
+				SendInformation.SendIn_ID
+			FROM
+				SendInformation
+			LEFT JOIN
+				FileAttach
+			ON
+				SendInformation.SendIn_ID = FileAttach.SendIn_ID
+			WHERE 
+				FileAttach.File_Status = 1
+		";
+		if($filter_vdo == 1){
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type LIKE 'video/%'
+			";
+		}
+		if($filter_sound == 1){
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type LIKE 'audio/%'
+			";
+		}
+		if($filter_image == 1){
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type LIKE 'image/%'
+			";
+		}
+		if($filter_other == 1){
+			$StrQuery .= "
+				AND (
+						FileAttach.File_Type NOT LIKE 'video/%'
+					AND
+						FileAttach.File_Type NOT LIKE 'audio/%'
+					AND
+						FileAttach.File_Type NOT LIKE 'image/%'
+				)
+			";
+		}
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
 	public function get_grov(
 		$page=1, 
 		$row_per_page=20
@@ -179,9 +237,18 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$startdate = '', 
 		$enddate = '',
 		$Ministry_ID = '',
-		$Department_ID = ''
+		$Department_ID = '',
+		$filter_AttachFile = ''
 	)
 	{
+		if($filter_AttachFile != ""){
+			$statusArray = array();
+			foreach($filter_AttachFile as $val){
+				$statusArray[] = "'".$val->SendIn_ID."'";
+			}
+			$filter_AttachFile = implode(",",$statusArray);
+		}
+		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
@@ -216,25 +283,31 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					'0' AS File_Type_document,
 					'0' AS File_Type_image,
 					ROW_NUMBER() OVER (ORDER BY (SendInformation.SendIn_ID) DESC) AS 'RowNumber'
-				FROM SendInformation 
-		";
-		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
-			$StrQuery .= "
+				FROM 
+					SendInformation 
 				WHERE
-			";
-		}
+					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
+					
+		";
+		// if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
+			// $StrQuery .= "
+				// WHERE
+			// ";
+		// }
 		if($news_title != ""){
 			$StrQuery .= "
-						SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 			";
 		}
 		if($startdate != "" && $enddate == "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($news_title != ""){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND
 					Convert(datetime, '".$startdate."') <
 						CASE WHEN SendIn_UpdateDate IS NULL  
 							THEN 
@@ -245,12 +318,13 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate == "" && $enddate != "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($news_title != ""){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND
 					Convert(datetime, '".$enddate."') >
 						CASE WHEN SendIn_UpdateDate IS NULL  
 							THEN 
@@ -261,41 +335,45 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate != "" && $enddate != "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($news_title != ""){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
-				CASE WHEN SendIn_UpdateDate IS NOT NULL  
-						THEN 
-							SendIn_UpdateDate 
-						ELSE
-							SendIn_CreateDate
+				AND
+					CASE WHEN 
+						SendIn_UpdateDate IS NOT NULL  
+					THEN 
+						SendIn_UpdateDate 
+					ELSE
+						SendIn_CreateDate
 					END
-								BETWEEN 
-									Convert(datetime, '".$startdate."') 
-									AND
-									Convert(datetime, '".$enddate."')
+						BETWEEN 
+							Convert(datetime, '".$startdate."') 
+							AND
+							Convert(datetime, '".$enddate."')
 			";
 		}
 		if($Ministry_ID != ""){
-			if($news_title != "" || $startdate != "" || $enddate != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($news_title != "" || $startdate != "" || $enddate != ""){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND
 					Ministry_ID = '".$Ministry_ID."'
 			";
 		}
 		if($Department_ID != ""){
-			if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != ""){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND
 					Dep_ID = '".$Department_ID."'
 			";
 		}
@@ -315,9 +393,18 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$startdate = '', 
 		$enddate = '',
 		$Ministry_ID = '',
-		$Department_ID = ''
+		$Department_ID = '',
+		$filter_AttachFile = ''
 	)
 	{
+		if($filter_AttachFile != ""){
+			$statusArray = array();
+			foreach($filter_AttachFile as $val){
+				$statusArray[] = "'".$val->SendIn_ID."'";
+			}
+			$filter_AttachFile = implode(",",$statusArray);
+		}
+		
 		/*
 		$StrQuery = "
 			SELECT
@@ -335,24 +422,17 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
+			WHERE
+				SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 		";
-		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
-			$StrQuery .= "
-				WHERE
-			";
-		}
 		if($news_title != ""){
 			$StrQuery .= "
-						SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 			";
 		}
 		if($startdate != "" && $enddate == "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
 			$StrQuery .= "
+				AND
 					Convert(datetime, '".$startdate."') <
 						CASE WHEN SendIn_UpdateDate IS NULL  
 							THEN 
@@ -363,12 +443,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate == "" && $enddate != "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
 			$StrQuery .= "
+				AND
 					Convert(datetime, '".$enddate."') >
 						CASE WHEN SendIn_UpdateDate IS NULL  
 							THEN 
@@ -379,12 +455,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate != "" && $enddate != "" ){
-			if($news_title != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
 			$StrQuery .= "
+				AND
 				CASE WHEN SendIn_UpdateDate IS NOT NULL  
 						THEN 
 							SendIn_UpdateDate 
@@ -398,22 +470,14 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		if($Ministry_ID != ""){
-			if($news_title != "" || $startdate != "" || $enddate != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
 			$StrQuery .= "
+				AND
 					Ministry_ID = '".$Ministry_ID."'
 			";
 		}
 		if($Department_ID != ""){
-			if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != ""){
-				$StrQuery .= "
-					AND
-				";
-			}
 			$StrQuery .= "
+				AND
 					Dep_ID = '".$Department_ID."'
 			";
 		}
@@ -424,8 +488,4 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			return $val->NUMROW;
 		}
 	}
-	
-	//##########################
-	
-	
 }

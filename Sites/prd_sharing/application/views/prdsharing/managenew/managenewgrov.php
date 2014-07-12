@@ -1,4 +1,4 @@
-<div id="search-form">
+	<div id="search-form">
 	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page(); ?>manageNewGROV" method="post">
 		<input type="hidden" name="manageNewGROV_is_submit" value="yes" />
 		<div class="row">
@@ -74,20 +74,50 @@
 		</div>
 	
 		<div class="row">
-			<div class="col-lg-6">
+			<!-- <div class="col-lg-6"> -->
 				<!--<label >ผู้สื่อข่าว</label>
 				<input type="text" class="form-control" id="InputKeyword" placeholder="" >-->
-			</div>
-			<div style="float: right;margin-right: 5%;width: 45%;">
-				<label style=" margin-left: 11%;">ไฟล์ประกอบข่าว</label>
-				<input type="checkbox" name="vdo" value="0">
-				วิดีโอ
-				<input type="checkbox" name="sound" value="1">
-				เสียง
-				<input type="checkbox" name="image" value="2">
-				ภาพ
-				<input type="checkbox" name="other" value="3">
-				อื่นๆ
+			<!-- </div> -->
+			<div style="float:left; width: 50%; margin-left: 50%; ">
+				<div style="float: left;margin-right: 5%;margin-left:30px;-moz-binding; width: 100%">
+					<label style="margin-left: 5%; margin-right: 5%;">ไฟล์ประกอบข่าว</label>
+					<input type="checkbox" name="filter_vdo" id="filter_vdo" value="1" <?php 
+						if(isset($post_filter_vdo)){
+							if($post_filter_vdo == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
+					<label for="filter_vdo" >วิดีโอ</label>
+					
+					<input type="checkbox" name="filter_sound" id="filter_sound" value="1" <?php 
+						if(isset($post_filter_sound)){
+							if($post_filter_sound == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
+					<label for="filter_sound" >เสียง</label>
+					
+					<input type="checkbox" name="filter_image" id="filter_image" value="1" <?php 
+						if(isset($post_filter_image)){
+							if($post_filter_image == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
+					<label for="filter_image" >ภาพ</label>
+					
+					<input type="checkbox" name="filter_other" id="filter_other" value="1" <?php 
+						if(isset($post_filter_other)){
+							if($post_filter_other == "1"){
+								?>checked='checked'<?php
+							}
+						} 
+					?> />
+					<label for="filter_other" >อื่นๆ</label>
+					
+				</div>
 			</div>
 		</div>
 	
