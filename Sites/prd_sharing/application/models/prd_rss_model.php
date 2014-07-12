@@ -407,6 +407,26 @@ class PRD_rss_model extends CI_Model {
 				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
 			FROM 
 				NT01_News 
+			LEFT JOIN 
+				SC03_User 
+			ON 
+				SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+			LEFT JOIN 
+				NT10_VDO 
+			ON 
+				NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN 
+				NT11_Picture 
+			ON 
+				NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN 
+				NT12_Voice 
+			ON 
+				NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN 
+				NT13_OtherFile 
+			ON 
+				NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 			WHERE 
 				NT01_News.NT08_PubTypeID = '11'
 		";
