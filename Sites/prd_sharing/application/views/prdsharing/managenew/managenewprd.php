@@ -61,7 +61,7 @@
 						<option value="">เลือกหมวดหมู่ข่าวย่อย</option><?php
 						foreach ($NT03_NewsSubType as $newType_item) {
 							?><option value="<?php echo $newType_item->NT03_SubTypeID; ?>" <?php
-								if($post_News_subtype_id != ""){
+								if($newType_item->NT03_SubTypeID == $post_News_subtype_id){
 									?>selected='selected'<?php
 								}
 							?>><?php echo $newType_item->NT03_SubTypeName; ?></option><?php
