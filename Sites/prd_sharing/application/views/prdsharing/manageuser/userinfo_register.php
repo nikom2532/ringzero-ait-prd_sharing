@@ -56,37 +56,37 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label class="label">ชื่อ (ไทย)</label>
+				<label class="label">ชื่อ (ไทย) *</label>
 				<input type="text" class="form-control" name="fname" id="fname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label class="label">นามสกุล (ไทย)</label>
+				<label class="label">นามสกุล (ไทย) *</label>
 				<input type="text" class="form-control" name="lname" id="lname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label >ชื่อ (อังกฤษ)</label>
+				<label >ชื่อ (อังกฤษ) *</label>
 				<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label >นามสกุล (อังกฤษ)</label>
+				<label >นามสกุล (อังกฤษ) *</label>
 				<input type="text" class="form-control" name="englname" id="englname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label >Username</label>
+				<label >Username *</label>
 				<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label id="mem_password1">Password</label>
+				<label id="mem_password1">Password *</label>
 				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label id="mem_password2">Confirm Password</label>
+				<label id="mem_password2">Confirm Password*</label>
 				<!-- <input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" /> -->
 				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required="required" /> 
 				<!-- onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" -->
@@ -95,7 +95,7 @@
 			
 		<div class="row">
 			<div class="col-lg-6">
-				<label >รหัสบัตรประชาชน</label>
+				<label >รหัสบัตรประชาชน *</label>
 				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" onkeyup="autoTab_IdentificationCitizen(this); " maxlength="17" />
 			</div>
 		</div>
@@ -131,44 +131,6 @@
 				</span>
 			</div>
 		</div>
-		
-		<script>
-			$('select#mem_ministry').change(function(){
-				// debugger;
-			    var type_id = $('select#mem_ministry').val();
-			    if (type_id != ""){
-			        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
-			    	// debugger;
-			    	// alert(post_url);
-			        $.ajax({
-			            type: "POST",
-			             url: post_url,
-						 dataType :'json',
-			             success: function(subtype)
-			              {
-			              	// var a = JSON.parse(subtype);
-			                $('#mem_department').empty();
-			                
-			                var text = "<option value=\"\">เลือกกรม</option>";
-			                $('#mem_department').append(text);
-			                
-							$.each(subtype,function(index,val)
-							{
-								text = ""+
-								"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
-								$('#mem_department').append(text);
-							});
-							
-							var selectmenu_txt = $("#mem_department").find("option:selected").text();
-							$("#mem_department").prev("span").text(selectmenu_txt);
-							
-						} //end success
-					}); //end AJAX
-			    } else {
-			        $('#SubTypeID').empty();
-			    }//end if
-			}); //end change
-		</script>
 		
 		<div class="row">
 			<div class="col-lg-6">
@@ -228,11 +190,11 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
-					<label class="label Mem_Email">Email</label>
+					<label class="label Mem_Email">Email *</label>
 					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label Mem_Postcode">รหัสไปรษณีย์</label>
+					<label class="label Mem_Postcode">รหัสไปรษณีย์ *</label>
 					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" maxlength="5" />
 				</div>
 				<div class="row">
@@ -240,11 +202,11 @@
 					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label">เบอร์ที่ทำงาน</label>
+					<label class="label">เบอร์ที่ทำงาน *</label>
 					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label">เบอร์มือถือ</label>
+					<label class="label">เบอร์มือถือ *</label>
 					<input type="text" class="form-control" name="mem_mobile" id="Mem_Mobile" required="required" placeholder="" />
 				</div>
 			</div>
@@ -406,6 +368,104 @@
 		}
 		
 		function validateForm() {
+			
+			var sex = document.forms["form_userinfo"]["sex"].value;
+			if (sex=null || sex=="") {
+				alert("โปรดระบุ เพศ");
+				return false;
+			}
+			
+			var mem_title = document.forms["form_userinfo"]["mem_title"].value;
+			if (mem_title=null || mem_title=="") {
+				alert("โปรดระบุ คำนำหน้า");
+				return false;
+			}
+			
+			var fname = document.forms["form_userinfo"]["fname"].value;
+			if (fname=null || fname=="") {
+				alert("โปรดระบุ ชื่อ (ไทย)");
+				return false;
+			}
+			
+			var lname = document.forms["form_userinfo"]["lname"].value;
+			if (lname=null || lname=="") {
+				alert("โปรดระบุ นามสกุล (ไทย)");
+				return false;
+			}
+			
+			var engfname = document.forms["form_userinfo"]["engfname"].value;
+			if (engfname=null || engfname=="") {
+				alert("โปรดระบุ ชื่อ (อังกฤษ)");
+				return false;
+			}
+			
+			var englname = document.forms["form_userinfo"]["englname"].value;
+			if (englname=null || englname=="") {
+				alert("โปรดระบุ นามสกุล (อังกฤษ)");
+				return false;
+			}
+			
+			var mem_username = document.forms["form_userinfo"]["mem_username"].value;
+			if (mem_username=null || mem_username=="") {
+				alert("โปรดระบุ Username");
+				return false;
+			}
+			
+			var mem_password1 = document.forms["form_userinfo"]["mem_password1"].value;
+			if (mem_password1=null || mem_password1=="") {
+				alert("โปรดระบุ Password");
+				return false;
+			}
+			
+			var mem_password2 = document.forms["form_userinfo"]["mem_password2"].value;
+			if (mem_password2=null || mem_password2=="") {
+				alert("โปรดระบุ Password 2");
+				return false;
+			}
+			
+			var Mem_CardID = document.forms["form_userinfo"]["Mem_CardID"].value;
+			if (Mem_CardID=null || Mem_CardID=="") {
+				alert("โปรดระบุ รหัสบัตรประชาชน");
+				return false;
+			}
+			
+			var mem_address = document.forms["form_userinfo"]["mem_address"].value;
+			if (mem_address=null || mem_address=="") {
+				alert("โปรดระบุ ที่อยู่");
+				return false;
+			}
+			
+			var mem_email = document.forms["form_userinfo"]["mem_email"].value;
+			if (mem_email=null || mem_email=="") {
+				alert("โปรดระบุ Email");
+				return false;
+			}
+			
+			var mem_postcode = document.forms["form_userinfo"]["mem_postcode"].value;
+			if (mem_postcode=null || mem_postcode=="") {
+				alert("โปรดระบุ รหัสไปรษณีย์");
+				return false;
+			}
+			
+			var mem_nickname = document.forms["form_userinfo"]["mem_nickname"].value;
+			if (mem_nickname=null || mem_nickname=="") {
+				alert("โปรดระบุ ชื่อผู้ติดต่อ");
+				return false;
+			}
+			
+			var mem_tel = document.forms["form_userinfo"]["mem_tel"].value;
+			if (mem_tel=null || mem_tel=="") {
+				alert("โปรดระบุ เบอร์ที่ทำงาน");
+				return false;
+			}
+			
+			var mem_mobile = document.forms["form_userinfo"]["mem_mobile"].value;
+			if (mem_mobile=null || mem_mobile=="") {
+				alert("โปรดระบุ เบอร์มือถือ ");
+				return false;
+			}
+			
+			
 			var tname_other = document.getElementById("tname_other");
 			var tname_other_text = document.getElementById("tname_other_text");
 			if(tname_other.checked == true){
@@ -442,6 +502,42 @@
 		        return false;
 		    }
 		}
+		
+		$('select#mem_ministry').change(function(){
+			// debugger;
+		    var type_id = $('select#mem_ministry').val();
+		    if (type_id != ""){
+		        var post_url = "<?php echo base_url().index_page(); ?>PRD_UserInfo_Register/get_Department/" + type_id;
+		    	// debugger;
+		    	// alert(post_url);
+		        $.ajax({
+		            type: "POST",
+		             url: post_url,
+					 dataType :'json',
+		             success: function(subtype)
+		              {
+		              	// var a = JSON.parse(subtype);
+		                $('#mem_department').empty();
+		                
+		                var text = "<option value=\"\">เลือกกรม</option>";
+		                $('#mem_department').append(text);
+		                
+						$.each(subtype,function(index,val)
+						{
+							text = ""+
+							"<option value=\""+val.Dep_ID+"\">"+val.Dep_Name+"</option>";
+							$('#mem_department').append(text);
+						});
+						
+						var selectmenu_txt = $("#mem_department").find("option:selected").text();
+						$("#mem_department").prev("span").text(selectmenu_txt);
+						
+					} //end success
+				}); //end AJAX
+		    } else {
+		        $('#SubTypeID').empty();
+		    }//end if
+		}); //end change
 		
 		//###################  อำเภอ  ##########################
 		function push_mem_province(id){
