@@ -56,37 +56,37 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label class="label">ชื่อ (ไทย) *</label>
+				<label class="label">ชื่อ (ไทย) <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="fname" id="fname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label class="label">นามสกุล (ไทย) *</label>
+				<label class="label">นามสกุล (ไทย) <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="lname" id="lname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label >ชื่อ (อังกฤษ) *</label>
+				<label >ชื่อ (อังกฤษ) <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="engfname" id="engfname" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label >นามสกุล (อังกฤษ) *</label>
+				<label >นามสกุล (อังกฤษ) <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="englname" id="englname" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label >Username *</label>
+				<label >Username <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="mem_username" id="mem_username" placeholder="" required="required" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<label id="mem_password1">Password *</label>
+				<label id="mem_password1">Password <span style="color:red; ">*</span></label>
 				<input type="password" class="form-control" name="mem_password1" id="mem_password1" placeholder="" required="required" />
 			</div>
 			<div class="col-lg-6">
-				<label id="mem_password2">Confirm Password*</label>
+				<label id="mem_password2">Confirm Password<span style="color:red; ">*</span></label>
 				<!-- <input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required  onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" /> -->
 				<input type="password" class="form-control" name="mem_password2" id="mem_password2" placeholder="" required="required" /> 
 				<!-- onkeyup="return check_pass(this.value, document.getElementById('mem_password1').value)" -->
@@ -95,7 +95,7 @@
 			
 		<div class="row">
 			<div class="col-lg-6">
-				<label >รหัสบัตรประชาชน *</label>
+				<label >รหัสบัตรประชาชน <span style="color:red; ">*</span></label>
 				<input type="text" class="form-control" name="mem_card_id" id="Mem_CardID" placeholder="" required="required" onkeyup="autoTab_IdentificationCitizen(this); " maxlength="17" />
 			</div>
 		</div>
@@ -190,11 +190,11 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
-					<label class="label Mem_Email">Email *</label>
+					<label class="label Mem_Email">Email <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="mem_email" id="Mem_Email" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label Mem_Postcode">รหัสไปรษณีย์ *</label>
+					<label class="label Mem_Postcode">รหัสไปรษณีย์ <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" maxlength="5" />
 				</div>
 				<div class="row">
@@ -202,11 +202,11 @@
 					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label">เบอร์ที่ทำงาน *</label>
+					<label class="label">เบอร์ที่ทำงาน <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="mem_tel" id="Mem_Tel" required="required" placeholder="" />
 				</div>
 				<div class="row">
-					<label class="label">เบอร์มือถือ *</label>
+					<label class="label">เบอร์มือถือ <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="mem_mobile" id="Mem_Mobile" required="required" placeholder="" />
 				</div>
 			</div>
