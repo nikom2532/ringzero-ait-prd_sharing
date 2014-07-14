@@ -24,7 +24,7 @@
 			<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
 			<div class="row">
 				<div class="col-lg-6">
-					<label >ข่าววันที่ *</label>
+					<label >ข่าววันที่ <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" required="required" >
 				</div>
 			</div>
@@ -160,20 +160,20 @@
 			
 			<div class="row">
 				<div class="col-lg-11">
-					<label >แผนงานโครงการ/กิจกรรม *</label>
+					<label >แผนงานโครงการ/กิจกรรม <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="SendIn_Plan" id="SendIn_Plan" placeholder="" required="required" >
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-11">
-					<label >ประเด็นประชาสัมพันธ์ *</label>
+					<label >ประเด็นประชาสัมพันธ์ <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" required="required" >
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-lg-11">
-					<label >เนื้อหา *</label>
+					<label >เนื้อหา <span style="color:red; ">*</span></label>
 					<textarea class="ckeditor" name="SendIn_Detail" required="required"></textarea>
 				</div>
 			</div>
