@@ -127,6 +127,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 			// exit;
 			
 			$data = array(
+				'File_Label' => $file_name_item['file_label'],
 				'File_Name' => $file_name_item['file_name'], 
 				'File_Path' => $file_name_item['full_path'],
 				'File_Extension' => $file_name_item['file_extension'], 

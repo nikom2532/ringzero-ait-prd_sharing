@@ -53,7 +53,7 @@
 ?>
 			</div>
 			<div class="row">
-				<div class="col-lg-6" >
+				<div class="col-lg-6 leftContainer" >
 					<div class="vdo" >
 						<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
 <?php
@@ -252,8 +252,17 @@
 ?>
 					</div>
 				</div>
-					
-					
+<?php
+				if($LeftContainerCount == 0){
+					?>
+					<style>
+						.row .col-lg-6.leftContainer{
+							display: none;
+						}
+					</style>
+					<?php
+				}
+?>
 				<div class="col-lg-<?php 
 					if($LeftContainerCount == 0){
 						?>12<?php
@@ -263,7 +272,7 @@
 					}
 				?>" >
 					<div id="detail">
-						<h1>นโยบายรัฐบาล : <?php 
+						<h1 style="text-align: left; margin-bottom: 10px; text-height: 15px;">นโยบายรัฐบาล : <?php 
 							if(isset($news_item->Policy_ID)){
 								if($news_item->Policy_ID != "" && $news_item->Policy_ID != "0" && $news_item->Policy_ID == null){
 									echo $news_item->Policy_ID; 

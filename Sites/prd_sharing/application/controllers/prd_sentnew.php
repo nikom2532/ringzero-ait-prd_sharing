@@ -68,8 +68,8 @@ class PRD_sentNew extends CI_Controller {
 	{
 		// $this->load->view('prdsharing/templates/header');
 		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
-		// var_dump($_FILES);
-		// exit;
+		
+		header('Content-Type: text/html; charset=utf-8');
 		
 		if ($this->input->post('sentnew_is_add')) {
 			
@@ -106,9 +106,6 @@ class PRD_sentNew extends CI_Controller {
 				$file_name = $this->multiupload->do_upload();
 				
 				// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
-				
-				// var_dump($file_name);	
-				// exit;
 				
 				$set_AttachFile = $this->PRD_SentNew_model->set_AttachFile(
 					$query_sentnew_record,

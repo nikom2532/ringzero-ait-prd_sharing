@@ -323,7 +323,12 @@ foreach($news as $news_item):
 							?>Document.jpg<?php
 						}
 						?>" style="margin-right: 10px; " width="17"><?php 
-						echo $FileAttach_item->File_Name; 
+						if($FileAttach_item->File_Label == ""){
+							echo $FileAttach_item->File_Name;
+						}
+						else{
+							echo $FileAttach_item->File_Label; 
+						}
 					?></a>
 				</div>
 				<div style="float: left; width: 70%; "> 

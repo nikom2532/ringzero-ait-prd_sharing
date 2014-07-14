@@ -41,17 +41,21 @@ class Multiupload{
 		
 		foreach($this->_files as $field => $file){
 			
+			// var_dump($file);
+			// exit;
+			
             if($file['error'] == 0){
                 if ($CI->upload->do_upload($field)){
                     $data = $CI->upload->data();
 					
 					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
-					// $name = microtime(true).$data['file_ext'];
-					$name = microtime(true)."_".$data['file_name'];
+					$name = (microtime(true)*10000).$data['file_ext'];
+					// $name = (microtime(true)*10000)."_".$data['file_name'];
 					
 					rename($data['full_path'], $data['file_path']. $name);
 					
 					$return = array(
+						'file_label' => $data['file_name'],
 						'file_name' => $name,
 						'full_path' => './',
 						'file_extension' => $data['file_ext'],
