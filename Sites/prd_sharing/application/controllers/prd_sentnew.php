@@ -68,7 +68,6 @@ class PRD_sentNew extends CI_Controller {
 	{
 		// $this->load->view('prdsharing/templates/header');
 		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
-		
 		header('Content-Type: text/html; charset=utf-8');
 		
 		if ($this->input->post('sentnew_is_add')) {
@@ -101,7 +100,7 @@ class PRD_sentNew extends CI_Controller {
 				$this->multiupload->_files = $_FILES;
 				$this->multiupload->upload_path = "./uploads";
 				$this->multiupload->allowed_types = "jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv";
-				$this->multiupload->max_size = "2048";
+				// $this->multiupload->max_size = "2048";
 				$this->multiupload->init();
 				$file_name = $this->multiupload->do_upload();
 				
