@@ -66,6 +66,11 @@ class PRD_sentNew extends CI_Controller {
 	
 	public function sentnew_process()
 	{
+		// $this->load->view('prdsharing/templates/header');
+		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
+		// var_dump($_FILES);
+		// exit;
+		
 		if ($this->input->post('sentnew_is_add')) {
 			
 			//record a new news

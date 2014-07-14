@@ -13,7 +13,7 @@
 	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
 	}
 </style>
-<form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data">
+<form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data" accept-charset="utf-8">
 	<input type="hidden" name="sentnew_is_add" value="yes" />
 	
 	<fieldset class="frame-input">

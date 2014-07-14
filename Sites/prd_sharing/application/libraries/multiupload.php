@@ -46,7 +46,9 @@ class Multiupload{
                     $data = $CI->upload->data();
 					
 					// array_push($this->file_name, iconv("UTF-8", "tis-620", $data['file_name']));
-					$name = microtime(true).$data['file_ext'];
+					// $name = microtime(true).$data['file_ext'];
+					$name = microtime(true)."_".$data['file_name'];
+					
 					rename($data['full_path'], $data['file_path']. $name);
 					
 					$return = array(
