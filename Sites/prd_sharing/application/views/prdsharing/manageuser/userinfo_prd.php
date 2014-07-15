@@ -7,6 +7,19 @@
 	{
 		background-color: white;
 	}
+	
+	.row .col-lg-6 span.select-menu{
+		width: 62%;
+	}
+	.select-menu:hover {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+	.select-menu {
+	    background: url(../images/arrowhover.png) no-repeat 100% 0px #FFFFFF;
+	}
+	.row .col-lg-6 span.select-menu select{
+		width: 100% !important;
+	}
 </style>
 <div id="manage-user" class="table-list">
 	<!--<p style="color:#0404F5;font-weight: bold;font-size: large;margin: 20px 0;">News And Information</p>-->
@@ -227,23 +240,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<label >ระดับผู้ใช้งาน</label>
-					<select name="group_member" disabled="disabled">
-						<option value="-1">เลือกระดับผู้ใช้งาน</option>
 <?php
-						foreach ($GroupMember as $GroupMember_item) {
-							?><option value="<?php echo $GroupMember_item->Group_ID;?>" <?php 
-								if($GroupMember_item->Group_ID == $Member[0]->Group_ID){
-									?>selected='selected'<?php
-								}
-							?>><?php echo $GroupMember_item->Group_Desc;?></option><?php
-						}
+			if($Group_ID == 2){
 ?>
-					</select>
+				<div class="row">
+					<div class="col-lg-6">
+						<label >ระดับผู้ใช้งาน</label>
+						<span class="select-menu">
+							<span>เลือกสถานะ</span>
+							<select name="group_member" id="group_member" style="width: 100%; ">
+								<option value="-1">เลือกระดับผู้ใช้งาน</option>
+	<?php
+								foreach ($GroupMember as $GroupMember_item) {
+									?><option value="<?php echo $GroupMember_item->Group_ID;?>" <?php 
+										if($GroupMember_item->Group_ID == $Member[0]->Group_ID){
+											?>selected='selected'<?php
+										}
+									?>><?php echo $GroupMember_item->Group_Desc;?></option><?php
+								}
+	?>
+							</select>
+						</span>
+					</div>
 				</div>
-			</div>
+<?php
+			}
+?>
 <?php
 			$status = "";
 			foreach ($Member as $Member_item) {
@@ -258,18 +280,21 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >สถานะการใช้งาน</label>
-					<select name="mem_status" id="mem_status" class="other" >
-						<option value="1" <?php 
-							if($status == 1){
-								?>selected='selected'<?php
-							}
-						?>>เปิดการใช้งาน</option>
-						<option value="0" <?php 
-							if($status == 0){
-								?>selected='selected'<?php
-							}
-						?>>ปิดการใช้งาน</option>
-					</select>
+					<span class="select-menu">
+						<span>เลือกสถานะ</span>
+						<select name="mem_status" id="mem_status" class="" style="width: 100%; " >
+							<option value="1" <?php 
+								if($status == 1){
+									?>selected='selected'<?php
+								}
+							?>>เปิดการใช้งาน</option>
+							<option value="0" <?php 
+								if($status == 0){
+									?>selected='selected'<?php
+								}
+							?>>ปิดการใช้งาน</option>
+						</select>
+					</span>
 				</div>
 			</div>
 <?php
@@ -284,3 +309,18 @@
 ?>
 	</form>
 </div><!-- #manage-user -->
+<script>
+	$(function(){
+        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+		var selectmenu_txt = $("#mem_status").find("option:selected").text();
+			$("#mem_status").prev("span").text(selectmenu_txt);
+			
+        selectmenu_txt = $("#group_member").find("option:selected").text();
+			$("#group_member").prev("span").text(selectmenu_txt);
+			
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+</script>

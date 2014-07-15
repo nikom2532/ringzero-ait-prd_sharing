@@ -47,6 +47,7 @@ class AuthenStatus{
 	{
 		if($this->Group_ID == 1){
 			$menu = array(
+				"Group_ID" => 1,
 				"Home" => "yes",
 				"Sent News" => "yes",
 				"RSS Feed" => "yes",
@@ -59,6 +60,7 @@ class AuthenStatus{
 		}
 		elseif($this->Group_ID == 2){
 			$menu = array(
+				"Group_ID" => 2,
 				"Home" => "yes",
 				"Sent News" => "yes",
 				"RSS Feed" => "yes",
@@ -71,6 +73,7 @@ class AuthenStatus{
 		}
 		elseif($this->Group_ID == 3){
 			$menu = array(
+				"Group_ID" => 3,
 				"Home" => "yes",
 				"Sent News" => "no",
 				"RSS Feed" => "yes",

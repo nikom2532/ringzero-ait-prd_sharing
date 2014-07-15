@@ -26,7 +26,8 @@ class PRD_UserInfo_PRD extends CI_Controller {
 			
 			$showStatus = "";
 			$this->load->library('authenstatus');
-			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
+			$data["Group_ID"] = $this->session->userdata('Group_ID');
+			$this->authenstatus->Group_ID = $data["Group_ID"];
 			$this->authenstatus->page_title = $data['title'];
 			$showStatus = $this->authenstatus->checkGroupID();
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
@@ -43,10 +44,22 @@ class PRD_UserInfo_PRD extends CI_Controller {
 						$mem_title = $this->input->post('tname_other_text');
 					}
 					
-					$this->PRD_UserInfo_PRD_model->update_Member(
-						$this->input->post('member_id'),
-						$this->input->post('mem_status')
-					);
+					//If ther are Admin
+					if($data["Group_ID"] == 2){
+						$this->PRD_UserInfo_PRD_model->update_Member(
+							$this->input->post('member_id'),
+							$this->input->post('group_member'),
+							$this->input->post('mem_status')
+						);
+					}
+					else{
+						$this->PRD_UserInfo_PRD_model->update_Member(
+							$this->input->post('member_id'),
+							"",
+							$this->input->post('mem_status')
+						);
+					}
+					
 					redirect(base_url().index_page().'manageUserPRD', 'refresh');
 				}
 			

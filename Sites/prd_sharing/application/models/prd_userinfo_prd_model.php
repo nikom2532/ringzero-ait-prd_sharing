@@ -39,12 +39,21 @@ class PRD_UserInfo_PRD_model extends CI_Model {
 	
 	public function update_Member(
 		$Mem_ID = '',
+		$group_member = '',
 		$mem_status = ''
 	)
 	{
-		$data = array(
-			'Mem_Status' => $mem_status
-		);
+		if($group_member != ""){
+			$data = array(
+				'Group_ID' => $group_member,
+				'Mem_Status' => $mem_status
+			);
+		}
+		else{
+			$data = array(
+				'Mem_Status' => $mem_status
+			);
+		}
 		
 		$query_setMember = $this->db->
 			where('Member.Mem_OldID', $Mem_ID)->
