@@ -7,6 +7,12 @@ class PRD_manageNewEditGROV extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('prd_manageneweditgrov_model');
+		
+		// ini_set( 'memory_limit', '200M' );
+		// ini_set('upload_max_filesize', '200M');  
+		// ini_set('post_max_size', '200M');  
+		// ini_set('max_input_time', 3600);  
+		// ini_set('max_execution_time', 3600);
 	}
 
 	public function index()
@@ -65,7 +71,12 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				
 				if($return_num_files > 0){
 					
-					// echo "กำลังปรับปรุงระบบ โปรดรอ 1 นาที";
+					
+					// ini_set('upload_max_filesize', '10M');
+					// echo ini_get('upload_max_filesize'), ", " , ini_get('post_max_size');
+					// exit;
+					
+					// echo "กำลังปรับปรุงระบบ โปรดรอ 1 นาที <Br/>";
 					// var_dump($_FILES);
 					// exit;
 					
@@ -73,24 +84,27 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->load->library("multiupload");
 					$this->multiupload->_files = $_FILES;
 					$this->multiupload->upload_path = "./uploads";
-					$this->multiupload->allowed_types = "jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv";
-					// $this->multiupload->max_size = "0";
-					// $this->multiupload->max_width = "0";
-					// $this->multiupload->max_height = "0";
+					$this->multiupload->allowed_types = "jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv|wma";
+					$this->multiupload->max_size = "1000000";
+					$this->multiupload->max_width = "1024000";
+					$this->multiupload->max_height = "768000";
 					
 					$this->multiupload->init();
 					$file_name = $this->multiupload->do_upload();
 					
 					// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
-					var_dump($file_name);
-					exit;
+					// var_dump($file_name);
+					// exit;
 					
 					$set_AttachFile = $this->prd_manageneweditgrov_model->set_AttachFile(
 						$this->input->post("SendIn_ID"),
 						$file_name
 					);
+					
+					// var_dump($set_AttachFile);
+					// exit;
 				}
-				redirect(base_url().index_page().'manageNewGROV', 'r/efresh');
+				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 			}
 			elseif($this->input->get('is_del_fileattach') == "1"){
 				$delete_fileattach_get_SendIn_ID = $this->prd_manageneweditgrov_model->delete_FileAttach(

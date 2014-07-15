@@ -7,6 +7,7 @@ class PRD_sentNew extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('PRD_SentNew_model');
+		
 	}
 
 	public function index()

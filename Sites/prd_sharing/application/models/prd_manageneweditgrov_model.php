@@ -120,6 +120,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 	{
 		// var_dump($file_name);
 		// exit;
+		
 		$i = 0;
 		foreach ($file_name as $file_name_item) {
 			
@@ -141,6 +142,7 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 				insert("FileAttach", $data);
 			$i++;
 		}
+		
 		if($i> 0){
 			return $query;
 		}
