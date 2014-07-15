@@ -119,16 +119,16 @@
 			}
 ?>
 					<a href="<?php echo base_url().index_page(); ?>userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>">
-						<p class="col-1" style="width: 5%;float: left; ">
+						<p class="col-1" style="width: 5%;float: left; text-align: center; ">
 							<?php echo $i; ?>
 						</p>
-						<p class="col-2" style="width: 10%;float: left; ">
+						<p class="col-2" style="width: 10%;float: left; text-align: center; ">
 							<?php echo $Member_item->Mem_Username; ?>
 						</p>
-						<p class="col-3" style="width: 20%;float: left; ">
+						<p class="col-3" style="width: 20%;float: left; text-align: center; ">
 							<?php echo $Member_item->Mem_Name." ".$Member_item->Mem_LasName; ?>
 						</p>
-						<p class="col-4" style="width: 10%;float: left; ">
+						<p class="col-4" style="width: 10%;float: left; text-align: center; ">
 <?php
 							if($Member_item->Mem_CreateDate != null){
 								echo $Member_item->Mem_CreateDate;
@@ -138,7 +138,7 @@
 							}
 ?>
 						</p>
-						<p class="col-5" style="width: 15%;float: left; ">
+						<p class="col-5" style="width: 15%;float: left; text-align: center; ">
 <?php
 							$count=0;
 							foreach ($Ministry as $Ministry_item) {
@@ -153,7 +153,7 @@
 ?>
 						</p>
 						
-						<p class="col-5" style="width: 15%;float: left; ">
+						<p class="col-5" style="width: 15%;float: left; text-align: center; ">
 <?php
 							$count=0;
 							foreach ($Department as $Department_item) {
@@ -168,7 +168,7 @@
 ?>
 						</p>
 						
-						<p class="col-6" style="width: 15%;float: left; ">
+						<p class="col-6" style="width: 15%;float: left; text-align: center; ">
 <?php
 							// var_dump($Member_item);
 							$count=0;
@@ -184,7 +184,7 @@
 							// echo $Member_item->Prov_ID; 
 ?>
 						</p>
-						<p class="col-7" style="width: 10%;float: left; ">
+						<p class="col-7" style="width: 10%;float: left; text-align: center; ">
 <?php 
 							// foreach ($Member as $Member_item) {
 								// if($Member_item->)
