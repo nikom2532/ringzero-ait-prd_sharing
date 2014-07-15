@@ -101,7 +101,8 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
 				'json'	=>	array('application/json', 'text/json'),
-				'mp4'	=>	'video/mp4'
+				'mp4'	=>	'video/mp4',
+				'wma'	=>	'audio/x-ms-wma'
 			);
 			
 /* End of file mimes.php */
