@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433s
+  -->
+<configuration>
+  <configSections>
+    <section name="hibernate-configuration" type="NHibernate.Cfg.ConfigurationSectionHandler, NHibernate" />
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+    <section name="castle" type="Castle.Windsor.Configuration.AppDomain.CastleSectionHandler, Castle.Windsor" />
+    <section name="nhibernateSettings" type="HOSPITAL.Data.OpenSessionInViewSection,HOSPITAL.Data" />
+    <section name="rewriter" requirePermission="false" type="Intelligencia.UrlRewriter.Configuration.RewriterConfigurationSectionHandler,Intelligencia.UrlRewriter" />
+  </configSections>
+  <nhibernateSettings>
+    <!--List every session factory that will be needed; 
+             transaction management and closing sessions 
+        will be managed with an open-session-in-view HTTP module-->
+    <sessionFactories>
+      <clearFactories />
+      <sessionFactory name="HOSPITAL" factoryConfigPath="" isTransactional="true" />
+    </sessionFactories>
+  </nhibernateSettings>
+  <appSettings>
+    <add key="aspnet:MaxHttpCollectionKeys" value="5000" />
+    <add key="aspnet:MaxJsonDeserializerMembers" value="500000" />
+    <add key="SysID" value="CCD" />
+    <add key="FunctionID" value="CCD" />
+    <add key="Culture" value="th-TH" />
+    <add key="CultureEn" value="en-US" />
+    <add key="DateFormat" value="MM/dd/yyyy" />
+    <add key="TimeFormat" value="HH:mm:ss" />
+    <add key="DateTimeFormat" value="MM/dd/yyyy HH:mm:ss" />
+    <add key="NumberFormat" value="#,##0.00" />
+    <add key="ProtectKey" value="No" />
+    <add key="smtpmail" value="mail.yanhee.co.th" />
+    <add key="portmail" value="25" />
+    <add key="emailaddress" value="ait@yanhee.co.th" />
+    <add key="emailfrom" value="ait@yanhee.co.th" />
+    <add key="password" value="testyanhee" />
+    <add key="smtpmail2" value="mail.yanhee.co.th" />
+    <add key="portmail2" value="25" />
+    <add key="emailaddress2" value="ait@yanhee.co.th" />
+    <add key="emailfrom2" value="ait@yanhee.co.th" />
+    <add key="password2" value="testyanhee" />
+    <add key="server_url" value="http://localhost:56180/"/>
+    <add key="back_server_url" value="http://localhost:60552/"/>
+    
+    
+    <add key="Size_Thumbnail_Image" value="150"/>
+    <add key="Path_FileUpload" value="/FileUpload/"/>
+    <add key="Path_FileUpload2" value="FileUpload/"/>
+    <add key="Upload_Folder_OriginalImage" value="OriginalImage"/>
+    <add key="Upload_Folder_SmallImage" value="SmallImage"/>
+    <add key="defaultTitle" value="โรงพยาบาลยันฮี โรงพยาบาล อันดับ 1 ด้านความสวยงามของเอเชียและรักษาผู้ป่วยทั่วไปด้วยบุคลากรทางการแพทย์อย่างมีคุณภาพ ตามมาตรฐานสากล โทร.1723."/>
+    <add key="defaultKeyword" value="โรงพยาบาลยันฮี โรงพยาบาล อันดับ 1 ด้านความสวยงามของเอเชียและรักษาผู้ป่วยทั่วไปด้วยบุคลากรทางการแพทย์อย่างมีคุณภาพ ตามมาตรฐานสากล โทร.1723."/>
+    <add key="defaultDescription" value="โรงพยาบาลยันฮี โรงพยาบาล อันดับ 1 ด้านความสวยงามของเอเชียและรักษาผู้ป่วยทั่วไปด้วยบุคลากรทางการแพทย์อย่างมีคุณภาพ ตามมาตรฐานสากล โทร.1723."/>
+    <!--<add key="HOSPITAL" value="Data Source=(local);Initial Catalog=Yahee;User ID=sa;Password=1234;Trusted_Connection=false;Pooling=False" />-->
+    <!--<add key="HOSPITAL" value="Data Source=(local);Initial Catalog=Yahee;User ID=sa;Password=1234;Trusted_Connection=false;Pooling=False" />-->
+    <add key="HOSPITAL" value="Data Source=.;Initial Catalog=DBYanhee;User ID=sa;Password=123456;Trusted_Connection=false;Pooling=False" />
+    <!--<add key="HOSPITAL" value="Data Source=AIT-PC;Initial Catalog=DBYanhee;User ID=sa;Password=123456;Trusted_Connection=false;Pooling=False" />-->
+    <!--<add key="HOSPITAL" value="Data Source=.;Initial Catalog=DBYanhee;User ID=sa;Password=123456;Trusted_Connection=false;Pooling=False" />-->
+    <!--<add key="HOSPITAL" value="Data Source=WORK_PC;Initial Catalog=Phyathai;User ID=sa;Password=ait_sa;Trusted_Connection=false;Pooling=False" />-->
+    <!--<add key="HOSPITAL" value="Data Source=(local);Initial Catalog=DBYanhee;User ID=sa;Password=123456;Trusted_Connection=false;Pooling=False" />-->
+    <!--<add key="HOSPITAL" value="Data Source=.;Initial Catalog=DBYanhee;User ID=sa;Password=123456;Trusted_Connection=false;Pooling=False" />-->
+
+  </appSettings>
+  <log4net>
+    <appender name="LogErrorToFile" type="log4net.Appender.FileAppender">
+      <file value="LogFile.log" />
+      <appendToFile value="true" />
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date{yyyy-MM-dd HH:mm:ss} [%-5level] [%logger{2}] - %message%newline" />
+      </layout>
+    </appender>
+    <root>
+      <level value="ERROR" />
+      <appender-ref ref="LogErrorToFile" />
+    </root>
+  </log4net>
+  <castle>
+    <components>
+      <component id="DaoFactory" service="HOSPITAL.Core.DataInterface.IDaoFactory, HOSPITAL.Core" type="HOSPITAL.Data.NHibernateDaoFactory, HOSPITAL.Data" />
+    </components>
+  </castle>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <httpModules>
+      <add name="ScriptModule" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+      <add type="Intelligencia.UrlRewriter.RewriterHttpModule, Intelligencia.UrlRewriter" name="UrlRewriter" />
+    </httpModules>
+    <globalization
+           fileEncoding="utf-8"
+           requestEncoding="utf-8"
+           responseEncoding="utf-8"
+        />
+    <httpRuntime useFullyQualifiedRedirectUrl="true" maxRequestLength="15360" requestLengthDiskThreshold="15360"/>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true">
+      <add name="UrlRewriter" type="Intelligencia.UrlRewriter.RewriterHttpModule" />
+      <add name="ScriptModule" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    </modules>
+
+    <validation validateIntegratedModeConfiguration="false" />
+    <!--<handlers>
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" />
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>-->
+  </system.webServer>
+  <system.web.extensions>
+    <scripting>
+      <webServices>
+        <jsonSerialization maxJsonLength="50000000">
+        </jsonSerialization>
+      </webServices>
+    </scripting>
+  </system.web.extensions>
+  <rewriter>
+    <rewrite url="/history/Job" to="~/history/job.aspx" processing="stop" />
+    <!--Home-->
+    <rewrite url="~/home/(.+)" to="~/home.aspx?LangID=$1" processing="stop"/>
+    <!--Specail-->
+    <rewrite url="~/special_center/(.+)" to="~/special_center.aspx?LangID=$1" processing="stop"/>
+    <rewrite url="~/special_center_details/(.+)/(.+)/(.+)" to="~/special_center_details.aspx?lang_code=$1&amp;mId=$2&amp;special_id=$3" processing="stop"/>
+    <rewrite url="~/special_center_details/(.+)/(.+)" to="~/special_center_details.aspx?lang_code=$1&amp;special_id=$2" processing="stop"/>
+    <rewrite url="~/operation/(.+)/(.+)/(.+)" to="~/special_operation_details.aspx?opid=$1&amp;spId=$2&amp;lang_code=$3" processing="stop"/>
+    <rewrite url="~/SPECIAL_CENTER_GROUP/(.+)/(.+)" to="~/special_center_group.aspx?lang_code=$1&amp;special_id=$2" processing="stop"/>
+    
+    <!--about us-->
+    <rewrite url="~/about_us/(.+)/(.+)" to="~/about_us.aspx?lang_code=$1&amp;about_id=$2" processing="stop"/>
+    <rewrite url="~/vision/(.+)" to="~/about_us_vision.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/manager/(.+)" to="~/about_us_manager.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/award/(.+)" to="~/about_us_award.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/pop_award/(.+)" to="~/pop_about_us_award.aspx?award_id=$1" processing="stop"/>
+    <rewrite url="~/qa/(.+)" to="~/about_us_qa.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/career/(.+)/(.+)" to="~/about_us_career.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/career/(.+)" to="~/about_us_career.aspx?lang_code=$1&amp;gId=$2" processing="stop"/>
+    <rewrite url="~/career_details/(.+)/(.+)" to="~/career_details.aspx?lang_code=$1&amp;jobs_id=$2" processing="stop"/>
+    <!--contact-->
+    <rewrite url="~/contact/(.+)" to="~/contact.aspx?lang_code=$1" processing="stop"/>
+    <!--site map-->
+    <rewrite url="~/sitemap" to="~/sitemap_view.aspx" processing="stop"/>
+    <!--promotion-->
+    <rewrite url="~/promotion/(.+)" to="~/promotion_all.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/promotiondetail/(.+)/(.+)" to="~/promotion_Detail.aspx?lang_code=$1&amp;GUID=$2" processing="stop"/>
+
+    <!--facilities-->
+    <rewrite url="~/facilities/(.+)/(.+)/(.+)/(.+)" to="~/facilities_details.aspx?lang_code=$1&amp;L0ID=$2&amp;L1ID=$3&amp;L2ID=$4" processing="stop"/>
+    <rewrite url="~/facilities/(.+)/(.+)/(.+)" to="~/facilities_all.aspx?lang_code=$1&amp;L0ID=$2&amp;L1ID=$3" processing="stop"/>
+    <rewrite url="~/facilities/(.+)/(.+)" to="~/facilities_all.aspx?lang_code=$1&amp;L0ID=$2" processing="stop"/>
+    <!--doctor search-->
+    <rewrite url="~/doctor_search/(.+)" to="~/doctor_search.aspx?lang_code=$1" processing="stop"/>
+    <!--news activities-->
+    <rewrite url="~/news/(.+)" to="~/news_all.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/NEWS_VIEW/(.+)/(.+)" to="~/news_details_view.aspx?lang_code=$1&amp;pk=$2" processing="stop"/>
+    <!--price list-->
+    <rewrite url="~/price_list/(.+)" to="~/price_list.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/price_view/(.+)/(.+)/(.+)" to="~/price_list_details.aspx?special_id=$1&amp;priceId=$2&amp;lang_code=$3" processing="stop"/>
+    <rewrite url="~/price_view/(.+)/(.+)" to="~/price_list_details.aspx?special_id=$1&amp;lang_code=$2" processing="stop"/>
+    <rewrite url="~/MEMBER/(.+)" to="~/member_login.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/REGISTER/(.+)" to="~/member_register.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/TESTIMONAIL/(.+)" to="~/testimonail.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/TESTIMONAIL_VIEW/(.+)/(.+)/(.+)" to="~/testimonail_Detail.aspx?ChannalID=$1&amp;lang_code=$2&amp;page=$3" processing="stop"/>
+    <rewrite url="~/Doctorsearch/(.+)/(.+)/(.+)" to="~/DoctorSearch.aspx?ChannalID=$1&amp;name=$2&amp;type=$3" processing="stop"/>
+
+    <rewrite url="~/Doctorsearch/(.+)" to="~/DoctorSearch.aspx?ChannalID=$1" processing="stop"/>
+
+
+    <!--article map-->
+    <rewrite url="~/ARTICLE/(.+)" to="~/article_master.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/ARTICLE_VIEW/(.+)/(.+)" to="~/article_detials.aspx?lang_code=$1&amp;pk=$2" processing="stop"/>
+    <!--JOB APPLY-->
+    <rewrite url="~/JOB_VIEW/(.+)/(.+)/(.+)" to="~/apply_job_form.aspx?lang_code=$1&amp;mode=$2&amp;jobId=$3" processing="stop"/>
+    <rewrite url="~/APPLY_JOB/(.+)/(.+)/(.+)" to="~/apply_job_form.aspx?lang_code=$1&amp;companyId=$2&amp;jobId=$3" processing="stop"/>
+    <rewrite url="~/APPLY_JOB/(.+)/(.+)" to="~/apply_job_form.aspx?lang_code=$1&amp;companyId=$2" processing="stop"/>
+    <rewrite url="~/Video/(.+)/(.+)" to="~/Chanel.aspx?lang_code=$1&amp;GID=$2" processing="stop"/>
+    <rewrite url="~/Video/(.+)" to="~/Chanel.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/VideoDetail/(.+)/(.+)/(.+)" to="~/ChanelGroup.aspx?lang_code=$1&amp;GID=$2&amp;VID=$3" processing="stop"/>
+    <rewrite url="~/VideoDetail/(.+)/(.+)" to="~/ChanelGroup.aspx?lang_code=$1&amp;GID=$2" processing="stop"/>
+
+    <rewrite url="~/DoctorProfile/(.+)/(.+)/(.+)/(.+)" to="~/Doctorprofile.aspx?ChannalID=$1&amp;DcotorProfileID=$2&amp;month=$3&amp;years=$4" processing="stop"/>
+    <rewrite url="~/DoctorProfile/(.+)/(.+)" to="~/Doctorprofile.aspx?ChannalID=$1&amp;DcotorProfileID=$2" processing="stop"/>
+    <rewrite url="~/FAQ/(.+)" to="~/faq_input.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/SEARCHCONTENT/(.+)" to="~/content_search.aspx?keyword=$1" processing="stop"/>
+    <rewrite url="~/DoctorContact/(.+)/(.+)/(.+)/(.+)/(.+)" to="~/doctor_contact.aspx?lang_code=$1&amp;DcotorProfileID=$2&amp;MODE=$3&amp;AppointID=$4&amp;UserID=$5" processing="stop"/>
+    <rewrite url="~/DoctorContact/(.+)/(.+)" to="~/doctor_contact.aspx?lang_code=$1&amp;DcotorProfileID=$2" processing="stop"/>
+    <rewrite url="~/ResetPassword/(.+)" to="~/member_password.aspx?lang_code=$1" processing="stop"/>
+    <rewrite url="~/PRICE_GROUP/(.+)/(.+)" to="~/price_group.aspx?lang_code=$1&amp;special_id=$2" processing="stop"/>
+    <rewrite url="~/MEMBER_PROFILE/(.+)/(.+)" to="~/member_editdata.aspx?lang_code=$1&amp;MID=$2" processing="stop"/>
+    <rewrite url="~/Page/(.+)" to="~/page_yanhee.aspx?pageId=$1" processing="stop"/>
+    <rewrite url="~/ShoppingOnline/(.+)" to="~/Product_List.aspx?lang_code=$1" processing="stop"/>
+  </rewriter>
+  
+</configuration>

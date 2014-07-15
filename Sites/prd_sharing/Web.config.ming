@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<system.web>
+		<httpRuntime 
+		maxRequestLength="1500000" 
+		/>
+	</system.web>
+	<system.webServer>
+		<security>
+			<requestFiltering>
+				<fileExtensions applyToWebDAV="false">
+					<add fileExtension=".inc" allowed="false" />
+					<add fileExtension=".mp3" allowed="true" />
+				</fileExtensions>
+			</requestFiltering>
+		</security>
+	</system.webServer>
+</configuration>

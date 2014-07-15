@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<system.webServer>
+		<httpRuntime 
+		executionTimeout="90" 
+		maxRequestLength="1500000" 
+		useFullyQualifiedRedirectUrl="false" 
+		minFreeThreads="8" 
+		minLocalRequestFreeThreads="4" 
+		appRequestQueueLimit="100" 
+		enableVersionHeader="true"
+		/>
+	</system.webServer>
+</configuration>
