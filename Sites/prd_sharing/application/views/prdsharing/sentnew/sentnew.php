@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<label >ข่าววันที่ <span style="color:red; ">*</span></label>
-					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" required="required" >
+					<input type="text" class="form-control datepicker" name="create_date" id="create_date" placeholder="" required="required" value="<?php echo date("Y-m-d"); ?>" />
 				</div>
 			</div>
 			<div class="row">
