@@ -55,42 +55,48 @@
 					<label class="label">คำนำหน้า</label>
 				</div>
 				<div class="col-right">
-					<input type="radio" name="mem_title" value="0" id="tname_male" required="required" <?php
+					<input type="radio" name="mem_title" value="1" id="tname_male" required="required" <?php
 						if($Member_item->Mem_Title == "นาย"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_male" class="txt-radio">นาย</label>
 					
-					<input type="radio" name="mem_title" value="1" id="tname_female" <?php
+					<input type="radio" name="mem_title" value="2" id="tname_female" <?php
 						if($Member_item->Mem_Title == "นาง"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_female" class="txt-radio">นาง</label>
 					
-					<input type="radio" name="mem_title" value="2" id="tname_girl" <?php
+					<input type="radio" name="mem_title" value="3" id="tname_girl" <?php
 						if($Member_item->Mem_Title == "นางสาว"){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_girl" class="txt-radio">นางสาว</label>
 					
-					<input type="radio" name="mem_title" value="3" id="tname_other" <?php
+					<input type="radio" name="mem_title" value="4" id="tname_other" <?php
+					// echo $Member_item->Mem_Title;
 						if(
 							$Member_item->Mem_Title != "นาย" &&
 							$Member_item->Mem_Title != "นาง" &&
-							$Member_item->Mem_Title != "นางสาว" &&
-							$Member_item->Mem_Title != "" &&
-							$Member_item->Mem_Title != 0 &&
-							$Member_item->Mem_Title != null
+							$Member_item->Mem_Title != "นางสาว" 
 						){
 							?>checked="checked"<?php
 						}
 					?> />
 					<label for="tname_other" class="txt-radio">อื่นๆ</label>
 					
-					<input type="text" class="form-control" name="tname_other_text" id="tname_other_text" placeholder="" />
+					<input type="text" class="form-control" name="tname_other_text" id="tname_other_text" value="<?php 
+						if(
+							$Member_item->Mem_Title != "นาย" &&
+							$Member_item->Mem_Title != "นาง" &&
+							$Member_item->Mem_Title != "นางสาว" 
+						){
+							echo $Member_item->Mem_Title;
+						}
+					?>" placeholder="" />
 					
 				</div>
 			</div>

@@ -35,13 +35,21 @@ class PRD_UserInfo_GOVE extends CI_Controller {
 			
 				if($this->input->post('update_member') == "yes"){
 					
+					?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><?php
 					
+					// var_dump($_POST);
 					// exit;
 					
-					if($this->input->post('mem_title') != "อื่นๆ"){
-						$mem_title = $this->input->post('mem_title');
+					if($this->input->post('mem_title') == 1){
+						$mem_title = "นาย";
 					}
-					else{
+					elseif($this->input->post('mem_title') == 2){
+						$mem_title = "นาง";
+					}
+					elseif($this->input->post('mem_title') == 3){
+						$mem_title = "นางสาว";
+					}
+					elseif($this->input->post('mem_title') == 4){
 						$mem_title = $this->input->post('tname_other_text');
 					}
 					

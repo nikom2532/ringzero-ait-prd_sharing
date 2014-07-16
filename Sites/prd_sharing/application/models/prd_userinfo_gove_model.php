@@ -88,14 +88,11 @@ class PRD_UserInfo_GOVE_model extends CI_Model {
 			);
 			// 'Mem_Username' => $mem_username,
 		}
-		// var_dump($data);
-		
-		// exit;
-		
+
 		$query_setMember = $this->db->
 			where('Member.Mem_ID', $Mem_ID)->
 			update('Member', $data);
-			
+		
 		return $query_setMember;
 	}
 	
