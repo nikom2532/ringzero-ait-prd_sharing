@@ -51,7 +51,12 @@ foreach($news as $news_item):
 						<option value="">เลือกกระทรวง</option>
 <?php
 						foreach ($Ministry as $Ministry_item) {
-							?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
+							?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>" <?php
+								if($news_item->Ministry_ID == 
+								$Ministry_item->Minis_ID){
+									?>selected='selected'<?php
+								}
+							?>><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
 ?>
 					</select>
@@ -64,19 +69,23 @@ foreach($news as $news_item):
 					<select name="Dep_ID" id="Dep_ID">
 						<option value="">เลือกกรม</option>
 <?php
-						/*
-						// var_dump($Department);
-						foreach ($Department as $Department_item) {
-							?><option data-minis_id="<?php
-								foreach ($Ministry as $Ministry_item) {
-									if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
-										echo $Ministry_item->Minis_ID;
-									}
+						if(isset($news_item->Dep_ID)){
+							if($news_item->Dep_ID != ""){
+								foreach ($Department as $Department_item) {
+									?><option data-minis_id="<?php
+										foreach ($Ministry as $Ministry_item) {
+											if($Department_item->Ministry_ID == $Ministry_item->Minis_ID){
+												echo $Ministry_item->Minis_ID;
+											}
+										}
+									?>" value="<?php echo $Department_item->Dep_ID;?>" <?php
+										if($news_item->Dep_ID == $Department_item->Dep_ID){
+											?>selected='selected'<?php
+										}
+									?>><?php echo $Department_item->Dep_Name;?></option><?php
 								}
-							?>" value="<?php echo $Department_item->Dep_ID;?>"><?php echo $Department_item->Dep_Name;?></option><?php
+							}
 						}
-						*/
-						/* ?><option value=""></option><?php */
 ?>
 					</select>
 				</span>
@@ -87,12 +96,18 @@ foreach($news as $news_item):
 				<label >นโยบายรัฐบาล</label>
 				<span class="select-menu">
 					<span>เลือกนโยบายรัฐบาล</span>
-					<select name="NT05_PolicyID">
+					<select name="NT05_PolicyID" id="NT05_PolicyID">
 						<option value="">เลือกนโยบาย</option>
 <?php
 						foreach ($NT05_Policy as $NT05_Policy_item) {
 							?><option value="<?php 
-								echo $NT05_Policy_item->NT05_PolicyID;?>"><?php echo $NT05_Policy_item->NT05_PolicyName;
+								echo $NT05_Policy_item->NT05_PolicyID;
+							?>" <?php 
+								if($news_item->Policy_ID == $NT05_Policy_item->NT05_PolicyID){
+									?>selected='selected'<?php
+								}
+							?>><?php 
+								echo $NT05_Policy_item->NT05_PolicyName;
 							?></option><?php
 						}
 ?>

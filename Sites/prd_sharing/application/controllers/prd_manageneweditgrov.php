@@ -120,6 +120,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				$data['SC07_Department'] = $this->prd_manageneweditgrov_model->get_SC07_Department();
 				$data['Ministry'] = $this->prd_manageneweditgrov_model->get_Ministry();
 				$data['NT05_Policy'] = $this->prd_manageneweditgrov_model->get_NT05_Policy();
+				$data['Department'] = $this->prd_manageneweditgrov_model->get_department();
 				
 				$data['FileAttach'] = $this->prd_manageneweditgrov_model->get_FileAttach($this->input->get('sendin_id'));
 				
