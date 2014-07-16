@@ -112,7 +112,6 @@ class PRD_sentNew extends CI_Controller {
 					$file_name
 				);
 			}
-			
 			redirect(base_url().index_page().'manageNewGROV', 'refresh');
 		}
 		else{
