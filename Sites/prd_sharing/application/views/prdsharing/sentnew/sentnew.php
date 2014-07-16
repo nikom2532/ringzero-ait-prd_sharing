@@ -414,7 +414,15 @@
 			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
 			return false;
 		}
+		
+		//For set Maximun File Size Upload
+		if(validateFileSize(file,41943040, "valid_msg", "Document size should be less than 64MB !")==false)
+		{
+				return false;
+		}
 	}
+	
+	
 	
 	/*
 	$(document).ready(function()

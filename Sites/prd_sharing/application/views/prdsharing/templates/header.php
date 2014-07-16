@@ -58,6 +58,7 @@
  	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php
 	}
 ?>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/nnt_prdsharing.js"></script>
 </head>
 <body>
     <div class="container">
