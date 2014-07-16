@@ -371,7 +371,7 @@ foreach($news as $news_item):
 	<div class="uploadfile">
 		<div class="row file_1">
 			<div class="col-lg-12" style="margin-left: 5%; ">
-				file แนบเอกสาร 1.)
+				<span class="label_file" >file แนบเอกสาร 1.)</span>
 				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
@@ -468,21 +468,43 @@ foreach($news as $news_item):
 		var str =""+
 		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
-		"		file แนบเอกสาร "+(number)+".)"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<span class=\"label_file\">file แนบเอกสาร "+(number)+".)</span>"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
 		
 		$("div.uploadfile").append(str);
 		number++;
+		count++;
 	});
 	
 	$("#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
-		// if(file_id > 1){
-			$("div.uploadfile .row.file_"+file_id).remove();
-		// }
+		// var file_id = $(this).data("file_id");
+		
+		$("div.uploadfile .row.file_"+file_id).remove();
+		var i=0;
+		var label_file_id = "";
+		
+		for(i = parseInt(file_id)+1; i <= number ; i++){
+			console.log("=== i = "+i);
+			
+			$(".uploadfile .row.file_"+i+" .label_file").html("file แนบเอกสาร "+(i-1)+".)");
+			$(".uploadfile .row.file_"+i+" #reducemorefile").data("file_id", (i-1));
+			$(".uploadfile .row.file_"+i+" #reducemorefile").removeClass("file_"+i);
+			$(".uploadfile .row.file_"+i+" #reducemorefile").addClass("file_"+(i-1));
+			
+			$(".uploadfile .row.file_"+i).addClass("file_"+(i-1));
+			$(".uploadfile .row.file_"+i).removeClass("file_"+i);
+			
+			// $(".uploadfile .row.file_"+i+" #reducemorefile").toggleClass("file_"+i+" file_"+(i-1));
+			// $(this).parent(".file_"+i).next()
+		}
+		console.log("-----------");
+		// count--;
+		number--;
+		
 	});
 	
 	function check_file_ext(file_id){

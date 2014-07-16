@@ -314,7 +314,7 @@
 		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร "+(number)+".)</span>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\" placeholder=\"\" onchange=\"check_file_ext('"+(number)+"');\"  style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number)+"');\"  style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"	<!--<div class=\"col-lg-6\">"+
@@ -326,10 +326,9 @@
 		number++;
 		count++;
 	});
-	
+	remove
 	$("#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
-		
 		// var file_id = $(this).data("file_id");
 		
 		$("div.uploadfile .row.file_"+file_id).remove();
