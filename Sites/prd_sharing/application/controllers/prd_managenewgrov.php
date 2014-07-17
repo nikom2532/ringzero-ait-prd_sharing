@@ -55,7 +55,11 @@ class PRD_ManageNewGROV extends CI_Controller {
 					$data['delete_News'] = $this->prd_managenewgrov_model->delete_grov(
 						$this->input->get('sendin_id')
 					);
-					redirect(base_url().index_page()."manageNewGROV");
+					$AfterDeleteUrl = base_url().index_page()."manageNewGROV";
+					if($this->input->get('page') != ""){
+						$AfterDeleteUrl .= "/".$this->input->get('page');
+					}
+					redirect($AfterDeleteUrl);
 				}
 				
 				$FileAttach = $this->prd_managenewgrov_model->get_FileAttach();

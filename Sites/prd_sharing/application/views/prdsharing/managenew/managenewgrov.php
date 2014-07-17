@@ -323,12 +323,31 @@
 			}
 		});
 	});
+	
 	$(".SendInformationDelete").click( function() {
 		var sendin_id = $(this).attr("data-sendin_id");
+		var url = "";
 		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่ข่าว = "+sendin_id+" หรือไม่ ") == true) {
-	        location.href="manageNewGROV?is_del_sendinformation=1&sendin_id="+sendin_id;
+	        url = "<?php echo base_url().index_page(); ?>manageNewGROV";
+<?php
+        	if($current_page != "1"){
+?>
+				url = url + "/<?php echo $current_page; ?>"
+<?php
+        	}
+?>
+	        url = url + "?is_del_sendinformation=1&sendin_id=" + sendin_id;
+<?php
+        	if($current_page != "1"){
+?>
+				url = url + "&page=<?php echo $current_page; ?>";
+<?php
+        	}
+	        ?>
+	        location.href = url;
 	    }
 	});
+	
 	$(function(){
         // $(".select-menu > select > option:eq(0)").attr("selected","selected");
         $(".select-menu > select").live("change",function(){
@@ -346,7 +365,6 @@
 		location='<?php echo $jump_url; ?>/'+val;
 	}
 	function nextPage(val){
-		// debugger;
 		var nextpage = parseInt(val)+1;
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
