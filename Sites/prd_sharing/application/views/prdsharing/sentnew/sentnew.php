@@ -326,7 +326,7 @@
 		number++;
 		count++;
 	});
-	remove
+	
 	$("#reducemorefile").live('click', function(){
 		var file_id = $(this).attr("data-file_id");
 		// var file_id = $(this).data("file_id");
