@@ -481,6 +481,9 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					Dep_ID = '".$Department_ID."'
 			";
 		}
+		
+		// echo $StrQuery; 
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 			
