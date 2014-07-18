@@ -160,8 +160,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		
-		echo $StrQuery;
-		echo "<br/>";
+		// echo $StrQuery;
+		// echo "<br/>";
 		
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -282,6 +282,9 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			}
 			$filter_AttachFile = implode(",",$statusArray);
 		}
+		else{
+			$filter_AttachFile = "\"\"";
+		}
 		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
@@ -323,11 +326,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 					
 		";
-		// if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
-			// $StrQuery .= "
-				// WHERE
-			// ";
-		// }
 		if($news_title != ""){
 			$StrQuery .= "
 				AND
@@ -335,11 +333,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		if($startdate != "" && $enddate == "" ){
-			// if($news_title != ""){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
 			$StrQuery .= "
 				AND
 					Convert(datetime, '".$startdate."') <
@@ -352,11 +345,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate == "" && $enddate != "" ){
-			// if($news_title != ""){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
 			$StrQuery .= "
 				AND
 					Convert(datetime, '".$enddate."') >
@@ -369,11 +357,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		elseif($startdate != "" && $enddate != "" ){
-			// if($news_title != ""){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
 			$StrQuery .= "
 				AND
 					CASE WHEN 
@@ -390,11 +373,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			";
 		}
 		if($Ministry_ID != ""){
-			// if($news_title != "" || $startdate != "" || $enddate != ""){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
 			$StrQuery .= "
 				AND
 					Ministry_ID = '".$Ministry_ID."'
@@ -402,10 +380,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		}
 		if($Department_ID != ""){
 			// if($news_title != "" || $startdate != "" || $enddate != "" || $Ministry_ID != ""){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
 			$StrQuery .= "
 				AND
 					Dep_ID = '".$Department_ID."'
@@ -415,6 +389,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		// echo $StrQuery;
 		
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -461,7 +437,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		";
 		if($news_title != ""){
 			$StrQuery .= "
-				SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
+				AND 
+					SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 			";
 		}
 		if($startdate != "" && $enddate == "" ){
