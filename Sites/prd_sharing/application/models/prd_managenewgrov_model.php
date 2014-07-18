@@ -118,10 +118,22 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					FileAttach.File_Type LIKE 'video/%'
 			";
 		}
+		else{
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type NOT LIKE 'video/%'
+			";
+		}
 		if($filter_sound == 1){
 			$StrQuery .= "
 				AND 
 					FileAttach.File_Type LIKE 'audio/%'
+			";
+		}
+		else{
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type NOT LIKE 'audio/%'
 			";
 		}
 		if($filter_image == 1){
@@ -130,9 +142,15 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					FileAttach.File_Type LIKE 'image/%'
 			";
 		}
+		else{
+			$StrQuery .= "
+				AND 
+					FileAttach.File_Type NOT LIKE 'image/%'
+			";
+		}
 		if($filter_other == 1){
 			$StrQuery .= "
-				AND (
+				AND ( 
 						FileAttach.File_Type NOT LIKE 'video/%'
 					AND
 						FileAttach.File_Type NOT LIKE 'audio/%'
@@ -141,6 +159,10 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				)
 			";
 		}
+		
+		echo $StrQuery;
+		echo "<br/>";
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;
@@ -151,6 +173,16 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$row_per_page=20
 	)
 	{
+		/*
+		if($filter_AttachFile != ""){
+			$statusArray = array();
+			foreach($filter_AttachFile as $val){
+				$statusArray[] = "'".$val->SendIn_ID."'";
+			}
+			$filter_AttachFile = implode(",",$statusArray);
+		}
+		*/
+		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		/*
@@ -216,12 +248,14 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation.SendIn_ID = FileAttach.SendIn_ID
 		";
 		*/
+		
 		$StrQuery = "
 			SELECT
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
 		";
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 			

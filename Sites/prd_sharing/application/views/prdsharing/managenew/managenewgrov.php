@@ -370,19 +370,47 @@
 			nextpage = val;
 		}
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+nextpage);
+<?php
+		if($post_manageNewGROV_is_submit == ""){
+?>
+			$("#homeSearch input[name=manageNewGROV_is_submit]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+val);
+<?php
+		if($post_manageNewGROV_is_submit == ""){
+?>
+			$("#homeSearch input[name=manageNewGROV_is_submit]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/"+prevpage);
+<?php
+		if($post_manageNewGROV_is_submit == ""){
+?>
+			$("#homeSearch input[name=manageNewGROV_is_submit]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewGROV"; ?>/1");
+<?php
+		if($post_manageNewGROV_is_submit == ""){
+?>
+			$("#homeSearch input[name=manageNewGROV_is_submit]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	$('select#Ministry_ID').change(function(){

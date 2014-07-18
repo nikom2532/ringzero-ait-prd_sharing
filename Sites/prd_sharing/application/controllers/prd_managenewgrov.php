@@ -105,6 +105,12 @@ class PRD_ManageNewGROV extends CI_Controller {
 				}
 				else{
 					// echo "no search";
+					/*
+					$filter_AttachFile = $this->prd_managenewgrov_model->filter_AttachFile(
+						0, 0, 0, 0
+					);
+					*/
+					
 					$news = $this->prd_managenewgrov_model->get_grov(
 						$page,
 						$row_per_page
@@ -159,6 +165,13 @@ class PRD_ManageNewGROV extends CI_Controller {
 					}
 				}
 				//###### End Add File_Status to News ######
+				
+				if(isset($_POST["manageNewGROV_is_submit"])){
+					$data["post_manageNewGROV_is_submit"] = $this->input->post("manageNewGROV_is_submit");
+				}
+				else {
+					$data["post_manageNewGROV_is_submit"] = "";	
+				}
 				
 				$data["news"] = $news;
 				$data['ministry'] = $this->prd_managenewgrov_model->get_ministry();
