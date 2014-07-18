@@ -159,12 +159,24 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				)
 			";
 		}
+		else{
+			$StrQuery .= "
+				AND ( 
+						FileAttach.File_Type LIKE 'video/%'
+					AND
+						FileAttach.File_Type LIKE 'audio/%'
+					AND
+						FileAttach.File_Type LIKE 'image/%'
+				)
+			";
+		}
 		
 		// echo $StrQuery;
 		// echo "<br/>";
 		
 		$query = $this->db->
 			query($StrQuery)->result();
+		
 		return $query;
 	}
 	
@@ -275,7 +287,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$filter_AttachFile = ''
 	)
 	{
-		if($filter_AttachFile != ""){
+		if($filter_AttachFile != null){
 			$statusArray = array();
 			foreach($filter_AttachFile as $val){
 				$statusArray[] = "'".$val->SendIn_ID."'";
@@ -283,7 +295,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			$filter_AttachFile = implode(",",$statusArray);
 		}
 		else{
-			$filter_AttachFile = "\"\"";
+			$filter_AttachFile = "''";
 		}
 		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
@@ -407,12 +419,15 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$filter_AttachFile = ''
 	)
 	{
-		if($filter_AttachFile != ""){
+		if($filter_AttachFile != null){
 			$statusArray = array();
 			foreach($filter_AttachFile as $val){
 				$statusArray[] = "'".$val->SendIn_ID."'";
 			}
 			$filter_AttachFile = implode(",",$statusArray);
+		}
+		else{
+			$filter_AttachFile = "''";
 		}
 		
 		/*
