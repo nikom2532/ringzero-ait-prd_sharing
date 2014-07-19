@@ -70,116 +70,6 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_FileAttach()
-	{
-		$StrQuery = "
-			SELECT
-				FileAttach.File_Type,
-				FileAttach.SendIn_ID,
-				FileAttach.File_Status
-			FROM
-				FileAttach
-			WHERE 
-				FileAttach.File_Status = 1
-		";
-		
-		$query = $this->db->
-			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function filter_AttachFile(
-		$filter_vdo = '',
-		$filter_sound = '',
-		$filter_image = '',
-		$filter_other = ''
-	)
-	{
-		// $CI_stringManagement =& get_instance();
-		// $CI_stringManagement->load->library('string_management');
-		
-		// $CI_stringManagement->string_management->startsWith($file->File_Type, "video/")){
-		
-		$StrQuery = "
-			SELECT DISTINCT
-				SendInformation.SendIn_ID
-			FROM
-				SendInformation
-			LEFT JOIN
-				FileAttach
-			ON
-				SendInformation.SendIn_ID = FileAttach.SendIn_ID
-			WHERE 
-				FileAttach.File_Status = 1
-		";
-		if($filter_vdo == 1){
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type LIKE 'video/%'
-			";
-		}
-		else{
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type NOT LIKE 'video/%'
-			";
-		}
-		if($filter_sound == 1){
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type LIKE 'audio/%'
-			";
-		}
-		else{
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type NOT LIKE 'audio/%'
-			";
-		}
-		if($filter_image == 1){
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type LIKE 'image/%'
-			";
-		}
-		else{
-			$StrQuery .= "
-				AND 
-					FileAttach.File_Type NOT LIKE 'image/%'
-			";
-		}
-		if($filter_other == 1){
-			$StrQuery .= "
-				AND ( 
-						FileAttach.File_Type NOT LIKE 'video/%'
-					AND
-						FileAttach.File_Type NOT LIKE 'audio/%'
-					AND
-						FileAttach.File_Type NOT LIKE 'image/%'
-				)
-			";
-		}
-		else{
-			$StrQuery .= "
-				AND ( 
-						FileAttach.File_Type LIKE 'video/%'
-					AND
-						FileAttach.File_Type LIKE 'audio/%'
-					AND
-						FileAttach.File_Type LIKE 'image/%'
-				)
-			";
-		}
-		
-		// echo $StrQuery;
-		// echo "<br/>";
-		
-		$query = $this->db->
-			query($StrQuery)->result();
-		
-		return $query;
-	}
-	
 	public function get_grov(
 		$page=1, 
 		$row_per_page=20
@@ -237,6 +127,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					ROW_NUMBER() OVER (ORDER BY (SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				FROM
 					SendInformation
+				WHERE 
+					SendInformation.SendIn_Status = '1'
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";

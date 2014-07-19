@@ -7,6 +7,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('prd_managenewgrov_model');
+		$this->load->model('prd_managenewgrov_fileattach_model');
 		$this->load->library("pagination");
 	}
 
@@ -36,21 +37,6 @@ class PRD_ManageNewGROV extends CI_Controller {
 			
 				$row_per_page = 20;
 				
-				
-				// elseif ($this->input->post('sentnew_is_add')) {
-					// $query_sentnew_record = $this->prd_managenewgrov_model->set_sentnew(
-						// $this->input->post('create_date'),
-						// $this->input->post('Minis_ID'),
-						// $this->input->post('Dep_ID'),
-						// $this->input->post('NT05_PolicyID'),
-						// $this->input->post('Tar_ID'),
-						// $this->input->post('grov_active'),
-						// $this->input->post('prd_active'),
-						// $this->input->post('SendIn_Plan'),
-						// $this->input->post('SendIn_Issue'),
-						// $this->input->post('SendIn_Detail')
-					// );
-				// }
 				if($this->input->get('is_del_sendinformation') == "1"){
 					$data['delete_News'] = $this->prd_managenewgrov_model->delete_grov(
 						$this->input->get('sendin_id')
@@ -62,15 +48,26 @@ class PRD_ManageNewGROV extends CI_Controller {
 					redirect($AfterDeleteUrl);
 				}
 				
-				$FileAttach = $this->prd_managenewgrov_model->get_FileAttach();
+				$FileAttach = $this->prd_managenewgrov_fileattach_model->get_FileAttach();
+				$FileAttach_video = $this->prd_managenewgrov_fileattach_model->get_FileAttach_video();
+				$FileAttach_audio = $this->prd_managenewgrov_fileattach_model->get_FileAttach_audio();
+				$FileAttach_image = $this->prd_managenewgrov_fileattach_model->get_FileAttach_image();
+				$FileAttach_document = $this->prd_managenewgrov_fileattach_model->get_FileAttach_document();
+				
+				// var_dump($FileAttach_video);
+				// exit;
 				
 				if($this->input->post("manageNewGROV_is_submit") == "yes"){
 					
-					$filter_AttachFile = $this->prd_managenewgrov_model->filter_AttachFile(
+					$filter_AttachFile = $this->prd_managenewgrov_fileattach_model->filter_AttachFile(
 						$this->input->post('filter_vdo'),
 						$this->input->post('filter_sound'),
 						$this->input->post('filter_image'),
-						$this->input->post('filter_other')
+						$this->input->post('filter_other'),
+						$FileAttach_video,
+						$FileAttach_audio,
+						$FileAttach_image,
+						$FileAttach_document
 					);
 					
 					$news = $this->prd_managenewgrov_model->get_grov_search(
@@ -106,7 +103,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 				else{
 					// echo "no search";
 					/*
-					$filter_AttachFile = $this->prd_managenewgrov_model->filter_AttachFile(
+					$filter_AttachFile = $this->prd_managenewgrov_fileattach_model->filter_AttachFile(
 						0, 0, 0, 0
 					);
 					*/
