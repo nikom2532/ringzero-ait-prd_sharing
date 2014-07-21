@@ -44,7 +44,7 @@
 					if(isset($post_news_title)){
 						echo $post_news_title;
 					}
-				?>" name="news_title"  placeholder="" style=" margin-left: 15px;width: 60%;">
+				?>" name="news_title" id="news_title"  placeholder="" style="margin-left: 15px;width: 60%; ">
 				<input class="bt" type="submit" value="ค้นหาข่าว" name="share" style="width:10%;padding: 4px;margin-left:5px;">
 			</div>
 		</div>	

@@ -150,6 +150,7 @@ class PRD_rss extends CI_Controller {
 			redirect(base_url().index_page().'', 'refresh');
 		}
 	}
+	
 	public function rss_feed()
 	{
 		$this->load->database();
@@ -171,6 +172,7 @@ class PRD_rss extends CI_Controller {
 		);
 		echo $data['rss'];
 	}
+	
 	public function view_rss()
 	{
 		$this->load->database();
