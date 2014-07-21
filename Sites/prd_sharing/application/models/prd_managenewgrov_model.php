@@ -158,6 +158,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
+			WHERE 
+				SendInformation.SendIn_Status = '1'
 		";
 		
 		$query = $this->db->
@@ -189,6 +191,9 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		else{
 			$filter_AttachFile = "''";
 		}
+		
+		// var_dump($filter_AttachFile);
+		// exit;
 		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
@@ -228,6 +233,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation 
 				WHERE
 					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
+				AND
+					SendInformation.SendIn_Status = '1'
 					
 		";
 		if($news_title != ""){
@@ -341,6 +348,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation
 			WHERE
 				SendInformation.SendIn_ID IN (".$filter_AttachFile.")
+			AND
+				SendInformation.SendIn_Status = '1'
 		";
 		if($news_title != ""){
 			$StrQuery .= "

@@ -90,7 +90,7 @@ class PRD_SentNew_model extends CI_Model {
 			}
 			
 			$data = array(
-				'SendIn_CreateDate' => $create_date, 	
+				'SendIn_CreateDate' => $create_date,
 				'Ministry_ID' => $Minis_ID,
 				'Dep_ID' => $Dep_ID,
 				'Policy_ID' => $NT05_PolicyID,
@@ -100,7 +100,8 @@ class PRD_SentNew_model extends CI_Model {
 				'PRD_Active' => $PRD_Active,
 				'PRD_Status' => $PRD_Status,
 				'GOVE_Active' => $GOVE_Active,
-				'GOVE_Status' => $GOVE_Status
+				'GOVE_Status' => $GOVE_Status,
+				'SendIn_Status' => 1
 			);
 			
 			$this->db->

@@ -42,6 +42,10 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			AND
 				FileAttach.File_Type LIKE 'video/%'
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;
@@ -65,6 +69,10 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			AND
 				FileAttach.File_Type LIKE 'audio/%'
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;
@@ -133,6 +141,7 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 		$FileAttach_document = ''
 	)
 	{
+		
 		if($FileAttach_video != null){
 			$statusArray = array();
 			foreach($FileAttach_video as $val){
@@ -141,6 +150,9 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			$FileAttach_video = implode(",",$statusArray);
 		}
 		
+		// var_dump($FileAttach_video);
+		// exit;
+		
 		if($FileAttach_audio != null){
 			$statusArray = array();
 			foreach($FileAttach_audio as $val){
@@ -148,6 +160,9 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			}
 			$FileAttach_audio = implode(",",$statusArray);
 		}
+		
+		// var_dump($FileAttach_audio);
+		// exit;
 		
 		if($FileAttach_image != null){
 			$statusArray = array();
@@ -176,55 +191,62 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 				SendInformation.SendIn_ID = FileAttach.SendIn_ID
 			WHERE 
 				FileAttach.File_Status = 1
+			AND
+				SendInformation.SendIn_Status = 1
+			AND
+			(
 		";
 		if($filter_vdo == 1){
 			$StrQuery .= "
-				AND 
+				 
 					SendInformation.SendIn_ID IN (".$FileAttach_video.")
 			";
 		}
-		else{
-			$StrQuery .= "
-				AND 
-					SendInformation.SendIn_ID NOT IN (".$FileAttach_video.")
-			";
-		}
+		// else{
+			// $StrQuery .= "
+// 				 
+					// SendInformation.SendIn_ID NOT IN (".$FileAttach_video.")
+			// ";
+		// }
 		if($filter_sound == 1){
 			$StrQuery .= "
-				AND 
+				OR 
 					SendInformation.SendIn_ID IN (".$FileAttach_audio.")
 			";
 		}
-		else{
-			$StrQuery .= "
-				AND 
-					SendInformation.SendIn_ID NOT IN (".$FileAttach_audio.")
-			";
-		}
+		// else{
+			// $StrQuery .= "
+				// OR 
+					// SendInformation.SendIn_ID NOT IN (".$FileAttach_audio.")
+			// ";
+		// }
 		if($filter_image == 1){
 			$StrQuery .= "
-				AND 
+				OR 
 					SendInformation.SendIn_ID IN (".$FileAttach_image.")
 			";
 		}
-		else{
-			$StrQuery .= "
-				AND 
-					SendInformation.SendIn_ID NOT IN (".$FileAttach_image.")
-			";
-		}
+		// else{
+			// $StrQuery .= "
+				// OR 
+					// SendInformation.SendIn_ID NOT IN (".$FileAttach_image.")
+			// ";
+		// }
 		if($filter_other == 1){
 			$StrQuery .= "
-				AND 
+				OR 
 					SendInformation.SendIn_ID IN (".$FileAttach_document.")
 			";
 		}
-		else{
-			$StrQuery .= "
-				AND 
-					SendInformation.SendIn_ID NOT IN (".$FileAttach_document.")
-			";
-		}
+		// else{
+			// $StrQuery .= "
+				// OR 
+					// SendInformation.SendIn_ID NOT IN (".$FileAttach_document.")
+			// ";
+		// }
+		$StrQuery .= "
+			)
+		";
 		
 		// echo $StrQuery;
 		// exit;

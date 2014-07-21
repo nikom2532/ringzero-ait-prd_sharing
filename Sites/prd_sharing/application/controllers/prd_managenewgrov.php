@@ -54,7 +54,7 @@ class PRD_ManageNewGROV extends CI_Controller {
 				$FileAttach_image = $this->prd_managenewgrov_fileattach_model->get_FileAttach_image();
 				$FileAttach_document = $this->prd_managenewgrov_fileattach_model->get_FileAttach_document();
 				
-				// var_dump($FileAttach_video);
+				// var_dump($FileAttach_document);
 				// exit;
 				
 				if($this->input->post("manageNewGROV_is_submit") == "yes"){
