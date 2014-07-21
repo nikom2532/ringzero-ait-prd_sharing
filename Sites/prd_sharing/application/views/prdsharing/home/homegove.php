@@ -9,7 +9,7 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right;" id="makeRss">
+			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right; cursor: pointer; " id="makeRss">
 		</div>
 <?php
 		// var_dump($news); 
@@ -233,13 +233,12 @@
 <script type="text/javascript">
 $(function(){
 	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url()?>index.php/prd_rss/rss_feed";
+		 var url="<?php echo base_url().index_page(); ?>PRD_HomeGOVE/rss_feed_home_gove";
 		 //alert(url);
-		 var dataSet={ search: $("input#search").val(), start_date: $("input#fromdate").val(), end_date: $("input#todate").val() 
-		 ,type: $("#TypeID").val(),subtype: $("#SubTypeID").val(),department: $("#DepartmentID").val(),reporter: $("#UserId").val()};
+		 var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
 		 $.post(url,dataSet,function(data){
 			//alert(data);
-			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
+			var url = "<?php echo base_url()?>index.php/prd_homegove/view_rss_gove/"+data;
 			window.open(url);
 			//$("#InputRss").val(url).select();
 		 });

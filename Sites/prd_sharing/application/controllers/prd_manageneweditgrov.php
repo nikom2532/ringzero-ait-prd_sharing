@@ -56,7 +56,8 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('grov_status'),
 					$this->input->post('prd_status'),
 					$this->input->post('SendIn_Detail'),
-					$this->input->post('sendin_status')
+					$this->input->post('sendin_status'),
+					$this->session->userdata('member_id')
 				);
 				// var_dump($return_manageNewEditGROV_record);
 				

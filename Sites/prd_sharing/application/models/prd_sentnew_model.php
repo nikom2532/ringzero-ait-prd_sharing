@@ -64,16 +64,17 @@ class PRD_SentNew_model extends CI_Model {
 	}
 	
 	public function set_sentnew(
-		$create_date,
-		$Minis_ID,
-		$Dep_ID,
-		$NT05_PolicyID,
-		$Tar_ID,
-		$GOVE_Status,
-		$PRD_Status,
-		$SendIn_Plan,
-		$SendIn_Issue,
-		$SendIn_Detail
+		$create_date = '',
+		$Minis_ID = '',
+		$Dep_ID = '',
+		$NT05_PolicyID = '',
+		$Tar_ID = '',
+		$GOVE_Status = '',
+		$PRD_Status = '',
+		$SendIn_Plan = '',
+		$SendIn_Issue = '',
+		$SendIn_Detail = '',
+		$Mem_ID = ''
 	)
 	{
 			if($Tar_ID == -1){
@@ -101,7 +102,8 @@ class PRD_SentNew_model extends CI_Model {
 				'PRD_Status' => $PRD_Status,
 				'GOVE_Active' => $GOVE_Active,
 				'GOVE_Status' => $GOVE_Status,
-				'SendIn_Status' => 1
+				'SendIn_Status' => 1,
+				'Mem_ID' => $Mem_ID
 			);
 			
 			$this->db->

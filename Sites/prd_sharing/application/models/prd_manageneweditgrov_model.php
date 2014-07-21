@@ -70,7 +70,8 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 		$GOVE_Status = '',
 		$PRD_Status = '',
 		$SendIn_Detail = '',
-		$Sendin_Status = ''
+		$Sendin_Status = '',
+		$Mem_ID = ''
 	)
 	{
 			if($Tar_ID == ""){
@@ -100,7 +101,8 @@ class PRD_ManageNewEditGROV_model extends CI_Model {
 				'PRD_Status' => $PRD_Status,
 				'GOVE_Active' => $GOVE_Active,
 				'GOVE_Status' => $GOVE_Status,
-				'SendIn_Status' => $Sendin_Status
+				'SendIn_Status' => $Sendin_Status,
+				'Mem_ID' => $Mem_ID
 			);
 			
 			return $this->db->where("SendIn_ID", $SendIn_ID)->

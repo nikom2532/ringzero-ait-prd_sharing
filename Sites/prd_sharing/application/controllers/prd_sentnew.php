@@ -84,7 +84,8 @@ class PRD_sentNew extends CI_Controller {
 				$this->input->post('prd_status'),
 				$this->input->post('SendIn_Plan'),
 				$this->input->post('SendIn_Issue'),
-				$this->input->post('SendIn_Detail')
+				$this->input->post('SendIn_Detail'),
+				$this->session->userdata('member_id')
 			);
 			
 			$return_num_files = 0;

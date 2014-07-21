@@ -8,7 +8,7 @@ class PRD_HomePRD extends CI_Controller {
 		$this->load->helper("url");
 		$this->load->library('session');
 		$this->load->model('prd_homeprd_model');
-		$this->load->model('prd_rss_home_model');
+		$this->load->model('PRD_rss_Home_PRD_model');
 		// $this->load->library('ait');
 	}
 	
@@ -246,15 +246,12 @@ class PRD_HomePRD extends CI_Controller {
 		}
 	}
 	
-	public function rss_feed_home()
+	public function rss_feed_home_prd()
 	{
-		// $this->load->database();
-		// $this->load->model('prd_rss_home_model');
+		$NT02_NewsType = $this->PRD_rss_Home_PRD_model->get_NT02_NewsType();
+		$category = $this->PRD_rss_Home_PRD_model->get_Category($NT02_NewsType);
 		
-		$NT02_NewsType = $this->prd_rss_home_model->get_NT02_NewsType();
-		$category = $this->prd_rss_home_model->get_Category($NT02_NewsType);
-		
-		$data['rss'] = $this->prd_rss_home_model->generate_rss(
+		$data['rss'] = $this->PRD_rss_Home_PRD_model->generate_rss(
 			$this->session->userdata('member_id'),
 			$this->input->post('search'),
 			$this->input->post('start_date'),

@@ -271,7 +271,7 @@
 <script type="text/javascript">
 $(function(){
 	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url().index_page(); ?>PRD_HomePRD/rss_feed_home";
+		 var url="<?php echo base_url().index_page(); ?>PRD_HomePRD/rss_feed_home_prd";
 		 //alert(url);
 		 var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
 		 $.post(url,dataSet,function(data){

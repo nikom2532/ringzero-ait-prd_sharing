@@ -7,6 +7,7 @@ class PRD_HomeGOVE extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('prd_homegove_model');
+		$this->load->model('prd_rss_home_gove_model');
 	}
 
 	public function index($page = 1)
@@ -250,5 +251,56 @@ class PRD_HomeGOVE extends CI_Controller {
 		else{
 			redirect(base_url().index_page().'', 'refresh');
 		}
+	}
+	
+	public function rss_feed_home_gove()
+	{
+		// $NT02_NewsType = $this->prd_rss_home_gove_model->get_NT02_NewsType();
+		// $category = $this->prd_rss_home_gove_model->get_Category($NT02_NewsType);
+		
+		$data['rss'] = $this->prd_rss_home_gove_model->generate_rss(
+			$this->session->userdata('member_id'),
+			$this->input->post('search'),
+			$this->input->post('start_date'),
+			$this->input->post('end_date')
+		);
+		echo $data['rss'];
+	}
+	
+	public function view_rss_gove()
+	{
+		$this->load->database();
+		$this->load->model('prd_rss_model');
+		$this->load->model('prd_rss_old_model');
+		
+		$get_rss_newsid = $this->prd_rss_model->get_rss_newsid($this->uri->segment(3));
+		$NewsNews = $this->prd_rss_model->get_NewsNews();
+		
+		
+		//###########  DETAIL_RSS and NEWS Merge together  #############
+		foreach ($get_rss_newsid as $get_rss_newsid_item) {
+			foreach ($NewsNews as $NewsNews_item) {
+				if($get_rss_newsid_item->Detail_NewsID == $NewsNews_item->News_OldID){
+					$get_rss_newsid_item->News_Date = $NewsNews_item->News_Date;
+				}
+			}
+		}
+		//##############################################################
+		
+		// var_dump($get_rss_newsid);
+		// exit;
+		
+		$data['query'] = $get_rss_newsid;
+		$i = 0;
+		
+		foreach($data['query'] as $item)
+		{
+			$newsid = $item->Detail_NewsID;
+			
+			$data['title'][$i] = $this->prd_rss_old_model->get_news($newsid);
+			
+			$i++;
+		}
+		$this->load->view('prdsharing/rss/view_rss',$data);
 	}
 }

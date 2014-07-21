@@ -9,7 +9,6 @@ class PRD_HomeGOVE_model extends CI_Model {
 		$this->db_ntt_old = $this->load->database('nnt_data_center_old', TRUE);
 		
 		//Find Member What is Department and Ministry
-		
 		$Member = $this->session->userdata('member_id');
 		$StrQueryMember = "
 			SELECT
@@ -50,7 +49,6 @@ class PRD_HomeGOVE_model extends CI_Model {
 				";
 			}
 		}
-		
 	}
 	
 	/*
@@ -229,7 +227,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 					'0' AS File_Type_video,
 					'0' AS File_Type_voice,
 					'0' AS File_Type_document,
-					'0' AS File_Type_image,s
+					'0' AS File_Type_image,
 					ROW_NUMBER() OVER (ORDER BY MAX(SendInformation.SendIn_ID) DESC) AS 'RowNumber'
 				
 				FROM SendInformation 
