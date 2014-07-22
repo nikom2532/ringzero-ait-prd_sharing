@@ -392,25 +392,25 @@
     
 	function validateForm() {
 		var create_date = document.forms["form_sendnew"]["create_date"].value;
-		if (create_date=null || create_date=="") {
+		if (create_date==null || create_date=="") {
 			alert("โปรดใส่ค่า ข่าววันที่");
 			return false;
 		}
 		
 		var SendIn_Plan = document.forms["form_sendnew"]["SendIn_Plan"].value;
-		if (SendIn_Plan=null || SendIn_Plan=="") {
+		if (SendIn_Plan==null || SendIn_Plan=="") {
 			alert("โปรดใส่ค่า แผนงานโครงการ/กิจกรรม");
 			return false;
 		}
 		
 		var SendIn_Issue = document.forms["form_sendnew"]["SendIn_Issue"].value;
-		if (SendIn_Issue=null || SendIn_Issue=="") {
+		if (SendIn_Issue==null || SendIn_Issue=="") {
 			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
 			return false;
 		}
 		
 		var SendIn_Detail = document.forms["form_sendnew"]["SendIn_Detail"].value;
-		if (SendIn_Detail=null || SendIn_Detail=="") {
+		if (SendIn_Detail==null || SendIn_Detail=="") {
 			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
 			return false;
 		}

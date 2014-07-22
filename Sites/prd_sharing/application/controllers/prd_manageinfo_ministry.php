@@ -64,13 +64,10 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 					);
 					
 					if(count($Ministry_children_query) == 0){
-						echo "deleted";
 						$department_delete_query = $this->prd_manageinfo_ministry_model->del_Ministry(
 							$this->input->get('minis_id')
 						);
-						
 					}
-					
 					
 					// var_dump($department_delete_query);
 				}

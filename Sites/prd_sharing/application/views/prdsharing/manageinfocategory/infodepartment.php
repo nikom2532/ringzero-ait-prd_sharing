@@ -18,23 +18,26 @@
 								<label >ลำดับที่:</label>
 								<span class="number"><?php echo $department_item->Dep_ID; ?></span>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12" style="width: 386px; ">
 								<label >ชื่อกระทรวง:</label>
-								<select class="select-opt" name="ministry_id">
-<?php
-									foreach ($ministry as $ministry_item) {
-										?><option value="<?php echo $ministry_item->Minis_ID ?>" <?php
-											
-											if($ministry_item->Minis_ID == $department_item->Ministry_ID){
-												?>selected='selected'<?php
-											}
-											
-										?>><?php echo $ministry_item->Minis_Name; ?></option><?php
-									}
-?>
-								</select>
+								<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
+									<span>เลือกชื่อกระทรวง</span>
+									<select class="select-opt" name="ministry_id" id="ministry_id">
+	<?php
+										foreach ($ministry as $ministry_item) {
+											?><option value="<?php echo $ministry_item->Minis_ID ?>" <?php
+												
+												if($ministry_item->Minis_ID == $department_item->Ministry_ID){
+													?>selected='selected'<?php
+												}
+												
+											?>><?php echo $ministry_item->Minis_Name; ?></option><?php
+										}
+	?>
+									</select>
+								</span>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12" style="margin-top: 31px; ">
 								<label >ชื่อกรม:</label>
 								<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="<?php echo $department_item->Dep_Name; ?>" placeholder="" required="required">
 							</div>
@@ -67,3 +70,43 @@
 		</form>
 	</div>
 </div>
+<script>
+	function validateForm() {
+		var ministry_id = document.forms["info_depatment_form"]["ministry_id"].value;
+		if (ministry_id==null || ministry_id=="") {
+			alert("โปรดใส่ค่า ชื่อกระทรวง");
+			return false;
+		}
+		
+		var dep_name = document.forms["info_depatment_form"]["dep_name"].value;
+		if (dep_name==null || dep_name=="") {
+			alert("โปรดใส่ค่า รายละเอียด");
+			return false;
+		}
+		
+		var dep_desc = document.forms["info_depatment_form"]["dep_desc"].value;
+		if (dep_desc==null || dep_desc=="") {
+			alert("โปรดใส่ค่า รายละเอียด");
+			return false;
+		}
+		
+		var dep_status = document.forms["info_depatment_form"]["dep_status"].value;
+		if (dep_status==null || dep_status=="") {
+			alert("โปรดลือกค่า สถานะการใช้งาน");
+			return false;
+		}
+	}
+	
+	$(function(){
+        var selectmenu_txt = $("#ministry_id").find("option:selected").text();
+			$("#ministry_id").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#dep_status").find("option:selected").text();
+			$("#dep_status").prev("span").text(selectmenu_txt);
+		
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+</script>

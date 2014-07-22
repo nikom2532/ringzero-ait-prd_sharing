@@ -129,6 +129,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation
 				WHERE 
 					SendInformation.SendIn_Status = '1'
+				OR
+					SendInformation.SendIn_Status = '0'
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -160,6 +162,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation
 			WHERE 
 				SendInformation.SendIn_Status = '1'
+			OR
+				SendInformation.SendIn_Status = '0'
 		";
 		
 		$query = $this->db->
@@ -235,6 +239,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 				AND
 					SendInformation.SendIn_Status = '1'
+				OR
+					SendInformation.SendIn_Status = '0'
 					
 		";
 		if($news_title != ""){
@@ -350,6 +356,8 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 			AND
 				SendInformation.SendIn_Status = '1'
+			OR
+				SendInformation.SendIn_Status = '0'
 		";
 		if($news_title != ""){
 			$StrQuery .= "

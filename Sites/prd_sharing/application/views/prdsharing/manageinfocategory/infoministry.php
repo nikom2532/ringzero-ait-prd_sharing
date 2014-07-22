@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="form" action="<?php echo base_url().index_page(); ?>manageInfo_Ministry" method="post">
+		<form name="form_infoministry" action="<?php echo base_url().index_page(); ?>manageInfo_Ministry" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data" accept-charset="utf-8">
 			<input type="hidden" name="info_ministry_is_submit" value="yes" />
 <?php
 			// var_dump($ministry);
@@ -28,12 +28,16 @@
 								<label >รายละเอียด:</label>
 								<textarea rows="4" cols="50" name="minis_desc" class="txt-area" required="required"><?php echo $ministry_item->Minis_Desc; ?></textarea>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12" style="width: 386px; ">
 								<label >สถานะการใช้งาน:</label>
-								<select class="select-opt" name="minis_status">
-									<option value="1" <?php if($ministry_item->Minis_Status == "1"){ ?>selected=''<?php } ?>>ใช้งานได้</option>
-									<option value="0" <?php if($ministry_item->Minis_Status == "0"){ ?>selected=''<?php } ?>>ใช้งานไม่ได้</option>
-								</select>
+								<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
+									<span>เลือกหมวดหมู่ข่าว</span>
+									<select class="select-opt" name="minis_status" id="minis_status">
+										<option value="" >เลือกสถานะการใช้งาน</option>
+										<option value="1" <?php if($ministry_item->Minis_Status == "1"){ ?>selected=''<?php } ?>>ใช้งานได้</option>
+										<option value="0" <?php if($ministry_item->Minis_Status == "0"){ ?>selected=''<?php } ?>>ใช้งานไม่ได้</option>
+									</select>
+								</span>
 							</div>
 						</div>
 		
@@ -53,3 +57,34 @@
 		</form>
 	</div>
 </div>
+<script>
+	function validateForm() {
+		var minis_name = document.forms["form_infoministry"]["minis_name"].value;
+		if (minis_name==null || minis_name=="") {
+			alert("โปรดใส่ค่า ชื่อกระทรวง");
+			return false;
+		}
+		
+		var minis_desc = document.forms["form_infoministry"]["minis_desc"].value;
+		if (minis_desc==null || minis_desc=="") {
+			alert("โปรดใส่ค่า รายละเอียด");
+			return false;
+		}
+		
+		var minis_status = document.forms["form_infoministry"]["minis_status"].value;
+		if (minis_status==null || minis_status=="") {
+			alert("โปรดเลือกค่า สถานะการใช้งาน");
+			return false;
+		}
+	}
+	
+	$(function(){
+        var selectmenu_txt = $("#minis_status").find("option:selected").text();
+			$("#minis_status").prev("span").text(selectmenu_txt);
+			
+        $(".select-menu > select").live("change",function(){
+            var selectmenu_txt = $(this).find("option:selected").text();
+            $(this).prev("span").text(selectmenu_txt);
+        });
+    });
+</script>
