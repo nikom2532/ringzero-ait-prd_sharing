@@ -190,7 +190,12 @@
 		<legend >
 			File Upload
 		</legend>
-		<?php ///* ?>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			* เอกสาร Upload จะต้องไม่เกิน 40 MB
+		</div>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv|wma
+		</div>
 		<div class="uploadfile">
 			<div class="row file_1">
 				<div class="col-lg-12" style="margin-left: 5%; ">

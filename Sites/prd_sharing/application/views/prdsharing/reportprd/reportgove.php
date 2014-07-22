@@ -184,19 +184,34 @@
 ?>
 					</p>
 					<p class="col-2" style="width: 20%;float: left; ">
-						<?php echo mb_substr($news_item->SendIn_Issue, 0, 50, 'UTF-8'); ?>
+<?php 
+						$SendIn_Issue = $news_item->SendIn_Issue;
+						if(mb_strlen($SendIn_Issue)>=50){
+							$SendIn_Issue = mb_substr($SendIn_Issue, 0, 30, 'UTF-8')."...";
+						}
+						echo $SendIn_Issue;
+?>
 					</p>
 					<p class="col-2" style="width: 20%;float: left; ">
 <?php 
-						$strSendIn_Detail = mb_substr($news_item->SendIn_Detail, 0, 50, 'UTF-8');
-						$strSendIn_Detail = str_replace("<p>", "", $strSendIn_Detail);
+						$strSendIn_Detail = str_replace("<p>", "", $news_item->SendIn_Detail);
 						$strSendIn_Detail = str_replace("</p>", "", $strSendIn_Detail);
+						
+						if(mb_strlen($strSendIn_Detail)>=30){
+							$strSendIn_Detail = mb_substr($strSendIn_Detail, 0, 30, 'UTF-8')."...";
+						}
+						
 						echo $strSendIn_Detail;
-						// echo mb_substr($news_item->SendIn_Detail, 0, 50, 'UTF-8'); 
 ?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; ">
-						<?php echo $news_item->Mem_Name." ".$news_item->Mem_LasName; ?>
+<?php 
+						$reporter = $news_item->Mem_Name." ".$news_item->Mem_LasName;
+						if(mb_strlen($reporter)>=30){
+							$reporter = mb_substr($reporter, 0, 30, 'UTF-8')."...";
+						}
+						echo $reporter;
+?>
 					</p>
 					<p class="col-1" style="width: 10%;float: left; text-align: center; ">
 <?php 

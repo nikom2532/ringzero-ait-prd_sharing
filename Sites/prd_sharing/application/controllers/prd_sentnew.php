@@ -71,6 +71,9 @@ class PRD_sentNew extends CI_Controller {
 		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
 		header('Content-Type: text/html; charset=utf-8');
 		
+		// var_dump($_FILES);
+		// exit;
+		
 		if ($this->input->post('sentnew_is_add')) {
 			
 			//record a new news

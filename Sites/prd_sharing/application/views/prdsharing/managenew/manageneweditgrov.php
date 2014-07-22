@@ -371,6 +371,9 @@ foreach($news as $news_item):
 	<div style="margin-left: 5%; color: #cc0000; ">
 		* เอกสาร Upload จะต้องไม่เกิน 40 MB
 	</div>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv|wma
+	</div>
 	<div class="uploadfile">
 		<div class="row file_1">
 			<div class="col-lg-12" style="margin-left: 5%; ">
@@ -514,14 +517,16 @@ foreach($news as $news_item):
 		// var file_id = $(this).attr("data-file_id");
 		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();
 		
-		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
+		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
+		
+		console.log(ext);
 		
 		if($.inArray(
 			ext, 
 			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
 			    alert('invalid extension!');
-			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val("");
+			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val("");
 		}
 	}
 	
