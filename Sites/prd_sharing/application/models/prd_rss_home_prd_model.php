@@ -640,6 +640,7 @@ class PRD_rss_Home_PRD_model extends CI_Model {
 			UPDATE Main_RSS 
 			SET Main_RssID_Encode = '".md5($mainid)."'
 			WHERE Main_RssID = '".$mainid."';";
+			
 		$this->db->query($sql_update);
 		
 		return md5($mainid);

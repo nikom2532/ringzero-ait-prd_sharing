@@ -178,7 +178,6 @@ class PRD_rss extends CI_Controller {
 		$this->load->database();
 		$this->load->model('prd_rss_model');
 		$this->load->model('prd_rss_old_model');
-		
 		$get_rss_newsid = $this->prd_rss_model->get_rss_newsid($this->uri->segment(3));
 		$NewsNews = $this->prd_rss_model->get_NewsNews();
 		

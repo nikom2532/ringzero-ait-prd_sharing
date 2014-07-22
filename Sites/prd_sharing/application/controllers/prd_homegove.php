@@ -298,7 +298,7 @@ class PRD_HomeGOVE extends CI_Controller {
 		{
 			$newsid = $item->Detail_NewsID;
 			
-			$data['title'][$i] = $this->prd_rss_old_model->get_news($newsid);
+			$data['title'][$i] = $this->prd_rss_old_model->get_news_gove($newsid);
 			
 			$i++;
 		}
