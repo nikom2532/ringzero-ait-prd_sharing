@@ -89,6 +89,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'qt'	=>	'video/quicktime',
 				'mov'	=>	'video/quicktime',
 				'avi'	=>	'video/x-msvideo',
+				'flv'	=>	'video/x-flv',
 				'movie'	=>	'video/x-sgi-movie',
 				'wmv'	=>	'video/x-ms-wmv',
 				'doc'	=>	array('application/msword','application/octet-stream'),
@@ -102,7 +103,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'eml'	=>	'message/rfc822',
 				'json'	=>	array('application/json', 'text/json'),
 				'mp4'	=>	'video/mp4',
-				'wma'	=>	'audio/x-ms-wma'
+				'wma'	=>	'audio/x-ms-wma',
 			);
 			
 /* End of file mimes.php */

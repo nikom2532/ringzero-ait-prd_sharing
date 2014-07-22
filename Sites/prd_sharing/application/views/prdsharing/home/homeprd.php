@@ -201,9 +201,11 @@
 				</p>
                 
                 <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-                	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
-                	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
-                    <span style="margin-top: 10px;">
+                	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a><?php
+                	if($current_page != 1){
+                		?><a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
+					}
+                    ?><span style="margin-top: 10px;">
 						<!-- <span><?php //echo $current_page; ?></span> -->
 						<select onchange="jump_page(this.value)">
 <?php 
@@ -213,9 +215,11 @@
 							}
 ?>
 						</select> / <?php echo $total_page; ?>
-                    </span>
-                    <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
-                    <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+                    </span><?php
+                    if($current_page != $total_page) {
+						?><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a><?php
+					}
+					?><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
                 </p>
             </div>
             
@@ -270,21 +274,21 @@
 </div>
 <script type="text/javascript">
 $(function(){
-	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url().index_page(); ?>PRD_HomePRD/rss_feed_home_prd";
-		 //alert(url);
-		 var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
-		 $.post(url,dataSet,function(data){
+	$("#makeRss").click(function(){
+		var url="<?php echo base_url().index_page(); ?>PRD_HomePRD/rss_feed_home_prd";
+		//alert(url);
+		var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
+		$.post(url,dataSet,function(data){
 			//alert(data);
-			var url = "<?php echo base_url()?>index.php/prd_rss/view_rss/"+data;
+			var url = "<?php echo base_url().index_page(); ?>prd_rss/view_rss/"+data;
 			window.open(url);
 			//$("#InputRss").val(url).select();
-		 });
-	 });
-	 
-	 
-	 //FOr CApture
-	 // $("#makeRss").
-	 
+		});
+	});
+	
+	
+	//FOr CApture
+	// $("#makeRss").
+	
 });
 </script>

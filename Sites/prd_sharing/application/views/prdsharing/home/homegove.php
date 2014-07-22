@@ -181,10 +181,12 @@
 				<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
 			</p>
 	        
-	        <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
-	        	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a>
-	        	<a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a>
-	            <span style="margin-top: 10px;">
+	        <p style="width: 30%;float: left;margin-top: 20px; text-align: right;">
+	        	<a href="javascript:firstPage()" class="first_page"><img src="<?php echo base_url(); ?>img/prew.png"></a><?php
+	        	if($current_page != 1){
+		        	?><a href="javascript:prevPage('<?php echo $current_page; ?>')" class="prev_page"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
+	        	}
+	            ?><span style="margin-top: 10px;">
 					<!-- <span><?php //echo $current_page; ?></span> -->
 					<select onchange="jump_page(this.value)">
 <?php 
@@ -194,54 +196,55 @@
 						}
 ?>
 					</select> / <?php echo $total_page; ?>
-	            </span>
-	            <a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a>
-	            <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+	            </span><?php
+				if($current_page != $total_page) {
+					?><a href="javascript:nextPage('<?php echo $current_page; ?>')" class="next_page"><img src="<?php echo base_url(); ?>img/next.png"></a><?php
+				}
+				?>
+				<a href="javascript:lastPage('<?php echo $total_page; ?>')" class="last_page"><img src="<?php echo base_url(); ?>img/next2.png"></a>
 	        </p>
 	    </div>
-	    <script>
-        	function jump_page(val){
-				location='<?php echo $jump_url; ?>/'+val;
-			}
-			function nextPage(val){
-				// debugger;
-				var nextpage = parseInt(val)+1;
-				if(<?php echo $total_page; ?>==val){
-					nextpage = val;
-				}
-				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+nextpage);
-				$("#homeSearch").submit();
-			}
-			function lastPage(val){
-				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+val);
-				$("#homeSearch").submit();
-			}
-			function prevPage(val){
-				var prevpage = parseInt(val)-1;
-				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+prevpage);
-				$("#homeSearch").submit();
-			}
-			function firstPage(){
-				$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/1");
-				$("#homeSearch").submit();
-			}
-			
-        </script>
 	</div>
 </div>
 </div>
 <script type="text/javascript">
-$(function(){
-	 $("#makeRss").click(function(){
-		 var url="<?php echo base_url().index_page(); ?>PRD_HomeGOVE/rss_feed_home_gove";
-		 //alert(url);
-		 var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
-		 $.post(url,dataSet,function(data){
-			//alert(data);
-			var url = "<?php echo base_url()?>index.php/prd_homegove/view_rss_gove/"+data;
-			window.open(url);
-			//$("#InputRss").val(url).select();
-		 });
-	 });
-});
+	function jump_page(val){
+		location='<?php echo $jump_url; ?>/'+val;
+	}
+	function nextPage(val){
+		// debugger;
+		var nextpage = parseInt(val)+1;
+		if(<?php echo $total_page; ?>==val){
+			nextpage = val;
+		}
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+nextpage);
+		$("#homeSearch").submit();
+	}
+	function lastPage(val){
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+val);
+		$("#homeSearch").submit();
+	}
+	function prevPage(val){
+		var prevpage = parseInt(val)-1;
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+prevpage);
+		$("#homeSearch").submit();
+	}
+	function firstPage(){
+		$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/1");
+		$("#homeSearch").submit();
+	}
+	
+	$(function(){
+		$("#makeRss").click(function(){
+			var url="<?php echo base_url().index_page(); ?>PRD_HomeGOVE/rss_feed_home_gove";
+			//alert(url);
+			var dataSet={ search: $("input#news_title").val(), start_date: $("input.fromdate").val(), end_date: $("input.todate").val()};
+			$.post(url,dataSet,function(data){
+				//alert(data);
+				var url = "<?php echo base_url().index_page(); ?>prd_homegove/view_rss_gove/"+data;
+				window.open(url);
+				//$("#InputRss").val(url).select();
+			});
+		});
+	});
 </script>

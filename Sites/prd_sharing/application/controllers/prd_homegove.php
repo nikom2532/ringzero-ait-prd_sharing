@@ -274,9 +274,9 @@ class PRD_HomeGOVE extends CI_Controller {
 		$this->load->model('prd_rss_old_model');
 		
 		$get_rss_newsid = $this->PRD_rss_Home_GOVE_model->get_rss_newsid($this->uri->segment(3));
-		$NewsNews = $this->PRD_rss_Home_GOVE_model->get_NewsNews();
+		// $NewsNews = $this->PRD_rss_Home_GOVE_model->get_NewsNews();
 		
-		
+		/*
 		//###########  DETAIL_RSS and NEWS Merge together  #############
 		foreach ($get_rss_newsid as $get_rss_newsid_item) {
 			foreach ($NewsNews as $NewsNews_item) {
@@ -286,6 +286,7 @@ class PRD_HomeGOVE extends CI_Controller {
 			}
 		}
 		//##############################################################
+		*/
 		
 		// var_dump($get_rss_newsid);
 		// exit;
