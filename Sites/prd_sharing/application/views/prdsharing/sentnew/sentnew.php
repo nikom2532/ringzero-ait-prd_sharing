@@ -359,6 +359,15 @@
 		number--;
 	});
 	
+	//Check that cannot upload more that 40 MB
+	$("#fileattach").bind("change", function() {
+		if(this.files[0].size < 41943040){
+			alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
+			$(this).val("");
+			return false;
+		}
+	});
+	
 	function check_file_ext(file_id){
 		// var file_id = $(this).attr("data-file_id");
 		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();

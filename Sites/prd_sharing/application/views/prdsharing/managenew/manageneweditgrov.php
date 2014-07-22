@@ -519,7 +519,7 @@ foreach($news as $news_item):
 		
 		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
 		
-		console.log(ext);
+		// alert(this.files[0].size);
 		
 		if($.inArray(
 			ext, 
@@ -530,6 +530,15 @@ foreach($news as $news_item):
 		}
 	}
 	
+	//Check that cannot upload more that 40 MB
+	$("#fileattach").bind("change", function() {
+		if(this.files[0].size < 41943040){
+			alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
+			$(this).val("");
+			return false;
+		}
+	});
+	
 	$(".FileAttachDelete").click( function() {
 		var file_ID = $(this).attr("data-File_ID");
 		if (confirm("คุณแน่ใจว่าจะลบรายการ เลขที่เอกสาร = "+file_ID+" หรือไม่ ") == true) {
@@ -538,7 +547,11 @@ foreach($news as $news_item):
 	});
 	
 	$(function(){
-        // $(".select-menu > select > option:eq(0)").attr("selected","selected");
+		
+		// $("#fileattach").bind("change", function(){
+			// alert(this.fileattach1.size);
+		// });
+		
         var selectmenu_txt = $("#Minis_ID").find("option:selected").text();
 			$("#Minis_ID").prev("span").text(selectmenu_txt);
         selectmenu_txt = $("#Dep_ID").find("option:selected").text();

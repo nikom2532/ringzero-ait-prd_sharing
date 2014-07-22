@@ -128,9 +128,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				FROM
 					SendInformation
 				WHERE 
+				(
 					SendInformation.SendIn_Status = '1'
-				OR
+					OR
 					SendInformation.SendIn_Status = '0'
+				)
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -161,9 +163,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			FROM
 				SendInformation
 			WHERE 
+			(
 				SendInformation.SendIn_Status = '1'
-			OR
+				OR
 				SendInformation.SendIn_Status = '0'
+			)
 		";
 		
 		$query = $this->db->
@@ -185,6 +189,9 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		$filter_AttachFile = ''
 	)
 	{
+		// var_dump($filter_AttachFile);
+		// exit;	
+		
 		if($filter_AttachFile != null){
 			$statusArray = array();
 			foreach($filter_AttachFile as $val){
@@ -236,11 +243,13 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				FROM 
 					SendInformation 
 				WHERE
-					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
-				AND
+				(
 					SendInformation.SendIn_Status = '1'
-				OR
+					OR
 					SendInformation.SendIn_Status = '0'
+				)
+				AND
+					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 					
 		";
 		if($news_title != ""){
@@ -353,11 +362,13 @@ class PRD_ManageNewGROV_model extends CI_Model {
 			FROM
 				SendInformation
 			WHERE
-				SendInformation.SendIn_ID IN (".$filter_AttachFile.")
-			AND
+			(
 				SendInformation.SendIn_Status = '1'
-			OR
+				OR
 				SendInformation.SendIn_Status = '0'
+			)
+			AND
+				SendInformation.SendIn_ID IN (".$filter_AttachFile.")
 		";
 		if($news_title != ""){
 			$StrQuery .= "

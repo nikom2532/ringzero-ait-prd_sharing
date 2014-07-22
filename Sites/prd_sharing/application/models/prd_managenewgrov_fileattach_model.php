@@ -141,6 +141,8 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 		$FileAttach_document = ''
 	)
 	{
+		// echo $filter_image;
+		// exit;
 		
 		if($FileAttach_video != null){
 			$statusArray = array();
@@ -193,60 +195,63 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 				FileAttach.File_Status = 1
 			AND
 				SendInformation.SendIn_Status = 1
-			AND
-			(
 		";
+		if(
+			$filter_vdo == 1 ||
+			$filter_sound == 1 || 
+			$filter_sound == 1 ||
+			$filter_other == 1
+		){
+			$StrQuery .= "
+				AND
+				(
+			";
+		}
 		if($filter_vdo == 1){
 			$StrQuery .= "
-				 
-					SendInformation.SendIn_ID IN (".$FileAttach_video.")
+				SendInformation.SendIn_ID IN (".$FileAttach_video.")
 			";
 		}
-		// else{
-			// $StrQuery .= "
-// 				 
-					// SendInformation.SendIn_ID NOT IN (".$FileAttach_video.")
-			// ";
-		// }
 		if($filter_sound == 1){
+			if($filter_vdo == 1){
+				$StrQuery .= "
+					OR
+				";
+			}
 			$StrQuery .= "
-				OR 
-					SendInformation.SendIn_ID IN (".$FileAttach_audio.")
+				SendInformation.SendIn_ID IN (".$FileAttach_audio.")
 			";
 		}
-		// else{
-			// $StrQuery .= "
-				// OR 
-					// SendInformation.SendIn_ID NOT IN (".$FileAttach_audio.")
-			// ";
-		// }
 		if($filter_image == 1){
+			if($filter_vdo == 1 || $filter_sound == 1){
+				$StrQuery .= "
+					OR
+				";
+			}
 			$StrQuery .= "
-				OR 
-					SendInformation.SendIn_ID IN (".$FileAttach_image.")
+				SendInformation.SendIn_ID IN (".$FileAttach_image.")
 			";
 		}
-		// else{
-			// $StrQuery .= "
-				// OR 
-					// SendInformation.SendIn_ID NOT IN (".$FileAttach_image.")
-			// ";
-		// }
 		if($filter_other == 1){
+			if($filter_vdo == 1 || $filter_sound == 1 || $filter_image == 1){
+				$StrQuery .= "
+					OR
+				";
+			}
 			$StrQuery .= "
-				OR 
-					SendInformation.SendIn_ID IN (".$FileAttach_document.")
+				SendInformation.SendIn_ID IN (".$FileAttach_document.")
 			";
 		}
-		// else{
-			// $StrQuery .= "
-				// OR 
-					// SendInformation.SendIn_ID NOT IN (".$FileAttach_document.")
-			// ";
-		// }
-		$StrQuery .= "
-			)
-		";
+		if(
+			$filter_vdo == 1 ||
+			$filter_sound == 1 || 
+			$filter_sound == 1 ||
+			$filter_other == 1
+		){
+			$StrQuery .= "
+				)
+			";
+		}
 		
 		// echo $StrQuery;
 		// exit;

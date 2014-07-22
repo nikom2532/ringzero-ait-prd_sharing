@@ -70,6 +70,9 @@ class PRD_ManageNewGROV extends CI_Controller {
 						$FileAttach_document
 					);
 					
+					// var_dump($filter_AttachFile);
+					// exit;
+					
 					$news = $this->prd_managenewgrov_model->get_grov_search(
 						$page,
 						$row_per_page,
@@ -80,6 +83,10 @@ class PRD_ManageNewGROV extends CI_Controller {
 						$this->input->post("Dep_ID"),
 						$filter_AttachFile
 					);
+					
+					// var_dump($news);
+					// exit;
+					
 					$count_row = $this->prd_managenewgrov_model->get_grov_search_count(
 						$this->input->post("sendin_issue"), 
 						$this->input->post("start_date"), 
