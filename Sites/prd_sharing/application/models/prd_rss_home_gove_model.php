@@ -298,21 +298,21 @@ class PRD_rss_Home_GOVE_model extends CI_Model {
 	{
 		$query = "
 			SELECT 
-				(Detail_RSS.Detail_NewsID) AS Detail_NewsID,
-				(Detail_RSS.Main_RssID) AS Main_RssID,
-				'News.News_Date' AS News_Date
+				(Detail_RSS_GOVE.Detail_GOVE_NewsID) AS Detail_NewsID,
+				(Detail_RSS_GOVE.Main_GOVE_RssID) AS Main_RssID,
+				(Main_RSS_GOVE.Main_GOVE_Date) AS News_Date
 			FROM 
-				Detail_RSS
+				Detail_RSS_GOVE
 			LEFT JOIN 
-				Main_RSS
+				Main_RSS_GOVE
 			ON 
-				Detail_RSS.Main_RssID = Main_RSS.Main_RssID
+				Detail_RSS_GOVE.Main_GOVE_RssID = Main_RSS_GOVE.Main_GOVE_RssID
 			WHERE 
-				Main_RSS.Main_RssID_Encode = '$page'
+				Main_RSS_GOVE.Main_GOVE_RssID_Encode = '$page'
 		";
 		
-		echo $query;
-		exit;
+		// echo $query;
+		// exit;
 		return $this->db->query($query)->result();
 	}
 }

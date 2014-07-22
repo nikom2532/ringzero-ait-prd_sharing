@@ -5,7 +5,7 @@
 	$j=0;
 	foreach($title as $titles)
 	{	
-		$t[$i] = $titles[0]->NT01_NewsTitle;
+		$t[$i] = $titles[0]->SendIn_Issue;
 		$i++;
 	}
 	foreach($query as $item)

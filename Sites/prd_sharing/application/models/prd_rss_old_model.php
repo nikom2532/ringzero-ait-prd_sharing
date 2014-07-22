@@ -11,8 +11,8 @@ class PRD_rss_old_model extends CI_Model {
 	{
 	 	$query = "
 			SELECT * 
-			FROM NT01_News
-			WHERE NT01_NewsID = '$newsid';";
-		return $this->db_ntt_old->query($query)->result();
+			FROM SendInformation
+			WHERE SendInformation.SendIn_ID = '$newsid';";
+		return $this->db->query($query)->result();
 	}
 }

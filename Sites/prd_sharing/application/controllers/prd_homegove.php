@@ -302,6 +302,6 @@ class PRD_HomeGOVE extends CI_Controller {
 			
 			$i++;
 		}
-		$this->load->view('prdsharing/rss/view_rss',$data);
+		$this->load->view('prdsharing/rss/view_rss_gove',$data);
 	}
 }
