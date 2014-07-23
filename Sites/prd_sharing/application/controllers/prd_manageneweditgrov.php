@@ -37,10 +37,7 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			$showStatus = $this->authenstatus->checkGroupID();
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
-			
 			if($this->input->post("manageNewEditGROV_record") == "yes"){
-				// echo "record";
-				
 				// $this->load->view('prdsharing/templates/header');
 				?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
 				header('Content-Type: text/html; charset=utf-8');
@@ -59,8 +56,6 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->input->post('sendin_status'),
 					$this->session->userdata('member_id')
 				);
-				// var_dump($return_manageNewEditGROV_record);
-				
 				
 				$return_num_files = 0;
 				foreach ($_FILES as $file) {
@@ -71,15 +66,6 @@ class PRD_manageNewEditGROV extends CI_Controller {
 				}
 				
 				if($return_num_files > 0){
-					
-					
-					// ini_set('upload_max_filesize', '10M');
-					// echo ini_get('upload_max_filesize'), ", " , ini_get('post_max_size');
-					// exit;
-					
-					// echo "กำลังปรับปรุงระบบ โปรดรอ 1 นาที <Br/>";
-					// var_dump($_FILES);
-					// exit;
 					
 					// Import library
 					$this->load->library("multiupload");
@@ -93,19 +79,13 @@ class PRD_manageNewEditGROV extends CI_Controller {
 					$this->multiupload->init();
 					$file_name = $this->multiupload->do_upload();
 					
-					// ใช้ $file_name วนลูปสำหรับเชื่อมโยงกับ Record ในฐานข้อมูล
-					// var_dump($file_name);
-					// exit;
-					
 					$set_AttachFile = $this->prd_manageneweditgrov_model->set_AttachFile(
 						$this->input->post("SendIn_ID"),
 						$file_name
 					);
-					
-					// var_dump($set_AttachFile);
-					// exit;
 				}
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
+				
 			}
 			elseif($this->input->get('is_del_fileattach') == "1"){
 				$delete_fileattach_get_SendIn_ID = $this->prd_manageneweditgrov_model->delete_FileAttach(
