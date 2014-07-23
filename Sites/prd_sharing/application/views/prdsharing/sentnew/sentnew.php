@@ -186,48 +186,122 @@
 		</div><!-- #sentnews -->
 	</fieldset>
 	
-	<fieldset class="frame-input">
-		<legend >
-			File Upload
-		</legend>
-		<div style="margin-left: 5%; color: #cc0000; ">
-			* เอกสาร Upload จะต้องไม่เกิน 40 MB
-		</div>
-		<div style="margin-left: 5%; color: #cc0000; ">
-			jpg|jpeg|gif|png|doc|docx|xls|xlsx|ppt|pptx|pdf|csv|mp3|ogg|mp4|avi|wmv|wma
-		</div>
-		<div class="uploadfile">
-			<div class="row file_1">
-				<div class="col-lg-12" style="margin-left: 5%; ">
-					<span class="label_file" >file แนบเอกสาร</span>
-					<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" style="width: 40%; " multiple />
-					<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
-				</div>
-				<!-- <div class="col-lg-6">
-					<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-				</div> -->
+<fieldset class="frame-input">
+	<legend >
+		File Upload Video
+	</legend>
+	<div style="margin-left: 5%; color: #cc0000; float: left; ">
+		* เอกสาร Upload รวมกันแล้วไม่เกิน 40 MB
+	</div>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		mp4|avi|wmv|wma
+	</div>
+	<div class="uploadfile_video">
+		<div class="row file_1">
+			<div class="col-lg-12" style="margin-left: 5%; ">
+				<span class="label_file" >file แนบเอกสาร</span>
+				<input type="file" class="form-control bt" name="fileattach_video" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
-		</div>
-		<?php //*/ ?>
-		
-		<?php /* ?>
-		<div id="mulitplefileuploader">Upload</div>
-		<div id="status"></div>
-		<?php */ ?>
-		
-		<div class="row">
-			<div style="text-align: center; ">
-				<!-- <input class="bt" type="button" name="reducemorefile" id="reducemorefile" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" /> -->
-				<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
-			</div>
-		</div>
-	</fieldset>
-	<div class="row">
-		<div class="col-lg-12" style="text-align: center; float: left;">
-			<input class="bt" type="submit" name="share" id="submit" value="บันทึก">
-			<input class="bt" type="button" name="share" value="ยกเลิก" onclick="document.location.href = 'manageNewGROV'">
+			<!-- <div class="col-lg-6">
+				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+			</div> -->
 		</div>
 	</div>
+	<div class="row uploadfile_video_btn">
+		<div style="text-align: center;">
+			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
+		</div>
+	</div>
+</fieldset>
+
+<fieldset class="frame-input">
+	<legend >
+		File Upload เสียง
+	</legend>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		* เอกสาร Upload รวมกันแล้วจะต้องไม่เกิน 40 MB
+	</div>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		mp3|ogg|wma
+	</div>
+	<div class="uploadfile_voice">
+		<div class="row file_1">
+			<div class="col-lg-12" style="margin-left: 5%; ">
+				<span class="label_file" >file แนบเอกสาร</span>
+				<input type="file" class="form-control bt" name="fileattach_voice" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
+			</div>
+			<!-- <div class="col-lg-6">
+				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+			</div> -->
+		</div>
+	</div>
+	<div class="row uploadfile_voice_btn">
+		<div style="text-align: center;">
+			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
+		</div>
+	</div>
+</fieldset>
+
+<fieldset class="frame-input">
+	<legend >
+		File Upload เอกสาร
+	</legend>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		* เอกสาร Upload จะต้องไม่เกิน 2 MB
+	</div>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		doc|docx|xls|xlsx|ppt|pptx|pdf|csv
+	</div>
+	<div class="uploadfile_document">
+		<div class="row file_1">
+			<div class="col-lg-12" style="margin-left: 5%; ">
+				<span class="label_file" >file แนบเอกสาร</span>
+				<input type="file" class="form-control bt" name="fileattach_document" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
+			</div>
+			<!-- <div class="col-lg-6">
+				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+			</div> -->
+		</div>
+	</div>
+	<div class="row uploadfile_document_btn">
+		<div style="text-align: center;">
+			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
+		</div>
+	</div>
+</fieldset>
+
+<fieldset class="frame-input">
+	<legend >
+		File Upload รูปภาพ
+	</legend>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		* เอกสาร Upload รวมกันแล้วจะต้องไม่เกิน 20 MB
+	</div>
+	<div style="margin-left: 5%; color: #cc0000; ">
+		jpg|jpeg|gif|png
+	</div>
+	<div class="uploadfile_picture">
+		<div class="row file_1">
+			<div class="col-lg-12" style="margin-left: 5%; ">
+				<span class="label_file" >file แนบเอกสาร</span>
+				<input type="file" class="form-control bt" name="fileattach_picture" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
+			</div>
+			<!-- <div class="col-lg-6">
+				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
+			</div> -->
+		</div>
+	</div>
+	<div class="row uploadfile_picture_btn">
+		<div style="text-align: center;">
+			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
+		</div>
+	</div>
+</fieldset>
+	
 </form>
 <script>
 	$(function(){

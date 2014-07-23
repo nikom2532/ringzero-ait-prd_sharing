@@ -15,6 +15,31 @@
 	.row .col-lg-6 span.select-menu select{
 		width: 100% !important;
 	}
+	
+	.uploadfile_video .col-lg-12,
+	.uploadfile_voice .col-lg-12,
+	.uploadfile_document .col-lg-12,
+	.uploadfile_picture .col-lg-12{
+	    border-bottom: 1px dashed #d5d1e0;
+	    margin-top: 15px;
+	    padding-bottom: 2px;
+	    width: 90%;
+	    margin-left: 0;
+	}
+	.uploadfile_video .col-lg-12 input,
+	.uploadfile_voice .col-lg-12 input,
+	.uploadfile_document .col-lg-12 input,
+	.uploadfile_picture .col-lg-12 input{
+		border: 0;
+	}
+	
+	.uploadfile_video  .dotline,
+	.uploadfile_voice  .dotline,
+	.uploadfile_document .dotline,
+	.uploadfile_picture .dotline,{
+		
+	}
+}
 </style>
 <form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data">
 <?php
@@ -367,24 +392,26 @@ foreach($news as $news_item):
 
 <fieldset class="frame-input">
 	<legend >
-		File Upload Video
+		File Upload
 	</legend>
-	<div style="margin-left: 5%; color: #cc0000; float: left; ">
-		* เอกสาร Upload จะต้องไม่เกิน 40 MB
+	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
+		เอกสาร ขนาด File ทัั้งหมดรวมกันจะต้องไม่เกิน 40 MB
 	</div>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		mp4|avi|wmv|wma
-	</div>
+	
 	<div class="uploadfile_video">
-		<div class="row file_1">
+		<div style="margin-left: 5%; color: #000000; float: left; ">
+			Video *
+		</div>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			ลองรับนามสกุล .mp4, .avi, .wmv, .wma
+		</div>
+		
+		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control bt" name="fileattach_video" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_video" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
-			<!-- <div class="col-lg-6">
-				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-			</div> -->
 		</div>
 	</div>
 	<div class="row uploadfile_video_btn">
@@ -392,23 +419,18 @@ foreach($news as $news_item):
 			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 		</div>
 	</div>
-</fieldset>
-
-<fieldset class="frame-input">
-	<legend >
-		File Upload เสียง
-	</legend>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		* เอกสาร Upload จะต้องไม่เกิน 40 MB
-	</div>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		mp3|ogg|wma
-	</div>
+	
 	<div class="uploadfile_voice">
-		<div class="row file_1">
+		<div style="margin-left: 5%; color: #000000; float: left; ">
+			เสียง *
+		</div>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			ลองรับนามสกุล .mp3, .ogg, .wma
+		</div>
+		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control bt" name="fileattach_voice" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_voice" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 			<!-- <div class="col-lg-6">
@@ -421,28 +443,20 @@ foreach($news as $news_item):
 			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 		</div>
 	</div>
-</fieldset>
-
-<fieldset class="frame-input">
-	<legend >
-		File Upload เอกสาร
-	</legend>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		* เอกสาร Upload จะต้องไม่เกิน 40 MB
-	</div>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		doc|docx|xls|xlsx|ppt|pptx|pdf|csv
-	</div>
+	
 	<div class="uploadfile_document">
-		<div class="row file_1">
+		<div style="margin-left: 5%; color: #000000; float: left; ">
+			เอกสาร *
+		</div>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			ลองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv
+		</div>
+		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control bt" name="fileattach_document" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_document" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
-			<!-- <div class="col-lg-6">
-				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-			</div> -->
 		</div>
 	</div>
 	<div class="row uploadfile_document_btn">
@@ -450,28 +464,20 @@ foreach($news as $news_item):
 			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 		</div>
 	</div>
-</fieldset>
-
-<fieldset class="frame-input">
-	<legend >
-		File Upload รูปภาพ
-	</legend>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		* เอกสาร Upload จะต้องไม่เกิน 40 MB
-	</div>
-	<div style="margin-left: 5%; color: #cc0000; ">
-		jpg|jpeg|gif|png
-	</div>
+	
 	<div class="uploadfile_picture">
-		<div class="row file_1">
+		<div style="margin-left: 5%; color: #000000; float: left; ">
+			รูปภาพ *
+		</div>
+		<div style="margin-left: 5%; color: #cc0000; ">
+			ลองรับนามสกุล .jpg, .jpeg, .gif, .png
+		</div>
+		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control bt" name="fileattach_picture" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_picture" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
-			<!-- <div class="col-lg-6">
-				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
-			</div> -->
 		</div>
 	</div>
 	<div class="row uploadfile_picture_btn">
@@ -479,6 +485,7 @@ foreach($news as $news_item):
 			<input class="bt" type="button" name="addmorefile" id="addmorefile" value="เพิ่ม file แนบเอกสาร" />
 		</div>
 	</div>
+	
 </fieldset>
 
 <script>
@@ -560,10 +567,10 @@ foreach($news as $news_item):
 	var number_video = 2;
 	$(".uploadfile_video_btn input.bt#addmorefile").live('click', function(){
 		var str = "" +
-		"<div class=\"row file_"+(number_video)+"\">"+
+		"<div class=\"row file_"+(number_video)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_video"+(number_video)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_video)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_video"+(number_video)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_video)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_video)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -586,10 +593,10 @@ foreach($news as $news_item):
 	var number_voice = 2;
 	$(".uploadfile_voice_btn input.bt#addmorefile").click(function(){
 		var str = "" +
-		"<div class=\"row file_"+(number_voice)+"\">"+
+		"<div class=\"row file_"+(number_voice)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_voice"+(number_voice)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_voice)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_voice"+(number_voice)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_voice)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_voice)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -612,10 +619,10 @@ foreach($news as $news_item):
 	var number_document = 2;
 	$(".uploadfile_document_btn input.bt#addmorefile").click(function(){
 		var str = "" +
-		"<div class=\"row file_"+(number_document)+"\">"+
+		"<div class=\"row file_"+(number_document)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_document"+(number_document)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_document)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_document"+(number_document)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_document)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_document)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -638,7 +645,7 @@ foreach($news as $news_item):
 	var number_picture = 2;
 	$(".uploadfile_picture_btn input.bt#addmorefile").click(function(){
 		var str = "" +
-		"<div class=\"row file_"+(number_picture)+"\">"+
+		"<div class=\"row file_"+(number_picture)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
 		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_picture"+(number_picture)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_picture)+"');\" style=\"width: 40%; \" multiple />"+
