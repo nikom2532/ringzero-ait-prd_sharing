@@ -39,6 +39,10 @@
 	.uploadfile_picture .dotline,{
 		
 	}
+	
+	input#addmorefile{
+		padding: 6px 8px;
+	}
 }
 </style>
 <form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data">
