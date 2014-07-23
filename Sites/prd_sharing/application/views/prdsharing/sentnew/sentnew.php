@@ -361,10 +361,12 @@
 	
 	//Check that cannot upload more that 40 MB
 	$("#fileattach").bind("change", function() {
-		if(this.files[0].size < 41943040){
-			alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
-			$(this).val("");
-			return false;
+		if($(this).val() != ""){
+			if(this.files[0].size > 41943040){
+				alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
+				$(this).val("");
+				return false;
+			}
 		}
 	});
 	
@@ -372,14 +374,14 @@
 		// var file_id = $(this).attr("data-file_id");
 		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();
 		
-		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
+		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
 		
 		if($.inArray(
 			ext, 
 			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
 			    alert('invalid extension!');
-			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-6 input#fileattach[name=fileattach"+file_id+"]").val("");
+			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val("");
 		}
 	}
 	
@@ -429,11 +431,11 @@
 			return false;
 		}
 		
-		//For set Maximun File Size Upload
-		if(validateFileSize(file,41943040, "valid_msg", "Document size should be less than 64MB !")==false)
-		{
-				return false;
-		}
+		// //For set Maximun File Size Upload
+		// if(validateFileSize(file, 41943040, "valid_msg", "Document size should be less than 64MB !") == false)
+		// {
+				// return false;
+		// }
 	}
 	
 	

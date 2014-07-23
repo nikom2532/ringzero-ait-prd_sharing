@@ -513,6 +513,17 @@ foreach($news as $news_item):
 		
 	});
 	
+	//Check that cannot upload more that 40 MB
+	$("#fileattach").bind("change", function() {
+		if($(this).val() != ""){
+			if(this.files[0].size > 41943040){
+				alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
+				$(this).val("");
+				return false;
+			}
+		}
+	});
+	
 	function check_file_ext(file_id){
 		// var file_id = $(this).attr("data-file_id");
 		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();
@@ -529,15 +540,6 @@ foreach($news as $news_item):
 			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val("");
 		}
 	}
-	
-	//Check that cannot upload more that 40 MB
-	$("#fileattach").bind("change", function() {
-		if(this.files[0].size < 41943040){
-			alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
-			$(this).val("");
-			return false;
-		}
-	});
 	
 	$(".FileAttachDelete").click( function() {
 		var file_ID = $(this).attr("data-File_ID");
