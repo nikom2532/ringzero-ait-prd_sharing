@@ -377,9 +377,9 @@ foreach($news as $news_item):
 	<div class="uploadfile">
 		<div class="row file_1">
 			<div class="col-lg-12" style="margin-left: 5%; ">
-				<span class="label_file" >file แนบเอกสาร 1.)</span>
+				<span class="label_file" >file แนบเอกสาร</span>
 				<input type="file" class="form-control bt" name="fileattach1" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
-				<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
+				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 			<!-- <div class="col-lg-6">
 				<input class="bt" type="button" name="reducemorefile" id="reducemorefile" data-file_id="1" value="ลด file แนบเอกสาร" style="background-color: #E20000; border: 1px solid #E20000" />
@@ -474,7 +474,7 @@ foreach($news as $news_item):
 		var str =""+
 		"<div class=\"row file_"+(number)+"\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
-		"		<span class=\"label_file\">file แนบเอกสาร "+(number)+".)</span>"+
+		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
 		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach"+(number)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
@@ -490,9 +490,10 @@ foreach($news as $news_item):
 		// var file_id = $(this).data("file_id");
 		
 		$("div.uploadfile .row.file_"+file_id).remove();
+		
+		/*
 		var i=0;
 		var label_file_id = "";
-		
 		for(i = parseInt(file_id)+1; i <= number ; i++){
 			console.log("=== i = "+i);
 			
@@ -507,6 +508,8 @@ foreach($news as $news_item):
 			// $(".uploadfile .row.file_"+i+" #reducemorefile").toggleClass("file_"+i+" file_"+(i-1));
 			// $(this).parent(".file_"+i).next()
 		}
+		*/
+		
 		console.log("-----------");
 		// count--;
 		number--;
