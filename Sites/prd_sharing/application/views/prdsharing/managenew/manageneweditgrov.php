@@ -402,9 +402,33 @@ foreach($news as $news_item):
 	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
 		เอกสาร ขนาด File ทัั้งหมดรวมกันจะต้องไม่เกิน 40 MB
 	</div>
-	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
-		จำนวน : <span class="total_file_size"><?php echo $total_file_size; ?></span> Bytes
+	<div style="margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; ">
+		<div style="float: left; width: 40%; text-align: right; ">
+			จำนวนขนาด File ที่เคย Upload ไปแล้ว : 
+		</div>
+		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
+			<span class="total_file_size"><?php echo $total_file_size; ?></span> Bytes
+		</div>
+		<div style="clear: both; "></div>
 	</div>
+	<div style="margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; ">
+		<div style="float: left; width: 40%; text-align: right; ">
+			จำนวนขนาด File ที่กำลัง Upload : 
+		</div>
+		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
+			<span class="total_before_file_size">0</span> Bytes
+		</div>
+		<div style="clear: both; "></div>
+	</div>
+	<div style="margin-left: 5%; margin-bottom: 40px; color: #444444; text-align: center; ">
+		<div style="float: left; width: 40%; text-align: right; ">
+			จำนวนขนาด File เมื่อหลังจาก Upload ไปแล้ว : 
+		</div>
+		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
+			<span class="total_after_file_size"><?php echo $total_file_size; ?></span> Bytes
+		</div>
+		<div style="clear: both; "></div>
+	</div>	
 	
 	<div class="uploadfile_video uploadfile">
 		<div style="margin-left: 5%; color: #000000; float: left; ">
@@ -706,7 +730,6 @@ foreach($news as $news_item):
 	$(".uploadfile input[type=file]").live("change", function() {
 		
 		temp_file_size = 0;
-		
 		for(file_i = 0; file_i < 4; file_i++){
 			for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
 				temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
@@ -715,10 +738,21 @@ foreach($news as $news_item):
 		
 		// temp_file_size = $('input[type=file]').get(0).files.length;
 		// temp_file_size = $('input[type=file]').get(0).files[0].size;
-		alert(temp_file_size);
+		console.log(temp_file_size);
+		
+		$(".total_before_file_size").html(temp_file_size);
+		$(".total_after_file_size").html(total_file_size+temp_file_size);
 		
 		if(temp_file_size > 41943040){
 			$(this).val("");
+			alert("ตอนนี้ขนาด File รวมกัน เกิน 40 MB ไม่สามารถ Upload เพิ่มได้อีก")
+			for(file_i = 0; file_i < 4; file_i++){
+				for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+					temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
+				}
+			}
+			$(".total_before_file_size").html(temp_file_size);
+			$(".total_after_file_size").html(total_file_size+temp_file_size);
 		}
 	});
 	
@@ -733,7 +767,7 @@ foreach($news as $news_item):
 			ext, 
 			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
-			    alert('invalid extension!');
+			    alert('นามสกุลไม่ถูกต้อง โปรดทำใหม่นะจ๊ะ');
 			    $("div.uploadfile div.row.file_"+type+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 		}
 	}
