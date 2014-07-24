@@ -111,7 +111,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -134,7 +134,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				LEFT JOIN Member 
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -160,7 +160,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				LEFT JOIN FileAttach
 					ON SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -170,7 +170,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				LEFT JOIN Member 
 					ON SendInformation.Mem_ID = Member.Mem_ID
 				WHERE 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -210,7 +210,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -236,7 +236,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -263,7 +263,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -275,7 +275,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 				WHERE 
 					SendInformation.SendIn_Issue LIKE '%".$news_title."%' ESCAPE '!'
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -321,7 +321,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -354,7 +354,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -391,7 +391,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -411,7 +411,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -456,7 +456,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -489,7 +489,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -526,7 +526,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -546,7 +546,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -594,7 +594,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -630,7 +630,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -669,7 +669,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 					AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -692,7 +692,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 					AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -735,7 +735,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -766,7 +766,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -801,7 +801,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -819,7 +819,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -862,7 +862,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -893,7 +893,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -928,7 +928,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -946,7 +946,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 											SendIn_UpdateDate
 									END
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
@@ -992,7 +992,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -1026,7 +1026,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$StrQuery .= "
@@ -1063,7 +1063,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		*/
 		$StrQuery = "
@@ -1085,7 +1085,7 @@ class PRD_HomeGOVE_model extends CI_Model {
 									AND
 									Convert(datetime, '".$enddate."')
 				AND 
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		$query = $this->db->
