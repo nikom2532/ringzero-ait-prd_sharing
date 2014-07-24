@@ -738,7 +738,7 @@ foreach($news as $news_item):
 		
 		// temp_file_size = $('input[type=file]').get(0).files.length;
 		// temp_file_size = $('input[type=file]').get(0).files[0].size;
-		console.log(temp_file_size);
+		// console.log(temp_file_size);
 		
 		$(".total_before_file_size").html(temp_file_size);
 		$(".total_after_file_size").html(total_file_size+temp_file_size);
@@ -763,12 +763,75 @@ foreach($news as $news_item):
 		var text = "div.uploadfile_"+type+" div.row.file_"+file_id+" input#fileattach[name=fileattach_"+type+file_id+"]";
 		var ext = $(text).val().split('.').pop().toLowerCase();
 		
-		if($.inArray(
-			ext, 
-			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
-		) == -1) {
-			    alert('นามสกุลไม่ถูกต้อง โปรดทำใหม่นะจ๊ะ');
-			    $("div.uploadfile div.row.file_"+type+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
+		// ########### Video ############
+		if(type == 'video'){
+			if($.inArray(
+				ext, 
+				['mp4','avi','wmv']
+			) == -1) {
+				    alert('นามสกุลเอกสารไม่ใช่ Video โปรดทำใหม่นะจ๊ะ');
+				    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
+				    
+				    for(file_i = 0; file_i < 4; file_i++){
+						for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+							temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
+						}
+					}
+					$(".total_before_file_size").html(temp_file_size);
+					$(".total_after_file_size").html(total_file_size+temp_file_size);
+			}
+		}
+		
+		// ########### Voice ############
+		
+		if(type == 'voice'){
+			if($.inArray(
+				ext, 
+				['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
+			) == -1) {
+				    alert('นามสกุลเอกสารไม่ใช่เสียง โปรดทำใหม่นะจ๊ะ');
+				    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
+				    
+				    for(file_i = 0; file_i < 4; file_i++){
+						for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+							temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
+						}
+					}
+					$(".total_before_file_size").html(temp_file_size);
+					$(".total_after_file_size").html(total_file_size+temp_file_size);
+			}
+		}
+		
+		// ########### Document ############
+		
+		if(type == 'document'){
+			if($.inArray(
+				ext, 
+				['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
+			) == -1) {
+				    alert('นามสกุลเอกสารไม่ใช่เอกสาร โปรดทำใหม่นะจ๊ะ');
+				    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
+				    
+				    for(file_i = 0; file_i < 4; file_i++){
+						for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+							temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
+						}
+					}
+					$(".total_before_file_size").html(temp_file_size);
+					$(".total_after_file_size").html(total_file_size+temp_file_size);
+			}
+		}
+		
+		// ########### Picture ############
+		
+		if(type == 'picture'){
+			if($.inArray(
+				ext, 
+				['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
+			) == -1) {
+				    alert('นามสกุลเอกสารไม่ใช่รูปภาพ โปรดทำใหม่นะจ๊ะ');
+				    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
+			}
 		}
 	}
 	
