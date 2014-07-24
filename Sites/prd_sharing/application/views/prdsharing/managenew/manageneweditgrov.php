@@ -226,7 +226,6 @@ foreach($news as $news_item):
 <?php
 		}
 ?>
-		
 		<div class="row grov_status_col" >
 			<div class="col-lg-6">
 				<label>หน่วยงานภาครัฐ</label>
@@ -234,7 +233,7 @@ foreach($news as $news_item):
 					<span>เลือกหน่วยงานภาครัฐ</span>
 					<select name="grov_status" id="grov_status">
 						<option value="">เลือกหน่วยงานภาครัฐ</option>
-	<?php
+<?php
 						/*
 						foreach ($SC07_Department as $Department_item) {
 							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
@@ -247,7 +246,7 @@ foreach($news as $news_item):
 								}
 							?>><?php echo $Ministry_item->Minis_Name;?></option><?php
 						}
-	?>
+?>
 					</select>
 				</span>
 			</div>
