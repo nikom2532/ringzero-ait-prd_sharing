@@ -73,7 +73,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 				
 				//For Query Show
 				if($this->input->post('manageInfo_Category_is_search') == "yes"){
-					$data['department'] = $this->prd_manageinfo_department_model->get_Department_search(
+					$department = $this->prd_manageinfo_department_model->get_Department_search(
 						$page, 
 						$row_per_page,
 						$this->input->post('dep_name'), 
@@ -91,7 +91,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 					
 				}
 				else{
-					$data['department'] = $this->prd_manageinfo_department_model->get_Department(
+					$department = $this->prd_manageinfo_department_model->get_Department(
 						$page, 
 						$row_per_page,
 						$get_grov_for_dep_id
@@ -101,7 +101,16 @@ class PRD_manageInfo_Department extends CI_Controller {
 					);
 				}
 				
-				// $data['department'] = $this->prd_manageinfo_department_model->get_Department();
+				//For check that if there are department that alreaedy use in Goverment News --> if yes, cannot be download.
+				foreach ($department as $department_item) {
+					foreach ($get_grov_for_dep_id as $get_grov_for_dep_id_item) {
+						if($get_grov_for_dep_id_item->Dep_ID == $department_item->Dep_ID){
+							$department_item->use_dep_id = 'yes';
+						}
+					}
+				}
+				
+				$data['department'] = $department;
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;

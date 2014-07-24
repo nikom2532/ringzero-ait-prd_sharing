@@ -105,9 +105,22 @@
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
-						<p class="col-2 DepartmentDelete" data-dep_id="<?php echo $department_item->Dep_ID; ?>" style="width: 5%;float: left; cursor:pointer; " <?php /* onclick="DepartmentDelete('<?php echo $department_item->Dep_ID; ?>')" */ ?>  >
-							<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
-						</p>
+<?php
+						if($department_item->use_dep_id == 'yes'){
+?>
+							<p class="col-2" data-dep_id="<?php echo $department_item->Dep_ID; ?>" style="width: 5%;float: left; cursor: not-allowed; " <?php /* onclick="DepartmentDelete('<?php echo $department_item->Dep_ID; ?>')" */ ?>  >
+								<img src="<?php echo base_url(); ?>images/icon/delete_lock.png" style="margin: -5px 10px 0;">
+							</p>
+<?php
+						}
+						else{
+?>
+							<p class="col-2 DepartmentDelete" data-dep_id="<?php echo $department_item->Dep_ID; ?>" style="width: 5%;float: left; cursor:pointer; " <?php /* onclick="DepartmentDelete('<?php echo $department_item->Dep_ID; ?>')" */ ?>  >
+								<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0;">
+							</p>
+<?php
+						}
+?>
 						<p class="col-2" style="width: 20%;float: left; ">
 							<a href="<?php echo base_url().index_page(); ?>infoDepartment?dep_id=<?php echo $department_item->Dep_ID; ?>"><?php echo $department_item->Dep_ID; ?></a>
 						</p>

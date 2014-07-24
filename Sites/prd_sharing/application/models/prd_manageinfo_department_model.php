@@ -100,6 +100,8 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		*/
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
+			// WHERE
+				// Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 		$StrQuery = "
 			WITH LIMIT AS(
 				SELECT
@@ -108,6 +110,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Department.Dep_Status,
 					Department.Ministry_ID,
 					Ministry.Minis_Name,
+					'use_dep_id' AS use_dep_id,
 					ROW_NUMBER() OVER (ORDER BY Department.Dep_ID DESC) AS 'RowNumber'
 				FROM 
 					Department
@@ -115,8 +118,6 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Ministry
 				ON
 					Ministry.Minis_ID = Department.Ministry_ID
-				WHERE
-					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -146,8 +147,6 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 				COUNT((Department.Dep_ID)) AS NUMROW
 			FROM 
 				Department 
-			WHERE
-				Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 		";
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -183,6 +182,7 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Department.Dep_Status,
 					Department.Ministry_ID,
 					Ministry.Minis_Name,
+					'no' AS use_dep_id,
 					ROW_NUMBER() OVER (ORDER BY Department.Dep_ID DESC) AS 'RowNumber'
 				FROM 
 					Department
@@ -190,28 +190,24 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Ministry
 				ON
 					Ministry.Minis_ID = Department.Ministry_ID
-				WHERE
-					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 		";
-		// if($departmentName != '' || $dep_status != ''){
-			// $StrQuery .= "
-				// WHERE
-			// ";
-		// }
+		if($departmentName != '' || $dep_status != ''){
+			$StrQuery .= "
+				WHERE
+			";
+		}
 		if($departmentName != ''){
 			$StrQuery .= "
-				AND
 					Department.Dep_Name LIKE '%".$departmentName."%'
 			";
 		}
 		if($dep_status != ''){
-			// if($departmentName != ''){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
+			if($departmentName != ''){
+				$StrQuery .= "
+					AND
+				";
+			}
 			$StrQuery .= "
-				AND	
 					Department.Dep_Status LIKE '%".$dep_status."%'
 			";
 		}
@@ -243,28 +239,24 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					COUNT((Department.Dep_ID)) AS NUMROW
 				FROM 
 					Department 
-				WHERE
-					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 		";
-		// if($departmentName != '' || $dep_status != ''){
-			// $StrQuery .= "
-				// WHERE
-			// ";
-		// }
+		if($departmentName != '' || $dep_status != ''){
+			$StrQuery .= "
+				WHERE
+			";
+		}
 		if($departmentName != ''){
 			$StrQuery .= "
-				AND
 					Department.Dep_Name LIKE '%".$departmentName."%'
 			";
 		}
 		if($dep_status != ''){
-			// if($departmentName != ''){
-				// $StrQuery .= "
-					// AND
-				// ";
-			// }
+			if($departmentName != ''){
+				$StrQuery .= "
+					AND
+				";
+			}
 			$StrQuery .= "
-				AND
 					Department.Dep_Status LIKE '%".$dep_status."%'
 			";
 		}
