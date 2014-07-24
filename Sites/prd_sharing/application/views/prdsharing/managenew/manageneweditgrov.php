@@ -67,7 +67,7 @@ foreach($news as $news_item):
 					}
 					else{
 						echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
-					} 
+					}
 				?></label>
 			</div>
 		</div>
@@ -302,13 +302,13 @@ foreach($news as $news_item):
 				<span class="select-menu">
 					<span>เลือกสถานะ</span>
 					<select name="sendin_status" id="sendin_status" class="form-control" style="width: 65%;">
-						<option value="0"<?php 
-							if($news_item->SendIn_Status == '0' || $news_item->SendIn_Status == ''){
+						<option value="n"<?php 
+							if($news_item->SendIn_Status == 'n' || $news_item->SendIn_Status == 'w' || $news_item->SendIn_Status == null){
 								?> selected='selected'<?php
 							}
 						?>>ไม่อนุมัติ</option>
-						<option value="1"<?php 
-							if($news_item->SendIn_Status == '1'){
+						<option value="y"<?php 
+							if($news_item->SendIn_Status == 'y'){
 								?> selected='selected'<?php
 							}
 						?>>อนุมัติ</option>
@@ -318,8 +318,9 @@ foreach($news as $news_item):
 		</div>
 <?php 
 		$row = 0;
+		$total_file_size = 0;
 		foreach ($FileAttach as $FileAttach_item){
-			
+			$total_file_size += $FileAttach_item->File_FileSize;
 			?><div class="row" style="margin-bottom: 0; padding: 10px 0; <?php
 				if($row % 2 == 0){
 					?>background-color: #fbfaf6<?php
@@ -384,8 +385,8 @@ foreach($news as $news_item):
 			</div><?php
 			$row++;
 		}
+		// echo "total file = ".$total_file_size;
 ?>
-		
 		<!--<div class="col-lg-12" style="text-align: center;    float: left;">
 		<input class="bt" type="submit" name="share" value="บันทึก">
 		<input class="bt" type="submit" name="share" value="ยกเลิก">
@@ -401,19 +402,22 @@ foreach($news as $news_item):
 	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
 		เอกสาร ขนาด File ทัั้งหมดรวมกันจะต้องไม่เกิน 40 MB
 	</div>
+	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
+		จำนวน : <span class="total_file_size"><?php echo $total_file_size; ?></span> Bytes
+	</div>
 	
-	<div class="uploadfile_video">
+	<div class="uploadfile_video uploadfile">
 		<div style="margin-left: 5%; color: #000000; float: left; ">
 			Video *
 		</div>
 		<div style="margin-left: 5%; color: #cc0000; ">
-			ลองรับนามสกุล .mp4, .avi, .wmv, .wma
+			ลองรับนามสกุล .mp4, .avi, .wmv, .flv
 		</div>
 		
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control" name="fileattach_video" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_video1" id="fileattach" onchange="check_file_ext('video', '1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 		</div>
@@ -424,7 +428,7 @@ foreach($news as $news_item):
 		</div>
 	</div>
 	
-	<div class="uploadfile_voice">
+	<div class="uploadfile_voice uploadfile">
 		<div style="margin-left: 5%; color: #000000; float: left; ">
 			เสียง *
 		</div>
@@ -434,7 +438,7 @@ foreach($news as $news_item):
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control" name="fileattach_voice" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_voice1" id="fileattach" onchange="check_file_ext('voice', '1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 			<!-- <div class="col-lg-6">
@@ -448,7 +452,7 @@ foreach($news as $news_item):
 		</div>
 	</div>
 	
-	<div class="uploadfile_document">
+	<div class="uploadfile_document uploadfile">
 		<div style="margin-left: 5%; color: #000000; float: left; ">
 			เอกสาร *
 		</div>
@@ -458,7 +462,7 @@ foreach($news as $news_item):
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control" name="fileattach_document" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_document1" id="fileattach" onchange="check_file_ext('document', '1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 		</div>
@@ -469,7 +473,7 @@ foreach($news as $news_item):
 		</div>
 	</div>
 	
-	<div class="uploadfile_picture">
+	<div class="uploadfile_picture uploadfile">
 		<div style="margin-left: 5%; color: #000000; float: left; ">
 			รูปภาพ *
 		</div>
@@ -479,7 +483,7 @@ foreach($news as $news_item):
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
 				<span class="label_file" >file แนบเอกสาร</span>
-				<input type="file" class="form-control" name="fileattach_picture" id="fileattach" onchange="check_file_ext('1');" placeholder="" style="width: 40%; " multiple />
+				<input type="file" class="form-control" name="fileattach_picture1" id="fileattach" onchange="check_file_ext('picture', '1');" placeholder="" style="width: 40%; " multiple />
 				<img src="<?php echo base_url(); ?>images/icon/delete_lock2.png" name="reducemorefile" id="reducemorefile" data-file_id="1" style="width: 20px; margin-left: 15px; cursor: pointer; " />
 			</div>
 		</div>
@@ -574,7 +578,7 @@ foreach($news as $news_item):
 		"<div class=\"row file_"+(number_video)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_video"+(number_video)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_video)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_video"+(number_video)+"\" id=\"fileattach\"  onchange=\"check_file_ext('video', '"+(number_video)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_video)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -600,7 +604,7 @@ foreach($news as $news_item):
 		"<div class=\"row file_"+(number_voice)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_voice"+(number_voice)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_voice)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_voice"+(number_voice)+"\" id=\"fileattach\"  onchange=\"check_file_ext('voice', '"+(number_voice)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_voice)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -626,7 +630,7 @@ foreach($news as $news_item):
 		"<div class=\"row file_"+(number_document)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_document"+(number_document)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_document)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control\" name=\"fileattach_document"+(number_document)+"\" id=\"fileattach\"  onchange=\"check_file_ext('document', "+(number_document)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_document)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -652,7 +656,7 @@ foreach($news as $news_item):
 		"<div class=\"row file_"+(number_picture)+"\" style=\"margin-bottom: 0;\">"+
 		"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
 		"		<span class=\"label_file\">file แนบเอกสาร</span>"+
-		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_picture"+(number_picture)+"\" id=\"fileattach\"  onchange=\"check_file_ext('"+(number_picture)+"');\" style=\"width: 40%; \" multiple />"+
+		"		<input type=\"file\" class=\"form-control bt\" name=\"fileattach_picture"+(number_picture)+"\" id=\"fileattach\"  onchange=\"check_file_ext('picture', "+(number_picture)+"');\" style=\"width: 40%; \" multiple />"+
 		"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\""+(number_picture)+"\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
 		"	</div>"+
 		"</div>";
@@ -693,31 +697,44 @@ foreach($news as $news_item):
 	
 	//################################################################### 	
 	
+	var total_file_size = <?php echo $total_file_size; ?>;
+	var temp_file_size = 0;
+	var file_i = 0;
+	var file_j = 0;
+	
 	//Check that cannot upload more that 40 MB
-	$("#fileattach").bind("change", function() {
-		if($(this).val() != ""){
-			if(this.files[0].size > 41943040){
-				alert("โปรด Upload ที่มีขนาด File ไม่เกิน 40 MB.");
-				$(this).val("");
-				return false;
+	$(".uploadfile input[type=file]").live("change", function() {
+		
+		temp_file_size = 0;
+		
+		for(file_i = 0; file_i < 4; file_i++){
+			for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+				temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
 			}
+		}
+		
+		// temp_file_size = $('input[type=file]').get(0).files.length;
+		// temp_file_size = $('input[type=file]').get(0).files[0].size;
+		alert(temp_file_size);
+		
+		if(temp_file_size > 41943040){
+			$(this).val("");
 		}
 	});
 	
-	function check_file_ext(file_id){
+	function check_file_ext(type, file_id){
 		// var file_id = $(this).attr("data-file_id");
 		// var str = $("div.uploadfile div.row.file_1 div.col-lg-6 input#fileattach[name=fileattach1]").val().toUpperCase();
 		
-		var ext = $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val().split('.').pop().toLowerCase();
-		
-		// alert(this.files[0].size);
+		var text = "div.uploadfile_"+type+" div.row.file_"+file_id+" input#fileattach[name=fileattach_"+type+file_id+"]";
+		var ext = $(text).val().split('.').pop().toLowerCase();
 		
 		if($.inArray(
 			ext, 
 			['jpg','jpeg','gif','png','doc','docx','xls','xlsx','ppt','pptx','pdf','csv','mp3','ogg','mp4','avi','wmv']
 		) == -1) {
 			    alert('invalid extension!');
-			    $("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach"+file_id+"]").val("");
+			    $("div.uploadfile div.row.file_"+type+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 		}
 	}
 	
@@ -729,11 +746,6 @@ foreach($news as $news_item):
 	});
 	
 	$(function(){
-		
-		// $("#fileattach").bind("change", function(){
-			// alert(this.fileattach1.size);
-		// });
-		
         var selectmenu_txt = $("#Minis_ID").find("option:selected").text();
 			$("#Minis_ID").prev("span").text(selectmenu_txt);
         selectmenu_txt = $("#Dep_ID").find("option:selected").text();

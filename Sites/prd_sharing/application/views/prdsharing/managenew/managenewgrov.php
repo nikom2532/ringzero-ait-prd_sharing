@@ -178,7 +178,7 @@
 					<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; text-align: center; "><?php
-					if($news_item->SendIn_Status == "1"){
+					if($news_item->SendIn_Status == "y"){
 						?><img src="<?php echo base_url(); ?>images/icon/like.png" style="margin: -5px 10px 0;"><?php
 					}
 					else{

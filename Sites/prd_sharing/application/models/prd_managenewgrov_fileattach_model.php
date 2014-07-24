@@ -38,7 +38,13 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			WHERE 
 				FileAttach.File_Status = 1
 			AND
-				SendInformation.SendIn_Status = 1
+				(
+					SendInformation.SendIn_Status = 'y'
+					OR
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
+				)
 			AND
 				FileAttach.File_Type LIKE 'video/%'
 		";
@@ -65,7 +71,13 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			WHERE 
 				FileAttach.File_Status = 1
 			AND
-				SendInformation.SendIn_Status = 1
+				(
+					SendInformation.SendIn_Status = 'y'
+					OR
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
+				)
 			AND
 				FileAttach.File_Type LIKE 'audio/%'
 		";
@@ -92,7 +104,13 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			WHERE 
 				FileAttach.File_Status = 1
 			AND
-				SendInformation.SendIn_Status = 1
+				(
+					SendInformation.SendIn_Status = 'y'
+					OR
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
+				)
 			AND
 				FileAttach.File_Type LIKE 'image/%'
 		";
@@ -115,7 +133,13 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			WHERE 
 				FileAttach.File_Status = 1
 			AND
-				SendInformation.SendIn_Status = 1
+				(
+					SendInformation.SendIn_Status = 'y'
+					OR
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
+				)
 			AND 
 			(
 					FileAttach.File_Type NOT LIKE 'video/%'
@@ -194,7 +218,13 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 			WHERE 
 				FileAttach.File_Status = 1
 			AND
-				SendInformation.SendIn_Status = 1
+				(
+					SendInformation.SendIn_Status = 'y'
+					OR
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
+				)
 		";
 		if(
 			$filter_vdo == 1 ||

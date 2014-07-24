@@ -129,9 +129,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation
 				WHERE 
 				(
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 					OR
-					SendInformation.SendIn_Status = '0'
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
 				)
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
@@ -164,9 +166,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation
 			WHERE 
 			(
-				SendInformation.SendIn_Status = '1'
+				SendInformation.SendIn_Status = 'y'
 				OR
-				SendInformation.SendIn_Status = '0'
+				SendInformation.SendIn_Status = 'n'
+				OR
+				SendInformation.SendIn_Status = 'w'
 			)
 		";
 		
@@ -244,9 +248,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 					SendInformation 
 				WHERE
 				(
-					SendInformation.SendIn_Status = '1'
+					SendInformation.SendIn_Status = 'y'
 					OR
-					SendInformation.SendIn_Status = '0'
+					SendInformation.SendIn_Status = 'n'
+					OR
+					SendInformation.SendIn_Status = 'w'
 				)
 				AND
 					SendInformation.SendIn_ID IN (".$filter_AttachFile.")
@@ -363,9 +369,11 @@ class PRD_ManageNewGROV_model extends CI_Model {
 				SendInformation
 			WHERE
 			(
-				SendInformation.SendIn_Status = '1'
+				SendInformation.SendIn_Status = 'y'
 				OR
-				SendInformation.SendIn_Status = '0'
+				SendInformation.SendIn_Status = 'n'
+				OR
+				SendInformation.SendIn_Status = 'w'
 			)
 			AND
 				SendInformation.SendIn_ID IN (".$filter_AttachFile.")

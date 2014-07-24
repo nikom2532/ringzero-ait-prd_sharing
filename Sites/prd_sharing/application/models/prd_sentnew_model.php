@@ -102,7 +102,7 @@ class PRD_SentNew_model extends CI_Model {
 				'PRD_Status' => $PRD_Status,
 				'GOVE_Active' => $GOVE_Active,
 				'GOVE_Status' => $GOVE_Status,
-				'SendIn_Status' => 0,
+				'SendIn_Status' => 'w',
 				'Mem_ID' => $Mem_ID
 			);
 			
