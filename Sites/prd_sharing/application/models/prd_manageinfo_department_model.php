@@ -70,10 +70,19 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	}
 	
 	public function get_Department(
-		$page=1,
-		$row_per_page=20
+		$page = 1,
+		$row_per_page = 20,
+		$get_grov_for_dep_id = ''
 	)
 	{
+		if($get_grov_for_dep_id != null){
+			$statusArray = array();
+			foreach($get_grov_for_dep_id as $val){
+				$statusArray[] = "'".$val->Dep_ID."'";
+			}
+			$get_grov_for_dep_id = implode(",",$statusArray);
+		}
+		
 		/*
 		$return = $this->db->
 		SELECT('
@@ -106,20 +115,39 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Ministry
 				ON
 					Ministry.Minis_ID = Department.Ministry_ID
+				WHERE
+					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db->
 			query($StrQuery)->result();
 		return $query;
 	}
 	
-	public function get_Department_count()
+	public function get_Department_count(
+		$get_grov_for_dep_id = ''
+	)
 	{
+		if($get_grov_for_dep_id != null){
+			$statusArray = array();
+			foreach($get_grov_for_dep_id as $val){
+				$statusArray[] = "'".$val->Dep_ID."'";
+			}
+			$get_grov_for_dep_id = implode(",",$statusArray);
+		}
+		
 		$StrQuery = "
-				SELECT
-					COUNT((Department.Dep_ID)) AS NUMROW
-				FROM Department 
+			SELECT
+				COUNT((Department.Dep_ID)) AS NUMROW
+			FROM 
+				Department 
+			WHERE
+				Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
 		";
 		$query = $this->db->
 			query($StrQuery)->result();
@@ -133,9 +161,18 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		$page=1,
 		$row_per_page=20,
 		$departmentName = '', 
-		$dep_status = ''
+		$dep_status = '',
+		$get_grov_for_dep_id = ''
 	)
 	{
+		if($get_grov_for_dep_id != null){
+			$statusArray = array();
+			foreach($get_grov_for_dep_id as $val){
+				$statusArray[] = "'".$val->Dep_ID."'";
+			}
+			$get_grov_for_dep_id = implode(",",$statusArray);
+		}
+		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		$StrQuery = "
@@ -153,24 +190,28 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 					Ministry
 				ON
 					Ministry.Minis_ID = Department.Ministry_ID
-		";
-		if($departmentName != '' || $dep_status != ''){
-			$StrQuery .= "
 				WHERE
-			";
-		}
+					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
+		";
+		// if($departmentName != '' || $dep_status != ''){
+			// $StrQuery .= "
+				// WHERE
+			// ";
+		// }
 		if($departmentName != ''){
 			$StrQuery .= "
+				AND
 					Department.Dep_Name LIKE '%".$departmentName."%'
 			";
 		}
 		if($dep_status != ''){
-			if($departmentName != ''){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($departmentName != ''){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND	
 					Department.Dep_Status LIKE '%".$dep_status."%'
 			";
 		}
@@ -185,31 +226,45 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 	
 	public function get_Department_search_count(
 		$departmentName = '', 
-		$dep_status = ''
+		$dep_status = '',
+		$get_grov_for_dep_id = ''
 	)
 	{
+		if($get_grov_for_dep_id != null){
+			$statusArray = array();
+			foreach($get_grov_for_dep_id as $val){
+				$statusArray[] = "'".$val->Dep_ID."'";
+			}
+			$get_grov_for_dep_id = implode(",",$statusArray);
+		}
+		
 		$StrQuery = "
 				SELECT
 					COUNT((Department.Dep_ID)) AS NUMROW
-				FROM Department 
-		";
-		if($departmentName != '' || $dep_status != ''){
-			$StrQuery .= "
+				FROM 
+					Department 
 				WHERE
-			";
-		}
+					Department.Dep_ID NOT IN (".$get_grov_for_dep_id.")
+		";
+		// if($departmentName != '' || $dep_status != ''){
+			// $StrQuery .= "
+				// WHERE
+			// ";
+		// }
 		if($departmentName != ''){
 			$StrQuery .= "
+				AND
 					Department.Dep_Name LIKE '%".$departmentName."%'
 			";
 		}
 		if($dep_status != ''){
-			if($departmentName != ''){
-				$StrQuery .= "
-					AND
-				";
-			}
+			// if($departmentName != ''){
+				// $StrQuery .= "
+					// AND
+				// ";
+			// }
 			$StrQuery .= "
+				AND
 					Department.Dep_Status LIKE '%".$dep_status."%'
 			";
 		}
@@ -219,5 +274,34 @@ class PRD_ManageInfo_Department_model extends CI_Model {
 		foreach($query as $val){
 			return $val->NUMROW;
 		}
+	}
+	
+	public function get_grov_for_dep_id()
+	{
+		$StrQuery = "
+			SELECT DISTINCT
+				SendInformation.Dep_ID
+			FROM
+				SendInformation
+			WHERE 
+			(
+				SendInformation.SendIn_Status = 'y'
+				OR
+				SendInformation.SendIn_Status = 'n'
+				OR
+				SendInformation.SendIn_Status = null
+			)
+			and
+			(
+				SendInformation.Dep_ID <> null
+				or
+				SendInformation.Dep_ID <> 0
+				or
+				SendInformation.Dep_ID <> ''
+			)
+		";
+		$query = $this->db->
+			query($StrQuery)->result();
+		return $query;
 	}
 }

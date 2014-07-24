@@ -44,8 +44,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 						$this->input->post('ministry_id')
 					);
 				}
-			
-			
+				
 				//For Query Save
 				else if($this->input->post('info_department_is_submit') == "yes"){
 					// echo "save";
@@ -59,30 +58,32 @@ class PRD_manageInfo_Department extends CI_Controller {
 					);
 				}
 				
-				
 				else if($this->input->get('del_department') == "1"){
 					// echo "deleted";
 					// echo $this->input->get('dep_id');
 					$this->prd_manageinfo_department_model->del_Department(
 						$this->input->get('dep_id')
 					);
-					
 				}
 				
 				// var_dump($manageInfo_Category_is_search);
 				
 				$row_per_page = 20;
+				$get_grov_for_dep_id = $this->prd_manageinfo_department_model->get_grov_for_dep_id();
+				
 				//For Query Show
 				if($this->input->post('manageInfo_Category_is_search') == "yes"){
 					$data['department'] = $this->prd_manageinfo_department_model->get_Department_search(
 						$page, 
 						$row_per_page,
 						$this->input->post('dep_name'), 
-						$this->input->post('dep_status')
+						$this->input->post('dep_status'),
+						$get_grov_for_dep_id
 					);
 					$count_row = $this->prd_manageinfo_department_model->get_Department_search_count(
 						$this->input->post('dep_name'), 
-						$this->input->post('dep_status')
+						$this->input->post('dep_status'),
+						$get_grov_for_dep_id
 					);
 					
 					$data['post_dep_name'] = $this->input->post('dep_name');
@@ -92,9 +93,12 @@ class PRD_manageInfo_Department extends CI_Controller {
 				else{
 					$data['department'] = $this->prd_manageinfo_department_model->get_Department(
 						$page, 
-						$row_per_page
+						$row_per_page,
+						$get_grov_for_dep_id
 					);
-					$count_row = $this->prd_manageinfo_department_model->get_Department_count();
+					$count_row = $this->prd_manageinfo_department_model->get_Department_count(
+						$get_grov_for_dep_id
+					);
 				}
 				
 				// $data['department'] = $this->prd_manageinfo_department_model->get_Department();
