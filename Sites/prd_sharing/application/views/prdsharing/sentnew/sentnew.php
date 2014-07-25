@@ -71,7 +71,7 @@
 						<span>เลือกกรม</span>
 						<select name="Dep_ID" id="Dep_ID">
 							<option value="">เลือกกรม</option>
-	<?php
+<?php
 							/*
 							// var_dump($Department);
 							foreach ($Department as $Department_item) {
@@ -85,7 +85,7 @@
 							}
 							*/
 							/* ?><option value=""></option><?php */
-	?>
+?>
 						</select>
 					</span>
 				</div>
@@ -95,7 +95,7 @@
 					<label >นโยบายรัฐบาล</label>
 					<span class="select-menu">
 						<span>เลือกนโยบายรัฐบาล</span>
-						<select name="NT05_PolicyID">
+						<select name="NT05_PolicyID" id="NT05_PolicyID">
 							<option value="">เลือกนโยบาย</option>
 	<?php
 							foreach ($NT05_Policy as $NT05_Policy_item) {
@@ -166,7 +166,7 @@
 						<select name="prd_status" id="prd_status">
 							<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
 <?php
-/*
+							/*
 							// foreach ($Ministry as $Ministry_item) {
 								// ?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 							// }
@@ -318,7 +318,7 @@
 	<div class="row">
 		<div class="col-lg-12" style="text-align: center;    float: left;">
 			<input class="bt" type="submit" name="share" value="บันทึก">
-			<input class="bt" type="submit" name="share" value="ยกเลิก">
+			<input class="bt" type="button" name="cancel" id="cancel" value="ยกเลิก">
 		</div>
 	</div>
 	
@@ -389,7 +389,12 @@
 	}); //end change 
 	// $("select#Tar_ID").text("asdf");
 	
-	$("select#Tar_ID").change(function() {
+	$("select#Tar_ID").change(function(){
+		$( "select#Tar_ID option#target0:selected" ).each(function() {
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		});
+		
 		$( "select#Tar_ID option#target1:selected" ).each(function() {
 			$(".grov_active_col").css("display", "BLOCK");
 			$(".prd_active_col").css("display", "BLOCK");
@@ -398,11 +403,6 @@
 		$( "select#Tar_ID option#target2:selected" ).each(function() {
 			$(".grov_active_col").css("display", "none");
 			$(".prd_active_col").css("display", "BLOCK");
-		});
-		
-		$( "select#Tar_ID option#target0:selected" ).each(function() {
-			$(".grov_active_col").css("display", "none");
-			$(".prd_active_col").css("display", "none");
 		});
 	});
 	
@@ -704,6 +704,43 @@
 			return false;
 		}
 	}
+	
+	$("input#cancel").live("click", function(){
+		$("select#Minis_ID option:selected").prop("selected", false);
+		$("#Minis_ID").prev("span").text($("select#Minis_ID").find("option:selected").text());
+		
+		$("select#Dep_ID option:selected").prop("selected", false);
+		$("#Dep_ID").prev("span").text($("select#Dep_ID").find("option:selected").text());
+		
+		$("select#NT05_PolicyID option:selected").prop("selected", false);
+		$("#NT05_PolicyID").prev("span").text($("select#NT05_PolicyID").find("option:selected").text());
+		
+		if($("select#Tar_ID").val() == -1){ //target-0
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		}
+		else if($("select#Tar_ID").val() == 3){ //target-1
+			$(".prd_active_col select#prd_status option").prop("selected", false);
+			$(".prd_active_col select#prd_status").prev("span").text($(".prd_active_col select#prd_status").find("option:selected").text());
+			
+			$(".grov_active_col select#grov_status option").prop("selected", false);
+			$(".grov_active_col select#grov_status").prev("span").text($(".grov_active_col select#grov_status").find("option:selected").text());
+			
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		}
+		else if($("select#Tar_ID").val() == 4){ //target-2
+			$(".prd_active_col select#prd_status option").prop("selected", false);
+			$(".prd_active_col select#prd_status").prev("span").text($(".prd_active_col select#prd_status").find("option:selected").text());
+			
+			$(".grov_active_col").css("display", "none");
+			$(".prd_active_col").css("display", "none");
+		}
+		
+		$("select#Tar_ID option:selected").prop("selected", false);
+		$("#Tar_ID").prev("span").text($("select#Tar_ID").find("option:selected").text());
+		
+	});
 	
 	/*
 	$(document).ready(function()
