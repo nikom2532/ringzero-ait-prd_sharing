@@ -522,19 +522,47 @@
 			nextpage = val;
 		}
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+nextpage);
+<?php
+		if($post_managenewsprd_is_search == ""){
+?>
+			$("#homeSearch input[name=managenewsprd_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+val);
+<?php
+		if($post_managenewsprd_is_search == ""){
+?>
+			$("#homeSearch input[name=managenewsprd_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/"+prevpage);
+<?php
+		if($post_managenewsprd_is_search == ""){
+?>
+			$("#homeSearch input[name=managenewsprd_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."manageNewPRD"; ?>/1");
+<?php
+		if($post_managenewsprd_is_search == ""){
+?>
+			$("#homeSearch input[name=managenewsprd_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	$('select#NewsTypeID').change(function(){

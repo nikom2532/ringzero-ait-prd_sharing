@@ -107,6 +107,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data['post_filter_sound'] = $this->input->post('filter_sound');
 					$data['post_filter_image'] = $this->input->post('filter_image');
 					$data['post_filter_other'] = $this->input->post('filter_other');
+					$data["post_managenewsprd_is_search"] = $this->input->post('managenewsprd_is_search');
 				}
 				else{	//## No Search ##
 					$data['news'] = $this->prd_managenewprd_model->get_NT01_News(
@@ -128,6 +129,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data['post_filter_sound'] = "";
 					$data['post_filter_image'] = "";
 					$data['post_filter_other'] = "";
+					$data["post_managenewsprd_is_search"] = "";
 				}
 				
 				$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();

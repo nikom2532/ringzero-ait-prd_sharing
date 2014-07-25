@@ -255,7 +255,7 @@
 					if($current_page != $total_page) {
 						?><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a><?php
 					}
-					?><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+					?> <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
 	            </p>
 			</div>
 		</div>
@@ -295,19 +295,47 @@
 			nextpage = val;
 		}
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+nextpage);
+<?php 
+		if($post_rss_is_search == ""){
+?>
+			$("#homeSearch input[name=rss_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function lastPage(val){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+val);
+<?php 
+		if($post_rss_is_search == ""){
+?>
+			$("#homeSearch input[name=rss_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/"+prevpage);
+<?php 
+		if($post_rss_is_search == ""){
+?>
+			$("#homeSearch input[name=rss_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 	function firstPage(){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."rss"; ?>/1");
+<?php 
+		if($post_rss_is_search == ""){
+?>
+			$("#homeSearch input[name=rss_is_search]").val("");
+<?php
+		}
+?>
 		$("#homeSearch").submit();
 	}
 

@@ -75,6 +75,7 @@ class PRD_rss extends CI_Controller {
 					$data['post_News_subtype_id'] = $this->input->post('NewsSubTypeID');
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
+					$data['post_rss_is_search'] = $this->input->post('post_rss_is_search');
 				}
 				else{	//## No Search ##
 					$data['news'] = $this->prd_rss_model->get_NT01_News(
@@ -92,6 +93,7 @@ class PRD_rss extends CI_Controller {
 					$data['post_News_subtype_id'] = $this->input->post('NewsSubTypeID');
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
+					$data['post_rss_is_search'] = "";
 				}
 				
 				//############## Pagination = For no Search ################
