@@ -98,6 +98,7 @@
 						<label style="margin-left: 17%">ชื่อนักข่าว</label>
 						<!-- <span class="select-menu"> -->
 						<!-- <span>เลือกนักข่าว</span> -->
+						
 						<span style="margin-left: 7%;">
 							<select name="reporter_id" id="reporter_id" class="reporter_id_chosen" style="width:285px; margin-left: 5%;">
 								<option value="">เลือกนักข่าว</option>
@@ -363,15 +364,13 @@
 	
 	$('select#grov_active').change(function(){
 		// debugger;
-	    var type_id = $('select#NewsTypeID').val();
-		if (type_id != ""){
-			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+	    var grov_active = $('select#grov_active').val();
+		if (grov_active != ""){
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_rss/get_SC03_User_Unique/" + grov_active;
 		}
 		else{
-			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/";
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_rss/get_SC03_User_Unique/";
 		}
-		// debugger;
-		// alert(post_url);
 		$.ajax({
 			type: "POST",
 			url: post_url,
@@ -379,19 +378,32 @@
 			success: function(subtype)
 			{
 				// var a = JSON.parse(subtype);
-				$('#NewsSubTypeID').empty();
+				// $('#reporter_id').empty();
+				$('#reporter_id').empty().trigger('chosen:updated');
 				
-				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
-				$('#NewsSubTypeID').append(text);
+				// var text = "<option value=\"\">เลือกนักข่าว</option>";
+				// $('#reporter_id').append(text);
+				
+				$('#reporter_id').append($("<option/>", {
+			        value: "",
+			        text: "เลือกนักข่าว"
+			    }));
 				
 				$.each(subtype,function(index,val)
 				{
-					var text = ""+
-					"<option value=\""+val.NT03_SubTypeID+"\">"+val.NT03_SubTypeName+"</option>";
-					$('#NewsSubTypeID').append(text);
+					// var text = ""+
+					// "<option value=\""+val.SC03_UserId+"\">"+val.ReporterName+"</option>";
+					// $('#reporter_id').append(text);
+					
+					$('#reporter_id').append($("<option/>", {
+				        value: val.SC03_UserId,
+				        text: val.ReporterName
+				    }));
 				});
-				var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
-				$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+				var selectmenu_txt = $("#reporter_id").find("option:selected").text();
+				$("#reporter_id").prev("span").text(selectmenu_txt);
+				
+				$('#reporter_id').trigger('chosen:updated');
 				
 			} //end success
 		}); //end AJAX

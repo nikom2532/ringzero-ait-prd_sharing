@@ -70,6 +70,19 @@ class PRD_rss_model extends CI_Model {
 			get("SC03_User")->result();
 	}
 	
+	public function get_SC03_User_Unique(
+		$Department_ID= ''
+	)
+	{
+		return $this->db_ntt_old->
+			SELECT("
+				SC03_User.SC03_UserId,
+				SC03_User.SC03_TName+' '+SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
+			")->
+			where("SC07_DepartmentId", $Department_ID)->
+			get("SC03_User")->result();
+	}
+	
 	//#########################################################################
 	
 	public function get_NT02_NewsType()

@@ -209,8 +209,9 @@ class PRD_rss extends CI_Controller {
 		$this->load->view('prdsharing/rss/view_rss',$data);
 	}
 	
-	public function get_SC07_Department_Unique($value='')
+	public function get_SC03_User_Unique($Department_ID='')
 	{
-		
+		$_data = $this->prd_rss_model->get_SC03_User_Unique($Department_ID);
+		echo json_encode($_data);
 	}
 }
