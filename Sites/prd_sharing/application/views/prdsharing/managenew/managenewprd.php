@@ -169,7 +169,7 @@
 				เลขที่ข่าว
 			</p>
 			<p class="col-1" style="width: 4%;float: left; ">
-				สภานะ
+				สถานะ
 			</p>
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
