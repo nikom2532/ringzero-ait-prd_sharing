@@ -189,14 +189,14 @@
 			<div class="row">
 				<div class="col-lg-11">
 					<label >ประเด็นประชาสัมพันธ์ <span style="color:red; ">*</span></label>
-					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" required="required" >
+					<input type="text" class="form-control" name="SendIn_Issue" id="SendIn_Issue" placeholder="" />
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-lg-11">
 					<label >เนื้อหา <span style="color:red; ">*</span></label>
-					<textarea class="ckeditor" name="SendIn_Detail" required="required"></textarea>
+					<textarea class="ckeditor" name="SendIn_Detail" id="SendIn_Detail"></textarea>
 				</div>
 			</div>
 			
@@ -679,35 +679,31 @@
 		var create_date = document.forms["form_sendnew"]["create_date"].value;
 		if (create_date==null || create_date=="") {
 			alert("โปรดใส่ค่า ข่าววันที่");
+			document.forms["form_sendnew"]["create_date"].focus();
 			return false;
 		}
 		
 		var SendIn_Plan = document.forms["form_sendnew"]["SendIn_Plan"].value;
 		if (SendIn_Plan==null || SendIn_Plan=="") {
 			alert("โปรดใส่ค่า แผนงานโครงการ/กิจกรรม");
+			document.forms["form_sendnew"]["SendIn_Plan"].focus();
 			return false;
 		}
 		
 		var SendIn_Issue = document.forms["form_sendnew"]["SendIn_Issue"].value;
 		if (SendIn_Issue==null || SendIn_Issue=="") {
 			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
+			document.forms["form_sendnew"]["SendIn_Issue"].focus();
 			return false;
 		}
 		
-		var SendIn_Detail = document.forms["form_sendnew"]["SendIn_Detail"].value;
+		var SendIn_Detail = CKEDITOR.instances.SendIn_Detail.getData();
 		if (SendIn_Detail==null || SendIn_Detail=="") {
-			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
+			alert("โปรดใส่ค่า เนื้อหา");
+			CKEDITOR.instances.SendIn_Detail.focus();
 			return false;
 		}
-		
-		// //For set Maximun File Size Upload
-		// if(validateFileSize(file, 41943040, "valid_msg", "Document size should be less than 64MB !") == false)
-		// {
-				// return false;
-		// }
 	}
-	
-	
 	
 	/*
 	$(document).ready(function()

@@ -45,7 +45,7 @@
 	}
 }
 </style>
-<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data">
+<form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data" onsubmit="return validateForm(); ">
 <?php
 //Start to count News GROV's rows
 foreach($news as $news_item):
@@ -292,7 +292,7 @@ foreach($news as $news_item):
 		<div class="row">
 			<div class="col-lg-11" style="width: 80%; margin: 0 auto; ">
 				<label >เนื้อหา</label>
-				<textarea class="ckeditor" name="SendIn_Detail"><?php echo $news_item->SendIn_Detail; ?></textarea>
+				<textarea class="ckeditor" name="SendIn_Detail" id="SendIn_Detail"><?php echo $news_item->SendIn_Detail; ?></textarea>
 			</div>
 		</div>
 		<div class="row">
@@ -874,6 +874,37 @@ foreach($news as $news_item):
             $(this).prev("span").text(selectmenu_txt);
         });
     });
+    
+    function validateForm() {
+		var create_date = document.forms["form_sendnew"]["create_date"].value;
+		if (create_date==null || create_date=="") {
+			alert("โปรดใส่ค่า ข่าววันที่");
+			document.forms["form_sendnew"]["create_date"].focus();
+			return false;
+		}
+		
+		var SendIn_Plan = document.forms["form_sendnew"]["SendIn_Plan"].value;
+		if (SendIn_Plan==null || SendIn_Plan=="") {
+			alert("โปรดใส่ค่า แผนงานโครงการ/กิจกรรม");
+			document.forms["form_sendnew"]["SendIn_Plan"].focus();
+			return false;
+		}
+		
+		var SendIn_Issue = document.forms["form_sendnew"]["SendIn_Issue"].value;
+		if (SendIn_Issue==null || SendIn_Issue=="") {
+			alert("โปรดใส่ค่า ประเด็นประชาสัมพันธ์");
+			document.forms["form_sendnew"]["SendIn_Issue"].focus();
+			return false;
+		}
+		
+		var SendIn_Detail = document.getElementById("SendIn_Detail").value;
+		
+		if (SendIn_Detail==null || SendIn_Detail=="") {
+			alert("โปรดใส่ค่า เนื้อหา");
+			CKEDITOR.instances.SendIn_Detail.focus();
+			return false;
+		}
+	}
     
 </script>
 

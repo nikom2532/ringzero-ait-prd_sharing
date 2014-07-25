@@ -67,6 +67,9 @@ class PRD_sentNew extends CI_Controller {
 	
 	public function sentnew_process()
 	{
+		
+		exit;
+		
 		// $this->load->view('prdsharing/templates/header');
 		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
 		header('Content-Type: text/html; charset=utf-8');

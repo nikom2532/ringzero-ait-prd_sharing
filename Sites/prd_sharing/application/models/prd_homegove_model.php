@@ -1069,10 +1069,15 @@ class PRD_HomeGOVE_model extends CI_Model {
 		$StrQuery = "
 				SELECT
 					COUNT((SendInformation.SendIn_ID)) AS NUMROW
-				FROM SendInformation 
-				LEFT JOIN Member 
+				FROM 
+					SendInformation 
+				LEFT JOIN 
+					Member 
 					ON SendInformation.Mem_ID = Member.Mem_ID
-				LEFT JOIN Fidformation.SendIn_ID = FileAttach.SendIn_ID
+				LEFT JOIN
+					FileAttach 
+				ON
+					SendInformation.SendIn_ID = FileAttach.SendIn_ID
 				WHERE 
 					CASE WHEN SendIn_UpdateDate IS NULL  
 						THEN 

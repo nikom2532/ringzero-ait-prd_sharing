@@ -185,7 +185,7 @@
 		
 		<div class="row">
 			<div class="col-lg-6">
-				<label >ที่อยู่</label>
+				<label >ที่อยู่ <span style="color:red; ">*</span></label>
 				<textarea rows="4" cols="50" class="txt-area" name="mem_address" required="required"></textarea>
 			</div>
 			<div class="col-lg-6">
@@ -198,7 +198,7 @@
 					<input type="text" class="form-control" name="mem_postcode" id="Mem_Postcode" placeholder="" required="required" value="<?php set_value('mem_postcode'); ?>" maxlength="5" />
 				</div>
 				<div class="row">
-					<label class="label">ชื่อผู้ติดต่อ</label>
+					<label class="label">ชื่อผู้ติดต่อ <span style="color:red; ">*</span></label>
 					<input type="text" class="form-control" name="mem_nickname" id="Mem_NickName" required="required" placeholder="" />
 				</div>
 				<div class="row">
