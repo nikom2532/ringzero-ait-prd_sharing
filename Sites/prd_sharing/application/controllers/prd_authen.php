@@ -86,6 +86,11 @@ class PRD_Authen extends CI_Controller {
 				// echo $this->session->userdata($member_id);
 				// var_dump($this->session->all_userdata());
 				
+				$this->prd_authen_model->set_UserLogin(
+					$authen[0]->Mem_ID,
+					$authen[0]->Group_ID
+				);
+				
 				redirect(base_url().index_page().'homePRD', 'refresh');
 			}
 			else{
@@ -125,6 +130,12 @@ class PRD_Authen extends CI_Controller {
 						// echo $this->session->userdata($member_id);
 						// var_dump($this->session->all_userdata());
 						// exit;
+						
+						$this->prd_authen_model->set_UserLogin(
+							$authen_Member_with_SC03UserID[0]->Mem_ID,
+							$authen_Member_with_SC03UserID[0]->Group_ID
+						);
+						
 						redirect(base_url().index_page().'homePRD', 'refresh');
 						
 					}
@@ -145,6 +156,12 @@ class PRD_Authen extends CI_Controller {
 						// echo $this->session->userdata($member_id);
 						// var_dump($this->session->all_userdata());
 						// exit;
+						
+						$this->prd_authen_model->set_UserLogin(
+							$this->input->post('prd_UserID'),
+							'3'
+						);
+				
 						redirect(base_url().index_page().'homePRD', 'refresh');
 					}
 				}

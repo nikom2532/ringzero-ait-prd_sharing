@@ -11,6 +11,10 @@ class PRD_Authen_Logout extends CI_Controller {
 
 	public function index()
 	{
+		$this->prd_authen_model->set_UserLogout(
+			$this->session->userdata('member_id'),
+			$this->session->userdata('Group_ID')
+		);
 		//Logout
 		$this->session->unset_userdata('member_id');
 		$this->session->unset_userdata('Mem_Username');

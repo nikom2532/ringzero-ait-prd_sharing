@@ -81,20 +81,37 @@ class PRD_Authen_model extends CI_Model {
 	//DO NOT REMOVE; 
 	//IT IS THE UserLog.
 	
-	/*
-	public function set_UserLog(
-		$Mem_ID=''
+	public function set_UserLogin(
+		$Mem_ID = '',
+		$GroupID = ''
 	)
 	{
 		$data = array(
-			'Log_Date' => ,
-			'Log_IP' => ,
-			'Lo'
+			'Log_Date' => date("Y-m-d H:i:s"),
+			'Log_IP' => $this->input->ip_address(),
+			'Log_Status' => 'login',
+			'Mem_ID' => $Mem_ID,
+			'Group_ID' => $GroupID
 		);
 		
 		$query = $this->db->
-			insert('UserLog', $data)->
-			where('Mem_ID', $Mem_ID)
+			insert('UserLog', $data);
 	}
-	*/
+	
+	public function set_UserLogout(
+		$Mem_ID = '',
+		$GroupID = ''
+	)
+	{
+		$data = array(
+			'Log_Date' => date("Y-m-d H:i:s"),
+			'Log_IP' => $this->input->ip_address(),
+			'Log_Status' => 'logout',
+			'Mem_ID' => $Mem_ID,
+			'Group_ID' => $GroupID
+		);
+		
+		$query = $this->db->
+			insert('UserLog', $data);
+	}
 }

@@ -98,6 +98,11 @@
 			}
 		});
 	}
+	// error: function(request, status, error) {
+		// console.log("Cannot Use Ajax Function");
+		// $("#authen_form").attr
+		// $("#authen_form").submit();
+	// }
 	
 	//Return True Authen
 	//array(5) { ["prd_UserID"]=> string(10) "2000200117" ["prd_Authen"]=> string(4) "true" ["prd_Username"]=> string(10) "nnt_tester" ["username"]=> string(10) "NNT_tester" ["password"]=> string(6) "123456" }
