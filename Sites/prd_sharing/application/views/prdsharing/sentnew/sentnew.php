@@ -584,7 +584,7 @@
 				ext, 
 				['mp4','avi','wmv']
 			) == -1) {
-					alert('นามสกุลเอกสารไม่ใช่ Video โปรดทำใหม่นะจ๊ะ');
+					alert('นามสกุลเอกสารไม่ใช่ Video โปรดทำใหม่');
 					$("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 					
 					for(file_i = 0; file_i < count_input_files; file_i++){
@@ -603,7 +603,7 @@
 				ext, 
 				['mp3','ogg','wma']
 			) == -1) {
-					alert('นามสกุลเอกสารไม่ใช่เสียง โปรดทำใหม่นะจ๊ะ');
+					alert('นามสกุลเอกสารไม่ใช่เสียง โปรดทำใหม่');
 					$("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 					
 					for(file_i = 0; file_i < count_input_files; file_i++){
@@ -622,7 +622,7 @@
 				ext, 
 				['doc','docx','xls','xlsx','ppt','pptx','pdf','csv']
 			) == -1) {
-					alert('นามสกุลเอกสารไม่ใช่เอกสาร โปรดทำใหม่นะจ๊ะ');
+					alert('นามสกุลเอกสารไม่ใช่เอกสาร โปรดทำใหม่');
 					$("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 					
 					for(file_i = 0; file_i < count_input_files; file_i++){
@@ -641,7 +641,7 @@
 				ext, 
 				['jpg','jpeg','gif','png']
 			) == -1) {
-					alert('นามสกุลเอกสารไม่ใช่รูปภาพ โปรดทำใหม่นะจ๊ะ');
+					alert('นามสกุลเอกสารไม่ใช่รูปภาพ โปรดทำใหม่');
 					$("div.uploadfile div.row.file_"+file_id+" div.col-lg-12 input#fileattach[name=fileattach_"+type+file_id+"]").val("");
 					
 					for(file_i = 0; file_i < count_input_files; file_i++){
