@@ -33,6 +33,39 @@
 	input#addmorefile{
 		padding: 6px 8px;
 	}
+	.show_size .clear{
+		clear: both;
+	}
+	.show_size .line1{
+		margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; 
+	}
+	.show_size .line2{
+		margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; 
+	}
+	.show_size .line2-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line2-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left; 
+	}
+	.show_size .line3{
+		margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; 
+	}
+	.show_size .line3-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line3-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left;
+	}
+	.show_size .line4{
+		 margin-left: 5%; margin-bottom: 40px; color: #444444; text-align: center; 
+	}
+	.show_size .line4-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line4-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left;
+	}
 	
 </style>
 <form name="form_sendnew" id="form_sendnew" action="<?php echo base_url().index_page(); ?>sentNew_Upload" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data" accept-charset="utf-8">
@@ -57,11 +90,11 @@
 						<span>เลือกกระทรวง</span>
 						<select name="Minis_ID" id="Minis_ID" style="width: 100%; ">
 							<option value="">เลือกกระทรวง</option>
-	<?php
+<?php
 							foreach ($Ministry as $Ministry_item) {
 								?><option data-minis_id="<?php echo $Ministry_item->Minis_ID;?>" value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 							}
-	?>
+?>
 						</select>
 					</span>
 				</div>
@@ -208,19 +241,22 @@
 		</div><!-- #sentnews -->
 	</fieldset>
 	
-	<fieldset class="frame-input">
+	<fieldset class="frame-input show_size">
 		<legend >
 			File Upload
 		</legend>
-		<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
+		<div class="line1">
 			เอกสาร ขนาด File ทัั้งหมดรวมกันจะต้องไม่เกิน 40 MB
 		</div>
-		<div style="margin-left: 5%; margin-bottom: 40px; color: #444444; text-align: center; ">
-			<div style="float: left; width: 40%; text-align: right; ">
-				จำนวนขนาด File เมื่อหลังจาก Upload ไปแล้ว : 
+		<div class="line2">
+			<div class="line2-1">
+				จำนวนขนาด File ที่กำลัง Upload : 
 			</div>
-			<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
-				<span class="total_after_file_size">0</span> Bytes
+			<div class="line2-2">
+				<span class="total_before_file_size">0</span>
+				<span class="total_before_file_unit">Bytes</span>  
+				(<span class="total_before_file_size_bytes">0</span>
+				<span class="total_before_file_unit_bytes">Bytes</span>)
 			</div>
 			<div style="clear: both; "></div>
 		</div>	
@@ -553,12 +589,6 @@
 			}
 		}
 		
-		// temp_file_size = $('input[type=file]').get(0).files.length;
-		// temp_file_size = $('input[type=file]').get(0).files[0].size;
-		// console.log(temp_file_size);
-		
-		$(".total_after_file_size").html(temp_file_size);
-		
 		if(temp_file_size > 41943040){
 			$(this).val("");
 			alert("ตอนนี้ขนาด File รวมกัน เกิน 40 MB ไม่สามารถ Upload เพิ่มได้อีก")
@@ -567,9 +597,38 @@
 					temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
 				}
 			}
-			$(".total_after_file_size").html(temp_file_size);
+			$(".total_before_file_size").html(temp_file_size);
+		}
+		else{
+			$(".total_before_file_size_bytes").html(numberWithCommas(temp_file_size));
+			
+			if(temp_file_size < 1024.0){
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size));
+				$(".total_before_file_unit").html("Bytes");
+			}
+			else if(temp_file_size < 1024*1024.0){
+				
+				var temp_file_size_new = temp_file_size/1024.0;
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("KB");
+			}
+			else if(temp_file_size < (1024*1024*1024.0)){
+				
+				var temp_file_size_new = temp_file_size/(1024*1024.0);
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("MB");
+			}
+			
 		}
 	});
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	function check_file_ext(type, file_id){
 		// var file_id = $(this).attr("data-file_id");
