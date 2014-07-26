@@ -91,7 +91,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User 
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID 
 				LEFT JOIN NT10_VDO 
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
 				LEFT JOIN NT11_Picture 
@@ -208,7 +208,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN 
-					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID 
 				LEFT JOIN 
 					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
 				LEFT JOIN 
@@ -332,7 +332,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture
@@ -461,7 +461,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture
@@ -588,7 +588,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture
@@ -726,7 +726,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture
@@ -872,7 +872,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture
@@ -995,7 +995,7 @@ class PRD_HomePRD_model extends CI_Model {
 				LEFT JOIN NT02_NewsType 
 					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
 				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID
+					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
 				LEFT JOIN NT10_VDO
 					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
 				LEFT JOIN NT11_Picture

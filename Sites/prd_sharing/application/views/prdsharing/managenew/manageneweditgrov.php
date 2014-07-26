@@ -43,6 +43,40 @@
 	input#addmorefile{
 		padding: 6px 8px;
 	}
+	
+	.show_size .clear{
+		clear: both;
+	}
+	.show_size .line1{
+		margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; 
+	}
+	.show_size .line2{
+		margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; 
+	}
+	.show_size .line2-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line2-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left; 
+	}
+	.show_size .line3{
+		margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; 
+	}
+	.show_size .line3-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line3-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left;
+	}
+	.show_size .line4{
+		 margin-left: 5%; margin-bottom: 40px; color: #444444; text-align: center; 
+	}
+	.show_size .line4-1{
+		float: left; width: 40%; text-align: right; 
+	}
+	.show_size .line4-2{
+		float: left; width: 55%; margin-left: 2%; text-align: left;
+	}
 }
 </style>
 <form name="formManageNewGROV" action="<?php echo base_url().index_page(); ?>manageNewEditGROV" method="post" enctype="multipart/form-data" onsubmit="return validateForm(); ">
@@ -394,24 +428,24 @@ foreach($news as $news_item):
 	</div><!-- #sentnews -->
 </fieldset>
 
-<fieldset class="frame-input">
+<fieldset class="frame-input show_size">
 	<legend >
 		File Upload
 	</legend>
-	<div style="margin-left: 5%; margin-bottom: 40px; color: #cc0000; text-align: center; ">
+	<div class="line1">
 		เอกสาร ขนาด File ทัั้งหมดรวมกันจะต้องไม่เกิน 40 MB
 	</div>
-	<div style="margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; ">
-		<div style="float: left; width: 40%; text-align: right; ">
+	<div class="line2">
+		<div class="line2-1">
 			จำนวนขนาด File ที่เคย Upload ไปแล้ว : 
 		</div>
-		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
+		<div class="line2-2">
 			<span class="total_file_size"><?php echo $total_file_size; ?></span> Bytes
 		</div>
 		<div style="clear: both; "></div>
 	</div>
-	<div style="margin-left: 5%; margin-bottom: 10px; color: #444444; text-align: center; ">
-		<div style="float: left; width: 40%; text-align: right; ">
+	<div class="line3">
+		<div class="line3-1">
 			จำนวนขนาด File ที่กำลัง Upload : 
 		</div>
 		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
@@ -419,8 +453,8 @@ foreach($news as $news_item):
 		</div>
 		<div style="clear: both; "></div>
 	</div>
-	<div style="margin-left: 5%; margin-bottom: 40px; color: #444444; text-align: center; ">
-		<div style="float: left; width: 40%; text-align: right; ">
+	<div class="line4">
+		<div class="line4-1">
 			จำนวนขนาด File เมื่อหลังจาก Upload ไปแล้ว : 
 		</div>
 		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
