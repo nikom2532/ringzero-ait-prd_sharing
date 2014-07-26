@@ -38,6 +38,10 @@ class PRD_manageNewEditGROV extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($this->input->post("manageNewEditGROV_record") == "yes"){
+				
+				// var_dump($_FILES);
+				// exit;
+				
 				// $this->load->view('prdsharing/templates/header');
 				?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
 				header('Content-Type: text/html; charset=utf-8');
