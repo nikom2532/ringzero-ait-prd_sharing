@@ -283,10 +283,10 @@
 						<p>
 <?php
 							if($news_item->SendIn_UpdateDate != ""){
-								echo date("d/m/Y", strtotime($news_item->SendIn_CreateDate));
+								echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 							}
 							else{
-								echo date("d/m/Y", strtotime($news_item->SendIn_UpdateDate));
+								echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
 							}						
 							?> | (<?php
 							if($news_item->SendIn_view == "" || $news_item->SendIn_view == null){

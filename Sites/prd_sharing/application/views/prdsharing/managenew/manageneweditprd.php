@@ -332,22 +332,34 @@
 			<div class="col-lg-6">
 				<label >สถานะ</label>
 				<!-- <label >รอการอนุมัติ</label> -->
-				<?php //echo $New_News[0]->News_StatusPublic; ?>
-				<select name="News_StatusPublic" class="form-control" style="width: 65%;">
-					<option value="0"<?php 
-					
-						// var_dump($New_News);
-					
+				<?php //echo $New_News[0]->News_StatusPublic; 
+					if($session_Group_ID == 2){
+?>
+						<select name="News_StatusPublic" class="form-control" style="width: 65%;">
+							<option value="0"<?php 
+								// var_dump($New_News);
+							
+								if($New_News[0]->News_StatusPublic == '0' || $New_News[0]->News_StatusPublic == '' || $New_News[0]->News_StatusPublic == null){ 	
+									?>selected='selected'<?php
+								}
+							?>>ไม่อนุมัติ</option>
+							<option value="1"<?php 
+								if($New_News[0]->News_StatusPublic == 1){
+									?>selected='selected'<?php
+								}
+							?>>อนุมัติ</option>
+						</select>
+<?php
+					}
+					else{
 						if($New_News[0]->News_StatusPublic == '0' || $New_News[0]->News_StatusPublic == '' || $New_News[0]->News_StatusPublic == null){ 	
-							?>selected='selected'<?php
+							?><span style="margin-left: 22%; ">ไม่อนุมัติ</span><?php
 						}
-					?>>ไม่อนุมัติ</option>
-					<option value="1"<?php 
-						if($New_News[0]->News_StatusPublic == 1){
-							?>selected='selected'<?php
+						elseif($New_News[0]->News_StatusPublic == 1){
+							?><span style="margin-left: 22%; ">อนุมัติ</span><?php
 						}
-					?>>อนุมัติ</option>
-				</select>
+					}
+?>
 			</div>
 		</div>
 		

@@ -22,6 +22,7 @@ class PRD_manageNewEditPRD extends CI_Controller {
 			$data['session_Mem_LasName'] = $this->session->userdata('Mem_LasName');
 			$data['session_Mem_EngName'] = $this->session->userdata('Mem_EngName');
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
+			$data['session_Group_ID'] = $this->session->userdata('Group_ID');
 			
 			$data['title'] = 'Manage News';
 			
