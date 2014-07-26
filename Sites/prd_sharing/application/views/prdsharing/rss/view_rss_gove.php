@@ -21,7 +21,7 @@
 		$text_rss .= '<item>';
 		$text_rss .= '<guid isPermaLink="false">'.$item->Detail_NewsID;
 		$text_rss .= '</guid>';
-		$text_rss .= '<link>'.base_url().'index.php/prd_rss_detail_prd?news_id='.$item->Detail_NewsID.'&amp;mid='.$item->Main_RssID;
+		$text_rss .= '<link>'.base_url().'index.php/rss_detail_grov?sendinformation_id='.$item->Detail_NewsID.'&amp;mid='.$item->Main_RssID;
 		$text_rss .= '</link>';
 		$text_rss .= '<title>'.$t[$j];
 		$text_rss .= '</title>';

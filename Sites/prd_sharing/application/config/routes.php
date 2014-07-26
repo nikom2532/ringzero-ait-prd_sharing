@@ -64,6 +64,7 @@ $route['rss'] = 'prd_rss';
 $route['rss/(:num)'] = 'prd_rss/index/$1';
 
 $route['rss_detail_prd'] = 'prd_rss_detail_prd';
+$route['rss_detail_grov'] = 'prd_rss_detail_gove';
 
 
 $route['manageNew'] = 'prd_managenew';
