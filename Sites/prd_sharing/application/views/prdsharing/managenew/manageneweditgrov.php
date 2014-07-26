@@ -440,7 +440,30 @@ foreach($news as $news_item):
 			จำนวนขนาด File ที่เคย Upload ไปแล้ว : 
 		</div>
 		<div class="line2-2">
-			<span class="total_file_size"><?php echo $total_file_size; ?></span> Bytes
+			<span class="total_file_size"><?php 
+				if($total_file_size < 1024.0){
+					echo $total_file_size;
+				}
+				elseif($total_file_size < (1024.0*1024.0)){
+					echo number_format(($total_file_size/1024.0), 2, '.', ','); 
+				}
+				elseif($total_file_size < (1024.0*1024.0*1024.0)){
+					echo number_format(($total_file_size/(1024.0*1024.0)), 2, '.', ','); 
+				}
+			?></span>
+			<span class="total_file_unit"><?php
+				if($total_file_size < 1024.0){
+					echo " Bytes";
+				}
+				elseif($total_file_size < (1024.0*1024.0)){
+					echo " KB";
+				}
+				elseif($total_file_size < (1024.0*1024.0*1024.0)){
+					echo " MB";
+				}
+			?></span>
+			(<span class="total_file_size_bytes"><?php echo number_format($total_file_size, 2, '.', ','); ?></span>
+			<span class="total_file_unit_bytes">Bytes</span>)
 		</div>
 		<div style="clear: both; "></div>
 	</div>
@@ -448,8 +471,11 @@ foreach($news as $news_item):
 		<div class="line3-1">
 			จำนวนขนาด File ที่กำลัง Upload : 
 		</div>
-		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
-			<span class="total_before_file_size">0</span> Bytes
+		<div class="line3-2">
+			<span class="total_before_file_size">0</span>
+			<span class="total_before_file_unit"></span>  
+			(<span class="total_before_file_size_bytes">0</span>
+			<span class="total_before_file_unit_bytes">Bytes</span>)
 		</div>
 		<div style="clear: both; "></div>
 	</div>
@@ -457,8 +483,31 @@ foreach($news as $news_item):
 		<div class="line4-1">
 			จำนวนขนาด File เมื่อหลังจาก Upload ไปแล้ว : 
 		</div>
-		<div style="float: left; width: 55%; margin-left: 2%; text-align: left; ">
-			<span class="total_after_file_size"><?php echo $total_file_size; ?></span> Bytes
+		<div class="line4-2">
+			<span class="total_after_file_size"><?php 
+				if($total_file_size < 1024.0){
+					echo $total_file_size;
+				}
+				elseif($total_file_size < (1024.0*1024.0)){
+					echo number_format(($total_file_size/1024.0), 2, '.', ','); 
+				}
+				elseif($total_file_size < (1024.0*1024.0*1024.0)){
+					echo number_format(($total_file_size/(1024.0*1024.0)), 2, '.', ','); 
+				}
+			?></span>
+			<span class="total_after_file_unit"><?php
+				if($total_file_size < 1024.0){
+					echo " Bytes";
+				}
+				elseif($total_file_size < (1024.0*1024.0)){
+					echo " KB";
+				}
+				elseif($total_file_size < (1024.0*1024.0*1024.0)){
+					echo " MB";
+				}
+			?></span>
+			(<span class="total_after_file_size_bytes"><?php echo number_format($total_file_size, 2, '.', ','); ?></span>
+			<span class="total_after_file_unit_bytes">Bytes</span>)
 		</div>
 		<div style="clear: both; "></div>
 	</div>	
@@ -775,13 +824,6 @@ foreach($news as $news_item):
 			}
 		}
 		
-		// temp_file_size = $('input[type=file]').get(0).files.length;
-		// temp_file_size = $('input[type=file]').get(0).files[0].size;
-		// console.log(temp_file_size);
-		
-		$(".total_before_file_size").html(temp_file_size);
-		$(".total_after_file_size").html(total_file_size+temp_file_size);
-		
 		if(temp_file_size > 41943040){
 			$(this).val("");
 			alert("ตอนนี้ขนาด File รวมกัน เกิน 40 MB ไม่สามารถ Upload เพิ่มได้อีก")
@@ -790,10 +832,63 @@ foreach($news as $news_item):
 					temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
 				}
 			}
-			$(".total_before_file_size").html(temp_file_size);
-			$(".total_after_file_size").html(total_file_size+temp_file_size);
+			$(".total_before_file_size").html(numberWithCommas(temp_file_size));
+			$(".total_after_file_size").html(numberWithCommas(total_file_size+temp_file_size));
+		}
+		else{
+		
+			$(".total_before_file_size_bytes").html(numberWithCommas(temp_file_size));
+			$(".total_after_file_size_bytes").html(numberWithCommas(total_file_size+temp_file_size));
+			
+			if(temp_file_size < 1024.0){
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size));
+				$(".total_before_file_unit").html("Bytes");
+			}
+			else if(temp_file_size < 1024*1024.0){
+				
+				var temp_file_size_new = temp_file_size/1024.0;
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("KB");
+			}
+			else if(temp_file_size < (1024*1024*1024.0)){
+				
+				var temp_file_size_new = temp_file_size/(1024*1024.0);
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("MB");
+			}
+			
+			var after_file_size = (total_file_size+temp_file_size);
+			
+			if(after_file_size < 1024.0){
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
+				$(".total_after_file_unit").html("Bytes");
+			}
+			else if(after_file_size < 1024*1024.0){
+				
+				after_file_size = after_file_size/1024.0;
+				after_file_size = after_file_size.toFixed(2)
+				
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
+				$(".total_after_file_unit").html("KB");
+			}
+			else if(after_file_size < (1024*1024*1024.0)){
+				
+				after_file_size = after_file_size/(1024*1024.0);
+				after_file_size = after_file_size.toFixed(2)
+				
+				$(".total_after_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_after_file_unit").html("MB");
+			}
 		}
 	});
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	function check_file_ext(type, file_id){
 		// var file_id = $(this).attr("data-file_id");
