@@ -1,5 +1,5 @@
 <?php
-class PRD_Authen extends CI_Controller {
+class PRD_Authen_Normal_2 extends CI_Controller {
 
 	public function __construct()
 	{
