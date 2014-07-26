@@ -264,6 +264,7 @@ class PRD_HomeGOVE extends CI_Controller {
 			$this->input->post('start_date'),
 			$this->input->post('end_date')
 		);
+		
 		echo $data['rss'];
 	}
 	

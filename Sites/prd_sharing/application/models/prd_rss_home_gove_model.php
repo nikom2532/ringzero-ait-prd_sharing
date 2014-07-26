@@ -180,7 +180,7 @@ class PRD_rss_Home_GOVE_model extends CI_Model {
 			LEFT JOIN Member 
 				ON SendInformation.Mem_ID = Member.Mem_ID
 			WHERE 
-				SendInformation.SendIn_Status = '1'
+				SendInformation.SendIn_Status = 'y'
 		";
 		$StrQuery .= $this->str_case;
 		if($news_title != ""){
@@ -229,10 +229,6 @@ class PRD_rss_Home_GOVE_model extends CI_Model {
 							Convert(datetime, '".$enddate."')
 			";
 		}
-		$StrQuery .= "
-				AND 
-					SendInformation.SendIn_Status = '1'
-		";
 		$StrQuery .= "
 			group by SendInformation.SendIn_ID
 		";
