@@ -45,6 +45,7 @@ $route['default_controller'] = 'prd_authen';
 // $route['(:any)'] = 'prd_authen';
 // $route['index'] = 'prd_authen';
 $route['authen_proc'] = 'prd_authen/authen';
+$route['authen_proc2'] = 'prd_authen_normal_1';
 $route['logout'] = 'PRD_Authen_Logout';
 
 
