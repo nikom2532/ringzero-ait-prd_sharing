@@ -1,9 +1,11 @@
 <div class="wrapper">
 	<!-- <form id="authen_form" action="<?php echo base_url().index_page(); ?>authen_proc" method="post" accept-charset="utf-8"> -->
 	<form id="authen_form" action="<?php echo base_url().index_page(); ?>authen_proc2" method="post" accept-charset="utf-8">
+		<?php /*
 		<!-- <input type="hidden" name="prd_UserID" id="prd_UserID" value="" /> -->
 		<!-- <input type="hidden" name="prd_Authen" id="prd_Authen" value="" /> -->
 		<!-- <input type="hidden" name="prd_Username" id="prd_Username" value="" /> -->
+		*/ ?>
 		
 		<input type="hidden" name="username" id="username_temp" value="" />
 		<input type="hidden" name="password" id="password_temp" value="" />
@@ -78,6 +80,7 @@
 		});
 	});
 	
+<?php
 	/*
 	function PRD_Authen(){
 		// console.log('onclick');
@@ -111,15 +114,15 @@
 			}
 		});
 	}
-	*/
 	
 	//Return True Authen
 	//array(5) { ["prd_UserID"]=> string(10) "2000200117" ["prd_Authen"]=> string(4) "true" ["prd_Username"]=> string(10) "nnt_tester" ["username"]=> string(10) "NNT_tester" ["password"]=> string(6) "123456" }
 	
-	
 	// alert(UserID);
 	//redirect(redirectURL,UserID,Authen,Username);
 	// $("#authen_form").submit();
+	*/
+?>
 	
 </script>
 </div>
