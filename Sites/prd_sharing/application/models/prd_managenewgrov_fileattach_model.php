@@ -226,10 +226,11 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 					SendInformation.SendIn_Status = 'w'
 				)
 		";
+		
 		if(
 			$filter_vdo == 1 ||
 			$filter_sound == 1 || 
-			$filter_sound == 1 ||
+			$filter_image == 1 ||
 			$filter_other == 1
 		){
 			$StrQuery .= "
@@ -275,7 +276,7 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 		if(
 			$filter_vdo == 1 ||
 			$filter_sound == 1 || 
-			$filter_sound == 1 ||
+			$filter_image == 1 ||
 			$filter_other == 1
 		){
 			$StrQuery .= "
@@ -291,6 +292,4 @@ class PRD_ManageNewGROV_FileAttach_model extends CI_Model {
 		
 		return $query;
 	}
-	
-	
 }

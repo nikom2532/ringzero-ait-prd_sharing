@@ -237,7 +237,8 @@ class CI_Upload {
 		// Convert the file size to kilobytes
 		if ($this->file_size > 0)
 		{
-			$this->file_size = round($this->file_size/1024, 2);
+			// $this->file_size = round($this->file_size/1024, 2);
+			$this->file_size = $this->file_size/1024;
 		}
 
 		// Is the file size within the allowed maximum?

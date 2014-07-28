@@ -87,6 +87,9 @@ class PRD_manageNewEditGROV extends CI_Controller {
 						$this->input->post("SendIn_ID"),
 						$file_name
 					);
+					
+					// var_dump($file_name);
+					// exit;
 				}
 				redirect(base_url().index_page().'manageNewGROV', 'refresh');
 				

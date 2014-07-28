@@ -34,7 +34,6 @@ class PRD_ManageNewGROV extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($showStatus == "yes"){
-			
 				$row_per_page = 20;
 				
 				if($this->input->get('is_del_sendinformation') == "1"){

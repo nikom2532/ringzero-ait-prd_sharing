@@ -523,7 +523,7 @@
 		// debugger;
 	    var type_id = $('select#NewsTypeID').val();
 		if (type_id != ""){
-			var post_url = "<?php echo base_url(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
+			var post_url = "<?php echo base_url().index_page(); ?>PRD_ManageNewPRD/get_NT02_TypeID/" + type_id;
 			// debugger;
 			// alert(post_url);
 			$.ajax({

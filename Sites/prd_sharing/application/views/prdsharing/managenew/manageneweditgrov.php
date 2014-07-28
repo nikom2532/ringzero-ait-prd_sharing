@@ -353,7 +353,7 @@ foreach($news as $news_item):
 		$row = 0;
 		$total_file_size = 0;
 		foreach ($FileAttach as $FileAttach_item){
-			$total_file_size += $FileAttach_item->File_FileSize;
+			$total_file_size += ($FileAttach_item->File_FileSize)*1024;
 			?><div class="row" style="margin-bottom: 0; padding: 10px 0; <?php
 				if($row % 2 == 0){
 					?>background-color: #fbfaf6<?php
@@ -362,7 +362,7 @@ foreach($news as $news_item):
 					?>background-color: #ededed<?php
 				}
 			?>"> 
-				<div style="float: left; width: 20%; padding-left: 10%; ">
+				<div style="float: left; width: 35%; padding-left: 10%; ">
 					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."uploads/".$FileAttach_item->File_Name; ?>"><?php 
 						?><img src="<?php echo base_url(); ?>images/icon/<?php
 						if(
@@ -410,7 +410,7 @@ foreach($news as $news_item):
 						}
 					?></a>
 				</div>
-				<div style="float: left; width: 70%; "> 
+				<div style="float: left; width: 55%; "> 
 					<a href="#" class="FileAttachDelete" data-File_ID="<?php echo $FileAttach_item->File_ID; ?>">
 						<img src="<?php echo base_url(); ?>images/icon/delete.png" style="margin: -5px 10px 0; padding-top: 1%;">
 					</a>
@@ -437,7 +437,7 @@ foreach($news as $news_item):
 	</div>
 	<div class="line2">
 		<div class="line2-1">
-			จำนวนขนาด File ที่เคย Upload ไปแล้ว : 
+			จำนวนขนาด File ที่เคย Upload ไปแล้ว :
 		</div>
 		<div class="line2-2">
 			<span class="total_file_size"><?php 
@@ -824,19 +824,16 @@ foreach($news as $news_item):
 			}
 		}
 		
-		if(temp_file_size > 41943040){
+		var after_file_size = (total_file_size+temp_file_size);
+		
+		if(after_file_size > 41943040){
 			$(this).val("");
-			alert("ตอนนี้ขนาด File รวมกัน เกิน 40 MB ไม่สามารถ Upload เพิ่มได้อีก")
+			alert("ตอนนี้ขนาด File รวมกัน เกิน 40 MB ไม่สามารถ Upload เพิ่มได้อีก");
 			for(file_i = 0; file_i < count_input_files; file_i++){
 				for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
 					temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
 				}
 			}
-			$(".total_before_file_size").html(numberWithCommas(temp_file_size));
-			$(".total_after_file_size").html(numberWithCommas(total_file_size+temp_file_size));
-		}
-		else{
-		
 			$(".total_before_file_size_bytes").html(numberWithCommas(temp_file_size));
 			$(".total_after_file_size_bytes").html(numberWithCommas(total_file_size+temp_file_size));
 			
@@ -880,7 +877,55 @@ foreach($news as $news_item):
 				after_file_size = after_file_size/(1024*1024.0);
 				after_file_size = after_file_size.toFixed(2)
 				
-				$(".total_after_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
+				$(".total_after_file_unit").html("MB");
+			}
+		}
+		else{
+			$(".total_before_file_size_bytes").html(numberWithCommas(temp_file_size));
+			$(".total_after_file_size_bytes").html(numberWithCommas(total_file_size+temp_file_size));
+			
+			if(temp_file_size < 1024.0){
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size));
+				$(".total_before_file_unit").html("Bytes");
+			}
+			else if(temp_file_size < 1024*1024.0){
+				
+				var temp_file_size_new = temp_file_size/1024.0;
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("KB");
+			}
+			else if(temp_file_size < (1024*1024*1024.0)){
+				
+				var temp_file_size_new = temp_file_size/(1024*1024.0);
+				temp_file_size_new = temp_file_size_new.toFixed(2)
+				
+				$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+				$(".total_before_file_unit").html("MB");
+			}
+			
+			var after_file_size = (total_file_size+temp_file_size);
+			
+			if(after_file_size < 1024.0){
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
+				$(".total_after_file_unit").html("Bytes");
+			}
+			else if(after_file_size < 1024*1024.0){
+				
+				after_file_size = after_file_size/1024.0;
+				after_file_size = after_file_size.toFixed(2)
+				
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
+				$(".total_after_file_unit").html("KB");
+			}
+			else if(after_file_size < (1024*1024*1024.0)){
+				
+				after_file_size = after_file_size/(1024*1024.0);
+				after_file_size = after_file_size.toFixed(2)
+				
+				$(".total_after_file_size").html(numberWithCommas(after_file_size));
 				$(".total_after_file_unit").html("MB");
 			}
 		}

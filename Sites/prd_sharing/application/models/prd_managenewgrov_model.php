@@ -323,6 +323,7 @@ class PRD_ManageNewGROV_model extends CI_Model {
 		";
 		
 		// echo $StrQuery;
+		// exit;
 		
 		$query = $this->db->
 			query($StrQuery)->result();
