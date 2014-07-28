@@ -144,6 +144,11 @@
 <?php
 				$i++;
 			}
+			if($i == 1){
+?>
+				<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+<?php
+			}
 ?>
 		</div>
 	</div>
