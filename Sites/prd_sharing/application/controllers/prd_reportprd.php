@@ -116,6 +116,13 @@ class PRD_reportPRD extends CI_Controller {
 					$data['post_filter_other'] = "";
 				}
 				
+				if(isset($_POST["reportprd_is_search"])){
+					$data["post_reportprd_is_search"] = $this->input->post("reportprd_is_search");
+				}
+				else {
+					$data["post_reportprd_is_search"] = "";	
+				}
+				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
 				$url = "reportPRD";
