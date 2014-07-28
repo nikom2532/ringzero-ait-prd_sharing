@@ -94,7 +94,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 							$this->input->post('mem_status'),
 							$this->input->post('province_id')
 						);
-					$count_row = $this->prd_manage_user_gove_model->count_Member(
+					$count_row = $this->prd_manage_user_gove_model->count_Member_search(
 						$this->input->post('search_key'),
 						$this->input->post('mem_status'),
 						$this->input->post('province_id')

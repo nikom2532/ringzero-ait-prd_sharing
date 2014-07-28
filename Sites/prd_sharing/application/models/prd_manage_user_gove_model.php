@@ -215,7 +215,7 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 				Member.Group_ID IN ('1', '2')
 		";
 		if($search_key != ""){
-			$strQuery_get_Member .= "
+			$StrQuery .= "
 				AND
 				(
 					(Member.Mem_Username LIKE '%".$search_key."%') 
@@ -227,13 +227,13 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 			";
 		}
 		if($mem_status != ""){
-			$strQuery_get_Member .= "
+			$StrQuery .= "
 				AND 
 					Member.Mem_Status = '".$mem_status."'
 			";
 		}
 		if($CM06_ProvinceID != ""){
-			$strQuery_get_Member .= "
+			$StrQuery .= "
 				AND 
 					Member.Prov_ID = '".$CM06_ProvinceID."'
 			";
