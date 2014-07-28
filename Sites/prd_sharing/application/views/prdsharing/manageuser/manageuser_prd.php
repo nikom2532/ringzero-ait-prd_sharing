@@ -146,22 +146,22 @@
 							}
 ?>
 						</p>
-							<p class="col-6" style="width: 15%;float: left; ">
+						<p class="col-6" style="width: 15%;float: left; ">
 <?php
-								// var_dump($Member_item);
-								$count=0;
-								foreach ($CM06_Province as $CM06_Province_item) {
-									if($CM06_Province_item->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceID){
-										echo $CM06_Province_item->CM06_ProvinceName;
-										$count++;
-									}
+							// var_dump($Member_item);
+							$count=0;
+							foreach ($CM06_Province as $CM06_Province_item) {
+								if($CM06_Province_item->CM06_ProvinceID == $SC03_User_item->CM06_ProvinceID){
+									echo $CM06_Province_item->CM06_ProvinceName;
+									$count++;
 								}
-								if($count==0){
-									echo "-";
-								}
-								// echo $Member_item->Prov_ID; 
+							}
+							if($count==0){
+								echo "-";
+							}
+							// echo $Member_item->Prov_ID; 
 ?>
-							</p>
+						</p>
 						<p class="col-7" style="width: 10%;float: left; ">
 <?php 
 							/*

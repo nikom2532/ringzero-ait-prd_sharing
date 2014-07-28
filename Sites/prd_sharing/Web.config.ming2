@@ -28,7 +28,7 @@
 		</staticContent>
 		<security>
 			<requestFiltering>
-				<requestLimits maxAllowedContentLength="524288000" /> <!--50MB-->
+				<requestLimits maxAllowedContentLength="524288000" />
 				<fileExtensions applyToWebDAV="false">
 					<add fileExtension=".inc" allowed="false" />
 					<add fileExtension=".mp3" allowed="true" />

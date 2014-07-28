@@ -9,6 +9,73 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 	}
 	
 	//##################### New Database #########################
+	public function get_UserOld($provinceID='', $search_key=''){
+		$StrQuery = "
+			SELECT TOP 10
+				[SC03_UserId],
+				[CM06_ProvinceId]
+			FROM [SC03_User]
+		";
+		if($search_key != "" || $provinceID != ""){
+			$StrQuery .= "
+				WHERE
+			";
+		}
+		if($search_key != ""){
+			$StrQuery .= "
+				(
+					(SC03_User.SC03_UserName LIKE '%".$search_key."%') 
+					OR
+					(SC03_User.SC03_FName LIKE '%".$search_key."%')
+					OR
+					(SC03_User.SC03_LName LIKE '%".$search_key."%')
+				)
+			";
+		}
+		if($provinceID != ""){
+			if($search_key != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+			  	CM06_ProvinceId = '".$provinceID."'
+			";
+		}
+		  	
+		$query = $this->db_ntt_old->query($StrQuery);
+		return $query->result();
+	}
+	
+	public function get_UserNew($Mem_OldID = ''){
+		
+		if($Mem_OldID != ""){
+			$statusArray = array();
+			foreach($Mem_OldID as $val){
+				$statusArray[] = "'".$val->SC03_UserId."'";
+			}
+			$Mem_OldID = implode(",",$statusArray);
+		}
+		
+		$StrQuery = "
+			SELECT
+			   [Mem_ID]
+		      ,[Mem_Name]
+		      ,[Mem_LasName]
+		      
+		      ,[Mem_Status]
+		    
+		      ,[Group_ID]
+		      
+		      ,[Mem_OldID]
+		 
+		  FROM [ringzero_ait_prd_sharing].[dbo].[Member]
+		  where [Mem_OldID] in (".$Mem_OldID.") ;
+		";
+		$query = $this->db_ntt_old->query($StrQuery);
+		return $query->result();
+	}
+	
 	
 	public function get_Member()
 	{
@@ -29,42 +96,6 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 			get('Member');
 			
 		return $query_getUser->result();
-	}
-	
-	public function get_Member_search(
-		$search_key = '',
-		$mem_status = '',
-		$CM06_ProvinceID = ''
-	)
-	{
-		$str_getMember2 = "
-			SELECT 
-				Member.Mem_ID, 
-				Member.Mem_Username, 
-				Member.Mem_Name, 
-				Member.Mem_LasName, 
-				Member.Mem_Department, 
-				Member.Prov_ID, 
-				Member.Mem_Status, 
-				GroupMember.Group_Status 
-			FROM Member 
-			LEFT JOIN GroupMember 
-				ON GroupMember.Group_ID = Member.Group_ID 
-			WHERE 
-			(
-				(Member.Mem_Username LIKE '%".$search_key."%') 
-				OR 
-				(Member.Mem_Name LIKE '%".$search_key."%') 
-				OR 
-				(Member.Mem_LasName LIKE '%".$search_key."%')
-			)
-			AND Member.Mem_Status = '".$mem_status."'
-			AND Member.Prov_ID = '".$CM06_ProvinceID."'
-		";
-		
-		$query_getMember2 = $this->db->query($str_getMember2);
-		
-		return $query_getMember2->result();
 	}
 	
 	//##################### Old Database #########################
@@ -144,9 +175,15 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 	{
 		$query_getUser = $this->db->
 			select('
-				Member.Mem_OldID
-			')->
-			where('Mem_Status', $Mem_Status)->
+				Member.Mem_OldID,
+				Member.Mem_Status
+			');
+			
+		if($Mem_Status != ""){
+			$query_getUser = $query_getUser->
+				where('Mem_Status', $Mem_Status);
+		}
+		$query_getUser = $query_getUser->
 			get('Member');
 			
 		return $query_getUser->result();
@@ -157,15 +194,15 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 		$row_per_page = 20,
 		$search_key = '',
 		$CM06_ProvinceID = '',
-		$Member_Status = '' //$Member_Status return all Old_SC03_User
+		$Member_OldID = '' //$Member_Status return all Old_SC03_User
 	)
 	{
-		if($Member_Status != ""){
+		if($Member_OldID != ""){
 			$statusArray = array();
-			foreach($Member_Status as $val){
+			foreach($Member_OldID as $val){
 				$statusArray[] = "'".$val->Mem_OldID."'";
 			}
-			$Member_Status = implode(",",$statusArray);
+			$Member_OldID = implode(",",$statusArray);
 		}
 		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
@@ -223,14 +260,13 @@ class PRD_Manage_User_PRD_model extends CI_Model {
 					SC03_User.CM06_ProvinceId = '".$CM06_ProvinceID."'
 			";
 		}
-		if($Member_Status != ""){
+		if($Member_OldID != ""){
 			$StrQuery_get_SC03_User .= "
 				AND
-					SC03_User.SC03_UserId IN (".$Member_Status.")
+					SC03_User.SC03_UserId IN (".$Member_OldID.")
 			";
 		}
 		$StrQuery_get_SC03_User .= "
-				
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
