@@ -155,7 +155,7 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 		}
 		if($MinisName != ''){
 			$StrQuery .= "
-				Ministry.Minis_Name = '".$MinisName."'
+				Ministry.Minis_Name LIKE '%".$MinisName."%'
 			";
 		}
 		if($MinisStatus != ''){
@@ -192,7 +192,7 @@ class PRD_ManageInfo_Ministry_model extends CI_Model {
 		}
 		if($MinisName != ''){
 			$StrQuery .= "
-				Ministry.Minis_Name = '".$MinisName."'
+				Ministry.Minis_Name LIKE '%".$MinisName."%'
 			";
 		}
 		if($MinisStatus != ''){

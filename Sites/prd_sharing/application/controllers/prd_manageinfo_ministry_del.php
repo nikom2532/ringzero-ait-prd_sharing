@@ -1,5 +1,5 @@
 <?php
-class PRD_manageInfo_Ministry extends CI_Controller {
+class PRD_manageInfo_Ministry_Del extends CI_Controller {
 
 	public function __construct()
 	{
