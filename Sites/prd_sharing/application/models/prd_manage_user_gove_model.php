@@ -99,6 +99,7 @@ class PRD_Manage_User_GOVE_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
 		$query_get_Member = $this->db->
 			query($strQuery_get_Member)->result();
 		

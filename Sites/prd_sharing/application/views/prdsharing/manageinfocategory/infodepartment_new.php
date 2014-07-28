@@ -10,7 +10,7 @@
 				<div id="search-form">
 					<div class="row">
 						<div class="col-lg-12" style="width: 386px; ">
-							<label >ชื่อกระทรวง:</label>
+							<label >ชื่อกระทรวง: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 							<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
 								<span>เลือกชื่อกระทรวง</span>
 								<select class="select-opt" name="ministry_id" id="ministry_id">
@@ -24,15 +24,15 @@
 							</span>
 						</div>
 						<div class="col-lg-12" style="margin-top: 31px; ">
-							<label >ชื่อกรม:</label>
+							<label >ชื่อกรม: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 							<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="" placeholder="" required="required">
 						</div>
 						<div class="col-lg-12">
-							<label >รายละเอียด:</label>
+							<label >รายละเอียด: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 							<textarea rows="4" cols="50" class="txt-area" name="dep_desc" required="required"></textarea>
 						</div>
 						<div class="col-lg-12" style="width: 386px; ">
-							<label >สถานะการใช้งาน:</label>
+							<label >สถานะการใช้งาน: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 							<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
 								<span>เลือกชื่อกระทรวง</span>
 								<select class="select-opt" name="dep_status" id="dep_status">

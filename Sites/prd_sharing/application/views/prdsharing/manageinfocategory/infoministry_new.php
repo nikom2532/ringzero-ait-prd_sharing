@@ -16,15 +16,15 @@
 							</div>
 							<?php */ ?>
 							<div class="col-lg-12">
-								<label >ชื่อกระทรวง:</label>
+								<label >ชื่อกระทรวง: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<input type="text" class="form-control txt-field" name="minis_name" id="minis_name" value="" placeholder="" required="required" >
 							</div>
 							<div class="col-lg-12">
-								<label >รายละเอียด:</label>
+								<label >รายละเอียด: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<textarea rows="4" cols="50" name="minis_desc" id="minis_desc" class="txt-area" required="required"></textarea>
 							</div>
 							<div class="col-lg-12" style="width: 386px; ">
-								<label >สถานะการใช้งาน:</label>
+								<label >สถานะการใช้งาน: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
 									<span>เลือกหมวดหมู่ข่าว</span>
 									<select class="form-control select-opt" name="minis_status" id="minis_status">

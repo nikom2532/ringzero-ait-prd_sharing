@@ -205,6 +205,11 @@
 <?php
 			$i++;
 		}
+		if($i == 1){
+?>
+			<div class="news-form" style="color: red; text-align: center;">ไม่พบข้อมูล</div>
+<?php
+		}
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">

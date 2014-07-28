@@ -19,11 +19,11 @@
 								<span class="number"><?php echo $department_item->Dep_ID; ?></span>
 							</div>
 							<div class="col-lg-12" style="width: 386px; ">
-								<label >ชื่อกระทรวง:</label>
+								<label >ชื่อกระทรวง: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<span class="select-menu" style="width: 250px; background-position: 218px 0; ">
 									<span>เลือกชื่อกระทรวง</span>
 									<select class="select-opt" name="ministry_id" id="ministry_id">
-	<?php
+<?php
 										foreach ($ministry as $ministry_item) {
 											?><option value="<?php echo $ministry_item->Minis_ID ?>" <?php
 												
@@ -33,20 +33,20 @@
 												
 											?>><?php echo $ministry_item->Minis_Name; ?></option><?php
 										}
-	?>
+?>
 									</select>
 								</span>
 							</div>
 							<div class="col-lg-12" style="margin-top: 31px; ">
-								<label >ชื่อกรม:</label>
+								<label >ชื่อกรม: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="<?php echo $department_item->Dep_Name; ?>" placeholder="" required="required">
 							</div>
 							<div class="col-lg-12">
-								<label >รายละเอียด:</label>
+								<label >รายละเอียด: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<textarea rows="4" cols="50" class="txt-area" name="dep_desc" required="required"><?php echo $department_item->Dep_Desc; ?></textarea>
 							</div>
 							<div class="col-lg-12">
-								<label >สถานะการใช้งาน:</label>
+								<label >สถานะการใช้งาน: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
 								<select class="select-opt" name="dep_status">
 									<option value="1" <?php if($department_item->Dep_Status == "1"){ ?>selected='selected'<?php } ?>>ใช้งานได้</option>
 									<option value="0" <?php if($department_item->Dep_Status == "0"){ ?>selected='selected'<?php } ?>>ใช้งานไม่ได้</option>
