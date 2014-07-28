@@ -35,7 +35,7 @@
 				  <span>เลือกหน่วยงาน</span>
 					<select name="grov_active" id="grov_active">
 						<option value="">เลือกหน่วยงาน</option>
-	<?php
+<?php
 						foreach ($SC07_Department as $Department_item) {
 							?><option value="<?php echo $Department_item->SC07_DepartmentId;?>" <?php 
 								if($Department_item->SC07_DepartmentId == $post_grov_active){
@@ -43,7 +43,7 @@
 								}
 							?>><?php echo $Department_item->SC07_DepartmentName; ?></option><?php
 						}
-	?>
+?>
 					</select>
 				</span> 
 			</div>

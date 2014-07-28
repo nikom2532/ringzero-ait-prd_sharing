@@ -84,6 +84,18 @@ class PRD_Report_PRD_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_SC07_Department()
+	{
+		$query_SC07_Department = $this->db_ntt_old->
+			select('
+				SC07_Department.SC07_DepartmentId,
+				SC07_Department.SC07_DepartmentName
+			')->
+			get('SC07_Department')->result();
+		
+		return $query_SC07_Department;
+	}
+	
 	/*
 	public function undelete_News($old_news_id = '')
 	{
@@ -177,7 +189,7 @@ class PRD_Report_PRD_model extends CI_Model {
 	public function get_NT01_News_Search(
 		$page=1, 
 		$row_per_page=20, 
-		$News_Title = '',
+		$grov_active = '',
 		$startdate = '',
 		$enddate = '',
 		$NewsTypeID = '',
@@ -243,10 +255,10 @@ class PRD_Report_PRD_model extends CI_Model {
 				AND
 					NT01_News.NT01_Status = 'Y'
 		";
-		if($News_Title != ''){
+		if($grov_active != ''){
 			$StrQuery .= "
 				AND 
-					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
+					NT01_News.SC07_DepartmentId LIKE '%".$grov_active."%' ESCAPE '!'
 			";
 		}
 		if(
@@ -328,13 +340,17 @@ class PRD_Report_PRD_model extends CI_Model {
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
 	}
 	
 	public function get_NT01_News_search_count(
-		$News_Title = '',
+		$grov_active = '',
 		$startdate = '',
 		$enddate = '',
 		$NewsTypeID = '',
@@ -371,10 +387,10 @@ class PRD_Report_PRD_model extends CI_Model {
 			AND
 				NT01_News.NT01_Status = 'Y'
 		";
-		if($News_Title != ''){
+		if($grov_active != ''){
 			$StrQuery .= "
 				AND 
-					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
+					NT01_News.SC07_DepartmentId LIKE '%".$grov_active."%' ESCAPE '!'
 			";
 		}
 		if(
@@ -453,6 +469,10 @@ class PRD_Report_PRD_model extends CI_Model {
 		// $StrQuery .= "
 				// group by NT01_News.NT01_NewsID
 		// ";
+		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			

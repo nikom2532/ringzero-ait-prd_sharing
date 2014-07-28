@@ -57,7 +57,7 @@ class PRD_reportPRD extends CI_Controller {
 				$data['New_News'] = $this->prd_report_prd_model->get_New_News();
 				$data['SC03_User'] = $this->prd_report_prd_model->get_SC03_User();
 				$row_per_page = 20;
-				// $data['SC07_Department'] = $this->prd_report_prd_model->get_SC07_Department();
+				$data['SC07_Department'] = $this->prd_report_prd_model->get_SC07_Department();
 				
 				if($this->input->post("reportprd_is_search") == "yes"){
 					
@@ -65,7 +65,7 @@ class PRD_reportPRD extends CI_Controller {
 						get_NT01_News_Search(
 							$page, 
 							$row_per_page,
-							$this->input->post('news_title'),
+							$this->input->post('grov_active'),
 							$this->input->post('start_date'),
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
@@ -78,7 +78,7 @@ class PRD_reportPRD extends CI_Controller {
 						);
 					$count_row = $this->prd_report_prd_model->
 						get_NT01_News_search_count(
-							$this->input->post('news_title'),
+							$this->input->post('grov_active'),
 							$this->input->post('start_date'),
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
@@ -90,7 +90,7 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('filter_other')
 						);
 					
-					$data['post_news_title'] = $this->input->post('news_title');
+					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_start_date'] = $this->input->post('start_date');
 					$data['post_end_date'] = $this->input->post('end_date');
 					$data['post_News_type_id'] = $this->input->post('NewsTypeID');
@@ -104,7 +104,7 @@ class PRD_reportPRD extends CI_Controller {
 				else{	//## No Search ##
 					$data['news'] = $this->prd_report_prd_model->get_NT01_News($page, $row_per_page);
 					$count_row = $this->prd_report_prd_model->get_NT01_News_count();
-					$data['post_news_title'] = "";
+					$data['post_grov_active'] = "";
 					$data['post_start_date'] = "";
 					$data['post_end_date'] = "";
 					$data['post_News_type_id'] = "";
