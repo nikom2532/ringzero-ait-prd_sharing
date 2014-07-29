@@ -212,7 +212,7 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#manageinfo_ministry_form").attr("action","<?php echo base_url()."manageInfo_Ministry"; ?>/"+nextpage);
+		$("#manageinfo_ministry_form").attr("action","<?php echo base_url().index_page()."manageInfo_Ministry"; ?>/"+nextpage);
 <?php
 		if($post_manageinfo_ministry_is_search == ""){
 ?>
@@ -223,7 +223,7 @@
 		$("#manageinfo_ministry_form").submit();
 	}
 	function lastPage(val){
-		$("#manageinfo_ministry_form").attr("action","<?php echo base_url()."manageInfo_Ministry"; ?>/"+val);
+		$("#manageinfo_ministry_form").attr("action","<?php echo base_url().index_page()."manageInfo_Ministry"; ?>/"+val);
 <?php
 		if($post_manageinfo_ministry_is_search == ""){
 ?>
@@ -235,7 +235,7 @@
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#manageinfo_ministry_form").attr("action","<?php echo base_url()."manageInfo_Ministry"; ?>/"+prevpage);
+		$("#manageinfo_ministry_form").attr("action","<?php echo base_url().index_page()."manageInfo_Ministry"; ?>/"+prevpage);
 <?php
 		if($post_manageinfo_ministry_is_search == ""){
 ?>
@@ -246,7 +246,7 @@
 		$("#manageinfo_ministry_form").submit();
 	}
 	function firstPage(){
-		$("#manageinfo_ministry_form").attr("action","<?php echo base_url()."manageInfo_Ministry"; ?>/1");
+		$("#manageinfo_ministry_form").attr("action","<?php echo base_url().index_page()."manageInfo_Ministry"; ?>/1");
 <?php
 		if($post_manageinfo_ministry_is_search == ""){
 ?>
@@ -272,7 +272,7 @@
 		
 		
 		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+minis_id) == true) {
-	        location.href="manageInfo_Ministry?del_ministry=1&minis_id="+minis_id;
+	        location.href="<?php echo base_url().index_page(); ?>manageInfo_Ministry?del_ministry=1&minis_id="+minis_id;
 	    }
 	    else {
 	    	

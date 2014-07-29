@@ -799,6 +799,105 @@
 		$("select#Tar_ID option:selected").prop("selected", false);
 		$("#Tar_ID").prev("span").text($("select#Tar_ID").find("option:selected").text());
 		
+		$("#SendIn_Plan").val("");
+		$("#SendIn_Issue").val("");
+		CKEDITOR.instances.SendIn_Detail.setData("");
+		
+		$(".show_size .total_before_file_size").html("0");
+		$(".show_size .total_before_file_unit").html("Bytes");
+		$(".show_size .total_before_file_size_bytes").html("0");
+		$(".show_size .total_before_file_unit_bytes").html("Bytes");
+		
+		
+		var str_video = ""+
+			"<div style=\"margin-left: 5%; color: #000000; float: left; \">"+
+			"	Video * "+
+			"</div>"+
+			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
+			"	ลองรับนามสกุล .mp4, .avi, .wmv, .flv "+
+			"</div>"+
+			
+			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
+			"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+			"		<span class=\"label_file\" >file แนบเอกสาร</span>"+
+			"		<input type=\"file\" class=\"form-control\" name=\"fileattach_video1\" id=\"fileattach\" onchange=\"check_file_ext('video', '1');\" placeholder=\"\" style=\"width: 40%; \" multiple />"+
+			"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
+			"	</div>"+
+			"</div>";
+		
+		$("div.uploadfile_video").html(str_video);
+		
+		var str_voice = ""+
+			"<div style=\"margin-left: 5%; color: #000000; float: left; \">"+
+			"	เสียง * "+
+			"</div>"+
+			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
+			"	ลองรับนามสกุล .mp3, .ogg, .wma "+
+			"</div>"+
+			
+			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
+			"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+			"		<span class=\"label_file\" >file แนบเอกสาร</span>"+
+			"		<input type=\"file\" class=\"form-control\" name=\"fileattach_voice1\" id=\"fileattach\" onchange=\"check_file_ext('voice', '1');\" placeholder=\"\" style=\"width: 40%; \" multiple />"+
+			"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
+			"	</div>"+
+			"</div>";
+		
+		$("div.uploadfile_voice").html(str_voice);
+		
+		var str_document = ""+
+			"<div style=\"margin-left: 5%; color: #000000; float: left; \">"+
+			"	เสียง * "+
+			"</div>"+
+			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
+			"	ลองรับนามสกุล .mp3, .ogg, .wma "+
+			"</div>"+
+			
+			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
+			"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+			"		<span class=\"label_file\" >file แนบเอกสาร</span>"+
+			"		<input type=\"file\" class=\"form-control\" name=\"fileattach_document1\" id=\"fileattach\" onchange=\"check_file_ext('document', '1');\" placeholder=\"\" style=\"width: 40%; \" multiple />"+
+			"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
+			"	</div>"+
+			"</div>";
+		
+		$("div.uploadfile_document").html(str_document);
+		
+		var str_document = ""+
+			"<div style=\"margin-left: 5%; color: #000000; float: left; \">"+
+			"	เอกสาร * "+
+			"</div>"+
+			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
+			"	ลองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv "+
+			"</div>"+
+			
+			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
+			"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+			"		<span class=\"label_file\" >file แนบเอกสาร</span>"+
+			"		<input type=\"file\" class=\"form-control\" name=\"fileattach_document1\" id=\"fileattach\" onchange=\"check_file_ext('document', '1');\" placeholder=\"\" style=\"width: 40%; \" multiple />"+
+			"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
+			"	</div>"+
+			"</div>";
+		
+		$("div.uploadfile_document").html(str_document);
+		
+		var str_picture = ""+
+			"<div style=\"margin-left: 5%; color: #000000; float: left; \">"+
+			"	รูปภาพ * "+
+			"</div>"+
+			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
+			"	ลองรับนามสกุล .jpg, .jpeg, .gif, .png "+
+			"</div>"+
+			
+			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
+			"	<div class=\"col-lg-12\" style=\"margin-left: 5%; \">"+
+			"		<span class=\"label_file\" >file แนบเอกสาร</span>"+
+			"		<input type=\"file\" class=\"form-control\" name=\"fileattach_picture1\" id=\"fileattach\" onchange=\"check_file_ext('picture', '1');\" placeholder=\"\" style=\"width: 40%; \" multiple />"+
+			"		<img src=\"<?php echo base_url(); ?>images/icon/delete_lock2.png\" name=\"reducemorefile\" id=\"reducemorefile\" data-file_id=\"1\" style=\"width: 20px; margin-left: 15px; cursor: pointer; \" />"+
+			"	</div>"+
+			"</div>";
+		
+		$("div.uploadfile_picture").html(str_picture);
 	});
 	
 	/*

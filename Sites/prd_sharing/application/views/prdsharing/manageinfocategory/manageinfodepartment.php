@@ -192,7 +192,7 @@
 		if(<?php echo $total_page; ?>==val){
 			nextpage = val;
 		}
-		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+nextpage);
+		$("#manageinfo_department_form").attr("action","<?php echo base_url().index_page()."manageInfo_Department"; ?>/"+nextpage);
 <?php
 		if($post_manageInfo_Department_is_search == ""){
 ?>
@@ -203,7 +203,7 @@
 		$("#manageinfo_department_form").submit();
 	}
 	function lastPage(val){
-		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+val);
+		$("#manageinfo_department_form").attr("action","<?php echo base_url().index_page()."manageInfo_Department"; ?>/"+val);
 <?php
 		if($post_manageInfo_Department_is_search == ""){
 ?>
@@ -215,7 +215,7 @@
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
-		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+prevpage);
+		$("#manageinfo_department_form").attr("action","<?php echo base_url().index_page()."manageInfo_Department"; ?>/"+prevpage);
 <?php
 		if($post_manageInfo_Department_is_search == ""){
 ?>
@@ -226,7 +226,7 @@
 		$("#manageinfo_department_form").submit();
 	}
 	function firstPage(){
-		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/1");
+		$("#manageinfo_department_form").attr("action","<?php echo base_url().index_page()."manageInfo_Department"; ?>/1");
 <?php
 		if($post_manageInfo_Department_is_search == ""){
 ?>
@@ -240,7 +240,7 @@
 	$(".DepartmentDelete").click( function() {
 		var dep_id = $(this).attr("data-dep_id");
 		if (confirm("คุณแน่ใจว่าจะลบหรือไม่ "+dep_id) == true) {
-	        location.href="manageInfo_Department?del_department=1&dep_id="+dep_id;
+	        location.href="<?php echo base_url().index_page(); ?>manageInfo_Department?del_department=1&dep_id="+dep_id;
 	    }
 	});
 </script>
