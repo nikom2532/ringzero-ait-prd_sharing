@@ -7,7 +7,6 @@ class PRD_sentNew extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('PRD_SentNew_model');
-		
 	}
 
 	public function index()
@@ -67,15 +66,9 @@ class PRD_sentNew extends CI_Controller {
 	
 	public function sentnew_process()
 	{
-		
-		exit;
-		
 		// $this->load->view('prdsharing/templates/header');
 		?><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><?php
 		header('Content-Type: text/html; charset=utf-8');
-		
-		// var_dump($_FILES);
-		// exit;
 		
 		if ($this->input->post('sentnew_is_add')) {
 			

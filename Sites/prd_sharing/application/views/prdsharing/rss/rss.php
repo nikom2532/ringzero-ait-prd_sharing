@@ -1,6 +1,6 @@
 <!-- <script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script> -->
 <div class="content">
-	<div id="share-form">
+	<div id="share-form" style="margin-top: 0">
 		<div id="search-form">
 			<form name="search_form" id="homeSearch" action="<?php echo base_url().index_page(); ?>rss" method="post">
 				<input type="hidden" name="rss_is_search" value="yes" />
