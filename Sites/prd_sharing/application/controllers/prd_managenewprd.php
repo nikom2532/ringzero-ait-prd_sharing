@@ -34,7 +34,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($showStatus == "yes"){
-			
+				
 				if($this->input->post("manageNewEditPRD_record") == "yes"){
 					// echo "record";
 					$return = $this->prd_managenewprd_model->set_prd_news(
@@ -61,8 +61,6 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$row_per_page = 20;
 				$checkDelete_News = $this->prd_managenewprd_model->checkDelete_News();
 				
-				// echo $this->input->post('managenewsprd_is_search');
-				// exit;
 				if($this->input->post("managenewsprd_is_search") == "yes"){
 					$data['news'] = $this->prd_managenewprd_model->
 						get_NT01_News_Search(

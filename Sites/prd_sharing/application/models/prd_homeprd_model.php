@@ -16,46 +16,46 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query_news;
 	}
 	
-	public function get_NT01_News_count($Cate_OldID = array())
+	public function get_NT02_NewsType()
 	{
+		return $this->db_ntt_old->
+			SELECT('
+				NT02_NewsType.NT02_TypeID
+			')->
+			where('NT02_NewsType.NT02_Status', 'Y')->
+			get('NT02_NewsType')->result();
+	}
+	
+	public function get_Category($NT02_NewsType = '')
+	{
+		// return $this->db->
+			// SELECT('
+				// Category.Cate_OldID,
+			// ')->
+			// // join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
+			// where('Category.Cate_Status', 'Y')->
+			// get('Category')->result();
+		
 		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
+		foreach($NT02_NewsType as $val){
+			// echo $val->Cate_OldID;
+			$statusArray[] = "'".$val->NT02_TypeID."'";
 		}
-		$Cate_OldID = implode(",",$statusArray);
+		$NT02_NewsType = implode(",",$statusArray);
 		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
+		$strQuery = "
+			SELECT 
+				Category.Cate_OldID
+			FROM 
+				Category
+			WHERE 
+				Category.Cate_Status = 'Y'
+			AND 
+				Category.Cate_OldID IN (".$NT02_NewsType.")
 		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
+		// exit;
+		$query = $this->db->query($strQuery)->result();
+		return $query;
 	}
 	
 	public function get_NT01_News($Cate_OldID = array(), $page=1, $row_per_page=20)
@@ -131,431 +131,51 @@ class PRD_HomePRD_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT02_NewsType()
+	public function get_NT01_News_count($Cate_OldID = array())
 	{
-		return $this->db_ntt_old->
-			SELECT('
-				NT02_NewsType.NT02_TypeID
-			')->
-			where('NT02_NewsType.NT02_Status', 'Y')->
-			get('NT02_NewsType')->result();
-	}
-	
-	public function get_Category($NT02_NewsType = '')
-	{
-		// return $this->db->
-			// SELECT('
-				// Category.Cate_OldID,
-			// ')->
-			// // join('Member', 'Member.Mem_ID = Category.MemUpdate_ID', 'left')->
-			// where('Category.Cate_Status', 'Y')->
-			// get('Category')->result();
-		
 		$statusArray = array();
-		foreach($NT02_NewsType as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->NT02_TypeID."'";
+		foreach($Cate_OldID as $val){
+			$statusArray[] = "'".$val->Cate_OldID."'";
 		}
-		$NT02_NewsType = implode(",",$statusArray);
+		$Cate_OldID = implode(",",$statusArray);
 		
-		$strQuery = "
-			SELECT 
-				Category.Cate_OldID
-			FROM 
-				Category
-			WHERE 
-				Category.Cate_Status = 'Y'
-			AND 
-				Category.Cate_OldID IN (".$NT02_NewsType.")
+		$StrQuery = "
+				SELECT
+					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
+				FROM NT01_News 
+				LEFT JOIN NT02_NewsType 
+					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
+				WHERE 
+					NT01_News.NT08_PubTypeID = '11'
+				AND
+					NT02_NewsType.NT02_Status = 'Y'
+				AND
+					NT01_News.NT01_Status = 'Y'
 		";
-		// exit;
-		$query = $this->db->query($strQuery)->result();
-		return $query;
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
 	}
 	
 	//##################### search ###################
 	
-	public function get_NT01_News_search_title($news_title, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN 
-					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID 
-				LEFT JOIN 
-					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN 
-					NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN 
-					NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
-				WHERE 
-					NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-			";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		$StrQuery .= "
-				AND 
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-					
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		
-		return $query;
-	}
-	
-	public function get_NT01_News_search_title_count($news_title, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND 
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_title_start($news_title, $startdate, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		// $startdate = "2004-06-01 00:00:00.000";
-		// echo $startdate;
-		
-		
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE
-				(
-						NT08_PubTypeID = '11'
-					AND
-						NT02_NewsType.NT02_Status = 'Y'
-					AND
-						NT01_News.NT01_Status = 'Y'
-					AND
-						NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-					AND
-						CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) > '".date("m-d-Y",strtotime($startdate))."'
-				)
-					
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		return $query;
-	}
-	
-	public function get_NT01_News_search_title_start_count($news_title, $startdate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) > '".date("m-d-Y",strtotime($startdate))."'
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		// $StrQuery .= "
-			// group by NT01_News.NT01_NewsID
-		// ";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_title_end($news_title, $enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE
-				(
-						NT08_PubTypeID = '11'
-					AND
-						NT02_NewsType.NT02_Status = 'Y'
-					AND
-						NT01_News.NT01_Status = 'Y'
-					AND
-						NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-					AND
-						CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($enddate))."'
-				)
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		return $query;
-	}
-	
-	public function get_NT01_News_search_title_end_count($news_title, $enddate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($enddate))."'
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		// $StrQuery .= "
-			// group by NT01_News.NT01_NewsID
-		// ";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_title_start_end($news_title, $startdate, $enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
+	public function get_NT01_News_search($news_title, $startdate, $enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
 	{
 		$statusArray = array();
 		foreach($Cate_OldID as $val){
@@ -617,458 +237,121 @@ class PRD_HomePRD_model extends CI_Model {
 					NT01_News.NT02_TypeID IN ('')
 			";
 		}
-		$StrQuery .= "
-				
+		if($news_title != ""){
+			$StrQuery .= "
 				AND
 					NT01_News.NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+			";
+		}
+		if(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
 				AND
-					(
-						CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+			";
+		}
+		elseif(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
 						BETWEEN 
-							'".date("m-d-Y",strtotime($startdate))."'
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
-							'".date("m-d-Y",strtotime($enddate))."'
-					)
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function get_NT01_News_search_title_start_end_count($news_title, $startdate, $enddate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-					NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
-				AND
-					(
-						CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
-						BETWEEN 
-							'".date("m-d-Y",strtotime($startdate))."'
-							AND
-							'".date("m-d-Y",strtotime($enddate))."'
-					)
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		// $StrQuery .= "
-			// group by NT01_News.NT01_NewsID
-		// ";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_start_end($startdate, $enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE 
-					NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
 		$StrQuery .= "
+				group by NT01_News.NT01_NewsID
+			)
+			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
+		";
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
+	public function get_NT01_News_search_count($news_title, $startdate, $enddate, $Cate_OldID = array())
+	{
+		$statusArray = array();
+		foreach($Cate_OldID as $val){
+			$statusArray[] = "'".$val->Cate_OldID."'";
+		}
+		$Cate_OldID = implode(",",$statusArray);
+		
+		$StrQuery = "
+				SELECT
+					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
+				FROM NT01_News 
+				LEFT JOIN NT02_NewsType 
+					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
+				WHERE 
+					NT01_News.NT08_PubTypeID = '11'
 				AND
-				(
+					NT02_NewsType.NT02_Status = 'Y'
+				AND
+					NT01_News.NT01_Status = 'Y'
+		";
+		if($Cate_OldID != ""){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
+			";
+		}
+		else {
+			$StrQuery .= "
+				AND 
+					NT01_News.NT02_TypeID IN ('')
+			";
+		}
+		if($news_title != ""){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsTitle LIKE '%".$news_title."%' ESCAPE '!'
+			";
+		}
+		if(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+			";
+		}
+		elseif(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
 					NT01_News.NT01_NewsDate
-					BETWEEN 
-						'".date("Y-m-d H:i:s", strtotime($startdate))."'
-						AND
-						'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
-				)
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		
-		// CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
-		// date("Y-m-d",strtotime($startdate))
-		// echo date("Y-m-d H:i:s", strtotime($startdate)+86400);
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function get_NT01_News_search_start_end_count($startdate, $enddate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-				(
-					NT01_News.NT01_NewsDate
-					BETWEEN 
-						'".date("Y-m-d H:i:s", strtotime($startdate))."'
-						AND
-						'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
-				)
-		";
-				// AND
-				// (
-					// CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110)
-					// BETWEEN 
-						// '".date("m-d-Y",strtotime($startdate))."'
-						// AND
-						// '".date("m-d-Y",strtotime($enddate))."'
-				// )
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		// $StrQuery .= "
-			// group by NT01_News.NT01_NewsID
-		// ";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_start($startdate, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE 
-					NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-	echo	$StrQuery .= "
-				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($startdate))."'
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-					// CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($startdate))."'
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function get_NT01_News_search_start_count($startdate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($startdate))."'
-		";
-					// NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($startdate))."'
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		// $StrQuery .= "
-			// group by NT01_News.NT01_NewsID
-		// ";
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
-		foreach($query as $val){
-			return $val->NUMROW;
-		}
-	}
-	
-	public function get_NT01_News_search_end($enddate, $Cate_OldID = array(), $page=1, $row_per_page=20)
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			// echo $val->Cate_OldID;
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
-		$end = $page*$row_per_page;
-		
-		$StrQuery = "
-			WITH LIMIT AS(
-				SELECT 
-					NT01_News.NT01_NewsID, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount, 
-					MAX(NT01_News.NT02_TypeID) AS NT02_TypeID,
-					MAX(NT01_News.NT03_SubTypeID) AS NT03_SubTypeID,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				LEFT JOIN SC03_User
-					ON SC03_User.SC03_UserId = NT01_News.NT01_CreUserID
-				LEFT JOIN NT10_VDO
-					ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID
-				LEFT JOIN NT11_Picture
-					ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID
-				LEFT JOIN NT12_Voice
-					ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID
-				LEFT JOIN NT13_OtherFile
-					ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-				WHERE 
-					NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
-			";
-		}
-		$StrQuery .= "
-				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($enddate))."'
-				group by NT01_News.NT01_NewsID
-			)
-			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
-		";
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function get_NT01_News_search_end_count($enddate, $Cate_OldID = array())
-	{
-		$statusArray = array();
-		foreach($Cate_OldID as $val){
-			$statusArray[] = "'".$val->Cate_OldID."'";
-		}
-		$Cate_OldID = implode(",",$statusArray);
-		
-		$StrQuery = "
-				SELECT
-					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
-				FROM NT01_News 
-				LEFT JOIN NT02_NewsType 
-					ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
-				WHERE 
-					NT01_News.NT08_PubTypeID = '11'
-				AND
-					NT02_NewsType.NT02_Status = 'Y'
-				AND
-					NT01_News.NT01_Status = 'Y'
-				AND
-					CONVERT(VARCHAR(44), NT01_News.NT01_NewsDate, 110) < '".date("m-d-Y",strtotime($enddate))."'
-		";
-		if($Cate_OldID != ""){
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN (".$Cate_OldID.")
-			";
-		}
-		else {
-			$StrQuery .= "
-				AND 
-					NT01_News.NT02_TypeID IN ('')
+						BETWEEN 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
+							AND
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
 			";
 		}
 		// $StrQuery .= "

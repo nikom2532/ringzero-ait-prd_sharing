@@ -40,7 +40,40 @@ class PRD_HomePRD extends CI_Controller {
 			
 				$NT02_NewsType = $this->prd_homeprd_model->get_NT02_NewsType();
 				$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
+				$row_per_page = 20;
 				
+				if($this->input->post("is_homePRD_search")){
+					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search(
+						($this->input->post("news_title")), 
+						($this->input->post("start_date")), 
+						($this->input->post("end_date")),
+						$category,
+						$page
+					);
+					$count_row = $this->prd_homeprd_model->
+						get_NT01_News_search_count(
+							$this->input->post("news_title"),
+							$this->input->post("start_date"),
+							$this->input->post("end_date"),
+							$category
+						);
+					$data['post_news_title'] = $this->input->post("news_title");
+					$data['post_start_date'] = $this->input->post("start_date");
+					$data['post_end_date'] = $this->input->post("end_date");
+				}
+				else{
+					$data['news'] = $this->prd_homeprd_model->
+						get_NT01_News(
+							$category,
+							$page
+						);
+					$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+					$data['post_news_title'] = "";
+					$data['post_start_date'] = "";
+					$data['post_end_date'] = "";
+				}
+				
+				/*
 				if($this->input->post("news_title") != ""){ //For search
 					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
 						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(
@@ -170,9 +203,16 @@ class PRD_HomePRD extends CI_Controller {
 						$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
 					}
 				}
+				*/
 				
-				if($_POST["is_homePRD_search"] != ""){
-					$data["post_is_homePRD_search"] = $this->input->post("is_homePRD_search");
+				
+				if(isset($_POST["is_homePRD_search"])){
+					if($this->input->post("is_homePRD_search") != ""){
+						$data["post_is_homePRD_search"] = $this->input->post("is_homePRD_search");
+					}
+					else{
+						$data["post_is_homePRD_search"] = "";
+					}
 				}
 				else{
 					$data["post_is_homePRD_search"] = "";
@@ -180,7 +220,6 @@ class PRD_HomePRD extends CI_Controller {
 				
 				
 				//############## Pagination = For no Search ################
-				$row_per_page = 20;
 				// $count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
 			 	$data['count_row'] = $count_row;
 				// $data_pagination = $this->ait->pagination($count_row,"homePRD/",$page,$row_per_page);
