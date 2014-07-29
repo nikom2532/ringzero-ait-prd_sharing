@@ -90,12 +90,11 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 						$this->input->post('minis_status')
 					);
 					
-					
-					
 					$data['department'] = $this->prd_manageinfo_ministry_model->get_Department();
 					
 					$data['post_minis_name'] = $this->input->post('minis_name');
 					$data['post_minis_status'] = $this->input->post('minis_status');
+					$data['post_manageinfo_ministry_is_search'] = $this->input->post($manageinfo_ministry_is_search);
 				}
 				else{
 					$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry(
@@ -104,6 +103,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 					);
 					$count_row = $this->prd_manageinfo_ministry_model->get_Ministry_count();
 					$data['department'] = $this->prd_manageinfo_ministry_model->get_Department();
+					$data['post_manageinfo_ministry_is_search'] = "";
 				}
 				
 				//############### End For Query Show #######################

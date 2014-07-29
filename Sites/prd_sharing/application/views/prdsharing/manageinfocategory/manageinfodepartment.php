@@ -12,7 +12,7 @@
 <div class="content">
 	<div id="share-form">
 		<form name="form" name="manageinfo_department_form" id="manageinfo_department_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post">
-			<input type="hidden" name="manageInfo_Category_is_search" value="yes" />
+			<input type="hidden" name="manageInfo_Department_is_search" value="yes" />
 			<div id="search-form">
 				<div class="row">
 					<div class="col-lg-6">
@@ -161,7 +161,7 @@
     <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
     	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a><?php
     	if($current_page != 1){
-    		?><a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
+    		?> <a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
 		}
 		?><span style="margin-top: 10px;">
 			<!-- <span><?php //echo $current_page; ?></span> -->
@@ -177,7 +177,7 @@
 		if($current_page != $total_page) {
         	?><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a><?php
 		}
-        ?><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+        ?> <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
     </p>
 </div>
 
@@ -193,19 +193,47 @@
 			nextpage = val;
 		}
 		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+nextpage);
+<?php
+		if($post_manageInfo_Department_is_search == ""){
+?>
+			$("#homeSearch input[name=manageInfo_Department_is_search]").val("");
+<?php
+		}
+?>
 		$("#manageinfo_department_form").submit();
 	}
 	function lastPage(val){
 		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+val);
+<?php
+		if($post_manageInfo_Department_is_search == ""){
+?>
+			$("#homeSearch input[name=manageInfo_Department_is_search]").val("");
+<?php
+		}
+?>
 		$("#manageinfo_department_form").submit();
 	}
 	function prevPage(val){
 		var prevpage = parseInt(val)-1;
 		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/"+prevpage);
+<?php
+		if($post_manageInfo_Department_is_search == ""){
+?>
+			$("#homeSearch input[name=manageInfo_Department_is_search]").val("");
+<?php
+		}
+?>
 		$("#manageinfo_department_form").submit();
 	}
 	function firstPage(){
 		$("#manageinfo_department_form").attr("action","<?php echo base_url()."manageInfo_Department"; ?>/1");
+<?php
+		if($post_manageInfo_Department_is_search == ""){
+?>
+			$("#homeSearch input[name=manageInfo_Department_is_search]").val("");
+<?php
+		}
+?>
 		$("#manageinfo_department_form").submit();
 	}
 	

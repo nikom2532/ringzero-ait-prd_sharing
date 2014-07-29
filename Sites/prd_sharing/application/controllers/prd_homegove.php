@@ -161,6 +161,20 @@ class PRD_HomeGOVE extends CI_Controller {
 					}
 				}
 				
+				if(isset($_POST["is_homeGOVE_search"])){
+					if($this->input->post("is_homeGOVE_search") != ""){
+						$data["post_is_homeGOVE_search"] = $this->input->post("is_homeGOVE_search");
+					}
+					else{
+						$data["post_is_homeGOVE_search"] = "";
+					}
+				}
+				else{
+					$data["post_is_homeGOVE_search"] = "";
+				}
+				
+				
+				
 				//###### Add File_Status to News ######
 				foreach ($news as $news_item) {
 					foreach ($FileAttach as $FileAttach_item) {

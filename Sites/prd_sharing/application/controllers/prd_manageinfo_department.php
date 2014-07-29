@@ -66,13 +66,13 @@ class PRD_manageInfo_Department extends CI_Controller {
 					);
 				}
 				
-				// var_dump($manageInfo_Category_is_search);
+				// var_dump($manageInfo_Department_is_search);
 				
 				$row_per_page = 20;
 				$get_grov_for_dep_id = $this->prd_manageinfo_department_model->get_grov_for_dep_id();
 				
 				//For Query Show
-				if($this->input->post('manageInfo_Category_is_search') == "yes"){
+				if($this->input->post('manageInfo_Department_is_search') == "yes"){
 					$department = $this->prd_manageinfo_department_model->get_Department_search(
 						$page, 
 						$row_per_page,
@@ -88,7 +88,7 @@ class PRD_manageInfo_Department extends CI_Controller {
 					
 					$data['post_dep_name'] = $this->input->post('dep_name');
 					$data['post_dep_status'] = $this->input->post('dep_status');
-					
+					$data['post_manageInfo_Department_is_search'] = $this->input->post('manageInfo_Department_is_search');
 				}
 				else{
 					$department = $this->prd_manageinfo_department_model->get_Department(
@@ -99,6 +99,8 @@ class PRD_manageInfo_Department extends CI_Controller {
 					$count_row = $this->prd_manageinfo_department_model->get_Department_count(
 						$get_grov_for_dep_id
 					);
+					
+					$data['post_manageInfo_Department_is_search'] = "";
 				}
 				
 				//For check that if there are department that alreaedy use in Goverment News --> if yes, cannot be download.

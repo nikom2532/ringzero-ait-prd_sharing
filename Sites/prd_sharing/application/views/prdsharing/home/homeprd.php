@@ -203,7 +203,7 @@
                 <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">
                 	<a href="javascript:firstPage()"><img src="<?php echo base_url(); ?>img/prew.png"></a><?php
                 	if($current_page != 1){
-                		?><a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
+                		?> <a href="javascript:prevPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/prev.png"></a><?php
 					}
                     ?><span style="margin-top: 10px;">
 						<!-- <span><?php //echo $current_page; ?></span> -->
@@ -219,7 +219,7 @@
                     if($current_page != $total_page) {
 						?><a href="javascript:nextPage('<?php echo $current_page; ?>')"><img src="<?php echo base_url(); ?>img/next.png"></a><?php
 					}
-					?><a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
+					?> <a href="javascript:lastPage('<?php echo $total_page; ?>')"><img src="<?php echo base_url(); ?>img/next2.png"></a>
                 </p>
             </div>
             

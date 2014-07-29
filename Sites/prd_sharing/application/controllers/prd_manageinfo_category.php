@@ -68,6 +68,7 @@ class PRD_ManageInfo_Category extends CI_Controller {
 					);
 					$data['post_NT02_TypeName'] = $this->input->post('NT02_TypeName');
 					$data['post_NT02_Status'] = $this->input->post('NT02_Status');
+					$data['post_manageInfo_Category_is_search'] = $this->input->post('manageInfo_Category_is_search');
 				}
 				
 				else{
@@ -82,6 +83,7 @@ class PRD_ManageInfo_Category extends CI_Controller {
 					}
 					$data['category_old'] = $data_NT02_NewsType;
 					$count_row = $this->prd_manageinfo_category_model->get_NT02_NewsType_count();
+					$data['post_manageInfo_Category_is_search'] = "";
 				}
 				
 				//############## Pagination = For no Search ################

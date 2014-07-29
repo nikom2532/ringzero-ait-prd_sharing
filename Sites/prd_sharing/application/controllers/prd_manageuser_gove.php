@@ -102,6 +102,7 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 					$data['post_search_key'] = $this->input->post('search_key');
 					$data['post_mem_status'] = $this->input->post('mem_status');
 					$data['post_province_id'] = $this->input->post('province_id');
+					$data['post_manage_user_is_search'] = $this->input->post('manage_user_is_search');
 				}
 				else{
 					$data['Member'] = $this->prd_manage_user_gove_model->get_Member(
@@ -110,6 +111,10 @@ class PRD_ManageUser_GOVE extends CI_Controller {
 					);
 					$count_row = $this->prd_manage_user_gove_model->count_Member();
 					$data['SC03_User'] = $this->prd_manage_user_gove_model->get_SC03_User();
+					$data['post_search_key'] = "";
+					$data['post_mem_status'] = "";
+					$data['post_province_id'] = "";
+					$data['post_manage_user_is_search'] = "";
 				}
 				
 				//############## Pagination = For no Search ################

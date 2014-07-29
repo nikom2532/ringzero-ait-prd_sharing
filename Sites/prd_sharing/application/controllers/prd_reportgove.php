@@ -65,7 +65,7 @@ class PRD_reportGOVE extends CI_Controller {
 					$data['post_Ministry_ID'] = $this->input->post('Ministry_ID');
 					$data['post_Dep_ID'] = $this->input->post('Dep_ID');
 					$data['post_SendIn_Status'] = $this->input->post("SendIn_Status");
-					
+					$data['post_reportGROV_is_submit '] = $this->input->post("post_reportGROV_is_submit");
 				}
 				else{
 					
@@ -82,6 +82,7 @@ class PRD_reportGOVE extends CI_Controller {
 					$data['post_Ministry_ID'] = "";
 					$data['post_Dep_ID'] = "";
 					$data['post_SendIn_Status'] = "";
+					$data['post_reportGROV_is_submit '] = "";
 				}
 				
 				$CI_stringManagement =& get_instance();

@@ -42,7 +42,7 @@ class PRD_HomePRD extends CI_Controller {
 				$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
 				$row_per_page = 20;
 				
-				if($this->input->post("is_homePRD_search")){
+				if($this->input->post("is_homePRD_search") == "yes"){
 					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search(
 						($this->input->post("news_title")), 
 						($this->input->post("start_date")), 
@@ -72,139 +72,6 @@ class PRD_HomePRD extends CI_Controller {
 					$data['post_start_date'] = "";
 					$data['post_end_date'] = "";
 				}
-				
-				/*
-				if($this->input->post("news_title") != ""){ //For search
-					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start_end(
-							($this->input->post("news_title")), 
-							($this->input->post("start_date")), 
-							($this->input->post("end_date")),
-							$category,
-							$page
-						);
-						$data['post_news_title'] = $this->input->post("news_title");
-						$data['post_start_date'] = $this->input->post("start_date");
-						$data['post_end_date'] = $this->input->post("end_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_title_start_end_count(
-								$this->input->post("news_title"),
-								$this->input->post("start_date"),
-								$this->input->post("end_date"),
-								$category
-							);
-					}
-					elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){ //For search title start
-						// echo "test";
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_start(
-							($this->input->post("news_title")), 
-							($this->input->post("start_date")),
-							$category,
-							$page
-						);
-						$data['post_news_title'] = $this->input->post("news_title");
-						$data['post_start_date'] = $this->input->post("start_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_title_start_count(
-								$this->input->post("news_title"),
-								$this->input->post("start_date"),
-								$category
-							);
-					}
-					elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){ //For search title end
-						// echo "test";
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_title_end(
-							($this->input->post("news_title")), 
-							($this->input->post("end_date")),
-							$category,
-							$page
-						);
-						$data['post_news_title'] = $this->input->post("news_title");
-						$data['post_start_date'] = $this->input->post("start_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_title_end_count(
-								$this->input->post("news_title"),
-								$this->input->post("end_date"),
-								$category
-							);
-					}
-					else{
-							//For search title
-							$data['news'] = $this->prd_homeprd_model->
-								get_NT01_News_search_title(
-									$this->input->post("news_title"),
-									$category,
-									$page
-								);
-							$data['post_news_title'] = $this->input->post("news_title");
-							$count_row = $this->prd_homeprd_model->
-								get_NT01_News_search_title_count(
-									$this->input->post("news_title"),
-									$category
-								);
-					}
-				}
-				else{
-					//For search start end
-					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) {
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_start_end(
-							($this->input->post("start_date")), 
-							($this->input->post("end_date")),
-							$category,
-							$page
-						);
-						$data['post_start_date'] = $this->input->post("start_date");
-						$data['post_end_date'] = $this->input->post("end_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_start_end_count(
-								$this->input->post("start_date"),
-								$this->input->post("end_date"),
-								$category
-							);
-					}
-					
-					//For search start
-					elseif(($this->input->post('start_date') != "") && !($this->input->post('end_date') != "")){
-						// echo "test";
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_start(
-							($this->input->post("start_date")),
-							$category,
-							$page
-						);
-						$data['post_start_date'] = $this->input->post("start_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_start_count(
-								$this->input->post("start_date"),
-								$category
-							);
-					}
-					//For search end
-					elseif(!($this->input->post('start_date') != "") && ($this->input->post('end_date') != "")){
-						// echo "test";
-						$data['news'] = $this->prd_homeprd_model->get_NT01_News_search_end(
-							($this->input->post("end_date")),
-							$category,
-							$page
-						);
-						$data['post_end_date'] = $this->input->post("end_date");
-						$count_row = $this->prd_homeprd_model->
-							get_NT01_News_search_end_count(
-								$this->input->post("end_date"),
-								$category
-							);
-					}
-					else{
-						//For no Search
-						$data['news'] = $this->prd_homeprd_model->
-							get_NT01_News(
-								$category,
-								$page
-							);
-						$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
-					}
-				}
-				*/
-				
 				
 				if(isset($_POST["is_homePRD_search"])){
 					if($this->input->post("is_homePRD_search") != ""){

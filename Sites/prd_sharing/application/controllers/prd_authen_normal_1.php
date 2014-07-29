@@ -62,6 +62,9 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 				$authen_PRD_Source = $this->curl->simple_post('http://111.223.32.9/prdservice/api/authenticate', $params, array(CURLOPT_BUFFERSIZE => 10));
 				$authen_PRD_Source = json_decode($authen_PRD_Source);
 				
+				// var_dump($authen_PRD_Source);
+				// exit;
+				
 				//Is not authen with new Datbase -> Member Table
 				//Authen with Old PRD Database
 				
