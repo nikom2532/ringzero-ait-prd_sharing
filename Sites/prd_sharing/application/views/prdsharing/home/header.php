@@ -37,6 +37,18 @@
 <div id="search-form">
 
 	<form name="homeSearch" id="homeSearch" action="<?php echo base_url().index_page().$home_search; ?>" method="post">
+<?php
+		if($home_search == "homePRD"){
+?>
+			<input type="hidden" name="is_homePRD_search" value="yes" />
+<?php
+		}
+		if($home_search == "homeGOVE"){
+?>
+			<input type="hidden" name="is_homeGOVE_search" value="yes" />
+<?php
+		}
+?>
 		<div class="row">
 			<div class="col-lg-12">
 				<label style="float: left;text-align: right;width: 14%;">SEARCH</label>

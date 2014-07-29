@@ -254,19 +254,47 @@
 						nextpage = val;
 					}
 					$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+nextpage);
+<?php
+					if($post_is_homePRD_search == ""){
+?>
+						$("#homeSearch input[name=is_homePRD_search]").val("");
+<?php
+					}
+?>
 					$("#homeSearch").submit();
 				}
 				function lastPage(val){
 					$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+val);
+<?php
+					if($post_is_homePRD_search == ""){
+?>
+						$("#homeSearch input[name=is_homePRD_search]").val("");
+<?php
+					}
+?>
 					$("#homeSearch").submit();
 				}
 				function prevPage(val){
 					var prevpage = parseInt(val)-1;
 					$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/"+prevpage);
+<?php
+					if($post_is_homePRD_search == ""){
+?>
+						$("#homeSearch input[name=is_homePRD_search]").val("");
+<?php
+					}
+?>
 					$("#homeSearch").submit();
 				}
 				function firstPage(){
 					$("#homeSearch").attr("action","<?php echo base_url().index_page().$home_search; ?>/1");
+<?php
+					if($post_is_homePRD_search == ""){
+?>
+						$("#homeSearch input[name=is_homePRD_search]").val("");
+<?php
+					}
+?>
 					$("#homeSearch").submit();
 				}
             </script>

@@ -29,7 +29,6 @@ class PRD_HomePRD extends CI_Controller {
 			$data['session_Mem_EngLasName'] = $this->session->userdata('Mem_EngLasName');
 			
 			$data['title'] = 'Home';
-			//0823439709
 			$showStatus = "";
 			$this->load->library('authenstatus');
 			$this->authenstatus->Group_ID = $this->session->userdata('Group_ID');
@@ -40,11 +39,7 @@ class PRD_HomePRD extends CI_Controller {
 			if($showStatus == "yes"){
 			
 				$NT02_NewsType = $this->prd_homeprd_model->get_NT02_NewsType();
-				// var_dump($NT02_NewsType);
 				$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
-				
-				// var_dump($category);
-				// exit;
 				
 				if($this->input->post("news_title") != ""){ //For search
 					if (($this->input->post('start_date') != "") && ($this->input->post('end_date') != "") ) { //For search title start end
@@ -176,9 +171,13 @@ class PRD_HomePRD extends CI_Controller {
 					}
 				}
 				
-				// var_dump($data['news'][0]);
+				if($_POST["is_homePRD_search"] != ""){
+					$data["post_is_homePRD_search"] = $this->input->post("is_homePRD_search");
+				}
+				else{
+					$data["post_is_homePRD_search"] = "";
+				}
 				
-				//$category = $category
 				
 				//############## Pagination = For no Search ################
 				$row_per_page = 20;
