@@ -445,6 +445,15 @@
             $(this).prev("span").text(selectmenu_txt);
         });
         
+        var selectmenu_txt = $("#grov_active").find("option:selected").text();
+			$("#grov_active").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#NewsTypeID").find("option:selected").text();
+			$("#NewsTypeID").prev("span").text(selectmenu_txt);
+		
+		var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
+			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+			
     });
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;

@@ -186,6 +186,15 @@ class PRD_Report_PRD_model extends CI_Model {
 		}
 	}
 	
+	public function get_NT01_NewsID_FromAttachment(
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
+	){
+		
+	}
+	
 	public function get_NT01_News_Search(
 		$page=1, 
 		$row_per_page=20, 
@@ -349,7 +358,159 @@ class PRD_Report_PRD_model extends CI_Model {
 		return $query;
 	}
 	
+	public function get_NT01_NewsID_with_attachment_count(
+		$grov_active = '',
+		$startdate = '',
+		$enddate = '',
+		$NewsTypeID = '',
+		$NewsSubTypeID = '',
+		$ReporterID = '',
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
+	)
+	{
+		$StrQuery = "
+			SELECT DISTINCT
+				NT01_News.NT01_NewsID
+			FROM NT01_News 
+			LEFT JOIN 
+				NT10_VDO 
+			ON 
+				NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN 
+				NT11_Picture 
+			ON 
+				NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN 
+				NT12_Voice 
+			ON 
+				NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN 
+				NT13_OtherFile 
+			ON 
+				NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
+			WHERE 
+				NT01_News.NT08_PubTypeID = '11'
+			AND
+				NT01_News.NT01_Status = 'Y'
+		";
+		if($grov_active != ''){
+			$StrQuery .= "
+				AND 
+					NT01_News.SC07_DepartmentId LIKE '%".$grov_active."%' ESCAPE '!'
+			";
+		}
+		if(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+			";
+		}
+		elseif(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
+						BETWEEN 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
+							AND
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
+			";
+		}
+		if($NewsTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT02_TypeID = '".$NewsTypeID."'
+			";
+		}
+		if($NewsSubTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($ReporterID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_ReporterID = '".$ReporterID."'
+			";
+		}
+		if($filter_vdo == '1'){
+			$StrQuery .= "
+				AND
+					NT10_VDO.NT10_FileStatus = 'Y'
+			";
+		}
+		if($filter_sound == '1'){
+			$StrQuery .= "
+				AND
+					NT11_Picture.NT11_FileStatus = 'Y'
+			";
+		}
+		if($filter_image == '1'){
+			$StrQuery .= "
+				AND
+					NT12_Voice.NT12_FileStatus = 'Y'
+			";
+		}
+		if($filter_other == '1'){
+			$StrQuery .= "
+				AND
+					NT13_OtherFile.NT13_FileStatus = 'Y'
+			";
+		}
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		return $query;
+	}
+	
 	public function get_NT01_News_search_count(
+		$NT01_NewsID = ''
+	)
+	{
+		if($NT01_NewsID != ""){
+			$statusArray = array();
+			foreach($NT01_NewsID as $val){
+				$statusArray[] = "'".$val->NT01_NewsID."'";
+			}
+			$NT01_NewsID = implode(",",$statusArray);
+		}
+		
+		$StrQuery = "
+			SELECT
+				COUNT(NT01_News.NT01_NewsID) AS NUMROW
+			FROM NT01_News 
+			WHERE 
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+		";
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+			
+		foreach($query as $val){
+			return $val->NUMROW;
+		}
+	}
+	
+	public function get_NT01_News_search_count_backupQuery(
 		$grov_active = '',
 		$startdate = '',
 		$enddate = '',
@@ -364,7 +525,7 @@ class PRD_Report_PRD_model extends CI_Model {
 	{
 		$StrQuery = "
 			SELECT
-				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
+				COUNT(NT01_News.NT01_NewsID) AS NUMROW
 			FROM NT01_News 
 			LEFT JOIN 
 				NT10_VDO 
