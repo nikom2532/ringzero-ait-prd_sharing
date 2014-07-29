@@ -77,7 +77,7 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('filter_other')
 						);
 					$NT01_NewsID_count_row = $this->prd_report_prd_model->
-						get_NT01_NewsID_with_attachment_count(
+						get_NT01_NewsID_search_with_attachment_count(
 							$this->input->post('grov_active'),
 							$this->input->post('start_date'),
 							$this->input->post('end_date'),

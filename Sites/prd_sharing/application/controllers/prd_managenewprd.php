@@ -80,8 +80,8 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('filter_other'), 
 							$checkDelete_News
 						);
-					$count_row = $this->prd_managenewprd_model->
-						get_NT01_News_search_count(
+					$NT01_NewsID_count_row = $this->prd_managenewprd_model->
+						get_NT01_News_search_with_attachment_count(
 							$this->input->post('news_title'),
 							$this->input->post('start_date'),
 							$this->input->post('end_date'),
@@ -94,8 +94,9 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('filter_other'), 
 							$checkDelete_News
 						);
-					// var_dump($count_row);
-					// exit;
+						
+					$count_row = $this->prd_managenewprd_model->
+						get_NT01_News_search_count($NT01_NewsID_count_row);
 					
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');

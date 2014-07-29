@@ -358,7 +358,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT01_NewsID_with_attachment_count(
+	public function get_NT01_NewsID_search_with_attachment_count(
 		$grov_active = '',
 		$startdate = '',
 		$enddate = '',

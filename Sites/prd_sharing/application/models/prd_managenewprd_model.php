@@ -370,7 +370,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $query;
 	}
 	
-	public function get_NT01_News_search_count(
+	public function get_NT01_News_search_with_attachment_count(
 		$News_Title = '',
 		$startdate = '',
 		$enddate = '',
@@ -393,8 +393,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		}
 		
 		$StrQuery = "
-			SELECT
-				COUNT((NT01_News.NT01_NewsID)) AS NUMROW
+			SELECT DISTINCT
+				NT01_News.NT01_NewsID
 			FROM 
 				NT01_News 
 			LEFT JOIN 
@@ -498,11 +498,39 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		// echo $StrQuery;
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
+		
+		return $query;
+	}
+	
+	public function get_NT01_News_search_count(
+		$NT01_NewsID = ''
+	)
+	{
+		if($NT01_NewsID != ""){
+			$statusArray = array();
+			foreach($NT01_NewsID as $val){
+				$statusArray[] = "'".$val->NT01_NewsID."'";
+			}
+			$NT01_NewsID = implode(",",$statusArray);
+		}
+		
+		$StrQuery = "
+			SELECT DISTINCT
+				COUNT(NT01_News.NT01_NewsID) AS NUMROW
+			FROM 
+				NT01_News 
+			WHERE 
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+		";
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
 			
 		foreach($query as $val){
 			return $val->NUMROW;
 		}
 	}
+	
 	
 	//#########  Database New  ##########
 	
