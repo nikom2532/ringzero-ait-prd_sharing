@@ -384,84 +384,98 @@
 			var fname = document.forms["form_userinfo"]["fname"].value;
 			if (fname==null || fname=="") {
 				alert("โปรดระบุ ชื่อ (ไทย)");
+				document.forms["form_userinfo"]["fname"].focus();
 				return false;
 			}
 			
 			var lname = document.forms["form_userinfo"]["lname"].value;
 			if (lname==null || lname=="") {
 				alert("โปรดระบุ นามสกุล (ไทย)");
+				document.forms["form_userinfo"]["lname"].focus();
 				return false;
 			}
 			
 			var engfname = document.forms["form_userinfo"]["engfname"].value;
 			if (engfname==null || engfname=="") {
 				alert("โปรดระบุ ชื่อ (อังกฤษ)");
+				document.forms["form_userinfo"]["engfname"].focus();
 				return false;
 			}
 			
 			var englname = document.forms["form_userinfo"]["englname"].value;
 			if (englname==null || englname=="") {
 				alert("โปรดระบุ นามสกุล (อังกฤษ)");
+				document.forms["form_userinfo"]["englname"].focus();
 				return false;
 			}
 			
 			var mem_username = document.forms["form_userinfo"]["mem_username"].value;
 			if (mem_username==null || mem_username=="") {
 				alert("โปรดระบุ Username");
+				document.forms["form_userinfo"]["mem_username"].focus();
 				return false;
 			}
 			
 			var mem_password1 = document.forms["form_userinfo"]["mem_password1"].value;
 			if (mem_password1==null || mem_password1=="") {
 				alert("โปรดระบุ Password");
+				document.forms["form_userinfo"]["mem_password1"].focus();
 				return false;
 			}
 			
 			var mem_password2 = document.forms["form_userinfo"]["mem_password2"].value;
 			if (mem_password2==null || mem_password2=="") {
 				alert("โปรดระบุ Password 2");
+				document.forms["form_userinfo"]["mem_password2"].focus();
 				return false;
 			}
 			
 			var Mem_CardID = document.forms["form_userinfo"]["Mem_CardID"].value;
 			if (Mem_CardID==null || Mem_CardID=="") {
 				alert("โปรดระบุ รหัสบัตรประชาชน");
+				document.forms["form_userinfo"]["Mem_CardID"].focus();
 				return false;
 			}
 			
 			var mem_address = document.forms["form_userinfo"]["mem_address"].value;
 			if (mem_address==null || mem_address=="") {
 				alert("โปรดระบุ ที่อยู่");
+				document.forms["form_userinfo"]["mem_address"].focus();
 				return false;
 			}
 			
 			var mem_email = document.forms["form_userinfo"]["mem_email"].value;
 			if (mem_email==null || mem_email=="") {
 				alert("โปรดระบุ Email");
+				document.getElementById('Mem_Email').focus();
 				return false;
 			}
 			
 			var mem_postcode = document.forms["form_userinfo"]["mem_postcode"].value;
 			if (mem_postcode==null || mem_postcode=="") {
 				alert("โปรดระบุ รหัสไปรษณีย์");
+				document.forms["form_userinfo"]["mem_postcode"].focus();
 				return false;
 			}
 			
 			var mem_nickname = document.forms["form_userinfo"]["mem_nickname"].value;
 			if (mem_nickname==null || mem_nickname=="") {
 				alert("โปรดระบุ ชื่อผู้ติดต่อ");
+				document.forms["form_userinfo"]["mem_nickname"].focus();
 				return false;
 			}
 			
 			var mem_tel = document.forms["form_userinfo"]["mem_tel"].value;
 			if (mem_tel==null || mem_tel=="") {
 				alert("โปรดระบุ เบอร์ที่ทำงาน");
+				document.forms["form_userinfo"]["mem_tel"].focus();
 				return false;
 			}
 			
 			var mem_mobile = document.forms["form_userinfo"]["mem_mobile"].value;
 			if (mem_mobile==null || mem_mobile=="") {
 				alert("โปรดระบุ เบอร์มือถือ ");
+				document.forms["form_userinfo"]["mem_mobile"].focus();
 				return false;
 			}
 			

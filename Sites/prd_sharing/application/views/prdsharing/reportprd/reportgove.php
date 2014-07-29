@@ -385,7 +385,7 @@
 		}
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportGOVE"; ?>/"+nextpage);
 <?php
-		if($post_managenewsprd_is_search == ""){
+		if($post_reportGROV_is_submit == ""){
 ?>
 			$("#homeSearch input[name=reportGROV_is_submit]").val("");
 <?php
@@ -396,7 +396,7 @@
 	function lastPage(val){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportGOVE"; ?>/"+val);
 <?php
-		if($post_managenewsprd_is_search == ""){
+		if($post_reportGROV_is_submit == ""){
 ?>
 			$("#homeSearch input[name=reportGROV_is_submit]").val("");
 <?php
@@ -408,7 +408,7 @@
 		var prevpage = parseInt(val)-1;
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportGOVE"; ?>/"+prevpage);
 <?php
-		if($post_managenewsprd_is_search == ""){
+		if($post_reportGROV_is_submit == ""){
 ?>
 			$("#homeSearch input[name=reportGROV_is_submit]").val("");
 <?php
@@ -419,7 +419,7 @@
 	function firstPage(){
 		$("#homeSearch").attr("action","<?php echo base_url().index_page()."reportGOVE"; ?>/1");
 <?php
-		if($post_managenewsprd_is_search == ""){
+		if($post_reportGROV_is_submit == ""){
 ?>
 			$("#homeSearch input[name=reportGROV_is_submit]").val("");
 <?php
