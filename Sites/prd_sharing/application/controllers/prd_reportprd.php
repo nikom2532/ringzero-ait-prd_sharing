@@ -61,7 +61,14 @@ class PRD_reportPRD extends CI_Controller {
 				
 				if($this->input->post("reportprd_is_search") == "yes"){
 					
-					$data['news'] = $this->prd_report_prd_model->
+					$NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('filter_other')
+					);
+					
+					$news = $this->prd_report_prd_model->
 						get_NT01_News_Search(
 							$page, 
 							$row_per_page,
@@ -71,10 +78,7 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('reporter_id'),
-							$this->input->post('filter_vdo'),
-							$this->input->post('filter_sound'),
-							$this->input->post('filter_image'),
-							$this->input->post('filter_other')
+							$NT01_NewsID_AttachmentFilter
 						);
 					$NT01_NewsID_count_row = $this->prd_report_prd_model->
 						get_NT01_NewsID_search_with_attachment_count(
@@ -104,7 +108,7 @@ class PRD_reportPRD extends CI_Controller {
 					$data['post_filter_other'] = $this->input->post('filter_other');
 				}
 				else{	//## No Search ##
-					$data['news'] = $this->prd_report_prd_model->get_NT01_News($page, $row_per_page);
+					$news = $this->prd_report_prd_model->get_NT01_News($page, $row_per_page);
 					$count_row = $this->prd_report_prd_model->get_NT01_News_count();
 					$data['post_grov_active'] = "";
 					$data['post_start_date'] = "";
@@ -124,6 +128,9 @@ class PRD_reportPRD extends CI_Controller {
 				else {
 					$data["post_reportprd_is_search"] = "";	
 				}
+				
+				$data['news'] = $news;
+				
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
@@ -166,7 +173,7 @@ class PRD_reportPRD extends CI_Controller {
 				//#########################################################
 				
 				//Query update Old News to New News
-				$this->prd_report_prd_model->set_FirstAddNews($data['news']);
+				$this->prd_report_prd_model->set_FirstAddNews($news);
 				
 				
 				$data['NT02_NewsType'] = $this->prd_report_prd_model->get_NT02_NewsType();
