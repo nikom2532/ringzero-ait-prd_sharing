@@ -164,7 +164,7 @@
 	</div>
 	<div class="row">
 		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 2%; padding-left: 1%; float: left; "></p>
+			<p class="col-1" style="width: 4%; padding-left: 1%; float: left; "></p>
 			<p class="col-2" style="width: 16%;float: left; ">
 				เลขที่ข่าว
 			</p>
@@ -174,7 +174,7 @@
 			<p class="col-1" style="width: 5%;float: left; ">
 				ลบ
 			</p>
-			<p class="col-1" style="width: 32%;float: left; ">
+			<p class="col-1" style="width: 30%;float: left; ">
 				หัวข้อข่าว
 			</p>
 			<p class="col-1" style="width: 10%;float: left; ">
@@ -201,7 +201,7 @@
 				?><div class="event"><?php
 			}
 ?>
-					<p class="col-1" style="width: 2%; padding-left: 1%; float: left; word-wrap: break-word;">
+					<p class="col-1" style="width: 4%; padding-left: 1%; float: left; word-wrap: break-word;">
 						<?php echo $news_item->RowNumber; ?>
 					</p>
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word; text-align: center; ">
@@ -249,7 +249,7 @@
 						}
 						// echo $New_News_delete;
 					?></p>
-					<p class="col-1" style="width: 32%;float: left; word-wrap: break-word;">
+					<p class="col-1" style="width: 30%;float: left; word-wrap: break-word;">
 <?php 
 						$i_item=0;
 						foreach ($New_News as $New_News_item) {
@@ -260,8 +260,8 @@
 									// echo strlen(mb_substr($New_News_item->News_Title, 0, 100, 'UTF-8'));
 									
 									$News_Title = $New_News_item->News_Title;
-									if(mb_strlen($News_Title)>=100){
-										$News_Title = mb_substr($News_Title, 0, 100, 'UTF-8')."...";
+									if(mb_strlen($News_Title)>=90){
+										$News_Title = mb_substr($News_Title, 0, 90, 'UTF-8')."...";
 									}
 									echo $News_Title;
 									
@@ -270,8 +270,8 @@
 						}
 						if($i_item == 0){
 							$News_Title = $news_item->NT01_NewsTitle;
-							if(mb_strlen($News_Title)>=100){
-								$News_Title = mb_substr($News_Title, 0, 100, 'UTF-8')."...";
+							if(mb_strlen($News_Title)>=90){
+								$News_Title = mb_substr($News_Title, 0, 90, 'UTF-8')."...";
 							}
 							echo $News_Title;
 						}
@@ -432,7 +432,7 @@
 ?>
 		<div class="footer-table">
 			<p style="width: 70%;float: left;margin-top: 20px;">
-				<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า )"; ?></span>
+				<span><?php echo "ทั้งหมด : ".$count_row." รายการ (".$total_page." หน้า)"; ?></span>
 			</p>
             
             <p style="width: 30%;float: left;margin-top: 20px;text-align: right;">

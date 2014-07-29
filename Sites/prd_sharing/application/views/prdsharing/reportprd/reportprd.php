@@ -145,13 +145,13 @@
 	
 	<div class="row" style="width: 1000px; overflow-y: hidden; overflow-x: auto; ">
 		<div class="header-table" style="text-align: center; width: 1300px; ">
-			<p class="col-1" style="width: 4%;float: left; ">
+			<p class="col-1" style="width: 6%;float: left; ">
 				ลำดับที่
 			</p>
 			<p class="col-1" style="width: 11%;float: left; ">
 				เลขที่ข่าว
 			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
+			<p class="col-1" style="width: 8%;float: left; ">
 				วันที่ข่าว
 			</p>
 			<p class="col-2" style="width: 25%;float: left; ">
@@ -183,13 +183,13 @@
 					?><div class="event" style="width: 1300px; "><?php
 				}
 	?>
-						<p class="col-1" style="width: 2.8%;float: left; padding-left: 1.2%">
+						<p class="col-1" style="width: 4.8%;float: left; padding-left: 1.2%">
 							<?php echo $news_item->RowNumber; ?>
 						</p>
 						<p class="col-1" style="width: 11%;float: left; ">
 							<a href="<?php echo base_url().index_page(); ?>reportDetailPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
 						</p>
-						<p class="col-1" style="width: 10%;float: left; "><?php
+						<p class="col-1" style="width: 8%;float: left; "><?php
 							// if($news_item->NT01_UpdDate == ""){
 								// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_CreDate));
 							// }

@@ -476,6 +476,9 @@ class PRD_Report_PRD_model extends CI_Model {
 			";
 		}
 		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 			
@@ -493,14 +496,18 @@ class PRD_Report_PRD_model extends CI_Model {
 			}
 			$NT01_NewsID = implode(",",$statusArray);
 		}
-		
+
 		$StrQuery = "
 			SELECT
 				COUNT(NT01_News.NT01_NewsID) AS NUMROW
 			FROM NT01_News 
-			WHERE 
-				NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
 		";
+		if($NT01_NewsID != ""){
+			$StrQuery .= "
+				WHERE 
+					NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+			";
+		}
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
