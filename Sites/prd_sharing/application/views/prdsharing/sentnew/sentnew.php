@@ -370,6 +370,22 @@
 		});
 	});
 	
+    //<![CDATA[
+    	/*
+        CKEDITOR.replace( 'message',{
+        toolbar :
+            [
+                ['Source','-','Templates'],
+                ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+                ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+                ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+            ],
+        } );
+        */
+    //]]>
+	
+	
 	/*
 	$("select#Minis_ID").change(function() {
 		
