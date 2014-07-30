@@ -1,6 +1,6 @@
 <div class="content">
 	<div id="share-form">
-		<form name="info_depatment_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post">
+		<form name="info_depatment_form" action="<?php echo base_url().index_page(); ?>manageInfo_Department" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data" accept-charset="utf-8" />
 <?php
 			foreach ($department as $department_item) {
 				
@@ -80,7 +80,7 @@
 		
 		var dep_name = document.forms["info_depatment_form"]["dep_name"].value;
 		if (dep_name==null || dep_name=="") {
-			alert("โปรดใส่ค่า รายละเอียด");
+			alert("โปรดใส่ค่า ชื่อกรม");
 			return false;
 		}
 		
@@ -95,6 +95,19 @@
 			alert("โปรดลือกค่า สถานะการใช้งาน");
 			return false;
 		}
+<?php
+		foreach ($check_Department_Name as $name) {
+			if($name->Dep_Name != $department_item->Dep_Name){
+?>
+				if(document.forms["info_depatment_form"]["dep_name"].value == "<?php echo $name->Dep_Name; ?>"){
+					alert("โปรดใส่ค่า ชื่อกรม ใหม่ เนื่องจาก ชื่อกรมซ้ำกันกับในฐานข้อมูล");
+					document.getElementById("dep_name").focus();
+					return false;
+				}
+<?php
+			}
+		}
+?>
 	}
 	
 	$(function(){

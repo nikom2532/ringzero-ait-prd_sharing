@@ -22,7 +22,7 @@
 							</div>
 							<div class="col-lg-12">
 								<label >ชื่อกระทรวง: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
-								<input type="text" class="form-control txt-field" name="minis_name" id="InputKeyword" value="<?php echo $ministry_item->Minis_Name; ?>" placeholder="" required="required">
+								<input type="text" class="form-control txt-field" name="minis_name" id="minis_name" value="<?php echo $ministry_item->Minis_Name; ?>" placeholder="" required="required">
 							</div>
 							<div class="col-lg-12">
 								<label >รายละเอียด: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
@@ -76,6 +76,19 @@
 			alert("โปรดเลือกค่า สถานะการใช้งาน");
 			return false;
 		}
+<?php
+		foreach ($check_Ministry_Name as $name) {
+			if($name->Minis_Name != $ministry_item->Minis_Name){
+?>
+				if($("#minis_name").val() == "<?php echo $name->Minis_Name; ?>"){
+					alert("โปรดใส่ค่า ชื่อกระทรวง เนื่องจาก ชื่อกระทรวงซ้ำกันกับในฐานข้อมูล");
+					document.getElementById("minis_name").focus();
+					return false;
+				}
+<?php
+			}
+		}
+?>
 	}
 	
 	$(function(){

@@ -44,6 +44,8 @@
 		
 					<div class="col-lg-12" style="text-align: center;">
 						<input class="bt" type="submit" value="บันทึก" name="share">
+						
+						<input class="btasdf" type="button" value="บันทึกasdfasdf" name="share">
 					</div>
 				</div><!-- #manage-info -->
 		</form>
@@ -51,6 +53,7 @@
 </div>
 <script>
 	function validateForm() {
+		
 		var minis_name = document.forms["form_infoministry"]["minis_name"].value;
 		if (minis_name==null || minis_name=="") {
 			alert("โปรดใส่ค่า ชื่อกระทรวง");
@@ -68,9 +71,31 @@
 			alert("โปรดเลือกค่า สถานะการใช้งาน");
 			return false;
 		}
+		
+<?php
+		foreach ($check_Ministry_Name as $name) {
+?>
+			if($("#minis_name").val() == "<?php echo $name->Minis_Name; ?>"){
+				alert("โปรดใส่ค่า ชื่อกระทรวง เนื่องจาก ชื่อกระทรวงซ้ำกันกับในฐานข้อมูล");
+				document.getElementById("minis_name").focus();
+				return false;
+			}
+<?php
+		}
+?>
 	}
 	
 	$(function(){
+		
+		var	name = new Array();
+<?php
+		foreach ($check_Ministry_Name as $name) {
+?>
+			name.push("<?php echo $name->Minis_Name; ?>");
+<?php
+		}
+?>
+		
         // $(".select-menu > select > option:eq(0)").attr("selected","selected");
         
         var selectmenu_txt = $("#minis_status").find("option:selected").text();

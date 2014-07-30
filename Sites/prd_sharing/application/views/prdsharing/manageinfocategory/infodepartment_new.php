@@ -25,7 +25,7 @@
 						</div>
 						<div class="col-lg-12" style="margin-top: 31px; ">
 							<label >ชื่อกรม: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
-							<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="" placeholder="" required="required">
+							<input type="text" class="form-control txt-field" name="dep_name" id="dep_name" value="" placeholder="" required="required" />
 						</div>
 						<div class="col-lg-12">
 							<label >รายละเอียด: <span style="color: #FF0000; font-family: sans-serif; ">*</span></label>
@@ -82,6 +82,18 @@
 			alert("โปรดลือกค่า สถานะการใช้งาน");
 			return false;
 		}
+		
+<?php
+		foreach ($check_Department_Name as $name) {
+?>
+			if($("#dep_name").val() == "<?php echo $name->Dep_Name; ?>"){
+				alert("โปรดใส่ค่า ชื่อกรม ใหม่ เนื่องจาก ชื่อกรมซ้ำกันกับในฐานข้อมูล");
+				document.getElementById("dep_name").focus();
+				return false;
+			}
+<?php
+		}
+?>
 	}
 	
 	$(function(){

@@ -42,4 +42,15 @@ class PRD_Info_Department_model extends CI_Model {
 			
 			return $return;
 	}
+	
+	public function check_Department_Name()
+	{
+		$return = $this->db->
+			SELECT('
+				Department.Dep_Name,
+			')->
+			get('Department')->result();
+		
+		return $return;
+	}
 }

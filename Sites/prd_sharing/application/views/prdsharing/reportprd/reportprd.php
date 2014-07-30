@@ -272,16 +272,17 @@
 						</p>
 						<p class="col-1" style="width: 6%; padding-left: 4%; float: left; ">
 <?php
+							$count_News_View = 0;
 							foreach ($New_News as $New_News_item) {
 								if($New_News_item->News_OldID == $news_item->NT01_NewsID){
-									
-									if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
-										echo "0";
+									if($count_News_View <= 0){
+										if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
+											echo "0";
+										}
+										else{
+											echo $New_News_item->News_View;
+										}
 									}
-									else{
-										echo $New_News_item->News_View;
-									}
-								
 								}
 							}
 ?>

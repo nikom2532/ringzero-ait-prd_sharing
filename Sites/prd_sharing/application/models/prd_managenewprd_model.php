@@ -102,7 +102,48 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $query;
 	}
 	
-	//New News For Delete
+	/*
+	public function get_NT01_News_SaveToNewDatabase()
+	{
+		$StrQuery = "
+			SELECT
+				MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
+				MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
+				MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+				
+				MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
+				MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
+				MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
+				MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
+				
+				ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+			FROM NT01_News 
+			LEFT JOIN NT02_NewsType 
+				ON NT02_NewsType.NT02_TypeID = NT01_News.NT02_TypeID
+			LEFT JOIN SC03_User 
+				ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+			LEFT JOIN NT10_VDO 
+				ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN NT11_Picture 
+				ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN NT12_Voice 
+				ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN 
+				NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
+			WHERE 
+				NT01_News.NT08_PubTypeID = '11'
+			AND
+				NT01_News.NT01_Status = 'Y'
+			AND
+				NT02_NewsType.NT02_Status = 'Y'
+			group by NT01_News.NT01_NewsID
+		";
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		
+		return $query;
+	}
+	*/
 	
 	//############################ News #############################
 	
@@ -665,8 +706,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			   'News_StatusVDO' => $NT10_FileStatus,
 			   'News_StatusVoice' => $NT12_FileStatus,
 			   'News_StatusOtherFile' => $NT13_FileStatus,
-			   'News_Active' => "1" //,
-			   // 'News_StatusPublic' => "1"
+			   'News_Active' => "1",
+			   'News_StatusPublic' => "1"
 			);
 			
 			

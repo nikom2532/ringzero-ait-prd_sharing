@@ -38,36 +38,66 @@ class PRD_HomePRD extends CI_Controller {
 			
 			if($showStatus == "yes"){
 			
-				$NT02_NewsType = $this->prd_homeprd_model->get_NT02_NewsType();
-				$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
 				$row_per_page = 20;
 				
+				$NT02_NewsType = $this->prd_homeprd_model->get_NT02_NewsType();
+				$category = $this->prd_homeprd_model->get_Category($NT02_NewsType);
+				
+				if($category != ""){
+					$statusArray = array();
+					foreach($category as $val){
+						$statusArray[] = "'".$val->Cate_OldID."'";
+					}
+					$category = implode(",",$statusArray);
+				}
+				
+				$get_News_OldID_StatusPublicYes = $this->prd_homeprd_model->get_News_OldID_StatusPublicYes();
+				
+				if($get_News_OldID_StatusPublicYes != ""){
+					$statusArray = array();
+					foreach($get_News_OldID_StatusPublicYes as $val){
+						$statusArray[] = "'".$val->News_OldID."'";
+					}
+					$get_News_OldID_StatusPublicYes = implode(",",$statusArray);
+				}
+				
+				
 				if($this->input->post("is_homePRD_search") == "yes"){
-					$data['news'] = $this->prd_homeprd_model->get_NT01_News_search(
+					$news = $this->prd_homeprd_model->get_NT01_News_search(
 						($this->input->post("news_title")), 
 						($this->input->post("start_date")), 
 						($this->input->post("end_date")),
 						$category,
-						$page
+						$get_News_OldID_StatusPublicYes,
+						$page,
+						$row_per_page
 					);
 					$count_row = $this->prd_homeprd_model->
 						get_NT01_News_search_count(
 							$this->input->post("news_title"),
 							$this->input->post("start_date"),
 							$this->input->post("end_date"),
-							$category
+							$category,
+							$get_News_OldID_StatusPublicYes,
+							$row_per_page
 						);
 					$data['post_news_title'] = $this->input->post("news_title");
 					$data['post_start_date'] = $this->input->post("start_date");
 					$data['post_end_date'] = $this->input->post("end_date");
 				}
 				else{
-					$data['news'] = $this->prd_homeprd_model->
+					$news = $this->prd_homeprd_model->
 						get_NT01_News(
 							$category,
-							$page
+							$get_News_OldID_StatusPublicYes,
+							$page,
+							$row_per_page
 						);
-					$count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
+					$count_row = $this->prd_homeprd_model->get_NT01_News_count(
+						$category, 
+						$get_News_OldID_StatusPublicYes,
+						$row_per_page
+					);
 					$data['post_news_title'] = "";
 					$data['post_start_date'] = "";
 					$data['post_end_date'] = "";
@@ -85,6 +115,8 @@ class PRD_HomePRD extends CI_Controller {
 					$data["post_is_homePRD_search"] = "";
 				}
 				
+				// $newsNoPaging = $this->prd_homeprd_model->get_NT01_News_SaveToNewDatabase();
+				$data['news'] = $news;
 				
 				//############## Pagination = For no Search ################
 				// $count_row = $this->prd_homeprd_model->get_NT01_News_count($category);
@@ -130,9 +162,13 @@ class PRD_HomePRD extends CI_Controller {
 				
 				//After Load the Page --> Will insert the UserID from Old Database to New Database
 				//Insert News Table from Old Database to New Database
+				// $this->prd_homeprd_model->set_News(
+					// $newsNoPaging
+				// );
 				$this->prd_homeprd_model->set_News(
-					$data['news']
+					$news
 				);
+				
 				
 				$data['New_News'] = $this->prd_homeprd_model->get_New_News();
 				

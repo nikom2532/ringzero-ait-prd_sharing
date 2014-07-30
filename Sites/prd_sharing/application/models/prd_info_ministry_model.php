@@ -25,4 +25,16 @@ class PRD_Info_Ministry_model extends CI_Model {
 		// var_dump($return);
 		return $return;
 	}
+	
+	public function check_Ministry_Name()
+	{
+		$return = $this->db->
+			SELECT('
+				Ministry.Minis_Name
+			')->
+			get('Ministry')->result();
+		
+		// var_dump($return);
+		return $return;
+	}
 }

@@ -36,6 +36,8 @@ class PRD_InfoDepartment_New extends CI_Controller {
 				$data['ministry'] = $this->PRD_Info_Department_model->get_Ministry();
 				// $data['department'] = $this->PRD_Info_Department_model->get_Department($this->input->get('dep_id'));
 				
+				$data["check_Department_Name"] = $this->PRD_Info_Department_model->check_Department_Name();
+				
 				// var_dump($data['department']);
 				
 				$this->load->view('prdsharing/templates/header', $data);

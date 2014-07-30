@@ -131,6 +131,14 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data["post_managenewsprd_is_search"] = "";
 				}
 				
+				
+				// $newsNoPaging = $this->prd_managenewprd_model->get_NT01_News_SaveToNewDatabase();
+				
+				//Query update Old News to New News
+				// $this->prd_managenewprd_model->set_FirstAddNews($newsNoPaging);
+				$this->prd_managenewprd_model->set_FirstAddNews($data['news']);
+				
+				
 				$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
 				$data['New_News'] = $this->prd_managenewprd_model->get_New_News(
 					$data['news']
@@ -178,10 +186,6 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$data["row_per_page"] = $row_per_page;
 				
 				//#########################################################
-				
-				//Query update Old News to New News
-				$this->prd_managenewprd_model->set_FirstAddNews($data['news']);
-				
 				
 				$data['NT02_NewsType'] = $this->prd_managenewprd_model->get_NT02_NewsType();
 				$data['NT03_NewsSubType'] = $this->prd_managenewprd_model->get_NT03_NewsSubType();

@@ -32,7 +32,9 @@ class PRD_InfoMinistry_New extends CI_Controller {
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
 			if($showStatus == "yes"){
-			
+				
+				$data["check_Ministry_Name"] = $this->prd_info_ministry_model->check_Ministry_Name();
+				
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/manageinfocategory/infoministry_new', $data);
 				$this->load->view('prdsharing/templates/footer');

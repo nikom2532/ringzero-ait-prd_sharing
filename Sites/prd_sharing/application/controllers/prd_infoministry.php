@@ -34,6 +34,8 @@ class PRD_InfoMinistry extends CI_Controller {
 			if($showStatus == "yes"){
 			
 				$data['ministry'] = $this->prd_info_ministry_model->get_Ministry($this->input->get('minis_id'));
+				
+				$data["check_Ministry_Name"] = $this->prd_info_ministry_model->check_Ministry_Name();
 		
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/manageinfocategory/infoministry', $data);
