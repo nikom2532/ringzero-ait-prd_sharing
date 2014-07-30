@@ -517,7 +517,7 @@ foreach($news as $news_item):
 			Video *
 		</div>
 		<div style="margin-left: 5%; color: #cc0000; ">
-			ลองรับนามสกุล .mp4, .avi, .wmv, .flv
+			รองรับนามสกุล .mp4, .avi, .wmv, .flv
 		</div>
 		
 		<div class="row file_1" style="margin-bottom: 0; ">
@@ -539,7 +539,7 @@ foreach($news as $news_item):
 			เสียง *
 		</div>
 		<div style="margin-left: 5%; color: #cc0000; ">
-			ลองรับนามสกุล .mp3, .ogg, .wma
+			รองรับนามสกุล .mp3, .ogg, .wma
 		</div>
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
@@ -563,7 +563,7 @@ foreach($news as $news_item):
 			เอกสาร *
 		</div>
 		<div style="margin-left: 5%; color: #cc0000; ">
-			ลองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv
+			รองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv
 		</div>
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">
@@ -584,7 +584,7 @@ foreach($news as $news_item):
 			รูปภาพ *
 		</div>
 		<div style="margin-left: 5%; color: #cc0000; ">
-			ลองรับนามสกุล .jpg, .jpeg, .gif, .png
+			รองรับนามสกุล .jpg, .jpeg, .gif, .png
 		</div>
 		<div class="row file_1" style="margin-bottom: 0; ">
 			<div class="col-lg-12" style="margin-left: 5%; ">

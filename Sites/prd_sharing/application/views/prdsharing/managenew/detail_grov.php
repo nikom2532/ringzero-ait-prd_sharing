@@ -275,7 +275,16 @@
 						<h1 style="text-align: left; margin-bottom: 10px; text-height: 15px;">นโยบายรัฐบาล : <?php 
 							if(isset($news_item->Policy_ID)){
 								if($news_item->Policy_ID != "" && $news_item->Policy_ID != "0" && $news_item->Policy_ID == null){
-									echo $news_item->Policy_ID; 
+									// echo $news_item->Policy_ID;
+									echo "-"; 
+								}
+								else{
+									foreach ($NT05_Policy as $NT05_Policy_item) {
+										if($news_item->Policy_ID == $NT05_Policy_item->NT05_PolicyID){
+											echo $NT05_Policy_item->NT05_PolicyName;
+										}
+									}
+									// echo $news_item->Policy_ID;
 								}
 							}
 						?></h1>

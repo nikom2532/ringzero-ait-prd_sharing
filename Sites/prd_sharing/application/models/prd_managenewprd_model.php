@@ -39,7 +39,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		return $this->db_ntt_old->
 			SELECT("
 				SC03_User.SC03_UserId,
-				SC03_User.SC03_TName+' '+SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
+				SC03_User.SC03_FName+' '+SC03_User.SC03_LName AS ReporterName
 			")->
 			get("SC03_User")->result();
 	}

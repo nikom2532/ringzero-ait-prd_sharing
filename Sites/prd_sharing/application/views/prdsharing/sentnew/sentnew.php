@@ -266,7 +266,7 @@
 				Video *
 			</div>
 			<div style="margin-left: 5%; color: #cc0000; ">
-				ลองรับนามสกุล .mp4, .avi, .wmv, .flv
+				รองรับนามสกุล .mp4, .avi, .wmv, .flv
 			</div>
 			
 			<div class="row file_1" style="margin-bottom: 0; ">
@@ -288,7 +288,7 @@
 				เสียง *
 			</div>
 			<div style="margin-left: 5%; color: #cc0000; ">
-				ลองรับนามสกุล .mp3, .ogg, .wma
+				รองรับนามสกุล .mp3, .ogg, .wma
 			</div>
 			<div class="row file_1" style="margin-bottom: 0; ">
 				<div class="col-lg-12" style="margin-left: 5%; ">
@@ -312,7 +312,7 @@
 				เอกสาร *
 			</div>
 			<div style="margin-left: 5%; color: #cc0000; ">
-				ลองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv
+				รองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv
 			</div>
 			<div class="row file_1" style="margin-bottom: 0; ">
 				<div class="col-lg-12" style="margin-left: 5%; ">
@@ -333,7 +333,7 @@
 				รูปภาพ *
 			</div>
 			<div style="margin-left: 5%; color: #cc0000; ">
-				ลองรับนามสกุล .jpg, .jpeg, .gif, .png
+				รองรับนามสกุล .jpg, .jpeg, .gif, .png
 			</div>
 			<div class="row file_1" style="margin-bottom: 0; ">
 				<div class="col-lg-12" style="margin-left: 5%; ">
@@ -814,7 +814,7 @@
 			"	Video * "+
 			"</div>"+
 			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
-			"	ลองรับนามสกุล .mp4, .avi, .wmv, .flv "+
+			"	รองรับนามสกุล .mp4, .avi, .wmv, .flv "+
 			"</div>"+
 			
 			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
@@ -832,7 +832,7 @@
 			"	เสียง * "+
 			"</div>"+
 			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
-			"	ลองรับนามสกุล .mp3, .ogg, .wma "+
+			"	รองรับนามสกุล .mp3, .ogg, .wma "+
 			"</div>"+
 			
 			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
@@ -850,7 +850,7 @@
 			"	เสียง * "+
 			"</div>"+
 			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
-			"	ลองรับนามสกุล .mp3, .ogg, .wma "+
+			"	รองรับนามสกุล .mp3, .ogg, .wma "+
 			"</div>"+
 			
 			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
@@ -868,7 +868,7 @@
 			"	เอกสาร * "+
 			"</div>"+
 			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
-			"	ลองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv "+
+			"	รองรับนามสกุล .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .csv "+
 			"</div>"+
 			
 			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
@@ -886,7 +886,7 @@
 			"	รูปภาพ * "+
 			"</div>"+
 			"<div style=\"margin-left: 5%; color: #cc0000; \">"+
-			"	ลองรับนามสกุล .jpg, .jpeg, .gif, .png "+
+			"	รองรับนามสกุล .jpg, .jpeg, .gif, .png "+
 			"</div>"+
 			
 			"<div class=\"row file_1\" style=\"margin-bottom: 0; \">"+
