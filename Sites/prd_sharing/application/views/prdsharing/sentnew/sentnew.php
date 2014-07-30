@@ -176,8 +176,8 @@
 						<span>เลือกหน่วยงานภาครัฐ</span>
 						<select name="grov_status" id="grov_status">
 							<option value="">เลือกหน่วยงานภาครัฐ</option>
-	<?php
-	/*
+<?php
+							/*
 							// foreach ($SC07_Department as $Department_item) {
 								// ?><option value="<?php echo $Department_item->SC07_DepartmentId;?>"><?php echo $Department_item->SC07_DepartmentName;?></option><?php
 							// }
@@ -185,7 +185,7 @@
 							foreach ($Ministry as $Ministry_item) {
 								?><option value="<?php echo $Ministry_item->Minis_ID;?>"><?php echo $Ministry_item->Minis_Name;?></option><?php
 							}
-	?>
+?>
 						</select>
 					</span>
 				</div>
@@ -384,7 +384,19 @@
         } );
         */
     //]]>
-	
+	CKEDITOR.replace( 'SendIn_Detail', {
+		// Load the German interface.
+		language: 'en',
+		// toolbar :[['Image']], [['clipboard']], [['undo']]
+		// toolbar :
+            // [
+                // ['Source','-','Templates'],
+                // ['Bold','Italic','Underline','Strike','Subscript','Superscript'],
+                // ['NumberedList','BulletedList','Outdent','Indent','Blockquote'],
+                // ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                // ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+            // ],
+	});
 	
 	/*
 	$("select#Minis_ID").change(function() {
@@ -775,7 +787,7 @@
 		var SendIn_Detail = CKEDITOR.instances.SendIn_Detail.getData();
 		if (SendIn_Detail==null || SendIn_Detail=="") {
 			alert("โปรดใส่ค่า เนื้อหา");
-			CKEDITOR.instances.SendIn_Detail.focus();
+			// CKEDITOR.instances.SendIn_Detail.focus();
 			return false;
 		}
 	}

@@ -9,6 +9,15 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
+	
+	config.toolbar = [
+	    [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ],
+	    [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+	    '/',
+	    [ 'Bold', 'Italic' ]
+	];
+	
+	/*
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
@@ -30,6 +39,7 @@ CKEDITOR.editorConfig = function( config ) {
         // ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         // ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 	];
+	*/
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
