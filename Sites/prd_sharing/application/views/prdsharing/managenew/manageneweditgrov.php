@@ -363,7 +363,7 @@ foreach($news as $news_item):
 				}
 			?>"> 
 				<div style="float: left; width: 35%; padding-left: 10%; ">
-					<a style="text-decoration:none; text-decoration:none; " href="<?php echo base_url()."uploads/".$FileAttach_item->File_Name; ?>"><?php 
+					<a style="text-decoration:none; text-decoration:none; " target="_blank" href="<?php echo base_url()."uploads/".$FileAttach_item->File_Name; ?>" ><?php 
 						?><img src="<?php echo base_url(); ?>images/icon/<?php
 						if(
 							strtolower($FileAttach_item->File_Extension) == ".png" ||

@@ -193,11 +193,11 @@
 			
 			<div class="row prd_active_col" >
 				<div class="col-lg-6">
-					<label id="prd_status" >หน่วยงานสำนักข่าวกรมประชาสัมพันธ์</label>
+					<label id="prd_status" ><!-- หน่วยงานสำนักข่าว -->กรมประชาสัมพันธ์</label>
 					<span class="select-menu">
-						<span>เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</span>
+						<span>เลือกหน่วยงานกรมประชาสัมพันธ์</span>
 						<select name="prd_status" id="prd_status">
-							<option value="">เลือกหน่วยงานสำนักข่าวกรมประชาสัมพันธ์</option>
+							<option value="">เลือกหน่วยงานกรมประชาสัมพันธ์</option>
 <?php
 							/*
 							// foreach ($Ministry as $Ministry_item) {
