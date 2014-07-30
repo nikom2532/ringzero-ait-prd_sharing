@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<!-- <form id="authen_form" action="<?php echo base_url().index_page(); ?>authen_proc" method="post" accept-charset="utf-8"> -->
-	<form id="authen_form" action="<?php echo base_url().index_page(); ?>authen_proc2" method="post" accept-charset="utf-8">
+	<form id="authen_form" action="<?php echo base_url().index_page(); ?>authen_proc2" method="post" onsubmit="return validateForm(); " enctype="multipart/form-data" accept-charset="utf-8" >
 		<?php /*
 		<!-- <input type="hidden" name="prd_UserID" id="prd_UserID" value="" /> -->
 		<!-- <input type="hidden" name="prd_Authen" id="prd_Authen" value="" /> -->
@@ -45,6 +45,23 @@
 	</div>-->
 </div>
 <script>
+	function validateForm() {
+		var username = document.getElementById("username").value;
+		if (username==null || username=="") {
+			alert("โปรดใส่ค่า username");
+			document.getElementById("username").focus();
+			return false;
+		}
+		
+		var password = document.getElementById("password").value;
+		if (password==null || password=="") {
+			alert("โปรดใส่ค่า password");
+			document.getElementById("password").focus();
+			return false;
+		}
+		
+	}
+	
 	$("#register").click(function() {
 		document.location.href = "<?php echo base_url().index_page(); ?>register";
 	}); 

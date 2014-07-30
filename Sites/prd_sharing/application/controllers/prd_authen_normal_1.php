@@ -132,13 +132,12 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 				else{
 					$data["error"] = "Username or Password wrong";
 				}
-				
 			}
 		}
 		else{
 			$data["error"] = "Please enter Username and Password";
-			$this->load->view('prdsharing/templates/header_authen');
-			$this->load->view('prdsharing/authen/login', $data);
 		}
+		$this->load->view('prdsharing/templates/header_authen', $data);
+		$this->load->view('prdsharing/authen/login', $data);
 	}
 }
