@@ -540,8 +540,17 @@ class PRD_rss_model extends CI_Model {
 			FROM 
 				NT01_News 
 			WHERE 
-				NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
 		";
+		if($NT01_NewsID != ""){
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+			";
+		}
+		else{
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN ('')
+			";
+		}
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();

@@ -105,8 +105,10 @@
 <?php
 								foreach ($SC03_User as $SC03_User_item) {
 									?><option value="<?php echo $SC03_User_item->SC03_UserId; ?>" <?php
-										if($post_reporter_id != ""){ 	
-											?>selected='selected'<?php
+										if(isset($post_reporter_id)){
+											if($SC03_User_item->SC03_UserId == $post_reporter_id){
+												?>selected='selected'<?php
+											}
 										}
 									?>><?php echo $SC03_User_item->ReporterName; ?></option><?php
 								}
