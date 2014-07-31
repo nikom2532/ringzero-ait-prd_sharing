@@ -81,9 +81,9 @@ $db['default']['stricton'] = FALSE;
 
 //######### 2nd Database Connection #########
 
-$db['nnt_data_center_old']['hostname'] = '122.155.16.226';
-$db['nnt_data_center_old']['username'] = 'NNT-DB';
-$db['nnt_data_center_old']['password'] = '12345678';
+$db['nnt_data_center_old']['hostname'] = '112.121.129.117';
+$db['nnt_data_center_old']['username'] = 'sa';
+$db['nnt_data_center_old']['password'] = '!NNTDataCenter>>';
 $db['nnt_data_center_old']['database'] = 'NNT_DataCenter_2';
 $db['nnt_data_center_old']['dbdriver'] = 'sqlsrv';
 

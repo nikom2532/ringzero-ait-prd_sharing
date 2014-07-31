@@ -171,7 +171,7 @@
 			</p>
 		</div>
 		
-		<?php
+<?php
 			//Start to count News's rows
 			$i=0;
 			foreach($news as $news_item){
@@ -182,7 +182,7 @@
 				elseif($i % 2 == 1){
 					?><div class="event" style="width: 1300px; "><?php
 				}
-	?>
+?>
 						<p class="col-1" style="width: 4.8%;float: left; padding-left: 1.2%">
 							<?php echo $news_item->RowNumber; ?>
 						</p>
@@ -322,7 +322,7 @@
 							?>.png" width="17" style="margin: -10px 5px 0;">
 						</p>
 					</div>
-	<?php
+<?php
 				$i++;
 			}
 			//End Count News's Row 
