@@ -404,7 +404,6 @@ class PRD_Report_PRD_model extends CI_Model {
 		}
 		else{
 			$StrQuery .= "
-				AND
 				(
 					NT10_VDO.NT10_FileStatus = 'N'
 					OR
