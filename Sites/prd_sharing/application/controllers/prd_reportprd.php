@@ -67,8 +67,8 @@ class PRD_reportPRD extends CI_Controller {
 					
 					$NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
 						$this->input->post('filter_vdo'),
-						$this->input->post('filter_sound'),
 						$this->input->post('filter_image'),
+						$this->input->post('filter_sound'),
 						$this->input->post('filter_other')
 					);
 					
