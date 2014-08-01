@@ -65,13 +65,14 @@ class PRD_reportPRD extends CI_Controller {
 				
 				if($this->input->post("reportprd_is_search") == "yes"){
 					
-					// $NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
-						// $this->input->post('filter_vdo'),
-						// $this->input->post('filter_sound'),
-						// $this->input->post('filter_image'),
-						// $this->input->post('filter_other')
-					// );
+					$NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('filter_other')
+					);
 					
+					/*
 					$get_NT01_NewsID_vdo = $this->prd_report_prd_model->get_NT01_NewsID_vdo(
 						$this->input->post('filter_vdo')
 					);
@@ -84,6 +85,7 @@ class PRD_reportPRD extends CI_Controller {
 					$get_NT01_NewsID_document = $this->prd_report_prd_model->get_NT01_NewsID_document(
 						$this->input->post('filter_other') 
 					);
+					*/
 					
 					/*
 					$NT01_NewsID_Attachments = array();
@@ -110,6 +112,7 @@ class PRD_reportPRD extends CI_Controller {
 					}
 					*/
 					
+					/*
 					if($get_NT01_NewsID_vdo != ""){
 						$statusArray = array();
 						foreach($get_NT01_NewsID_vdo as $val){
@@ -138,13 +141,26 @@ class PRD_reportPRD extends CI_Controller {
 						}
 						$get_NT01_NewsID_document = implode(",",$statusArray);
 					}
+					*/
 					
+					/*
 					$get_NT01_NewsID_merge_attachs = $this->prd_report_prd_model->get_NT01_NewsID_merge_attachs(
 						$get_NT01_NewsID_vdo,
 						$get_NT01_NewsID_picture,
 						$get_NT01_NewsID_sound,
 						$get_NT01_NewsID_document
 					);
+					*/
+					
+					$NT01_NewsID_AttachmentFilter_array = $NT01_NewsID_AttachmentFilter;
+					
+					if($NT01_NewsID_AttachmentFilter != ""){
+						$statusArray = array();
+						foreach($NT01_NewsID_AttachmentFilter as $val){
+							$statusArray[] = "'".$val->NT01_NewsID."'";
+						}
+						$NT01_NewsID_AttachmentFilter = implode(",",$statusArray);
+					}
 					
 					$news = $this->prd_report_prd_model->
 						get_NT01_News_Search(
@@ -156,19 +172,29 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('reporter_id'),
-							$get_NT01_NewsID_vdo,
-							$get_NT01_NewsID_picture,
-							$get_NT01_NewsID_sound,
-							$get_NT01_NewsID_document
+							$NT01_NewsID_AttachmentFilter
 						);
 					
 					$count_row = $this->prd_report_prd_model->get_NT01_News_search_count(
-						$get_NT01_NewsID_vdo,
-						$get_NT01_NewsID_picture,
-						$get_NT01_NewsID_sound,
-						$get_NT01_NewsID_document
+						$NT01_NewsID_AttachmentFilter
+						// $get_NT01_NewsID_vdo,
+						// $get_NT01_NewsID_picture,
+						// $get_NT01_NewsID_sound,
+						// $get_NT01_NewsID_document
 					);
-						
+					
+					foreach ($news as $news_item) {
+						foreach ($NT01_NewsID_AttachmentFilter_array as $attachment_item) {
+							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
+								$news_item->NT10_FileStatus = $attachment_item->NT10_FileStatus;
+								$news_item->NT11_FileStatus = $attachment_item->NT11_FileStatus;
+								$news_item->NT12_FileStatus = $attachment_item->NT12_FileStatus;
+								$news_item->NT13_FileStatus = $attachment_item->NT13_FileStatus;
+							}
+						}
+					}
+					
+					/*	
 					foreach ($news as $news_item) {
 						foreach ($get_NT01_NewsID_vdo as $attachment_item) {
 							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
@@ -191,6 +217,7 @@ class PRD_reportPRD extends CI_Controller {
 							}
 						}
 					}
+					*/
 					
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_start_date'] = $this->input->post('start_date');
