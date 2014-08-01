@@ -65,20 +65,56 @@ class PRD_reportPRD extends CI_Controller {
 				
 				if($this->input->post("reportprd_is_search") == "yes"){
 					
-					$NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
-						$this->input->post('filter_vdo'),
-						$this->input->post('filter_sound'),
-						$this->input->post('filter_image'),
+					// $NT01_NewsID_AttachmentFilter = $this->prd_report_prd_model->get_NT01_NewsID_FromAttachment(
+						// $this->input->post('filter_vdo'),
+						// $this->input->post('filter_sound'),
+						// $this->input->post('filter_image'),
+						// $this->input->post('filter_other')
+					// );
+					
+					$get_NT01_NewsID_vdo = $this->prd_report_prd_model->get_NT01_NewsID_vdo(
+						$this->input->post('filter_vdo')
+					);
+					$get_NT01_NewsID_picture = $this->prd_report_prd_model->get_NT01_NewsID_picture(
+						$this->input->post('filter_image')
+					);
+					$get_NT01_NewsID_sound = $this->prd_report_prd_model->get_NT01_NewsID_sound(
+						$this->input->post('filter_sound')
+					);
+					$get_NT01_NewsID_document = $this->prd_report_prd_model->get_NT01_NewsID_document(
 						$this->input->post('filter_other')
 					);
 					
-					if($NT01_NewsID_AttachmentFilter != ""){
+					if($get_NT01_NewsID_vdo != ""){
 						$statusArray = array();
-						foreach($NT01_NewsID_AttachmentFilter as $val){
+						foreach($get_NT01_NewsID_vdo as $val){
 							$statusArray[] = "'".$val->NT01_NewsID."'";
 						}
-						$NT01_NewsID_AttachmentFilter = implode(",",$statusArray);
+						$get_NT01_NewsID_vdo = implode(",",$statusArray);
 					}
+					if($get_NT01_NewsID_picture != ""){
+						$statusArray = array();
+						foreach($get_NT01_NewsID_picture as $val){
+							$statusArray[] = "'".$val->NT01_NewsID."'";
+						}
+						$get_NT01_NewsID_picture = implode(",",$statusArray);
+					}
+					if($get_NT01_NewsID_sound != ""){
+						$statusArray = array();
+						foreach($get_NT01_NewsID_sound as $val){
+							$statusArray[] = "'".$val->NT01_NewsID."'";
+						}
+						$get_NT01_NewsID_sound = implode(",",$statusArray);
+					}
+					if($get_NT01_NewsID_document != ""){
+						$statusArray = array();
+						foreach($get_NT01_NewsID_document as $val){
+							$statusArray[] = "'".$val->NT01_NewsID."'";
+						}
+						$get_NT01_NewsID_document = implode(",",$statusArray);
+					}
+					
+					
 					
 					$news = $this->prd_report_prd_model->
 						get_NT01_News_Search(
@@ -90,17 +126,37 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('reporter_id'),
-							$NT01_NewsID_AttachmentFilter
+							$get_NT01_NewsID_vdo,
+							$get_NT01_NewsID_picture,
+							$get_NT01_NewsID_sound,
+							$get_NT01_NewsID_document
 						);
 					
-					$count_row = $this->prd_report_prd_model->get_NT01_News_search_count($NT01_NewsID_AttachmentFilter);
+					$count_row = $this->prd_report_prd_model->get_NT01_News_search_count(
+						$get_NT01_NewsID_vdo,
+						$get_NT01_NewsID_picture,
+						$get_NT01_NewsID_sound,
+						$get_NT01_NewsID_document
+					);
 						
 					foreach ($news as $news_item) {
-						foreach ($NT01_NewsID_AttachmentFilter as $attachment_item) {
+						foreach ($get_NT01_NewsID_vdo as $attachment_item) {
 							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
 								$news_item->NT10_FileStatus = $attachment_item->NT10_FileStatus;
+							}
+						}
+						foreach ($get_NT01_NewsID_picture as $attachment_item) {
+							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
 								$news_item->NT11_FileStatus = $attachment_item->NT11_FileStatus;
+							}
+						}
+						foreach ($get_NT01_NewsID_sound as $attachment_item) {
+							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
 								$news_item->NT12_FileStatus = $attachment_item->NT12_FileStatus;
+							}
+						}
+						foreach ($get_NT01_NewsID_document as $attachment_item) {
+							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
 								$news_item->NT13_FileStatus = $attachment_item->NT13_FileStatus;
 							}
 						}
