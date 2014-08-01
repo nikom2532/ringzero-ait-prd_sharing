@@ -31,8 +31,10 @@ class PRD_reportPRD extends CI_Controller {
 			$showStatus = $this->authenstatus->checkGroupID();
 			$data['getMenuHeader'] = $this->authenstatus->getMenuHeader();
 			
+			//showtstatus เอาไว้ กำหนดว่า จะ show menu อะไรไปบ้าง
 			if($showStatus == "yes"){
 			
+				//manageNewEditPRD_record คือ เมื่อหลักจากกด search แล้วจะเข้ามาที่นี้
 				if($this->input->post("manageNewEditPRD_record") == "yes"){
 					// echo "record";
 					$return = $this->prd_report_prd_model->set_prd_news(
@@ -47,6 +49,8 @@ class PRD_reportPRD extends CI_Controller {
 						$this->input->post("News_UpdateID")
 					);
 				}
+				
+				//manageNewEditPRD_record คือ เมื่อไม่ได้กด search แล้วจะเข้ามาที่นี้
 				else if($this->input->get('is_del_oldnews') == "1"){
 					$data['delete_News'] = $this->prd_report_prd_model->delete_News(
 						$this->input->get('oldnews_id')
@@ -67,6 +71,14 @@ class PRD_reportPRD extends CI_Controller {
 						$this->input->post('filter_image'),
 						$this->input->post('filter_other')
 					);
+					
+					if($NT01_NewsID_AttachmentFilter != ""){
+						$statusArray = array();
+						foreach($NT01_NewsID_AttachmentFilter as $val){
+							$statusArray[] = "'".$val->NT01_NewsID."'";
+						}
+						$NT01_NewsID_AttachmentFilter = implode(",",$statusArray);
+					}
 					
 					$news = $this->prd_report_prd_model->
 						get_NT01_News_Search(
