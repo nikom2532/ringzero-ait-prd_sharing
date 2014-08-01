@@ -106,8 +106,6 @@ class PRD_reportPRD extends CI_Controller {
 						}
 					}
 					
-					
-					
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_start_date'] = $this->input->post('start_date');
 					$data['post_end_date'] = $this->input->post('end_date');
