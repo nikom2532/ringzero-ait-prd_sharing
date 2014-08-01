@@ -61,8 +61,30 @@ class PRD_ManageNewPRD extends CI_Controller {
 				$row_per_page = 20;
 				$checkDelete_News = $this->prd_managenewprd_model->checkDelete_News();
 				
+				$statusArray = array();
+				foreach($checkDelete_News as $val){
+					$statusArray[] = "'".$val->News_OldID."'";
+				}
+				$checkDelete_News = implode(",",$statusArray);
+				
+				
 				if($this->input->post("managenewsprd_is_search") == "yes"){
-					$data['news'] = $this->prd_managenewprd_model->
+					
+					$NT01_NewsID_AttachmentFilter = $this->prd_managenewprd_model->get_NT01_NewsID_FromAttachment(
+						$this->input->post('filter_vdo'),
+						$this->input->post('filter_sound'),
+						$this->input->post('filter_image'),
+						$this->input->post('filter_other')
+					);
+					
+					$statusArray = array();
+					foreach($NT01_NewsID_AttachmentFilter as $val){
+						$statusArray[] = "'".$val->NT01_NewsID."'";
+					}
+					$NT01_NewsID_AttachmentFilter = implode(",",$statusArray);
+					
+					
+					$news = $this->prd_managenewprd_model->
 						get_NT01_News_Search(
 							$page, 
 							$row_per_page,
@@ -72,29 +94,35 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('reporter_id'),
-							$this->input->post('filter_vdo'),
-							$this->input->post('filter_sound'),
-							$this->input->post('filter_image'),
-							$this->input->post('filter_other'), 
-							$checkDelete_News
+							$checkDelete_News,
+							$NT01_NewsID_AttachmentFilter
 						);
-					$NT01_NewsID_count_row = $this->prd_managenewprd_model->
-						get_NT01_News_search_with_attachment_count(
+					// $NT01_NewsID_count_row = $this->prd_managenewprd_model->
+						// get_NT01_News_search_with_attachment_count(
+							// $this->input->post('news_title'),
+							// $this->input->post('start_date'),
+							// $this->input->post('end_date'),
+							// $this->input->post('NewsTypeID'),
+							// $this->input->post('NewsSubTypeID'),
+							// $this->input->post('reporter_id'),
+							// $this->input->post('filter_vdo'),
+							// $this->input->post('filter_sound'),
+							// $this->input->post('filter_image'),
+							// $this->input->post('filter_other'), 
+							// $checkDelete_News
+						// );
+						
+					$count_row = $this->prd_managenewprd_model->
+						get_NT01_News_search_count(
 							$this->input->post('news_title'),
 							$this->input->post('start_date'),
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
 							$this->input->post('reporter_id'),
-							$this->input->post('filter_vdo'),
-							$this->input->post('filter_sound'),
-							$this->input->post('filter_image'),
-							$this->input->post('filter_other'), 
-							$checkDelete_News
+							$checkDelete_News,
+							$NT01_NewsID_AttachmentFilter
 						);
-						
-					$count_row = $this->prd_managenewprd_model->
-						get_NT01_News_search_count($NT01_NewsID_count_row);
 					
 					$data['post_news_title'] = $this->input->post('news_title');
 					$data['post_start_date'] = $this->input->post('start_date');
@@ -109,7 +137,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data["post_managenewsprd_is_search"] = $this->input->post('managenewsprd_is_search');
 				}
 				else{	//## No Search ##
-					$data['news'] = $this->prd_managenewprd_model->get_NT01_News(
+					$news = $this->prd_managenewprd_model->get_NT01_News(
 						$page, 
 						$row_per_page, 
 						$checkDelete_News
@@ -131,17 +159,18 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data["post_managenewsprd_is_search"] = "";
 				}
 				
+				$data['news'] = $news;
 				
 				// $newsNoPaging = $this->prd_managenewprd_model->get_NT01_News_SaveToNewDatabase();
 				
 				//Query update Old News to New News
 				// $this->prd_managenewprd_model->set_FirstAddNews($newsNoPaging);
-				$this->prd_managenewprd_model->set_FirstAddNews($data['news']);
+				$this->prd_managenewprd_model->set_FirstAddNews($news);
 				
 				
 				$data['SC03_User'] = $this->prd_managenewprd_model->get_SC03_User();
 				$data['New_News'] = $this->prd_managenewprd_model->get_New_News(
-					$data['news']
+					$news
 				);
 				
 				// var_dump($data['New_News']);

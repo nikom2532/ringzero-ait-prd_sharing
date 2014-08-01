@@ -194,7 +194,11 @@ class PRD_Report_PRD_model extends CI_Model {
 	){
 		$StrQuery = "
 			SELECT DISTINCT
-				NT01_News.NT01_NewsID
+				NT01_News.NT01_NewsID,
+				NT10_VDO.NT10_FileStatus, 
+				NT11_Picture.NT11_FileStatus, 
+				NT12_Voice.NT12_FileStatus, 
+				NT13_OtherFile.NT13_FileStatus
 			FROM NT01_News 
 			LEFT JOIN 
 				NT10_VDO 
@@ -317,23 +321,23 @@ class PRD_Report_PRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID,
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
-					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
-					MAX(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
-					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
-					MAX(NT01_News.NT01_Status) AS NT01_Status,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(SC03_User.SC03_LName) AS SC03_LName,
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					MAX(SC07_Department.SC07_DepartmentName) AS SC07_DepartmentName,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsID) DESC) AS 'RowNumber'
+					(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
+					(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
+					(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+					(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
+					(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
+					(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
+					(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
+					(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
+					(NT01_News.NT01_Status) AS NT01_Status,
+					(SC03_User.SC03_FName) AS SC03_FName, 
+					(SC03_User.SC03_LName) AS SC03_LName,
+					'' AS NT10_FileStatus, 
+					'' AS NT11_FileStatus, 
+					'' AS NT12_FileStatus, 
+					'' AS NT13_FileStatus, 
+					(SC07_Department.SC07_DepartmentName) AS SC07_DepartmentName,
+					ROW_NUMBER() OVER (ORDER BY (NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
 				FROM NT01_News 
 				LEFT JOIN 
 					SC03_User 
@@ -434,7 +438,6 @@ class PRD_Report_PRD_model extends CI_Model {
 		
 		
 		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -444,133 +447,6 @@ class PRD_Report_PRD_model extends CI_Model {
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
-		return $query;
-	}
-	
-	public function get_NT01_NewsID_search_with_attachment_count(
-		$grov_active = '',
-		$startdate = '',
-		$enddate = '',
-		$NewsTypeID = '',
-		$NewsSubTypeID = '',
-		$ReporterID = '',
-		$filter_vdo = '',
-		$filter_sound = '',
-		$filter_image = '',
-		$filter_other = ''
-	)
-	{
-		$StrQuery = "
-			SELECT DISTINCT
-				NT01_News.NT01_NewsID
-			FROM NT01_News 
-			LEFT JOIN 
-				NT10_VDO 
-			ON 
-				NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-			LEFT JOIN 
-				NT11_Picture 
-			ON 
-				NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-			LEFT JOIN 
-				NT12_Voice 
-			ON 
-				NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-			LEFT JOIN 
-				NT13_OtherFile 
-			ON 
-				NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID
-			WHERE 
-				NT01_News.NT08_PubTypeID = '11'
-			AND
-				NT01_News.NT01_Status = 'Y'
-		";
-		if($grov_active != ''){
-			$StrQuery .= "
-				AND 
-					NT01_News.SC07_DepartmentId LIKE '%".$grov_active."%' ESCAPE '!'
-			";
-		}
-		if(
-			($startdate != '') && 
-			!($enddate != '')
-		){
-			$StrQuery .= "
-				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
-			";
-		}
-		elseif(
-			($startdate != '') && 
-			!($enddate != '')
-		){
-			$StrQuery .= "
-				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
-			";
-		}
-		elseif(
-			($startdate != '') &&
-			($enddate != '')
-		){
-			$StrQuery .= "
-				AND
-					NT01_News.NT01_NewsDate
-						BETWEEN 
-							'".date("Y-m-d H:i:s", strtotime($startdate))."'
-							AND
-							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
-			";
-		}
-		if($NewsTypeID != ''){
-			$StrQuery .= "
-				AND
-					NT01_News.NT02_TypeID = '".$NewsTypeID."'
-			";
-		}
-		if($NewsSubTypeID != ''){
-			$StrQuery .= "
-				AND
-					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
-			";
-		}
-		if($ReporterID != ''){
-			$StrQuery .= "
-				AND
-					NT01_News.NT01_ReporterID = '".$ReporterID."'
-			";
-		}
-		if($filter_vdo == '1'){
-			$StrQuery .= "
-				AND
-					NT10_VDO.NT10_FileStatus = 'Y'
-			";
-		}
-		if($filter_sound == '1'){
-			$StrQuery .= "
-				AND
-					NT11_Picture.NT11_FileStatus = 'Y'
-			";
-		}
-		if($filter_image == '1'){
-			$StrQuery .= "
-				AND
-					NT12_Voice.NT12_FileStatus = 'Y'
-			";
-		}
-		if($filter_other == '1'){
-			$StrQuery .= "
-				AND
-					NT13_OtherFile.NT13_FileStatus = 'Y'
-			";
-		}
-		
-		// echo $StrQuery;
-		// exit;
-		
-		$query = $this->db_ntt_old->
-			query($StrQuery)->result();
-			
 		return $query;
 	}
 	
@@ -595,6 +471,12 @@ class PRD_Report_PRD_model extends CI_Model {
 			$StrQuery .= "
 				WHERE 
 					NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+			";
+		}
+		else{
+			$StrQuery .= "
+				WHERE 
+					NT01_News.NT01_NewsID IN ('')
 			";
 		}
 		

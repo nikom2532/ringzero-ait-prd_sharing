@@ -147,20 +147,120 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	
 	//############################ News #############################
 	
+	public function get_NT01_NewsID_FromAttachment(
+		$filter_vdo = '',
+		$filter_sound = '',
+		$filter_image = '',
+		$filter_other = ''
+	){
+		$StrQuery = "
+			SELECT DISTINCT
+				NT01_News.NT01_NewsID,
+				NT10_VDO.NT10_FileStatus, 
+				NT11_Picture.NT11_FileStatus, 
+				NT12_Voice.NT12_FileStatus, 
+				NT13_OtherFile.NT13_FileStatus
+			FROM NT01_News 
+			LEFT JOIN 
+				NT10_VDO 
+			ON 
+				NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
+			LEFT JOIN 
+				NT11_Picture 
+			ON 
+				NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
+			LEFT JOIN 
+				NT12_Voice 
+			ON 
+				NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
+			LEFT JOIN 
+				NT13_OtherFile 
+			ON 
+				NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
+			WHERE 
+				NT08_PubTypeID = '11'
+			AND
+				NT01_News.NT01_Status = 'Y'
+		";
+		if($filter_vdo == '1'){
+			$StrQuery .= "
+				AND
+					NT10_VDO.NT10_FileStatus = 'Y'
+			";
+		}
+		else{
+			$StrQuery .= "
+				AND
+				(
+					NT10_VDO.NT10_FileStatus = 'N'
+					OR
+					NT10_VDO.NT10_FileStatus IS NULL
+				)
+			";
+		}
+		if($filter_sound == '1'){
+			$StrQuery .= "
+				AND
+					NT11_Picture.NT11_FileStatus = 'Y'
+			";
+		}
+		else{
+			$StrQuery .= "
+				AND
+				(
+					NT11_Picture.NT11_FileStatus = 'N'
+					OR
+					NT11_Picture.NT11_FileStatus IS NULL
+				)
+			";
+		}
+		if($filter_image == '1'){
+			$StrQuery .= "
+				AND
+					NT12_Voice.NT12_FileStatus = 'Y'
+			";
+		}
+		else{
+			$StrQuery .= "
+				AND
+				(
+					NT12_Voice.NT12_FileStatus = 'N'
+					OR
+					NT12_Voice.NT12_FileStatus IS NULL
+				)
+			";
+		}
+		if($filter_other == '1'){
+			$StrQuery .= "
+				AND
+					NT13_OtherFile.NT13_FileStatus = 'Y'
+			";
+		}
+		else{
+			$StrQuery .= "
+				AND
+				(
+					NT13_OtherFile.NT13_FileStatus = 'N'
+					OR
+					NT13_OtherFile.NT13_FileStatus IS NULL
+				)
+			";
+		}
+		
+		// echo $StrQuery;
+		// exit;
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
 	public function get_NT01_News(
 		$page=1, 
 		$row_per_page=20, 
 		$checkDelete_News = ''
 	)
 	{
-		if($checkDelete_News != ""){
-			$statusArray = array();
-			foreach($checkDelete_News as $val){
-				$statusArray[] = "'".$val->News_OldID."'";
-			}
-			$checkDelete_News = implode(",",$statusArray);
-		}
-		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
@@ -222,14 +322,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$checkDelete_News = ''
 	)
 	{
-		if($checkDelete_News != ""){
-			$statusArray = array();
-			foreach($checkDelete_News as $val){
-				$statusArray[] = "'".$val->News_OldID."'";
-			}
-			$checkDelete_News = implode(",",$statusArray);
-		}
-		
 		$StrQuery = "
 				SELECT
 					COUNT((NT01_News.NT01_NewsID)) AS NUMROW
@@ -261,21 +353,10 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
 		$ReporterID = '',
-		$filter_vdo = '',
-		$filter_sound = '',
-		$filter_image = '',
-		$filter_other = '',
-		$checkDelete_News = ''
+		$checkDelete_News = '',
+		$NT01_NewsID = ''
 	)
 	{
-		if($checkDelete_News != ""){
-			$statusArray = array();
-			foreach($checkDelete_News as $val){
-				$statusArray[] = "'".$val->News_OldID."'";
-			}
-			$checkDelete_News = implode(",",$statusArray);
-		}
-		
 		$start = $page==1?1:(($page*$row_per_page-($row_per_page))+1);
 		$end = $page*$row_per_page;
 		
@@ -283,37 +364,35 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			WITH LIMIT AS(
 				SELECT 
 					NT01_News.NT01_NewsID,
-					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
-					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
-					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
-					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
-					MAX(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
-					MAX(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
-					MAX(NT01_News.NT01_Status) AS NT01_Status,
-					MAX(SC03_User.SC03_FName) AS SC03_FName, 
-					MAX(SC03_User.SC03_LName) AS SC03_LName,
-					MAX(NT10_VDO.NT10_FileStatus) AS NT10_FileStatus, 
-					MAX(NT11_Picture.NT11_FileStatus) AS NT11_FileStatus, 
-					MAX(NT12_Voice.NT12_FileStatus) AS NT12_FileStatus, 
-					MAX(NT13_OtherFile.NT13_FileStatus) AS NT13_FileStatus,
-					ROW_NUMBER() OVER (ORDER BY MAX(NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
+					(NT01_News.NT01_NewsDate) AS NT01_NewsDate,
+					(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
+					(NT01_News.NT01_CreDate) AS NT01_CreDate, 
+					(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
+					(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
+					(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
+					(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
+					(NT01_News.NT01_CreUserID) AS NT01_CreUserID,
+					(NT01_News.NT01_Status) AS NT01_Status,
+					(SC03_User.SC03_FName) AS SC03_FName, 
+					(SC03_User.SC03_LName) AS SC03_LName,
+					'' AS NT10_FileStatus, 
+					'' AS NT11_FileStatus, 
+					'' AS NT12_FileStatus, 
+					'' AS NT13_FileStatus, 
+					ROW_NUMBER() OVER (ORDER BY (NT01_News.NT01_NewsDate) DESC) AS 'RowNumber'
 				FROM 
 					NT01_News 
 				LEFT JOIN 
 					SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
-				LEFT JOIN 
-					NT10_VDO ON NT01_News.NT01_NewsID = NT10_VDO.NT01_NewsID 
-				LEFT JOIN 
-					NT11_Picture ON NT01_News.NT01_NewsID = NT11_Picture.NT01_NewsID 
-				LEFT JOIN 
-					NT12_Voice ON NT01_News.NT01_NewsID = NT12_Voice.NT01_NewsID 
-				LEFT JOIN 
-					NT13_OtherFile ON NT01_News.NT01_NewsID = NT13_OtherFile.NT01_NewsID 
 				WHERE 
 					NT01_News.NT08_PubTypeID = '11'
 		";
+		if($NT01_NewsID != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
+			";
+		}
 		if($checkDelete_News != ""){
 			$StrQuery .= "
 					AND 
@@ -375,32 +454,7 @@ class PRD_ManageNewPRD_model extends CI_Model {
 					NT01_News.NT01_ReporterID = '".$ReporterID."'
 			";
 		}
-		if($filter_vdo == '1'){
-			$StrQuery .= "
-				AND
-					NT10_VDO.NT10_FileStatus = 'Y'
-			";
-		}
-		if($filter_sound == '1'){
-			$StrQuery .= "
-				AND
-					NT11_Picture.NT11_FileStatus = 'Y'
-			";
-		}
-		if($filter_image == '1'){
-			$StrQuery .= "
-				AND
-					NT12_Voice.NT12_FileStatus = 'Y'
-			";
-		}
-		if($filter_other == '1'){
-			$StrQuery .= "
-				AND
-					NT13_OtherFile.NT13_FileStatus = 'Y'
-			";
-		}
 		$StrQuery .= "
-				group by NT01_News.NT01_NewsID
 			)
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
@@ -425,14 +479,6 @@ class PRD_ManageNewPRD_model extends CI_Model {
 		$checkDelete_News = ''
 	)
 	{
-		if($checkDelete_News != ""){
-			$statusArray = array();
-			foreach($checkDelete_News as $val){
-				$statusArray[] = "'".$val->News_OldID."'";
-			}
-			$checkDelete_News = implode(",",$statusArray);
-		}
-		
 		$StrQuery = "
 			SELECT DISTINCT
 				NT01_News.NT01_NewsID
@@ -537,6 +583,8 @@ class PRD_ManageNewPRD_model extends CI_Model {
 			";
 		}
 		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		
@@ -544,29 +592,97 @@ class PRD_ManageNewPRD_model extends CI_Model {
 	}
 	
 	public function get_NT01_News_search_count(
+		$News_Title = '',
+		$startdate = '',
+		$enddate = '',
+		$NewsTypeID = '',
+		$NewsSubTypeID = '',
+		$ReporterID = '',
+		$checkDelete_News = '',
 		$NT01_NewsID = ''
 	)
 	{
-		if($NT01_NewsID != ""){
-			$statusArray = array();
-			foreach($NT01_NewsID as $val){
-				$statusArray[] = "'".$val->NT01_NewsID."'";
-			}
-			$NT01_NewsID = implode(",",$statusArray);
-		}
-		
 		$StrQuery = "
 			SELECT DISTINCT
 				COUNT(NT01_News.NT01_NewsID) AS NUMROW
 			FROM 
-				NT01_News 
+				NT01_News
+			LEFT JOIN 
+				SC03_User ON SC03_User.SC03_UserId = NT01_News.NT01_ReporterID 
+			WHERE 
+				NT01_News.NT08_PubTypeID = '11'
 		";
+		
 		if($NT01_NewsID != ""){
 			$StrQuery .= "
-				WHERE 
+				AND 
 					NT01_News.NT01_NewsID IN (".$NT01_NewsID.")
 			";
 		}
+		if($News_Title != ''){
+			$StrQuery .= "
+				AND 
+					NT01_News.NT01_NewsTitle LIKE '%".$News_Title."%' ESCAPE '!'
+			";
+		}
+		if(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+			";
+		}
+		elseif(
+			($startdate != '') && 
+			!($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+			";
+		}
+		elseif(
+			($startdate != '') &&
+			($enddate != '')
+		){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_NewsDate
+						BETWEEN 
+							'".date("Y-m-d H:i:s", strtotime($startdate))."'
+							AND
+							'".date("Y-m-d H:i:s", strtotime($enddate)+86399)."'
+			";
+		}
+		if($NewsTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT02_TypeID = '".$NewsTypeID."'
+			";
+		}
+		if($NewsSubTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($ReporterID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT01_ReporterID = '".$ReporterID."'
+			";
+		}
+		if($checkDelete_News != ""){
+			$StrQuery .= "
+					AND 
+						NT01_News.NT01_NewsID IN (".$checkDelete_News.")
+			";
+		}
+		
+		// echo $StrQuery;
+		// exit;
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();

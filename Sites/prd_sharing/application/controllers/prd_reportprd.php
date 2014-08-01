@@ -80,21 +80,21 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('reporter_id'),
 							$NT01_NewsID_AttachmentFilter
 						);
-					$NT01_NewsID_count_row = $this->prd_report_prd_model->
-						get_NT01_NewsID_search_with_attachment_count(
-							$this->input->post('grov_active'),
-							$this->input->post('start_date'),
-							$this->input->post('end_date'),
-							$this->input->post('NewsTypeID'),
-							$this->input->post('NewsSubTypeID'),
-							$this->input->post('reporter_id'),
-							$this->input->post('filter_vdo'),
-							$this->input->post('filter_sound'),
-							$this->input->post('filter_image'),
-							$this->input->post('filter_other')
-						);
 					
-					$count_row = $this->prd_report_prd_model->get_NT01_News_search_count($NT01_NewsID_count_row);
+					$count_row = $this->prd_report_prd_model->get_NT01_News_search_count($NT01_NewsID_AttachmentFilter);
+						
+					foreach ($news as $news_item) {
+						foreach ($NT01_NewsID_AttachmentFilter as $attachment_item) {
+							if($news_item->NT01_NewsID == $attachment_item->NT01_NewsID){
+								$news_item->NT10_FileStatus = $attachment_item->NT10_FileStatus;
+								$news_item->NT11_FileStatus = $attachment_item->NT11_FileStatus;
+								$news_item->NT12_FileStatus = $attachment_item->NT12_FileStatus;
+								$news_item->NT13_FileStatus = $attachment_item->NT13_FileStatus;
+							}
+						}
+					}
+					
+					
 					
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_start_date'] = $this->input->post('start_date');

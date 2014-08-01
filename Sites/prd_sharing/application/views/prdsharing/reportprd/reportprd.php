@@ -278,6 +278,7 @@
 									if($count_News_View <= 0){
 										if($New_News_item->News_View == 0 || $New_News_item->News_View == "" || $New_News_item->News_View == null){
 											echo "0";
+											$count_News_View++;
 										}
 										else{
 											echo $New_News_item->News_View;
@@ -287,9 +288,9 @@
 							}
 ?>
 						</p>
-						<p class="col-2" style="width: 10%;float: left; ">
+						<p class="col-2" style="width: 10%;float: left; "><?php //echo $news_item->NT10_FileStatus; ?>
 							<img src="<?php echo base_url(); ?>images/icon/<?php
-								if($news_item->NT10_FileStatus == "Y"){ //Video
+								if($news_item->NT10_FileStatus == 'Y'){ //Video
 									?>vdo<?php
 								}else{
 									?>null<?php
