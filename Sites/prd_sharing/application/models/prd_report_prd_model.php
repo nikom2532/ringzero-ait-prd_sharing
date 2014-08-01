@@ -207,6 +207,9 @@ class PRD_Report_PRD_model extends CI_Model {
 			";
 		}
 		
+		// echo $StrQuery;
+		// exit;
+		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();
 		return $query;
@@ -284,6 +287,64 @@ class PRD_Report_PRD_model extends CI_Model {
 				NT13_OtherFile.NT13_FileStatus <> 'Y'
 			";
 		}
+		
+		$query = $this->db_ntt_old->
+			query($StrQuery)->result();
+		return $query;
+	}
+	
+	public function get_NT01_NewsID_merge_attachs(
+		$NT01_NewsID_vdo = '',
+		$NT01_NewsID_picture = '',
+		$NT01_NewsID_sound = '',
+		$NT01_NewsID_document = ''
+	)
+	{
+		$StrQuery = "
+			SELECT DISTINCT
+				NT01_News.NT01_NewsID
+			FROM 
+				NT01_News  
+			WHERE 
+		";
+		if($NT01_NewsID_vdo != ''){
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID_vdo.")
+			";
+		}
+		if($NT01_NewsID_picture != ''){
+			if($NT01_NewsID_vdo != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID_picture.")
+			";
+		}
+		if($NT01_NewsID_sound != ''){
+			if($NT01_NewsID_vdo != "" || $NT01_NewsID_picture != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID_sound.")
+			";
+		}
+		if($NT01_NewsID_document != ''){
+			if($NT01_NewsID_vdo != "" || $NT01_NewsID_picture != "" || $NT01_NewsID_sound != ""){
+				$StrQuery .= "
+					AND
+				";
+			}
+			$StrQuery .= "
+				NT01_News.NT01_NewsID IN (".$NT01_NewsID_document.")
+			";
+		}
+		
+		// echo $StrQuery;
+		// exit; 
 		
 		$query = $this->db_ntt_old->
 			query($StrQuery)->result();

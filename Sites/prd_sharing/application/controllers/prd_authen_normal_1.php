@@ -13,6 +13,8 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Login PRD Sharing';
+		
+		//ไว้สำหรับ check username, password แล้วก็ Authen
 		if(
 			$this->input->post('username') != "" && 
 			$this->input->post('password') != ""
@@ -22,7 +24,7 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 					$this->input->post('username'),
 					$this->input->post('password')
 				);
-			if($authen != null){
+			if($authen != null){//ถ้า Login ผ่าน (PRD Sharing Authen)
 				
 				//#############
 				//SET USER LOG - IMPORTANT
@@ -51,7 +53,7 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 				
 				redirect(base_url().index_page().'homePRD', 'refresh');
 			}
-			else{
+			else{ //(PRD Data Center Authen)
 				
 				$params = array(
 					'username' => $this->input->post('username'), 
@@ -72,7 +74,7 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 					$authen_PRD_Source->UserID
 				);
 				
-				if($authen_PRD_DB != null){
+				if($authen_PRD_DB != null){ //(PRD Data Center Authen) ถ้าผ่าน
 					
 					$authen_Member_with_SC03UserID = $this->prd_authen_model->
 						get_Member_with_SC03UserID(
@@ -129,7 +131,7 @@ class PRD_Authen_Normal_1 extends CI_Controller {
 						redirect(base_url().index_page().'homePRD', 'refresh');
 					}
 				}
-				else{
+				else{ //(PRD Data Center Authen) ถ้าไม่ผ่าน
 					$data["error"] = "Username or Password wrong";
 				}
 			}

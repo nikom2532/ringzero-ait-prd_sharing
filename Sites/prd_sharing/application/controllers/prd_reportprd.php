@@ -82,8 +82,33 @@ class PRD_reportPRD extends CI_Controller {
 						$this->input->post('filter_sound')
 					);
 					$get_NT01_NewsID_document = $this->prd_report_prd_model->get_NT01_NewsID_document(
-						$this->input->post('filter_other')
+						$this->input->post('filter_other') 
 					);
+					
+					/*
+					$NT01_NewsID_Attachments = array();
+					foreach ($get_NT01_NewsID_vdo as $vdo) {
+						foreach ($get_NT01_NewsID_picture as $picture) {
+							foreach ($get_NT01_NewsID_sound as $sound) {
+								foreach ($get_NT01_NewsID_document as $document) {
+									// if($vdo->NT01_NewsID == $picture->NT01_NewsID == $sound->NT01_NewsID == $document->NT01_NewsID){
+										// $NT01_NewsID_Attachments[] = $vdo->NT01_NewsID;
+									// }
+								}
+							}
+						}
+					}
+					*/
+					
+					/*
+					if($NT01_NewsID_Attachments != ""){
+						$statusArray = array();
+						foreach($NT01_NewsID_Attachments as $val){
+							$statusArray[] = "'".$val."'";
+						}
+						$NT01_NewsID_Attachments = implode(",",$statusArray);
+					}
+					*/
 					
 					if($get_NT01_NewsID_vdo != ""){
 						$statusArray = array();
@@ -114,7 +139,12 @@ class PRD_reportPRD extends CI_Controller {
 						$get_NT01_NewsID_document = implode(",",$statusArray);
 					}
 					
-					
+					$get_NT01_NewsID_merge_attachs = $this->prd_report_prd_model->get_NT01_NewsID_merge_attachs(
+						$get_NT01_NewsID_vdo,
+						$get_NT01_NewsID_picture,
+						$get_NT01_NewsID_sound,
+						$get_NT01_NewsID_document
+					);
 					
 					$news = $this->prd_report_prd_model->
 						get_NT01_News_Search(

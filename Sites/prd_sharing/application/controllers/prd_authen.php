@@ -11,6 +11,7 @@ class PRD_Authen extends CI_Controller {
 
 	public function index()
 	{
+		//อันนี้กรณี ที่ Test ไว้สำหรับขี้เกียจ Login
 		//##########################################################
 		/*
 		//For Test when have no internet
@@ -32,6 +33,7 @@ class PRD_Authen extends CI_Controller {
 		*/
 		//##########################################################
 		
+		//userdata('member_id') ไว้สำหรับ เก็บค่า Login ไว้
 		if($this->session->userdata('member_id') == ""){
 			$data['title'] = 'Login PRD Sharing';
 			$this->load->view('prdsharing/templates/header_authen', $data);

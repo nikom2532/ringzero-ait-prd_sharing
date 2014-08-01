@@ -699,6 +699,38 @@ foreach($news as $news_item):
 	
 	//############################### Video ####################################
 	
+	function recheckfile_after_delete(){
+		//###### Check Upload File size #########
+		temp_file_size = 0;
+		for(file_i = 0; file_i < count_input_files; file_i++){
+			for(file_j = 0; file_j < $('input[type=file]').get(file_i).files.length; file_j++){
+				temp_file_size = temp_file_size + $('input[type=file]').get(file_i).files[file_j].size;
+			}
+		}
+		$(".total_before_file_size_bytes").html(numberWithCommas(temp_file_size));
+		
+		if(temp_file_size < 1024.0){
+			$(".total_before_file_size").html(numberWithCommas(temp_file_size));
+			$(".total_before_file_unit").html("Bytes");
+		}
+		else if(temp_file_size < 1024*1024.0){
+			
+			var temp_file_size_new = temp_file_size/1024.0;
+			temp_file_size_new = temp_file_size_new.toFixed(2)
+			
+			$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+			$(".total_before_file_unit").html("KB");
+		}
+		else if(temp_file_size < (1024*1024*1024.0)){
+			
+			var temp_file_size_new = temp_file_size/(1024*1024.0);
+			temp_file_size_new = temp_file_size_new.toFixed(2)
+			
+			$(".total_before_file_size").html(numberWithCommas(temp_file_size_new));
+			$(".total_before_file_unit").html("MB");
+		}
+	}
+	
 	var count_input_files = 4;
 	
 	var number_video = 2;
@@ -724,6 +756,8 @@ foreach($news as $news_item):
 		$("div.uploadfile_video .row.file_"+file_id).remove();
 		// number--;
 		count_input_files--;
+		
+		recheckfile_after_delete();
 	});
 	
 	//############################### Voice ####################################
@@ -751,6 +785,8 @@ foreach($news as $news_item):
 		$("div.uploadfile_voice .row.file_"+file_id).remove();
 		// number_voice--;
 		count_input_files--;
+		
+		recheckfile_after_delete();
 	});
 	
 	//############################### document ####################################
@@ -778,6 +814,8 @@ foreach($news as $news_item):
 		$("div.uploadfile_document .row.file_"+file_id).remove();
 		// number_document--;
 		count_input_files--;
+		
+		recheckfile_after_delete();
 	});
 	
 	//################################# picture ##################################
@@ -805,6 +843,9 @@ foreach($news as $news_item):
 		$("div.uploadfile_picture .row.file_"+file_id).remove();
 		
 		count_input_files--;
+		
+		recheckfile_after_delete();
+		
 		/*
 		var i=0;
 		var label_file_id = "";
