@@ -65,7 +65,7 @@ class PRD_reportGOVE extends CI_Controller {
 					$data['post_Ministry_ID'] = $this->input->post('Ministry_ID');
 					$data['post_Dep_ID'] = $this->input->post('Dep_ID');
 					$data['post_SendIn_Status'] = $this->input->post("SendIn_Status");
-					$data['post_reportGROV_is_submit '] = $this->input->post("post_reportGROV_is_submit");
+					$data['post_reportGROV_is_submit '] = $this->input->post("reportGROV_is_submit");
 				}
 				else{
 					
@@ -118,6 +118,13 @@ class PRD_reportGOVE extends CI_Controller {
 						}
 					}
 				}
+
+				if(isset($_POST["reportGROV_is_submit"])){
+					$data["post_reportGROV_is_submit"] = $this->input->post("reportGROV_is_submit");
+				}
+				else {
+					$data["post_reportGROV_is_submit"] = "";	
+				}
 				//###### End Add File_Status to News ######
 				
 				$data["news"] = $news;
@@ -126,7 +133,7 @@ class PRD_reportGOVE extends CI_Controller {
 				
 				//############## Pagination = For no Search ################
 				$data['count_row'] = $count_row;
-				$url = "manageNewGROV";
+				$url = "reportGOVE";
 				
 				$total_page   = $count_row / $row_per_page;
 				$page_mod     = $count_row % $row_per_page;

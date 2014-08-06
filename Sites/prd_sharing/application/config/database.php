@@ -59,11 +59,15 @@ $active_record = TRUE;
 //########### SQL Server
 
 // $db['default']['hostname'] = 'NIKOM2532-PC:1433';
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'nikom2532';
-$db['default']['password'] = 'cominter';
-$db['default']['database'] = 'ringzero_ait_prd_sharing';
+$db['default']['hostname'] = '112.121.129.117';
+$db['default']['username'] = 'sa';
+$db['default']['password'] = '!NNTDataCenter>>';
+$db['default']['database'] = 'NNT_PRD_Sharing';
 $db['default']['dbdriver'] = 'sqlsrv';
+// $db['default']['dbdriver'] = 'mssql';
+
+//##################
+
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -77,9 +81,9 @@ $db['default']['stricton'] = FALSE;
 
 //######### 2nd Database Connection #########
 
-$db['nnt_data_center_old']['hostname'] = 'localhost';
-$db['nnt_data_center_old']['username'] = 'nikom2532';
-$db['nnt_data_center_old']['password'] = 'cominter';
+$db['nnt_data_center_old']['hostname'] = '122.155.16.226';
+$db['nnt_data_center_old']['username'] = 'NNT-DB';
+$db['nnt_data_center_old']['password'] = '12345678';
 $db['nnt_data_center_old']['database'] = 'NNT_DataCenter_2';
 $db['nnt_data_center_old']['dbdriver'] = 'sqlsrv';
 

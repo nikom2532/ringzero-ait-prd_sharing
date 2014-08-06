@@ -13,38 +13,23 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		{ name: 'links' },
-		{ name: 'insert' },
+		// { name: 'insert' },
 		{ name: 'forms' },
 		{ name: 'tools' },
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 		{ name: 'others' },
-		'/',
+		// '/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-		{ name: 'styles' },
+		// { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		// { name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' }
+		
+		
+		// ['Source','-','Templates'],
+        // ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+        // ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+        // ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 	];
-	
-	/*
-	toolbar :
-		[
-			['Source','-','Save','NewPage','Preview','-','Templates'],
-			['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
-			['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-			['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
-			'/',
-			['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-			['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-			['Link','Unlink','Anchor'],
-			['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-			'/',
-			['Styles','Format','Font','FontSize'],
-			['TextColor','BGColor'],
-			['Maximize', 'ShowBlocks','-','About']
-		],
-	*/
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.

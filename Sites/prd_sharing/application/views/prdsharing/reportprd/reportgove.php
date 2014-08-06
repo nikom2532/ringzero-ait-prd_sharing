@@ -88,16 +88,16 @@
 								}
 							}
 						?>>เลือกสถานะ</option>
-						<option selected="selected" value="0" <?php
+						<option selected="selected" value="n" <?php
 							if(isset($post_SendIn_Status)){
-								if($post_SendIn_Status == "0"){
+								if($post_SendIn_Status == "n"){
 									?>selected='selected'<?php
 								}
 							}
 						?>>ไม่ได้เผยแพร่</option>
-						<option selected="selected" value="1" <?php
+						<option selected="selected" value="y" <?php
 							if(isset($post_SendIn_Status)){
-								if($post_SendIn_Status == "1"){
+								if($post_SendIn_Status == "y"){
 									?>selected='selected'<?php
 								}
 							}
@@ -215,10 +215,10 @@
 					</p>
 					<p class="col-1" style="width: 10%;float: left; text-align: center; ">
 <?php 
-						if($news_item->SendIn_Status == "1"){
+						if($news_item->SendIn_Status == "y"){
 							echo "เผยแพร่";
 						}
-						else if($news_item->SendIn_Status == "0" || $news_item->SendIn_Status = "" || $news_item->SendIn_Status == null || $news_item->SendIn_Status == "-1"){
+						else if($news_item->SendIn_Status == "n" || $news_item->SendIn_Status = "" || $news_item->SendIn_Status == null || $news_item->SendIn_Status == "-1"){
 							echo "ไม่ได้เผยแพร่";
 						}
 ?>
@@ -372,8 +372,7 @@
 		
 		var selectmenu_txt = $("#SendIn_Status").find("option:selected").text();
 			$("#SendIn_Status").prev("span").text(selectmenu_txt);
-    });
-    
+    }); 
     function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}

@@ -35,7 +35,7 @@ class Multiupload{
 	* @parameter : $_files [multiple images]
 	* @return : picture name as Array
 	*-------------------------------------------------------------------------------*/
-	public function do_upload(){ 
+	public function do_upload(){
 		$CI=& get_instance();
 		$CI->load->library('upload', $this->config);
 		

@@ -38,6 +38,7 @@ class PRD_Report_detail_GROV extends CI_Controller {
 				
 				$this->prd_report_detail_grov_model->set_gove($data['news']);
 				
+				$data['NT05_Policy'] = $this->prd_report_detail_grov_model->get_NT05_Policy();
 				$CI_stringManagement =& get_instance();
 				$CI_stringManagement->load->library('string_management');
 				$data["CI_stringManagement"] = $CI_stringManagement;

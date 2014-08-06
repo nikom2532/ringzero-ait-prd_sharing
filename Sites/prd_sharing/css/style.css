@@ -85,14 +85,6 @@ a {color: #666;}
 	cursor: pointer;
 }
 
-.bt_gray{
-	background-color: #D1D1D1;
-    color: #333;
-    border: 1px solid #D1D1D1;
-}
-.bt_gray:hover {
-	cursor: pointer;
-}
 
 #search-form{
     /*

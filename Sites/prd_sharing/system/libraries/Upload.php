@@ -196,7 +196,7 @@ class CI_Upload {
 		// Set the uploaded data as class variables
 		$this->file_temp = $_FILES[$field]['tmp_name'];
 		$this->file_size = $_FILES[$field]['size'];
-		$this->_file_mime_type($_FILES[$field]); //var_dump($this->file_type); die();
+		$this->_file_mime_type($_FILES[$field]);
 		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $this->file_type);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
 		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
@@ -237,8 +237,7 @@ class CI_Upload {
 		// Convert the file size to kilobytes
 		if ($this->file_size > 0)
 		{
-			// $this->file_size = round($this->file_size/1024, 2);
-			$this->file_size = $this->file_size/1024;
+			$this->file_size = round($this->file_size/1024, 2);
 		}
 
 		// Is the file size within the allowed maximum?

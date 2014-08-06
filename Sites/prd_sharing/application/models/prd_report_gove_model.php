@@ -259,6 +259,7 @@ class PRD_Report_GOVE_model extends CI_Model {
 			SELECT * from LIMIT WHERE RowNumber BETWEEN $start AND $end
 		";
 		
+		//echo $StrQuery;
 		$query = $this->db->
 			query($StrQuery)->result();
 		
@@ -274,13 +275,19 @@ class PRD_Report_GOVE_model extends CI_Model {
 		$SendIn_Status = ''
 	)
 	{
+		/*echo "News Title" .$news_title."<br/>";
+		echo "StartDate".$startdate."<br/>";
+		echo "EndDate".$enddate."<br/>";
+		echo "Ministry_ID".$Ministry_ID."<br/>";
+		echo "Department_ID".$Department_ID."<br/>";
+		echo "SendIn_Status".$SendIn_Status."<br/>";*/
 		$StrQuery = "
 			SELECT
 				COUNT((SendInformation.SendIn_ID)) AS NUMROW
 			FROM
 				SendInformation
 		";
-		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "")){
+		if(!($news_title == "" && $startdate == "" && $enddate == "" && $Ministry_ID == "" && $Department_ID == "" && $SendIn_Status == "")){
 			$StrQuery .= "
 				WHERE
 			";
@@ -372,6 +379,8 @@ class PRD_Report_GOVE_model extends CI_Model {
 					SendInformation.SendIn_Status = '".$SendIn_Status."'
 			";
 		}
+
+		//echo $StrQuery;
 		$query = $this->db->
 			query($StrQuery)->result();
 			
