@@ -8,61 +8,21 @@
 		</p></a>
 	</div>
 	<div class="row">
-		<div class="header-table" style="text-align: right;">
-			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right; cursor: pointer; " id="makeRss">
-		</div>
-<?php
-		//Start to count News's rows
-		// var_dump($news);
-		$countNews=0;
-		// var_dump($news);
-		foreach($news as $news_item):	
-?>
-			<div class="odd">
-				<p class="col-1" style="width: 18%; float: left; padding-left: 2%; "><?php
-					/*
-					if($news_item->NT01_UpdDate == ""){
-						foreach ($New_News as $New_News_item) {
-							if($New_News_item->News_OldID ==  $news_item->NT01_NewsID){
-								if($New_News_item->News_UpdateDate == ""){
-									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
-								}
-								else{
-									echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
-								}
-							}
-						}
-						// echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-					}
-					else{
-						foreach ($New_News as $New_News_item) {
-							if($New_News_item->News_OldID == $news_item->NT01_NewsID){
-								
-								if($New_News_item->News_UpdateDate == "" || $New_News_item->News_UpdateDate == null){
-									if($New_News_item->News_Date > $news_item->NT01_UpdDate){
-										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_Date));
-									}
-									else{
-										echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-									}
-								}
-								else{
-									if($New_News_item->News_UpdateDate > $news_item->NT01_UpdDate){
-										echo date("d/m/Y h:m:s", strtotime($New_News_item->News_UpdateDate));
-									}
-									else{
-										echo date("d/m/Y h:m:s", strtotime($news_item->NT01_UpdDate));
-									}
-								}
-								
-							}
-						}
-					}
-					*/
-					echo date("d/m/Y h:m:s", strtotime($news_item->NT01_NewsDate));
-				?></p>
-				<p class="col-2" style="width: 80%;float: left; ">
-<?php
+		<table width="100%">
+			<tr class="header-table" style="text-align: right;">
+				<td>
+					<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right; cursor: pointer; " id="makeRss">
+				</td>
+			</tr>
+			<?php
+				$countNews=0;
+				foreach ($news as $news_item) {
+			?>
+			<tr class="odd">
+				<td>
+					<p class="col-1" style="width: 18%; float: left; padding-left: 2%; "><?php echo date("d/m/Y h:m:s", strtotime($news_item->NT01_NewsDate));?></p>
+					<p class="col-2" style="width: 80%;float: left; ">
+			<?php
 					$i=0;
 					foreach ($New_News as $New_News_item) {
 						if(
@@ -89,12 +49,14 @@
 						echo $News_Title;
 						$i++;
 					}
-?>
+				?>
 				</p>
-			</div>
-			<div class="event">
-				<p class="col-1" style="width: 18%;float: left; padding-left: 2%; ">
-<?php
+				</td>
+			</tr>
+			<tr class="event">
+				<td>
+					<p class="col-1" style="width: 18%;float: left; padding-left: 2%; ">
+					<?php
 					foreach ($New_News as $New_News_item) {
 						if($New_News_item->News_OldID == $news_item->NT01_NewsID){
 							
@@ -133,7 +95,7 @@
 					for ($i=0; $i < $star_count_less; $i++) {
 						?><img src="<?php echo base_url(); ?>images/icon/star-off-big.png" width="16" />&nbsp;<?php
 					}
-?>
+				?>
 				</p>
 				<p class="col-2" style="width: 20%;float: left; ">
 					<img src="<?php echo base_url(); ?>images/icon/people.png" style="margin: -10px 10px 0;">
@@ -144,7 +106,7 @@
 						echo $views;
 				?></p>
 				<p class="col-4" style="width: 20%;float: left; ">
-					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>">open new link</a>
+					<a href="<?php echo base_url().index_page(); ?>detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>" target="_blank">open new link</a>
 				</p>
 				
 				<p class="col-5" style="width: 20%;float: left;  text-align: center;">
@@ -182,10 +144,24 @@
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 				</p>
-				
-			</div>
+				</td>
+			</tr>
+			<?php		
+				}
+			?>
+		</table>
+	</div>
 <?php
-			$countNews++;
+		//Start to count News's rows
+		// var_dump($news);
+		$countNews=0;
+		// var_dump($news);
+		foreach($news as $news_item):	
+?>
+			
+			
+<?php
+		$countNews++;
 		endforeach;
 		//End Count News's Row 
 		

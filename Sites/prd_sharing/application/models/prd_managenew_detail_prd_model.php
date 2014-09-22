@@ -265,14 +265,14 @@ class PRD_ManageNew_Detail_PRD_model extends CI_Model {
 			select('News.News_View')->
 			where('News_OldID', $NT01_NewsID)->
 			get('News');
-		
+		//var_dump($query2->result());
 		//For calculate the View
 		$News_View = $query2->result();
-		$News_View = ($News_View[0]->News_View);
+		$News_View = (@$News_View[0]->News_View);
 		$News_View += 1;
 		
 		$data = array(
-		   'News_View' => $News_View,
+		   'News_View' => @$News_View,
 		);
 		
 		$this->db->

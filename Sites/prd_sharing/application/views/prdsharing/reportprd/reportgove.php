@@ -123,52 +123,56 @@
 			Government Agencies
 		</p>
 	</div>
+
 	<div class="row" style="width: 1000px; overflow-y: hidden; overflow-x: auto; ">
-		<div class="header-table" style="text-align: right; width: 1400px; ">
-			<p class="col-1" style="width: 5%;float: left; ">
-				ลำดับที่
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				เลขที่ข่าว
-			</p>
-			<p class="col-1" style="width: 7%;float: left; ">
-				วันที่ข่าว
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				ประเดนข่าว
-			</p>
-			<p class="col-2" style="width: 20%;float: left; ">
-				เนื้อหาข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				ผู้เผยแพร่ข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				สถานะเผยแพร่
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				จำนวนผู้เข้าชม
-			</p>
-			<p class="col-2" style="width: 13%;float: left; ">
-				icon ไฟล์แนบ
-			</p>
-		</div>
-<?php
-		$i = 0;
-		// var_dump($news);
-		foreach($news as $news_item){
-			if($i % 2 == 0){
-				?><div class="odd" style="width: 1400px; "><?php
-			}
-			elseif($i % 2 == 1){
-				?><div class="event" style="width: 1400px; "><?php
-			}
-?>
+		<table width="140%">
+			<tr class="header-table" style="text-align: right; width: 1400px; ">
+				<td>
+					<p class="col-1" style="width: 5%;float: left; ">
+						ลำดับที่
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						เลขที่ข่าว
+					</p>
+					<p class="col-1" style="width: 7%;float: left; ">
+						วันที่ข่าว
+					</p>
+					<p class="col-2" style="width: 20%;float: left; ">
+						ประเดนข่าว
+					</p>
+					<p class="col-2" style="width: 20%;float: left; ">
+						เนื้อหาข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						ผู้เผยแพร่ข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						สถานะเผยแพร่
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						จำนวนผู้เข้าชม
+					</p>
+					<p class="col-2" style="width: 13%;float: left; ">
+						icon ไฟล์แนบ
+					</p>
+				</td>
+				<?php
+					$i = 0;
+					// var_dump($news);
+					foreach($news as $news_item){
+						if($i % 2 == 0){
+							?><tr class="odd" style="width: 1400px; "><?php
+						}
+						elseif($i % 2 == 1){
+							?><tr class="event" style="width: 1400px; "><?php
+						}
+					?>
+				<td>
 					<p class="col-1" style="width: 3.5%; padding-left:1.5%; float: left; ">
 						<?php echo $news_item->RowNumber; ?>
 					</p>
 					<p class="col-1" style="width: 10%; text-align: center; float: left; ">
-						<a href="<?php echo base_url().index_page(); ?>reportDetailGROV?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>reportDetailGROV?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>" target="_blank"><?php echo $news_item->SendIn_ID; ?></a>
 					</p>
 					<p class="col-1" style="width: 7%;float: left; ">
 <?php
@@ -296,10 +300,13 @@
 							}
 						?>.png" width="17" style="margin: -10px 10px 0;">
 					</p>
-			</div>
+				</td>
+			</tr>
+			<?php
+			$i++; 
+		}?>
+		</table>
 <?php
-			$i++;
-		}
 		if($i == 0){
 ?>
 			<div class="news-form" style="width: 1400px; padding: 15px 0; color: red; text-align: center;">ไม่มีข้อความ</div>

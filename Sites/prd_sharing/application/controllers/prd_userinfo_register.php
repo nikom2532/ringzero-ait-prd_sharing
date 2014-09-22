@@ -8,6 +8,7 @@ class PRD_UserInfo_Register extends CI_Controller {
 		// $this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->model('prd_userinfo_register_model');
+		$this->load->library('email');
 	}
 
 	public function index()
@@ -47,6 +48,22 @@ class PRD_UserInfo_Register extends CI_Controller {
 					$this->input->post('group_member'),
 					$this->input->post('mem_status')
 				);
+
+				$config['protocol'] = 'smtp';
+				$config['charset'] = 'utf-8';
+				$config['wordwrap'] = TRUE;
+				$config['smtp_host'] = "mail.aitinnovation.co.th";
+				$config['smtp_user'] = "no-reply@aitinnovation.co.th";
+				$config['smtp_pass'] = "shk,9v[";
+				$config['smtp_port'] = 25;
+
+				$this->email->initialize($config);
+				$this->email->set_newline("\r\n");
+				$this->email->from('no-reply@aitinnovation.co.th', 'Register email');
+				$this->email->to($this->input->post('mem_email')); 
+				$this->email->subject('Register email to logon PRDsharing');
+				$this->email->message('Waiting for admin to registering username to login');	
+				$this->email->send();
 				
 				redirect(base_url().index_page().'manageUserGOVE', 'refresh');
 				

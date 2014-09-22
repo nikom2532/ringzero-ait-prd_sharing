@@ -43,6 +43,24 @@ class PRD_rss_model extends CI_Model {
 			get('NT03_NewsSubType')->result();
 		return $query;
 	}
+
+	public function get_NT06_MoreType()
+	{
+		return $this->db_ntt_old->
+			get('NT06_MoreType')->result();
+	}
+
+	public function get_NT06_MoreType_Unique($NT03_SubTypeID = '')
+	{
+		$query = $this->db_ntt_old;
+		if($NT03_SubTypeID != ""){
+			$query = $query->
+				where('NT03_SubTypeID', $NT03_SubTypeID);
+		}
+		$query = $query->
+			get('NT06_MoreType')->result();
+		return $query;
+	}
 	
 	public function get_SC07_Department()
 	{
@@ -145,7 +163,8 @@ class PRD_rss_model extends CI_Model {
 					MAX(NT01_News.NT01_NewsID) AS NT01_NewsID, 
 					MAX(NT01_News.NT01_UpdDate) AS NT01_UpdDate, 
 					MAX(NT01_News.NT01_CreDate) AS NT01_CreDate, 
-					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle, 
+					MAX(NT01_News.NT01_NewsTitle) AS NT01_NewsTitle,
+					MAX(NT01_News.NT01_ViewCount) AS NT01_ViewCount,  
 					MAX(NT01_News.NT01_NewsSource) AS NT01_NewsSource,
 					MAX(NT01_News.NT01_NewsReferance) AS NT01_NewsReferance,
 					MAX(NT01_News.NT01_UpdUserID) AS NT01_UpdUserID,
@@ -257,6 +276,7 @@ class PRD_rss_model extends CI_Model {
 		$enddate = '',
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
+		$MoreTypeID = '',
 		$grov_active = '',
 		$ReporterID = '',
 		$Cate_OldID = ''
@@ -339,7 +359,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -348,7 +368,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -357,7 +377,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
@@ -374,6 +394,12 @@ class PRD_rss_model extends CI_Model {
 			$StrQuery .= "
 				AND
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($MoreTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT06_MoreTypeID = '".$MoreTypeID."'
 			";
 		}
 		if($grov_active != ""){
@@ -405,6 +431,7 @@ class PRD_rss_model extends CI_Model {
 		$enddate = '',
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
+		$MoreTypeID = '',
 		$grov_active = '',
 		$ReporterID = '',
 		$Cate_OldID = ''
@@ -469,7 +496,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -477,7 +504,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -485,7 +512,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
@@ -502,6 +529,12 @@ class PRD_rss_model extends CI_Model {
 			$StrQuery .= "
 				AND
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($MoreTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT06_MoreTypeID = '".$MoreTypeID."'
 			";
 		}
 		if($grov_active != ""){
@@ -612,7 +645,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -621,7 +654,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -630,7 +663,7 @@ class PRD_rss_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23)NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND

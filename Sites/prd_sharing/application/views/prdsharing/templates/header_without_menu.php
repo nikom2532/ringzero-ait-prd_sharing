@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>img/favicon.ico">
+    <!-- <link rel="shortcut icon" href="../favicon.ico">  -->
     
     <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     
@@ -57,7 +57,7 @@
 <body>
     <div class="container">
     <!-- HEADER -->
-        <div class="wrapper">
+        <div class="wrapper hide-print">
             <div class="bg-header">
                 <div id="header">
                     <div class="logo">
@@ -67,4 +67,4 @@
             </div>
         </div>
     <!-- Content -->
-        <div class="wrapper">
+        <div class="wrapper hide-print">

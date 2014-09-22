@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favicon.ico">
+    <!-- <link rel="shortcut icon" href="../favicon.ico">  -->
     
     <link href="<?php echo base_url(); ?>css/uploadfile.css" rel="stylesheet">
     
@@ -52,6 +52,9 @@
 	
 	<!-- player styling -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/flowplayer546/skin/minimalist.css">
+
+    <!-- print styling -->
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.printPage.js"></script>
     
 <?php
     if($title == "Sent News"){
@@ -61,9 +64,10 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/nnt_prdsharing.js"></script>
 </head>
 <body>
+
     <div class="container">
     <!-- HEADER -->
-        <div class="wrapper">
+        <div class="wrapper hide-print">
             <div class="bg-header">
                 <div id="header">
                     <div class="logo">
@@ -75,10 +79,10 @@
     <!-- Content -->
         <div class="wrapper">
             <div class="content">
-                <div class="welcome">
+                <div class="welcome hide-print">
                     <p><b style=" color: #0808A7;font-weight: bold;">Welcome to: </b><span style="color: #0404F5;"><?php echo $session_Mem_Title." ".$session_Mem_Name." ".$session_Mem_LasName; ?></span> | <a href="<?php echo base_url().index_page(); ?>logout">logout</a></p>
                 </div>
-                <div class="menu">
+                <div class="menu hide-print">
                     <ul>
                     	
                     	<!-- Read from the AuhenStatus -->

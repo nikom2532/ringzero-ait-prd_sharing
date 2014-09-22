@@ -8,6 +8,30 @@
 		box-shadow: 0 0 50px #222;
 	}
 </style>
+
+<!--media element script-->
+<script>
+$('audio,video').mediaelementplayer({
+	mode: 'shim',
+	success: function(player, node) {
+		$('#' + node.id + '-mode').html('mode: ' + player.pluginType);
+	}
+});
+
+</script>
+<script>
+$('#stopall').click(function() {
+    $('video, audio').each(function() {
+          $(this)[0].player.pause();		  
+    });
+});
+</script>
+<script>  
+  $(document).ready(function() {
+    $(".btnPrint").printPage();
+  });
+  </script>
+<!--end media element script-->
 <?php
     // .flowplayer { width: 400px; height: 20px; background-color: #000000; margin: 0px 0px 0px 0px;   }
 // 
@@ -54,7 +78,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-6 leftContainer" >
-					<div class="vdo" >
+					<div class="vdo hide-print" >
 						<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
 <?php
 						$file_count = 0;
@@ -83,7 +107,10 @@
 										<video src="<?php echo $url.$file->File_Name; ?>" type="video/mp4"></video>
 									</div>
 								</div>
-								<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+
+					
+
+								<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a class="hide-print" style="text-decoration:none; text-decoration:none; " href="<?php echo $url.$file->File_Name; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
 								$file_count++;
 								$LeftContainerCount++;
 							}
@@ -344,9 +371,14 @@
 						</p>
 					</div>
 				</div>
+				<br/><br/>
+					<div class="detail hide-print">
+						<a class="btnPrint" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>">Print&nbsp;<img src="<?php echo base_url();?>/images/print.png" width="24px;" hight="24px"></a>
+					</div>
 			</div>
 <?php
 		}
 ?>
+
 	</div>
 </div>

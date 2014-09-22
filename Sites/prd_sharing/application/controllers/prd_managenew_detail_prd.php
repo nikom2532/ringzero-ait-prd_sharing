@@ -7,12 +7,13 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('prd_managenew_detail_prd_model');
+		$this->load->model('download_m');
 	}
 
 	public function index()
 	{
 		//Check Is Authen?
-		// if($this->session->userdata('member_id') != ""){
+		//if($this->session->userdata('member_id') != ""){
 			
 			$data['member_id'] = $this->session->userdata('member_id');
 			$data['session_Mem_Username'] = $this->session->userdata('Mem_Username');
@@ -49,6 +50,9 @@ class PRD_ManageNew_detail_PRD extends CI_Controller {
 				$data['get_NT01_News_Voice'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
 				$data['get_NT01_News_OtherFile'] = $this->prd_managenew_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
 				
+				$data['path'] = "http://61.19.244.31/centerapp/UploadFiles/Video/";
+				$data['type'] = ".mp4";
+
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/managenew/detail_prd', $data);
 				$this->load->view('prdsharing/templates/footer');

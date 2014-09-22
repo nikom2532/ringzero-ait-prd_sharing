@@ -94,7 +94,7 @@ class PRD_manageInfo_Ministry extends CI_Controller {
 					
 					$data['post_minis_name'] = $this->input->post('minis_name');
 					$data['post_minis_status'] = $this->input->post('minis_status');
-					$data['post_manageinfo_ministry_is_search'] = $this->input->post($manageinfo_ministry_is_search);
+					$data['post_manageinfo_ministry_is_search'] = $this->input->post('manageinfo_ministry_is_search');
 				}
 				else{
 					$data['ministry'] = $this->prd_manageinfo_ministry_model->get_Ministry(

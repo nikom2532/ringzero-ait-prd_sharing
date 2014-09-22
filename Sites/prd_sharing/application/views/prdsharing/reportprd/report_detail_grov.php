@@ -21,9 +21,9 @@
 				$url = base_url()."Uploads\\";
 ?>
 			</div>
-			<div class="row">
+			<div class="row hide-print">
 				<div class="col-lg-6" >
-					<div class="vdo" >
+					<div class="vdo hide-print" >
 						<!-- <img src="<?php echo base_url(); ?>images/vdo/vdo.png" alt="vdo" style="width:100%;"> -->
 <?php
 						$file_count = 0;

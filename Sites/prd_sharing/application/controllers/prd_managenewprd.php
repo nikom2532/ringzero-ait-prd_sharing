@@ -93,6 +93,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
+							$this->input->post('MoreTypeID'),
 							$this->input->post('reporter_id'),
 							$checkDelete_News,
 							$NT01_NewsID_AttachmentFilter
@@ -119,6 +120,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
+							$this->input->post('MoreTypeID'),
 							$this->input->post('reporter_id'),
 							$checkDelete_News,
 							$NT01_NewsID_AttachmentFilter
@@ -135,6 +137,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data['post_filter_image'] = $this->input->post('filter_image');
 					$data['post_filter_other'] = $this->input->post('filter_other');
 					$data["post_managenewsprd_is_search"] = $this->input->post('managenewsprd_is_search');
+					$data['post_moretype_id'] = $this->input->post('MoreTypeID');
 				}
 				else{	//## No Search ##
 					$news = $this->prd_managenewprd_model->get_NT01_News(
@@ -157,6 +160,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 					$data['post_filter_image'] = "";
 					$data['post_filter_other'] = "";
 					$data["post_managenewsprd_is_search"] = "";
+					$data['post_moretype_id'] = "";
 				}
 				
 				$data['news'] = $news;
@@ -218,6 +222,7 @@ class PRD_ManageNewPRD extends CI_Controller {
 				
 				$data['NT02_NewsType'] = $this->prd_managenewprd_model->get_NT02_NewsType();
 				$data['NT03_NewsSubType'] = $this->prd_managenewprd_model->get_NT03_NewsSubType();
+				$data['NT06_MoreType'] = $this->prd_managenewprd_model->get_NT06_MoreType();
 				
 				
 				$this->load->view('prdsharing/templates/header', $data);

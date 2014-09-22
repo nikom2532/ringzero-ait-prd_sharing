@@ -84,43 +84,57 @@
 				</p></a>
 			</div>
 		</div>
-
 		<div class="row">
-			<div class="header-table">
-				<p class="col-1" style="width: 20%;float: left; ">
-					สถานะใช้งาน
-				</p>
-				<p class="col-2" style="width: 80%;float: left; ">
-					ประเภทข่าว
-				</p>
-			</div>
-<?php
+			<table width="100%">
+				<tr class="header-table">
+					<td>
+						<p class="col-1" style="width: 20%;float: left; ">
+							สถานะใช้งาน
+						</p>
+						<p class="col-2" style="width: 80%;float: left; ">
+							ประเภทข่าว
+						</p>
+					</td>
+				</tr>
+			<?php
 			// var_dump($category_old);
 			
 			$i=1;
 			foreach ($category_old as $catagory_old_item) {
 				if($i%2 == 1){
-					?><div class="odd"><?php
+					?><tr class="odd"><?php
 				}
 				else{
-					?><div class="event"><?php
+					?><tr class="event"><?php
 				}
-						$typeName = $catagory_old_item->NT02_TypeName;
+			?>
+			<td>
+			<?php
+				$typeName = $catagory_old_item->NT02_TypeName;
 						$tick = $catagory_old_item->NT02_Status;
 						
-?>
-						<span class="col-1" style="width: 20%;float: left; text-align: center;">
-							<input type="checkbox" name="cate_oldid" id="cate_oldid" onclick="set_Category_box('<?php echo $catagory_old_item->NT02_TypeID; ?>'); " value="<?php echo $catagory_old_item->NT02_TypeID; ?>" <?php
-								if($tick == "Y"){ ?>checked='checked'<?php } ?> />
-						</span>
-						<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
-							echo $typeName;
-						?></p>
-					</div>
-<?php
-				$i++;
-			}
-?>
+			?>
+				<span class="col-1" style="width: 20%;float: left; text-align: center;">
+					<input type="checkbox" name="cate_oldid" id="cate_oldid" onclick="set_Category_box('<?php echo $catagory_old_item->NT02_TypeID; ?>'); " value="<?php echo $catagory_old_item->NT02_TypeID; ?>" <?php
+						if($tick == "Y"){ ?>checked='checked'<?php } ?> />
+				</span>
+				<p class="col-2" style="width: 80%;float: left;text-align: center; "><?php
+					echo $typeName;
+				?></p>
+			</td>
+			</tr>
+			<?php
+				$i++; 
+			}?>
+
+			</table>
+			<?php
+			if($i == 1){
+			?>
+				<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
+			<?php
+				}
+			?>
 		</div>
 		
 		<div class="footer-table" style="background-color: inherit">

@@ -387,7 +387,7 @@ class PRD_HomePRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -396,7 +396,7 @@ class PRD_HomePRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -405,7 +405,7 @@ class PRD_HomePRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
@@ -493,7 +493,7 @@ class PRD_HomePRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -502,7 +502,7 @@ class PRD_HomePRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(

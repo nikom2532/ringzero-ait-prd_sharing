@@ -171,6 +171,7 @@ class PRD_reportPRD extends CI_Controller {
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
+							$this->input->post('MoreTypeID'),
 							$this->input->post('reporter_id'),
 							$NT01_NewsID_AttachmentFilter
 						);
@@ -229,6 +230,7 @@ class PRD_reportPRD extends CI_Controller {
 					$data['post_filter_sound'] = $this->input->post('filter_sound');
 					$data['post_filter_image'] = $this->input->post('filter_image');
 					$data['post_filter_other'] = $this->input->post('filter_other');
+					$data['post_moretype_id'] = $this->input->post('MoreTypeID');
 				}
 				else{	//## No Search ##
 					$news = $this->prd_report_prd_model->get_NT01_News($page, $row_per_page);
@@ -243,6 +245,7 @@ class PRD_reportPRD extends CI_Controller {
 					$data['post_filter_sound'] = "";
 					$data['post_filter_image'] = "";
 					$data['post_filter_other'] = "";
+					$data['post_moretype_id'] = "";
 				}
 				
 				if(isset($_POST["reportprd_is_search"])){
@@ -301,6 +304,7 @@ class PRD_reportPRD extends CI_Controller {
 				
 				$data['NT02_NewsType'] = $this->prd_report_prd_model->get_NT02_NewsType();
 				$data['NT03_NewsSubType'] = $this->prd_report_prd_model->get_NT03_NewsSubType();
+				$data['NT06_MoreType'] = $this->prd_report_prd_model->get_NT06_MoreType();
 				
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/reportprd/reportprd', $data);

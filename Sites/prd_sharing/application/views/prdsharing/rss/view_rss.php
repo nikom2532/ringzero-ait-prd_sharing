@@ -6,6 +6,7 @@
 	foreach($title as $titles)
 	{	
 		$t[$i] = $titles[0]->NT01_NewsTitle;
+		$u[$i] = $titles[0]->NT01_NewsDesc;
 		$i++;
 	}
 	foreach($query as $item)
@@ -13,7 +14,7 @@
 		$first_rss = '<?xml version="1.0" encoding="utf-8"?>';
 		$first_rss .= '<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0">';
 		$first_rss .= '<channel>';
-		$first_rss .= '<title>NNT News RSS/XML Feed</title>';
+		$first_rss .= '<title>NNT NEWS</title>';
 		$first_rss .= '<link>'.base_url().'rss/view_rss/'.$item->Main_RssID.'</link>';
 		$first_rss .= '<description>NNT News Feed</description>';
 		$first_rss .= '<a10:id>NNT News Feed</a10:id>';
@@ -25,10 +26,11 @@
 		$text_rss .= '</link>';
 		$text_rss .= '<title>'.$t[$j];
 		$text_rss .= '</title>';
-		/*$text_rss .= '<description>'.$item->Detail.'&lt;b&gt;ผู้สื่อข่าว : &lt;/b&gt;'.$item->Reporter;
-		$text_rss .= '&lt;br /&gt;&lt;b&gt;หน่วยงาน : &lt;/b&gt;'.$item->Department;
-		$text_rss .= '&lt;br /&gt;&lt;b&gt;ที่มาของข่าว :'.$item->Rewrite;
-		$text_rss .= ':&lt;/b&gt;';
+		
+		/*$text_rss .= '<description>';
+		$text_rss .= '<![CDATA[
+		'.$u[$j].'
+		]]>';
 		$text_rss .= '</description>';*/
 		// $text_rss .= '<a10:updated>'.date('c');
 		$text_rss .= '<a10:updated>'.$item->News_Date;

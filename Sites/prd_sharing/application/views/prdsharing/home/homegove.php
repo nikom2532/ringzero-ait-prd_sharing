@@ -8,42 +8,48 @@
 		</p>
 	</div>
 	<div class="row">
-		<div class="header-table" style="text-align: right;">
-			<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right; cursor: pointer; " id="makeRss">
-		</div>
-<?php
-		// var_dump($news); 
-		
-		$countNews=0;
-		//Start to count News's rows
-		foreach($news as $news_item){
-?>
-		<div class="odd">
-			<p class="col-1" style="width: 20%;float: left; "><?php
-				if($news_item->SendIn_UpdateDate != ""){
-					// echo $news_item->SendIn_CreateDate;
-					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
-				}
-				else{
-					// echo $news_item->SendIn_CreateDate;
-					echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
-				}
-				
-			?></p>
-			<p class="col-2" style="width: 80%;float: left; ">
-<?php 
-				// echo $news_item->SendIn_Issue; 
-				
-				$SendIn_Issue = $news_item->SendIn_Issue;
-				if(mb_strlen($SendIn_Issue)>=200){
-					$SendIn_Issue = mb_substr($SendIn_Issue, 0, 200, 'UTF-8')."...";
-				}
-				echo $SendIn_Issue;
-?>
-			</p>
-		</div>
-		<div class="event">
-			<p class="col-1" style="width: 20%;float: left; ">
+		<table width="100%">
+			<tr class="header-table" style="text-align: right;">
+				<td>
+					<img src="<?php echo base_url(); ?>images/rss.png" style="margin: 10px 10px 0;text-align: right; cursor: pointer; " id="makeRss">
+				</td>
+			</tr>
+			<?php
+				// var_dump($news); 
+			
+				$countNews=0;
+				//Start to count News's rows
+				foreach($news as $news_item){
+			?>
+			<tr class="odd">
+				<td>
+					<p class="col-1" style="width: 20%;float: left; "><?php
+						if($news_item->SendIn_UpdateDate != ""){
+							// echo $news_item->SendIn_CreateDate;
+							echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+						}
+						else{
+							// echo $news_item->SendIn_CreateDate;
+							echo date("d/m/Y h:m:s", strtotime($news_item->SendIn_CreateDate));
+						}
+						
+					?></p>
+					<p class="col-2" style="width: 80%;float: left; ">
+					<?php 
+						// echo $news_item->SendIn_Issue; 
+						
+						$SendIn_Issue = $news_item->SendIn_Issue;
+						if(mb_strlen($SendIn_Issue)>=200){
+							$SendIn_Issue = mb_substr($SendIn_Issue, 0, 200, 'UTF-8')."...";
+						}
+						echo $SendIn_Issue;
+					?>
+					</p>
+				</td>
+			</tr>
+			<tr class="event">
+				<td>
+					<p class="col-1" style="width: 20%;float: left; ">
 <?php
 				//Remove the star out
 				/*
@@ -85,7 +91,7 @@
 					echo $news_item->SendIn_view;
 			?></p>
 			<p class="col-4" style="width: 20%;float: left; ">
-				<a href="<?php echo base_url().index_page(); ?>detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>">open new link</a>
+				<a href="<?php echo base_url().index_page(); ?>detail_grov?sendinformation_id=<?php echo $news_item->SendIn_ID; ?>" target="_blank">open new link</a>
 			</p>
 			<p class="col-5" style="width: 20%;float: left;  text-align: center;">
 <?php
@@ -164,7 +170,22 @@
 					}
 				?>.png" width="17" style="margin: -10px 10px 0;">
 			</p>
-		</div>
+				</td>
+			</tr>
+			<?php
+				}
+			?>
+		</table>
+	</div>
+	<div class="row">
+<?php
+		// var_dump($news); 
+		
+		$countNews=0;
+		//Start to count News's rows
+		foreach($news as $news_item){
+?>
+		
 <?php
 		$countNews++;
 		//End Count News's Row 

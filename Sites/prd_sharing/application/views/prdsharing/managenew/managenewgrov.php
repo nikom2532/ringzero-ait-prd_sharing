@@ -139,43 +139,45 @@
 		</p>
 	</div>
 	<div class="row">
-		<div class="header-table" style="text-align: right;">
-			<!-- <p class="col-1" style="width: 6%;float: left; "></p> -->
-			<p class="col-2" style="width: 14%;float: left; ">
-				เลขที่ข่าว
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				สภานะ
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				ลบ
-			</p>
-			<p class="col-1" style="width: 46%;float: left; ">
-				ประเด็นประชาสัมพันธ์
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				วันที่
-			</p>
-			<p class="col-3" style="width: 20%;float: left; ">
-				Icon ไฟล์แนบ
-			</p>
-		</div>
-<?php
-	//Start to count News's rows
-	$i=0;
-	foreach($news as $news_item):
-		if($i % 2 == 0){
-			?><div class="odd"><?php
-		}
-		elseif($i % 2 == 1){
-			?><div class="event"><?php
-		}
-?>
-				<!-- <p class="col-1" style="width: 6%;float: left; ">
-					<?php //echo $i++; ?>
-				</p> -->
+		<table width="100%">
+			<tr class="header-table" style="text-align: right;">
+				<td>
+					<p class="col-2" style="width: 14%;float: left; ">
+					เลขที่ข่าว
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						สภานะ
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						ลบ
+					</p>
+					<p class="col-1" style="width: 46%;float: left; ">
+						ประเด็นประชาสัมพันธ์
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						วันที่
+					</p>
+					<p class="col-3" style="width: 20%;float: left; ">
+						Icon ไฟล์แนบ
+					</p>
+				</td>
+			</tr>
+			<?php
+				$i=0;
+				foreach($news as $news_item)
+				{
+					if($i % 2 == 0)
+					{
+						echo "<tr class='odd'>";
+					}
+					if($i % 2 != 0) {
+						echo "<tr class='event'>";
+					}
+					
+			?>
+			<td>
 				<p class="col-2" style="width: 14%;float: left; text-align: center; ">
-					<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>"><?php echo $news_item->SendIn_ID; ?></a>
+					<a href="<?php echo base_url().index_page(); ?>manageNewEditGROV?sendin_id=<?php echo $news_item->SendIn_ID; ?>" target="_blank"><?php echo $news_item->SendIn_ID; ?></a>
 				</p>
 				<p class="col-1" style="width: 5%;float: left; text-align: center; "><?php
 					if($news_item->SendIn_Status == "y"){
@@ -263,10 +265,16 @@
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 				</p>
-			</div>
+			</td>
+		</tr>
+		<?php
+			$i++;
+		}
+		?>
+		</table>
+	</div>
+	<div class="row">.
 <?php
-		$i++;
-	endforeach;
 	//End Count News's Row 
 	
 	if($i == 0){

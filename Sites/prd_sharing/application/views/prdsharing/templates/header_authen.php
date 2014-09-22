@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>img/favicon.ico">
+    <!-- <link rel="shortcut icon" href="../favicon.ico"> -->
     
 	<!-- <script src="<?php echo base_url(); ?>js/jqueryui/jquery-1.10.2.js"></script> -->
 	<script src="<?php echo base_url(); ?>js/jquery-1.8.3.min.js"></script>
@@ -24,6 +24,13 @@
     <link href="<?php echo base_url(); ?>css/reset.css" rel="stylesheet" charset="utf-8">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet" charset="utf-8">
     <script src="<?php echo base_url(); ?>js/ckeditor/ckeditor.js"></script>
+
+    <!--media element script-->
+    <script src="<?php echo base_url(); ?>assets/build/jquery.js"></script>  
+    <script src="<?php echo base_url(); ?>assets/build/mediaelement-and-player.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/build/mediaelementplayer.min.css" />
+    <!--end media element script-->
+
 <?php
     if($title == "Sent News"){
  	   ?><link rel="stylesheet" href="<?php echo base_url(); ?>css/sample.css"><?php

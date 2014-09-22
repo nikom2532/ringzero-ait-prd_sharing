@@ -47,6 +47,9 @@ class PRD_Report_detail_PRD extends CI_Controller {
 				$data['get_NT01_News_Voice'] = $this->prd_report_detail_prd_model->get_NT01_News_query_file3($this->input->get('news_id'));
 				$data['get_NT01_News_OtherFile'] = $this->prd_report_detail_prd_model->get_NT01_News_query_file4($this->input->get('news_id'));
 				
+				$data['path'] = "http://61.19.244.31/centerapp/UploadFiles/Video/";
+				$data['type'] = ".mp4";
+				
 				$this->load->view('prdsharing/templates/header', $data);
 				$this->load->view('prdsharing/reportprd/report_detail_prd', $data);
 				$this->load->view('prdsharing/templates/footer');

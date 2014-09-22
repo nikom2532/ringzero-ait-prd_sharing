@@ -10,7 +10,7 @@ class PRD_rss_old_model extends CI_Model {
 	public function get_news_gove($newsid)
 	{
 	 	$query = "
-			SELECT * 
+			SELECT TOP 10 * 
 			FROM SendInformation
 			WHERE SendInformation.SendIn_ID = '$newsid';";
 		return $this->db->query($query)->result();

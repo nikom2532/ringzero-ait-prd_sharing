@@ -8,13 +8,17 @@
 		box-shadow: 0 0 50px #222;
 	}
 </style>
-
+<script type="text/javascript">  
+  $(document).ready(function() {
+  	$(".btnPrint").printPage();
+  });
+</script>
 <div class="content">
 	<div id="detail-form">
 		<div class="row">
 			<?php $LeftContainerCount=0; ?>
 			<div class="col-lg-6" id="leftContainer">
-				<div class="vdo">
+				<div class="vdo hide-print">
 					
 					
 					<!-- For Test video  -->
@@ -44,15 +48,28 @@
 					//ไม่มี File Video
 					foreach ($get_NT01_News_videos as $videos) {
 						if($videos->Url != ""){
-?>
+							$video = $videos->Url;
+							if (strlen($video) > 115)
+							{
+								$video_name = substr($video,-40,-4);
+								$video_date = substr($video,-51,-41)."/Mobile/";
+							}
+							else
+							{
+								$video_name = substr($video,-24,-4);
+								$video_date = substr($video,-35,-25)."/Mobile/";
+							}
+							//echo $path.$video_name.$type;
+?>					
 							<!-- <script src="//embed.flowplayer.org/5.4.6/embed.min.js"> -->
 							<script src="<?php echo base_url(); ?>js/flowplayer546_embed.min.js">
 								<div class="flowplayer" style="width: 461px; height: 358px;">
 									<video>
-										<source type="video/webm" src="<?php echo $videos->Url; ?>" type="video/mp4">
+										<source type="video/mp4" src="<?php echo $path.$video_date.$video_name.$type; ?>" type="video/mp4">
 									</video>
 								</div>
 							</script>
+
 							
 							<?php /* <video width="461" height="358" controls autoplay>
 								<source src="http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl=<?php echo $videos->Url; ?>" type="video/mp4">
@@ -71,7 +88,12 @@
 					foreach ($get_NT01_News_videos as $videos) {
 						// echo $videos->Url;
 						if($videos->Url != ""){
-							?><div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div><?php
+							?><!--<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; "><a class="hide-print" style="text-decoration:none; text-decoration:none; " href="<?php echo $videos->Url; ?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a></div>-->
+							<div class="voice-list" style="width: 100%;float: left;margin-top: 30px; text-align: right; margin-bottom: 15px; ">
+							<?php if($member_id != ""){;?>
+								<a class="hide-print" style="text-decoration:none; text-decoration:none; " href="<?php echo base_url().index_page()."download/download_video?file=". $videos->Url; ?>&newsid=<?php echo $_GET['news_id'];?>">Download Video &nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png"></a>
+							<?php }?>
+							</div><?php
 							$LeftContainerCount++;
 						}
 					}
@@ -115,7 +137,10 @@
 									</audio>
 									</script> -->
 									
-									<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo $voice->Url; ?>">
+									<!--<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo $voice->Url; ?>">-->
+									<?php if($member_id != ""){;?>
+									<a id="mb" style="display:block;width:482;height:30px;" href="<?php echo base_url().index_page()."download/download_audio?file=". $voice->Url; ?>&newsid=<?php echo $_GET['news_id'];?>">
+									<?php }?>
 										<object width="100%" height="100%" id="mb_api" name="mb_api" data="http://releases.flowplayer.org/swf/flowplayer-3.2.18.swf" type="application/x-shockwave-flash">
 											<param name="allowfullscreen" value="true">
 											<param name="allowscriptaccess" value="always">
@@ -176,7 +201,8 @@
 							if($voice_count == 0){
 								?><div class="otherfiles-list" style="margin-top: 30px; text-align: right; "><?php
 							}
-									?><a href="<?php echo $OtherFile->Url; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->FileName; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php
+									?><?php if($member_id != ""){;?><a href="<?php echo base_url().index_page()."download/download_otherfile?file=". $OtherFile->Url; ?>&newsid=<?php echo $_GET['news_id'];?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->FileName; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a><?php }?>
+									<!--<a href="<?php echo $OtherFile->Url; ?>" style="text-decoration:none;text-decoration:none; "><?php echo $OtherFile->FileName; ?>&nbsp;&nbsp;<img src="<?php echo base_url(); ?>images/icon/download.png" ></a>--><?php
 							if($voice_count == 0){
 								?></div><?php
 							}
@@ -272,6 +298,10 @@
 <?php
 				}
 ?>
+			<br/><br/>
+					<div class="detail hide-print">
+						<a class="btnPrint" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>">Print&nbsp;<img src="<?php echo base_url();?>/images/print.png" width="24px;" hight="24px"></a>
+					</div>
 			</div>
 		</div>
 	</div>

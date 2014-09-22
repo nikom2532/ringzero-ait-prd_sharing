@@ -69,39 +69,43 @@
 				<input class="bt" type="submit" value="เพิ่ม" name="share" style="padding: 4px;float: right; width: 10%;" onclick="location.href='infoDepartmentNew'; ">
 			</div>
 		</div>
-
+		
 		<div class="row" style="text-align: center;">
-			<div class="header-table">
-				<p class="col-1" style="width: 5%;float: left; ">
-					ลำดับที่
-				</p>
-				<p class="col-2" style="width: 5%;float: left; ">
-					ลบ
-				</p>
-				<p class="col-2" style="width: 20%;float: left; ">
-					รหัสกรม
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกระทรวง
-				</p>
-				<p class="col-3" style="width: 30%;float: left; ">
-					ชื่อกรม
-				</p>
-				<p class="col-3" style="width: 10%;float: left; ">
-					สถานะใช้งาน
-				</p>
-			</div>
-<?php
-			$i = 1;
-			foreach ($department as $department_item) {
-				
-				if($i%2 == 1){
-					?><div class="odd" style="text-align: center;"><?php
-				}
-				else{
-					?><div class="event"><?php
-				}
-?>
+			<table width="100%">
+				<tr class="header-table">
+					<td>
+						<p class="col-1" style="width: 5%;float: left; ">
+							ลำดับที่
+						</p>
+						<p class="col-2" style="width: 5%;float: left; ">
+							ลบ
+						</p>
+						<p class="col-2" style="width: 20%;float: left; ">
+							รหัสกรม
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							ชื่อกระทรวง
+						</p>
+						<p class="col-3" style="width: 30%;float: left; ">
+							ชื่อกรม
+						</p>
+						<p class="col-3" style="width: 10%;float: left; ">
+							สถานะใช้งาน
+						</p>
+					</td>
+				</tr>
+				<?php
+					$i = 1;
+					foreach ($department as $department_item) {
+						
+						if($i%2 == 1){
+							?><tr class="odd" style="text-align: center;"><?php
+						}
+						else{
+							?><tr class="event" style="text-align: center;"><?php
+						}
+				?>
+					<td>
 						<p class="col-1" style="width: 5%;float: left; ">
 							<?php echo $i; ?>
 						</p>
@@ -140,10 +144,15 @@
 							}
 ?>
 						</p>
-					</div>
-<?php
+					</td>
+				</tr>
+				<?php
 				$i++;
 			}
+			?>
+			</table>
+
+<?php
 			if($i == 1){
 ?>
 				<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>

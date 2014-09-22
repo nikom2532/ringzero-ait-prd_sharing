@@ -80,45 +80,46 @@
 
 	</div>
 	<div class="row">
-		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 5%;float: left; "></p>
-			<p class="col-2" style="width: 10%;float: left; ">
-				Username
-			</p>
-			<p class="col-3" style="width: 20%;float: left; ">
-				ชื่อ-นามสกุล
-			</p>
-			<p class="col-4" style="width: 10%;float: left; ">
-				วันที่สมัคร
-			</p>
-			<p class="col-5" style="width: 15%;float: left; ">
-				กระทรวง
-			</p>
-			<p class="col-5" style="width: 15%;float: left; ">
-				กรม
-			</p>
-			<p class="col-6" style="width: 15%;float: left; ">
-				จังหวัด
-			</p>
-			<p class="col-7" style="width: 10%;float: left; ">
-				สถานะการใช้งาน
-			</p>
-		</div>
-<?php
-		$i=1;
-		
-		// var_dump($SC03_User);
-		
-		foreach ($Member as $Member_item) {
+	<table width="100%">
+		<tr class="header-table" style="text-align: right;">
+			<td>
+				<p class="col-1" style="width: 5%;float: left; "></p>
+				<p class="col-2" style="width: 10%;float: left; ">
+					Username
+				</p>
+				<p class="col-3" style="width: 20%;float: left; ">
+					ชื่อ-นามสกุล
+				</p>
+				<p class="col-4" style="width: 10%;float: left; ">
+					วันที่สมัคร
+				</p>
+				<p class="col-5" style="width: 15%;float: left; ">
+					กระทรวง
+				</p>
+				<p class="col-5" style="width: 15%;float: left; ">
+					กรม
+				</p>
+				<p class="col-6" style="width: 15%;float: left; ">
+					จังหวัด
+				</p>
+				<p class="col-7" style="width: 10%;float: left; ">
+					สถานะการใช้งาน
+				</p>
+			</td>
+		</tr>
+		<?php
+					$i=1;
+					foreach ($Member as $Member_item) {
 			
-			if($i % 2 == 1){
-				?><div class="odd"><?php
-			}
-			else{
-				?><div class="event"><?php
-			}
-?>
-					<a href="<?php echo base_url().index_page(); ?>userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>">
+					if($i % 2 == 1){
+						?><tr class="odd"><?php
+					}
+					if($i % 2 != 1) {
+						?><tr class="event"><?php
+					}
+					?>
+				<td>
+					<a href="<?php echo base_url().index_page(); ?>userInfo_GOVE?userid=<?php echo $Member_item->Mem_ID; ?>" target="_blank">
 						<p class="col-1" style="width: 5%;float: left; text-align: center; ">
 							<?php echo $i; ?>
 						</p>
@@ -201,10 +202,15 @@
 ?>
 						</p>
 					</a>
-				</div>
-<?php
+				</td>
+			</tr>
+		<?php
 			$i++;
 		}
+		?>
+	</table>
+	</div>
+<?php
 		if($i == 1){
 ?>
 			<div class="news-form" style="color: red; text-align: center;">ไม่พบข้อมูล</div>

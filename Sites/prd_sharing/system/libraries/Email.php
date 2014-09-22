@@ -1330,7 +1330,8 @@ class CI_Email {
 			// reset our temp variable, and keep on chuggin'
 			if ((strlen($temp) + strlen($char)) >= $limit)
 			{
-				$output .= $temp.$this->crlf;
+				//$output .= $temp.$this->crlf;
+				$output .= $temp."\n";
 				$temp = '';
 			}
 
@@ -1344,7 +1345,8 @@ class CI_Email {
 		// the preceding space on successive lines is required for header "folding"
 		$str = trim(preg_replace('/^(.*)$/m', ' =?'.$this->charset.'?Q?$1?=', $str));
 
-		return $str;
+		//return $str;
+		return str_replace(array("\n"), array("\r\n"), $str);
 	}
 
 	// --------------------------------------------------------------------

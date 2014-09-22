@@ -20,7 +20,7 @@
    font-weight: normal;
    font-style: normal;
 }
-
+@media screen{
 body{
     font-family: Tahoma, Arial, 'Times new roman';
     font-size: 13px;
@@ -85,6 +85,14 @@ a {color: #666;}
 	cursor: pointer;
 }
 
+.bt_gray{
+	background-color: #D1D1D1;
+    color: #333;
+    border: 1px solid #D1D1D1;
+}
+.bt_gray:hover {
+	cursor: pointer;
+}
 
 #search-form{
     /*
@@ -481,4 +489,14 @@ a {color: #666;}
    /* position: absolute; */
     width: 280px;
     height:32px;
+}
+}
+
+@media print {
+.hide-print{
+	display: none;
+}
+.display-print{
+	display:none;
+}
 }

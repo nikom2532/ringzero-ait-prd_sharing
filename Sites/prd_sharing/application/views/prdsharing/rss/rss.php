@@ -70,7 +70,30 @@
 						</span>
 					</div>
 				</div>
-				
+
+			<div class="row">
+				<div class="col-lg-6">
+					<label>หมวดหมู่ข่าวเพิ่มเติม</label>
+					<span class="select-menu">
+						<span>เลือกหมวดหมู่ข่าวเพิ่มเติม</span>
+						<select name="MoreTypeID" id="MoreTypeID" class="form-control" style="width: 100%;">
+							<option value="">เลือกหมวดหมู่ข่าวเพิ่มเติม</option><?php
+							foreach ($NT06_MoreType as $MoreType_item) {
+									// if($newType_item->NT02_TypeID == $post_News_type_id){
+										?><option value="<?php echo $MoreType_item->NT06_MoreTypeID; ?>" <?php
+											
+											if($MoreType_item->NT06_MoreTypeID == $post_moretype_id){
+												?>selected='selected'<?php
+											}
+											
+										?>><?php echo $MoreType_item->NT06_MoreTypeName; ?></option><?php
+									// }
+								}
+							?></select>
+					</span>
+				</div>	
+			</div>	
+
 				<?php //var_dump($NT03_NewsSubType); ?>
 				
 				<div class="row">
@@ -140,33 +163,37 @@
 				vertical-align: baseline;width:50%">
 			</div>
 		</div>
-
 		<div class="row">
-			<div class="header-table">
-				<p class="col-1" style="width: 15%;float: left; ">
-					
-				</p>
-				<p class="col-2" style="width: 10%;float: left; text-align: left; ">
-					วันที่ข่าว
-				</p>
-				<p class="col-3" style="width: 55%;float: left; ">
-					หัวข้อข่าว
-				</p>
-				<p class="col-4" style="width: 20%;float: left; ">
-					Icon ไฟล์แนบ
-				</p>
-			</div>
-<?php
-		//Start to count News's rows
-		$i=0;
-		foreach($news as $news_item){
-			if($i % 2 == 0){
-				?><div class="odd"><?php
-			}
-			elseif($i % 2 == 1){
-				?><div class="event"><?php
-			}
-?>
+			<table width="100%">
+				<tr class="header-table">
+					<td>
+						<p class="col-1" style="width: 15%;float: left; ">
+						</p>
+						<p class="col-2" style="width: 10%;float: left; text-align: left; ">
+							วันที่ข่าว
+						</p>
+						<p class="col-3" style="width: 55%;float: left; ">
+							หัวข้อข่าว
+						</p>
+						<p class="col-4" style="width: 20%;float: left; ">
+							Icon ไฟล์แนบ
+						</p>
+					</td>
+				</tr>
+				<?php
+					$i=0;
+					foreach($news as $news_item)
+					{
+						if($i % 2 == 0)
+						{
+							echo "<tr class='odd'>";
+						}
+						if($i % 2 != 0) {
+							echo "<tr class='event'>";
+						}
+						$i++;
+				?>
+				<td>
 					<p class="col-1" style="width: 15%;float: left; ">
 						<?php echo $news_item->NT01_NewsID; ?>
 					</p>
@@ -177,7 +204,7 @@
 ?>
 					</p>
 					<p class="col-3" style="width: 55%;float: left; ">
-						<a href="<?php echo base_url().index_page(); ?>rss_detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php 
+						<a href="<?php echo base_url().index_page(); ?>rss_detail_prd?news_id=<?php echo $news_item->NT01_NewsID; ?>" target="_blank"><?php 
 						$News_Title = $news_item->NT01_NewsTitle;
 						if(mb_strlen($News_Title)>=150){
 							$News_Title = mb_substr($News_Title, 0, 150, 'UTF-8')."...";
@@ -221,11 +248,12 @@
 						}
 					?>.png" width="17" style="margin: -10px 10px 0;">
 					</p>
-				</div>
+				</td>
+				</tr>
+				<?php }?>
+			</table>
+		</div>
 <?php
-			$i++;
-		}
-		//End Count News's Row 
 		
 		if($i == 0){
 ?>
@@ -374,7 +402,7 @@
 			{
 				// var a = JSON.parse(subtype);
 				$('#NewsSubTypeID').empty();
-				
+
 				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวย่อย</option>";
 				$('#NewsSubTypeID').append(text);
 				
@@ -389,9 +417,47 @@
 				
 			} //end success
 		}); //end AJAX
+
+		
 	}); //end change 
 	
 	
+	$('select#NewsSubTypeID').change(function(){
+		// debugger;
+	    var type_id = $('select#NewsSubTypeID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url().index_page(); ?>prd_rss/get_NT03_SubTypeID/" + type_id;
+		}
+		else{
+			var post_url = "<?php echo base_url().index_page(); ?>prd_rss/get_NT03_SubTypeID/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(moretype)
+			{
+				// var a = JSON.parse(subtype);
+				$('#MoreTypeID').empty();
+				
+				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวเพิ่มเติม</option>";
+				$('#MoreTypeID').append(text);
+				
+				$.each(moretype,function(index,val)
+				{
+					var text = ""+
+					"<option value=\""+val.NT06_MoreTypeID+"\">"+val.NT06_MoreTypeName+"</option>";
+					$('#MoreTypeID').append(text);
+				});
+				var selectmenu_txt = $("#MoreTypeID").find("option:selected").text();
+				$("#MoreTypeID").prev("span").text(selectmenu_txt);
+				
+			} //end success
+		}); //end AJAX
+	}); //end change 
+
 	$('select#grov_active').change(function(){
 		// debugger;
 	    var grov_active = $('select#grov_active').val();
@@ -448,7 +514,8 @@
 			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
 		selectmenu_txt = $("#grov_active").find("option:selected").text();
 			$("#grov_active").prev("span").text(selectmenu_txt);
-        
+        selectmenu_txt = $("#MoreTypeID").find("option:selected").text();
+				$("#MoreTypeID").prev("span").text(selectmenu_txt);
         
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();

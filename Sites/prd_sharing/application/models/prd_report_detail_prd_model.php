@@ -157,6 +157,7 @@ class PRD_Report_Detail_PRD_model extends CI_Model {
 		$query_file1 = $this->db_ntt_old->
 			select("
 				NT10_VDO.NT10_VDOName AS FileName,
+				NT10_VDOID,
 				'http://thainews.prd.go.th/centerapp/Common/GetFile.aspx?FileUrl='+NT10_VDO.NT10_VDOPath AS Url,
 				NT10_VDO.NT10_Extension,
 				NT10_VDO.NT10_FileStatus,

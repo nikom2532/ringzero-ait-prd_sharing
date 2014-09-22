@@ -72,6 +72,28 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-lg-6">
+				<label>หมวดหมู่ข่าวเพิ่มเติม</label>
+					<span class="select-menu">
+						<span>เลือกหมวดหมู่ข่าวเพิ่มเติม</span>
+						<select name="MoreTypeID" id="MoreTypeID" class="form-control" style="width: 100%;">
+							<option value="">เลือกหมวดหมู่ข่าวเพิ่มเติม</option><?php
+							foreach ($NT06_MoreType as $MoreType_item) {
+									// if($newType_item->NT02_TypeID == $post_News_type_id){
+										?><option value="<?php echo $MoreType_item->NT06_MoreTypeID; ?>" <?php
+											
+											if($MoreType_item->NT06_MoreTypeID == $post_moretype_id){
+												?>selected='selected'<?php
+											}
+											
+										?>><?php echo $MoreType_item->NT06_MoreTypeName; ?></option><?php
+									// }
+								}
+							?></select> 
+					</span>
+			</div>
+		</div>	
+		<div class="row">
 			<!-- <div class="col-lg-6">
 				<div style="float: left;width: 30%;">
 					<label style="width: 100%;" >ผู้สื่อข่าว</label>
@@ -162,50 +184,57 @@
 			Government Agencies
 		</p></a>
 	</div>
+
 	<div class="row">
-		<div class="header-table" style="text-align: right;">
-			<p class="col-1" style="width: 4%; padding-left: 1%; float: left; "></p>
-			<p class="col-2" style="width: 16%;float: left; ">
-				เลขที่ข่าว
-			</p>
-			<p class="col-1" style="width: 4%;float: left; ">
-				สถานะ
-			</p>
-			<p class="col-1" style="width: 5%;float: left; ">
-				ลบ
-			</p>
-			<p class="col-1" style="width: 30%;float: left; ">
-				หัวข้อข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				วันที่ข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				แหล่งข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				สายข่าว
-			</p>
-			<p class="col-1" style="width: 10%;float: left; ">
-				ผู้สื่อข่าว
-			</p>
-		</div>
-<?php
-		//Start to count News's rows
-		$i=0;
-		foreach($news as $news_item){
-			if($i % 2 == 0){
-				?><div class="odd"><?php
-			}
-			elseif($i % 2 == 1){
-				?><div class="event"><?php
-			}
-?>
+		<table width="100%">
+			<tr class="header-table" style="text-align: right;">
+				<td>
+					<p class="col-1" style="width: 4%; padding-left: 1%; float: left; "></p>
+					<p class="col-2" style="width: 16%;float: left; ">
+						เลขที่ข่าว
+					</p>
+					<p class="col-1" style="width: 4%;float: left; ">
+						สถานะ
+					</p>
+					<p class="col-1" style="width: 5%;float: left; ">
+						ลบ
+					</p>
+					<p class="col-1" style="width: 30%;float: left; ">
+						หัวข้อข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						วันที่ข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						แหล่งข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						สายข่าว
+					</p>
+					<p class="col-1" style="width: 10%;float: left; ">
+						ผู้สื่อข่าว
+					</p>
+				</td>
+			</tr>
+				<?php
+					$i=0;
+					foreach($news as $news_item)
+					{
+						if($i % 2 == 0)
+						{
+							echo "<tr class='odd'>";
+						}
+						if($i % 2 != 0) {
+							echo "<tr class='event'>";
+						}
+						
+				?>
+				<td>
 					<p class="col-1" style="width: 4%; padding-left: 1%; float: left; word-wrap: break-word;">
 						<?php echo $news_item->RowNumber; ?>
 					</p>
 					<p class="col-2" style="width: 16%;float: left; word-wrap: break-word; text-align: center; ">
-						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>"><?php echo $news_item->NT01_NewsID; ?></a>
+						<a href="<?php echo base_url().index_page(); ?>manageNewEditPRD?news_id=<?php echo $news_item->NT01_NewsID; ?>" target="_blank"><?php echo $news_item->NT01_NewsID; ?></a>
 					</p>
 					<p class="col-1" style="width: 4%;float: left; word-wrap: break-word; text-align: center; "><?php 
 						$iNews_StatusPublic = 0;
@@ -418,12 +447,17 @@
 							// echo $news_item->NT01_UpdUserID;
 						// }
 					?></p>
-				</div>
+				</td>
+				<?php
+					$i++;
+				}
+				?>
+			</tr>
+		</table>
+	</div>
+
 <?php
-			$i++;
-		}
-		//End Count News's Row 
-		
+		//End Count News's Row 		
 		if($i == 0){
 ?>
 			<div class="news-form" style="color: red; text-align: center;">ไม่มีข้อความ</div>
@@ -506,6 +540,9 @@
 			
 		var selectmenu_txt = $("#NewsSubTypeID").find("option:selected").text();
 			$("#NewsSubTypeID").prev("span").text(selectmenu_txt);
+			
+		var selectmenu_txt = $("#MoreTypeID").find("option:selected").text();
+			$("#MoreTypeID").prev("span").text(selectmenu_txt);
         
         $(".select-menu > select").live("change",function(){
             var selectmenu_txt = $(this).find("option:selected").text();
@@ -513,6 +550,43 @@
         });
         
     });
+
+	$('select#NewsSubTypeID').change(function(){
+		// debugger;
+	    var type_id = $('select#NewsSubTypeID').val();
+		if (type_id != ""){
+			var post_url = "<?php echo base_url().index_page(); ?>prd_rss/get_NT03_SubTypeID/" + type_id;
+		}
+		else{
+			var post_url = "<?php echo base_url().index_page(); ?>prd_rss/get_NT03_SubTypeID/";
+		}
+		// debugger;
+		// alert(post_url);
+		$.ajax({
+			type: "POST",
+			url: post_url,
+			dataType :'json',
+			success: function(moretype)
+			{
+				// var a = JSON.parse(subtype);
+				$('#MoreTypeID').empty();
+				
+				var text = "<option value=\"\">เลือกหมวดหมู่ข่าวเพิ่มเติม</option>";
+				$('#MoreTypeID').append(text);
+				
+				$.each(moretype,function(index,val)
+				{
+					var text = ""+
+					"<option value=\""+val.NT06_MoreTypeID+"\">"+val.NT06_MoreTypeName+"</option>";
+					$('#MoreTypeID').append(text);
+				});
+				var selectmenu_txt = $("#MoreTypeID").find("option:selected").text();
+				$("#MoreTypeID").prev("span").text(selectmenu_txt);
+				
+			} //end success
+		}); //end AJAX
+	}); //end change
+
 	function jump_page(val){
 		location='<?php echo $jump_url; ?>/'+val;
 	}

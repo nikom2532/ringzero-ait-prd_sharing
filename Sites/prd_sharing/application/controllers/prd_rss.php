@@ -52,6 +52,7 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
+							$this->input->post('MoreTypeID'),
 							$this->input->post('grov_active'),
 							$this->input->post('reporter_id'),
 							$category
@@ -64,6 +65,7 @@ class PRD_rss extends CI_Controller {
 							$this->input->post('end_date'),
 							$this->input->post('NewsTypeID'),
 							$this->input->post('NewsSubTypeID'),
+							$this->input->post('MoreTypeID'),
 							$this->input->post('grov_active'),
 							$this->input->post('reporter_id'),
 							$category
@@ -79,6 +81,7 @@ class PRD_rss extends CI_Controller {
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
 					$data['post_rss_is_search'] = $this->input->post('rss_is_search');
+					$data['post_moretype_id'] = $this->input->post('MoreTypeID');
 				}
 				else{	//## No Search ##
 					$data['news'] = $this->prd_rss_model->get_NT01_News(
@@ -97,6 +100,7 @@ class PRD_rss extends CI_Controller {
 					$data['post_grov_active'] = $this->input->post('grov_active');
 					$data['post_reporter_id'] = $this->input->post('reporter_id');
 					$data['post_rss_is_search'] = "";
+					$data['post_moretype_id'] = $this->input->post('MoreTypeID');
 				}
 				
 				//############## Pagination = For no Search ################
@@ -141,6 +145,7 @@ class PRD_rss extends CI_Controller {
 				
 				$data['NT02_NewsType'] = $this->prd_rss_model->get_NT02_NewsType();
 				$data['NT03_NewsSubType'] = $this->prd_rss_model->get_NT03_NewsSubType();
+				$data['NT06_MoreType'] = $this->prd_rss_model->get_NT06_MoreType();
 				
 	
 				$this->load->view('prdsharing/templates/header', $data);
@@ -214,6 +219,23 @@ class PRD_rss extends CI_Controller {
 		$this->load->view('prdsharing/rss/view_rss',$data);
 	}
 	
+	public function testxml()
+	{
+		$this->load->view('prdsharing/rss/testxml.php');
+	}
+
+	public function get_NT02_TypeID($NT02_TypeID='')
+	{
+		$_data = $this->prd_rss_model->get_NT03_NewsSubType_Unique($NT02_TypeID);
+		echo json_encode($_data);
+	}
+
+	public function get_NT03_SubTypeID($NT03_SubTypeID='')
+	{
+		$_data = $this->prd_rss_model->get_NT06_MoreType_Unique($NT03_SubTypeID);
+		echo json_encode($_data);
+	}
+
 	public function get_SC03_User_Unique($Department_ID='')
 	{
 		$_data = $this->prd_rss_model->get_SC03_User_Unique($Department_ID);

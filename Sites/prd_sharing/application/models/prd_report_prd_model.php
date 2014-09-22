@@ -20,6 +20,11 @@ class PRD_Report_PRD_model extends CI_Model {
 			// LIMIT('20,0')->	
 			get('NT03_NewsSubType')->result();
 	}
+	public function get_NT06_MoreType()
+	{
+		return $this->db_ntt_old->
+			get('NT06_MoreType')->result();
+	}
 	public function get_NT03_NewsSubType_Unique($NT02_TypeID = '')
 	{
 		$query = $this->db_ntt_old;
@@ -30,6 +35,19 @@ class PRD_Report_PRD_model extends CI_Model {
 		}
 		$query = $query->
 			get('NT03_NewsSubType')->result();
+		return $query;
+	}
+
+	public function get_NT06_MoreType_Unique($NT03_SubTypeID = '')
+	{
+		$query = $this->db_ntt_old;
+			// LIMIT('20,0')->
+		if($NT03_SubTypeID != ""){
+			$query = $query->
+				where('NT03_SubTypeID', $NT03_SubTypeID);
+		}
+		$query = $query->
+			get('NT06_MoreType')->result();
 		return $query;
 	}
 	
@@ -479,6 +497,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		$enddate = '',
 		$NewsTypeID = '',
 		$NewsSubTypeID = '',
+		$MoreTypeID = '',
 		$ReporterID = '',
 		$NT01_News_attach = ''
 		// $NT01_NewsID_vdo = '',
@@ -537,7 +556,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -546,7 +565,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -555,7 +574,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
@@ -572,6 +591,12 @@ class PRD_Report_PRD_model extends CI_Model {
 			$StrQuery .= "
 				AND
 					NT01_News.NT03_SubTypeID = '".$NewsSubTypeID."'
+			";
+		}
+		if($MoreTypeID != ''){
+			$StrQuery .= "
+				AND
+					NT01_News.NT06_MoreTypeID = '".$MoreTypeID."'
 			";
 		}
 		if($ReporterID != ''){
@@ -793,7 +818,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate > '".date("Y-m-d H:i:s", strtotime($startdate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) > '".date("Y-m-d H:i:s", strtotime($startdate))."'
 			";
 		}
 		elseif(
@@ -802,7 +827,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate < '".date("Y-m-d H:i:s", strtotime($enddate))."'
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121) < '".date("Y-m-d H:i:s", strtotime($enddate))."'
 			";
 		}
 		elseif(
@@ -811,7 +836,7 @@ class PRD_Report_PRD_model extends CI_Model {
 		){
 			$StrQuery .= "
 				AND
-					NT01_News.NT01_NewsDate
+					CONVERT(VARCHAR(23),NT01_News.NT01_NewsDate,121)
 						BETWEEN 
 							'".date("Y-m-d H:i:s", strtotime($startdate))."'
 							AND
